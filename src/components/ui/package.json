@@ -1,0 +1,81 @@
+{
+  "name": "@artisan/ui",
+  "version": "1.0.0",
+  "description": "Artisan's production-ready React component library built with Tailwind CSS and Radix UI",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "design-system",
+    "tailwind",
+    "radix-ui",
+    "accessible",
+    "dark-mode"
+  ],
+  "author": "Artisan Platform Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artisan/platform",
+    "directory": "src/components/ui"
+  },
+  "bugs": {
+    "url": "https://github.com/artisan/platform/issues"
+  },
+  "homepage": "https://artisan.com/components",
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0"
+  },
+  "dependencies": {
+    "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-checkbox": "^1.0.4",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
+    "@radix-ui/react-popover": "^1.0.7",
+    "@radix-ui/react-radio-group": "^1.1.3",
+    "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-separator": "^1.0.3",
+    "@radix-ui/react-switch": "^1.0.3",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@radix-ui/react-toast": "^1.1.5",
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.2.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0"
+  },
+  "files": [
+    "*.jsx",
+    "*.js",
+    "*.d.ts",
+    "README.md",
+    "DESIGN_SYSTEM.md",
+    "COMPONENT_GUIDE.md"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./*": "./*.jsx",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

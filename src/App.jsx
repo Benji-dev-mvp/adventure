@@ -72,6 +72,12 @@ const AdminAPIKeys = lazy(() => import('./pages/AdminAPIKeys'));
 const AdminWebhooks = lazy(() => import('./pages/AdminWebhooks'));
 const AdminAuditLog = lazy(() => import('./pages/AdminAuditLog'));
 
+// Foundation Product Layers - New Pages
+const Pricing = lazy(() => import('./pages/Pricing'));
+const IntegrationsPage = lazy(() => import('./pages/IntegrationsPage'));
+const KnowledgeBase = lazy(() => import('./pages/KnowledgeBase'));
+const Waitlist = lazy(() => import('./pages/Waitlist'));
+
 function App() {
   return (
     <ErrorBoundary>
@@ -145,6 +151,12 @@ function App() {
                 <Route path="/admin/api-keys" element={<AdminAPIKeys />} />
                 <Route path="/admin/webhooks" element={<AdminWebhooks />} />
                 <Route path="/admin/audit-log" element={<AdminAuditLog />} />
+                
+                {/* Foundation Product Layers - New Pages */}
+                <Route path="/pricing" element={<Pricing />} />
+                <Route path="/integrations-directory" element={<IntegrationsPage />} />
+                <Route path="/knowledge-base" element={<KnowledgeBase />} />
+                <Route path="/waitlist" element={<Waitlist />} />
                 
                 <Route path="/404" element={<NotFound />} />
                 <Route path="*" element={<NotFound />} />

@@ -1,20 +1,10 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
-type FAQ = {
-  question: string;
-  answer: string;
-};
+export function FAQAccordion({ faqs, title = "Frequently Asked Questions" }) {
+  const [openIndex, setOpenIndex] = useState(null);
 
-type FAQAccordionProps = {
-  faqs: FAQ[];
-  title?: string;
-};
-
-export function FAQAccordion({ faqs, title = "Frequently Asked Questions" }: FAQAccordionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggleFAQ = (index: number) => {
+  const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 

@@ -1,19 +1,12 @@
 import React from 'react';
 
-type PageSectionProps = {
-  id?: string;
-  variant?: "default" | "muted" | "surface";
-  children: React.ReactNode;
-  className?: string;
-};
-
-const variantClasses: Record<NonNullable<PageSectionProps["variant"]>, string> = {
+const variantClasses = {
   default: "bg-slate-950",
   muted: "bg-slate-900/60",
   surface: "bg-slate-900",
 };
 
-export function PageSection({ id, variant = "default", children, className = "" }: PageSectionProps) {
+export function PageSection({ id, variant = "default", children, className = "" }) {
   return (
     <section
       id={id}

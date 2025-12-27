@@ -1,15 +1,6 @@
 import React from 'react';
 import { Badge } from '../ui/Badge';
 
-type PageHeaderProps = {
-  eyebrow?: string;
-  title: string;
-  description?: string;
-  pill?: string;
-  align?: 'left' | 'center';
-  className?: string;
-};
-
 export function PageHeader({ 
   eyebrow, 
   title, 
@@ -17,7 +8,7 @@ export function PageHeader({
   pill,
   align = 'center',
   className = '' 
-}: PageHeaderProps) {
+}) {
   const alignClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
   
   return (

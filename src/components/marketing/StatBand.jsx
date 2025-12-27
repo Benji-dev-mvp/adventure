@@ -1,15 +1,6 @@
 import React from 'react';
 
-type Stat = {
-  label: string;
-  value: string;
-};
-
-type StatBandProps = {
-  stats: Stat[];
-};
-
-export function StatBand({ stats }: StatBandProps) {
+export function StatBand({ stats }) {
   return (
     <section className="bg-slate-950 border-b border-slate-800 py-12">
       <div className="mx-auto max-w-7xl px-6">

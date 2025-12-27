@@ -4,16 +4,6 @@ import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { ArrowRight } from 'lucide-react';
 
-type HeroProps = {
-  eyebrow?: string;
-  title: string;
-  subtitle: string;
-  primaryCta?: { label: string; href: string };
-  secondaryCta?: { label: string; href: string };
-  pill?: string;
-  children?: React.ReactNode;
-};
-
 export function Hero({ 
   eyebrow, 
   title, 
@@ -22,7 +12,7 @@ export function Hero({
   secondaryCta,
   pill,
   children 
-}: HeroProps) {
+}) {
   return (
     <section className="relative min-h-[600px] md:min-h-[700px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Background Effects */}

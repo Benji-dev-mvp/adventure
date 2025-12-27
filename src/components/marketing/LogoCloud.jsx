@@ -1,18 +1,7 @@
 import React from 'react';
 
-type Logo = {
-  name: string;
-  src?: string;
-  className?: string;
-};
-
-type LogoCloudProps = {
-  logos?: Logo[];
-  title?: string;
-};
-
-export function LogoCloud({ logos, title = "Trusted by leading companies" }: LogoCloudProps) {
-  const defaultLogos: Logo[] = logos || [
+export function LogoCloud({ logos, title = "Trusted by leading companies" }) {
+  const defaultLogos = logos || [
     { name: 'Company 1', className: 'h-8' },
     { name: 'Company 2', className: 'h-8' },
     { name: 'Company 3', className: 'h-8' },

@@ -3,19 +3,12 @@ import { Link } from 'react-router-dom';
 import { Button } from '../ui/Button';
 import { ArrowRight } from 'lucide-react';
 
-type CTASectionProps = {
-  title?: string;
-  description?: string;
-  ctaLabel?: string;
-  ctaHref?: string;
-};
-
 export function CTASection({ 
   title = "Ready to transform your outbound?",
   description = "Join leading revenue teams using AI to scale their GTM motion.",
   ctaLabel = "Get Started",
   ctaHref = "/pricing"
-}: CTASectionProps) {
+}) {
   return (
     <section className="bg-gradient-to-br from-blue-600 to-purple-600 py-20">
       <div className="mx-auto max-w-4xl px-6 text-center">

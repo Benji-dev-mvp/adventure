@@ -1,18 +1,7 @@
 import React from 'react';
 import { Check } from 'lucide-react';
 
-type TimelineStep = {
-  title: string;
-  description?: string;
-  icon?: React.ReactNode;
-};
-
-type TimelineProps = {
-  steps: TimelineStep[];
-  orientation?: 'vertical' | 'horizontal';
-};
-
-export function Timeline({ steps, orientation = 'vertical' }: TimelineProps) {
+export function Timeline({ steps, orientation = 'vertical' }) {
   if (orientation === 'horizontal') {
     return (
       <div className="relative">

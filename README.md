@@ -30,6 +30,16 @@ A production-ready AI Business Development Representative (BDR) platform built w
 - [Backend Connection Guide](docs/BACKEND_CONNECTION_GUIDE.md) - Setup instructions
 - [Deployment Guide](docs/DEPLOYMENT_GUIDE.md) - Production deployment
 - [Upgrade Guide](docs/UPGRADE_GUIDE.md) - Version management
+- [Enterprise Hardening Guide](docs/ENTERPRISE_HARDENING.md) - Security & observability ⭐ NEW
+
+**🏢 Enterprise-Ready**
+- Role-based access control (Admin/Operator/Viewer)
+- Multi-tenancy support with isolated data
+- Comprehensive audit logging and compliance
+- OpenTelemetry distributed tracing
+- SLO monitoring with error budgets
+- Feature flags for gradual rollouts
+- Load testing and performance budgets
 
 ## Features
 

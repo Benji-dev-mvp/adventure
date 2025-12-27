@@ -98,6 +98,15 @@ Created comprehensive guides:
 **Upgrade Guide** (`docs/UPGRADE_GUIDE.md`)
 - Version strategy & semantic versioning
 - Pre-upgrade checklist
+
+**Enterprise Hardening Guide** (`docs/ENTERPRISE_HARDENING.md`) ⭐ NEW
+- Authentication & access control (RBAC, API keys)
+- Security & compliance controls
+- Multi-tenancy readiness
+- Observability & reliability (metrics, tracing, logging)
+- Kapa.ai deep integration enhancements
+- Analytics & product insights
+- Operational tooling (feature flags, runbooks, load testing)
 - Frontend upgrade procedures
 - Backend upgrade procedures
 - Database migration workflows

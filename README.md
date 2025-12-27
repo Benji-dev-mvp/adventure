@@ -2,6 +2,35 @@
 
 A production-ready AI Business Development Representative (BDR) platform built with React, featuring Ava - an intelligent AI assistant that automates outbound sales workflows.
 
+## 🆕 Latest Updates (v2.0.0)
+
+### New in This Release
+
+**🤖 Kapa.ai Integration**
+- AI-powered documentation assistant available on all pages
+- Click the (?) icon to ask questions about the platform
+- Get instant answers with source citations
+- Conversation threading for complex queries
+
+**📊 System Health Monitoring**
+- Real-time backend service monitoring
+- CPU, memory, and disk usage tracking
+- Service status dashboard at `/system-status`
+- Auto-refreshing health metrics
+
+**🚀 Enhanced Deployment**
+- Production-ready Docker Compose setup
+- Kubernetes manifests with Helm charts
+- Zero-downtime upgrade procedures
+- Comprehensive deployment documentation
+
+**📖 Complete Documentation**
+- [Quick Reference Guide](docs/QUICK_REFERENCE.md) - Common commands and tips
+- [Architecture Overview](docs/ARCHITECTURE.md) - System diagrams
+- [Backend Connection Guide](docs/BACKEND_CONNECTION_GUIDE.md) - Setup instructions
+- [Deployment Guide](docs/DEPLOYMENT_GUIDE.md) - Production deployment
+- [Upgrade Guide](docs/UPGRADE_GUIDE.md) - Version management
+
 ## Features
 
 ### 🤖 AI Assistant - Ava
@@ -104,9 +133,26 @@ A production-ready AI Business Development Representative (BDR) platform built w
 - Helpful suggestions for users
 - Catch-all route for undefined pages
 
+### System Health & Monitoring (NEW)
+- Real-time backend service status monitoring
+- System resource tracking (CPU, memory, disk)
+- Service dependency health checks
+- Response time measurements
+- Auto-refreshing dashboard (30s interval)
+- Accessible at `/system-status`
+
+### AI-Powered Help Assistant (NEW)
+- Kapa.ai integration for instant documentation help
+- Available on all pages via (?) icon
+- Conversation threading for complex queries
+- Source citations for transparency
+- User feedback mechanism
+- Powered by AI trained on application documentation
+
 ## Tech Stack
 
-- **Frontend Framework**: React 18.2 with Hooks
+### Frontend
+- **Framework**: React 18.2 with Hooks
 - **Routing**: React Router v7 with lazy code splitting
 - **Styling**: Tailwind CSS v3
 - **Icons**: Lucide React (50+ icons)
@@ -115,40 +161,109 @@ A production-ready AI Business Development Representative (BDR) platform built w
 - **CSS Processing**: PostCSS + Autoprefixer
 - **Utilities**: clsx, tailwind-merge
 
+### Backend
+- **Framework**: FastAPI (Python 3.11+)
+- **Database**: PostgreSQL / SQLite
+- **Cache**: Redis / In-memory
+- **Authentication**: JWT + OAuth2
+- **AI Integration**: Kapa.ai for documentation
+- **Monitoring**: Prometheus, Sentry
+- **API Documentation**: OpenAPI/Swagger
+
 ## Getting Started
 
-### Installation
+### Quick Start (Development)
+
+**Frontend:**
 ```bash
+# Install dependencies
 npm install
+
+# Start development server
+npm run dev
+```
+The frontend runs on `http://localhost:3004`
+
+**Backend:**
+```bash
+# Navigate to backend
+cd backend
+
+# Create virtual environment
+python3 -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Start development server
+uvicorn app.main:app --reload --port 8000
+```
+The backend runs on `http://localhost:8000`
+
+**Access:**
+- Frontend: http://localhost:3004
+- Backend API: http://localhost:8000/docs
+- System Health: http://localhost:3004/system-status
+- Help Assistant: Click (?) icon on any page
+
+### Docker Deployment
+
+```bash
+# Start all services
+docker-compose up -d
+
+# Run database migrations
+docker-compose exec backend alembic upgrade head
+
+# View logs
+docker-compose logs -f
 ```
 
-### Development Server
-```bash
-npm start
-```
-The app will run on `http://localhost:3000`
+Access at:
+- Frontend: http://localhost:3000
+- Backend: http://localhost:8000
 
 ### Production Build
+
+**Frontend:**
 ```bash
 npm run build
 ```
 Built files are in `dist/` directory
 
-### Preview Production Build
+**Backend:**
 ```bash
-npm preview
+# Set environment variables
+export DATABASE_URL=postgresql://...
+export SECRET_KEY=your-secret-key
+
+# Run with production server
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
 ```
 
 ## 📚 Documentation
 
 All documentation has been organized for easy access:
 
+### Quick References
+- **[Quick Reference Guide](docs/QUICK_REFERENCE.md)** - Common commands, quick start, troubleshooting
+- **[Architecture Overview](docs/ARCHITECTURE.md)** - System diagrams and data flow
+
+### Setup & Configuration
+- **[Backend Connection Guide](docs/BACKEND_CONNECTION_GUIDE.md)** - Complete backend setup and Kapa.ai integration
 - **[Complete Documentation Index](docs/README.md)** - Start here for all documentation
 - **[Quick Start Guide](docs/guides/QUICK_START.md)** - Get up and running quickly
+
+### Deployment & Operations
+- **[Deployment Guide](docs/DEPLOYMENT_GUIDE.md)** - Docker, Kubernetes, Helm, cloud platforms
+- **[Upgrade Guide](docs/UPGRADE_GUIDE.md)** - Version upgrades, migrations, rollbacks
+- **[Production Checklist](docs/deployment/PRODUCTION_CHECKLIST.md)** - Pre-launch checklist
+- **[Implementation Summary](docs/IMPLEMENTATION_SUMMARY.md)** - Recent changes and features
+
+### Features & Development
 - **[Architecture Overview](docs/architecture/ARCHITECTURE.md)** - System design and architecture
 - **[Features Documentation](docs/features/)** - Detailed feature guides
-- **[Deployment Guide](docs/deployment/DEPLOYMENT.md)** - Production deployment instructions
-- **[Production Checklist](docs/deployment/PRODUCTION_CHECKLIST.md)** - Pre-launch checklist
 
 ## Project Structure
 

@@ -35,6 +35,8 @@ from app.api.routes.new_features import (
 from app.api.routes.tasks import router as tasks_router  # NEW
 from app.api.routes.campaign_intelligence import router as campaign_intelligence_router  # Campaign business logic
 from app.api.routes.ai_advanced import router as ai_advanced_router  # Advanced AI integrations
+from app.api.routes.kapa_integration import router as kapa_router  # Kapa.ai integration
+from app.api.routes.system_health import router as system_health_router  # System health monitoring
 from app.core.db import init_db, seed_if_empty, engine
 from app.core.security import SecurityHeadersMiddleware, RequestSizeLimitMiddleware, RequestIDMiddleware, RateLimitMiddleware
 from app.core.cache import cache
@@ -193,3 +195,9 @@ app.include_router(playbooks_router, tags=["sales-playbooks"])
 # Include advanced AI/ML features
 app.include_router(advanced_features_router, prefix="/api/advanced", tags=["ml-ai"])
 app.include_router(oauth_router, prefix="/api", tags=["oauth"])
+
+# Include Kapa.ai integration
+app.include_router(kapa_router, prefix="/api", tags=["kapa-ai"])
+
+# Include system health monitoring
+app.include_router(system_health_router, prefix="/api", tags=["system"])

@@ -108,14 +108,25 @@ class TenantService:
         
         Returns:
             True if within limits, False otherwise
+        
+        TODO: Implement actual database queries to count resources.
+        Currently returns True as placeholder - this must be implemented
+        before production deployment to enforce resource limits properly.
         """
         tenant = session.get(Tenant, tenant_id)
         
         if not tenant:
             raise HTTPException(status_code=404, detail="Tenant not found")
         
-        # Get current count based on resource type
-        # In production, query actual counts from database
+        # TODO: Implement actual count queries
+        # Example:
+        # if resource_type == 'users':
+        #     current_count = session.exec(
+        #         select(func.count(UserDB.id))
+        #         .where(UserDB.tenant_id == tenant_id)
+        #     ).one()
+        #     return current_count < tenant.max_users
+        
         current_count = 0  # Placeholder
         
         if resource_type == 'users':

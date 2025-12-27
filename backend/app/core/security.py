@@ -299,13 +299,24 @@ async def get_current_tenant(user: User = Depends(get_current_user)):
     """
     Get current tenant from authenticated user.
     Requires get_current_user dependency.
+    
+    TODO: Implement actual database lookup using user.tenant_id.
+    Currently returns mock data - this must be implemented properly
+    for tenant isolation before production deployment.
     """
     from app.models.db.tenant import Tenant
     from app.core.db import get_session
     from sqlmodel import select
     
-    # For now, return a mock tenant based on user
-    # In production, fetch from database using user.tenant_id
+    # TODO: Implement actual database query
+    # Example:
+    # with next(get_session()) as session:
+    #     tenant = session.get(Tenant, user.tenant_id)
+    #     if not tenant:
+    #         raise HTTPException(status_code=404, detail="Tenant not found")
+    #     return tenant
+    
+    # Mock tenant data (for development only)
     tenant_data = {
         "id": 1,
         "name": "Default Organization",

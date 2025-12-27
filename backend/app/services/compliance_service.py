@@ -26,28 +26,47 @@ class ComplianceService:
         
         Returns:
             Dictionary containing all user data
+        
+        TODO: Implement actual database queries to fetch all user-related data.
+        Currently returns placeholder data - this must be implemented properly
+        for GDPR compliance before production deployment.
         """
         logger.info(f"Exporting data for user {user_id} in tenant {tenant_id}")
         
-        # In production, collect data from all relevant tables
+        # TODO: Implement actual data collection from database
+        # Example:
+        # from app.models.db.user_db import UserDB
+        # from app.models.db.campaign import CampaignDB
+        # from app.models.db.audit_log import AuditLogDB
+        #
+        # user = session.get(UserDB, user_id)
+        # campaigns = session.exec(
+        #     select(CampaignDB).where(CampaignDB.user_id == user_id)
+        # ).all()
+        # audit_logs = session.exec(
+        #     select(AuditLogDB).where(AuditLogDB.user_id == user_id)
+        # ).all()
+        
+        # Placeholder data structure
         user_data = {
             "metadata": {
                 "exported_at": datetime.utcnow().isoformat(),
                 "tenant_id": tenant_id,
                 "user_id": user_id,
-                "format_version": "1.0"
+                "format_version": "1.0",
+                "warning": "This is placeholder data. Implement actual database queries before production."
             },
             "profile": {
                 "id": user_id,
-                "email": "user@example.com",  # Fetch from database
-                "name": "User Name",
+                "email": "user@example.com",  # TODO: Fetch from database
+                "name": "User Name",  # TODO: Fetch from database
                 "created_at": datetime.utcnow().isoformat(),
             },
-            "campaigns": [],  # Fetch campaigns created by user
-            "leads": [],  # Fetch leads owned by user
-            "activity": [],  # Fetch audit logs for user
-            "api_keys": [],  # Fetch API keys created by user
-            "webhooks": [],  # Fetch webhooks created by user
+            "campaigns": [],  # TODO: Fetch campaigns created by user
+            "leads": [],  # TODO: Fetch leads owned by user
+            "activity": [],  # TODO: Fetch audit logs for user
+            "api_keys": [],  # TODO: Fetch API keys created by user
+            "webhooks": [],  # TODO: Fetch webhooks created by user
         }
         
         return user_data

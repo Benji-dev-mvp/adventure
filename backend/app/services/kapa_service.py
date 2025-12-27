@@ -1,6 +1,7 @@
 """Kapa.ai integration service for AI-powered documentation and Q&A."""
 from typing import Dict, Any, Optional, List
 import httpx
+import asyncio
 import logging
 import json
 from datetime import datetime
@@ -81,7 +82,7 @@ class KapaService:
                         # Rate limit - wait and retry
                         logger.warning(f"Kapa rate limit hit, attempt {attempt + 1}")
                         if attempt < self.MAX_RETRIES - 1:
-                            await __import__('asyncio').sleep(2 ** attempt)
+                            await asyncio.sleep(2 ** attempt)
                             continue
                     
                     else:

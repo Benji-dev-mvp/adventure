@@ -151,7 +151,10 @@ class WebhookService:
             
             # Check if webhook is subscribed to this event
             if event_type in event_types or "*" in event_types:
-                # Queue delivery (in background)
+                # Queue delivery
+                # TODO: In production, use a proper task queue (Celery, Redis Queue, etc.)
+                # instead of asyncio.create_task() to ensure task persistence and proper
+                # error handling. Current implementation may lose tasks on server restart.
                 asyncio.create_task(
                     WebhookService._deliver_webhook(session, webhook, event_type, payload)
                 )

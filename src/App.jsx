@@ -71,6 +71,7 @@ const SalesPlaybooks = lazy(() => import('./pages/SalesPlaybooks'));
 const AdminAPIKeys = lazy(() => import('./pages/AdminAPIKeys'));
 const AdminWebhooks = lazy(() => import('./pages/AdminWebhooks'));
 const AdminAuditLog = lazy(() => import('./pages/AdminAuditLog'));
+const AdminAIControl = lazy(() => import('./pages/AdminAIControl'));
 
 function App() {
   return (
@@ -145,6 +146,7 @@ function App() {
                 <Route path="/admin/api-keys" element={<AdminAPIKeys />} />
                 <Route path="/admin/webhooks" element={<AdminWebhooks />} />
                 <Route path="/admin/audit-log" element={<AdminAuditLog />} />
+                <Route path="/admin/ai-control" element={<AdminAIControl />} />
                 
                 <Route path="/404" element={<NotFound />} />
                 <Route path="*" element={<NotFound />} />

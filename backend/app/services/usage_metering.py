@@ -255,7 +255,7 @@ class UsageAnalyticsService:
         end_date: Optional[datetime] = None,
     ) -> Dict[str, Any]:
         """Get usage summary for tenant"""
-        from sqlalchemy import func
+        from sqlalchemy import func, case
         
         query = (
             select(

@@ -67,6 +67,11 @@ const CRMIntegrations = lazy(() => import('./pages/CRMIntegrations'));
 const TeamCollaboration = lazy(() => import('./pages/TeamCollaboration'));
 const SalesPlaybooks = lazy(() => import('./pages/SalesPlaybooks'));
 
+// Admin & Enterprise Features
+const AdminAPIKeys = lazy(() => import('./pages/AdminAPIKeys'));
+const AdminWebhooks = lazy(() => import('./pages/AdminWebhooks'));
+const AdminAuditLog = lazy(() => import('./pages/AdminAuditLog'));
+
 function App() {
   return (
     <ErrorBoundary>
@@ -135,6 +140,11 @@ function App() {
                 <Route path="/crm-integrations" element={<CRMIntegrations />} />
                 <Route path="/team-collaboration" element={<TeamCollaboration />} />
                 <Route path="/sales-playbooks" element={<SalesPlaybooks />} />
+                
+                {/* Admin & Enterprise Features */}
+                <Route path="/admin/api-keys" element={<AdminAPIKeys />} />
+                <Route path="/admin/webhooks" element={<AdminWebhooks />} />
+                <Route path="/admin/audit-log" element={<AdminAuditLog />} />
                 
                 <Route path="/404" element={<NotFound />} />
                 <Route path="*" element={<NotFound />} />

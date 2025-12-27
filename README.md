@@ -2,6 +2,25 @@
 
 A production-ready AI Business Development Representative (BDR) platform built with React, featuring Ava - an intelligent AI assistant that automates outbound sales workflows.
 
+## New Features 🎉
+
+### Growth Infrastructure
+- **Usage Metering & Billing**: Stripe-powered subscription management with seat-based and metered pricing
+- **Team Plans**: Free, Starter ($49), Professional ($299), and Enterprise ($999) tiers
+- **Workspace Management**: Team collaboration with role-based access control
+- **Invitation Flow**: Streamlined team member onboarding with secure token-based invitations
+- **Analytics Dashboard**: Track activation, retention, and expansion metrics
+- **Release Center**: Stay updated with product changes and new features
+- **NPS & Feedback Loop**: In-app surveys and feedback collection
+
+### Strategic Features
+- **Adaptive Outbound AI**: Self-learning system that optimizes messaging and ICP targeting
+- **AI Salesboard**: Real-time performance insights and personalized rep coaching
+- **Knowledge Fusion**: Auto-generate documentation from calls, emails, and meetings
+- **Workflow Map Builder**: Visual automation canvas for RevOps teams (Coming Soon)
+- **Voice-to-Action Agent**: Automatic task/ticket creation from call transcripts (Coming Soon)
+- **AI Safety Console**: Admin guardrails and compliance monitoring (Coming Soon)
+
 ## Features
 
 ### 🤖 AI Assistant - Ava

@@ -473,8 +473,15 @@ const Settings = () => {
             <>
               <Card>
                 <CardHeader>
-                  <CardTitle>Current Plan</CardTitle>
-                  <CardDescription>Professional Plan</CardDescription>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle>Billing & Usage</CardTitle>
+                      <CardDescription>Manage your subscription and track usage</CardDescription>
+                    </div>
+                    <Button onClick={() => window.location.href = '/billing'}>
+                      View Full Billing
+                    </Button>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   <div className="p-6 bg-gradient-to-br from-accent-50 to-primary-50 rounded-xl">
@@ -496,7 +503,9 @@ const Settings = () => {
                       </div>
                     </div>
                     <div className="flex gap-3">
-                      <Button variant="outline">Change Plan</Button>
+                      <Button variant="outline" onClick={() => window.location.href = '/billing'}>
+                        Change Plan
+                      </Button>
                       <Button variant="ghost">Cancel Subscription</Button>
                     </div>
                   </div>

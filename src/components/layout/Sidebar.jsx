@@ -53,9 +53,12 @@ const Sidebar = () => {
     { icon: Database, label: 'Lead Database', path: '/lead-database' },
     { icon: MessageSquare, label: 'AI Assistant', path: '/ai-assistant' },
     { icon: BarChart3, label: 'Analytics', path: '/analytics' },
-    { icon: Rocket, label: 'Advanced Hub', path: '/advanced', highlight: true, badge: 'New' },
+    { icon: TrendingUp, label: 'AI Salesboard', path: '/ai-salesboard', highlight: true, badge: 'New' },
+    { icon: Brain, label: 'Knowledge Fusion', path: '/knowledge-fusion', highlight: true, badge: 'AI' },
+    { icon: Rocket, label: 'Advanced Hub', path: '/advanced', highlight: true },
     { icon: Zap, label: 'Integrations', path: '/integrations' },
     { icon: FileCode, label: 'Templates', path: '/templates' },
+    { icon: Activity, label: 'Releases', path: '/releases' },
     { icon: Settings, label: 'Settings', path: '/settings' },
     { icon: Shield, label: 'Admin', path: '/admin', adminOnly: true },
   ];

@@ -72,6 +72,12 @@ const AdminAPIKeys = lazy(() => import('./pages/AdminAPIKeys'));
 const AdminWebhooks = lazy(() => import('./pages/AdminWebhooks'));
 const AdminAuditLog = lazy(() => import('./pages/AdminAuditLog'));
 
+// Growth Infrastructure & Strategic Features
+const BillingAndUsage = lazy(() => import('./pages/BillingAndUsage'));
+const AISalesboard = lazy(() => import('./pages/AISalesboard'));
+const KnowledgeFusion = lazy(() => import('./pages/KnowledgeFusion'));
+const ReleaseCenter = lazy(() => import('./pages/ReleaseCenter'));
+
 function App() {
   return (
     <ErrorBoundary>
@@ -145,6 +151,12 @@ function App() {
                 <Route path="/admin/api-keys" element={<AdminAPIKeys />} />
                 <Route path="/admin/webhooks" element={<AdminWebhooks />} />
                 <Route path="/admin/audit-log" element={<AdminAuditLog />} />
+                
+                {/* Growth Infrastructure & Strategic Features */}
+                <Route path="/billing" element={<BillingAndUsage />} />
+                <Route path="/ai-salesboard" element={<AISalesboard />} />
+                <Route path="/knowledge-fusion" element={<KnowledgeFusion />} />
+                <Route path="/releases" element={<ReleaseCenter />} />
                 
                 <Route path="/404" element={<NotFound />} />
                 <Route path="*" element={<NotFound />} />

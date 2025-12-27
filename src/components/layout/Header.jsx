@@ -1,8 +1,11 @@
 import React from 'react';
-import { Search, Bell, User } from 'lucide-react';
+import { Search, Bell, User, Moon, Sun } from 'lucide-react';
 import { Button } from '../ui/Button';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const Header = ({ title, subtitle }) => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <header className="bg-white dark:bg-slate-900/50 dark:backdrop-blur-xl border-b border-gray-200 dark:border-white/10 px-8 py-4 sticky top-0 z-10">
       <div className="flex items-center justify-between">
@@ -18,15 +21,29 @@ const Header = ({ title, subtitle }) => {
               type="text"
               placeholder="Search leads, campaigns..."
               className="pl-10 pr-4 py-2 w-80 rounded-xl border border-gray-300 dark:border-white/20 dark:bg-white/10 dark:text-white dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent"
+              aria-label="Search leads and campaigns"
             />
           </div>
 
-          <button className="relative p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-xl transition-colors">
-            <Bell size={20} className="text-gray-600 dark:text-gray-300" />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
+          <button 
+            onClick={toggleTheme}
+            className="p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-xl transition-colors"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? (
+              <Sun size={20} className="text-gray-600 dark:text-gray-300" />
+            ) : (
+              <Moon size={20} className="text-gray-600 dark:text-gray-300" />
+            )}
           </button>
 
-          <button className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-xl transition-colors">
+          <button className="relative p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-xl transition-colors" aria-label="Notifications">
+            <Bell size={20} className="text-gray-600 dark:text-gray-300" />
+            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" aria-label="Unread notifications" />
+          </button>
+
+          <button className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-xl transition-colors" aria-label="User profile">
             <div className="w-8 h-8 bg-gradient-to-br from-accent-500 to-primary-500 rounded-full flex items-center justify-center">
               <User size={18} className="text-white" />
             </div>

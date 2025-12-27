@@ -10,6 +10,7 @@ const LandingPage = lazy(() => import('./pages/LandingPage'));
 const Marketing = lazy(() => import('./pages/Marketing'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const EnhancedDashboard = lazy(() => import('./pages/EnhancedDashboard'));
+const EnhancedDashboardNew = lazy(() => import('./pages/EnhancedDashboardNew'));
 const CampaignBuilder = lazy(() => import('./pages/CampaignBuilder'));
 const Leads = lazy(() => import('./pages/Leads'));
 const LeadDatabase = lazy(() => import('./pages/LeadDatabase'));
@@ -78,7 +79,8 @@ function App() {
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/marketing" element={<Marketing />} />
                 <Route path="/onboarding" element={<Onboarding />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard" element={<EnhancedDashboardNew />} />
+                <Route path="/dashboard-original" element={<Dashboard />} />
                 <Route path="/dashboard-enhanced" element={<EnhancedDashboard />} />
                 <Route path="/campaigns" element={<CampaignBuilder />} />
                 <Route path="/leads" element={<Leads />} />

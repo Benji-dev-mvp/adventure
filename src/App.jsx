@@ -34,6 +34,27 @@ const HelpCenter = lazy(() => import('./pages/HelpCenter'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const ComponentShowcase = lazy(() => import('./pages/ComponentShowcaseSimple'));
 
+// Marketing Showcase
+const MarketingShowcase = lazy(() => import('./pages/MarketingShowcase'));
+
+// New Marketing Pages
+const HomePage = lazy(() => import('./pages/home/HomePage'));
+const ProductPage = lazy(() => import('./pages/product/ProductPage'));
+const HowItWorksPage = lazy(() => import('./pages/how-it-works/HowItWorksPage'));
+const PricingPage = lazy(() => import('./pages/pricing/PricingPage'));
+const SolutionsPage = lazy(() => import('./pages/solutions/SolutionsPage'));
+const SalesLeadersPage = lazy(() => import('./pages/solutions/SalesLeadersPage'));
+const RevOpsPage = lazy(() => import('./pages/solutions/RevOpsPage'));
+const StartupsPage = lazy(() => import('./pages/solutions/StartupsPage'));
+const ResourcesHubPage = lazy(() => import('./pages/resources/ResourcesHubPage'));
+const CaseStudiesPage = lazy(() => import('./pages/resources/CaseStudiesPage'));
+const BlogIndexPage = lazy(() => import('./pages/resources/BlogIndexPage'));
+const BlogPostPage = lazy(() => import('./pages/resources/BlogPostPage'));
+const AboutPage = lazy(() => import('./pages/company/AboutPage'));
+const CustomersPage = lazy(() => import('./pages/company/CustomersPage'));
+const SecurityPage = lazy(() => import('./pages/company/SecurityPage'));
+const LoginPage = lazy(() => import('./pages/auth/LoginPage'));
+
 // Solutions Pages
 const SolutionsStartups = lazy(() => import('./pages/SolutionsStartups'));
 const SolutionsMidMarket = lazy(() => import('./pages/SolutionsMidMarket'));
@@ -145,6 +166,27 @@ function App() {
                 <Route path="/admin/api-keys" element={<AdminAPIKeys />} />
                 <Route path="/admin/webhooks" element={<AdminWebhooks />} />
                 <Route path="/admin/audit-log" element={<AdminAuditLog />} />
+
+                {/* Marketing Pages Showcase */}
+                <Route path="/marketing-showcase" element={<MarketingShowcase />} />
+
+                {/* New Marketing-Focused Pages */}
+                <Route path="/home" element={<HomePage />} />
+                <Route path="/product" element={<ProductPage />} />
+                <Route path="/how-it-works" element={<HowItWorksPage />} />
+                <Route path="/pricing" element={<PricingPage />} />
+                <Route path="/solutions" element={<SolutionsPage />} />
+                <Route path="/solutions/sales-leaders" element={<SalesLeadersPage />} />
+                <Route path="/solutions/rev-ops" element={<RevOpsPage />} />
+                <Route path="/solutions/startups" element={<StartupsPage />} />
+                <Route path="/resources" element={<ResourcesHubPage />} />
+                <Route path="/resources/case-studies" element={<CaseStudiesPage />} />
+                <Route path="/resources/blog" element={<BlogIndexPage />} />
+                <Route path="/resources/blog/:slug" element={<BlogPostPage />} />
+                <Route path="/company/about" element={<AboutPage />} />
+                <Route path="/company/customers" element={<CustomersPage />} />
+                <Route path="/company/security" element={<SecurityPage />} />
+                <Route path="/login" element={<LoginPage />} />
                 
                 <Route path="/404" element={<NotFound />} />
                 <Route path="*" element={<NotFound />} />

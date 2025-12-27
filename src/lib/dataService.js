@@ -607,6 +607,157 @@ export const generateEmailWithAI = async (lead, prompt, tone = 'professional', l
   return { subject: 'Quick question', body: 'Hi, interested in a quick chat?', tone, length };
 };
 
+// --- API Keys Management ---
+export const listAPIKeys = async (workspaceId = null, status = null) => {
+  try {
+    const params = new URLSearchParams();
+    if (workspaceId) params.append('workspace_id', workspaceId);
+    if (status) params.append('status', status);
+    const queryString = params.toString();
+    return await request(`/admin/api-keys${queryString ? '?' + queryString : ''}`);
+  } catch (e) {
+    console.error('Failed to list API keys:', e);
+    return [];
+  }
+};
+
+export const createAPIKey = async (keyData) => {
+  try {
+    return await request('/admin/api-keys', {
+      method: 'POST',
+      body: JSON.stringify(keyData),
+    });
+  } catch (e) {
+    console.error('Failed to create API key:', e);
+    throw e;
+  }
+};
+
+export const getAPIKey = async (keyId) => {
+  try {
+    return await request(`/admin/api-keys/${keyId}`);
+  } catch (e) {
+    console.error('Failed to get API key:', e);
+    throw e;
+  }
+};
+
+export const rotateAPIKey = async (keyId, rotateData = null) => {
+  try {
+    return await request(`/admin/api-keys/${keyId}/rotate`, {
+      method: 'POST',
+      body: rotateData ? JSON.stringify(rotateData) : undefined,
+    });
+  } catch (e) {
+    console.error('Failed to rotate API key:', e);
+    throw e;
+  }
+};
+
+export const revokeAPIKey = async (keyId, reason = null) => {
+  try {
+    const params = new URLSearchParams();
+    if (reason) params.append('reason', reason);
+    return await request(`/admin/api-keys/${keyId}?${params.toString()}`, {
+      method: 'DELETE',
+    });
+  } catch (e) {
+    console.error('Failed to revoke API key:', e);
+    throw e;
+  }
+};
+
+export const getAPIKeyUsage = async (keyId) => {
+  try {
+    return await request(`/admin/api-keys/${keyId}/usage`);
+  } catch (e) {
+    console.error('Failed to get API key usage:', e);
+    return null;
+  }
+};
+
+// --- Webhooks Management ---
+export const listWebhooks = async (workspaceId = null, status = null) => {
+  try {
+    const params = new URLSearchParams();
+    if (workspaceId) params.append('workspace_id', workspaceId);
+    if (status) params.append('status', status);
+    const queryString = params.toString();
+    return await request(`/admin/webhooks${queryString ? '?' + queryString : ''}`);
+  } catch (e) {
+    console.error('Failed to list webhooks:', e);
+    return [];
+  }
+};
+
+export const createWebhook = async (webhookData) => {
+  try {
+    return await request('/admin/webhooks', {
+      method: 'POST',
+      body: JSON.stringify(webhookData),
+    });
+  } catch (e) {
+    console.error('Failed to create webhook:', e);
+    throw e;
+  }
+};
+
+export const getWebhook = async (webhookId) => {
+  try {
+    return await request(`/admin/webhooks/${webhookId}`);
+  } catch (e) {
+    console.error('Failed to get webhook:', e);
+    throw e;
+  }
+};
+
+export const updateWebhook = async (webhookId, webhookData) => {
+  try {
+    return await request(`/admin/webhooks/${webhookId}`, {
+      method: 'PATCH',
+      body: JSON.stringify(webhookData),
+    });
+  } catch (e) {
+    console.error('Failed to update webhook:', e);
+    throw e;
+  }
+};
+
+export const deleteWebhook = async (webhookId) => {
+  try {
+    return await request(`/admin/webhooks/${webhookId}`, {
+      method: 'DELETE',
+    });
+  } catch (e) {
+    console.error('Failed to delete webhook:', e);
+    throw e;
+  }
+};
+
+export const testWebhook = async (webhookId, testData) => {
+  try {
+    return await request(`/admin/webhooks/${webhookId}/test`, {
+      method: 'POST',
+      body: JSON.stringify(testData),
+    });
+  } catch (e) {
+    console.error('Failed to test webhook:', e);
+    throw e;
+  }
+};
+
+export const getWebhookDeliveries = async (webhookId, status = null, limit = 50) => {
+  try {
+    const params = new URLSearchParams();
+    if (status) params.append('status', status);
+    params.append('limit', limit);
+    return await request(`/admin/webhooks/${webhookId}/deliveries?${params.toString()}`);
+  } catch (e) {
+    console.error('Failed to get webhook deliveries:', e);
+    return [];
+  }
+};
+
 export const dataService = {
   getDashboardStats,
   getCampaigns,
@@ -616,4 +767,19 @@ export const dataService = {
     method: 'POST',
     body: JSON.stringify(payload),
   }),
+  // API Keys
+  listAPIKeys,
+  createAPIKey,
+  getAPIKey,
+  rotateAPIKey,
+  revokeAPIKey,
+  getAPIKeyUsage,
+  // Webhooks
+  listWebhooks,
+  createWebhook,
+  getWebhook,
+  updateWebhook,
+  deleteWebhook,
+  testWebhook,
+  getWebhookDeliveries,
 };

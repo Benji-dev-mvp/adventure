@@ -32,7 +32,7 @@ async def list_audit_logs(
     Get audit logs (Admin only)
     """
     # Check permission
-    if not current_user.has_permission(Permission.SYSTEM_AUDIT):
+    if not current_user.has_permission(Permission.AUDIT_LOG_READ):
         raise HTTPException(status_code=403, detail="Insufficient permissions")
     
     # Build filter
@@ -65,7 +65,7 @@ async def audit_log_stats(
     """
     Get audit log statistics (Admin only)
     """
-    if not current_user.has_permission(Permission.SYSTEM_AUDIT):
+    if not current_user.has_permission(Permission.AUDIT_LOG_READ):
         raise HTTPException(status_code=403, detail="Insufficient permissions")
     
     # Get recent logs

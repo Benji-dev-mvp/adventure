@@ -1,4 +1,3 @@
-// Enhanced Dashboard - Advanced Data Visualization & Rich Features
 import React, { useState, useEffect } from 'react';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/Card';
@@ -34,6 +33,9 @@ import {
   AIInsightsCard,
   RevenuePipelineChart
 } from '../components/dashboard/AdvancedVisualizations';
+import CampaignsTab from '../components/dashboard/CampaignsTab';
+import AnalyticsTab from '../components/dashboard/AnalyticsTab';
+import QuickActionsTab from '../components/dashboard/QuickActionsTab';
 
 // Live Indicator Component
 const LiveIndicator = ({ label = 'LIVE' }) => (
@@ -388,29 +390,13 @@ const EnhancedDashboardPage = () => {
             </div>
           </TabsContent>
 
-          {/* Other tabs - placeholder for now */}
+          {/* Other tabs - now functional */}
           <TabsContent value="campaigns" className="space-y-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>Active Campaigns</CardTitle>
-                <CardDescription>Manage your outreach campaigns</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-400">Campaign management coming soon...</p>
-              </CardContent>
-            </Card>
+            <CampaignsTab onNavigateToCampaign={(id) => navigate(`/campaigns/${id}`)} />
           </TabsContent>
 
           <TabsContent value="analytics" className="space-y-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>Advanced Analytics</CardTitle>
-                <CardDescription>Deep dive into your metrics</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-400">Advanced analytics coming soon...</p>
-              </CardContent>
-            </Card>
+            <AnalyticsTab />
           </TabsContent>
 
           <TabsContent value="ai-insights" className="space-y-4">
@@ -418,15 +404,7 @@ const EnhancedDashboardPage = () => {
           </TabsContent>
 
           <TabsContent value="actions" className="space-y-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>Quick Actions</CardTitle>
-                <CardDescription>Automate your workflow</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-400">Quick actions coming soon...</p>
-              </CardContent>
-            </Card>
+            <QuickActionsTab aiInsights={aiInsights} />
           </TabsContent>
         </Tabs>
       </div>

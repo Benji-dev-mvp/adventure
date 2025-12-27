@@ -295,6 +295,65 @@ def get_user_permissions(user: User) -> List[Permission]:
     return ROLE_PERMISSIONS.get(user.role, [])
 
 
+async def get_current_tenant(user: User = Depends(get_current_user)):
+    """
+    Get current tenant from authenticated user.
+    Requires get_current_user dependency.
+    """
+    from app.models.db.tenant import Tenant
+    from app.core.db import get_session
+    from sqlmodel import select
+    
+    # For now, return a mock tenant based on user
+    # In production, fetch from database using user.tenant_id
+    tenant_data = {
+        "id": 1,
+        "name": "Default Organization",
+        "slug": "default",
+        "plan": "enterprise",
+        "is_active": True,
+        "created_at": datetime.now(),
+        "updated_at": datetime.now(),
+    }
+    
+    # Create a mock Tenant object
+    class MockTenant:
+        def __init__(self, **kwargs):
+            for k, v in kwargs.items():
+                setattr(self, k, v)
+    
+    return MockTenant(**tenant_data)
+
+
+def require_tenant_access(resource_tenant_id: int):
+    """
+    Dependency to verify user has access to a specific tenant's resource.
+    
+    Usage:
+        @app.get("/admin/{tenant_id}/api-keys")
+        async def get_api_keys(
+            tenant_id: int,
+            user: User = Depends(get_current_user),
+            _: None = Depends(require_tenant_access)
+        ):
+            ...
+    """
+    async def check_access(user: User = Depends(get_current_user)):
+        # For now, allow access if user is admin
+        # In production, check if user.tenant_id matches resource_tenant_id
+        if user.role != UserRole.ADMIN:
+            # Check tenant match
+            user_tenant_id = getattr(user, 'tenant_id', 1)
+            if user_tenant_id != resource_tenant_id:
+                raise HTTPException(
+                    status_code=403,
+                    detail="Access denied to this tenant's resources"
+                )
+        return None
+    
+    return check_access
+
+
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
     """
     Create JWT access token with proper signing and expiration.

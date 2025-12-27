@@ -3,7 +3,8 @@
 
 // Core Components
 export { ErrorBoundary } from './ErrorBoundary';
-export { PageLoader, InlineLoader, LoadingSpinner, Skeleton, SkeletonText, SkeletonCard, SkeletonTable, SkeletonDashboard, SkeletonAvatar, SkeletonForm } from './Loading';
+export { PageLoader, InlineLoader, LoadingSpinner } from './Loading';
+export { Skeleton, SkeletonGroup, SkeletonCard, SkeletonTable, SkeletonList, SkeletonDashboard } from './ui/Skeleton';
 export { useToast, ToastProvider } from './Toast';
 
 // UI Components

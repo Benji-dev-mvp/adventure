@@ -35,6 +35,10 @@ from app.api.routes.new_features import (
 from app.api.routes.tasks import router as tasks_router  # NEW
 from app.api.routes.campaign_intelligence import router as campaign_intelligence_router  # Campaign business logic
 from app.api.routes.ai_advanced import router as ai_advanced_router  # Advanced AI integrations
+from app.api.routes.billing import router as billing_router  # Billing and subscriptions
+from app.api.routes.workspace import router as workspace_router  # Workspace and team management
+from app.api.routes.growth_analytics import router as growth_analytics_router  # Growth analytics and feedback
+from app.api.routes.strategic_features import router as strategic_features_router  # Strategic features
 from app.core.db import init_db, seed_if_empty, engine
 from app.core.security import SecurityHeadersMiddleware, RequestSizeLimitMiddleware, RequestIDMiddleware, RateLimitMiddleware
 from app.core.cache import cache
@@ -193,3 +197,9 @@ app.include_router(playbooks_router, tags=["sales-playbooks"])
 # Include advanced AI/ML features
 app.include_router(advanced_features_router, prefix="/api/advanced", tags=["ml-ai"])
 app.include_router(oauth_router, prefix="/api", tags=["oauth"])
+
+# Include growth infrastructure routers
+app.include_router(billing_router, prefix="/api/billing", tags=["billing"])
+app.include_router(workspace_router, prefix="/api/workspaces", tags=["workspaces"])
+app.include_router(growth_analytics_router, prefix="/api/growth", tags=["growth-analytics"])
+app.include_router(strategic_features_router, prefix="/api/strategic", tags=["strategic-features"])

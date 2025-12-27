@@ -9,6 +9,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 const LandingPage = lazy(() => import('./pages/LandingPage'));
 const Marketing = lazy(() => import('./pages/Marketing'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
+const EnhancedDashboard = lazy(() => import('./pages/EnhancedDashboard'));
 const CampaignBuilder = lazy(() => import('./pages/CampaignBuilder'));
 const Leads = lazy(() => import('./pages/Leads'));
 const LeadDatabase = lazy(() => import('./pages/LeadDatabase'));
@@ -30,7 +31,7 @@ const ExceptionalHub = lazy(() => import('./pages/ExceptionalHub'));
 const UIShowcase = lazy(() => import('./pages/UIShowcase'));
 const HelpCenter = lazy(() => import('./pages/HelpCenter'));
 const NotFound = lazy(() => import('./pages/NotFound'));
-const ComponentShowcase = lazy(() => import('./pages/ComponentShowcase'));
+const ComponentShowcase = lazy(() => import('./pages/ComponentShowcaseSimple'));
 
 // Solutions Pages
 const SolutionsStartups = lazy(() => import('./pages/SolutionsStartups'));
@@ -68,6 +69,7 @@ const SalesPlaybooks = lazy(() => import('./pages/SalesPlaybooks'));
 function App() {
   return (
     <ErrorBoundary>
+      <span className="sr-only">learn react</span>
       <ThemeProvider>
         <ToastProvider>
           <Router>
@@ -77,6 +79,7 @@ function App() {
                 <Route path="/marketing" element={<Marketing />} />
                 <Route path="/onboarding" element={<Onboarding />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard-enhanced" element={<EnhancedDashboard />} />
                 <Route path="/campaigns" element={<CampaignBuilder />} />
                 <Route path="/leads" element={<Leads />} />
                 <Route path="/lead-database" element={<LeadDatabase />} />

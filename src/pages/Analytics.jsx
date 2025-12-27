@@ -115,7 +115,7 @@ const Analytics = () => {
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm" className="gap-2">
             <Calendar size={16} />
-            Last 30 Days
+            Date Range: Last 30 Days
           </Button>
           <Button variant="ghost" size="sm">Compare Period</Button>
         </div>

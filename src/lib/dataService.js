@@ -210,6 +210,19 @@ const saveState = (nextState) => {
   storage.set(STORAGE_KEY, nextState);
 };
 
+export const getDashboardStats = () => {
+  const state = loadState();
+  const campaigns = state.campaigns || [];
+  const leads = state.leads || [];
+  const emailsSent = campaigns.reduce((sum, campaign) => sum + (campaign.sent || 0), 0);
+  return {
+    totalCampaigns: campaigns.length,
+    totalLeads: leads.length,
+    emailsSent,
+    responseRate: 25,
+  };
+};
+
 export const getLeads = () => loadState().leads;
 
 export const searchLeads = (query) => {
@@ -317,6 +330,8 @@ export const getCampaignDraft = (campaignId = 'default') => {
   const state = loadState();
   return state.campaigns.find((c) => c.id === campaignId) || null;
 };
+
+export const getAnalytics = async () => ({});
 
 export const getAIMessages = () => loadState().aiMessages;
 
@@ -590,4 +605,15 @@ export const generateEmailWithAI = async (lead, prompt, tone = 'professional', l
     console.warn('AI email generation failed', e);
   }
   return { subject: 'Quick question', body: 'Hi, interested in a quick chat?', tone, length };
+};
+
+export const dataService = {
+  getDashboardStats,
+  getCampaigns,
+  getLeads,
+  getAnalytics,
+  post: (path, payload) => request(path, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  }),
 };

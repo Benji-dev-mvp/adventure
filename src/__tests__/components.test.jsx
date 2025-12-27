@@ -48,14 +48,14 @@ describe('CampaignCard Component', () => {
 describe('AnimatedButton Component', () => {
   it('renders button with text', () => {
     render(<AnimatedButton>Click Me</AnimatedButton>);
-    expect(screen.getByText('Click Me')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /click me/i })).toBeInTheDocument();
   });
 
   it('handles click events', () => {
     const handleClick = vi.fn();
     render(<AnimatedButton onClick={handleClick}>Click</AnimatedButton>);
     
-    const button = screen.getByText('Click');
+    const button = screen.getByRole('button', { name: /click/i });
     button.click();
     
     expect(handleClick).toHaveBeenCalledOnce();
@@ -63,7 +63,7 @@ describe('AnimatedButton Component', () => {
 
   it('can be disabled', () => {
     render(<AnimatedButton disabled>Disabled</AnimatedButton>);
-    const button = screen.getByText('Disabled');
+    const button = screen.getByRole('button', { name: /disabled/i });
     expect(button).toBeDisabled();
   });
 });

@@ -6,6 +6,7 @@ const ToastContext = createContext({
   error: () => {},
   info: () => {},
   warning: () => {},
+  showToast: () => {},
 });
 
 export const useToast = () => {
@@ -36,6 +37,7 @@ export const ToastProvider = ({ children }) => {
     error: (message) => addToast(message, 'error'),
     info: (message) => addToast(message, 'info'),
     warning: (message) => addToast(message, 'warning'),
+    showToast: (message, type = 'info') => addToast(message, type),
   };
 
   return (

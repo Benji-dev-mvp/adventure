@@ -46,11 +46,11 @@ export const CampaignCard = ({ campaign }) => {
           </div>
           <div>
             <p className="text-sm text-gray-600">Replies</p>
-            <p className="text-2xl font-bold text-gray-900">{campaign.replies}</p>
+            <p className="text-2xl font-bold text-gray-900">{campaign.replies ?? 0}</p>
           </div>
           <div>
             <p className="text-sm text-gray-600">Reply Rate</p>
-            <p className="text-2xl font-bold text-green-600">{campaign.replyRate}%</p>
+            <p className="text-2xl font-bold text-green-600">{campaign.replyRate ?? 0}%</p>
           </div>
         </div>
 
@@ -76,3 +76,5 @@ export const CampaignCard = ({ campaign }) => {
     </Card>
   );
 };
+
+export default CampaignCard;

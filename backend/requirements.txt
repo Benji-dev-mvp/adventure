@@ -86,6 +86,7 @@ langchain>=0.3.0
 langchain-openai>=0.2.0
 langchain-anthropic>=0.2.0
 langchain-community>=0.3.0
+langgraph>=0.2.0
 pydantic-ai>=0.0.14
 pydantic-ai-slim>=0.0.14
 mem0ai>=0.1.0
@@ -93,6 +94,11 @@ llama-index>=0.12.0
 llama-index-core>=0.12.0
 llama-index-llms-openai>=0.3.0
 llama-index-embeddings-openai>=0.3.0
+llama-index-vector-stores-qdrant>=0.4.0
+qdrant-client>=1.7.0
 reflex>=0.6.0
 reflex-chakra>=0.6.0
+
+# YAML Configuration
+pyyaml>=6.0
 

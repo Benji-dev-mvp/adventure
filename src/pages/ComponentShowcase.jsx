@@ -1,45 +1,23 @@
 import React, { useState } from 'react';
-import { 
-  Button, 
-  Card, 
-  Input, 
-  Textarea,
-  Checkbox, 
-  Radio, 
-  RadioGroup,
-  Switch,
-  Select,
-  Alert,
-  Badge,
-  Avatar,
-  Tooltip,
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-  Breadcrumb,
-  BreadcrumbItem,
-  Pagination,
-  Spinner,
-  LoadingDots,
-  LoadingBar,
-  EmptyState,
-  Stat,
-  StatGroup,
-  Drawer,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerClose,
-  DrawerContent,
-  DrawerFooter,
-  Tabs
-} from '@/components/ui';
+import Button from '@/components/ui/Button';
+import Card from '@/components/ui/Card';
+import Input from '@/components/ui/Input';
+import Textarea from '@/components/ui/Textarea';
+import Checkbox from '@/components/ui/Checkbox';
+import { Radio, RadioGroup } from '@/components/ui/Radio';
+import { Switch } from '@/components/ui/switch';
+import Alert from '@/components/ui/Alert';
+import Badge from '@/components/ui/Badge';
+import Avatar from '@/components/ui/Avatar';
+import Tooltip from '@/components/ui/Tooltip';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/Accordion';
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
+import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
+import Pagination from '@/components/ui/Pagination';
+import { Spinner, LoadingDots, LoadingBar } from '@/components/ui/Spinner';
+import EmptyState from '@/components/ui/EmptyState';
+import { Stat, StatGroup } from '@/components/ui/Stat';
+import { Drawer, DrawerHeader, DrawerTitle, DrawerClose, DrawerContent, DrawerFooter } from '@/components/ui/Drawer';
 import { useToast } from '@/components/Toast';
 
 const ComponentShowcase = () => {

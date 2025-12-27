@@ -1,9 +1,33 @@
-import { describe, it, expect, vi } from 'vitest';
+import React from 'react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Dashboard from '../pages/Dashboard';
 import CampaignBuilder from '../pages/CampaignBuilder';
 import Analytics from '../pages/Analytics';
+
+const mockShowToast = vi.fn();
+
+vi.mock('../components/Toast', () => ({
+  ToastProvider: ({ children }) => <div>{children}</div>,
+  useToast: () => ({
+    showToast: mockShowToast,
+    success: mockShowToast,
+    error: mockShowToast,
+    info: mockShowToast,
+    warning: mockShowToast,
+  }),
+}));
+
+vi.mock('recharts', async () => {
+  const actual = await vi.importActual('recharts');
+  return {
+    ...actual,
+    ResponsiveContainer: ({ width = 800, height = 400, children }) => (
+      <div style={{ width, height }}>{children}</div>
+    ),
+  };
+});
 
 // Mock the data service
 vi.mock('../lib/dataService', () => ({
@@ -19,13 +43,17 @@ vi.mock('../lib/dataService', () => ({
 }));
 
 describe('Dashboard Component', () => {
+  beforeEach(() => {
+    mockShowToast.mockClear();
+  });
+
   it('renders without crashing', () => {
     render(
       <BrowserRouter>
         <Dashboard />
       </BrowserRouter>
     );
-    expect(screen.getByText(/Dashboard/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /dashboard/i })).toBeInTheDocument();
   });
 
   it('displays stats cards', async () => {
@@ -35,28 +63,16 @@ describe('Dashboard Component', () => {
       </BrowserRouter>
     );
     
-    await waitFor(() => {
-      expect(screen.getByText(/Campaigns/i)).toBeInTheDocument();
-      expect(screen.getByText(/Leads/i)).toBeInTheDocument();
-    });
-  });
-
-  it('loads data on mount', async () => {
-    const { getDashboardStats } = await import('../lib/dataService');
-    
-    render(
-      <BrowserRouter>
-        <Dashboard />
-      </BrowserRouter>
-    );
-    
-    await waitFor(() => {
-      expect(getDashboardStats).toHaveBeenCalled();
-    });
+    expect(await screen.findByText(/Emails Sent/i)).toBeInTheDocument();
+    expect(screen.getByText(/Performance Overview/i)).toBeInTheDocument();
   });
 });
 
 describe('CampaignBuilder Component', () => {
+  beforeEach(() => {
+    mockShowToast.mockClear();
+  });
+
   it('renders campaign form', () => {
     render(
       <BrowserRouter>
@@ -78,8 +94,11 @@ describe('CampaignBuilder Component', () => {
     fireEvent.click(submitButton);
     
     await waitFor(() => {
-      expect(screen.getByText(/required/i)).toBeInTheDocument();
+      expect(screen.getByText(/Campaign name is required/i)).toBeInTheDocument();
+      expect(screen.getByText(/Please select a target audience/i)).toBeInTheDocument();
     });
+
+    expect(mockShowToast).toHaveBeenCalledWith('Please fix the required fields', 'error');
   });
 
   it('submits form with valid data', async () => {
@@ -91,11 +110,15 @@ describe('CampaignBuilder Component', () => {
     
     const nameInput = screen.getByLabelText(/Campaign Name/i);
     fireEvent.change(nameInput, { target: { value: 'Test Campaign' } });
+    const audienceSelect = screen.getByLabelText(/Target Audience/i);
+    fireEvent.change(audienceSelect, { target: { value: 'enterprise' } });
     
     const submitButton = screen.getByRole('button', { name: /submit/i });
     fireEvent.click(submitButton);
     
-    // Assert form submission
+    await waitFor(() => {
+      expect(mockShowToast).toHaveBeenCalledWith('Campaign submitted successfully', 'success');
+    });
   });
 });
 

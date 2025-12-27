@@ -1,19 +1,40 @@
 """
 Mem0 Advanced Memory Layer Integration
 
-Provides persistent, semantic memory for AI agents with:
-- User-partitioned memory (by user_id, agent_id, app_id)
+Enhanced with typed memory system, retention policies, and PII redaction
+
+Features:
+- Typed memory models with Pydantic validation
+- Retention policies with TTL and compression
+- Namespace-based tenant isolation
+- PII redaction before persistence
+- User-partitioned memory (by org_id, user_id, account_id)
 - Semantic search with vector similarity
 - Cross-session memory retention
-- Memory decay and importance weighting
-- Redis/Qdrant backing for persistence
 """
 
 from typing import List, Dict, Any, Optional
 from mem0 import Memory, MemoryClient
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 import json
+import logging
+
+from .memory_models import (
+    BaseMemory,
+    MemoryType,
+    RetentionPolicy,
+    RETENTION_CONFIG,
+    PIIRedactor,
+    MemoryNamespace,
+    LeadInteractionMemory,
+    EmailThreadMemory,
+    MeetingSummaryMemory,
+    CampaignResultMemory,
+    ChatConversationMemory,
+)
+
+logger = logging.getLogger(__name__)
 
 
 class Mem0MemoryManager:

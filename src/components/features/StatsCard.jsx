@@ -3,17 +3,20 @@ import { Card, CardContent } from '../ui/Card';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
-export const StatsCard = ({ 
-  title, 
-  value, 
-  change, 
-  trend, 
-  icon: Icon, 
+export const StatsCard = ({
+  title,
+  value,
+  change,
+  trend,
+  icon: Icon,
   color = 'text-blue-600',
-  bgColor = 'bg-blue-100' 
+  bgColor = 'bg-blue-100',
 }) => {
-  const isPositive = trend === 'up';
+  const numericTrend = typeof trend === 'number' ? trend : Number.parseFloat(trend);
+  const hasNumericTrend = Number.isFinite(numericTrend);
+  const isPositive = hasNumericTrend ? numericTrend >= 0 : trend === 'up';
   const TrendIcon = isPositive ? TrendingUp : TrendingDown;
+  const trendLabel = hasNumericTrend ? `${numericTrend}%` : change || trend;
 
   return (
     <Card>
@@ -22,7 +25,7 @@ export const StatsCard = ({
           <div className="flex-1">
             <p className="text-sm font-medium text-gray-600 mb-1">{title}</p>
             <p className="text-3xl font-bold text-gray-900 mb-2">{value}</p>
-            {change && (
+            {trend !== undefined && (
               <div className="flex items-center gap-1">
                 <TrendIcon 
                   size={16} 
@@ -37,7 +40,7 @@ export const StatsCard = ({
                     isPositive ? 'text-green-600' : 'text-red-600'
                   )}
                 >
-                  {change}
+                  {trendLabel}
                 </span>
                 <span className="text-sm text-gray-500">vs last period</span>
               </div>
@@ -53,3 +56,5 @@ export const StatsCard = ({
     </Card>
   );
 };
+
+export default StatsCard;

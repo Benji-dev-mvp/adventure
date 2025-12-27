@@ -3,16 +3,20 @@ import { cn } from '../../lib/utils';
 
 export const Input = React.forwardRef(
   ({ className, type = 'text', label, error, ...props }, ref) => {
+    const generatedId = React.useId();
+    const inputId = props.id || generatedId;
+
     return (
       <div className="w-full">
         {label && (
-          <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+          <label htmlFor={inputId} className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1.5">
             {label}
           </label>
         )}
         <input
           type={type}
           ref={ref}
+          id={inputId}
           className={cn(
             'w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 text-gray-900 dark:text-white text-sm',
             'placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent',
@@ -32,15 +36,19 @@ Input.displayName = 'Input';
 
 export const Textarea = React.forwardRef(
   ({ className, label, error, rows = 4, ...props }, ref) => {
+    const generatedId = React.useId();
+    const textareaId = props.id || generatedId;
+
     return (
       <div className="w-full">
         {label && (
-          <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+          <label htmlFor={textareaId} className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1.5">
             {label}
           </label>
         )}
         <textarea
           ref={ref}
+          id={textareaId}
           rows={rows}
           className={cn(
             'w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 text-gray-900 dark:text-white text-sm',
@@ -61,15 +69,19 @@ Textarea.displayName = 'Textarea';
 
 export const Select = React.forwardRef(
   ({ className, label, error, children, ...props }, ref) => {
+    const generatedId = React.useId();
+    const selectId = props.id || generatedId;
+
     return (
       <div className="w-full">
         {label && (
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label htmlFor={selectId} className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             {label}
           </label>
         )}
         <select
           ref={ref}
+          id={selectId}
           className={cn(
             'w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 text-gray-900 dark:text-white',
             'focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent',

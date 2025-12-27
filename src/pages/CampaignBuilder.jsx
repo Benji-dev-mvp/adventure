@@ -38,7 +38,7 @@ const CampaignBuilder = () => {
   ]);
 
   // Form validation
-  const { errors, validate, clearError } = useFormValidation();
+  const { errors, validateAll, clearError } = useFormValidation();
 
   // Load draft on mount
   useEffect(() => {
@@ -182,6 +182,24 @@ const CampaignBuilder = () => {
     }
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const isValid = validateAll(
+      {
+        campaignName: [(value) => (!value || !value.trim() ? 'Campaign name is required' : '')],
+        targetAudience: [(value) => (!value || !value.trim() ? 'Please select a target audience' : '')],
+      },
+      { campaignName, targetAudience }
+    );
+
+    if (!isValid) {
+      showToast('Please fix the required fields', 'error');
+      return;
+    }
+
+    showToast('Campaign submitted successfully', 'success');
+  };
+
   return (
     <DashboardLayout 
       title="Campaign Builder" 
@@ -194,7 +212,7 @@ const CampaignBuilder = () => {
         )
       }
     >
-      <div className="grid lg:grid-cols-3 gap-4">
+      <form onSubmit={handleSubmit} className="grid lg:grid-cols-3 gap-4">
         {/* Campaign Setup */}
         <div className="lg:col-span-2 space-y-4">
           <Card>
@@ -412,6 +430,9 @@ const CampaignBuilder = () => {
               Save as Draft
             </Button>
             <div className="flex items-center gap-3">
+              <Button type="submit" variant="primary">
+                Submit
+              </Button>
               <Button variant="outline">Preview</Button>
               <Button 
                 className="gap-2" 
@@ -543,7 +564,7 @@ const CampaignBuilder = () => {
             </CardContent>
           </Card>
         </div>
-      </div>
+      </form>
     </DashboardLayout>
   );
 };

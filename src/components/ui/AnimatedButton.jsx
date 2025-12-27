@@ -6,6 +6,7 @@ const AnimatedButton = ({
   onClick, 
   variant = 'gradient', 
   className = '',
+  disabled = false,
   ...props 
 }) => {
   const variants = {
@@ -17,6 +18,7 @@ const AnimatedButton = ({
   return (
     <button
       onClick={onClick}
+      disabled={disabled}
       className={`
         group relative flex items-center justify-center gap-3 
         font-bold rounded-full py-3 px-6 
@@ -26,7 +28,7 @@ const AnimatedButton = ({
       `}
       {...props}
     >
-      <span>{children}</span>
+      <span aria-disabled={disabled}>{children}</span>
       <div className="flex items-center justify-center w-8 h-8 rounded-full bg-black/20">
         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
       </div>
@@ -34,4 +36,5 @@ const AnimatedButton = ({
   );
 };
 
+export { AnimatedButton };
 export default AnimatedButton;

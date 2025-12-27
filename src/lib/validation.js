@@ -26,69 +26,70 @@ export const validateUrl = (url) => {
   }
 };
 
+export const validateURL = validateUrl;
+
 export const validatePhone = (phone) => {
-  const regex = /^\+?[\d\s\-()]+$/;
-  return regex.test(phone);
+  if (!phone) return false;
+  const normalized = phone.replace(/[^\d]/g, '');
+  if (normalized.length < 10 || normalized.length > 15) {
+    return false;
+  }
+  return /^\+?[\d\s\-()]+$/.test(phone);
 };
 
 export const validateNumber = (value) => {
   return !isNaN(value) && value !== '';
 };
 
-export const useFormValidation = (initialValues, validationRules) => {
+export const useFormValidation = (initialValues = {}) => {
   const [values, setValues] = React.useState(initialValues);
   const [errors, setErrors] = React.useState({});
-  const [touched, setTouched] = React.useState({});
 
-  const validate = (fieldName, value) => {
-    const rules = validationRules[fieldName];
-    if (!rules) return '';
-
-    for (const rule of rules) {
+  const validate = (name, value, validators = []) => {
+    if (!validators || validators.length === 0) return true;
+    for (const rule of validators) {
       const error = rule(value);
-      if (error) return error;
-    }
-    return '';
-  };
-
-  const handleChange = (name, value) => {
-    setValues((prev) => ({ ...prev, [name]: value }));
-    if (touched[name]) {
-      const error = validate(name, value);
-      setErrors((prev) => ({ ...prev, [name]: error }));
-    }
-  };
-
-  const handleBlur = (name) => {
-    setTouched((prev) => ({ ...prev, [name]: true }));
-    const error = validate(name, values[name]);
-    setErrors((prev) => ({ ...prev, [name]: error }));
-  };
-
-  const validateAll = () => {
-    const newErrors = {};
-    let isValid = true;
-
-    Object.keys(validationRules).forEach((fieldName) => {
-      const error = validate(fieldName, values[fieldName]);
       if (error) {
-        newErrors[fieldName] = error;
-        isValid = false;
+        setErrors((prev) => ({ ...prev, [name]: error }));
+        return false;
       }
+    }
+    setErrors((prev) => {
+      const next = { ...prev };
+      delete next[name];
+      return next;
     });
+    return true;
+  };
 
-    setErrors(newErrors);
-    setTouched(Object.keys(validationRules).reduce((acc, key) => ({ ...acc, [key]: true }), {}));
+  const validateAll = (validatorsByField = {}, currentValues = values) => {
+    let isValid = true;
+    Object.entries(validatorsByField).forEach(([field, validators]) => {
+      const ok = validate(field, currentValues[field], validators);
+      if (!ok) isValid = false;
+    });
     return isValid;
+  };
+
+  const clearError = (name) => {
+    setErrors((prev) => {
+      const next = { ...prev };
+      delete next[name];
+      return next;
+    });
+  };
+
+  const setError = (name, message) => {
+    setErrors((prev) => ({ ...prev, [name]: message }));
   };
 
   return {
     values,
-    errors,
-    touched,
-    handleChange,
-    handleBlur,
-    validateAll,
     setValues,
+    errors,
+    validate,
+    validateAll,
+    clearError,
+    setError,
   };
 };

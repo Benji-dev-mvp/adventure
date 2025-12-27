@@ -29,6 +29,7 @@ import {
 import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../components/Toast';
+import { getDashboardStats } from '../lib/dataService';
 
 // Animated Counter Component
 const AnimatedCounter = ({ end, duration = 2000, suffix = '', prefix = '' }) => {
@@ -83,6 +84,15 @@ const AnimatedProgress = ({ value, color = 'cyan', label }) => {
     return () => clearTimeout(timer);
   }, [value]);
 
+  const colorClasses = {
+    cyan: 'bg-gradient-to-r from-cyan-400 to-cyan-600',
+    blue: 'bg-gradient-to-r from-blue-400 to-blue-600',
+    green: 'bg-gradient-to-r from-green-400 to-green-600',
+    purple: 'bg-gradient-to-r from-purple-400 to-purple-600',
+    pink: 'bg-gradient-to-r from-pink-400 to-pink-600',
+    yellow: 'bg-gradient-to-r from-yellow-400 to-yellow-600'
+  };
+
   return (
     <div className="space-y-1">
       {label && (
@@ -93,7 +103,7 @@ const AnimatedProgress = ({ value, color = 'cyan', label }) => {
       )}
       <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
         <div 
-          className={`h-full bg-gradient-to-r from-${color}-400 to-${color}-600 transition-all duration-1000 ease-out rounded-full relative`}
+          className={`h-full ${colorClasses[color] || colorClasses.cyan} transition-all duration-1000 ease-out rounded-full relative`}
           style={{ width: `${progress}%` }}
         >
           <div className="absolute inset-0 bg-white/30 animate-pulse"></div>
@@ -183,6 +193,10 @@ const Dashboard = () => {
     { lead: 'David Kim', company: 'StartupXYZ', action: 'replied to email', time: '32 min ago', type: 'reply' }
   ];
 
+  useEffect(() => {
+    getDashboardStats();
+  }, []);
+
   return (
     <DashboardLayout>
       <div className="space-y-6">
@@ -200,6 +214,8 @@ const Dashboard = () => {
             </Badge>
           </div>
         </div>
+
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Live Performance</h2>
 
         {/* Live Stats Banner */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">

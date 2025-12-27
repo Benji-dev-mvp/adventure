@@ -5,6 +5,43 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs'
 import { Zap, Activity, Brain, Trophy, BookOpen, BarChart3, Link, Sparkles, Rocket, Star, TrendingUp, Users, Target } from 'lucide-react';
 import { Badge } from '../components/ui/Badge';
 
+// Import all exceptional components
+import { 
+  RealTimeActivityFeed, 
+  AdvancedSequenceBuilder, 
+  AvaResearchAssistant, 
+  PredictiveAnalytics, 
+  SmartMeetingScheduler 
+} from '../components/exceptional/ExceptionalComponents';
+
+import { 
+  TeamLeaderboard, 
+  AchievementBadges, 
+  TeamCompetitions, 
+  PointsRewardsSystem 
+} from '../components/gamification/GamificationComponents';
+
+import { 
+  SalesPlaybooks, 
+  BattleCards, 
+  ObjectionHandlers, 
+  ROICalculator 
+} from '../components/playbooks/PlaybookComponents';
+
+import { 
+  CEOExecutiveDashboard, 
+  PipelineHealthScore, 
+  ForecastAccuracyTracker, 
+  WhatIfScenarioPlanner 
+} from '../components/executive/ExecutiveComponents';
+
+import { 
+  TwoWaySalesforceSync, 
+  SlackTeamsDeepIntegration, 
+  CalendarAutoScheduler, 
+  ZapierActionBuilder 
+} from '../components/integrations/IntegrationComponents';
+
 // Animated Counter Component
 const AnimatedCounter = ({ end, duration = 2000, suffix = '', prefix = '' }) => {
   const [count, setCount] = useState(0);
@@ -75,43 +112,6 @@ const AnimatedProgress = ({ value, color = 'cyan', label }) => {
     </div>
   );
 };
-
-// Import all exceptional components
-import { 
-  RealTimeActivityFeed, 
-  AdvancedSequenceBuilder, 
-  AvaResearchAssistant, 
-  PredictiveAnalytics, 
-  SmartMeetingScheduler 
-} from '../components/exceptional/ExceptionalComponents';
-
-import { 
-  TeamLeaderboard, 
-  AchievementBadges, 
-  TeamCompetitions, 
-  PointsRewardsSystem 
-} from '../components/gamification/GamificationComponents';
-
-import { 
-  SalesPlaybooks, 
-  BattleCards, 
-  ObjectionHandlers, 
-  ROICalculator 
-} from '../components/playbooks/PlaybookComponents';
-
-import { 
-  CEOExecutiveDashboard, 
-  PipelineHealthScore, 
-  ForecastAccuracyTracker, 
-  WhatIfScenarioPlanner 
-} from '../components/executive/ExecutiveComponents';
-
-import { 
-  TwoWaySalesforceSync, 
-  SlackTeamsDeepIntegration, 
-  CalendarAutoScheduler, 
-  ZapierActionBuilder 
-} from '../components/integrations/IntegrationComponents';
 
 const ExceptionalHub = () => {
   const [activeTab, setActiveTab] = useState('real-time');

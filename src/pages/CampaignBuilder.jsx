@@ -520,7 +520,7 @@ const CampaignBuilder = () => {
                 <div className="p-3 bg-gray-50 rounded-lg">
                   <p className="text-sm font-medium text-gray-700 mb-2">Available Variables:</p>
                   <div className="flex flex-wrap gap-2">
-                    {['{{firstName}}', '{{lastName}}', '{{company}}', '{{title}}', '{{industry}}']. map((variable) => (
+                    {['{{firstName}}', '{{lastName}}', '{{company}}', '{{title}}', '{{industry}}'].map((variable) => (
                       <code key={variable} className="text-xs bg-white px-2 py-1 rounded border border-gray-200">
                         {variable}
                       </code>

@@ -147,6 +147,12 @@ class Settings:
     db_pool_size: int = int(os.getenv("DB_POOL_SIZE", "5"))
     db_max_overflow: int = int(os.getenv("DB_MAX_OVERFLOW", "10"))
     db_pool_timeout: int = int(os.getenv("DB_POOL_TIMEOUT", "30"))
+    
+    # Kapa.ai Integration
+    kapa_api_key: str = os.getenv("KAPA_API_KEY", "")
+    kapa_project_id: str = os.getenv("KAPA_PROJECT_ID", "")
+    kapa_integration_id: str = os.getenv("KAPA_INTEGRATION_ID", "")
+    kapa_widget_enabled: bool = os.getenv("KAPA_WIDGET_ENABLED", "true").lower() in {"1", "true", "yes"}
 
 
 setup_logging()

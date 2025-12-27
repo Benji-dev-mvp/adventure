@@ -4,6 +4,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import { ToastProvider } from './components/Toast';
 import { PageLoader } from './components/Loading';
 import { ThemeProvider } from './contexts/ThemeContext';
+import KapaAssistant from './components/KapaAssistant';
 
 // Lazy load pages for better performance
 const LandingPage = lazy(() => import('./pages/LandingPage'));
@@ -30,6 +31,7 @@ const AvaHub = lazy(() => import('./pages/AvaHub'));
 const ExceptionalHub = lazy(() => import('./pages/ExceptionalHub'));
 const UIShowcase = lazy(() => import('./pages/UIShowcase'));
 const HelpCenter = lazy(() => import('./pages/HelpCenter'));
+const SystemStatus = lazy(() => import('./pages/SystemStatus'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const ComponentShowcase = lazy(() => import('./pages/ComponentShowcaseSimple'));
 
@@ -100,6 +102,7 @@ function App() {
                 <Route path="/ui-showcase" element={<UIShowcase />} />
                 <Route path="/component-showcase" element={<ComponentShowcase />} />
                 <Route path="/help" element={<HelpCenter />} />
+                <Route path="/system-status" element={<SystemStatus />} />
                 
                 {/* Solutions Pages */}
                 <Route path="/solutions/startups" element={<SolutionsStartups />} />
@@ -138,6 +141,8 @@ function App() {
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
+            {/* Kapa.ai Assistant - Available on all pages */}
+            <KapaAssistant />
           </Router>
         </ToastProvider>
       </ThemeProvider>

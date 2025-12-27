@@ -1,25 +1,29 @@
 import { cn } from "@/lib/utils"
 
+// Variant classes moved outside component for performance
+const SKELETON_VARIANTS = {
+  default: 'h-4 w-full',
+  text: 'h-4 w-3/4',
+  title: 'h-8 w-1/2',
+  avatar: 'h-12 w-12 rounded-full',
+  button: 'h-10 w-24',
+  card: 'h-32 w-full',
+};
+
 // Base Skeleton component with multiple variants
 function Skeleton({
   className,
   variant = 'default',
   ...props
 }) {
-  const variantClasses = {
-    default: 'h-4 w-full',
-    text: 'h-4 w-3/4',
-    title: 'h-8 w-1/2',
-    avatar: 'h-12 w-12 rounded-full',
-    button: 'h-10 w-24',
-    card: 'h-32 w-full',
-  };
+  // Fallback to default if invalid variant provided
+  const variantClass = SKELETON_VARIANTS[variant] || SKELETON_VARIANTS.default;
 
   return (
     <div 
       className={cn(
         "animate-pulse rounded-md bg-gray-200 dark:bg-gray-700", 
-        variantClasses[variant],
+        variantClass,
         className
       )} 
       {...props} 

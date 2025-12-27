@@ -46,7 +46,8 @@ celery_app.conf.update(
 celery_app.autodiscover_tasks([
     "app.tasks.email_tasks",
     "app.tasks.campaign_tasks", 
-    "app.tasks.analytics_tasks"
+    "app.tasks.analytics_tasks",
+    "app.tasks.ai_workflows"  # NEW: AI workflow tasks
 ])
 
 

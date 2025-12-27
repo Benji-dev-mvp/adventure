@@ -542,6 +542,176 @@ Key Learnings: {campaign.get('learnings', 'None documented')}"""
         )
         
         return result
+    
+    # ========================================================================
+    # Knowledge Graph Extension
+    # ========================================================================
+    
+    async def ingest_graph_documents(
+        self,
+        documents: List[Dict[str, Any]],
+        tenant_id: str,
+        extract_entities: bool = True,
+    ) -> Dict[str, Any]:
+        """
+        Ingest documents and extract knowledge graph entities/relations
+        
+        Args:
+            documents: List of documents with text and metadata
+            tenant_id: Tenant identifier for isolation
+            extract_entities: Whether to extract entities
+            
+        Returns:
+            Summary of ingested entities and relations
+        """
+        from ..models.ai_enterprise import KnowledgeGraphEntity, KnowledgeGraphRelation
+        import hashlib
+        import re
+        
+        entities_created = 0
+        relations_created = 0
+        
+        for doc in documents:
+            text = doc.get("text", doc.get("content", ""))
+            metadata = doc.get("metadata", {})
+            doc_id = doc.get("id", hashlib.md5(text.encode()).hexdigest()[:16])
+            
+            if extract_entities:
+                # Extract entities using LLM
+                extraction_prompt = f"""Extract key entities from this text and identify their types and relationships.
+                
+Text: {text[:1000]}
+
+Provide response as JSON with:
+{{
+  "entities": [
+    {{"name": "Entity Name", "type": "product|feature|customer|document|issue", "properties": {{}}}},
+    ...
+  ],
+  "relations": [
+    {{"source": "Entity1", "target": "Entity2", "type": "has_feature|mentioned_in|reported_by|related_to"}},
+    ...
+  ]
+}}"""
+                
+                try:
+                    # Use LLM to extract entities
+                    response = await self.llm.acomplete(extraction_prompt)
+                    import json
+                    extracted = json.loads(response.text)
+                    
+                    # Store entities (this would need DB session in real implementation)
+                    for entity in extracted.get("entities", []):
+                        entity_id = f"{tenant_id}:{entity['type']}:{entity['name'].lower().replace(' ', '_')}"
+                        entities_created += 1
+                        
+                        # In real implementation, save to database:
+                        # kg_entity = KnowledgeGraphEntity(
+                        #     tenant_id=tenant_id,
+                        #     entity_id=entity_id,
+                        #     entity_type=entity["type"],
+                        #     name=entity["name"],
+                        #     properties=json.dumps(entity.get("properties", {})),
+                        # )
+                        # db_session.add(kg_entity)
+                    
+                    # Store relations
+                    for relation in extracted.get("relations", []):
+                        relations_created += 1
+                        
+                        # In real implementation, save to database:
+                        # source_id = f"{tenant_id}:{relation['source'].lower().replace(' ', '_')}"
+                        # target_id = f"{tenant_id}:{relation['target'].lower().replace(' ', '_')}"
+                        # kg_relation = KnowledgeGraphRelation(
+                        #     tenant_id=tenant_id,
+                        #     source_entity_id=source_id,
+                        #     target_entity_id=target_id,
+                        #     relation_type=relation["type"],
+                        # )
+                        # db_session.add(kg_relation)
+                    
+                except Exception as e:
+                    print(f"Entity extraction failed: {e}")
+        
+        return {
+            "documents_processed": len(documents),
+            "entities_created": entities_created,
+            "relations_created": relations_created,
+        }
+    
+    async def query_knowledge_graph(
+        self,
+        query: str,
+        tenant_id: str,
+        entity_types: Optional[List[str]] = None,
+        relation_types: Optional[List[str]] = None,
+        max_hops: int = 2,
+    ) -> Dict[str, Any]:
+        """
+        Query knowledge graph with natural language
+        
+        Args:
+            query: Natural language query
+            tenant_id: Tenant identifier
+            entity_types: Filter by entity types
+            relation_types: Filter by relation types
+            max_hops: Maximum graph traversal hops
+            
+        Returns:
+            Graph query results with entities and relations
+        """
+        # Parse query intent
+        parse_prompt = f"""Parse this knowledge graph query into structured format:
+
+Query: {query}
+
+Entity types: product, feature, customer, document, issue
+Relation types: has_feature, mentioned_in, reported_by, related_to
+
+Provide JSON:
+{{
+  "intent": "find|traverse|analyze",
+  "start_entities": ["entity_name"],
+  "target_entities": ["entity_name"],
+  "relation_filters": ["relation_type"],
+  "time_constraint": "after|before|between",
+  "time_value": "ISO datetime or null"
+}}"""
+        
+        try:
+            response = await self.llm.acomplete(parse_prompt)
+            import json
+            parsed = json.loads(response.text)
+            
+            # Example query translation:
+            # "Show customers who asked X after feature Y release"
+            # -> Find customers (entity_type=customer) 
+            #    -> related_to issues (entity_type=issue) 
+            #    -> mentioned_in documents about feature Y
+            #    -> where issue.created_at > feature.release_date
+            
+            # In real implementation:
+            # 1. Find start entities matching parsed criteria
+            # 2. Traverse graph following relation_filters
+            # 3. Apply time constraints
+            # 4. Return matched subgraph
+            
+            return {
+                "query": query,
+                "parsed_intent": parsed,
+                "results": {
+                    "entities": [],  # Would contain matched entities
+                    "relations": [],  # Would contain relevant relations
+                    "paths": [],  # Would contain graph paths
+                },
+                "explanation": f"Would traverse graph with intent: {parsed.get('intent')}",
+            }
+        except Exception as e:
+            return {
+                "query": query,
+                "error": str(e),
+                "results": {"entities": [], "relations": [], "paths": []},
+            }
 
 
 # Example usage

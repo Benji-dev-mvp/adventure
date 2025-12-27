@@ -10,12 +10,18 @@ Combines all advanced AI frameworks into a cohesive system:
 Provides high-level orchestration for complex AI workflows.
 """
 
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional, List, Literal
 from ..integrations.langchain_agent import LangChainOrchestrator
 from ..integrations.pydantic_agent import PydanticAIAgent, SalesContext, LeadScore, EmailGeneration, CampaignStrategy
 from ..integrations.mem0_memory import Mem0MemoryManager
 from ..integrations.llamaindex_rag import LlamaIndexRAG
+from ..models.ai_enterprise import ModelPolicy, ModelRule, ModelHealthMetric
+from datetime import datetime, timedelta
 import json
+import time
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class UnifiedAIOrchestrator:
@@ -519,6 +525,289 @@ async def example_usage():
     # Check system status
     status = await orchestrator.get_system_status()
     print(f"\nSystem Status:\n{json.dumps(status, indent=2)}")
+
+
+class ModelPolicyManager:
+    """
+    Enterprise Model Policy Manager
+    
+    Manages model routing, fallbacks, health checks, and latency-based routing.
+    """
+    
+    def __init__(self):
+        """Initialize policy manager"""
+        self.health_cache: Dict[str, Dict[str, Any]] = {}
+        self.latency_cache: Dict[str, List[float]] = {}
+        
+    async def get_model_for_segment(
+        self,
+        workspace_id: str,
+        segment: Literal["executives", "bulk", "creative", "default"],
+        db_session: Any,
+    ) -> Dict[str, str]:
+        """
+        Get the best model for a given segment based on policy
+        
+        Args:
+            workspace_id: Workspace/tenant identifier
+            segment: Request segment type
+            db_session: Database session
+            
+        Returns:
+            Dict with provider, model, and reasoning
+        """
+        from sqlmodel import select
+        
+        # Fetch policy for workspace
+        statement = select(ModelPolicy).where(ModelPolicy.workspace_id == workspace_id)
+        result = db_session.exec(statement).first()
+        
+        if not result:
+            # Return default model
+            return {
+                "provider": "openai",
+                "model": "gpt-4",
+                "reasoning": "No policy found, using default",
+            }
+        
+        rules = result.get_rules()
+        
+        # Find matching rule
+        matching_rule = None
+        for rule in rules:
+            if rule.get("segment") == segment:
+                matching_rule = rule
+                break
+        
+        if not matching_rule:
+            # Find default rule
+            for rule in rules:
+                if rule.get("segment") == "default":
+                    matching_rule = rule
+                    break
+        
+        if not matching_rule:
+            return {
+                "provider": "openai",
+                "model": "gpt-4",
+                "reasoning": "No matching rule, using default",
+            }
+        
+        primary_model = {
+            "provider": matching_rule["provider"],
+            "model": matching_rule["model"],
+        }
+        
+        # Check health of primary model
+        health = await self.check_model_health(
+            primary_model["provider"],
+            primary_model["model"],
+            db_session,
+        )
+        
+        if health["status"] == "healthy":
+            # Check latency budget if specified
+            if matching_rule.get("latency_budget_ms"):
+                avg_latency = self.get_average_latency(
+                    primary_model["provider"],
+                    primary_model["model"],
+                )
+                if avg_latency > matching_rule["latency_budget_ms"]:
+                    # Try fallback
+                    return await self._try_fallback(
+                        matching_rule,
+                        db_session,
+                        reason=f"Latency {avg_latency}ms exceeds budget {matching_rule['latency_budget_ms']}ms",
+                    )
+            
+            return {
+                **primary_model,
+                "reasoning": f"Primary model for {segment} segment",
+            }
+        
+        # Primary unhealthy, try fallback
+        if result.auto_fallback_enabled and matching_rule.get("fallback"):
+            return await self._try_fallback(
+                matching_rule,
+                db_session,
+                reason=f"Primary model unhealthy: {health['status']}",
+            )
+        
+        # No fallback, return primary anyway
+        return {
+            **primary_model,
+            "reasoning": f"Primary model degraded but no fallback configured",
+        }
+    
+    async def _try_fallback(
+        self,
+        rule: Dict[str, Any],
+        db_session: Any,
+        reason: str,
+    ) -> Dict[str, str]:
+        """Try fallback models in order"""
+        fallback_models = rule.get("fallback", [])
+        
+        for fallback_model_name in fallback_models:
+            # Parse provider:model format
+            if ":" in fallback_model_name:
+                provider, model = fallback_model_name.split(":", 1)
+            else:
+                # Assume same provider
+                provider = rule["provider"]
+                model = fallback_model_name
+            
+            health = await self.check_model_health(provider, model, db_session)
+            if health["status"] == "healthy":
+                return {
+                    "provider": provider,
+                    "model": model,
+                    "reasoning": f"Fallback model (reason: {reason})",
+                }
+        
+        # All fallbacks failed, return primary
+        return {
+            "provider": rule["provider"],
+            "model": rule["model"],
+            "reasoning": f"All fallbacks failed, using degraded primary",
+        }
+    
+    async def check_model_health(
+        self,
+        provider: str,
+        model: str,
+        db_session: Any,
+    ) -> Dict[str, Any]:
+        """
+        Check health status of a model provider
+        
+        Returns cached health if checked recently (<5 min ago).
+        """
+        from sqlmodel import select
+        
+        cache_key = f"{provider}:{model}"
+        
+        # Check cache first
+        if cache_key in self.health_cache:
+            cached = self.health_cache[cache_key]
+            if (datetime.utcnow() - cached["checked_at"]).seconds < 300:  # 5 min
+                return cached["health"]
+        
+        # Fetch from DB
+        statement = (
+            select(ModelHealthMetric)
+            .where(ModelHealthMetric.provider == provider)
+            .where(ModelHealthMetric.model == model)
+            .order_by(ModelHealthMetric.last_checked.desc())
+        )
+        result = db_session.exec(statement).first()
+        
+        if not result:
+            # No health data, assume healthy
+            health = {"status": "healthy", "avg_latency_ms": 0, "error_rate": 0}
+        else:
+            health = {
+                "status": result.status,
+                "avg_latency_ms": result.avg_latency_ms,
+                "error_rate": result.error_rate,
+            }
+        
+        # Cache result
+        self.health_cache[cache_key] = {
+            "health": health,
+            "checked_at": datetime.utcnow(),
+        }
+        
+        return health
+    
+    def record_request_latency(self, provider: str, model: str, latency_ms: float):
+        """Record request latency for latency-based routing"""
+        key = f"{provider}:{model}"
+        if key not in self.latency_cache:
+            self.latency_cache[key] = []
+        
+        self.latency_cache[key].append(latency_ms)
+        
+        # Keep only last 100 requests
+        if len(self.latency_cache[key]) > 100:
+            self.latency_cache[key] = self.latency_cache[key][-100:]
+    
+    def get_average_latency(self, provider: str, model: str) -> float:
+        """Get average latency for a model"""
+        key = f"{provider}:{model}"
+        if key not in self.latency_cache or not self.latency_cache[key]:
+            return 0.0
+        return sum(self.latency_cache[key]) / len(self.latency_cache[key])
+    
+    async def update_model_health(
+        self,
+        provider: str,
+        model: str,
+        success: bool,
+        latency_ms: float,
+        db_session: Any,
+    ):
+        """
+        Update model health metrics after each request
+        
+        This should be called by middleware after each AI request.
+        """
+        from sqlmodel import select
+        
+        # Record latency
+        self.record_request_latency(provider, model, latency_ms)
+        
+        # Update DB health metric
+        statement = (
+            select(ModelHealthMetric)
+            .where(ModelHealthMetric.provider == provider)
+            .where(ModelHealthMetric.model == model)
+        )
+        result = db_session.exec(statement).first()
+        
+        if not result:
+            # Create new metric
+            result = ModelHealthMetric(
+                provider=provider,
+                model=model,
+                status="healthy",
+                avg_latency_ms=latency_ms,
+                error_rate=0.0 if success else 1.0,
+            )
+            db_session.add(result)
+        else:
+            # Update existing with exponential moving average
+            alpha = 0.1  # Smoothing factor
+            result.avg_latency_ms = (
+                alpha * latency_ms + (1 - alpha) * result.avg_latency_ms
+            )
+            
+            # Update error rate
+            if success:
+                result.error_rate = max(0, result.error_rate - 0.01)
+            else:
+                result.error_rate = min(1, result.error_rate + 0.1)
+            
+            # Update status based on error rate and latency
+            if result.error_rate > 0.5:
+                result.status = "unhealthy"
+            elif result.error_rate > 0.2 or result.avg_latency_ms > 5000:
+                result.status = "degraded"
+            else:
+                result.status = "healthy"
+            
+            result.last_checked = datetime.utcnow()
+        
+        db_session.commit()
+        
+        # Invalidate cache
+        cache_key = f"{provider}:{model}"
+        if cache_key in self.health_cache:
+            del self.health_cache[cache_key]
+
+
+# Global instance
+model_policy_manager = ModelPolicyManager()
 
 
 if __name__ == "__main__":

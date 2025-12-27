@@ -6,6 +6,7 @@
   "waitFor": "onCreateCommand",
   "updateContentCommand": "npm install",
   "postCreateCommand": "",
+  "postStartCommand": "bash .devcontainer/postStartCommand.sh",
   "postAttachCommand": {
     "server": "npm start"
   },

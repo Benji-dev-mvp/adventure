@@ -11,6 +11,7 @@ const LandingPage = lazy(() => import('./pages/LandingPage'));
 const Marketing = lazy(() => import('./pages/Marketing'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const EnhancedDashboard = lazy(() => import('./pages/EnhancedDashboard'));
+const EnhancedDashboardNew = lazy(() => import('./pages/EnhancedDashboardNew'));
 const CampaignBuilder = lazy(() => import('./pages/CampaignBuilder'));
 const Leads = lazy(() => import('./pages/Leads'));
 const LeadDatabase = lazy(() => import('./pages/LeadDatabase'));
@@ -68,6 +69,11 @@ const CRMIntegrations = lazy(() => import('./pages/CRMIntegrations'));
 const TeamCollaboration = lazy(() => import('./pages/TeamCollaboration'));
 const SalesPlaybooks = lazy(() => import('./pages/SalesPlaybooks'));
 
+// Admin & Enterprise Features
+const AdminAPIKeys = lazy(() => import('./pages/AdminAPIKeys'));
+const AdminWebhooks = lazy(() => import('./pages/AdminWebhooks'));
+const AdminAuditLog = lazy(() => import('./pages/AdminAuditLog'));
+
 function App() {
   return (
     <ErrorBoundary>
@@ -80,7 +86,8 @@ function App() {
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/marketing" element={<Marketing />} />
                 <Route path="/onboarding" element={<Onboarding />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard" element={<EnhancedDashboardNew />} />
+                <Route path="/dashboard-original" element={<Dashboard />} />
                 <Route path="/dashboard-enhanced" element={<EnhancedDashboard />} />
                 <Route path="/campaigns" element={<CampaignBuilder />} />
                 <Route path="/leads" element={<Leads />} />
@@ -136,6 +143,11 @@ function App() {
                 <Route path="/crm-integrations" element={<CRMIntegrations />} />
                 <Route path="/team-collaboration" element={<TeamCollaboration />} />
                 <Route path="/sales-playbooks" element={<SalesPlaybooks />} />
+                
+                {/* Admin & Enterprise Features */}
+                <Route path="/admin/api-keys" element={<AdminAPIKeys />} />
+                <Route path="/admin/webhooks" element={<AdminWebhooks />} />
+                <Route path="/admin/audit-log" element={<AdminAuditLog />} />
                 
                 <Route path="/404" element={<NotFound />} />
                 <Route path="*" element={<NotFound />} />

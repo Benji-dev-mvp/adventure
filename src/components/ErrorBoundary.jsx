@@ -16,12 +16,42 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.error('Error caught by boundary:', error, errorInfo);
+    // Log to console with timestamp
+    const timestamp = new Date().toISOString();
+    console.error(`[${timestamp}] Error caught by boundary:`, error, errorInfo);
     
-    // Report to error tracking (e.g., Sentry)
+    // Log error details for debugging
+    const errorLog = {
+      timestamp,
+      message: error?.message,
+      stack: error?.stack,
+      componentStack: errorInfo?.componentStack,
+      userAgent: navigator.userAgent,
+      url: window.location.href,
+      errorCount: this.state.errorCount + 1,
+    };
+    
+    // Store error in sessionStorage for debugging
+    try {
+      const errors = JSON.parse(sessionStorage.getItem('artisan_errors') || '[]');
+      errors.push(errorLog);
+      // Keep only last 10 errors
+      sessionStorage.setItem('artisan_errors', JSON.stringify(errors.slice(-10)));
+    } catch (e) {
+      console.warn('Failed to store error in sessionStorage:', e);
+    }
+    
+    // Report to error tracking service (e.g., Sentry, LogRocket)
     if (window.reportError) {
       window.reportError(error, errorInfo);
     }
+    
+    // Future: Send to backend logging endpoint
+    // fetch('/api/logs/error', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(errorLog),
+    // }).catch(e => console.warn('Failed to send error to server:', e));
     
     this.setState(prev => ({
       errorInfo,

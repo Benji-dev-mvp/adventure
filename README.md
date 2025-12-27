@@ -61,10 +61,18 @@ A production-ready AI Business Development Representative (BDR) platform built w
 
 ## Production-Ready Features ✨
 
+### Dark Mode Support 🌓
+- **Theme Toggle**: Sun/Moon icon in header for easy switching
+- **Persistent Preference**: Theme saved to localStorage
+- **System Integration**: Respects user's system preferences
+- **Comprehensive Coverage**: All components support dark mode styling
+
 ### Error Handling
 - **ErrorBoundary Component**: Catches React errors and displays user-friendly fallback UI
+- **Enhanced Logging**: Detailed error tracking with timestamps and stack traces
+- **SessionStorage Tracking**: Stores last 10 errors for debugging
+- **Production Safety**: Error details hidden in production, visible in development
 - Global error boundaries wrap the entire application
-- Error logging and user guidance
 - Graceful degradation for failed operations
 
 ### User Notifications (Toast System)
@@ -84,6 +92,7 @@ A production-ready AI Business Development Representative (BDR) platform built w
 - Integrated in Campaign Builder and Onboarding
 
 ### Loading States
+- **Skeleton Components**: Multiple pre-built skeleton layouts (cards, tables, lists, dashboards)
 - Page-level loading spinner with messaging
 - Inline loading indicators for async actions
 - Smooth transitions and skeleton screens
@@ -97,6 +106,14 @@ A production-ready AI Business Development Representative (BDR) platform built w
 - Campaign recovery from drafts
 - Storage utilities with CRUD operations
 - Automatic recovery on page reload
+
+### Performance Monitoring 🚀
+- **Web Vitals Tracking**: Monitors CLS, FID, FCP, LCP, TTFB
+- **Operation Metrics**: Tracks function execution times
+- **Performance Summary**: Debug tools for identifying slow operations
+- **SessionStorage Metrics**: Stores performance data for analysis
+- **Debounce/Throttle**: Utility functions for optimization
+- **Development Logging**: Warns about slow operations (>1000ms)
 
 ### 404 Page & Error Pages
 - Custom 404 error page with navigation
@@ -124,9 +141,13 @@ npm install
 
 ### Development Server
 ```bash
+npm run dev
+# or
 npm start
 ```
-The app will run on `http://localhost:3000`
+The app will run on `http://localhost:3004`
+
+Backend API runs on `http://localhost:8000` (proxy configured in Vite)
 
 ### Production Build
 ```bash
@@ -136,7 +157,17 @@ Built files are in `dist/` directory
 
 ### Preview Production Build
 ```bash
-npm preview
+npm run preview
+```
+
+### Run Tests
+```bash
+npm test
+```
+
+### Type Checking
+```bash
+npm run type-check
 ```
 
 ## 📚 Documentation
@@ -288,16 +319,20 @@ VITE_APP_NAME=Artisan
 
 ## Future Enhancements
 
-- [ ] Backend API integration
-- [ ] Real email/SMS sending
+- [ ] Backend API integration (FastAPI backend already available in `/backend`)
+- [ ] Real email/SMS sending via SendGrid/Twilio
 - [ ] Advanced AI personalization with GPT
 - [ ] Team collaboration features
 - [ ] Advanced analytics with custom reports
 - [ ] REST API for integrations
 - [ ] Mobile app version
-- [ ] Dark mode support
-- [ ] Multi-language support
+- [x] Dark mode support (✅ Completed)
+- [ ] Multi-language support (i18n)
 - [ ] Webhook support
+- [ ] Progressive Web App (PWA) features
+- [ ] Real-time collaboration with WebSockets
+- [ ] Advanced caching strategies
+- [ ] Offline mode support
 
 ## License
 

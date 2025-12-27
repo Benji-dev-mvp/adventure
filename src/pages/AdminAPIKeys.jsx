@@ -203,7 +203,7 @@ const AdminAPIKeys = () => {
                 <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 mb-4">
                   <div className="flex items-center justify-between gap-4">
                     <code className="flex-1 text-sm font-mono text-gray-700 dark:text-gray-300">
-                      {apiKey.key_prefix}••••••••••••••••••••
+                      {apiKey.key_prefix}{'•'.repeat(24)}
                     </code>
                     <div className="flex items-center gap-2">
                       <button

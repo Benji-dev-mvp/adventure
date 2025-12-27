@@ -78,12 +78,18 @@ async def create_api_key(
     key_prefix = APIKey.get_key_prefix(key_string)
     
     # Create the API key record
+    if not hasattr(current_user, 'organization_id') or not current_user.organization_id:
+        raise HTTPException(
+            status_code=400,
+            detail="User must belong to an organization to create API keys"
+        )
+    
     api_key = APIKey(
         name=key_data.name,
         key_prefix=key_prefix,
         key_hash=key_hash,
         user_id=current_user.id,
-        organization_id=getattr(current_user, 'organization_id', 1),  # TODO: Get from user
+        organization_id=current_user.organization_id,
         workspace_id=key_data.workspace_id,
         permissions=[p.value for p in key_data.permissions],
         rate_limit=key_data.rate_limit,

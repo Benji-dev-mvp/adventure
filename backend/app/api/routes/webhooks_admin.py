@@ -83,13 +83,20 @@ async def create_webhook(
     # Generate secret
     secret = WebhookSubscription.generate_secret()
     
+    # Get organization ID from user
+    if not hasattr(current_user, 'organization_id') or not current_user.organization_id:
+        raise HTTPException(
+            status_code=400,
+            detail="User must belong to an organization to create webhooks"
+        )
+    
     # Create webhook
     webhook = WebhookSubscription(
         url=webhook_data.url,
         secret=secret,
         events=[e.value for e in webhook_data.events],
         user_id=current_user.id,
-        organization_id=getattr(current_user, 'organization_id', 1),
+        organization_id=current_user.organization_id,
         workspace_id=webhook_data.workspace_id,
         timeout_seconds=webhook_data.timeout_seconds,
         max_retries=webhook_data.max_retries

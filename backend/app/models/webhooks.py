@@ -119,6 +119,9 @@ class WebhookDelivery(SQLModel, table=True):
     """
     __tablename__ = "webhook_deliveries"
     
+    # Constants
+    MAX_RETRY_DELAY_SECONDS = 3600  # 1 hour maximum delay
+    
     id: Optional[int] = Field(default=None, primary_key=True)
     webhook_id: int = Field(foreign_key="webhook_subscriptions.id", index=True)
     
@@ -146,8 +149,7 @@ class WebhookDelivery(SQLModel, table=True):
         """Calculate next retry time with exponential backoff"""
         from datetime import timedelta
         delay_seconds = base_delay * (2 ** self.attempt_count)  # Exponential backoff
-        max_delay = 3600  # 1 hour max
-        delay_seconds = min(delay_seconds, max_delay)
+        delay_seconds = min(delay_seconds, self.MAX_RETRY_DELAY_SECONDS)
         return datetime.utcnow() + timedelta(seconds=delay_seconds)
 
 

@@ -41,7 +41,14 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "deploy": "bash scripts/auto-deploy.sh --mode local",
+    "deploy:docker": "bash scripts/auto-deploy.sh --mode docker",
+    "deploy:k8s": "bash scripts/auto-deploy.sh --mode k8s",
+    "deploy:helm": "bash scripts/auto-deploy.sh --mode helm",
+    "deploy:continuous": "bash scripts/auto-deploy.sh --mode local --continuous",
+    "deploy:pause": "bash scripts/auto-deploy.sh --pause",
+    "deploy:resume": "bash scripts/auto-deploy.sh --resume"
   },
   "eslintConfig": {
     "extends": [

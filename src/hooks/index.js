@@ -6,8 +6,8 @@
 // Core hooks
 export { useDebounce, useLocalStorage, useAsync, useClickOutside, useMediaQuery, useIntersectionObserver, usePrevious, useEventListener, useOnlineStatus, useWindowSize, useCopyToClipboard, useToggle, useInterval, useTimeout, useMount, useUnmount, useUpdateEffect, useDeepCompareEffect, useThrottle, useLockBodyScroll, useHover, useFocus, useScrollPosition, useDocumentTitle, useKeyPress, useNetworkState, useGeolocation, useBattery, useIdle } from './advancedHooks';
 
-// Toast hook
-export { useToast } from './use-toast';
+// Toast hook (from components/Toast.jsx)
+export { useToast } from '../components/Toast';
 
 // Scroll animation
 export { useScrollAnimation } from './useScrollAnimation';
@@ -40,3 +40,6 @@ export {
   usePrefetchDashboard,
   usePrefetchLeads,
 } from './useApiQuery';
+
+// Feature flags
+export { useFeatureFlag } from './useFeatureFlag';

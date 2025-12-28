@@ -7,7 +7,7 @@ import featureFlagManager from '../lib/featureFlags';
 
 /**
  * Hook to check if a feature is enabled
- * Updates automatically when flags change
+ * Updates automatically when flags change or featureName changes
  */
 export const useFeatureFlag = (featureName) => {
   const [isEnabled, setIsEnabled] = useState(
@@ -15,6 +15,9 @@ export const useFeatureFlag = (featureName) => {
   );
 
   useEffect(() => {
+    // Update state when featureName changes
+    setIsEnabled(featureFlagManager.isEnabled(featureName));
+    
     // Subscribe to flag changes
     const unsubscribe = featureFlagManager.subscribe((flags) => {
       setIsEnabled(flags[featureName] === true);

@@ -177,17 +177,21 @@ class FeatureFlagManager {
   }
 
   /**
-   * Load flags from backend (placeholder for future implementation)
+   * Load flags from backend
+   * 
+   * This method is a placeholder for future implementation when the backend
+   * feature flags API is ready. It allows for server-side feature flag management.
+   * 
+   * @example
+   * // After backend API is implemented:
+   * // GET /api/feature-flags
+   * // Returns: { "aiAssistant": true, "darkMode": true, ... }
    */
   async loadFromBackend() {
-    try {
-      // TODO: Implement API call to fetch feature flags from backend
-      // const response = await fetch('/api/feature-flags');
-      // const data = await response.json();
-      // this.setFlags(data);
-      console.log('Loading feature flags from backend (not implemented)');
-    } catch (error) {
-      console.error('Error loading feature flags from backend:', error);
+    // Backend feature flags API not yet implemented
+    // When implemented, this will fetch flags from: GET /api/feature-flags
+    if (import.meta.env.DEV) {
+      console.log('[Feature Flags] Backend API integration not yet available');
     }
   }
 }

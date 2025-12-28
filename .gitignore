@@ -135,3 +135,6 @@ __pycache__/
 *.egg-info/
 .eggs/
 *.egg
+.venv/
+venv/
+ENV/

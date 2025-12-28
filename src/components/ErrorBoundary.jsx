@@ -41,17 +41,36 @@ class ErrorBoundary extends React.Component {
       console.warn('Failed to store error in sessionStorage:', e);
     }
     
-    // Report to error tracking service (e.g., Sentry, LogRocket)
-    if (window.reportError) {
-      window.reportError(error, errorInfo);
+    // Report to analytics tracking
+    try {
+      // Import analytics dynamically to avoid circular dependencies
+      import('../lib/analytics').then(({ trackError }) => {
+        trackError(error, {
+          component_stack: errorInfo?.componentStack,
+          error_count: this.state.errorCount + 1,
+        });
+      });
+    } catch (e) {
+      console.warn('Failed to track error to analytics:', e);
     }
     
-    // Future: Send to backend logging endpoint
-    // fetch('/api/logs/error', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(errorLog),
-    // }).catch(e => console.warn('Failed to send error to server:', e));
+    // Report to error tracking service (e.g., Sentry)
+    if (window.Sentry) {
+      window.Sentry.captureException(error, {
+        contexts: {
+          react: {
+            componentStack: errorInfo?.componentStack,
+          },
+        },
+      });
+    }
+    
+    // Send to backend logging endpoint
+    fetch('/api/logs/error', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(errorLog),
+    }).catch(e => console.warn('Failed to send error to server:', e));
     
     this.setState(prev => ({
       errorInfo,

@@ -40,3 +40,6 @@ export {
   usePrefetchDashboard,
   usePrefetchLeads,
 } from './useApiQuery';
+
+// Feature flags
+export { useFeatureFlag } from './useFeatureFlag';

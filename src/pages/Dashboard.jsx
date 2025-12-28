@@ -1,5 +1,4 @@
-// Dashboard - Advanced Tabbed Component Pattern
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/Card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs';
@@ -9,62 +8,36 @@ import {
   Activity, 
   TrendingUp, 
   Users, 
-  Target, 
   Mail, 
   Calendar,
   Sparkles,
   Brain,
   Zap,
   BarChart3,
-  Clock,
   Rocket,
-  Trophy,
-  Lightbulb,
-  CheckCircle2,
-  ArrowUpRight,
-  Play,
-  Gauge,
-  Wand2
+  Target,
+  DollarSign,
+  Globe,
+  Briefcase,
+  PhoneCall,
+  ArrowRight,
+  RefreshCw
 } from 'lucide-react';
-import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../components/Toast';
-import { getDashboardStats } from '../lib/dataService';
+import {
+  AdvancedMetricCard,
+  RealTimeActivityStream,
+  AdvancedPerformanceChart,
+  ConversionFunnel,
+  AIInsightsCard,
+  RevenuePipelineChart
+} from '../components/dashboard/AdvancedVisualizations';
+import CampaignsTab from '../components/dashboard/CampaignsTab';
+import AnalyticsTab from '../components/dashboard/AnalyticsTab';
+import QuickActionsTab from '../components/dashboard/QuickActionsTab';
 
-// Animated Counter Component
-const AnimatedCounter = ({ end, duration = 2000, suffix = '', prefix = '' }) => {
-  const [count, setCount] = useState(0);
-  const countRef = useRef(0);
-  const hasAnimated = useRef(false);
-
-  useEffect(() => {
-    if (hasAnimated.current) return;
-    hasAnimated.current = true;
-
-    const startTime = Date.now();
-    const animate = () => {
-      const now = Date.now();
-      const progress = Math.min((now - startTime) / duration, 1);
-      const easeOutQuad = progress * (2 - progress);
-      const currentCount = Math.floor(easeOutQuad * end);
-      
-      setCount(currentCount);
-      countRef.current = currentCount;
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        setCount(end);
-      }
-    };
-
-    requestAnimationFrame(animate);
-  }, [end, duration]);
-
-  return <span>{prefix}{count}{suffix}</span>;
-};
-
-// Live Indicator
+// Live Indicator Component
 const LiveIndicator = ({ label = 'LIVE' }) => (
   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30">
     <span className="relative flex h-2 w-2">
@@ -75,127 +48,161 @@ const LiveIndicator = ({ label = 'LIVE' }) => (
   </div>
 );
 
-// Animated Progress
-const AnimatedProgress = ({ value, color = 'cyan', label }) => {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setProgress(value), 100);
-    return () => clearTimeout(timer);
-  }, [value]);
-
-  const colorClasses = {
-    cyan: 'bg-gradient-to-r from-cyan-400 to-cyan-600',
-    blue: 'bg-gradient-to-r from-blue-400 to-blue-600',
-    green: 'bg-gradient-to-r from-green-400 to-green-600',
-    purple: 'bg-gradient-to-r from-purple-400 to-purple-600',
-    pink: 'bg-gradient-to-r from-pink-400 to-pink-600',
-    yellow: 'bg-gradient-to-r from-yellow-400 to-yellow-600'
-  };
-
-  return (
-    <div className="space-y-1">
-      {label && (
-        <div className="text-xs text-gray-600 dark:text-gray-400 flex justify-between">
-          <span>{label}</span>
-          <span className="font-bold">{value}%</span>
-        </div>
-      )}
-      <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-        <div 
-          className={`h-full ${colorClasses[color] || colorClasses.cyan} transition-all duration-1000 ease-out rounded-full relative`}
-          style={{ width: `${progress}%` }}
-        >
-          <div className="absolute inset-0 bg-white/30 animate-pulse"></div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const Dashboard = () => {
+const EnhancedDashboardPage = () => {
   const navigate = useNavigate();
   const toast = useToast();
   const [activeTab, setActiveTab] = useState('overview');
-  const [liveStats, setLiveStats] = useState({
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  
+  // Live metrics with real-time updates
+  const [liveMetrics, setLiveMetrics] = useState({
     emailsSent: 12453,
     replyRate: 8.4,
     meetings: 47,
-    activeLeads: 1284
+    activeLeads: 1284,
+    revenue: 284500,
+    conversionRate: 3.2
   });
 
   // Simulate live updates
   useEffect(() => {
     const interval = setInterval(() => {
-      setLiveStats(prev => ({
-        emailsSent: prev.emailsSent + Math.floor(Math.random() * 10),
-        replyRate: Math.max(0, Math.min(15, prev.replyRate + (Math.random() - 0.5) * 0.5)),
-        meetings: prev.meetings + (Math.random() > 0.8 ? 1 : 0),
-        activeLeads: prev.activeLeads + Math.floor(Math.random() * 5) - 2
+      setLiveMetrics(prev => ({
+        emailsSent: prev.emailsSent + Math.floor(Math.random() * 15),
+        replyRate: Math.max(5, Math.min(12, prev.replyRate + (Math.random() - 0.5) * 0.3)),
+        meetings: prev.meetings + (Math.random() > 0.85 ? 1 : 0),
+        activeLeads: prev.activeLeads + Math.floor(Math.random() * 8) - 3,
+        revenue: prev.revenue + Math.floor(Math.random() * 5000),
+        conversionRate: Math.max(2, Math.min(5, prev.conversionRate + (Math.random() - 0.5) * 0.2))
       }));
-    }, 5000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
 
-  const tabs = [
-    { id: 'overview', label: 'Overview', icon: Activity, color: 'cyan' },
-    { id: 'campaigns', label: 'Campaigns', icon: Rocket, color: 'purple' },
-    { id: 'analytics', label: 'Analytics', icon: BarChart3, color: 'blue' },
-    { id: 'ai-insights', label: 'AI Insights', icon: Brain, color: 'pink' },
-    { id: 'actions', label: 'Quick Actions', icon: Zap, color: 'yellow' }
+  // Sparkline data for metric cards
+  const emailSparkline = [
+    { value: 320 }, { value: 380 }, { value: 450 }, { value: 510 }, 
+    { value: 490 }, { value: 520 }, { value: 580 }
   ];
 
+  const replySparkline = [
+    { value: 7.2 }, { value: 7.8 }, { value: 8.1 }, { value: 8.4 }, 
+    { value: 8.2 }, { value: 8.6 }, { value: 8.9 }
+  ];
+
+  const meetingSparkline = [
+    { value: 8 }, { value: 12 }, { value: 15 }, { value: 18 }, 
+    { value: 16 }, { value: 19 }, { value: 22 }
+  ];
+
+  const leadSparkline = [
+    { value: 1100 }, { value: 1150 }, { value: 1180 }, { value: 1220 }, 
+    { value: 1240 }, { value: 1260 }, { value: 1284 }
+  ];
+
+  const revenueSparkline = [
+    { value: 220000 }, { value: 235000 }, { value: 248000 }, { value: 256000 }, 
+    { value: 265000 }, { value: 275000 }, { value: 284500 }
+  ];
+
+  const conversionSparkline = [
+    { value: 2.8 }, { value: 2.9 }, { value: 3.0 }, { value: 3.1 }, 
+    { value: 3.0 }, { value: 3.2 }, { value: 3.4 }
+  ];
+
+  // Performance data for charts
   const performanceData = [
-    { name: 'Mon', emails: 320, replies: 25, meetings: 8 },
-    { name: 'Tue', emails: 380, replies: 32, meetings: 12 },
-    { name: 'Wed', emails: 450, replies: 38, meetings: 15 },
-    { name: 'Thu', emails: 510, replies: 42, meetings: 18 },
-    { name: 'Fri', emails: 490, replies: 40, meetings: 16 },
-    { name: 'Sat', emails: 120, replies: 10, meetings: 3 },
-    { name: 'Sun', emails: 80, replies: 7, meetings: 2 }
+    { name: 'Mon', emails: 320, replies: 25, meetings: 8, revenue: 12000 },
+    { name: 'Tue', emails: 380, replies: 32, meetings: 12, revenue: 18000 },
+    { name: 'Wed', emails: 450, replies: 38, meetings: 15, revenue: 22000 },
+    { name: 'Thu', emails: 510, replies: 42, meetings: 18, revenue: 28000 },
+    { name: 'Fri', emails: 490, replies: 40, meetings: 16, revenue: 24000 },
+    { name: 'Sat', emails: 120, replies: 10, meetings: 3, revenue: 6000 },
+    { name: 'Sun', emails: 80, replies: 7, meetings: 2, revenue: 4000 }
   ];
 
-  const activeCampaigns = [
-    { name: 'SaaS Outreach Q4', status: 'active', leads: 450, sent: 320, replies: 28, replyRate: 8.8 },
-    { name: 'Enterprise Follow-up', status: 'active', leads: 180, sent: 156, replies: 15, replyRate: 9.6 },
-    { name: 'Product Launch', status: 'paused', leads: 290, sent: 180, replies: 12, replyRate: 6.7 }
+  // Conversion funnel data
+  const funnelData = [
+    { stage: 'Total Leads', count: 5420, percentage: 100 },
+    { stage: 'Email Opened', count: 3250, percentage: 60 },
+    { stage: 'Replied', count: 892, percentage: 16.5 },
+    { stage: 'Meeting Booked', count: 247, percentage: 4.6 },
+    { stage: 'Qualified', count: 156, percentage: 2.9 },
+    { stage: 'Closed Won', count: 47, percentage: 0.9 }
   ];
 
-  const aiRecommendations = [
+  // Revenue pipeline data
+  const pipelineData = [
+    { name: 'Discovery', value: 125000 },
+    { name: 'Qualification', value: 98000 },
+    { name: 'Proposal', value: 156000 },
+    { name: 'Negotiation', value: 84500 },
+    { name: 'Closed Won', value: 235000 }
+  ];
+
+  // Recent activity stream
+  const recentActivities = [
+    { lead: 'Sarah Chen', company: 'TechCorp', action: 'replied to email', time: '2 min ago', type: 'reply', isHot: true },
+    { lead: 'Michael Torres', company: 'InnovateCo', action: 'opened email', time: '8 min ago', type: 'email' },
+    { lead: 'Emily Watson', company: 'GrowthLabs', action: 'booked a meeting', time: '15 min ago', type: 'meeting', isHot: true },
+    { lead: 'David Kim', company: 'StartupXYZ', action: 'replied to email', time: '32 min ago', type: 'reply' },
+    { lead: 'Jessica Lee', company: 'DataFlow Inc', action: 'clicked link', time: '45 min ago', type: 'email' },
+    { lead: 'Robert Martinez', company: 'CloudScale', action: 'scheduled call', time: '1 hour ago', type: 'call', isHot: true },
+    { lead: 'Amanda Foster', company: 'AI Solutions', action: 'viewed proposal', time: '1 hour ago', type: 'linkedin' },
+    { lead: 'James Wilson', company: 'FinTech Pro', action: 'replied to LinkedIn', time: '2 hours ago', type: 'linkedin' }
+  ];
+
+  // AI insights
+  const aiInsights = [
     {
       title: 'Optimize Send Times',
-      description: 'Send emails on Tuesdays at 10 AM for 3x higher reply rates',
+      description: 'Send emails on Tuesdays at 10 AM for 3x higher reply rates based on your audience behavior',
       impact: 'High Impact',
       confidence: 0.94,
       action: 'Apply Now'
     },
     {
-      title: 'Personalize Campaign B',
-      description: 'Add dynamic variables to increase engagement by 27%',
-      impact: 'Medium Impact',
-      confidence: 0.87,
+      title: 'Personalize Subject Lines',
+      description: 'Add {company_name} variable to increase open rates by 27% across all campaigns',
+      impact: 'High Impact',
+      confidence: 0.89,
       action: 'Review'
     },
     {
       title: 'Follow Up Hot Leads',
-      description: '3 leads with high reply probability need immediate follow-up',
+      description: '8 leads with high reply probability need immediate follow-up within next 24 hours',
       impact: 'High Impact',
       confidence: 0.91,
       action: 'View Leads'
+    },
+    {
+      title: 'A/B Test Email Templates',
+      description: 'Template B shows 15% better performance - consider switching for Campaign X',
+      impact: 'Medium Impact',
+      confidence: 0.82,
+      action: 'View Details'
     }
   ];
 
-  const recentActivity = [
-    { lead: 'Sarah Chen', company: 'TechCorp', action: 'replied to email', time: '2 min ago', type: 'reply' },
-    { lead: 'Michael Torres', company: 'InnovateCo', action: 'opened email', time: '8 min ago', type: 'open' },
-    { lead: 'Emily Watson', company: 'GrowthLabs', action: 'booked a meeting', time: '15 min ago', type: 'meeting' },
-    { lead: 'David Kim', company: 'StartupXYZ', action: 'replied to email', time: '32 min ago', type: 'reply' }
-  ];
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    toast.info('Refreshing dashboard data...');
+    
+    // Simulate API call
+    setTimeout(() => {
+      setIsRefreshing(false);
+      toast.success('Dashboard updated!');
+    }, 1500);
+  };
 
-  useEffect(() => {
-    getDashboardStats();
-  }, []);
+  const tabs = [
+    { id: 'overview', label: 'Overview', icon: Activity },
+    { id: 'campaigns', label: 'Campaigns', icon: Rocket },
+    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+    { id: 'ai-insights', label: 'AI Insights', icon: Brain },
+    { id: 'actions', label: 'Quick Actions', icon: Zap }
+  ];
 
   return (
     <DashboardLayout>
@@ -203,10 +210,24 @@ const Dashboard = () => {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Dashboard</h1>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Welcome back! Here's what's happening today.</p>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent">
+              Dashboard
+            </h1>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              Real-time insights and AI-powered analytics
+            </p>
           </div>
           <div className="flex items-center gap-3">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRefresh}
+              disabled={isRefreshing}
+              className="gap-2"
+            >
+              <RefreshCw size={16} className={isRefreshing ? 'animate-spin' : ''} />
+              Refresh
+            </Button>
             <LiveIndicator label="LIVE" />
             <Badge variant="accent" className="gap-2">
               <Sparkles size={14} />
@@ -215,66 +236,84 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Live Performance</h2>
-
-        {/* Live Stats Banner */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border-blue-200 dark:border-blue-500/30">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-2">
-                <Mail className="text-blue-600 dark:text-blue-400" size={20} />
-                <TrendingUp className="text-green-600" size={16} />
-              </div>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                <AnimatedCounter end={liveStats.emailsSent} />
-              </div>
-              <div className="text-xs text-gray-600 dark:text-gray-400">Emails Sent</div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-500/30">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-2">
-                <Activity className="text-green-600 dark:text-green-400" size={20} />
-                <TrendingUp className="text-green-600" size={16} />
-              </div>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                <AnimatedCounter end={liveStats.replyRate} suffix="%" />
-              </div>
-              <div className="text-xs text-gray-600 dark:text-gray-400">Reply Rate</div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border-purple-200 dark:border-purple-500/30">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-2">
-                <Calendar className="text-purple-600 dark:text-purple-400" size={20} />
-                <TrendingUp className="text-green-600" size={16} />
-              </div>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                <AnimatedCounter end={liveStats.meetings} />
-              </div>
-              <div className="text-xs text-gray-600 dark:text-gray-400">Meetings Booked</div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 border-orange-200 dark:border-orange-500/30">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-2">
-                <Users className="text-orange-600 dark:text-orange-400" size={20} />
-                <Activity className="text-blue-600" size={16} />
-              </div>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                <AnimatedCounter end={liveStats.activeLeads} />
-              </div>
-              <div className="text-xs text-gray-600 dark:text-gray-400">Active Leads</div>
-            </CardContent>
-          </Card>
+        {/* Live Performance Metrics - Enhanced */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AdvancedMetricCard
+            title="Emails Sent"
+            value={liveMetrics.emailsSent.toLocaleString()}
+            change="+12.5%"
+            changeType="increase"
+            icon={Mail}
+            gradient="blue"
+            sparklineData={emailSparkline}
+            subtitle="vs. last week"
+            target={15000}
+            targetLabel="Weekly Goal"
+          />
+          
+          <AdvancedMetricCard
+            title="Reply Rate"
+            value={`${liveMetrics.replyRate.toFixed(1)}%`}
+            change="+2.3%"
+            changeType="increase"
+            icon={Activity}
+            gradient="green"
+            sparklineData={replySparkline}
+            subtitle="Industry avg: 6.2%"
+          />
+          
+          <AdvancedMetricCard
+            title="Meetings Booked"
+            value={liveMetrics.meetings}
+            change="+8"
+            changeType="increase"
+            icon={Calendar}
+            gradient="purple"
+            sparklineData={meetingSparkline}
+            subtitle="This week"
+            target={60}
+            targetLabel="Monthly Goal"
+          />
+          
+          <AdvancedMetricCard
+            title="Active Leads"
+            value={liveMetrics.activeLeads.toLocaleString()}
+            change="+156"
+            changeType="increase"
+            icon={Users}
+            gradient="orange"
+            sparklineData={leadSparkline}
+            subtitle="Engaged in last 7 days"
+          />
+          
+          <AdvancedMetricCard
+            title="Pipeline Revenue"
+            value={`$${(liveMetrics.revenue / 1000).toFixed(1)}K`}
+            change="+18.2%"
+            changeType="increase"
+            icon={DollarSign}
+            gradient="pink"
+            sparklineData={revenueSparkline}
+            subtitle="Q4 2025"
+            target={500000}
+            targetLabel="Quarterly Target"
+          />
+          
+          <AdvancedMetricCard
+            title="Conversion Rate"
+            value={`${liveMetrics.conversionRate.toFixed(1)}%`}
+            change="+0.4%"
+            changeType="increase"
+            icon={Target}
+            gradient="cyan"
+            sparklineData={conversionSparkline}
+            subtitle="Lead to customer"
+          />
         </div>
 
         {/* Tabbed Interface */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid grid-cols-5 w-full mb-4">
+          <TabsList className="grid grid-cols-5 w-full mb-6">
             {tabs.map(tab => (
               <TabsTrigger key={tab.id} value={tab.id} className="gap-2">
                 <tab.icon size={16} />
@@ -284,300 +323,88 @@ const Dashboard = () => {
           </TabsList>
 
           {/* Overview Tab */}
-          <TabsContent value="overview" className="space-y-4">
-            <div className="grid lg:grid-cols-2 gap-4">
-              {/* Performance Chart */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <BarChart3 size={18} />
-                    Performance Overview
-                  </CardTitle>
-                  <CardDescription>Last 7 days activity</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ResponsiveContainer width="100%" height={240}>
-                    <AreaChart data={performanceData}>
-                      <defs>
-                        <linearGradient id="colorEmails" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
-                          <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
-                        </linearGradient>
-                        <linearGradient id="colorReplies" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#10b981" stopOpacity={0.8}/>
-                          <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
-                        </linearGradient>
-                      </defs>
-                      <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
-                      <XAxis dataKey="name" tick={{ fontSize: 12 }} />
-                      <YAxis tick={{ fontSize: 12 }} />
-                      <Tooltip />
-                      <Area type="monotone" dataKey="emails" stroke="#3b82f6" fillOpacity={1} fill="url(#colorEmails)" />
-                      <Area type="monotone" dataKey="replies" stroke="#10b981" fillOpacity={1} fill="url(#colorReplies)" />
-                    </AreaChart>
-                  </ResponsiveContainer>
+          <TabsContent value="overview" className="space-y-6">
+            <div className="grid lg:grid-cols-2 gap-6">
+              {/* Advanced Performance Chart */}
+              <AdvancedPerformanceChart 
+                data={performanceData}
+                title="Performance Overview - Last 7 Days"
+              />
+
+              {/* Real-time Activity Stream */}
+              <RealTimeActivityStream activities={recentActivities} />
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-6">
+              {/* Conversion Funnel */}
+              <ConversionFunnel data={funnelData} />
+
+              {/* Revenue Pipeline */}
+              <RevenuePipelineChart data={pipelineData} />
+            </div>
+
+            {/* AI Insights Section */}
+            <AIInsightsCard insights={aiInsights} />
+
+            {/* Quick Actions */}
+            <div className="grid md:grid-cols-4 gap-4">
+              <Card className="cursor-pointer hover:shadow-lg transition-shadow bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20 border-cyan-200 dark:border-cyan-500/30">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Rocket size={24} className="text-white" />
+                  </div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">New Campaign</h3>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">Launch outreach</p>
                 </CardContent>
               </Card>
 
-              {/* Recent Activity */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Activity size={18} />
-                    Recent Activity
-                  </CardTitle>
-                  <CardDescription>Latest lead interactions</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {recentActivity.map((activity, index) => (
-                      <div key={index} className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                        <div className={`w-2 h-2 rounded-full mt-2 ${
-                          activity.type === 'meeting' ? 'bg-green-500' :
-                          activity.type === 'reply' ? 'bg-blue-500' :
-                          'bg-gray-400'
-                        }`} />
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm text-gray-900 dark:text-white">
-                            <span className="font-semibold">{activity.lead}</span> {activity.action}
-                          </p>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">{activity.company}</p>
-                          <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{activity.time}</p>
-                        </div>
-                      </div>
-                    ))}
+              <Card className="cursor-pointer hover:shadow-lg transition-shadow bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border-purple-200 dark:border-purple-500/30">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Users size={24} className="text-white" />
                   </div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Find Leads</h3>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">Search 300M+ contacts</p>
+                </CardContent>
+              </Card>
+
+              <Card className="cursor-pointer hover:shadow-lg transition-shadow bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-500/30">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Brain size={24} className="text-white" />
+                  </div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Ask Ava</h3>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">AI assistant</p>
+                </CardContent>
+              </Card>
+
+              <Card className="cursor-pointer hover:shadow-lg transition-shadow bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 border-orange-200 dark:border-orange-500/30">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <BarChart3 size={24} className="text-white" />
+                  </div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Analytics</h3>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">Detailed reports</p>
                 </CardContent>
               </Card>
             </div>
           </TabsContent>
 
-          {/* Campaigns Tab */}
+          {/* Other tabs - now functional */}
           <TabsContent value="campaigns" className="space-y-4">
-            <Card>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle className="flex items-center gap-2">
-                      <Rocket size={18} />
-                      Active Campaigns
-                    </CardTitle>
-                    <CardDescription>Your running outreach campaigns</CardDescription>
-                  </div>
-                  <Button size="sm" onClick={() => navigate('/campaigns')}>
-                    <Play size={14} className="mr-2" />
-                    New Campaign
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {activeCampaigns.map((campaign, index) => (
-                    <div key={index} className="p-4 rounded-xl border border-gray-200 dark:border-white/10 dark:bg-white/5 hover:border-accent-300 transition-colors">
-                      <div className="flex items-start justify-between mb-3">
-                        <div>
-                          <h4 className="font-semibold text-gray-900 dark:text-white mb-1">{campaign.name}</h4>
-                          <Badge variant={campaign.status === 'active' ? 'success' : 'default'} className="text-xs">
-                            {campaign.status === 'active' ? (
-                              <><Play size={12} className="mr-1" /> Active</>
-                            ) : (
-                              <><Clock size={12} className="mr-1" /> Paused</>
-                            )}
-                          </Badge>
-                        </div>
-                        <span className={`text-lg font-bold ${
-                          campaign.replyRate > 8 ? 'text-green-600' : 'text-orange-600'
-                        }`}>
-                          {campaign.replyRate}%
-                        </span>
-                      </div>
-                      <div className="grid grid-cols-3 gap-4 text-sm">
-                        <div>
-                          <p className="text-gray-500 dark:text-gray-400">Leads</p>
-                          <p className="font-semibold text-gray-900 dark:text-white">{campaign.leads}</p>
-                        </div>
-                        <div>
-                          <p className="text-gray-500 dark:text-gray-400">Sent</p>
-                          <p className="font-semibold text-gray-900 dark:text-white">{campaign.sent}</p>
-                        </div>
-                        <div>
-                          <p className="text-gray-500 dark:text-gray-400">Replies</p>
-                          <p className="font-semibold text-gray-900 dark:text-white">{campaign.replies}</p>
-                        </div>
-                      </div>
-                      <AnimatedProgress value={Math.round((campaign.sent / campaign.leads) * 100)} color="blue" label="Progress" />
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <CampaignsTab onNavigateToCampaign={(id) => navigate(`/campaigns/${id}`)} />
           </TabsContent>
 
-          {/* Analytics Tab */}
           <TabsContent value="analytics" className="space-y-4">
-            <div className="grid md:grid-cols-3 gap-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Open Rate</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">34.2%</div>
-                  <AnimatedProgress value={34} color="blue" />
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">Above industry avg (28%)</p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Click Rate</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">12.8%</div>
-                  <AnimatedProgress value={13} color="green" />
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">Excellent performance</p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Conversion Rate</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">6.4%</div>
-                  <AnimatedProgress value={6} color="purple" />
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">Meeting to close ratio</p>
-                </CardContent>
-              </Card>
-            </div>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <TrendingUp size={18} />
-                  Performance Trends
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={performanceData}>
-                    <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
-                    <XAxis dataKey="name" tick={{ fontSize: 12 }} />
-                    <YAxis tick={{ fontSize: 12 }} />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="emails" stroke="#3b82f6" strokeWidth={2} />
-                    <Line type="monotone" dataKey="replies" stroke="#10b981" strokeWidth={2} />
-                    <Line type="monotone" dataKey="meetings" stroke="#8b5cf6" strokeWidth={2} />
-                  </LineChart>
-                </ResponsiveContainer>
-              </CardContent>
-            </Card>
+            <AnalyticsTab />
           </TabsContent>
 
-          {/* AI Insights Tab */}
           <TabsContent value="ai-insights" className="space-y-4">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Brain size={18} className="text-pink-500" />
-                  AI-Powered Recommendations
-                </CardTitle>
-                <CardDescription>Personalized insights from Ava</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {aiRecommendations.map((rec, index) => (
-                    <div key={index} className="p-4 rounded-xl border border-gray-200 dark:border-white/10 dark:bg-white/5">
-                      <div className="flex items-start justify-between mb-2">
-                        <div className="flex items-center gap-2">
-                          <Lightbulb className="text-yellow-500" size={18} />
-                          <h4 className="font-semibold text-gray-900 dark:text-white">{rec.title}</h4>
-                        </div>
-                        <div className="inline-flex items-center gap-2 text-xs px-2 py-1 rounded-full bg-primary-50 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300">
-                          <Gauge size={14} />
-                          {(rec.confidence * 100).toFixed(0)}%
-                        </div>
-                      </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{rec.description}</p>
-                      <div className="flex items-center justify-between">
-                        <Badge variant="accent" className="text-xs">{rec.impact}</Badge>
-                        <Button variant="outline" size="sm" className="gap-2">
-                          {rec.action}
-                          <ArrowUpRight size={14} />
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <AIInsightsCard insights={aiInsights} />
           </TabsContent>
 
-          {/* Quick Actions Tab */}
           <TabsContent value="actions" className="space-y-4">
-            <div className="grid md:grid-cols-2 gap-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Zap size={18} className="text-yellow-500" />
-                    Quick Actions
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    <Button className="w-full justify-start gap-2" variant="outline" onClick={() => navigate('/campaigns')}>
-                      <Rocket size={16} />
-                      Create New Campaign
-                    </Button>
-                    <Button className="w-full justify-start gap-2" variant="outline" onClick={() => navigate('/leads')}>
-                      <Users size={16} />
-                      Import Leads
-                    </Button>
-                    <Button className="w-full justify-start gap-2" variant="outline" onClick={() => navigate('/ai-assistant')}>
-                      <Sparkles size={16} />
-                      Ask Ava AI
-                    </Button>
-                    <Button className="w-full justify-start gap-2" variant="outline" onClick={() => navigate('/analytics')}>
-                      <BarChart3 size={16} />
-                      View Full Analytics
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Target size={18} className="text-blue-500" />
-                    Quick Wins
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="p-3 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border border-green-200 dark:border-green-500/30">
-                      <div className="flex items-start justify-between mb-2">
-                        <p className="text-sm font-semibold text-gray-900 dark:text-white">Follow up with 3 hot leads</p>
-                        <Badge variant="default" className="text-xs">High</Badge>
-                      </div>
-                      <Button variant="outline" size="sm" className="w-full gap-2 text-xs">
-                        <CheckCircle2 size={14} />
-                        Review Now
-                      </Button>
-                    </div>
-
-                    <div className="p-3 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border border-blue-200 dark:border-blue-500/30">
-                      <div className="flex items-start justify-between mb-2">
-                        <p className="text-sm font-semibold text-gray-900 dark:text-white">Optimize send times</p>
-                        <Badge variant="outline" className="text-xs">Med</Badge>
-                      </div>
-                      <Button variant="outline" size="sm" className="w-full gap-2 text-xs">
-                        <Clock size={14} />
-                        Apply Changes
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+            <QuickActionsTab aiInsights={aiInsights} />
           </TabsContent>
         </Tabs>
       </div>
@@ -585,4 +412,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default EnhancedDashboardPage;

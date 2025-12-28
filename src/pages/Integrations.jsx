@@ -15,7 +15,6 @@ import {
 } from 'lucide-react';
 import { Modal, ModalHeader, ModalTitle, ModalContent, ModalFooter } from '../components/ui/Modal';
 import { setActiveCRM, getActiveCRM, connectIntegration, isIntegrationConnected, extractIntegrationData, importLeads, parseCSVLeads, parseJSONLeads, isTrustedSource } from '../lib/dataService';
-import VueWidgetHost from '../components/features/VueWidgetHost';
 import {
   WebhookBuilder,
   CalendarSync,
@@ -272,17 +271,6 @@ const Integrations = () => {
           </CardContent>
         </Card>
       </div>
-
-      {/* Vue Widget Demo */}
-      <Card className="mb-6">
-        <CardHeader>
-          <CardTitle>Embedded Vue Widget (Lazy-loaded)</CardTitle>
-          <CardDescription>A minimal Vue 3 component mounted inside React</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <VueWidgetHost title="Vue Counter" initial={3} />
-        </CardContent>
-      </Card>
 
       {/* Search and Filters */}
       <Card className="mb-6">

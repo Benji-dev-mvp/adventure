@@ -80,7 +80,4 @@ jobs:
 
             ---
             *This PR was created automatically by GitHub Actions*
-          labels: |
-            automated
-            auto-pr
-          draft: false
+

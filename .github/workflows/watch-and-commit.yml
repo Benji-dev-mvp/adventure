@@ -89,7 +89,4 @@ jobs:
 
             ---
             *Automated by GitHub Actions - Schedule: Every 30 minutes*
-          labels: |
-            automated
-            scheduled
-            auto-pr
+

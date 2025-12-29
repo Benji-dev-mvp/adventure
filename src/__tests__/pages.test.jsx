@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Dashboard from '../pages/Dashboard';
 import CampaignBuilder from '../pages/CampaignBuilder';
 import Analytics from '../pages/Analytics';
+import { TenantProvider } from '../contexts/TenantContext';
 
 const mockShowToast = vi.fn();
 
@@ -42,6 +43,15 @@ vi.mock('../lib/dataService', () => ({
   getAnalytics: vi.fn(() => Promise.resolve({})),
 }));
 
+// Test wrapper with all required providers
+const TestWrapper = ({ children }) => (
+  <BrowserRouter>
+    <TenantProvider>
+      {children}
+    </TenantProvider>
+  </BrowserRouter>
+);
+
 describe('Dashboard Component', () => {
   beforeEach(() => {
     mockShowToast.mockClear();
@@ -49,18 +59,18 @@ describe('Dashboard Component', () => {
 
   it('renders without crashing', () => {
     render(
-      <BrowserRouter>
+      <TestWrapper>
         <Dashboard />
-      </BrowserRouter>
+      </TestWrapper>
     );
     expect(screen.getByRole('heading', { name: /dashboard/i })).toBeInTheDocument();
   });
 
   it('displays stats cards', async () => {
     render(
-      <BrowserRouter>
+      <TestWrapper>
         <Dashboard />
-      </BrowserRouter>
+      </TestWrapper>
     );
     
     expect(await screen.findByText(/Emails Sent/i)).toBeInTheDocument();
@@ -75,9 +85,9 @@ describe('CampaignBuilder Component', () => {
 
   it('renders campaign form', () => {
     render(
-      <BrowserRouter>
+      <TestWrapper>
         <CampaignBuilder />
-      </BrowserRouter>
+      </TestWrapper>
     );
     
     expect(screen.getByLabelText(/Campaign Name/i)).toBeInTheDocument();
@@ -85,9 +95,9 @@ describe('CampaignBuilder Component', () => {
 
   it('validates required fields', async () => {
     render(
-      <BrowserRouter>
+      <TestWrapper>
         <CampaignBuilder />
-      </BrowserRouter>
+      </TestWrapper>
     );
     
     const submitButton = screen.getByRole('button', { name: /submit/i });
@@ -103,9 +113,9 @@ describe('CampaignBuilder Component', () => {
 
   it('submits form with valid data', async () => {
     render(
-      <BrowserRouter>
+      <TestWrapper>
         <CampaignBuilder />
-      </BrowserRouter>
+      </TestWrapper>
     );
     
     const nameInput = screen.getByLabelText(/Campaign Name/i);
@@ -125,9 +135,9 @@ describe('CampaignBuilder Component', () => {
 describe('Analytics Component', () => {
   it('renders analytics charts', async () => {
     render(
-      <BrowserRouter>
+      <TestWrapper>
         <Analytics />
-      </BrowserRouter>
+      </TestWrapper>
     );
     
     await waitFor(() => {
@@ -135,13 +145,15 @@ describe('Analytics Component', () => {
     });
   });
 
-  it('displays date range selector', () => {
+  it('displays date range selector', async () => {
     render(
-      <BrowserRouter>
+      <TestWrapper>
         <Analytics />
-      </BrowserRouter>
+      </TestWrapper>
     );
     
-    expect(screen.getByText(/Date Range/i)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(/Date Range/i)).toBeInTheDocument();
+    });
   });
 });

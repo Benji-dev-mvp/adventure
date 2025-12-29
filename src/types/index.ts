@@ -1,4 +1,116 @@
-// Core Application Types
+/**
+ * Types Index
+ * Central export for all TypeScript type definitions
+ * 
+ * This file re-exports from modular type files for comprehensive coverage
+ * while maintaining backwards compatibility with existing simple types.
+ */
+
+// ============================================
+// Re-export from modular type files
+// ============================================
+
+// Campaign Types
+export type {
+  Campaign as CampaignEntity,
+  CampaignStatus,
+  CampaignType,
+  ChannelType,
+  CampaignStep as CampaignStepEntity,
+  CampaignStepVariant,
+  CampaignMetrics,
+  CampaignSchedule,
+  CampaignFilters,
+  CreateCampaignDTO,
+  UpdateCampaignDTO,
+  CampaignAnalytics,
+  CampaignTimelinePoint,
+  CampaignStepPerformance,
+  CampaignTemplate,
+} from './campaign';
+
+// Lead Types
+export type {
+  Lead as LeadEntity,
+  LeadStatus,
+  LeadSource,
+  LeadEnrichment,
+  LeadNewsItem,
+  LeadActivity,
+  LeadActivityType,
+  LeadFilters,
+  LeadList,
+  CreateLeadDTO,
+  UpdateLeadDTO,
+  BulkLeadAction,
+  LeadImportResult,
+} from './lead';
+
+// User Types
+export type {
+  User as UserEntity,
+  UserRole,
+  UserStatus,
+  UserPreferences,
+  UserStats,
+  UserSession,
+  Permission,
+  LoginCredentials,
+  RegisterData,
+  AuthTokens,
+  AuthResponse,
+  Organization,
+  OrganizationSettings,
+  Team,
+  TeamMember,
+} from './user';
+export { PERMISSIONS, ROLE_PERMISSIONS } from './user';
+
+// API Types
+export type {
+  ApiResponse as ApiResponseTyped,
+  ApiError,
+  PaginatedResponse as PaginatedResponseTyped,
+  PaginationMeta,
+  PaginationParams,
+  SearchParams,
+  LoginRequest,
+  LoginResponse,
+  RegisterRequest,
+  RefreshTokenRequest,
+  RefreshTokenResponse,
+  GetLeadsRequest,
+  CreateLeadRequest,
+  UpdateLeadRequest,
+  BulkLeadRequest,
+  EnrichLeadRequest,
+  EnrichLeadResponse,
+  GetCampaignsRequest,
+  CreateCampaignRequest,
+  CampaignStepRequest,
+  UpdateCampaignRequest,
+  LaunchCampaignRequest,
+  GenerateEmailRequest,
+  GenerateEmailResponse,
+  AIChatRequest,
+  AIChatResponse,
+  AIAction,
+  GetAnalyticsRequest,
+  AnalyticsResponse as AnalyticsResponseTyped,
+  GetIntegrationsResponse,
+  IntegrationStatus,
+  ConnectIntegrationRequest,
+  DisconnectIntegrationRequest,
+  WebhookEvent,
+  WebhookEventType,
+  CreateWebhookRequest,
+  WebhookResponse,
+} from './api';
+
+
+// ============================================
+// Legacy Types (for backwards compatibility)
+// ============================================
 
 export interface User {
   id: string;
@@ -82,7 +194,7 @@ export interface ValidationError {
   message: string;
 }
 
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   success: boolean;
   data?: T;
   error?: string;
@@ -137,7 +249,7 @@ export interface FormValidation {
   errors: Record<string, string>;
 }
 
-export interface StorageItem<T = any> {
+export interface StorageItem<T = unknown> {
   value: T;
   timestamp: number;
   expiresAt?: number;

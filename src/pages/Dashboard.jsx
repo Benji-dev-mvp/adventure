@@ -1,10 +1,18 @@
 // Dashboard - Advanced Tabbed Component Pattern
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { motion } from 'framer-motion';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/Card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
+import { useTenant } from '../contexts/TenantContext';
+import { useWorkspaceMetrics, useSegmentCTA } from '../hooks/useWorkspaceMetrics';
+import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
+import { 
+  KpiFunnelChart, 
+  CustomerImpactSparklines 
+} from '../components/analytics';
 import { 
   Activity, 
   TrendingUp, 
@@ -24,12 +32,17 @@ import {
   ArrowUpRight,
   Play,
   Gauge,
-  Wand2
+  Wand2,
+  Bot,
+  Shield,
+  Crown,
+  ChevronRight
 } from 'lucide-react';
 import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../components/Toast';
 import { getDashboardStats } from '../lib/dataService';
+import { GradientText } from '../components/futuristic';
 
 // Animated Counter Component
 const AnimatedCounter = ({ end, duration = 2000, suffix = '', prefix = '' }) => {
@@ -116,13 +129,53 @@ const AnimatedProgress = ({ value, color = 'cyan', label }) => {
 const Dashboard = () => {
   const navigate = useNavigate();
   const toast = useToast();
+  const { plan, isStartup, isMidmarket, isEnterprise } = useTenant();
+  const { 
+    metrics, 
+    kpiFunnel, 
+    sparklines, 
+    summary, 
+    headline, 
+    cta: segmentCta 
+  } = useWorkspaceMetrics();
+  const segmentCTA = useSegmentCTA();
+  const prefersReducedMotion = useReducedMotion();
   const [activeTab, setActiveTab] = useState('overview');
   const [liveStats, setLiveStats] = useState({
-    emailsSent: 12453,
+    emailsSent: summary?.emailsSent || 12453,
     replyRate: 8.4,
-    meetings: 47,
-    activeLeads: 1284
+    meetings: summary?.meetingsBooked || 47,
+    activeLeads: summary?.qualifiedLeads || 1284
   });
+
+  // Update live stats when metrics change
+  useEffect(() => {
+    if (summary) {
+      setLiveStats(prev => ({
+        ...prev,
+        emailsSent: summary.emailsSent || prev.emailsSent,
+        meetings: summary.meetingsBooked || prev.meetings,
+        activeLeads: summary.qualifiedLeads || prev.activeLeads
+      }));
+    }
+  }, [summary]);
+
+  // Enhanced sparklines with icons
+  const enhancedSparklines = useMemo(() => {
+    const iconMap = {
+      meetings: Users,
+      replies: Mail,
+      pipeline: TrendingUp,
+      timeSaved: Zap,
+      efficiency: BarChart3,
+      compliance: Shield,
+    };
+    return sparklines?.map(s => ({
+      ...s,
+      icon: iconMap[s.id] || TrendingUp,
+      chartType: 'area'
+    })) || [];
+  }, [sparklines]);
 
   // Simulate live updates
   useEffect(() => {
@@ -200,6 +253,52 @@ const Dashboard = () => {
   return (
     <DashboardLayout>
       <div className="space-y-6">
+        {/* Segment-Aware Hero Banner */}
+        <motion.div
+          initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
+          animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+          className={`relative overflow-hidden rounded-xl p-6 border ${
+            isEnterprise 
+              ? 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-amber-500/20' 
+              : isMidmarket 
+                ? 'bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-purple-500/20'
+                : 'bg-gradient-to-br from-cyan-500/10 to-purple-500/10 border-cyan-500/20'
+          }`}
+        >
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className={`p-3 rounded-xl ${
+                isEnterprise ? 'bg-amber-500/20' : isMidmarket ? 'bg-purple-500/20' : 'bg-cyan-500/20'
+              }`}>
+                {isEnterprise ? <Crown className="h-6 w-6 text-amber-400" /> : 
+                 isMidmarket ? <Rocket className="h-6 w-6 text-purple-400" /> : 
+                 <Bot className="h-6 w-6 text-cyan-400" />}
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-white">
+                  {segmentCTA.headline}
+                </h2>
+                <p className="text-sm text-slate-400">
+                  {segmentCTA.subheadline}
+                </p>
+              </div>
+            </div>
+            <Button 
+              className={`${
+                isEnterprise 
+                  ? 'bg-gradient-to-r from-amber-500 to-orange-500' 
+                  : isMidmarket 
+                    ? 'bg-gradient-to-r from-purple-500 to-pink-500'
+                    : 'bg-gradient-to-r from-cyan-500 to-purple-500'
+              } text-white font-semibold`}
+              onClick={() => navigate(segmentCTA.cta.path)}
+            >
+              {segmentCTA.cta.label}
+              <ChevronRight className="h-4 w-4 ml-1" />
+            </Button>
+          </div>
+        </motion.div>
+
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -214,6 +313,17 @@ const Dashboard = () => {
             </Badge>
           </div>
         </div>
+
+        {/* Customer Impact Sparklines - Plan Specific */}
+        {enhancedSparklines.length > 0 && (
+          <motion.div
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
+            animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+          >
+            <CustomerImpactSparklines metrics={enhancedSparklines} />
+          </motion.div>
+        )}
 
         <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Live Performance</h2>
 

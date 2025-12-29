@@ -1,41 +1,25 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
-const VueWidgetHost = ({ title = 'Vue Widget', initial = 0 }) => {
-  const containerRef = useRef(null);
-  const [mounted, setMounted] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    let controller;
-    let cancelled = false;
-
-    (async () => {
-      try {
-        const mod = await import('../../vue/mountVueWidget.js');
-        if (cancelled) return;
-        controller = mod.mount(containerRef.current, { title, initial });
-        setMounted(true);
-      } catch (e) {
-        console.error('Failed to load Vue widget', e);
-        setError('Failed to load widget');
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-      if (controller) controller.unmount();
-    };
-  }, [title, initial]);
-
+/**
+ * VueWidgetHost - DEPRECATED
+ * 
+ * This component was designed to host Vue widgets within React.
+ * The Vue integration has been deprecated in favor of a pure React architecture.
+ * 
+ * If you need micro-frontend capabilities, consider:
+ * - Module Federation (Webpack 5)
+ * - Single-SPA
+ * - Iframe-based isolation
+ */
+const VueWidgetHost = ({ title = 'Vue Widget' }) => {
   return (
-    <div>
-      <div ref={containerRef} />
-      {!mounted && !error && (
-        <div className="text-xs text-gray-500">Loading Vue widget…</div>
-      )}
-      {error && (
-        <div className="text-xs text-red-600">{error}</div>
-      )}
+    <div className="rounded-lg border border-dashed border-gray-300 dark:border-gray-700 p-6 text-center">
+      <div className="text-gray-500 dark:text-gray-400">
+        <p className="font-medium">Vue Widget Deprecated</p>
+        <p className="text-sm mt-1">
+          The Vue integration has been removed. This placeholder shows where "{title}" would have appeared.
+        </p>
+      </div>
     </div>
   );
 };

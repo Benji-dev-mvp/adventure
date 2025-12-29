@@ -1,9 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { motion } from 'framer-motion';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { Tabs } from '../components/ui/Tabs';
-import { Bot, Mail, Brain, Sparkles, Target, TrendingUp, Zap, Database, Search, MessageSquare, Calendar, Clock } from 'lucide-react';
+import { Button } from '../components/ui/Button';
+import { Badge } from '../components/ui/Badge';
+import { Bot, Mail, Brain, Sparkles, Target, TrendingUp, Zap, Database, Search, MessageSquare, Calendar, Clock, BookOpen, ChevronRight, Users, DollarSign, Shield, Activity, BarChart3, Lightbulb, Grid3X3 } from 'lucide-react';
 import { useToast } from '../components/Toast';
 import { AnimatedCounter, LiveIndicator, FuturisticBackground } from '../components/ui/AnimatedComponents';
+import { useTenant } from '../contexts/TenantContext';
+import { useWorkspaceMetrics } from '../hooks/useWorkspaceMetrics';
+import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
+import { RoiProjectionChart, CustomerImpactSparklines } from '../components/analytics';
+import { GlassCard, GlassCardContent, GradientText } from '../components/futuristic';
 
 // Import Ava Components
 import {
@@ -26,15 +34,66 @@ import {
   AutonomousFollowUpEngine
 } from '../components/ava/AutonomousFeatures';
 
+// Import Playbook Intelligence (Phase 1)
+import {
+  PlaybookHealthHeatmap,
+  PlaybookRunTimeline,
+  StrategyRecommendationCards,
+  PlaybookAttributionMatrix,
+  PlaybookAnalyticsPanel
+} from '../components/ava/intelligence';
+
+// Import AI Playbooks
+import { AIPlaybooksManager } from '../components/ava/AIPlaybooksManager';
+
 const AvaHub = () => {
   const { showToast } = useToast();
+  const { plan, isStartup, isMidmarket, isEnterprise } = useTenant();
+  const { roiConfig, sparklines, summary } = useWorkspaceMetrics();
+  const prefersReducedMotion = useReducedMotion();
   const [activeTab, setActiveTab] = useState('chat');
   const [stats, setStats] = useState({
-    prospects: 247,
+    prospects: summary?.qualifiedLeads || 247,
     responseRate: 31,
-    meetings: 12,
+    meetings: summary?.meetingsBooked || 12,
     insights: 3397
   });
+
+  // Enhanced sparklines for Ava
+  const avaSparklines = useMemo(() => {
+    return [
+      { id: 'meetings', label: 'Meetings Booked', value: String(stats.meetings), change: '+24%', trend: 'up', color: '#10b981', icon: Calendar, chartType: 'area' },
+      { id: 'replies', label: 'Response Rate', value: `${stats.responseRate}%`, change: '+8%', trend: 'up', color: '#8b5cf6', icon: Mail, chartType: 'area' },
+      { id: 'pipeline', label: 'Pipeline Generated', value: `$${Math.round((summary?.pipelineValue || 155000) / 1000)}K`, change: '+65%', trend: 'up', color: '#06b6d4', icon: DollarSign, chartType: 'area' },
+      { id: 'timeSaved', label: 'Hours Saved', value: String(summary?.timeSavedHours || 24), change: 'This week', trend: 'up', color: '#f97316', icon: Clock, chartType: 'bar' },
+    ];
+  }, [stats, summary]);
+
+  // Segment-specific headline
+  const segmentContent = useMemo(() => {
+    if (isEnterprise) {
+      return {
+        headline: 'Enterprise AI Sales Operations',
+        subheadline: 'Full control over AI-powered outbound at scale',
+        badge: 'Enterprise',
+        badgeIcon: Shield,
+      };
+    }
+    if (isMidmarket) {
+      return {
+        headline: 'Your AI Team is Crushing It',
+        subheadline: 'Ava automates 80% of outbound—your team handles high-value conversations',
+        badge: '80% Automated',
+        badgeIcon: Zap,
+      };
+    }
+    return {
+      headline: 'Meet Ava—Your AI SDR',
+      subheadline: 'She works 24/7 so you can focus on closing. Ava handles prospecting, outreach, and follow-ups automatically.',
+      badge: 'Always On',
+      badgeIcon: Sparkles,
+    };
+  }, [isStartup, isMidmarket, isEnterprise]);
 
   // Simulate live stats updates
   useEffect(() => {
@@ -51,6 +110,8 @@ const AvaHub = () => {
 
   const tabs = [
     { id: 'chat', label: 'Chat with Ava', icon: <Bot size={16} /> },
+    { id: 'playbooks', label: 'AI Playbooks', icon: <BookOpen size={16} />, new: true },
+    { id: 'playbook-intelligence', label: 'Playbook Intelligence', icon: <Activity size={16} />, new: true },
     { id: 'autonomous-research', label: 'Auto Research', icon: <Search size={16} />, new: true },
     { id: 'objection-handler', label: 'Objection Handler', icon: <MessageSquare size={16} />, new: true },
     { id: 'meeting-booker', label: 'Meeting Booker', icon: <Calendar size={16} />, new: true },
@@ -70,28 +131,81 @@ const AvaHub = () => {
       <FuturisticBackground />
       
       <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg">
-                  <Bot className="text-white" size={32} />
+        {/* Marketing-Aligned Hero Header */}
+        <motion.div
+          initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
+          animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+          className="mb-6"
+        >
+          <GlassCard variant="gradient" className="overflow-hidden">
+            <GlassCardContent className="p-6">
+              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                <div className="flex items-center gap-4">
+                  <div className="relative">
+                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg">
+                      <Bot className="text-white" size={32} />
+                    </div>
+                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-slate-900 animate-pulse"></div>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-3 mb-1">
+                      <h1 className="text-2xl lg:text-3xl font-bold text-white">
+                        <GradientText gradient="cyber">{segmentContent.headline}</GradientText>
+                      </h1>
+                      <Badge variant="outline" className="border-green-400/50 text-green-400">
+                        <segmentContent.badgeIcon size={12} className="mr-1" />
+                        {segmentContent.badge}
+                      </Badge>
+                    </div>
+                    <p className="text-slate-300 max-w-xl">
+                      {segmentContent.subheadline}
+                    </p>
+                  </div>
                 </div>
-                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>
+                
+                {isStartup && (
+                  <Button 
+                    size="lg"
+                    className="bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold"
+                    onClick={() => setActiveTab('chat')}
+                  >
+                    <MessageSquare className="h-5 w-5 mr-2" />
+                    Chat with Ava
+                    <ChevronRight className="h-5 w-5 ml-1" />
+                  </Button>
+                )}
               </div>
-              <div>
-                <h1 className="text-4xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                  Ava - Your AI BDR
-                  <LiveIndicator label="ONLINE" color="green" />
-                </h1>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Artisan's AI sales agent managing outbound campaigns, data mining, and lead qualification
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+            </GlassCardContent>
+          </GlassCard>
+        </motion.div>
+
+        {/* ROI Projection for Startups */}
+        {isStartup && (
+          <motion.div
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
+            animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="mb-6"
+          >
+            <RoiProjectionChart 
+              {...roiConfig}
+              title="Your Projected ROI with Ava"
+            />
+          </motion.div>
+        )}
+
+        {/* Impact Sparklines */}
+        <motion.div
+          initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
+          animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="mb-6"
+        >
+          <CustomerImpactSparklines 
+            metrics={avaSparklines} 
+            title={isEnterprise ? "Enterprise Ava Performance" : "Ava's Impact This Month"}
+          />
+        </motion.div>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-4 gap-3 mb-4">
@@ -169,6 +283,33 @@ const AvaHub = () => {
           {activeTab === 'chat' && (
             <div className="grid grid-cols-1 gap-6">
               <AvaChatInterface />
+            </div>
+          )}
+
+          {/* AI Playbooks Tab */}
+          {activeTab === 'playbooks' && (
+            <div className="grid grid-cols-1 gap-6">
+              <AIPlaybooksManager />
+            </div>
+          )}
+
+          {/* Playbook Intelligence Tab - Phase 1 Visual Intelligence */}
+          {activeTab === 'playbook-intelligence' && (
+            <div className="space-y-6">
+              {/* Analytics Panel - Summary */}
+              <PlaybookAnalyticsPanel />
+
+              {/* Health Heatmap + Strategy Cards Row */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <PlaybookHealthHeatmap />
+                <StrategyRecommendationCards />
+              </div>
+
+              {/* Timeline View */}
+              <PlaybookRunTimeline />
+
+              {/* Attribution Matrix */}
+              <PlaybookAttributionMatrix />
             </div>
           )}
 

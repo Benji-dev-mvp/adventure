@@ -30,8 +30,9 @@ from app.api.routes.new_features import (
     enrichment_router,
     reply_router,
     team_router,
-    playbooks_router
+    playbooks_router as legacy_playbooks_router  # Renamed to avoid conflict
 )
+from app.api.routes.playbooks import router as playbooks_router  # New enhanced playbooks
 from app.api.routes.tasks import router as tasks_router  # NEW
 from app.api.routes.campaign_intelligence import router as campaign_intelligence_router  # Campaign business logic
 from app.api.routes.ai_advanced import router as ai_advanced_router  # Advanced AI integrations
@@ -188,7 +189,8 @@ app.include_router(lead_db_router, tags=["lead-database"])
 app.include_router(enrichment_router, tags=["enrichment"])
 app.include_router(reply_router, tags=["reply-intelligence"])
 app.include_router(team_router, tags=["team-collaboration"])
-app.include_router(playbooks_router, tags=["sales-playbooks"])
+app.include_router(legacy_playbooks_router, tags=["sales-playbooks-legacy"])
+app.include_router(playbooks_router, prefix="/api", tags=["ai-playbooks"])  # Enhanced playbooks with CRUD
 
 # Include advanced AI/ML features
 app.include_router(advanced_features_router, prefix="/api/advanced", tags=["ml-ai"])

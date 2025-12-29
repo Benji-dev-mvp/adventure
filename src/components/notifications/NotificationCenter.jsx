@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../components/ui/Dialog';
-import { Button } from '../components/ui/Button';
-import { Badge } from '../components/ui/Badge';
-import { TabsRadix, TabsListRadix, TabsTriggerRadix, TabsContentRadix } from '../components/ui/TabsRadix';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/Dialog';
+import { Button } from '../ui/Button';
+import { Badge } from '../ui/Badge';
+import { TabsRadix, TabsListRadix, TabsTriggerRadix, TabsContentRadix } from '../ui/TabsRadix';
 import { Bell, Mail, Calendar, AlertTriangle, Sparkles, Check, X, Trash2, Settings } from 'lucide-react';
 
 export const NotificationCenter = () => {

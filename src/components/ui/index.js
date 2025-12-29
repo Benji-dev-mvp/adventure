@@ -29,7 +29,8 @@ export { EmptyState } from './EmptyState';
 
 // Feedback Components
 export { Alert } from './Alert';
-export { Toast, Toaster } from './toast';
+export { Toast } from './toast';  // Radix primitives - for custom Toast implementations
+// NOTE: Toaster from shadcn is deprecated - use ToastProvider from src/components/Toast.jsx
 export { Progress } from './Progress';
 export { Spinner, LoadingOverlay, LoadingDots, LoadingBar } from './Spinner';
 export { Skeleton } from './skeleton';

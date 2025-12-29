@@ -5,8 +5,10 @@ import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Badge } from '../components/ui/Badge';
 import { useTheme } from '../contexts/ThemeContext';
+import { useTenant } from '../contexts/TenantContext';
 import { getUserPreferences, saveUserPreferences } from '../lib/storage';
 import { cn } from '../lib/utils';
+import { SegmentSwitcher } from '../components/SegmentSwitcher';
 import { 
   Mail,
   Shield,
@@ -20,7 +22,10 @@ import {
   AlertCircle,
   Palette,
   Sun,
-  Moon
+  Moon,
+  Layout,
+  PanelLeft,
+  PanelTop
 } from 'lucide-react';
 import {
   EmailWarmup,
@@ -28,6 +33,88 @@ import {
   TwoFactorAuth,
   RateLimiting
 } from '../components/settings/SettingsComponents';
+
+/**
+ * Navigation Layout Settings Component
+ */
+function NavigationLayoutSettings() {
+  const { navigationLayout, setNavigationLayout } = useTenant();
+  
+  const layouts = [
+    {
+      id: 'sidebar-only',
+      label: 'Sidebar Only',
+      description: 'Clean, focused layout with sidebar navigation',
+      icon: PanelLeft,
+    },
+    {
+      id: 'sidebar-top',
+      label: 'Sidebar + Top Bar',
+      description: 'Additional top navigation for quick access',
+      icon: Layout,
+    },
+  ];
+  
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Navigation Layout</CardTitle>
+        <CardDescription>Choose how navigation appears in the app</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-2 gap-4">
+          {layouts.map((layout) => {
+            const Icon = layout.icon;
+            const isSelected = navigationLayout === layout.id;
+            
+            return (
+              <button
+                key={layout.id}
+                onClick={() => setNavigationLayout(layout.id)}
+                className={cn(
+                  'relative p-4 rounded-xl border-2 text-left transition-all',
+                  isSelected
+                    ? 'border-accent-500 bg-accent-50 dark:bg-accent-900/20'
+                    : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
+                )}
+              >
+                <div className="flex flex-col items-center gap-3">
+                  <div className={cn(
+                    'w-12 h-12 rounded-lg flex items-center justify-center',
+                    isSelected 
+                      ? 'bg-accent-500 text-white' 
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                  )}>
+                    <Icon size={24} />
+                  </div>
+                  <div className="text-center">
+                    <p className={cn(
+                      'font-semibold',
+                      isSelected 
+                        ? 'text-accent-700 dark:text-accent-300' 
+                        : 'text-gray-900 dark:text-white'
+                    )}>
+                      {layout.label}
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      {layout.description}
+                    </p>
+                  </div>
+                  {isSelected && (
+                    <Badge variant="success" className="gap-1">
+                      <CheckCircle2 size={12} />
+                      Active
+                    </Badge>
+                  )}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState('appearance');
@@ -194,6 +281,20 @@ const Settings = () => {
                       <input type="checkbox" defaultChecked className="rounded" />
                     </div>
                   </div>
+                </CardContent>
+              </Card>
+
+              {/* Navigation Layout */}
+              <NavigationLayoutSettings />
+
+              {/* Demo Segment Switcher */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Demo Organization</CardTitle>
+                  <CardDescription>Switch between segments to preview different features</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <SegmentSwitcher />
                 </CardContent>
               </Card>
             </>

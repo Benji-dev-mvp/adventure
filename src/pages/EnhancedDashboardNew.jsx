@@ -21,10 +21,17 @@ import {
   Briefcase,
   PhoneCall,
   ArrowRight,
-  RefreshCw
+  RefreshCw,
+  Shield,
+  Cpu,
+  Play,
+  Lock
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../components/Toast';
+import { useSegmentExperience, useSegmentKpis, formatKpiValue } from '@/hooks/useSegmentExperience';
+import { useTenant } from '@/contexts/TenantContext';
+import { cn } from '@/lib/utils';
 import {
   AdvancedMetricCard,
   RealTimeActivityStream,
@@ -36,6 +43,30 @@ import {
 import CampaignsTab from '../components/dashboard/CampaignsTab';
 import AnalyticsTab from '../components/dashboard/AnalyticsTab';
 import QuickActionsTab from '../components/dashboard/QuickActionsTab';
+
+// Segment Badge Component
+const SegmentBadge = ({ plan }) => {
+  const styles = {
+    startup: 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
+    midmarket: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+    enterprise: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+  };
+  
+  const labels = {
+    startup: 'Startup',
+    midmarket: 'Midmarket',
+    enterprise: 'Enterprise',
+  };
+  
+  return (
+    <span className={cn(
+      "px-2 py-0.5 rounded-full text-xs font-medium border",
+      styles[plan] || styles.startup
+    )}>
+      {labels[plan] || 'Startup'}
+    </span>
+  );
+};
 
 // Live Indicator Component
 const LiveIndicator = ({ label = 'LIVE' }) => (
@@ -53,6 +84,11 @@ const EnhancedDashboardPage = () => {
   const toast = useToast();
   const [activeTab, setActiveTab] = useState('overview');
   const [isRefreshing, setIsRefreshing] = useState(false);
+  
+  // Segment-aware configuration
+  const { plan, isDemo, isAdmin, tenant } = useTenant();
+  const segmentExperience = useSegmentExperience();
+  const segmentKpis = useSegmentKpis();
   
   // Live metrics with real-time updates
   const [liveMetrics, setLiveMetrics] = useState({
@@ -207,14 +243,29 @@ const EnhancedDashboardPage = () => {
   return (
     <DashboardLayout>
       <div className="space-y-6">
-        {/* Header */}
+        {/* Segment-aware Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent">
-              Dashboard
-            </h1>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-              Real-time insights and AI-powered analytics
+            <div className="flex items-center gap-3 mb-1">
+              <h1 className={cn(
+                "text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent",
+                plan === 'enterprise' 
+                  ? 'from-amber-500 to-orange-500'
+                  : plan === 'midmarket'
+                    ? 'from-purple-500 to-pink-500'
+                    : 'from-cyan-600 to-purple-600'
+              )}>
+                {segmentExperience.title}
+              </h1>
+              <SegmentBadge plan={plan} />
+              {isDemo && (
+                <span className="text-xs text-slate-500 dark:text-slate-400">
+                  Demo Organization
+                </span>
+              )}
+            </div>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              {segmentExperience.subtitle}
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -235,6 +286,43 @@ const EnhancedDashboardPage = () => {
             </Badge>
           </div>
         </div>
+
+        {/* Segment Hero Message */}
+        {plan === 'enterprise' && (
+          <div className="rounded-xl bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 p-4">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-amber-500/20 flex items-center justify-center">
+                <Shield className="h-5 w-5 text-amber-500" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-amber-400">Enterprise Control Active</p>
+                <p className="text-xs text-slate-400">{segmentExperience.heroMessage}</p>
+              </div>
+              <div className="ml-auto flex items-center gap-2">
+                <span className="text-xs text-slate-500">System Health:</span>
+                <span className="text-sm font-bold text-green-400">99.2%</span>
+              </div>
+            </div>
+          </div>
+        )}
+        
+        {plan === 'startup' && (
+          <div className="rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 p-4">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-cyan-500/20 flex items-center justify-center">
+                <Zap className="h-5 w-5 text-cyan-500" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-cyan-400">Automation Active</p>
+                <p className="text-xs text-slate-400">{segmentExperience.heroMessage}</p>
+              </div>
+              <Button variant="outline" size="sm" onClick={() => navigate('/ava')} className="gap-2">
+                <Brain size={14} />
+                Open Ava BDR
+              </Button>
+            </div>
+          </div>
+        )}
 
         {/* Live Performance Metrics - Enhanced */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

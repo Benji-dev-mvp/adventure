@@ -145,7 +145,7 @@ const ContextStrip = ({ currentSection, currentItem }) => {
           style={{ borderColor: colors.border.primary }}
         >
           {microKpis.map((kpi, idx) => (
-            <MicroKpi key={idx} {...kpi} />
+            <MicroKpi key={`${kpi.label}-${kpi.value}`} {...kpi} />
           ))}
         </div>
       )}

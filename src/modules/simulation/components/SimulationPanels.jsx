@@ -40,7 +40,7 @@ const SimulationPanel = ({ strategy, projection, isActive }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className={`
-        flex-1 rounded-xl border overflow-hidden transition-all
+        flex-1 rounded-lg border overflow-hidden transition-all
         ${
           isActive
             ? 'bg-slate-800/50 border-white/20 ring-2 ring-cyan-500/30'
@@ -114,7 +114,7 @@ const SimulationPanel = ({ strategy, projection, isActive }) => {
       </div>
 
       {/* Footer stats */}
-      <div className="p-4 border-t border-white/5 grid grid-cols-2 gap-4">
+      <div className="p-4 border-t border-white/5 grid grid-cols-2 gap-3">
         <div>
           <p className="text-xs text-slate-500 mb-1">Projected Pipeline</p>
           <p className="font-bold text-lg" style={{ color: colors.primary }}>
@@ -133,7 +133,7 @@ const SimulationPanel = ({ strategy, projection, isActive }) => {
 export function SimulationPanels({ strategies, projections, activeStrategy }) {
   return (
     <GlassCard variant="subtle">
-      <GlassCardContent className="p-6">
+      <GlassCardContent className="p-4">
         <div className="flex items-center justify-between mb-6">
           <div>
             <h3 className="text-lg font-semibold text-slate-100">Simulation Field</h3>
@@ -145,7 +145,7 @@ export function SimulationPanels({ strategies, projections, activeStrategy }) {
           </div>
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-3">
           {strategies.map(strategy => (
             <SimulationPanel
               key={strategy.id}

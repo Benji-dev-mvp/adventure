@@ -124,7 +124,7 @@ const PricingPage = () => {
   return (
     <AppShell showBanner={false}>
       {/* Hero */}
-      <section id="start" className="py-20 px-6 relative overflow-hidden">
+      <section id="start" className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent" />
 
@@ -145,7 +145,7 @@ const PricingPage = () => {
           </RevealText>
 
           <RevealText delay={200}>
-            <p className="text-xl text-gray-300 mb-4 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 mb-4 max-w-2xl mx-auto">
               14-day free trial, no credit card required. Cancel anytime.
             </p>
           </RevealText>
@@ -153,9 +153,9 @@ const PricingPage = () => {
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-12 px-6 relative overflow-hidden">
+      <section className="py-12 px-4 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-3">
             {PRICING_PLANS.map((plan, index) => (
               <RevealText key={plan.name} delay={index * 150}>
                 <GlassCard
@@ -178,8 +178,8 @@ const PricingPage = () => {
                       </GlassCard>
                     </div>
                   )}
-                  <GlassCardContent className="p-8">
-                    <h3 className="text-2xl font-bold text-white mb-2 font-space-grotesk">
+                  <GlassCardContent className="p-4">
+                    <h3 className="text-lg font-bold text-white mb-2 font-space-grotesk">
                       {plan.name}
                     </h3>
                     <div className="mb-4">
@@ -232,7 +232,7 @@ const PricingPage = () => {
       {/* ROI Calculator */}
       <section
         id="roi"
-        className="py-20 px-6 relative overflow-hidden bg-gradient-to-b from-transparent via-cyan-950/20 to-transparent"
+        className="py-20 px-4 relative overflow-hidden bg-gradient-to-b from-transparent via-cyan-950/20 to-transparent"
       >
         <div className="max-w-5xl mx-auto relative z-10">
           <RevealText>
@@ -241,7 +241,7 @@ const PricingPage = () => {
                 <Calculator size={16} className="text-cyan-400" />
                 <span className="text-sm text-cyan-300">ROI Calculator</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">Calculate Your Savings</GradientText>
               </h2>
               <p className="text-gray-300">See how much Artisan can save your team</p>
@@ -249,11 +249,11 @@ const PricingPage = () => {
           </RevealText>
 
           <GlassCard variant="gradient">
-            <GlassCardContent className="p-8">
-              <div className="grid md:grid-cols-2 gap-8">
+            <GlassCardContent className="p-4">
+              <div className="grid md:grid-cols-2 gap-3">
                 {/* Inputs */}
-                <div className="space-y-6">
-                  <h3 className="text-xl font-bold text-white font-space-grotesk mb-4">
+                <div className="space-y-3">
+                  <h3 className="text-lg font-bold text-white font-space-grotesk mb-4">
                     Your Current Setup
                   </h3>
 
@@ -302,13 +302,13 @@ const PricingPage = () => {
                 </div>
 
                 {/* Results */}
-                <div className="space-y-6">
-                  <h3 className="text-xl font-bold text-white font-space-grotesk mb-4">
+                <div className="space-y-3">
+                  <h3 className="text-lg font-bold text-white font-space-grotesk mb-4">
                     With Artisan
                   </h3>
 
                   <GlassCard variant="default" glow glowColor="cyan">
-                    <GlassCardContent className="p-6 text-center">
+                    <GlassCardContent className="p-4 text-center">
                       <div className="text-sm text-gray-400 mb-2">Annual Cost Savings</div>
                       <div className="text-4xl font-bold font-space-grotesk">
                         <GradientText gradient="cyber">
@@ -319,7 +319,7 @@ const PricingPage = () => {
                   </GlassCard>
 
                   <GlassCard variant="default" glow glowColor="purple">
-                    <GlassCardContent className="p-6 text-center">
+                    <GlassCardContent className="p-4 text-center">
                       <div className="text-sm text-gray-400 mb-2">Additional Meetings/Year</div>
                       <div className="text-4xl font-bold font-space-grotesk">
                         <GradientText gradient="aurora">
@@ -330,7 +330,7 @@ const PricingPage = () => {
                   </GlassCard>
 
                   <GlassCard variant="gradient" glow glowColor="emerald">
-                    <GlassCardContent className="p-6 text-center">
+                    <GlassCardContent className="p-4 text-center">
                       <div className="text-sm text-gray-400 mb-2">ROI</div>
                       <div className="text-4xl font-bold font-space-grotesk">
                         <GradientText gradient="cyber">{roi.roi}%</GradientText>
@@ -345,7 +345,7 @@ const PricingPage = () => {
       </section>
 
       {/* Contact Sales Form */}
-      <section id="contact-sales" className="py-20 px-6 relative overflow-hidden">
+      <section id="contact-sales" className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
 
         <div className="max-w-3xl mx-auto relative z-10">
@@ -355,7 +355,7 @@ const PricingPage = () => {
                 <MessageSquare size={16} className="text-purple-400" />
                 <span className="text-sm text-purple-300">Enterprise Inquiries</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="aurora">Talk to Our Sales Team</GradientText>
               </h2>
               <p className="text-gray-300">
@@ -365,9 +365,9 @@ const PricingPage = () => {
           </RevealText>
 
           <GlassCard variant="gradient">
-            <GlassCardContent className="p-8">
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+            <GlassCardContent className="p-4">
+              <form className="space-y-3">
+                <div className="grid md:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-sm text-gray-400 mb-2">First Name</label>
                     <div className="relative">
@@ -413,7 +413,7 @@ const PricingPage = () => {
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-sm text-gray-400 mb-2">Phone</label>
                     <div className="relative">
@@ -483,17 +483,17 @@ const PricingPage = () => {
       <UnifiedCTA variant="compact" />
 
       {/* FAQ Preview */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <div className="max-w-4xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">Common Questions</GradientText>
               </h2>
             </div>
           </RevealText>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {[
               {
                 q: 'How long is the free trial?',
@@ -514,7 +514,7 @@ const PricingPage = () => {
             ].map((faq, index) => (
               <RevealText key={index} delay={index * 100}>
                 <GlassCard variant="default" hover>
-                  <GlassCardContent className="p-6">
+                  <GlassCardContent className="p-4">
                     <h3 className="text-lg font-bold text-white mb-2 font-space-grotesk">
                       {faq.q}
                     </h3>

@@ -119,14 +119,14 @@ const CalendarScheduler = () => {
       title="Calendar & Scheduler"
       subtitle="Manage meetings and generate booking links"
     >
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           <Dialog>
             <DialogTrigger asChild>
               <Card className="cursor-pointer hover:shadow-lg transition-shadow">
                 <CardContent className="pt-6 text-center">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <div className="w-12 h-9 bg-blue-100 dark:bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
                     <Plus className="w-6 h-6 text-blue-600" />
                   </div>
                   <p className="font-semibold">Create Meeting Link</p>
@@ -143,7 +143,7 @@ const CalendarScheduler = () => {
                   Choose meeting type and generate shareable link
                 </DialogDescription>
               </DialogHeader>
-              <div className="space-y-4 py-4">
+              <div className="space-y-3 py-3">
                 <div className="grid grid-cols-2 gap-3">
                   {meetingTypes.map(type => (
                     <button
@@ -183,36 +183,36 @@ const CalendarScheduler = () => {
 
           <Card>
             <CardContent className="pt-6 text-center">
-              <div className="w-12 h-12 bg-green-100 dark:bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+              <div className="w-12 h-9 bg-green-100 dark:bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Calendar className="w-6 h-6 text-green-600" />
               </div>
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">12</p>
+              <p className="text-lg font-bold text-gray-900 dark:text-white">12</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">This Week</p>
             </CardContent>
           </Card>
 
           <Card>
             <CardContent className="pt-6 text-center">
-              <div className="w-12 h-12 bg-purple-100 dark:bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+              <div className="w-12 h-9 bg-purple-100 dark:bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Clock className="w-6 h-6 text-purple-600" />
               </div>
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">8.5h</p>
+              <p className="text-lg font-bold text-gray-900 dark:text-white">8.5h</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">Meeting Time</p>
             </CardContent>
           </Card>
 
           <Card>
             <CardContent className="pt-6 text-center">
-              <div className="w-12 h-12 bg-orange-100 dark:bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+              <div className="w-12 h-9 bg-orange-100 dark:bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Video className="w-6 h-6 text-orange-600" />
               </div>
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">89%</p>
+              <p className="text-lg font-bold text-gray-900 dark:text-white">89%</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">Show-up Rate</p>
             </CardContent>
           </Card>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Upcoming Meetings */}
           <Card className="lg:col-span-2">
             <CardHeader>
@@ -236,7 +236,7 @@ const CalendarScheduler = () => {
                         {meeting.status}
                       </Badge>
                     </div>
-                    <div className="grid grid-cols-2 gap-4 mb-3">
+                    <div className="grid grid-cols-2 gap-3 mb-3">
                       <div className="flex items-center gap-2 text-sm">
                         <Badge variant="secondary">{meeting.type}</Badge>
                         <span className="text-gray-600 dark:text-gray-400">{meeting.duration}</span>
@@ -277,7 +277,7 @@ const CalendarScheduler = () => {
               <CardTitle>Quick Book</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div>
                   <label className="block text-sm font-medium mb-2">Meeting Type</label>
                   <select className="w-full px-3 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-white dark:bg-gray-800">

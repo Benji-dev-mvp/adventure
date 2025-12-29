@@ -145,10 +145,10 @@ const Leads = () => {
         showInspector: true,
       }}
     >
-      <div className="grid lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-2 space-y-4">
+      <div className="grid lg:grid-cols-3 gap-3">
+        <div className="lg:col-span-2 space-y-3">
           <Card>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <p className="text-sm text-gray-600">
@@ -185,7 +185,7 @@ const Leads = () => {
                   <input
                     type="text"
                     placeholder="Search by name, company, or email..."
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent-500"
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
                   />
@@ -225,7 +225,7 @@ const Leads = () => {
             <CardContent className="p-0">
               <div className="divide-y">
                 {filteredLeads.length === 0 && (
-                  <div className="p-6 text-center text-sm text-gray-500">
+                  <div className="p-4 text-center text-sm text-gray-500">
                     No leads match your filters.
                   </div>
                 )}
@@ -248,7 +248,7 @@ const Leads = () => {
                     >
                       <div className="flex items-center gap-3 min-w-0 flex-1">
                         <div className="relative">
-                          <div className="w-11 h-11 rounded-full bg-white border border-gray-200 flex items-center justify-center text-xl">
+                          <div className="w-11 h-11 rounded-full bg-white border border-gray-200 flex items-center justify-center text-lg">
                             {lead.avatar}
                           </div>
                           {isSelected && (
@@ -343,9 +343,9 @@ const Leads = () => {
           </Card>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           <Card className="shadow-lg border-accent-100">
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3">
               {!selectedLead && (
                 <div className="text-center text-sm text-gray-500 py-6">
                   Select a lead to view details.
@@ -354,14 +354,14 @@ const Leads = () => {
 
               {selectedLead && (
                 <>
-                  <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center text-2xl">
+                  <div className="flex items-start gap-3">
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center text-lg">
                       {selectedLead.avatar}
                     </div>
                     <div className="flex-1">
                       <div className="flex items-start justify-between gap-3">
                         <div>
-                          <h3 className="text-xl font-bold text-gray-900">{selectedLead.name}</h3>
+                          <h3 className="text-lg font-bold text-gray-900">{selectedLead.name}</h3>
                           <p className="text-sm text-gray-600">
                             {selectedLead.title} at {selectedLead.company}
                           </p>
@@ -398,7 +398,7 @@ const Leads = () => {
                   </div>
 
                   <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div className="p-3 rounded-xl bg-gray-50 border border-gray-100">
+                    <div className="p-3 rounded-lg bg-gray-50 border border-gray-100">
                       <p className="text-xs text-gray-500 mb-1">Email</p>
                       <a
                         href={`mailto:${selectedLead.email}`}
@@ -408,11 +408,11 @@ const Leads = () => {
                         <ExternalLink size={14} />
                       </a>
                     </div>
-                    <div className="p-3 rounded-xl bg-gray-50 border border-gray-100">
+                    <div className="p-3 rounded-lg bg-gray-50 border border-gray-100">
                       <p className="text-xs text-gray-500 mb-1">Phone</p>
                       <span className="text-gray-800 font-medium">{selectedLead.phone}</span>
                     </div>
-                    <div className="p-3 rounded-xl bg-gray-50 border border-gray-100">
+                    <div className="p-3 rounded-lg bg-gray-50 border border-gray-100">
                       <p className="text-xs text-gray-500 mb-1">LinkedIn</p>
                       <a
                         href={`https://${selectedLead.linkedin}`}
@@ -424,25 +424,25 @@ const Leads = () => {
                         <ExternalLink size={14} />
                       </a>
                     </div>
-                    <div className="p-3 rounded-xl bg-gray-50 border border-gray-100">
+                    <div className="p-3 rounded-lg bg-gray-50 border border-gray-100">
                       <p className="text-xs text-gray-500 mb-1">Company Size</p>
                       <span className="text-gray-800 font-medium">
                         {selectedLead.enrichment.companySize}
                       </span>
                     </div>
-                    <div className="p-3 rounded-xl bg-gray-50 border border-gray-100">
+                    <div className="p-3 rounded-lg bg-gray-50 border border-gray-100">
                       <p className="text-xs text-gray-500 mb-1">Revenue</p>
                       <span className="text-gray-800 font-medium">
                         {selectedLead.enrichment.revenue}
                       </span>
                     </div>
-                    <div className="p-3 rounded-xl bg-gray-50 border border-gray-100">
+                    <div className="p-3 rounded-lg bg-gray-50 border border-gray-100">
                       <p className="text-xs text-gray-500 mb-1">Recent News</p>
                       <span className="text-gray-800">{selectedLead.enrichment.recentNews}</span>
                     </div>
                   </div>
 
-                  <div className="mt-3 p-3 rounded-xl bg-white border border-gray-200">
+                  <div className="mt-3 p-3 rounded-lg bg-white border border-gray-200">
                     <h4 className="text-sm font-semibold text-gray-900 mb-2">Verification</h4>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -614,7 +614,7 @@ const Leads = () => {
             </ModalHeader>
 
             <ModalContent>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-3">Contact Information</h3>
                   <div className="space-y-2">
@@ -652,7 +652,7 @@ const Leads = () => {
 
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-3">Company Insights</h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-3">
                     <div className="p-3 bg-gray-50 rounded-lg">
                       <p className="text-xs text-gray-500 mb-1">Company Size</p>
                       <p className="font-medium text-gray-900">

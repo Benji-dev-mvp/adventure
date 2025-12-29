@@ -100,15 +100,15 @@ const AccessControl = () => {
 
   return (
     <DashboardLayout>
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="max-w-7xl mx-auto space-y-3">
         {/* Header */}
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-          className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4"
+          className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3"
         >
           <div>
-            <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+            <h1 className="text-lg font-bold text-white flex items-center gap-3">
               <Shield className="h-7 w-7 text-cyan-400" />
               <GradientText gradient="cyber">Access Control</GradientText>
             </h1>
@@ -170,7 +170,7 @@ const AccessControl = () => {
           {/* Permission Matrix Tab */}
           {activeTab === 'matrix' && (
             <GlassCard variant="gradient">
-              <GlassCardContent className="p-6">
+              <GlassCardContent className="p-4">
                 <h3 className="text-lg font-semibold text-white mb-6">Role Permission Matrix</h3>
                 <AccessMatrix
                   roles={roles}
@@ -187,7 +187,7 @@ const AccessControl = () => {
           {/* Team Members Tab */}
           {activeTab === 'members' && (
             <GlassCard variant="gradient">
-              <GlassCardContent className="p-6">
+              <GlassCardContent className="p-4">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-lg font-semibold text-white">Team Members</h3>
                   <div className="flex items-center gap-3">
@@ -222,9 +222,9 @@ const AccessControl = () => {
                           key={member.id}
                           className="flex items-center justify-between p-4 rounded-lg bg-slate-800/50 border border-slate-700 hover:border-slate-600 transition-colors"
                         >
-                          <div className="flex items-center gap-4">
+                          <div className="flex items-center gap-3">
                             <div
-                              className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold text-white"
+                              className="w-10 h-9 rounded-full flex items-center justify-center text-sm font-semibold text-white"
                               style={{ backgroundColor: role?.color || '#6b7280' }}
                             >
                               {member.avatar}
@@ -235,7 +235,7 @@ const AccessControl = () => {
                             </div>
                           </div>
 
-                          <div className="flex items-center gap-4">
+                          <div className="flex items-center gap-3">
                             <div className="text-right">
                               <Badge
                                 variant="outline"
@@ -259,14 +259,14 @@ const AccessControl = () => {
 
           {/* Role Settings Tab */}
           {activeTab === 'roles' && (
-            <div className="grid gap-4">
+            <div className="grid gap-3">
               {roles.map(role => (
                 <GlassCard key={role.id} variant="gradient">
-                  <GlassCardContent className="p-6">
+                  <GlassCardContent className="p-4">
                     <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-3">
                         <div
-                          className="w-12 h-12 rounded-xl flex items-center justify-center"
+                          className="w-12 h-9 rounded-lg flex items-center justify-center"
                           style={{ backgroundColor: `${role.color}20` }}
                         >
                           <Shield className="h-6 w-6" style={{ color: role.color }} />

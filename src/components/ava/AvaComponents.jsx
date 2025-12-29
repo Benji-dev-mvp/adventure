@@ -91,7 +91,7 @@ export const AvaChatInterface = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="relative">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+              <div className="w-12 h-9 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
                 <Bot className="text-white" size={24} />
               </div>
               <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
@@ -108,7 +108,7 @@ export const AvaChatInterface = () => {
         </div>
       </CardHeader>
 
-      <CardContent className="flex-1 overflow-y-auto p-4 space-y-4">
+      <CardContent className="flex-1 overflow-y-auto p-4 space-y-3">
         {messages.map((msg, idx) => (
           <div
             key={idx}
@@ -275,7 +275,7 @@ export const EmailDeliverabilityDashboard = () => {
         </p>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           {mailboxes.map((box, idx) => (
             <div key={idx} className="p-4 border rounded-lg">
               <div className="flex justify-between items-start mb-3">
@@ -290,7 +290,7 @@ export const EmailDeliverabilityDashboard = () => {
                 </div>
                 <div className="text-right">
                   <p className="text-xs text-gray-600">Health Score</p>
-                  <p className="text-2xl font-bold text-green-600">{box.health}%</p>
+                  <p className="text-lg font-bold text-green-600">{box.health}%</p>
                 </div>
               </div>
 
@@ -309,7 +309,7 @@ export const EmailDeliverabilityDashboard = () => {
               </div>
 
               {/* Daily Sending */}
-              <div className="grid grid-cols-2 gap-4 text-center">
+              <div className="grid grid-cols-2 gap-3 text-center">
                 <div className="bg-gray-50 dark:bg-white/5 rounded p-2">
                   <p className="text-xs text-gray-600">Daily Limit</p>
                   <p className="font-bold">{box.dailyLimit}</p>
@@ -385,11 +385,11 @@ export const DataMinerDashboard = () => {
       <CardContent>
         <div className="grid grid-cols-2 gap-3 mb-4">
           <div className="text-center p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-            <p className="text-3xl font-bold text-purple-600">3,397</p>
+            <p className="text-lg font-bold text-purple-600">3,397</p>
             <p className="text-xs text-gray-600">Total Insights</p>
           </div>
           <div className="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-            <p className="text-3xl font-bold text-green-600">247</p>
+            <p className="text-lg font-bold text-green-600">247</p>
             <p className="text-xs text-gray-600">High-Intent Signals</p>
           </div>
         </div>
@@ -410,7 +410,7 @@ export const DataMinerDashboard = () => {
               }}
             >
               <div className="flex items-center gap-3">
-                <span className="text-2xl">{source.icon}</span>
+                <span className="text-lg">{source.icon}</span>
                 <div>
                   <p className="font-semibold text-sm">{source.source}</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">{source.lastUpdate}</p>
@@ -600,17 +600,17 @@ export const SentimentAnalysisDashboard = () => {
         <div className="grid grid-cols-3 gap-3 mb-4">
           <div className="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
             <ThumbsUp className="mx-auto text-green-600 mb-1" size={20} />
-            <p className="text-2xl font-bold text-green-600">{stats.positive}</p>
+            <p className="text-lg font-bold text-green-600">{stats.positive}</p>
             <p className="text-xs text-gray-600">Positive</p>
           </div>
           <div className="text-center p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
             <div className="w-5 h-5 mx-auto bg-gray-400 rounded-full mb-1"></div>
-            <p className="text-2xl font-bold text-gray-600">{stats.neutral}</p>
+            <p className="text-lg font-bold text-gray-600">{stats.neutral}</p>
             <p className="text-xs text-gray-600">Neutral</p>
           </div>
           <div className="text-center p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
             <ThumbsDown className="mx-auto text-red-600 mb-1" size={20} />
-            <p className="text-2xl font-bold text-red-600">{stats.negative}</p>
+            <p className="text-lg font-bold text-red-600">{stats.negative}</p>
             <p className="text-xs text-gray-600">Negative</p>
           </div>
         </div>
@@ -766,15 +766,15 @@ export const AvaPerformanceTracker = () => {
       <CardContent>
         <div className="grid grid-cols-3 gap-3 mb-4">
           <div className="text-center p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-            <p className="text-2xl font-bold text-purple-600">+158%</p>
+            <p className="text-lg font-bold text-purple-600">+158%</p>
             <p className="text-xs text-gray-600">Response Rate ↑</p>
           </div>
           <div className="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-            <p className="text-2xl font-bold text-green-600">+300%</p>
+            <p className="text-lg font-bold text-green-600">+300%</p>
             <p className="text-xs text-gray-600">Meetings Booked ↑</p>
           </div>
           <div className="text-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-            <p className="text-2xl font-bold text-blue-600">31%</p>
+            <p className="text-lg font-bold text-blue-600">31%</p>
             <p className="text-xs text-gray-600">Current Rate</p>
           </div>
         </div>
@@ -831,7 +831,7 @@ export const AvaTrainingInterface = () => {
         </p>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div>
             <div className="text-sm font-semibold mb-2 block" role="heading" aria-level="3">
               Writing Style Preferences

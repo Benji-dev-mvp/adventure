@@ -48,7 +48,7 @@ export const AdvancedMetricCard = ({
     <Card
       className={`relative overflow-hidden bg-gradient-to-br ${bgGradient} text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 group`}
     >
-      <CardContent className="p-6">
+      <CardContent className="p-4">
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
@@ -74,7 +74,7 @@ export const AdvancedMetricCard = ({
 
         {/* Sparkline */}
         {sparklineData.length > 0 && (
-          <div className="h-12 -mx-2 -mb-2 opacity-40 group-hover:opacity-60 transition-opacity">
+          <div className="h-9 -mx-2 -mb-2 opacity-40 group-hover:opacity-60 transition-opacity">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={sparklineData}>
                 <defs>
@@ -198,7 +198,7 @@ export const RealTimeActivityStream = ({ activities = [] }) => {
               >
                 <div className="flex-shrink-0">
                   <div
-                    className={`w-10 h-10 rounded-full bg-${color}-100 dark:bg-${color}-900/30 flex items-center justify-center text-lg`}
+                    className={`w-10 h-9 rounded-full bg-${color}-100 dark:bg-${color}-900/30 flex items-center justify-center text-lg`}
                   >
                     {getActivityIcon(activity.type)}
                   </div>
@@ -333,7 +333,7 @@ export const ConversionFunnel = ({ data = [] }) => {
                     )}
                   </div>
                 </div>
-                <div className="relative h-12 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-lg overflow-hidden">
+                <div className="relative h-9 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-lg overflow-hidden">
                   <div
                     className="absolute inset-y-0 left-0 bg-gradient-to-r from-cyan-500 to-purple-600 transition-all duration-500 flex items-center justify-center"
                     style={{ width: `${widthPercent}%` }}
@@ -376,7 +376,7 @@ export const AIInsightsCard = ({ insights = [] }) => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           {insights.map((insight, idx) => (
             <div
               key={idx}
@@ -430,7 +430,7 @@ export const RevenuePipelineChart = ({ data = [] }) => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-3">
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>

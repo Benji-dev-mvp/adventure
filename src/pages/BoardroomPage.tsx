@@ -171,7 +171,7 @@ const MetricCard: React.FC<{ metric: ExecutiveMetric }> = ({ metric }) => {
   };
 
   return (
-    <div className={`rounded-xl p-5 border-2 ${statusColors[metric.status]}`}>
+    <div className={`rounded-lg p-4 border-2 ${statusColors[metric.status]}`}>
       <div className="flex items-center justify-between mb-2">
         <span className="text-gray-400 text-sm font-medium">{metric.name}</span>
         <span
@@ -186,7 +186,7 @@ const MetricCard: React.FC<{ metric: ExecutiveMetric }> = ({ metric }) => {
           {statusLabels[metric.status]}
         </span>
       </div>
-      <div className="text-3xl font-bold text-white mb-1">{metric.value}</div>
+      <div className="text-lg font-bold text-white mb-1">{metric.value}</div>
       <div className="flex items-center justify-between text-sm">
         <span className={metric.change >= 0 ? 'text-green-400' : 'text-red-400'}>
           {metric.change >= 0 ? '↑' : '↓'} {Math.abs(metric.change)}% {metric.changeLabel}
@@ -215,7 +215,7 @@ const RecommendationCard: React.FC<{
   };
 
   return (
-    <div className={`rounded-xl p-5 border ${priorityColors[rec.priority]}`}>
+    <div className={`rounded-lg p-4 border ${priorityColors[rec.priority]}`}>
       <div className="flex items-center justify-between mb-3">
         <span className={`text-xs px-2 py-1 rounded text-white ${priorityBadges[rec.priority]}`}>
           {rec.priority.toUpperCase()}
@@ -225,7 +225,7 @@ const RecommendationCard: React.FC<{
       <h3 className="text-lg font-semibold text-white mb-2">{rec.title}</h3>
       <p className="text-gray-400 text-sm mb-4">{rec.description}</p>
       <div className="flex items-center justify-between">
-        <div className="flex gap-4 text-sm">
+        <div className="flex gap-3 text-sm">
           <span className="text-gray-500">
             Impact: <span className="text-green-400">{rec.impact}</span>
           </span>
@@ -391,14 +391,14 @@ export const BoardroomPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
+    <div className="min-h-screen bg-gray-900 text-white p-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-3xl font-bold">Boardroom</h1>
+          <h1 className="text-lg font-bold">Boardroom</h1>
           <p className="text-gray-400">Executive Command Center • Q2 2024</p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <div className="flex bg-gray-800 rounded-lg p-1">
             {['week', 'month', 'quarter', 'year'].map(tf => (
               <button
@@ -419,16 +419,16 @@ export const BoardroomPage: React.FC = () => {
       </div>
 
       {/* Executive Metrics */}
-      <div className="grid grid-cols-6 gap-4 mb-6">
+      <div className="grid grid-cols-6 gap-3 mb-6">
         {EXECUTIVE_METRICS.map((metric, i) => (
           <MetricCard key={i} metric={metric} />
         ))}
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 gap-3">
         {/* Revenue Projection */}
-        <div className="col-span-2 bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <div className="col-span-2 bg-gray-800 rounded-lg p-4 border border-gray-700">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold">Revenue Trajectory</h2>
             <div className="flex items-center gap-2 text-sm">
@@ -437,41 +437,41 @@ export const BoardroomPage: React.FC = () => {
             </div>
           </div>
           <RevenueChart data={REVENUE_PROJECTIONS} />
-          <div className="mt-4 grid grid-cols-3 gap-4 pt-4 border-t border-gray-700">
+          <div className="mt-4 grid grid-cols-3 gap-3 pt-4 border-t border-gray-700">
             <div className="text-center">
-              <div className="text-2xl font-bold text-white">$2.8M</div>
+              <div className="text-lg font-bold text-white">$2.8M</div>
               <div className="text-sm text-gray-400">Projected Q2</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-400">$1.49M</div>
+              <div className="text-lg font-bold text-green-400">$1.49M</div>
               <div className="text-sm text-gray-400">Closed YTD</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-400">94%</div>
+              <div className="text-lg font-bold text-blue-400">94%</div>
               <div className="text-sm text-gray-400">vs Target</div>
             </div>
           </div>
         </div>
 
         {/* Org Pulse */}
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
           <h2 className="text-lg font-semibold mb-4">Org Pulse</h2>
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="flex items-center justify-between p-3 bg-green-500/10 rounded-lg">
               <span className="text-gray-300">Overall Health</span>
-              <span className="text-2xl font-bold text-green-400">82%</span>
+              <span className="text-lg font-bold text-green-400">82%</span>
             </div>
             <div className="flex items-center justify-between p-3 bg-gray-700 rounded-lg">
               <span className="text-gray-300">Team Morale</span>
-              <span className="text-xl font-bold text-white">76%</span>
+              <span className="text-lg font-bold text-white">76%</span>
             </div>
             <div className="flex items-center justify-between p-3 bg-gray-700 rounded-lg">
               <span className="text-gray-300">Capacity Utilization</span>
-              <span className="text-xl font-bold text-yellow-400">87%</span>
+              <span className="text-lg font-bold text-yellow-400">87%</span>
             </div>
             <div className="flex items-center justify-between p-3 bg-gray-700 rounded-lg">
               <span className="text-gray-300">Predicted Churn Risk</span>
-              <span className="text-xl font-bold text-green-400">Low</span>
+              <span className="text-lg font-bold text-green-400">Low</span>
             </div>
           </div>
         </div>
@@ -483,7 +483,7 @@ export const BoardroomPage: React.FC = () => {
           <h2 className="text-lg font-semibold">Strategic Recommendations</h2>
           <span className="text-sm text-gray-400">AI-generated based on current data</span>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-3">
           {RECOMMENDATIONS.map(rec => (
             <RecommendationCard
               key={rec.id}
@@ -496,7 +496,7 @@ export const BoardroomPage: React.FC = () => {
       </div>
 
       {/* Team Health Table */}
-      <div className="mt-6 bg-gray-800 rounded-xl p-6 border border-gray-700">
+      <div className="mt-6 bg-gray-800 rounded-lg p-4 border border-gray-700">
         <h2 className="text-lg font-semibold mb-4">Team Health Matrix</h2>
         <table className="w-full">
           <thead>
@@ -516,9 +516,9 @@ export const BoardroomPage: React.FC = () => {
       </div>
 
       {/* Live Feed */}
-      <div className="mt-6 bg-gray-800 rounded-xl p-4 border border-gray-700">
+      <div className="mt-6 bg-gray-800 rounded-lg p-4 border border-gray-700">
         <h3 className="text-sm font-medium text-gray-400 mb-3">Live Activity Feed</h3>
-        <div className="flex items-center gap-4 overflow-x-auto pb-2">
+        <div className="flex items-center gap-3 overflow-x-auto pb-2">
           {[
             { event: 'Deal closed', value: '$45K', time: '2m ago', type: 'success' },
             { event: 'Meeting booked', value: 'Enterprise', time: '5m ago', type: 'info' },

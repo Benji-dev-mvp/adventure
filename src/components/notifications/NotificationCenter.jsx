@@ -175,7 +175,7 @@ export const NotificationCenter = () => {
       {/* Notification Bell Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="relative p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+        className="relative p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
       >
         <Bell className="w-5 h-5 text-gray-700 dark:text-gray-200" />
         {unreadCount > 0 && (
@@ -242,7 +242,7 @@ export const NotificationCenter = () => {
             <div className="mt-4 space-y-2 overflow-y-auto max-h-[500px] pr-2">
               {filteredNotifications.length === 0 ? (
                 <div className="text-center py-12">
-                  <Bell className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                  <Bell className="w-12 h-9 text-gray-400 mx-auto mb-3" />
                   <p className="text-gray-600 dark:text-gray-400">No notifications</p>
                   <p className="text-sm text-gray-500 mt-1">You're all caught up!</p>
                 </div>

@@ -62,7 +62,7 @@ const AgendaItem = ({ agenda, isSelected, onSelect }) => {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       className={`
-        p-4 rounded-xl border cursor-pointer transition-all
+        p-4 rounded-lg border cursor-pointer transition-all
         ${
           isSelected
             ? 'bg-white/5 border-cyan-500/30 shadow-lg shadow-cyan-500/10'
@@ -130,11 +130,11 @@ export function AgendaList({ agendas, selected, onSelect, loading }) {
   if (loading) {
     return (
       <GlassCard variant="subtle" className="h-full">
-        <GlassCardContent className="p-6">
-          <div className="animate-pulse space-y-4">
+        <GlassCardContent className="p-4">
+          <div className="animate-pulse space-y-3">
             <div className="h-6 bg-slate-700 rounded w-32" />
             {[1, 2, 3, 4].map(i => (
-              <div key={i} className="h-32 bg-slate-800/50 rounded-xl" />
+              <div key={i} className="h-32 bg-slate-800/50 rounded-lg" />
             ))}
           </div>
         </GlassCardContent>
@@ -148,7 +148,7 @@ export function AgendaList({ agendas, selected, onSelect, loading }) {
 
   return (
     <GlassCard variant="subtle" className="h-full overflow-hidden">
-      <GlassCardContent className="p-6 h-full overflow-y-auto">
+      <GlassCardContent className="p-4 h-full overflow-y-auto">
         <h3 className="text-lg font-semibold text-slate-100 mb-4">Debate Agenda</h3>
 
         {/* In Debate */}

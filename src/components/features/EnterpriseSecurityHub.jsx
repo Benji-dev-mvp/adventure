@@ -130,18 +130,18 @@ const SecurityMetricCard = ({ metric, isHovered, onHover }) => {
     <div className="relative group" onMouseEnter={onHover} onMouseLeave={() => {}}>
       {/* Glow effect */}
       <div
-        className={`absolute -inset-1 rounded-xl bg-${metric.color}-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity`}
+        className={`absolute -inset-1 rounded-lg bg-${metric.color}-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity`}
       />
 
       <GlassCard
-        className={`relative p-5 transition-all duration-300 ${
+        className={`relative p-4 transition-all duration-300 ${
           isHovered ? 'scale-105 border-white/30' : ''
         }`}
         variant="default"
       >
         <div className="flex items-start justify-between mb-3">
           <div
-            className={`w-10 h-10 rounded-lg bg-${metric.color}-500/20 flex items-center justify-center`}
+            className={`w-10 h-9 rounded-lg bg-${metric.color}-500/20 flex items-center justify-center`}
           >
             <Icon size={20} className={`text-${metric.color}-400`} />
           </div>
@@ -157,7 +157,7 @@ const SecurityMetricCard = ({ metric, isHovered, onHover }) => {
           </div>
         </div>
 
-        <div className="text-2xl font-bold text-white mb-1">
+        <div className="text-lg font-bold text-white mb-1">
           {isLiveValue ? (
             <>
               <CountUpText
@@ -217,7 +217,7 @@ const ServiceRow = ({ service, index }) => {
         <span className="text-sm text-white">{service.name}</span>
       </div>
 
-      <div className="flex items-center gap-4 text-xs">
+      <div className="flex items-center gap-3 text-xs">
         <span className="text-gray-400">{service.latency}ms</span>
         <span className="text-emerald-400">{service.uptime}%</span>
       </div>
@@ -247,7 +247,7 @@ const ComplianceBadge = ({ badge, index }) => {
 const RegionCard = ({ region, isActive }) => {
   return (
     <div
-      className={`p-4 rounded-xl border transition-all duration-300 ${
+      className={`p-4 rounded-lg border transition-all duration-300 ${
         region.status === 'active'
           ? 'bg-white/5 border-white/10 hover:border-cyan-500/30'
           : 'bg-white/[0.02] border-white/5 opacity-60'
@@ -346,7 +346,7 @@ const EnterpriseSecurityHub = () => {
     <section
       ref={containerRef}
       id="security-hub"
-      className="py-20 lg:py-28 px-4 lg:px-6 relative overflow-hidden bg-[#030712]"
+      className="py-20 lg:py-28 px-4 lg:px-4 relative overflow-hidden bg-[#030712]"
     >
       {/* Background effects */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-radial from-emerald-900/10 to-transparent blur-3xl" />
@@ -361,20 +361,20 @@ const EnterpriseSecurityHub = () => {
               <span className="text-sm text-emerald-400 font-medium">Enterprise Security</span>
             </div>
 
-            <h2 className="text-3xl lg:text-5xl xl:text-6xl font-bold mb-4 font-space-grotesk">
+            <h2 className="text-lg lg:text-5xl xl:text-6xl font-bold mb-4 font-space-grotesk">
               <GradientText gradient="aurora" animate>
                 Security-First Architecture
               </GradientText>
             </h2>
 
-            <p className="text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-lg lg:text-lg text-gray-400 max-w-3xl mx-auto">
               Built for the security and compliance requirements of global enterprises
             </p>
           </div>
         </RevealText>
 
         {/* Security metrics grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-3 mb-12">
           {SECURITY_METRICS.map((metric, index) => (
             <SecurityMetricCard
               key={metric.id}
@@ -387,10 +387,10 @@ const EnterpriseSecurityHub = () => {
         </div>
 
         {/* Main content grid */}
-        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid lg:grid-cols-3 gap-3 lg:gap-3">
           {/* Service Status */}
           <RevealText delay={100}>
-            <GlassCard className="p-6 h-full" variant="default">
+            <GlassCard className="p-4 h-full" variant="default">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="font-semibold text-white flex items-center gap-2">
                   <Server size={18} className="text-cyan-400" />
@@ -420,9 +420,9 @@ const EnterpriseSecurityHub = () => {
 
           {/* Compliance & Access */}
           <RevealText delay={200}>
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Compliance badges */}
-              <GlassCard className="p-6" variant="default">
+              <GlassCard className="p-4" variant="default">
                 <h3 className="font-semibold text-white flex items-center gap-2 mb-4">
                   <FileCheck size={18} className="text-emerald-400" />
                   Compliance
@@ -436,7 +436,7 @@ const EnterpriseSecurityHub = () => {
               </GlassCard>
 
               {/* Data Regions */}
-              <GlassCard className="p-6" variant="default">
+              <GlassCard className="p-4" variant="default">
                 <h3 className="font-semibold text-white flex items-center gap-2 mb-4">
                   <Globe size={18} className="text-cyan-400" />
                   Data Residency
@@ -453,7 +453,7 @@ const EnterpriseSecurityHub = () => {
 
           {/* Access Controls */}
           <RevealText delay={300}>
-            <GlassCard className="p-6 h-full" variant="default">
+            <GlassCard className="p-4 h-full" variant="default">
               <h3 className="font-semibold text-white flex items-center gap-2 mb-6">
                 <Key size={18} className="text-purple-400" />
                 Identity & Access
@@ -465,7 +465,7 @@ const EnterpriseSecurityHub = () => {
                 ))}
               </div>
 
-              <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20">
+              <div className="mt-6 p-4 rounded-lg bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20">
                 <div className="flex items-center gap-2 mb-2">
                   <ShieldCheck size={16} className="text-emerald-400" />
                   <span className="text-sm font-medium text-white">Zero Trust Ready</span>
@@ -481,7 +481,7 @@ const EnterpriseSecurityHub = () => {
         {/* Bottom CTA */}
         <RevealText delay={400}>
           <div className="mt-12 text-center">
-            <div className="inline-flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
+            <div className="inline-flex items-center gap-3 p-4 rounded-lg bg-white/5 border border-white/10">
               <div className="flex items-center gap-2">
                 <Shield size={20} className="text-emerald-400" />
                 <span className="text-sm text-gray-300">Questions about security?</span>

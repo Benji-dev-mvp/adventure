@@ -97,12 +97,12 @@ const EmailTemplateBuilder = () => {
 
   const renderPreview = () => {
     return (
-      <div className="bg-white rounded-lg p-8 border border-gray-200 shadow-sm max-w-2xl mx-auto">
+      <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm max-w-2xl mx-auto">
         {blocks.map(block => {
           switch (block.type) {
             case 'header':
               return (
-                <h1 key={block.id} className="text-3xl font-bold text-gray-900 mb-6">
+                <h1 key={block.id} className="text-lg font-bold text-gray-900 mb-6">
                   {block.content}
                 </h1>
               );
@@ -117,7 +117,7 @@ const EmailTemplateBuilder = () => {
                 <div key={block.id} className="my-6">
                   <a
                     href={block.link}
-                    className="inline-block bg-accent-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-accent-600 transition-colors"
+                    className="inline-block bg-accent-500 text-white px-4 py-3 rounded-lg font-semibold hover:bg-accent-600 transition-colors"
                   >
                     {block.content}
                   </a>
@@ -145,9 +145,9 @@ const EmailTemplateBuilder = () => {
       title="Email Template Builder"
       subtitle="Create reusable email templates with drag-and-drop blocks"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Editor */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
@@ -221,7 +221,7 @@ const EmailTemplateBuilder = () => {
                           type="text"
                           value={block.content}
                           onChange={e => updateBlock(block.id, 'content', e.target.value)}
-                          className="w-full text-xl font-bold bg-transparent border-none outline-none text-gray-900 dark:text-white"
+                          className="w-full text-lg font-bold bg-transparent border-none outline-none text-gray-900 dark:text-white"
                           onClick={e => e.stopPropagation()}
                         />
                       )}
@@ -301,7 +301,7 @@ const EmailTemplateBuilder = () => {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Variables */}
           <Card>
             <CardHeader>

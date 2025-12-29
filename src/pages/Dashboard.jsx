@@ -309,12 +309,12 @@ const Dashboard = () => {
 
   return (
     <DashboardLayout>
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Segment-Aware Hero Banner */}
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-          className={`relative overflow-hidden rounded-xl p-6 border ${
+          className={`relative overflow-hidden rounded-lg p-4 border ${
             isEnterprise
               ? 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-amber-500/20'
               : isMidmarket
@@ -322,10 +322,10 @@ const Dashboard = () => {
                 : 'bg-gradient-to-br from-cyan-500/10 to-purple-500/10 border-cyan-500/20'
           }`}
         >
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
               <div
-                className={`p-3 rounded-xl ${
+                className={`p-3 rounded-lg ${
                   isEnterprise
                     ? 'bg-amber-500/20'
                     : isMidmarket
@@ -365,7 +365,7 @@ const Dashboard = () => {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Dashboard</h1>
+            <h1 className="text-lg font-bold text-gray-900 dark:text-white mb-1">Dashboard</h1>
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Welcome back! Here's what's happening today.
             </p>
@@ -393,14 +393,14 @@ const Dashboard = () => {
         <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Live Performance</h2>
 
         {/* Live Stats Banner */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border-blue-200 dark:border-blue-500/30">
             <CardContent className="p-4">
               <div className="flex items-center justify-between mb-2">
                 <Mail className="text-blue-600 dark:text-blue-400" size={20} />
                 <TrendingUp className="text-green-600" size={16} />
               </div>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white">
+              <div className="text-lg font-bold text-gray-900 dark:text-white">
                 <AnimatedCounter end={liveStats.emailsSent} />
               </div>
               <div className="text-xs text-gray-600 dark:text-gray-400">Emails Sent</div>
@@ -413,7 +413,7 @@ const Dashboard = () => {
                 <Activity className="text-green-600 dark:text-green-400" size={20} />
                 <TrendingUp className="text-green-600" size={16} />
               </div>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white">
+              <div className="text-lg font-bold text-gray-900 dark:text-white">
                 <AnimatedCounter end={liveStats.replyRate} suffix="%" />
               </div>
               <div className="text-xs text-gray-600 dark:text-gray-400">Reply Rate</div>
@@ -426,7 +426,7 @@ const Dashboard = () => {
                 <Calendar className="text-purple-600 dark:text-purple-400" size={20} />
                 <TrendingUp className="text-green-600" size={16} />
               </div>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white">
+              <div className="text-lg font-bold text-gray-900 dark:text-white">
                 <AnimatedCounter end={liveStats.meetings} />
               </div>
               <div className="text-xs text-gray-600 dark:text-gray-400">Meetings Booked</div>
@@ -439,7 +439,7 @@ const Dashboard = () => {
                 <Users className="text-orange-600 dark:text-orange-400" size={20} />
                 <Activity className="text-blue-600" size={16} />
               </div>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white">
+              <div className="text-lg font-bold text-gray-900 dark:text-white">
                 <AnimatedCounter end={liveStats.activeLeads} />
               </div>
               <div className="text-xs text-gray-600 dark:text-gray-400">Active Leads</div>
@@ -459,8 +459,8 @@ const Dashboard = () => {
           </TabsList>
 
           {/* Overview Tab */}
-          <TabsContent value="overview" className="space-y-4">
-            <div className="grid lg:grid-cols-2 gap-4">
+          <TabsContent value="overview" className="space-y-3">
+            <div className="grid lg:grid-cols-2 gap-3">
               {/* Performance Chart */}
               <Card>
                 <CardHeader>
@@ -516,7 +516,7 @@ const Dashboard = () => {
                   <CardDescription>Latest lead interactions</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     {recentActivity.map((activity, index) => (
                       <div
                         key={index}
@@ -551,7 +551,7 @@ const Dashboard = () => {
           </TabsContent>
 
           {/* Campaigns Tab */}
-          <TabsContent value="campaigns" className="space-y-4">
+          <TabsContent value="campaigns" className="space-y-3">
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -569,11 +569,11 @@ const Dashboard = () => {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {activeCampaigns.map((campaign, index) => (
                     <div
                       key={index}
-                      className="p-4 rounded-xl border border-gray-200 dark:border-white/10 dark:bg-white/5 hover:border-accent-300 transition-colors"
+                      className="p-4 rounded-lg border border-gray-200 dark:border-white/10 dark:bg-white/5 hover:border-accent-300 transition-colors"
                     >
                       <div className="flex items-start justify-between mb-3">
                         <div>
@@ -603,7 +603,7 @@ const Dashboard = () => {
                           {campaign.replyRate}%
                         </span>
                       </div>
-                      <div className="grid grid-cols-3 gap-4 text-sm">
+                      <div className="grid grid-cols-3 gap-3 text-sm">
                         <div>
                           <p className="text-gray-500 dark:text-gray-400">Leads</p>
                           <p className="font-semibold text-gray-900 dark:text-white">
@@ -636,14 +636,14 @@ const Dashboard = () => {
           </TabsContent>
 
           {/* Analytics Tab */}
-          <TabsContent value="analytics" className="space-y-4">
-            <div className="grid md:grid-cols-3 gap-4">
+          <TabsContent value="analytics" className="space-y-3">
+            <div className="grid md:grid-cols-3 gap-3">
               <Card>
                 <CardHeader>
                   <CardTitle className="text-base">Open Rate</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                  <div className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-2">
                     34.2%
                   </div>
                   <AnimatedProgress value={34} color="blue" />
@@ -658,7 +658,7 @@ const Dashboard = () => {
                   <CardTitle className="text-base">Click Rate</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                  <div className="text-lg font-bold text-green-600 dark:text-green-400 mb-2">
                     12.8%
                   </div>
                   <AnimatedProgress value={13} color="green" />
@@ -673,7 +673,7 @@ const Dashboard = () => {
                   <CardTitle className="text-base">Conversion Rate</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
+                  <div className="text-lg font-bold text-purple-600 dark:text-purple-400 mb-2">
                     6.4%
                   </div>
                   <AnimatedProgress value={6} color="purple" />
@@ -708,7 +708,7 @@ const Dashboard = () => {
           </TabsContent>
 
           {/* AI Insights Tab */}
-          <TabsContent value="ai-insights" className="space-y-4">
+          <TabsContent value="ai-insights" className="space-y-3">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -718,11 +718,11 @@ const Dashboard = () => {
                 <CardDescription>Personalized insights from Ava</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {aiRecommendations.map((rec, index) => (
                     <div
                       key={index}
-                      className="p-4 rounded-xl border border-gray-200 dark:border-white/10 dark:bg-white/5"
+                      className="p-4 rounded-lg border border-gray-200 dark:border-white/10 dark:bg-white/5"
                     >
                       <div className="flex items-start justify-between mb-2">
                         <div className="flex items-center gap-2">
@@ -756,8 +756,8 @@ const Dashboard = () => {
           </TabsContent>
 
           {/* Quick Actions Tab */}
-          <TabsContent value="actions" className="space-y-4">
-            <div className="grid md:grid-cols-2 gap-4">
+          <TabsContent value="actions" className="space-y-3">
+            <div className="grid md:grid-cols-2 gap-3">
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">

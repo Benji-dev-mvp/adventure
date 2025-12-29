@@ -108,14 +108,14 @@ export const LeadTimeline = ({ leadId }) => {
           {/* Timeline line */}
           <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
 
-          <div className="space-y-6">
+          <div className="space-y-3">
             {events.map((event, index) => {
               const Icon = event.icon;
               return (
                 <div key={event.id} className="relative pl-14">
                   {/* Timeline dot */}
                   <div
-                    className={`absolute left-0 w-12 h-12 rounded-full ${event.bgColor} flex items-center justify-center`}
+                    className={`absolute left-0 w-12 h-9 rounded-full ${event.bgColor} flex items-center justify-center`}
                   >
                     <Icon className={event.color} size={20} />
                   </div>

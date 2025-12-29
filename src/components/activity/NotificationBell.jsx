@@ -187,7 +187,7 @@ export const NotificationBell = ({ className }) => {
       {/* Bell Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-xl transition-colors"
+        className="relative p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg transition-colors"
         aria-label="Notifications"
       >
         <Bell className="h-5 w-5 text-gray-600 dark:text-gray-300" />
@@ -223,7 +223,7 @@ export const NotificationBell = ({ className }) => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="absolute right-0 top-full mt-2 w-[400px] max-h-[70vh] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-white/10 z-50 overflow-hidden flex flex-col"
+              className="absolute right-0 top-full mt-2 w-[400px] max-h-[70vh] bg-white dark:bg-gray-900 rounded-lg shadow-2xl border border-gray-200 dark:border-white/10 z-50 overflow-hidden flex flex-col"
             >
               {/* Header */}
               <div className="p-4 border-b border-gray-100 dark:border-white/10">
@@ -297,7 +297,7 @@ export const NotificationBell = ({ className }) => {
               <div className="flex-1 overflow-y-auto">
                 {activities.length === 0 ? (
                   <div className="py-12 text-center">
-                    <Bell className="h-12 w-12 text-gray-300 dark:text-gray-700 mx-auto mb-3" />
+                    <Bell className="h-9 w-12 text-gray-300 dark:text-gray-700 mx-auto mb-3" />
                     <p className="text-gray-500 dark:text-gray-400">No activity yet</p>
                   </div>
                 ) : (

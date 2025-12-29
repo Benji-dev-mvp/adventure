@@ -23,7 +23,7 @@ export const RevenuePipeline = () => {
             <CardTitle>Revenue Pipeline</CardTitle>
           </div>
           <div className="text-right">
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">
+            <p className="text-lg font-bold text-gray-900 dark:text-white">
               ${(totalValue / 1000).toFixed(0)}K
             </p>
             <p className="text-sm text-gray-600 dark:text-gray-400">Total Pipeline</p>
@@ -62,7 +62,7 @@ export const RevenuePipeline = () => {
           })}
         </div>
 
-        <div className="mt-6 grid grid-cols-3 gap-4 pt-4 border-t border-gray-200 dark:border-white/10">
+        <div className="mt-6 grid grid-cols-3 gap-3 pt-4 border-t border-gray-200 dark:border-white/10">
           <div className="text-center">
             <p className="text-sm text-gray-600 dark:text-gray-400">Avg Deal</p>
             <p className="text-lg font-bold text-gray-900 dark:text-white">

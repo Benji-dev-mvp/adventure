@@ -166,11 +166,11 @@ const FeatureFlags = () => {
 
   return (
     <DashboardLayout>
-      <div className="p-8 max-w-7xl mx-auto">
+      <div className="p-4 max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
+            <h1 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-3">
               <Flag className="h-8 w-8 text-accent-500" />
               Feature Flags
             </h1>
@@ -185,7 +185,7 @@ const FeatureFlags = () => {
         </div>
 
         {/* Filters */}
-        <div className="flex flex-wrap items-center gap-4 mb-6">
+        <div className="flex flex-wrap items-center gap-3 mb-6">
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input
@@ -193,7 +193,7 @@ const FeatureFlags = () => {
               placeholder="Search flags..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 text-gray-900 dark:text-white"
+              className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 text-gray-900 dark:text-white"
             />
           </div>
 
@@ -234,14 +234,14 @@ const FeatureFlags = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-4 gap-3 mb-6">
           <Card className="p-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-gray-100 dark:bg-white/10 rounded-lg">
                 <Flag className="h-5 w-5 text-gray-600 dark:text-gray-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">{flags.length}</p>
+                <p className="text-lg font-bold text-gray-900 dark:text-white">{flags.length}</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Total Flags</p>
               </div>
             </div>
@@ -252,7 +252,7 @@ const FeatureFlags = () => {
                 <Check className="h-5 w-5 text-green-500" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                <p className="text-lg font-bold text-gray-900 dark:text-white">
                   {flags.filter(f => f.enabled).length}
                 </p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Enabled</p>
@@ -265,7 +265,7 @@ const FeatureFlags = () => {
                 <AlertCircle className="h-5 w-5 text-amber-500" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                <p className="text-lg font-bold text-gray-900 dark:text-white">
                   {flags.filter(f => f.rolloutPercentage > 0 && f.rolloutPercentage < 100).length}
                 </p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Partial Rollout</p>
@@ -278,7 +278,7 @@ const FeatureFlags = () => {
                 <Users className="h-5 w-5 text-blue-500" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                <p className="text-lg font-bold text-gray-900 dark:text-white">
                   {flags.reduce((acc, f) => acc + f.overrides.length, 0)}
                 </p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Overrides</p>
@@ -292,7 +292,7 @@ const FeatureFlags = () => {
           <div className="divide-y divide-gray-200 dark:divide-white/10">
             {filteredFlags.length === 0 ? (
               <div className="p-12 text-center">
-                <Flag className="h-12 w-12 text-gray-300 dark:text-gray-700 mx-auto mb-3" />
+                <Flag className="h-9 w-12 text-gray-300 dark:text-gray-700 mx-auto mb-3" />
                 <p className="text-gray-500 dark:text-gray-400">No flags match your filters</p>
               </div>
             ) : (
@@ -302,7 +302,7 @@ const FeatureFlags = () => {
 
                 return (
                   <div key={flag.id} className="p-4">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3">
                       {/* Toggle */}
                       <button
                         onClick={() => toggleFlag(flag.id)}
@@ -385,8 +385,8 @@ const FeatureFlags = () => {
 
                     {/* Expanded Details */}
                     {isExpanded && (
-                      <div className="mt-4 ml-12 p-4 bg-gray-50 dark:bg-white/5 rounded-xl">
-                        <div className="grid grid-cols-3 gap-6">
+                      <div className="mt-4 ml-12 p-4 bg-gray-50 dark:bg-white/5 rounded-lg">
+                        <div className="grid grid-cols-3 gap-3">
                           <div>
                             <p className="text-xs text-gray-500 mb-1">Created</p>
                             <p className="text-sm text-gray-900 dark:text-white">

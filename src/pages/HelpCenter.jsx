@@ -280,18 +280,18 @@ const HelpCenter = () => {
                 placeholder="Search for articles, features, or how-tos..."
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                className="pl-12 pr-4 py-4 text-lg bg-white text-gray-900 border-0 shadow-xl"
+                className="pl-12 pr-4 py-3 text-lg bg-white text-gray-900 border-0 shadow-xl"
               />
             </div>
           </div>
         </div>
 
         {/* Quick Links */}
-        <div className="grid grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-3 gap-3 mb-8">
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-9 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
                   <Book className="text-white" size={24} />
                 </div>
                 <div>
@@ -304,9 +304,9 @@ const HelpCenter = () => {
           </Card>
 
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-9 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
                   <Video className="text-white" size={24} />
                 </div>
                 <div>
@@ -319,9 +319,9 @@ const HelpCenter = () => {
           </Card>
 
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-9 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
                   <MessageCircle className="text-white" size={24} />
                 </div>
                 <div>
@@ -335,7 +335,7 @@ const HelpCenter = () => {
         </div>
 
         {/* Main Content */}
-        <div className="grid grid-cols-12 gap-6">
+        <div className="grid grid-cols-12 gap-3">
           {/* Sidebar Categories */}
           <div className="col-span-3">
             <Card>
@@ -364,7 +364,7 @@ const HelpCenter = () => {
 
             {/* Contact Support */}
             <Card className="mt-4">
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <MessageCircle className="text-primary-500 mb-2" size={32} />
                 <h3 className="font-bold mb-2">Need more help?</h3>
                 <p className="text-sm text-gray-600 mb-4">Our team is here to help you succeed</p>
@@ -380,16 +380,16 @@ const HelpCenter = () => {
             {/* Featured Articles */}
             {activeCategory === 'all' && searchQuery === '' && (
               <div className="mb-6">
-                <h2 className="text-xl font-bold mb-4">🔥 Featured Articles</h2>
-                <div className="grid grid-cols-2 gap-4">
+                <h2 className="text-lg font-bold mb-4">🔥 Featured Articles</h2>
+                <div className="grid grid-cols-2 gap-3">
                   {articles
                     .filter(a => a.featured)
                     .slice(0, 4)
                     .map((article, idx) => (
                       <Card key={idx} className="hover:shadow-lg transition-shadow cursor-pointer">
-                        <CardContent className="p-6">
+                        <CardContent className="p-4">
                           <div className="flex items-start gap-3 mb-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <div className="w-10 h-9 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
                               {React.cloneElement(article.icon, {
                                 className: 'text-white',
                                 size: 20,
@@ -402,7 +402,7 @@ const HelpCenter = () => {
                               </p>
                             </div>
                           </div>
-                          <div className="flex items-center gap-4 text-xs text-gray-500">
+                          <div className="flex items-center gap-3 text-xs text-gray-500">
                             <span>👁️ {article.views.toLocaleString()} views</span>
                             <span>📖 {article.readTime}</span>
                           </div>
@@ -415,7 +415,7 @@ const HelpCenter = () => {
 
             {/* All Articles */}
             <div className="mb-6">
-              <h2 className="text-xl font-bold mb-4">
+              <h2 className="text-lg font-bold mb-4">
                 {activeCategory === 'all'
                   ? '📚 All Articles'
                   : `📚 ${categories.find(c => c.id === activeCategory)?.label} Articles`}
@@ -434,7 +434,7 @@ const HelpCenter = () => {
                             </p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-4 text-xs text-gray-500 ml-4">
+                        <div className="flex items-center gap-3 text-xs text-gray-500 ml-4">
                           <span>{article.readTime}</span>
                           <ChevronRight size={16} />
                         </div>
@@ -448,8 +448,8 @@ const HelpCenter = () => {
             {/* Video Tutorials */}
             {activeCategory === 'all' && searchQuery === '' && (
               <div className="mb-6">
-                <h2 className="text-xl font-bold mb-4">🎥 Video Tutorials</h2>
-                <div className="grid grid-cols-2 gap-4">
+                <h2 className="text-lg font-bold mb-4">🎥 Video Tutorials</h2>
+                <div className="grid grid-cols-2 gap-3">
                   {videoTutorials.map((video, idx) => (
                     <Card
                       key={idx}
@@ -482,10 +482,10 @@ const HelpCenter = () => {
             {/* Common Questions */}
             {activeCategory === 'all' && searchQuery === '' && (
               <div>
-                <h2 className="text-xl font-bold mb-4">❓ Common Questions</h2>
+                <h2 className="text-lg font-bold mb-4">❓ Common Questions</h2>
                 <Card>
-                  <CardContent className="p-6">
-                    <div className="space-y-6">
+                  <CardContent className="p-4">
+                    <div className="space-y-3">
                       {commonQuestions.map((qa, idx) => (
                         <div key={idx} className="pb-6 border-b last:border-b-0 last:pb-0">
                           <div className="flex items-start gap-3">

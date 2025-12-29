@@ -71,8 +71,8 @@ const KpiFunnelChart = ({
       transition={{ duration: 0.6 }}
     >
       <GlassCard variant="gradient" className="overflow-hidden">
-        <GlassCardContent className="p-6">
-          <h3 className="text-xl font-bold mb-6 font-space-grotesk">
+        <GlassCardContent className="p-4">
+          <h3 className="text-lg font-bold mb-6 font-space-grotesk">
             <GradientText gradient="cyber">{title}</GradientText>
           </h3>
 
@@ -124,21 +124,21 @@ const KpiFunnelChart = ({
 
           {/* Summary Stats */}
           {data.length > 0 && data[0]?.value > 0 && (
-            <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/10">
+            <div className="grid grid-cols-3 gap-3 mt-6 pt-6 border-t border-white/10">
               <div className="text-center">
-                <div className="text-2xl font-bold text-cyan-400">
+                <div className="text-lg font-bold text-cyan-400">
                   {Math.round(((data[data.length - 1]?.value ?? 0) / (data[0]?.value ?? 1)) * 100)}%
                 </div>
                 <div className="text-xs text-gray-400">Total Conversion</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-purple-400">
+                <div className="text-lg font-bold text-purple-400">
                   {Math.round(((data[4]?.value ?? 0) / (data[0]?.value ?? 1)) * 100)}%
                 </div>
                 <div className="text-xs text-gray-400">Lead → Meeting</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-emerald-400">
+                <div className="text-lg font-bold text-emerald-400">
                   ${Math.round((data[data.length - 1]?.value ?? 0) * 15).toLocaleString()}K
                 </div>
                 <div className="text-xs text-gray-400">Pipeline Value</div>

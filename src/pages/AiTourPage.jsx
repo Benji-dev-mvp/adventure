@@ -17,7 +17,7 @@ const AiTourPage = () => {
   return (
     <AppShell showBanner={false}>
       {/* Hero */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent" />
 
@@ -38,14 +38,14 @@ const AiTourPage = () => {
           </RevealText>
 
           <RevealText delay={200}>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
               Experience a complete walkthrough of how Ava, your AI BDR, handles everything from
               lead discovery to booking meetings — all on autopilot.
             </p>
           </RevealText>
 
           <RevealText delay={300}>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <a href="#video">
                 <GlowButton variant="primary" size="lg" glow className="gap-2">
                   <Play size={18} />
@@ -69,20 +69,20 @@ const AiTourPage = () => {
       </div>
 
       {/* Tour Highlights */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
 
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">What You'll See in the Tour</GradientText>
               </h2>
               <p className="text-gray-300 text-lg">Every step of the autonomous outbound journey</p>
             </div>
           </RevealText>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {[
               {
                 title: 'Hero → Login Flow',
@@ -114,8 +114,8 @@ const AiTourPage = () => {
             ].map((item, index) => (
               <RevealText key={index} delay={index * 100}>
                 <GlassCard variant="default" hover className="h-full">
-                  <GlassCardContent className="p-6">
-                    <div className="flex items-start gap-4">
+                  <GlassCardContent className="p-4">
+                    <div className="flex items-start gap-3">
                       <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center flex-shrink-0">
                         <span className="text-white font-bold text-sm">{index + 1}</span>
                       </div>
@@ -135,18 +135,18 @@ const AiTourPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
 
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 font-space-grotesk">
+            <h2 className="text-lg md:text-4xl font-bold mb-6 font-space-grotesk">
               <GradientText gradient="aurora">Ready to Experience Ava Yourself?</GradientText>
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-lg text-gray-300 mb-8">
               Start your free trial and see the results within the first week
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link to="/pricing#start">
                 <GlowButton variant="primary" size="lg" glow className="gap-2">
                   Start Free Trial
@@ -159,7 +159,7 @@ const AiTourPage = () => {
                 </GlowButtonOutline>
               </Link>
             </div>
-            <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+            <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm text-gray-400">
               <span className="flex items-center gap-2">
                 <CheckCircle2 size={16} className="text-emerald-400" />
                 No credit card required

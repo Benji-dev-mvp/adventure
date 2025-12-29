@@ -62,7 +62,7 @@ function NavigationLayoutSettings() {
         <CardDescription>Choose how navigation appears in the app</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-3">
           {layouts.map(layout => {
             const Icon = layout.icon;
             const isSelected = navigationLayout === layout.id;
@@ -148,7 +148,7 @@ const Settings = () => {
 
   return (
     <DashboardLayout title="Settings" subtitle="Manage your account and preferences">
-      <div className="grid lg:grid-cols-4 gap-4">
+      <div className="grid lg:grid-cols-4 gap-3">
         {/* Sidebar Tabs */}
         <div className="lg:col-span-1">
           <Card>
@@ -183,7 +183,7 @@ const Settings = () => {
         </div>
 
         {/* Content */}
-        <div className="lg:col-span-3 space-y-4">
+        <div className="lg:col-span-3 space-y-3">
           {/* Appearance */}
           {activeTab === 'appearance' && (
             <>
@@ -193,12 +193,12 @@ const Settings = () => {
                   <CardDescription>Choose your preferred color scheme</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-3">
+                    <div className="grid grid-cols-2 gap-3">
                       {/* Light Mode */}
                       <button
                         onClick={() => theme === 'dark' && toggleTheme()}
-                        className={`relative p-6 rounded-xl border-2 transition-all ${
+                        className={`relative p-4 rounded-lg border-2 transition-all ${
                           theme === 'light'
                             ? 'border-accent-500 bg-accent-50'
                             : 'border-gray-200 hover:border-gray-300'
@@ -224,7 +224,7 @@ const Settings = () => {
                       {/* Dark Mode */}
                       <button
                         onClick={() => theme === 'light' && toggleTheme()}
-                        className={`relative p-6 rounded-xl border-2 transition-all ${
+                        className={`relative p-4 rounded-lg border-2 transition-all ${
                           theme === 'dark'
                             ? 'border-accent-500 bg-accent-50'
                             : 'border-gray-200 hover:border-gray-300'
@@ -248,7 +248,7 @@ const Settings = () => {
                       </button>
                     </div>
 
-                    <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                    <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                       <div className="flex items-start gap-3">
                         <div className="text-blue-600 mt-0.5">
                           <AlertCircle size={20} />
@@ -272,7 +272,7 @@ const Settings = () => {
                   <CardDescription>Customize your viewing experience</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <div className="flex items-center justify-between flex-wrap gap-3">
                       <div>
                         <p className="font-medium text-gray-900">Compact View</p>
@@ -320,10 +320,10 @@ const Settings = () => {
                   <CardDescription>Manage your sending email addresses</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between p-4 border border-gray-200 rounded-xl">
+                  <div className="space-y-3">
+                    <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between p-4 border border-gray-200 rounded-lg">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                        <div className="w-10 h-9 bg-blue-100 rounded-full flex items-center justify-center">
                           <Mail size={20} className="text-blue-600" />
                         </div>
                         <div>
@@ -350,7 +350,7 @@ const Settings = () => {
               </Card>
 
               {/* New Advanced Components */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 <EmailWarmup />
                 <DomainSetup />
               </div>
@@ -362,8 +362,8 @@ const Settings = () => {
                   <CardDescription>Optimize email deliverability</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    <div className="p-4 bg-green-50 border border-green-200 rounded-xl">
+                  <div className="space-y-3">
+                    <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-2">
                           <CheckCircle2 className="text-green-600" size={20} />
@@ -373,7 +373,7 @@ const Settings = () => {
                         </div>
                         <Badge variant="success">92/100</Badge>
                       </div>
-                      <div className="grid grid-cols-3 gap-4 text-sm">
+                      <div className="grid grid-cols-3 gap-3 text-sm">
                         <div>
                           <p className="text-gray-600">SPF</p>
                           <p className="font-semibold text-green-600">✓ Verified</p>
@@ -417,14 +417,14 @@ const Settings = () => {
                   <CardDescription>When should Ava send emails?</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium text-gray-700">
                         Send during business hours only
                       </span>
                       <input type="checkbox" defaultChecked className="rounded" />
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-3">
                       <Input label="Start Time" type="time" defaultValue="09:00" />
                       <Input label="End Time" type="time" defaultValue="17:00" />
                     </div>
@@ -432,7 +432,7 @@ const Settings = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Time Zone
                       </label>
-                      <select className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent-500">
+                      <select className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent-500">
                         <option>Pacific Time (PT)</option>
                         <option>Eastern Time (ET)</option>
                         <option>Central Time (CT)</option>
@@ -453,7 +453,7 @@ const Settings = () => {
                   <CardDescription>Sync leads and track activity</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     {[
                       { name: 'Salesforce', status: 'connected', logo: '☁️' },
                       { name: 'HubSpot', status: 'not-connected', logo: '🟠' },
@@ -461,10 +461,10 @@ const Settings = () => {
                     ].map(integration => (
                       <div
                         key={integration.name}
-                        className="flex items-center justify-between p-4 border border-gray-200 rounded-xl"
+                        className="flex items-center justify-between p-4 border border-gray-200 rounded-lg"
                       >
                         <div className="flex items-center gap-3">
-                          <span className="text-2xl">{integration.logo}</span>
+                          <span className="text-lg">{integration.logo}</span>
                           <span className="font-medium text-gray-900">{integration.name}</span>
                         </div>
                         {integration.status === 'connected' ? (
@@ -491,10 +491,10 @@ const Settings = () => {
                   <CardDescription>Enable LinkedIn outreach</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="p-4 border border-gray-200 rounded-xl">
+                  <div className="p-4 border border-gray-200 rounded-lg">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-blue-700 rounded-lg flex items-center justify-center text-white font-semibold">
+                        <div className="w-10 h-9 bg-blue-700 rounded-lg flex items-center justify-center text-white font-semibold">
                           in
                         </div>
                         <div>
@@ -564,10 +564,10 @@ const Settings = () => {
                     ].map((member, index) => (
                       <div
                         key={index}
-                        className="flex items-center justify-between p-4 border border-gray-200 rounded-xl"
+                        className="flex items-center justify-between p-4 border border-gray-200 rounded-lg"
                       >
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-xl">
+                          <div className="w-10 h-9 bg-gray-100 rounded-full flex items-center justify-center text-lg">
                             {member.avatar}
                           </div>
                           <div>
@@ -595,13 +595,13 @@ const Settings = () => {
                   <CardDescription>Configure what team members can do</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     {[
                       { role: 'Admin', description: 'Full access to all features' },
                       { role: 'Member', description: 'Can manage campaigns and leads' },
                       { role: 'Viewer', description: 'Read-only access' },
                     ].map((roleType, index) => (
-                      <div key={index} className="p-4 border border-gray-200 rounded-xl">
+                      <div key={index} className="p-4 border border-gray-200 rounded-lg">
                         <div className="flex items-center justify-between">
                           <div>
                             <p className="font-medium text-gray-900">{roleType.role}</p>
@@ -628,10 +628,10 @@ const Settings = () => {
                   <CardDescription>Professional Plan</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="p-6 bg-gradient-to-br from-accent-50 to-primary-50 rounded-xl">
+                  <div className="p-4 bg-gradient-to-br from-accent-50 to-primary-50 rounded-lg">
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <p className="text-3xl font-bold text-gray-900 mb-1">
+                        <p className="text-lg font-bold text-gray-900 mb-1">
                           $299<span className="text-lg text-gray-600">/month</span>
                         </p>
                         <p className="text-sm text-gray-600">
@@ -640,14 +640,14 @@ const Settings = () => {
                       </div>
                       <Badge variant="accent">Active</Badge>
                     </div>
-                    <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div className="grid grid-cols-2 gap-3 mb-4">
                       <div>
                         <p className="text-sm text-gray-600">Emails this month</p>
-                        <p className="text-xl font-semibold text-gray-900">12,453 / 50,000</p>
+                        <p className="text-lg font-semibold text-gray-900">12,453 / 50,000</p>
                       </div>
                       <div>
                         <p className="text-sm text-gray-600">Leads</p>
-                        <p className="text-xl font-semibold text-gray-900">1,284 / 10,000</p>
+                        <p className="text-lg font-semibold text-gray-900">1,284 / 10,000</p>
                       </div>
                     </div>
                     <div className="flex gap-3">
@@ -664,7 +664,7 @@ const Settings = () => {
                   <CardDescription>Manage your payment information</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="p-4 border border-gray-200 rounded-xl">
+                  <div className="p-4 border border-gray-200 rounded-lg">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <CreditCard className="text-gray-400" size={24} />
@@ -724,7 +724,7 @@ const Settings = () => {
                   <CardDescription>Change your password</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <Input label="Current Password" type="password" />
                     <Input label="New Password" type="password" />
                     <Input label="Confirm New Password" type="password" />
@@ -743,7 +743,7 @@ const Settings = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between p-4 border border-gray-200 rounded-xl">
+                    <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
                       <div className="flex items-center gap-3">
                         <Key size={20} className="text-gray-400" />
                         <div>
@@ -775,7 +775,7 @@ const Settings = () => {
                   <CardDescription>Choose what updates you receive</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     {[
                       {
                         key: 'campaignPerformanceReports',
@@ -831,10 +831,10 @@ const Settings = () => {
                   <CardDescription>Get updates in Slack</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="p-4 border border-gray-200 rounded-xl">
+                  <div className="p-4 border border-gray-200 rounded-lg">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center text-white font-bold">
+                        <div className="w-10 h-9 bg-purple-600 rounded-lg flex items-center justify-center text-white font-bold">
                           #
                         </div>
                         <div>

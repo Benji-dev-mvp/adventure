@@ -25,7 +25,7 @@ const MODEL_CONFIG = {
 
 export function StrategySelector({ strategies, activeStrategy, onSelect, recommendation }) {
   return (
-    <div className="flex items-center gap-4 mb-6">
+    <div className="flex items-center gap-3 mb-6">
       {strategies.map(strategy => {
         const isActive = activeStrategy === strategy.id;
         const isRecommended = recommendation?.strategyId === strategy.id;
@@ -39,7 +39,7 @@ export function StrategySelector({ strategies, activeStrategy, onSelect, recomme
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className={`
-              relative flex-1 p-4 rounded-xl border transition-all text-left
+              relative flex-1 p-4 rounded-lg border transition-all text-left
               ${
                 isActive
                   ? `bg-gradient-to-br ${config.gradient} ${config.border}`

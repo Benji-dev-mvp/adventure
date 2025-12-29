@@ -39,11 +39,11 @@ const ExperienceFlow = () => {
   return (
     <section
       id="flow"
-      className="py-20 px-6 bg-gradient-to-br from-slate-900 via-slate-950 to-purple-950 text-white relative overflow-hidden"
+      className="py-20 px-4 bg-gradient-to-br from-slate-900 via-slate-950 to-purple-950 text-white relative overflow-hidden"
     >
       <div className="absolute inset-0 grid-background opacity-10" />
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-10">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-10">
           <div className="space-y-3">
             <p className="text-sm font-semibold text-purple-300">From hero → login → workspace</p>
             <h2 className="text-4xl md:text-5xl font-bold leading-tight font-space-grotesk">
@@ -73,22 +73,22 @@ const ExperienceFlow = () => {
           </a>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
           {flowSteps.map((step, idx) => {
             const Icon = step.icon;
             return (
               <div
                 key={step.title}
-                className="relative rounded-2xl futuristic-card border border-white/20 p-6 overflow-hidden hover-lift"
+                className="relative rounded-lg futuristic-card border border-white/20 p-4 overflow-hidden hover-lift"
               >
                 <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600" />
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 rounded-xl gradient-mesh grid place-items-center glow">
+                  <div className="w-11 h-11 rounded-lg gradient-mesh grid place-items-center glow">
                     <Icon size={20} className="text-white" />
                   </div>
                   <span className="text-xs font-semibold text-gray-300">0{idx + 1}</span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2 font-space-grotesk">
+                <h3 className="text-lg font-bold text-white mb-2 font-space-grotesk">
                   {step.title}
                 </h3>
                 <p className="text-gray-300 text-sm mb-3">{step.description}</p>

@@ -126,7 +126,7 @@ const InsightCard = ({ insight, onAction, onFeedback, expanded, onToggle }) => {
   return (
     <div
       className={`
-        bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700
+        bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700
         shadow-md hover:shadow-lg transition-all duration-200
         ${expanded ? 'ring-2 ring-purple-500/30' : ''}
       `}
@@ -146,7 +146,7 @@ const InsightCard = ({ insight, onAction, onFeedback, expanded, onToggle }) => {
       >
         <div className="flex items-start gap-3">
           <div
-            className={`w-10 h-10 rounded-lg bg-gradient-to-br ${config.color} flex items-center justify-center flex-shrink-0`}
+            className={`w-10 h-9 rounded-lg bg-gradient-to-br ${config.color} flex items-center justify-center flex-shrink-0`}
           >
             <Icon className="text-white" size={20} />
           </div>
@@ -173,7 +173,7 @@ const InsightCard = ({ insight, onAction, onFeedback, expanded, onToggle }) => {
         </div>
 
         {/* Quick Stats */}
-        <div className="flex items-center gap-4 mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
+        <div className="flex items-center gap-3 mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
           <ImpactIndicator impact={insight.impact} />
           <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
             <Clock size={12} />
@@ -197,7 +197,7 @@ const InsightCard = ({ insight, onAction, onFeedback, expanded, onToggle }) => {
 
       {/* Expanded Content */}
       {expanded && (
-        <div className="px-4 pb-4 space-y-4 animate-fadeIn">
+        <div className="px-4 pb-4 space-y-3 animate-fadeIn">
           {/* Detailed Analysis */}
           <div className={`p-4 rounded-lg ${config.bgColor}`}>
             <h5 className="text-sm font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
@@ -474,12 +474,12 @@ export const StrategyRecommendationCards = ({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="p-5 border-b border-gray-200 dark:border-gray-700">
+      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-9 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center">
               <Lightbulb className="text-white" size={20} />
             </div>
             <div>
@@ -521,8 +521,8 @@ export const StrategyRecommendationCards = ({
       </div>
 
       {/* Insights Grid */}
-      <div className="p-5">
-        <div className="space-y-4">
+      <div className="p-4">
+        <div className="space-y-3">
           {filteredInsights.map(insight => (
             <InsightCard
               key={insight.id}

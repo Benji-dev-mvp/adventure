@@ -81,9 +81,9 @@ export const SpamChecker = ({ subject, content }) => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           {/* Score Display */}
-          <div className="text-center p-6 bg-gray-50 dark:bg-white/5 rounded-lg">
+          <div className="text-center p-4 bg-gray-50 dark:bg-white/5 rounded-lg">
             <div className={`text-5xl font-bold mb-2 ${getScoreColor()}`}>
               {loading ? '...' : score}
             </div>
@@ -128,7 +128,7 @@ export const SpamChecker = ({ subject, content }) => {
           )}
 
           {issues.length === 0 && score > 0 && (
-            <div className="flex items-center justify-center gap-2 text-green-600 dark:text-green-400 py-4">
+            <div className="flex items-center justify-center gap-2 text-green-600 dark:text-green-400 py-3">
               <CheckCircle2 size={20} />
               <p className="text-sm font-medium">Excellent! No spam triggers detected.</p>
             </div>

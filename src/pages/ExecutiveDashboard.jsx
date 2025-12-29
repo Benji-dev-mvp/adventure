@@ -184,12 +184,12 @@ const ExecutiveDashboard = () => {
       title="Executive Dashboard"
       subtitle="Boardroom view • Real-time KPIs and AI insights"
     >
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* ========== HERO SECTION: Key Metrics Strip ========== */}
-        <div className="bg-gradient-to-r from-slate-800 via-violet-900/20 to-slate-800 rounded-xl border border-slate-700 p-6">
+        <div className="bg-gradient-to-r from-slate-800 via-violet-900/20 to-slate-800 rounded-lg border border-slate-700 p-4">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+              <div className="w-10 h-9 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
                 <Activity className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -213,7 +213,7 @@ const ExecutiveDashboard = () => {
           </div>
 
           {/* Hero KPI Cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
             {heroKpis.map((kpi, i) => (
               <motion.div
                 key={i}
@@ -231,7 +231,7 @@ const ExecutiveDashboard = () => {
                     {kpi.change}
                   </span>
                 </div>
-                <p className="text-2xl font-bold text-white">{kpi.value}</p>
+                <p className="text-lg font-bold text-white">{kpi.value}</p>
                 <p className="text-xs text-slate-500 mt-1">{kpi.label}</p>
               </motion.div>
             ))}
@@ -239,9 +239,9 @@ const ExecutiveDashboard = () => {
         </div>
 
         {/* ========== CHARTS SECTION: 2-3 Key Charts ========== */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Revenue Trend - Takes 2 columns */}
-          <div className="lg:col-span-2 bg-slate-800/50 rounded-xl border border-slate-700 p-6">
+          <div className="lg:col-span-2 bg-slate-800/50 rounded-lg border border-slate-700 p-4">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h3 className="text-sm font-medium text-white uppercase tracking-wider">
@@ -293,7 +293,7 @@ const ExecutiveDashboard = () => {
           </div>
 
           {/* Pipeline Distribution */}
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-6">
+          <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-4">
             <div className="mb-4">
               <h3 className="text-sm font-medium text-white uppercase tracking-wider">
                 Pipeline Mix
@@ -337,9 +337,9 @@ const ExecutiveDashboard = () => {
         </div>
 
         {/* ========== BOTTOM SECTION: AI Insights + Key Events ========== */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* AI Insights Panel */}
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-6">
+          <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-4">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 rounded-lg bg-violet-500/10 flex items-center justify-center">
                 <Sparkles className="w-4 h-4 text-violet-400" />
@@ -376,7 +376,7 @@ const ExecutiveDashboard = () => {
           </div>
 
           {/* Key Events Timeline */}
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-6">
+          <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-4">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center">
                 <Clock className="w-4 h-4 text-cyan-400" />
@@ -395,7 +395,7 @@ const ExecutiveDashboard = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex items-center gap-4 p-3 rounded-lg bg-slate-900/50 border border-slate-700"
+                  className="flex items-center gap-3 p-3 rounded-lg bg-slate-900/50 border border-slate-700"
                 >
                   <event.icon className={`w-5 h-5 ${event.color} flex-shrink-0`} />
                   <div className="flex-1 min-w-0">
@@ -413,9 +413,9 @@ const ExecutiveDashboard = () => {
         </div>
 
         {/* ========== SECONDARY SECTION: Team + Activity ========== */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Top Performers - Compact */}
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-6">
+          <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-4">
             <h3 className="text-sm font-medium text-white uppercase tracking-wider mb-4">
               Top Performers
             </h3>
@@ -448,7 +448,7 @@ const ExecutiveDashboard = () => {
           </div>
 
           {/* Activity Volume */}
-          <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-6">
+          <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-4">
             <h3 className="text-sm font-medium text-white uppercase tracking-wider mb-4">
               Weekly Activity
             </h3>

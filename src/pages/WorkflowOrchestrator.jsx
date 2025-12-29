@@ -46,7 +46,7 @@ const WorkflowOrchestrator = () => {
       title="Workflow Orchestrator"
       subtitle="Automate multi-step campaigns with visual workflows"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Canvas */}
         <Card className="lg:col-span-2">
           <CardHeader>
@@ -65,7 +65,7 @@ const WorkflowOrchestrator = () => {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="relative bg-gray-50 dark:bg-gray-900 rounded-lg p-8 min-h-[500px]">
+            <div className="relative bg-gray-50 dark:bg-gray-900 rounded-lg p-4 min-h-[500px]">
               {/* Simple visual representation */}
               {nodes.map(node => (
                 <div
@@ -117,17 +117,17 @@ const WorkflowOrchestrator = () => {
 
             <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-500/10 rounded-lg">
               <p className="text-sm font-medium">Active Workflow Statistics</p>
-              <div className="grid grid-cols-3 gap-4 mt-2">
+              <div className="grid grid-cols-3 gap-3 mt-2">
                 <div>
-                  <p className="text-2xl font-bold text-blue-600">1,234</p>
+                  <p className="text-lg font-bold text-blue-600">1,234</p>
                   <p className="text-xs text-gray-600">Triggered today</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-green-600">987</p>
+                  <p className="text-lg font-bold text-green-600">987</p>
                   <p className="text-xs text-gray-600">Completed</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-yellow-600">45</p>
+                  <p className="text-lg font-bold text-yellow-600">45</p>
                   <p className="text-xs text-gray-600">In progress</p>
                 </div>
               </div>
@@ -136,7 +136,7 @@ const WorkflowOrchestrator = () => {
         </Card>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Node Library */}
           <Card>
             <CardHeader>

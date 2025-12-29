@@ -174,7 +174,7 @@ const BenchmarkCard: React.FC<{ metric: BenchmarkMetric }> = ({ metric }) => {
         </span>
       </div>
       <div className="flex items-baseline gap-3">
-        <span className="text-2xl font-bold text-white">{formatValue(metric.yourValue)}</span>
+        <span className="text-lg font-bold text-white">{formatValue(metric.yourValue)}</span>
         <span className="text-gray-500 text-sm">
           vs {formatValue(metric.benchmarkMedian)} median
         </span>
@@ -232,7 +232,7 @@ const PredictionCard: React.FC<{ prediction: Prediction }> = ({ prediction }) =>
     <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
       <div className="flex items-center justify-between mb-3">
         <span className="font-medium text-white">{prediction.target}</span>
-        <div className={`text-xl font-bold ${probColor}`}>
+        <div className={`text-lg font-bold ${probColor}`}>
           {(prediction.probability * 100).toFixed(0)}%
         </div>
       </div>
@@ -333,14 +333,14 @@ export const IntelligenceGridPage: React.FC = () => {
   const [industry, setIndustry] = useState('all');
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
+    <div className="min-h-screen bg-gray-900 text-white p-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-3xl font-bold">Intelligence Grid</h1>
+          <h1 className="text-lg font-bold">Intelligence Grid</h1>
           <p className="text-gray-400">Federated learning & collective intelligence</p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <select
             value={industry}
             onChange={e => setIndustry(e.target.value)}
@@ -364,7 +364,7 @@ export const IntelligenceGridPage: React.FC = () => {
           <button
             key={tab}
             onClick={() => setActiveTab(tab as any)}
-            className={`px-6 py-2 rounded-lg font-medium transition-colors ${
+            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
               activeTab === tab
                 ? 'bg-blue-600 text-white'
                 : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
@@ -377,20 +377,20 @@ export const IntelligenceGridPage: React.FC = () => {
 
       {/* Benchmarks Tab */}
       {activeTab === 'benchmarks' && (
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-4 gap-3">
           <div className="col-span-3">
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-3">
               {BENCHMARK_METRICS.map((metric, i) => (
                 <BenchmarkCard key={i} metric={metric} />
               ))}
             </div>
 
             {/* Recommendations */}
-            <div className="mt-6 bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <div className="mt-6 bg-gray-800 rounded-lg p-4 border border-gray-700">
               <h3 className="text-lg font-semibold mb-4">Benchmark Insights</h3>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="flex items-start gap-3 p-3 bg-green-500/10 rounded-lg border border-green-500/30">
-                  <span className="text-green-400 text-xl">✓</span>
+                  <span className="text-green-400 text-lg">✓</span>
                   <div>
                     <div className="font-medium text-green-400">Sales Cycle Efficiency</div>
                     <div className="text-sm text-gray-400">
@@ -399,7 +399,7 @@ export const IntelligenceGridPage: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex items-start gap-3 p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
-                  <span className="text-yellow-400 text-xl">!</span>
+                  <span className="text-yellow-400 text-lg">!</span>
                   <div>
                     <div className="font-medium text-yellow-400">Meeting Show Rate</div>
                     <div className="text-sm text-gray-400">
@@ -412,11 +412,11 @@ export const IntelligenceGridPage: React.FC = () => {
           </div>
 
           {/* Radar Chart */}
-          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+          <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
             <h3 className="text-lg font-semibold mb-4 text-center">Performance Radar</h3>
             <RadarChart data={BENCHMARK_METRICS} />
             <div className="mt-4 text-center">
-              <div className="text-2xl font-bold text-blue-400">52nd</div>
+              <div className="text-lg font-bold text-blue-400">52nd</div>
               <div className="text-sm text-gray-400">Overall Percentile</div>
             </div>
           </div>
@@ -427,36 +427,36 @@ export const IntelligenceGridPage: React.FC = () => {
       {activeTab === 'models' && (
         <div>
           {/* Stats */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
-            <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+          <div className="grid grid-cols-4 gap-3 mb-6">
+            <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
               <div className="text-gray-400 text-sm">Active Models</div>
-              <div className="text-2xl font-bold text-white">4</div>
+              <div className="text-lg font-bold text-white">4</div>
             </div>
-            <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+            <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
               <div className="text-gray-400 text-sm">Total Contributors</div>
-              <div className="text-2xl font-bold text-white">891</div>
+              <div className="text-lg font-bold text-white">891</div>
             </div>
-            <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+            <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
               <div className="text-gray-400 text-sm">Avg Accuracy</div>
-              <div className="text-2xl font-bold text-green-400">76%</div>
+              <div className="text-lg font-bold text-green-400">76%</div>
             </div>
-            <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+            <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
               <div className="text-gray-400 text-sm">Privacy Budget</div>
-              <div className="text-2xl font-bold text-blue-400">ε = 1.2</div>
+              <div className="text-lg font-bold text-blue-400">ε = 1.2</div>
             </div>
           </div>
 
           {/* Model Grid */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-4 gap-3 mb-6">
             {MODELS.map(model => (
               <ModelCard key={model.id} model={model} />
             ))}
           </div>
 
           {/* How It Works */}
-          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+          <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
             <h3 className="text-lg font-semibold mb-4">How Federated Learning Works</h3>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-4 gap-3">
               {[
                 {
                   icon: '🔒',
@@ -472,7 +472,7 @@ export const IntelligenceGridPage: React.FC = () => {
                 { icon: '🌐', title: 'Global Model', desc: 'Aggregated model benefits everyone' },
               ].map((step, i) => (
                 <div key={i} className="text-center p-4">
-                  <div className="text-3xl mb-2">{step.icon}</div>
+                  <div className="text-lg mb-2">{step.icon}</div>
                   <div className="font-medium text-white">{step.title}</div>
                   <div className="text-sm text-gray-400">{step.desc}</div>
                 </div>
@@ -486,49 +486,49 @@ export const IntelligenceGridPage: React.FC = () => {
       {activeTab === 'predictions' && (
         <div>
           {/* Prediction Stats */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
-            <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+          <div className="grid grid-cols-4 gap-3 mb-6">
+            <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
               <div className="text-gray-400 text-sm">Predictions Today</div>
-              <div className="text-2xl font-bold text-white">1,234</div>
+              <div className="text-lg font-bold text-white">1,234</div>
             </div>
-            <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+            <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
               <div className="text-gray-400 text-sm">Avg Confidence</div>
-              <div className="text-2xl font-bold text-green-400">82%</div>
+              <div className="text-lg font-bold text-green-400">82%</div>
             </div>
-            <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+            <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
               <div className="text-gray-400 text-sm">High Probability Leads</div>
-              <div className="text-2xl font-bold text-blue-400">47</div>
+              <div className="text-lg font-bold text-blue-400">47</div>
             </div>
-            <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+            <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
               <div className="text-gray-400 text-sm">Prediction Accuracy</div>
-              <div className="text-2xl font-bold text-white">74%</div>
+              <div className="text-lg font-bold text-white">74%</div>
             </div>
           </div>
 
           {/* Predictions */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-3">
             {PREDICTIONS.map((pred, i) => (
               <PredictionCard key={i} prediction={pred} />
             ))}
           </div>
 
           {/* Trends */}
-          <div className="mt-6 bg-gray-800 rounded-xl p-6 border border-gray-700">
+          <div className="mt-6 bg-gray-800 rounded-lg p-4 border border-gray-700">
             <h3 className="text-lg font-semibold mb-4">Trend Insights</h3>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-3">
               <div className="p-4 bg-gray-700 rounded-lg">
                 <div className="text-sm text-gray-400 mb-1">Best Send Time</div>
-                <div className="text-xl font-bold text-white">Tuesday 9-11am</div>
+                <div className="text-lg font-bold text-white">Tuesday 9-11am</div>
                 <div className="text-sm text-green-400">+23% open rate</div>
               </div>
               <div className="p-4 bg-gray-700 rounded-lg">
                 <div className="text-sm text-gray-400 mb-1">Top Persona</div>
-                <div className="text-xl font-bold text-white">VP Sales</div>
+                <div className="text-lg font-bold text-white">VP Sales</div>
                 <div className="text-sm text-green-400">3.2x reply rate</div>
               </div>
               <div className="p-4 bg-gray-700 rounded-lg">
                 <div className="text-sm text-gray-400 mb-1">Market Signal</div>
-                <div className="text-xl font-bold text-white">Hiring Surge</div>
+                <div className="text-lg font-bold text-white">Hiring Surge</div>
                 <div className="text-sm text-green-400">+45% conversion</div>
               </div>
             </div>

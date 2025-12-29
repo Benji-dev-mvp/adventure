@@ -22,16 +22,16 @@ const HowItWorksStepper = ({ content }) => {
   return (
     <section className="relative py-24 md:py-32 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
+      <div className="max-w-7xl mx-auto px-4 mb-16 text-center">
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary dark:text-white mb-6">
           {content.title}
         </h2>
-        <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className="text-lg md:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           {content.subtitle}
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Steps Column (Left) */}
           <div className="space-y-8">
@@ -83,11 +83,11 @@ const StepCard = ({ step, index, isActive, isPast, hasStarted }) => {
       } ${hasStarted ? 'translate-x-0' : '-translate-x-8 opacity-0'}`}
       style={{ transitionDelay: `${index * 0.1}s` }}
     >
-      <CardContent className="p-8">
+      <CardContent className="p-4">
         {/* Step Number Badge */}
-        <div className="flex items-center gap-4 mb-6">
+        <div className="flex items-center gap-3 mb-6">
           <div
-            className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${
+            className={`flex-shrink-0 w-12 h-9 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${
               isPast
                 ? 'bg-green-500 text-white'
                 : isActive
@@ -106,8 +106,8 @@ const StepCard = ({ step, index, isActive, isPast, hasStarted }) => {
         </div>
 
         {/* Step Content */}
-        <div className="space-y-4">
-          <h3 className="text-2xl md:text-3xl font-bold text-primary dark:text-white">
+        <div className="space-y-3">
+          <h3 className="text-lg md:text-lg font-bold text-primary dark:text-white">
             {step.title}
           </h3>
           <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -155,7 +155,7 @@ const VisualPreview = ({ activeStep, steps, hasStarted }) => {
       className={`relative transition-opacity duration-500 ${hasStarted ? 'opacity-100' : 'opacity-0'}`}
     >
       {/* Frame Container */}
-      <div className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border-2 border-gray-200 dark:border-gray-700">
+      <div className="relative bg-white dark:bg-gray-900 rounded-lg shadow-2xl overflow-hidden border-2 border-gray-200 dark:border-gray-700">
         {/* Browser Chrome */}
         <div className="flex items-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
           <div className="flex gap-2">
@@ -182,7 +182,7 @@ const VisualPreview = ({ activeStep, steps, hasStarted }) => {
               title={`Figma prototype - ${currentStep.title}`}
             />
           ) : (
-            <div className="p-6">
+            <div className="p-4">
               <div className="transition-all duration-500" key={visualType}>
                 {visualType === 'lead-database' && <LeadDatabaseVisual />}
                 {visualType === 'campaign-builder' && <CampaignBuilderVisual />}
@@ -205,9 +205,9 @@ const VisualPreview = ({ activeStep, steps, hasStarted }) => {
       </div>
 
       {/* Floating Feature Badges */}
-      <div className="absolute -bottom-4 -left-4 bg-white dark:bg-gray-800 rounded-xl shadow-lg px-4 py-3 border border-gray-200 dark:border-gray-700 animate-bounce-slow">
+      <div className="absolute -bottom-4 -left-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg px-4 py-3 border border-gray-200 dark:border-gray-700 animate-bounce-slow">
         <div className="text-xs text-gray-500 dark:text-gray-400">Active Features</div>
-        <div className="text-xl font-bold text-accent dark:text-accent-400">
+        <div className="text-lg font-bold text-accent dark:text-accent-400">
           {currentStep.features.length}
         </div>
       </div>
@@ -223,9 +223,9 @@ const LeadDatabaseVisual = () => (
     {[1, 2, 3, 4].map(i => (
       <div
         key={i}
-        className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm flex items-center gap-4"
+        className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm flex items-center gap-3"
       >
-        <div className="w-10 h-10 rounded-full bg-accent-200 dark:bg-accent-700" />
+        <div className="w-10 h-9 rounded-full bg-accent-200 dark:bg-accent-700" />
         <div className="flex-1 space-y-2">
           <div className="h-3 bg-gray-300 dark:bg-gray-600 rounded w-3/4" />
           <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded w-1/2" />
@@ -237,8 +237,8 @@ const LeadDatabaseVisual = () => (
 );
 
 const CampaignBuilderVisual = () => (
-  <div className="space-y-4 animate-fade-in">
-    <div className="flex gap-4">
+  <div className="space-y-3 animate-fade-in">
+    <div className="flex gap-3">
       {[1, 2, 3].map(i => (
         <div key={i} className="flex-1 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm h-20" />
       ))}
@@ -276,7 +276,7 @@ const AIAssistantVisual = () => (
 );
 
 const AnalyticsVisual = () => (
-  <div className="space-y-4 animate-fade-in">
+  <div className="space-y-3 animate-fade-in">
     <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm h-32 flex items-end gap-2">
       {[40, 65, 45, 80, 60, 90, 70, 55].map((height, i) => (
         <div
@@ -289,7 +289,7 @@ const AnalyticsVisual = () => (
     <div className="grid grid-cols-3 gap-3">
       {[1, 2, 3].map(i => (
         <div key={i} className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow-sm text-center">
-          <div className="text-2xl font-bold text-accent">+{i * 15}%</div>
+          <div className="text-lg font-bold text-accent">+{i * 15}%</div>
           <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Metric {i}</div>
         </div>
       ))}
@@ -298,12 +298,12 @@ const AnalyticsVisual = () => (
 );
 
 const DashboardVisual = () => (
-  <div className="space-y-4 animate-fade-in">
-    <div className="grid grid-cols-3 gap-4">
+  <div className="space-y-3 animate-fade-in">
+    <div className="grid grid-cols-3 gap-3">
       {[1, 2, 3].map(i => (
         <div key={i} className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm">
           <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">Metric {i}</div>
-          <div className="text-2xl font-bold text-primary dark:text-accent">{i * 127}%</div>
+          <div className="text-lg font-bold text-primary dark:text-accent">{i * 127}%</div>
         </div>
       ))}
     </div>

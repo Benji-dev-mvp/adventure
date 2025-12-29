@@ -76,7 +76,7 @@ const TimelineNode = ({ decision, isExpanded, onToggle, isLast }) => {
       <motion.div
         layout
         className={`
-          relative flex gap-4 p-4 rounded-xl cursor-pointer transition-colors
+          relative flex gap-3 p-4 rounded-lg cursor-pointer transition-colors
           ${isExpanded ? 'bg-white/5' : 'hover:bg-white/5'}
         `}
         onClick={onToggle}
@@ -85,7 +85,7 @@ const TimelineNode = ({ decision, isExpanded, onToggle, isLast }) => {
         <div className="flex flex-col items-center">
           <div
             className={`
-            relative z-10 p-2.5 rounded-xl border
+            relative z-10 p-2.5 rounded-lg border
             ${typeConfig.bgColor} ${typeConfig.borderColor}
           `}
           >
@@ -95,7 +95,7 @@ const TimelineNode = ({ decision, isExpanded, onToggle, isLast }) => {
 
         {/* Content */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-4">
+          <div className="flex items-start justify-between gap-3">
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span
@@ -178,10 +178,10 @@ const TimelineNode = ({ decision, isExpanded, onToggle, isLast }) => {
 };
 
 const TimelineSkeleton = () => (
-  <div className="space-y-4">
+  <div className="space-y-3">
     {[1, 2, 3].map(i => (
-      <div key={i} className="flex gap-4 p-4">
-        <Skeleton className="w-11 h-11 rounded-xl" />
+      <div key={i} className="flex gap-3 p-4">
+        <Skeleton className="w-11 h-11 rounded-lg" />
         <div className="flex-1">
           <div className="flex gap-2 mb-2">
             <Skeleton className="w-24 h-5 rounded" />
@@ -208,7 +208,7 @@ export function DecisionTimeline({ decisions, loading }) {
   if (loading) {
     return (
       <GlassCard variant="subtle">
-        <GlassCardContent className="p-6">
+        <GlassCardContent className="p-4">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-semibold text-slate-100">Decision Timeline</h3>
           </div>
@@ -220,7 +220,7 @@ export function DecisionTimeline({ decisions, loading }) {
 
   return (
     <GlassCard variant="subtle">
-      <GlassCardContent className="p-6">
+      <GlassCardContent className="p-4">
         <div className="flex items-center justify-between mb-6">
           <div>
             <h3 className="text-lg font-semibold text-slate-100">Decision Timeline</h3>
@@ -269,7 +269,7 @@ export function DecisionTimeline({ decisions, loading }) {
 
         {filteredDecisions.length === 0 && (
           <div className="text-center py-12 text-slate-400">
-            <Brain className="w-12 h-12 mx-auto mb-3 opacity-50" />
+            <Brain className="w-12 h-9 mx-auto mb-3 opacity-50" />
             <p>No decisions found for this filter</p>
           </div>
         )}

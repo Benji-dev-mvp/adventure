@@ -140,7 +140,7 @@ const StatusMonitor = () => {
       id="status"
       className="w-full py-20 bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 text-sm font-semibold mb-4">
@@ -150,13 +150,13 @@ const StatusMonitor = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 font-space-grotesk">
             Platform Status
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
             Real-time system health monitoring and performance metrics
           </p>
         </div>
 
         {/* Live Performance Metrics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
           {performanceMetrics.map((metric, idx) => {
             const Icon = metric.icon;
             return (
@@ -164,9 +164,9 @@ const StatusMonitor = () => {
                 key={idx}
                 className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:shadow-xl transition-shadow"
               >
-                <CardContent className="p-6 text-center">
+                <CardContent className="p-4 text-center">
                   <Icon className={`w-8 h-8 ${metric.color} mx-auto mb-2`} />
-                  <div className="text-3xl font-bold text-slate-900 dark:text-white mb-1">
+                  <div className="text-lg font-bold text-slate-900 dark:text-white mb-1">
                     {metric.label}
                   </div>
                   <div className="text-sm text-slate-600 dark:text-slate-400">{metric.value}</div>
@@ -178,7 +178,7 @@ const StatusMonitor = () => {
 
         {/* Service Status Grid */}
         <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 mb-8">
-          <CardContent className="p-6">
+          <CardContent className="p-4">
             <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
               <Server className="w-5 h-5 text-blue-500" />
               Service Health
@@ -190,7 +190,7 @@ const StatusMonitor = () => {
                   key={idx}
                   className="flex items-center justify-between p-4 rounded-lg bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 hover:border-green-500/50 transition-all"
                 >
-                  <div className="flex items-center gap-4 flex-1">
+                  <div className="flex items-center gap-3 flex-1">
                     <div className="flex items-center gap-2">
                       <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
                       <span className="font-semibold text-slate-900 dark:text-white">
@@ -202,7 +202,7 @@ const StatusMonitor = () => {
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-6 text-sm text-slate-600 dark:text-slate-400">
+                  <div className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
                     <div className="hidden md:block">
                       <span className="text-xs text-slate-500 dark:text-slate-500">Uptime:</span>{' '}
                       <span className="font-semibold text-slate-900 dark:text-white">
@@ -230,7 +230,7 @@ const StatusMonitor = () => {
 
         {/* Incident History */}
         <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
-          <CardContent className="p-6">
+          <CardContent className="p-4">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <Clock className="w-5 h-5 text-purple-500" />
@@ -239,11 +239,11 @@ const StatusMonitor = () => {
               <span className="text-sm text-slate-500 dark:text-slate-400">Last 30 days</span>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {incidents.map((incident, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600"
+                  className="flex items-start gap-3 p-4 rounded-lg bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600"
                 >
                   <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
                   <div className="flex-1">
@@ -255,7 +255,7 @@ const StatusMonitor = () => {
                         {incident.date}
                       </span>
                     </div>
-                    <div className="flex items-center gap-4 text-sm text-slate-600 dark:text-slate-400">
+                    <div className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
                       <span>Duration: {incident.duration}</span>
                       <span>•</span>
                       <span>{incident.impact}</span>
@@ -272,25 +272,25 @@ const StatusMonitor = () => {
         </Card>
 
         {/* SLA Guarantee */}
-        <div className="mt-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-8 text-white text-center">
+        <div className="mt-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-4 text-white text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
             <BarChart3 className="w-8 h-8" />
           </div>
-          <h3 className="text-2xl font-bold mb-2">99.95% Uptime SLA</h3>
+          <h3 className="text-lg font-bold mb-2">99.95% Uptime SLA</h3>
           <p className="text-blue-100 mb-4">
             We guarantee enterprise-grade reliability with financial credits for any SLA breaches
           </p>
-          <div className="flex justify-center gap-6 text-sm">
+          <div className="flex justify-center gap-3 text-sm">
             <div>
               <div className="font-bold text-lg">24/7</div>
               <div className="text-blue-100">Support</div>
             </div>
-            <div className="w-px h-12 bg-white/20" />
+            <div className="w-px h-9 bg-white/20" />
             <div>
               <div className="font-bold text-lg">&lt;1min</div>
               <div className="text-blue-100">Response Time</div>
             </div>
-            <div className="w-px h-12 bg-white/20" />
+            <div className="w-px h-9 bg-white/20" />
             <div>
               <div className="font-bold text-lg">99.99%</div>
               <div className="text-blue-100">Data Durability</div>

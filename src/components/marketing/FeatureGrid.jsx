@@ -42,19 +42,19 @@ const FeatureGrid = ({ content }) => {
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/5 to-transparent pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16 space-y-4">
+        <div className="text-center mb-16 space-y-3">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary dark:text-white">
             {content.title}
           </h2>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg md:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             {content.subtitle}
           </p>
         </div>
 
         {/* Feature Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
           {content.grid.map((feature, index) => (
             <FeatureTile
               key={feature.id}
@@ -100,10 +100,10 @@ const FeatureTile = ({ feature, index, isExpanded, onToggle, isVisible }) => {
       onMouseLeave={() => setIsHovered(false)}
       onClick={onToggle}
     >
-      <CardContent className="p-8 space-y-4">
+      <CardContent className="p-4 space-y-3">
         {/* Icon */}
         <div
-          className={`w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 ${
+          className={`w-14 h-14 rounded-lg flex items-center justify-center transition-all duration-300 ${
             isHovered
               ? 'bg-accent text-white shadow-lg scale-110'
               : 'bg-accent-100 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400'
@@ -113,7 +113,7 @@ const FeatureTile = ({ feature, index, isExpanded, onToggle, isVisible }) => {
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold text-primary dark:text-white group-hover:text-accent transition-colors">
+        <h3 className="text-lg font-bold text-primary dark:text-white group-hover:text-accent transition-colors">
           {feature.title}
         </h3>
 
@@ -174,14 +174,14 @@ const ExpandedFeatureModal = ({ feature, onClose }) => {
       {/* Modal */}
       <div className="fixed inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-3xl md:w-full z-50 animate-scale-in">
         <Card className="bg-white dark:bg-gray-900 shadow-2xl border-2 border-accent overflow-hidden max-h-[90vh] overflow-y-auto">
-          <CardContent className="p-8 md:p-12 space-y-8">
+          <CardContent className="p-4 md:p-12 space-y-8">
             {/* Header */}
-            <div className="flex items-start gap-6">
-              <div className="w-16 h-16 rounded-xl bg-accent text-white flex items-center justify-center flex-shrink-0">
+            <div className="flex items-start gap-3">
+              <div className="w-16 h-16 rounded-lg bg-accent text-white flex items-center justify-center flex-shrink-0">
                 <Icon className="w-8 h-8" />
               </div>
               <div className="flex-1">
-                <h3 className="text-3xl font-bold text-primary dark:text-white mb-3">
+                <h3 className="text-lg font-bold text-primary dark:text-white mb-3">
                   {feature.title}
                 </h3>
                 <p className="text-lg text-gray-600 dark:text-gray-300">
@@ -221,9 +221,9 @@ const ExpandedFeatureModal = ({ feature, onClose }) => {
             </div>
 
             {/* Benefit */}
-            <div className="bg-green-50 dark:bg-green-900/20 rounded-xl p-6 border-2 border-green-200 dark:border-green-800">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-green-500 text-white flex items-center justify-center flex-shrink-0">
+            <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-2 border-green-200 dark:border-green-800">
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-9 rounded-lg bg-green-500 text-white flex items-center justify-center flex-shrink-0">
                   <Check className="w-6 h-6" />
                 </div>
                 <div>
@@ -239,7 +239,7 @@ const ExpandedFeatureModal = ({ feature, onClose }) => {
             <div className="flex justify-end">
               <button
                 onClick={onClose}
-                className="px-6 py-3 bg-accent text-white rounded-lg font-medium hover:bg-accent-600 transition-colors"
+                className="px-4 py-3 bg-accent text-white rounded-lg font-medium hover:bg-accent-600 transition-colors"
               >
                 Got it
               </button>

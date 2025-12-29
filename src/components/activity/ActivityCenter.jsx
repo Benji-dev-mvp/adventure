@@ -104,7 +104,7 @@ const ActivityCard = ({ activity, onNavigate }) => {
           )}
         </div>
 
-        <div className="flex items-center gap-4 mt-3">
+        <div className="flex items-center gap-3 mt-3">
           <span className="text-xs text-gray-400 dark:text-gray-500">
             {formatTimeAgo(activity.timestamp)}
           </span>
@@ -194,11 +194,11 @@ const ActivityCenter = () => {
 
   return (
     <DashboardLayout>
-      <div className="p-8 max-w-6xl mx-auto">
+      <div className="p-4 max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
+            <h1 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-3">
               <Activity className="h-8 w-8 text-accent-500" />
               Activity Center
             </h1>
@@ -220,7 +220,7 @@ const ActivityCenter = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-5 gap-4 mb-8">
+        <div className="grid grid-cols-5 gap-3 mb-8">
           {[
             { label: 'Total Events', value: stats.total, color: 'bg-gray-500' },
             { label: 'Campaigns', value: stats.campaigns, color: 'bg-green-500' },
@@ -232,7 +232,7 @@ const ActivityCenter = () => {
               <div className="flex items-center gap-3">
                 <div className={cn('w-3 h-3 rounded-full', stat.color)} />
                 <div>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</p>
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">{stat.value}</p>
                   <p className="text-sm text-gray-500 dark:text-gray-400">{stat.label}</p>
                 </div>
               </div>
@@ -268,7 +268,7 @@ const ActivityCenter = () => {
         </div>
 
         {/* Activity List */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {activities.length === 0 ? (
             <Card className="p-12 text-center">
               <Activity className="h-16 w-16 text-gray-300 dark:text-gray-700 mx-auto mb-4" />

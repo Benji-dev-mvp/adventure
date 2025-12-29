@@ -4,8 +4,8 @@ import { cn } from '@/lib/utils';
 
 const Table = ({ children, className, ...props }) => {
   return (
-    <div className="w-full overflow-auto rounded-lg border border-gray-200 dark:border-gray-700">
-      <table className={cn('w-full text-sm', className)} {...props}>
+    <div className="w-full overflow-auto rounded-[var(--radius-lg)] border border-gray-200 dark:border-gray-700">
+      <table className={cn('w-full text-[var(--font-sm)]', className)} {...props}>
         {children}
       </table>
     </div>
@@ -44,7 +44,7 @@ const TableRow = ({ children, className, clickable, ...props }) => {
   return (
     <tr
       className={cn(
-        'transition-colors',
+        'transition-colors h-[var(--row-h)]',
         clickable && 'hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer',
         className
       )}
@@ -59,7 +59,7 @@ const TableHead = ({ children, className, ...props }) => {
   return (
     <th
       className={cn(
-        'px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider',
+        'px-[var(--space-4)] py-[var(--space-3)] text-left text-[var(--font-xs)] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider',
         className
       )}
       {...props}
@@ -71,7 +71,13 @@ const TableHead = ({ children, className, ...props }) => {
 
 const TableCell = ({ children, className, ...props }) => {
   return (
-    <td className={cn('px-6 py-4 text-gray-900 dark:text-gray-100', className)} {...props}>
+    <td
+      className={cn(
+        'px-[var(--space-4)] py-[var(--space-3)] text-gray-900 dark:text-gray-100',
+        className
+      )}
+      {...props}
+    >
       {children}
     </td>
   );

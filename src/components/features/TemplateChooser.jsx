@@ -369,10 +369,10 @@ const TemplateChooser = ({ onTemplateSelect }) => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
       <div className="space-y-2">
-        <h2 className="text-3xl font-bold text-gray-900">Choose a sales methodology template</h2>
+        <h2 className="text-lg font-bold text-gray-900">Choose a sales methodology template</h2>
         <p className="text-gray-600">
           Deploy AI-led outbound that adapts to your ICP, industry, and deal type. Select a
           methodology and we will wire the agent messaging, sequencing, assets, and guardrails to
@@ -381,7 +381,7 @@ const TemplateChooser = ({ onTemplateSelect }) => {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-3">
         <div className="space-y-2">
           <p className="text-sm font-semibold text-gray-700">ICP</p>
           <div className="flex gap-2 flex-wrap">
@@ -433,7 +433,7 @@ const TemplateChooser = ({ onTemplateSelect }) => {
       </div>
 
       {/* Templates Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {filteredTemplates.map(template => {
           const Icon = template.icon;
           const isSelected = selectedTemplate === template.id;
@@ -446,8 +446,8 @@ const TemplateChooser = ({ onTemplateSelect }) => {
               } bg-white/90 border border-gray-200 shadow-sm`}
               onClick={() => handleTemplateClick(template)}
             >
-              <CardContent className="p-6 text-gray-900">
-                <div className="space-y-4">
+              <CardContent className="p-4 text-gray-900">
+                <div className="space-y-3">
                   {/* Icon and Title */}
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
@@ -516,7 +516,7 @@ const TemplateChooser = ({ onTemplateSelect }) => {
 
                   {/* Signals and assets */}
                   <div className="grid grid-cols-1 gap-3 pt-2">
-                    <div className="p-3 rounded-xl bg-white/95 border border-gray-200 shadow-sm">
+                    <div className="p-3 rounded-lg bg-white/95 border border-gray-200 shadow-sm">
                       <p className="text-xs font-semibold text-gray-900 uppercase tracking-wide flex items-center gap-2">
                         <Gauge className="w-4 h-4" /> Activation signals
                       </p>
@@ -526,7 +526,7 @@ const TemplateChooser = ({ onTemplateSelect }) => {
                         ))}
                       </ul>
                     </div>
-                    <div className="p-3 rounded-xl bg-white/95 border border-gray-200 shadow-sm">
+                    <div className="p-3 rounded-lg bg-white/95 border border-gray-200 shadow-sm">
                       <p className="text-xs font-semibold text-gray-900 uppercase tracking-wide flex items-center gap-2">
                         <Cable className="w-4 h-4" /> Proof assets
                       </p>
@@ -536,7 +536,7 @@ const TemplateChooser = ({ onTemplateSelect }) => {
                         ))}
                       </ul>
                     </div>
-                    <div className="p-3 rounded-xl bg-white/95 border border-gray-200 shadow-sm">
+                    <div className="p-3 rounded-lg bg-white/95 border border-gray-200 shadow-sm">
                       <p className="text-xs font-semibold text-gray-900 uppercase tracking-wide flex items-center gap-2">
                         <Landmark className="w-4 h-4" /> Risk guardrails
                       </p>
@@ -570,9 +570,9 @@ const TemplateChooser = ({ onTemplateSelect }) => {
 
       {/* Action Button */}
       {selectedTemplateObj && (
-        <div className="space-y-4 pt-4">
+        <div className="space-y-3 pt-4">
           <Card className="bg-white/95 border border-gray-200 shadow-sm">
-            <CardContent className="p-5 text-gray-900 space-y-3">
+            <CardContent className="p-4 text-gray-900 space-y-3">
               <div className="flex flex-wrap items-center gap-2 justify-between">
                 <div className="space-y-1">
                   <p className="text-xs font-semibold uppercase tracking-wide text-gray-600">

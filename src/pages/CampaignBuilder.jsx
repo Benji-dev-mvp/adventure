@@ -217,16 +217,16 @@ const CampaignBuilder = () => {
         showActivityPanel: false,
       }}
     >
-      <form onSubmit={handleSubmit} className="grid lg:grid-cols-3 gap-4">
+      <form onSubmit={handleSubmit} className="grid lg:grid-cols-3 gap-3">
         {/* Campaign Setup */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-3">
           <Card>
             <CardHeader>
               <CardTitle>Campaign Details</CardTitle>
               <CardDescription>Basic information about your campaign</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <Input
                   label="Campaign Name"
                   placeholder="e.g., Q1 Enterprise Outreach"
@@ -251,7 +251,7 @@ const CampaignBuilder = () => {
                   <option value="midmarket">Mid-Market CTOs</option>
                   <option value="startup">Startup Founders</option>
                 </Select>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3">
                   <Input label="Daily Send Limit" type="number" defaultValue="100" />
                   <Select label="Sending Schedule">
                     <option>Business Hours Only</option>
@@ -278,7 +278,7 @@ const CampaignBuilder = () => {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {steps.map((step, index) => {
                   const channel = channelTypes.find(c => c.value === step.type);
                   const Icon = channel.icon;
@@ -286,7 +286,7 @@ const CampaignBuilder = () => {
                   return (
                     <div
                       key={step.id}
-                      className="border border-gray-200 rounded-xl p-4 hover:border-accent-300 transition-colors"
+                      className="border border-gray-200 rounded-lg p-4 hover:border-accent-300 transition-colors"
                     >
                       <div className="flex items-start gap-3">
                         <div className="pt-1">
@@ -462,7 +462,7 @@ const CampaignBuilder = () => {
         </div>
 
         {/* Right Sidebar - AI Assistant & Settings */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -471,7 +471,7 @@ const CampaignBuilder = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Tone</label>
                   <div className="flex flex-wrap gap-2">

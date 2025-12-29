@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export function AgentRow({ agents, activeAgents = [] }) {
   return (
-    <div className="flex items-center justify-center gap-4 py-4">
+    <div className="flex items-center justify-center gap-3 py-3">
       {agents.map((agent, index) => {
         const isActive = activeAgents.includes(agent.id);
 
@@ -17,7 +17,7 @@ export function AgentRow({ agents, activeAgents = [] }) {
           >
             <div
               className={`
-                relative p-4 rounded-2xl border transition-all cursor-pointer
+                relative p-4 rounded-lg border transition-all cursor-pointer
                 ${
                   isActive
                     ? 'bg-gradient-to-br from-white/10 to-white/5 border-white/20 shadow-lg'
@@ -30,7 +30,7 @@ export function AgentRow({ agents, activeAgents = [] }) {
             >
               {/* Avatar */}
               <div
-                className="text-3xl mb-2 text-center"
+                className="text-lg mb-2 text-center"
                 style={{ filter: isActive ? 'none' : 'grayscale(0.5)' }}
               >
                 {agent.avatar}

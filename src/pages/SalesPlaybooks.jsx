@@ -202,7 +202,7 @@ const SalesPlaybooks = () => {
     <DashboardLayout>
       <div className="max-w-7xl mx-auto">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
             Sales Playbooks & Intelligence
           </h1>
           <p className="text-gray-600 dark:text-gray-300">
@@ -211,13 +211,13 @@ const SalesPlaybooks = () => {
         </div>
 
         {/* Playbooks Overview */}
-        <div className="grid grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-3 gap-3 mb-6">
           {playbooks.map(playbook => (
             <Card key={playbook.id}>
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-start justify-between mb-4">
                   <div
-                    className={`w-12 h-12 bg-gradient-to-br from-${playbook.color}-500 to-${playbook.color}-600 rounded-xl flex items-center justify-center text-white`}
+                    className={`w-12 h-9 bg-gradient-to-br from-${playbook.color}-500 to-${playbook.color}-600 rounded-lg flex items-center justify-center text-white`}
                   >
                     <BookOpen size={24} />
                   </div>
@@ -241,15 +241,15 @@ const SalesPlaybooks = () => {
 
                 <div className="grid grid-cols-3 gap-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg mb-4">
                   <div className="text-center">
-                    <p className="text-xl font-bold text-green-600">{playbook.winRate}%</p>
+                    <p className="text-lg font-bold text-green-600">{playbook.winRate}%</p>
                     <p className="text-xs text-gray-600">Win Rate</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-xl font-bold text-blue-600">{playbook.avgDealSize}</p>
+                    <p className="text-lg font-bold text-blue-600">{playbook.avgDealSize}</p>
                     <p className="text-xs text-gray-600">Avg Deal</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-xl font-bold text-purple-600">{playbook.activeDeals}</p>
+                    <p className="text-lg font-bold text-purple-600">{playbook.activeDeals}</p>
                     <p className="text-xs text-gray-600">Active</p>
                   </div>
                 </div>
@@ -273,7 +273,7 @@ const SalesPlaybooks = () => {
 
           {/* Playbook Steps */}
           <TabsContent value="steps">
-            <div className="space-y-4">
+            <div className="space-y-3">
               <Card>
                 <CardHeader>
                   <div className="flex items-center justify-between">
@@ -287,15 +287,15 @@ const SalesPlaybooks = () => {
 
               {currentPlaybook.steps.map((step, index) => (
                 <Card key={index}>
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                  <CardContent className="p-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-12 h-9 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
                         {step.step}
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-3">
                           <div>
-                            <h3 className="text-xl font-semibold mb-1">{step.name}</h3>
+                            <h3 className="text-lg font-semibold mb-1">{step.name}</h3>
                             <div className="flex items-center gap-2">
                               <Badge variant="outline" className="text-xs">
                                 <Clock size={10} className="mr-1" />
@@ -348,10 +348,10 @@ const SalesPlaybooks = () => {
 
           {/* Objection Handlers */}
           <TabsContent value="objections">
-            <div className="grid gap-4">
+            <div className="grid gap-3">
               {objectionHandlers.map((handler, index) => (
                 <Card key={index}>
-                  <CardContent className="p-6">
+                  <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
@@ -386,21 +386,21 @@ const SalesPlaybooks = () => {
 
           {/* Value Props */}
           <TabsContent value="value">
-            <div className="grid gap-4">
+            <div className="grid gap-3">
               {valueProps.map((prop, index) => (
                 <Card key={index}>
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-white">
+                  <CardContent className="p-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-12 h-9 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white">
                         <Award size={24} />
                       </div>
                       <div className="flex-1">
                         <Badge variant="outline" className="mb-2">
                           {prop.category}
                         </Badge>
-                        <h3 className="text-2xl font-bold mb-3">{prop.headline}</h3>
+                        <h3 className="text-lg font-bold mb-3">{prop.headline}</h3>
 
-                        <div className="grid grid-cols-3 gap-4 mb-4">
+                        <div className="grid grid-cols-3 gap-3 mb-4">
                           {prop.stats.map((stat, i) => (
                             <div
                               key={i}
@@ -427,9 +427,9 @@ const SalesPlaybooks = () => {
           {/* Battle Cards */}
           <TabsContent value="competitors">
             <Card>
-              <CardContent className="p-8 text-center">
+              <CardContent className="p-4 text-center">
                 <FileText className="mx-auto mb-3 text-gray-400" size={48} />
-                <h3 className="text-xl font-semibold mb-2">Competitor Battle Cards</h3>
+                <h3 className="text-lg font-semibold mb-2">Competitor Battle Cards</h3>
                 <p className="text-gray-600 mb-4">Head-to-head comparisons with key competitors</p>
                 <Button>View Battle Cards</Button>
               </CardContent>

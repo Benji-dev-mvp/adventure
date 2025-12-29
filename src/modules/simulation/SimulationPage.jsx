@@ -25,15 +25,15 @@ export function SimulationPage() {
 
   return (
     <DashboardLayout>
-      <div className="flex flex-col h-full p-6 gap-6">
+      <div className="flex flex-col h-full p-4 gap-3">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="p-3 rounded-xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-500/20">
+          <div className="flex items-center gap-3">
+            <div className="p-3 rounded-lg bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-500/20">
               <FlaskConical className="w-6 h-6 text-amber-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold">
+              <h1 className="text-lg font-bold">
                 <GradientText gradient="cyber">MarketVerse Simulation</GradientText>
               </h1>
               <p className="text-slate-400 mt-1">
@@ -67,7 +67,7 @@ export function SimulationPage() {
         />
 
         {/* Main content */}
-        <div className="flex-1 grid grid-cols-12 gap-6 min-h-0">
+        <div className="flex-1 grid grid-cols-12 gap-3 min-h-0">
           {/* Left: Controls */}
           <div className="col-span-12 lg:col-span-3">
             <SimulationControls params={params} updateParam={updateParam} />

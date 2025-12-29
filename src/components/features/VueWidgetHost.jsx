@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
  */
 const VueWidgetHost = ({ title = 'Vue Widget' }) => {
   return (
-    <div className="rounded-lg border border-dashed border-gray-300 dark:border-gray-700 p-6 text-center">
+    <div className="rounded-lg border border-dashed border-gray-300 dark:border-gray-700 p-4 text-center">
       <div className="text-gray-500 dark:text-gray-400">
         <p className="font-medium">Vue Widget Deprecated</p>
         <p className="text-sm mt-1">

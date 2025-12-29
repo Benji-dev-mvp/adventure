@@ -52,14 +52,14 @@ export const ExecutiveDashboard = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           {kpis.map(kpi => (
             <div
               key={kpi.label}
               className="p-4 bg-gradient-to-br from-primary-50 to-white dark:from-primary-900/10 dark:to-transparent rounded-lg border"
             >
               <p className="text-xs text-gray-600 mb-1">{kpi.label}</p>
-              <p className="text-2xl font-bold mb-1">{kpi.value}</p>
+              <p className="text-lg font-bold mb-1">{kpi.value}</p>
               <Badge variant={kpi.trend === 'up' ? 'success' : 'error'} className="text-xs">
                 {kpi.change}
               </Badge>
@@ -189,7 +189,7 @@ export const PipelineVelocityTracker = () => {
       <CardContent>
         <div className="text-center mb-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
           <p className="text-sm text-gray-600 mb-1">Average Deal Cycle</p>
-          <p className="text-3xl font-bold text-primary-600">{totalDays} days</p>
+          <p className="text-lg font-bold text-primary-600">{totalDays} days</p>
         </div>
 
         <div className="space-y-3">
@@ -233,7 +233,7 @@ export const WinLossAnalysis = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-3">
           <div>
             <h4 className="font-semibold text-green-600 mb-3">Why We Win</h4>
             <div className="space-y-2">
@@ -289,7 +289,7 @@ export const CompetitiveIntelligence = () => {
           {competitors.map(comp => (
             <div key={comp.name} className="p-3 border rounded-lg">
               <h4 className="font-semibold mb-3">{comp.name}</h4>
-              <div className="grid grid-cols-3 gap-4 text-center">
+              <div className="grid grid-cols-3 gap-3 text-center">
                 <div>
                   <p className="text-xs text-gray-600">Mentions</p>
                   <p className="text-lg font-bold">{comp.mentions}</p>
@@ -383,7 +383,7 @@ export const CustomSQLQueryBuilder = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div>
             <label htmlFor="sql-query" className="text-sm font-medium">
               SQL Query

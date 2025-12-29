@@ -70,11 +70,11 @@ export default function AICampaignStrategist() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
       {/* Header */}
       <div className="max-w-7xl mx-auto mb-8">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-lg">
+          <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg shadow-lg">
             <Sparkles className="w-8 h-8 text-white" />
           </div>
           <div>
@@ -99,12 +99,12 @@ export default function AICampaignStrategist() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Input Form */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">Campaign Parameters</h2>
+        <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-4">
+          <h2 className="text-lg font-bold text-gray-900 mb-6">Campaign Parameters</h2>
 
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Objective */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -113,7 +113,7 @@ export default function AICampaignStrategist() {
               <select
                 value={formData.objective}
                 onChange={e => setFormData({ ...formData, objective: e.target.value })}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none"
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none"
               >
                 {objectives.map(obj => (
                   <option key={obj} value={obj}>
@@ -133,7 +133,7 @@ export default function AICampaignStrategist() {
                 onChange={e => setFormData({ ...formData, targetAudience: e.target.value })}
                 placeholder="e.g., SaaS companies 100-1000 employees, tech startups, enterprise..."
                 rows={3}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none resize-none"
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none resize-none"
               />
             </div>
 
@@ -143,7 +143,7 @@ export default function AICampaignStrategist() {
               <select
                 value={formData.budgetRange}
                 onChange={e => setFormData({ ...formData, budgetRange: e.target.value })}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none"
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none"
               >
                 {budgetRanges.map(range => (
                   <option key={range} value={range}>
@@ -157,7 +157,7 @@ export default function AICampaignStrategist() {
             <button
               onClick={generateStrategy}
               disabled={loading}
-              className="w-full px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:shadow-lg transition-all disabled:opacity-50 flex items-center justify-center gap-2 font-medium text-lg"
+              className="w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:shadow-lg transition-all disabled:opacity-50 flex items-center justify-center gap-2 font-medium text-lg"
             >
               {loading ? (
                 <>
@@ -174,7 +174,7 @@ export default function AICampaignStrategist() {
           </div>
 
           {/* Info Box */}
-          <div className="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200">
+          <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
             <div className="flex items-start gap-3">
               <Target className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
               <div>
@@ -190,40 +190,40 @@ export default function AICampaignStrategist() {
         </div>
 
         {/* Strategy Results */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">Generated Strategy</h2>
+        <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-4">
+          <h2 className="text-lg font-bold text-gray-900 mb-6">Generated Strategy</h2>
 
           {loading ? (
             <div className="flex flex-col items-center justify-center py-16">
-              <Loader2 className="w-12 h-12 text-blue-600 animate-spin mb-4" />
+              <Loader2 className="w-12 h-9 text-blue-600 animate-spin mb-4" />
               <p className="text-gray-600 mb-2">Analyzing historical data...</p>
               <p className="text-xs text-gray-500">
                 Processing campaign patterns and industry benchmarks
               </p>
             </div>
           ) : strategy ? (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Key Metrics */}
               <div className="grid grid-cols-3 gap-3">
-                <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-xl border border-green-200">
+                <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200">
                   <TrendingUp className="w-6 h-6 text-green-600 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-green-700">
+                  <div className="text-lg font-bold text-green-700">
                     {strategy.strategy.estimated_roi.toFixed(1)}%
                   </div>
                   <div className="text-xs text-gray-600 mt-1">Estimated ROI</div>
                 </div>
 
-                <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200">
+                <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200">
                   <Calendar className="w-6 h-6 text-blue-600 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-blue-700">
+                  <div className="text-lg font-bold text-blue-700">
                     {strategy.strategy.timeline_days}
                   </div>
                   <div className="text-xs text-gray-600 mt-1">Days</div>
                 </div>
 
-                <div className="text-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl border border-purple-200">
+                <div className="text-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg border border-purple-200">
                   <DollarSign className="w-6 h-6 text-purple-600 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-purple-700">
+                  <div className="text-lg font-bold text-purple-700">
                     ${(strategy.strategy.budget_estimate / 1000).toFixed(0)}k
                   </div>
                   <div className="text-xs text-gray-600 mt-1">Budget</div>
@@ -268,7 +268,7 @@ export default function AICampaignStrategist() {
               </div>
 
               {/* Sequence Steps */}
-              <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+              <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="font-medium text-gray-900">Campaign Sequence</div>
@@ -276,7 +276,7 @@ export default function AICampaignStrategist() {
                       Multi-touch engagement strategy
                     </div>
                   </div>
-                  <div className="text-3xl font-bold text-blue-600">
+                  <div className="text-lg font-bold text-blue-600">
                     {strategy.strategy.sequence_steps}
                   </div>
                 </div>
@@ -285,13 +285,13 @@ export default function AICampaignStrategist() {
               {/* Context Indicators */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="p-3 bg-purple-50 rounded-lg text-center border border-purple-200">
-                  <div className="text-2xl font-bold text-purple-600">
+                  <div className="text-lg font-bold text-purple-600">
                     {strategy.past_learnings_incorporated}
                   </div>
                   <div className="text-xs text-gray-600 mt-1">Past Learnings</div>
                 </div>
                 <div className="p-3 bg-green-50 rounded-lg text-center border border-green-200">
-                  <div className="text-2xl font-bold text-green-600">
+                  <div className="text-lg font-bold text-green-600">
                     {strategy.historical_data_analyzed}
                   </div>
                   <div className="text-xs text-gray-600 mt-1">Data Points Analyzed</div>
@@ -300,7 +300,7 @@ export default function AICampaignStrategist() {
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center py-16 text-gray-500">
-              <BarChart3 className="w-12 h-12 mb-3 text-gray-400" />
+              <BarChart3 className="w-12 h-9 mb-3 text-gray-400" />
               <p>Configure parameters and generate strategy</p>
             </div>
           )}
@@ -310,13 +310,13 @@ export default function AICampaignStrategist() {
       {/* Tactical Recommendations */}
       {strategy && strategy.tactical_recommendations && (
         <div className="max-w-7xl mx-auto mt-6">
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-4">
+            <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
               <CheckCircle2 className="w-6 h-6 text-green-600" />
               Tactical Recommendations (LangChain Agent)
             </h2>
             <div className="prose prose-sm max-w-none">
-              <div className="text-gray-700 whitespace-pre-line bg-gray-50 p-4 rounded-xl">
+              <div className="text-gray-700 whitespace-pre-line bg-gray-50 p-4 rounded-lg">
                 {strategy.tactical_recommendations}
               </div>
             </div>
@@ -327,15 +327,15 @@ export default function AICampaignStrategist() {
       {/* Strategy Timeline Visualization */}
       {strategy && (
         <div className="max-w-7xl mx-auto mt-6">
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Campaign Timeline</h2>
+          <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-4">
+            <h2 className="text-lg font-bold text-gray-900 mb-6">Campaign Timeline</h2>
             <div className="relative">
               <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-indigo-500"></div>
 
               {Array.from({ length: strategy.strategy.sequence_steps }, (_, i) => i + 1).map(
                 step => (
-                  <div key={step} className="relative flex items-start gap-6 mb-6 last:mb-0">
-                    <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
+                  <div key={step} className="relative flex items-start gap-3 mb-6 last:mb-0">
+                    <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
                       {step}
                     </div>
                     <div className="flex-1 pt-2">

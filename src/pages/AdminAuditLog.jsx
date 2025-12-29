@@ -137,10 +137,10 @@ const AdminAuditLog = () => {
 
   return (
     <DashboardLayout>
-      <div className="p-6 max-w-7xl">
+      <div className="p-4 max-w-7xl">
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Audit Log</h1>
+          <h1 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Audit Log</h1>
           <p className="text-sm text-gray-600 dark:text-gray-400">
             Track all security and administrative actions in your workspace
           </p>
@@ -148,7 +148,7 @@ const AdminAuditLog = () => {
 
         {/* Filters & Search */}
         <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 mb-6">
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col md:flex-row gap-3">
             {/* Search */}
             <div className="flex-1">
               <div className="relative">
@@ -192,22 +192,22 @@ const AdminAuditLog = () => {
             <table className="w-full">
               <thead className="bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                     Timestamp
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                     User
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                     Action
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                     Resource
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                     IP Address
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                     Severity
                   </th>
                 </tr>
@@ -220,7 +220,7 @@ const AdminAuditLog = () => {
                       key={log.id}
                       className="hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
                     >
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-4 py-3 whitespace-nowrap">
                         <div className="flex items-center gap-2">
                           <Clock className="w-4 h-4 text-gray-400" />
                           <span className="text-sm text-gray-900 dark:text-white">
@@ -228,7 +228,7 @@ const AdminAuditLog = () => {
                           </span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-4 py-3 whitespace-nowrap">
                         <div className="flex items-center gap-2">
                           <User className="w-4 h-4 text-gray-400" />
                           <span className="text-sm text-gray-700 dark:text-gray-300">
@@ -236,7 +236,7 @@ const AdminAuditLog = () => {
                           </span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-4 py-3 whitespace-nowrap">
                         <div className="flex items-center gap-2">
                           <ActionIcon className="w-4 h-4 text-gray-400" />
                           <code className="text-sm text-gray-700 dark:text-gray-300">
@@ -244,15 +244,15 @@ const AdminAuditLog = () => {
                           </code>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-4 py-3">
                         <span className="text-sm text-gray-700 dark:text-gray-300">
                           {log.resource}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-4 py-3 whitespace-nowrap">
                         <code className="text-sm text-gray-600 dark:text-gray-400">{log.ip}</code>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-4 py-3 whitespace-nowrap">
                         <span
                           className={`px-2 py-1 text-xs font-medium rounded-full ${getSeverityColor(log.severity)}`}
                         >
@@ -268,8 +268,8 @@ const AdminAuditLog = () => {
 
           {/* Expandable Details */}
           {filteredLogs.length === 0 && (
-            <div className="p-8 text-center">
-              <AlertCircle className="w-12 h-12 mx-auto mb-3 text-gray-300 dark:text-gray-600" />
+            <div className="p-4 text-center">
+              <AlertCircle className="w-12 h-9 mx-auto mb-3 text-gray-300 dark:text-gray-600" />
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 No audit logs found matching your criteria
               </p>

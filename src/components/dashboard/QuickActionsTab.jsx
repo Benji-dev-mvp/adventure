@@ -128,7 +128,7 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
   }));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
       <div>
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Quick Actions</h3>
@@ -138,7 +138,7 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
       </div>
 
       {/* Primary Actions Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
         {primaryActions.map(action => (
           <Card
             key={action.id}
@@ -151,7 +151,7 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
             <div
               className={`absolute inset-0 bg-gradient-to-br ${action.gradient} opacity-90`}
             ></div>
-            <CardContent className="relative p-6 text-white">
+            <CardContent className="relative p-4 text-white">
               <div className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <action.icon size={32} />
@@ -197,7 +197,7 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
                 key={workflow.id}
                 onClick={workflow.action}
                 disabled={isExecuting === workflow.id}
-                className="flex items-center gap-4 p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors text-left disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex items-center gap-3 p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors text-left disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <div className="p-3 bg-gradient-to-br from-cyan-100 to-blue-100 dark:from-cyan-900/30 dark:to-blue-900/30 rounded-lg">
                   <workflow.icon size={20} className="text-cyan-600 dark:text-cyan-400" />

@@ -23,11 +23,11 @@ export function ResolutionPanel({ resolution, selectedAgenda, loading }) {
   if (loading) {
     return (
       <GlassCard variant="subtle" className="h-full">
-        <GlassCardContent className="p-6">
-          <div className="animate-pulse space-y-4">
+        <GlassCardContent className="p-4">
+          <div className="animate-pulse space-y-3">
             <div className="h-6 bg-slate-700 rounded w-24" />
-            <div className="h-20 bg-slate-800/50 rounded-xl" />
-            <div className="h-32 bg-slate-800/50 rounded-xl" />
+            <div className="h-20 bg-slate-800/50 rounded-lg" />
+            <div className="h-32 bg-slate-800/50 rounded-lg" />
           </div>
         </GlassCardContent>
       </GlassCard>
@@ -37,9 +37,9 @@ export function ResolutionPanel({ resolution, selectedAgenda, loading }) {
   if (!selectedAgenda) {
     return (
       <GlassCard variant="subtle" className="h-full">
-        <GlassCardContent className="p-6 h-full flex items-center justify-center text-slate-400 text-center">
+        <GlassCardContent className="p-4 h-full flex items-center justify-center text-slate-400 text-center">
           <div>
-            <CheckCircle className="w-12 h-12 mx-auto mb-3 opacity-30" />
+            <CheckCircle className="w-12 h-9 mx-auto mb-3 opacity-30" />
             <p>Select an agenda to view resolution</p>
           </div>
         </GlassCardContent>
@@ -50,7 +50,7 @@ export function ResolutionPanel({ resolution, selectedAgenda, loading }) {
   if (!resolution) {
     return (
       <GlassCard variant="subtle" className="h-full">
-        <GlassCardContent className="p-6">
+        <GlassCardContent className="p-4">
           <h3 className="text-lg font-semibold text-slate-100 mb-4">Resolution</h3>
 
           <div className="text-center py-8">
@@ -85,7 +85,7 @@ export function ResolutionPanel({ resolution, selectedAgenda, loading }) {
 
   return (
     <GlassCard variant="gradient" className="h-full">
-      <GlassCardContent className="p-6 h-full overflow-y-auto">
+      <GlassCardContent className="p-4 h-full overflow-y-auto">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-semibold text-slate-100">Resolution</h3>
           <div
@@ -99,7 +99,7 @@ export function ResolutionPanel({ resolution, selectedAgenda, loading }) {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="p-4 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-xl border border-cyan-500/20 mb-6"
+          className="p-4 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-lg border border-cyan-500/20 mb-6"
         >
           <div className="flex items-center gap-2 mb-2">
             <TrendingUp className="w-4 h-4 text-cyan-400" />
@@ -128,13 +128,13 @@ export function ResolutionPanel({ resolution, selectedAgenda, loading }) {
         </div>
 
         {/* Metrics */}
-        <div className="grid grid-cols-2 gap-4 mb-6">
-          <div className="p-4 bg-slate-800/50 rounded-xl text-center">
-            <p className="text-2xl font-bold text-emerald-400">{resolution.expectedUplift}</p>
+        <div className="grid grid-cols-2 gap-3 mb-6">
+          <div className="p-4 bg-slate-800/50 rounded-lg text-center">
+            <p className="text-lg font-bold text-emerald-400">{resolution.expectedUplift}</p>
             <p className="text-xs text-slate-500 mt-1">Expected Uplift</p>
           </div>
-          <div className="p-4 bg-slate-800/50 rounded-xl text-center">
-            <p className="text-2xl font-bold text-cyan-400">{resolution.confidence}%</p>
+          <div className="p-4 bg-slate-800/50 rounded-lg text-center">
+            <p className="text-lg font-bold text-cyan-400">{resolution.confidence}%</p>
             <p className="text-xs text-slate-500 mt-1">Confidence</p>
           </div>
         </div>
@@ -142,7 +142,7 @@ export function ResolutionPanel({ resolution, selectedAgenda, loading }) {
         {/* Voting Result */}
         <div className="mb-6">
           <h4 className="text-sm font-medium text-slate-300 mb-3">Agent Voting</h4>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <div className="flex items-center gap-2">
               <ThumbsUp className="w-4 h-4 text-emerald-400" />
               <span className="text-sm text-slate-300">

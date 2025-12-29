@@ -235,7 +235,7 @@ const InteractiveArchitectureFlow = () => {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300 text-sm font-semibold mb-4">
@@ -245,14 +245,14 @@ const InteractiveArchitectureFlow = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-space-grotesk">
             Watch The Complete Flow: Lead to Conversion
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
             See exactly how each component works together—from database query to closed deal. This
             is the architecture your security team needs to see.
           </p>
         </div>
 
         {/* End-to-End Architecture Diagram */}
-        <div className="mb-12 bg-slate-800/30 backdrop-blur-xl border-2 border-slate-700 rounded-2xl p-8 overflow-x-auto">
+        <div className="mb-12 bg-slate-800/30 backdrop-blur-xl border-2 border-slate-700 rounded-lg p-4 overflow-x-auto">
           <div className="flex items-center justify-between min-w-max gap-2">
             {steps.map((step, idx) => {
               const Icon = step.icon;
@@ -267,7 +267,7 @@ const InteractiveArchitectureFlow = () => {
                     }`}
                   >
                     <div
-                      className={`w-32 h-32 rounded-xl border-2 flex flex-col items-center justify-center p-3 transition-all ${
+                      className={`w-32 h-32 rounded-lg border-2 flex flex-col items-center justify-center p-3 transition-all ${
                         isActive
                           ? 'bg-gradient-to-br ' +
                             step.color +
@@ -337,7 +337,7 @@ const InteractiveArchitectureFlow = () => {
           </div>
 
           {/* Legend */}
-          <div className="mt-4 flex items-center justify-center gap-6 text-xs text-slate-400">
+          <div className="mt-4 flex items-center justify-center gap-3 text-xs text-slate-400">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-slate-700 border border-slate-600" />
               <span>Pending</span>
@@ -354,7 +354,7 @@ const InteractiveArchitectureFlow = () => {
         </div>
 
         {/* Flow Visualization */}
-        <div className="grid lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid lg:grid-cols-3 gap-3 mb-8">
           {/* Left: Step Navigation */}
           <div className="lg:col-span-1 space-y-3">
             {steps.map((step, idx) => {
@@ -369,7 +369,7 @@ const InteractiveArchitectureFlow = () => {
                     setActiveStep(idx);
                     setIsPlaying(false);
                   }}
-                  className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
+                  className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
                     isActive
                       ? 'bg-gradient-to-r ' + step.color + ' border-white shadow-2xl scale-105'
                       : isPast
@@ -379,7 +379,7 @@ const InteractiveArchitectureFlow = () => {
                 >
                   <div className="flex items-center gap-3">
                     <div
-                      className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                      className={`w-10 h-9 rounded-lg flex items-center justify-center ${
                         isActive ? 'bg-white/20' : 'bg-slate-700'
                       }`}
                     >
@@ -408,16 +408,16 @@ const InteractiveArchitectureFlow = () => {
 
           {/* Right: Active Step Details */}
           <div className="lg:col-span-2">
-            <div className="bg-slate-800/50 backdrop-blur-xl border-2 border-slate-700 rounded-2xl overflow-hidden">
+            <div className="bg-slate-800/50 backdrop-blur-xl border-2 border-slate-700 rounded-lg overflow-hidden">
               {/* Step Header */}
-              <div className={`bg-gradient-to-r ${currentStep.color} p-6`}>
+              <div className={`bg-gradient-to-r ${currentStep.color} p-4`}>
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
+                    <div className="w-12 h-9 rounded-lg bg-white/20 flex items-center justify-center">
                       <currentStep.icon className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-white">{currentStep.title}</h3>
+                      <h3 className="text-lg font-bold text-white">{currentStep.title}</h3>
                       <p className="text-white/80">{currentStep.subtitle}</p>
                     </div>
                   </div>
@@ -440,8 +440,8 @@ const InteractiveArchitectureFlow = () => {
               </div>
 
               {/* Data Preview */}
-              <div className="p-6 space-y-4">
-                <div className="bg-slate-900/50 border border-slate-700 rounded-xl p-4">
+              <div className="p-4 space-y-3">
+                <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-4">
                   <h4 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
                     <Database className="w-4 h-4 text-blue-400" />
                     Data Processing
@@ -467,7 +467,7 @@ const InteractiveArchitectureFlow = () => {
                 </div>
 
                 {/* Screenshot/Visual */}
-                <div className="bg-slate-900/50 border border-slate-700 rounded-xl p-4">
+                <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-4">
                   <h4 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
                     <Eye className="w-4 h-4 text-purple-400" />
                     Visual Output
@@ -632,7 +632,7 @@ const InteractiveArchitectureFlow = () => {
                           className="bg-slate-800 border border-slate-600 rounded-lg p-4"
                         >
                           <div className="text-xs text-gray-400 mb-1">{insight.metric}</div>
-                          <div className="text-2xl font-bold text-white mb-1">{insight.value}</div>
+                          <div className="text-lg font-bold text-white mb-1">{insight.value}</div>
                           <div className="text-xs text-green-400 font-semibold">
                             {insight.benchmark}
                           </div>
@@ -647,7 +647,7 @@ const InteractiveArchitectureFlow = () => {
         </div>
 
         {/* Progress Timeline */}
-        <div className="bg-slate-800/50 backdrop-blur-xl border-2 border-slate-700 rounded-xl p-6">
+        <div className="bg-slate-800/50 backdrop-blur-xl border-2 border-slate-700 rounded-lg p-4">
           <div className="flex items-center justify-between mb-4">
             <h4 className="font-bold text-white">Flow Progress</h4>
             <div className="text-sm text-gray-400">
@@ -666,7 +666,7 @@ const InteractiveArchitectureFlow = () => {
 
         {/* Key Takeaway */}
         <div className="mt-8 text-center">
-          <div className="inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white">
+          <div className="inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg text-white">
             <CheckCircle className="w-5 h-5" />
             <span className="font-semibold">
               This entire process takes ~3.2 seconds and runs 24/7 for every lead in your ICP

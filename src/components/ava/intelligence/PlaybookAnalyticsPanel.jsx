@@ -54,7 +54,7 @@ const FunnelStage = ({ stage, value, previousValue, color, isLast }) => {
         }}
       >
         <div className="text-center text-white z-10">
-          <div className="text-2xl font-bold">
+          <div className="text-lg font-bold">
             <AnimatedCounter end={value} />
           </div>
           <div className="text-xs opacity-90">{stage.label}</div>
@@ -113,7 +113,7 @@ const FunnelVisualization = ({ data }) => {
   ];
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       <h4 className="text-sm font-semibold text-gray-900 dark:text-white">Conversion Funnel</h4>
       <div className="flex gap-1 items-center">
         {stages.map((stage, i) => (
@@ -163,9 +163,9 @@ const ChannelPerformance = ({ data }) => {
   const maxValue = Math.max(...channels.map(c => data[c.key]?.meetings || 0));
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       <h4 className="text-sm font-semibold text-gray-900 dark:text-white">Channel Performance</h4>
-      <div className="space-y-4">
+      <div className="space-y-3">
         {channels.map(channel => {
           const channelData = data[channel.key] || {};
           const barWidth = (channelData.meetings / maxValue) * 100;
@@ -227,7 +227,7 @@ const KPICard = ({ label, value, format, trend, icon: Icon, color }) => {
   };
 
   return (
-    <div className={`bg-gradient-to-br ${color} rounded-xl p-4 text-white`}>
+    <div className={`bg-gradient-to-br ${color} rounded-lg p-4 text-white`}>
       <div className="flex items-center justify-between mb-2">
         <Icon size={20} className="opacity-80" />
         {trend !== undefined && (
@@ -239,7 +239,7 @@ const KPICard = ({ label, value, format, trend, icon: Icon, color }) => {
           </div>
         )}
       </div>
-      <div className="text-2xl font-bold mb-1">
+      <div className="text-lg font-bold mb-1">
         {format === 'number' ? <AnimatedCounter end={value} /> : formatValue(value, format)}
       </div>
       <div className="text-sm opacity-90">{label}</div>
@@ -267,7 +267,7 @@ const SegmentBreakdown = ({ data }) => {
   const total = segments.reduce((sum, s) => sum + (data[s.key]?.meetings || 0), 0);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       <h4 className="text-sm font-semibold text-gray-900 dark:text-white">Segment Breakdown</h4>
       <div className="flex gap-2 h-8 rounded-lg overflow-hidden">
         {segments.map(segment => {
@@ -319,7 +319,7 @@ const TrendMiniChart = ({ data, label }) => {
         <span className="text-xs text-gray-500 dark:text-gray-400">{label}</span>
         <span className="text-xs font-medium text-gray-700 dark:text-gray-300">Last 7 days</span>
       </div>
-      <div className="flex items-end gap-1 h-12">
+      <div className="flex items-end gap-1 h-9">
         {data.map((value, i) => (
           <div
             key={i}
@@ -412,12 +412,12 @@ export const PlaybookAnalyticsPanel = ({ playbooks = [], runs = [], dateRange = 
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="p-5 border-b border-gray-200 dark:border-gray-700">
+      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-9 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
               <BarChart3 className="text-white" size={20} />
             </div>
             <div>
@@ -465,7 +465,7 @@ export const PlaybookAnalyticsPanel = ({ playbooks = [], runs = [], dateRange = 
       </div>
 
       {/* Content */}
-      <div className="p-5 space-y-6">
+      <div className="p-4 space-y-3">
         {/* KPI Cards */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
           <KPICard
@@ -520,41 +520,41 @@ export const PlaybookAnalyticsPanel = ({ playbooks = [], runs = [], dateRange = 
 
         {/* Main Visualizations */}
         {selectedView === 'overview' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="bg-gray-50 dark:bg-gray-700/30 rounded-xl p-5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+            <div className="bg-gray-50 dark:bg-gray-700/30 rounded-lg p-4">
               <FunnelVisualization data={analyticsData.funnel} />
             </div>
-            <div className="bg-gray-50 dark:bg-gray-700/30 rounded-xl p-5">
+            <div className="bg-gray-50 dark:bg-gray-700/30 rounded-lg p-4">
               <ChannelPerformance data={analyticsData.channels} />
             </div>
           </div>
         )}
 
         {selectedView === 'funnel' && (
-          <div className="bg-gray-50 dark:bg-gray-700/30 rounded-xl p-5">
+          <div className="bg-gray-50 dark:bg-gray-700/30 rounded-lg p-4">
             <FunnelVisualization data={analyticsData.funnel} />
           </div>
         )}
 
         {selectedView === 'channels' && (
-          <div className="bg-gray-50 dark:bg-gray-700/30 rounded-xl p-5">
+          <div className="bg-gray-50 dark:bg-gray-700/30 rounded-lg p-4">
             <ChannelPerformance data={analyticsData.channels} />
           </div>
         )}
 
         {/* Bottom Row: Segments & Trends */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 bg-gray-50 dark:bg-gray-700/30 rounded-xl p-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+          <div className="lg:col-span-2 bg-gray-50 dark:bg-gray-700/30 rounded-lg p-4">
             <SegmentBreakdown data={analyticsData.segments} />
           </div>
-          <div className="bg-gray-50 dark:bg-gray-700/30 rounded-xl p-5 space-y-4">
+          <div className="bg-gray-50 dark:bg-gray-700/30 rounded-lg p-4 space-y-3">
             <TrendMiniChart data={analyticsData.trends.meetings} label="Meetings Trend" />
             <TrendMiniChart data={analyticsData.trends.responses} label="Responses Trend" />
           </div>
         </div>
 
         {/* Data Story */}
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-5 border border-purple-200 dark:border-purple-800">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg p-4 border border-purple-200 dark:border-purple-800">
           <div className="flex items-start gap-3">
             <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
               <Zap className="text-white" size={16} />

@@ -91,26 +91,26 @@ export const CEOExecutiveDashboard = () => {
       </CardHeader>
       <CardContent>
         {/* Top KPIs */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
-          <div className="p-4 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl text-white">
+        <div className="grid grid-cols-4 gap-3 mb-6">
+          <div className="p-4 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg text-white">
             <p className="text-sm opacity-90">Annual Recurring Revenue</p>
-            <p className="text-3xl font-bold mt-1">${(metrics.arr.value / 1000000).toFixed(1)}M</p>
+            <p className="text-lg font-bold mt-1">${(metrics.arr.value / 1000000).toFixed(1)}M</p>
             <div className="flex items-center gap-1 mt-2 text-sm">
               <TrendingUp size={14} />
               <span>+{metrics.arr.change}%</span>
             </div>
           </div>
-          <div className="p-4 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl text-white">
+          <div className="p-4 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg text-white">
             <p className="text-sm opacity-90">Monthly Recurring Revenue</p>
-            <p className="text-3xl font-bold mt-1">${(metrics.mrr.value / 1000).toFixed(0)}K</p>
+            <p className="text-lg font-bold mt-1">${(metrics.mrr.value / 1000).toFixed(0)}K</p>
             <div className="flex items-center gap-1 mt-2 text-sm">
               <TrendingUp size={14} />
               <span>+{metrics.mrr.change}%</span>
             </div>
           </div>
-          <div className="p-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl text-white">
+          <div className="p-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg text-white">
             <p className="text-sm opacity-90">Pipeline Value</p>
-            <p className="text-3xl font-bold mt-1">
+            <p className="text-lg font-bold mt-1">
               ${(metrics.pipeline.value / 1000000).toFixed(1)}M
             </p>
             <div className="flex items-center gap-1 mt-2 text-sm">
@@ -118,9 +118,9 @@ export const CEOExecutiveDashboard = () => {
               <span>+{metrics.pipeline.change}%</span>
             </div>
           </div>
-          <div className="p-4 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl text-white">
+          <div className="p-4 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg text-white">
             <p className="text-sm opacity-90">Pipeline Health Score</p>
-            <p className="text-3xl font-bold mt-1">{metrics.pipelineHealth}/100</p>
+            <p className="text-lg font-bold mt-1">{metrics.pipelineHealth}/100</p>
             <Badge variant="success" className="mt-2 text-xs">
               Excellent
             </Badge>
@@ -161,37 +161,37 @@ export const CEOExecutiveDashboard = () => {
         <div className="grid grid-cols-6 gap-3">
           <div className="text-center p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
             <Users className="mx-auto text-blue-600 mb-1" size={20} />
-            <p className="text-2xl font-bold">{metrics.customers.value}</p>
+            <p className="text-lg font-bold">{metrics.customers.value}</p>
             <p className="text-xs text-gray-600">Customers</p>
             <p className="text-xs text-green-600">+{metrics.customers.change}%</p>
           </div>
           <div className="text-center p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
             <AlertTriangle className="mx-auto text-orange-600 mb-1" size={20} />
-            <p className="text-2xl font-bold">{metrics.churn.value}%</p>
+            <p className="text-lg font-bold">{metrics.churn.value}%</p>
             <p className="text-xs text-gray-600">Churn Rate</p>
             <p className="text-xs text-green-600">{metrics.churn.change}%</p>
           </div>
           <div className="text-center p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
             <DollarSign className="mx-auto text-purple-600 mb-1" size={20} />
-            <p className="text-2xl font-bold">${metrics.cac.value}</p>
+            <p className="text-lg font-bold">${metrics.cac.value}</p>
             <p className="text-xs text-gray-600">CAC</p>
             <p className="text-xs text-green-600">{metrics.cac.change}%</p>
           </div>
           <div className="text-center p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
             <TrendingUp className="mx-auto text-green-600 mb-1" size={20} />
-            <p className="text-2xl font-bold">${(metrics.ltv.value / 1000).toFixed(1)}K</p>
+            <p className="text-lg font-bold">${(metrics.ltv.value / 1000).toFixed(1)}K</p>
             <p className="text-xs text-gray-600">LTV</p>
             <p className="text-xs text-green-600">+{metrics.ltv.change}%</p>
           </div>
           <div className="text-center p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
             <Target className="mx-auto text-blue-600 mb-1" size={20} />
-            <p className="text-2xl font-bold">{metrics.winRate.value}%</p>
+            <p className="text-lg font-bold">{metrics.winRate.value}%</p>
             <p className="text-xs text-gray-600">Win Rate</p>
             <p className="text-xs text-green-600">+{metrics.winRate.change}%</p>
           </div>
           <div className="text-center p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
             <BarChart3 className="mx-auto text-purple-600 mb-1" size={20} />
-            <p className="text-2xl font-bold">${(metrics.avgDealSize / 1000).toFixed(0)}K</p>
+            <p className="text-lg font-bold">${(metrics.avgDealSize / 1000).toFixed(0)}K</p>
             <p className="text-xs text-gray-600">Avg Deal</p>
             <p className="text-xs text-green-600">+{metrics.avgDealSize.change}%</p>
           </div>
@@ -284,10 +284,10 @@ export const PipelineHealthScore = () => {
       </CardHeader>
       <CardContent>
         {/* Overall Score */}
-        <div className="mb-6 p-6 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl text-white text-center">
+        <div className="mb-6 p-4 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg text-white text-center">
           <p className="text-sm opacity-90 mb-2">Overall Pipeline Health</p>
           <p className="text-7xl font-bold">{healthScore}</p>
-          <p className="text-xl mt-2">Excellent Condition</p>
+          <p className="text-lg mt-2">Excellent Condition</p>
           <div className="w-full bg-white/30 rounded-full h-2 mt-4">
             <div
               className="bg-white h-2 rounded-full transition-all"
@@ -308,7 +308,7 @@ export const PipelineHealthScore = () => {
                   </div>
                   <p className="text-sm text-gray-600">{item.description}</p>
                 </div>
-                <div className={`text-3xl font-bold ${getScoreColor(item.score)}`}>
+                <div className={`text-lg font-bold ${getScoreColor(item.score)}`}>
                   {item.score}
                 </div>
               </div>
@@ -360,7 +360,7 @@ export const ForecastAccuracyTracker = () => {
       </CardHeader>
       <CardContent>
         {/* Accuracy Score */}
-        <div className="mb-4 p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl text-white text-center">
+        <div className="mb-4 p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg text-white text-center">
           <p className="text-sm opacity-90">Average Forecast Accuracy</p>
           <p className="text-5xl font-bold">{avgAccuracy}%</p>
           <Badge variant="success" className="mt-2">
@@ -389,7 +389,7 @@ export const ForecastAccuracyTracker = () => {
               className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg"
             >
               <p className="font-semibold">{quarter.quarter}</p>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 <div className="text-right">
                   <p className="text-xs text-gray-600">Forecast vs Actual</p>
                   <p className="text-sm">
@@ -454,9 +454,9 @@ export const WhatIfScenarioPlanner = () => {
         <p className="text-sm text-gray-600 dark:text-gray-400">Model the impact of improvements</p>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-3">
           {/* Left: Inputs */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div>
               <label className="text-sm font-semibold mb-2 flex items-center justify-between">
                 <span>Win Rate Increase (%)</span>
@@ -542,25 +542,25 @@ export const WhatIfScenarioPlanner = () => {
 
           {/* Right: Impact */}
           <div>
-            <div className="p-6 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl text-white mb-4">
+            <div className="p-4 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg text-white mb-4">
               <p className="text-sm opacity-90">Projected Revenue Impact</p>
               <p className="text-5xl font-bold mt-2">
                 ${(impact.revenueIncrease / 1000).toFixed(0)}K
               </p>
-              <p className="text-xl mt-2">+{impact.percentIncrease}% Increase</p>
+              <p className="text-lg mt-2">+{impact.percentIncrease}% Increase</p>
             </div>
 
             <div className="space-y-3">
               <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                 <p className="text-xs text-gray-600 mb-1">New Win Rate</p>
-                <p className="text-3xl font-bold text-blue-600">{impact.newWinRate}%</p>
+                <p className="text-lg font-bold text-blue-600">{impact.newWinRate}%</p>
                 <p className="text-xs text-green-600 mt-1">
                   +{(impact.newWinRate - baseMetrics.winRate).toFixed(1)}% improvement
                 </p>
               </div>
               <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
                 <p className="text-xs text-gray-600 mb-1">New Avg Deal Size</p>
-                <p className="text-3xl font-bold text-purple-600">
+                <p className="text-lg font-bold text-purple-600">
                   ${(impact.newDealSize / 1000).toFixed(0)}K
                 </p>
                 <p className="text-xs text-green-600 mt-1">
@@ -569,7 +569,7 @@ export const WhatIfScenarioPlanner = () => {
               </div>
               <div className="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
                 <p className="text-xs text-gray-600 mb-1">New Sales Cycle</p>
-                <p className="text-3xl font-bold text-orange-600">{impact.newCycleTime} days</p>
+                <p className="text-lg font-bold text-orange-600">{impact.newCycleTime} days</p>
                 <p className="text-xs text-green-600 mt-1">
                   -{baseMetrics.avgCycleTime - impact.newCycleTime} days faster
                 </p>

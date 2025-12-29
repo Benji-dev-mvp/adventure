@@ -75,7 +75,7 @@ export function SegmentSwitcher({ compact = false }) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       <div>
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Demo Segment</h3>
         <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -83,7 +83,7 @@ export function SegmentSwitcher({ compact = false }) {
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-3">
         {SEGMENTS.map(segment => {
           const Icon = segment.icon;
           const isSelected = plan === segment.id;

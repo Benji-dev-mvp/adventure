@@ -149,13 +149,13 @@ const AutopilotDashboard = () => {
   };
 
   return (
-    <div className="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
+    <div className="bg-gray-900 rounded-lg border border-gray-800 overflow-hidden">
       {/* Header with Power Toggle */}
-      <div className="p-6 border-b border-gray-800">
+      <div className="p-4 border-b border-gray-800">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div
-              className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${
+              className={`w-10 h-9 rounded-lg flex items-center justify-center transition-colors ${
                 isActive ? 'bg-gradient-to-br from-green-500 to-emerald-600' : 'bg-gray-700'
               }`}
             >

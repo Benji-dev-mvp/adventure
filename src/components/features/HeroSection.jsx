@@ -35,7 +35,7 @@ const HeroSection = () => {
   const trustBadges = ['SOC 2 Type II', 'SSO & SCIM', 'GDPR Ready', '99.95% Uptime'];
 
   return (
-    <section className="relative overflow-hidden pt-32 pb-24 px-6 tablet:px-10">
+    <section className="relative overflow-hidden pt-32 pb-24 px-4 tablet:px-10">
       {/* Futuristic Particle Background */}
       <ParticleBackground variant="aurora" className="absolute inset-0" />
 
@@ -53,7 +53,7 @@ const HeroSection = () => {
         className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10"
       >
         {/* Left column: messaging + form */}
-        <div className="space-y-6 text-left">
+        <div className="space-y-3 text-left">
           <RevealText delay={0}>
             <GlassCard
               variant="neon"
@@ -85,7 +85,7 @@ const HeroSection = () => {
           </RevealText>
 
           <RevealText delay={200}>
-            <p className="text-lg tablet:text-xl text-gray-300 max-w-2xl">
+            <p className="text-lg tablet:text-lg text-gray-300 max-w-2xl">
               <TypewriterText
                 text="Ava, your AI BDR, runs outbound with the controls enterprises require: policy-driven sending, rigorous security, and executive-level reporting."
                 speed={20}
@@ -113,7 +113,7 @@ const HeroSection = () => {
 
           <RevealText delay={400}>
             <div className="w-full max-w-xl mt-2">
-              <form onSubmit={handleSubmit} className="w-full space-y-4">
+              <form onSubmit={handleSubmit} className="w-full space-y-3">
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl opacity-50 group-hover:opacity-75 group-focus-within:opacity-75 transition-opacity duration-300 blur-md" />
                   <input
@@ -124,7 +124,7 @@ const HeroSection = () => {
                     onFocus={handleEmailFocus}
                     placeholder="vp.revenue@enterprise.com"
                     required
-                    className="relative w-full bg-white/5 backdrop-blur-xl text-white rounded-3xl px-6 py-4 text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 shadow-2xl transition duration-300 border border-white/20"
+                    className="relative w-full bg-white/5 backdrop-blur-xl text-white rounded-3xl px-4 py-3 text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 shadow-2xl transition duration-300 border border-white/20"
                   />
                 </div>
 
@@ -139,7 +139,7 @@ const HeroSection = () => {
                         onChange={handleChange}
                         placeholder="Alex Morgan"
                         required
-                        className="relative w-full bg-white/5 backdrop-blur-xl text-white rounded-3xl px-6 py-4 text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 shadow-2xl transition duration-300 border border-white/20"
+                        className="relative w-full bg-white/5 backdrop-blur-xl text-white rounded-3xl px-4 py-3 text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 shadow-2xl transition duration-300 border border-white/20"
                       />
                     </div>
 
@@ -152,7 +152,7 @@ const HeroSection = () => {
                         onChange={handleChange}
                         placeholder="VP of Sales"
                         required
-                        className="relative w-full bg-white/5 backdrop-blur-xl text-white rounded-3xl px-6 py-4 text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 shadow-2xl transition duration-300 border border-white/20"
+                        className="relative w-full bg-white/5 backdrop-blur-xl text-white rounded-3xl px-4 py-3 text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 shadow-2xl transition duration-300 border border-white/20"
                       />
                     </div>
 
@@ -180,7 +180,7 @@ const HeroSection = () => {
           </RevealText>
 
           <RevealText delay={500}>
-            <div className="flex flex-wrap gap-4 text-sm text-gray-300">
+            <div className="flex flex-wrap gap-3 text-sm text-gray-300">
               <div className="flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
                 <span>Live deliverability safeguards</span>
@@ -208,14 +208,14 @@ const HeroSection = () => {
               tilt
               glow
               glowColor="purple"
-              className="relative shadow-2xl p-8 space-y-6"
+              className="relative shadow-2xl p-4 space-y-3"
             >
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs font-semibold text-cyan-400 uppercase tracking-wide">
                     Enterprise control center
                   </p>
-                  <h3 className="text-2xl font-bold text-white mt-1 font-space-grotesk">
+                  <h3 className="text-lg font-bold text-white mt-1 font-space-grotesk">
                     Realtime governance dashboard
                   </h3>
                 </div>
@@ -230,7 +230,7 @@ const HeroSection = () => {
                 </GlassCard>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 {[
                   {
                     label: 'Deliverability health',
@@ -256,15 +256,15 @@ const HeroSection = () => {
                 ].map(metric => (
                   <div
                     key={metric.label}
-                    className={`rounded-2xl border p-4 bg-gradient-to-br backdrop-blur-sm ${metric.color} hover:scale-105 transition-transform duration-300`}
+                    className={`rounded-lg border p-4 bg-gradient-to-br backdrop-blur-sm ${metric.color} hover:scale-105 transition-transform duration-300`}
                   >
                     <p className="text-sm text-gray-300 mb-1">{metric.label}</p>
-                    <p className="text-xl font-bold">{metric.value}</p>
+                    <p className="text-lg font-bold">{metric.value}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="rounded-2xl border border-purple-500/30 p-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm">
+              <div className="rounded-lg border border-purple-500/30 p-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm">
                 <div className="flex items-center justify-between mb-3">
                   <p className="text-sm font-semibold text-white">Guardrails enabled</p>
                   <span className="text-xs font-semibold text-green-400 bg-green-500/20 border border-green-500/50 px-2 py-1 rounded-full">

@@ -128,13 +128,13 @@ const CustomerImpactSparklines = ({
     >
       {title && (
         <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold font-space-grotesk">
+          <h3 className="text-lg font-bold font-space-grotesk">
             <GradientText gradient="aurora">{title}</GradientText>
           </h3>
         </div>
       )}
 
-      <div className={`grid grid-cols-2 md:grid-cols-${columns} gap-4`}>
+      <div className={`grid grid-cols-2 md:grid-cols-${columns} gap-3`}>
         {metrics.map((metric, index) => {
           const Icon = metric.icon;
           const isPositive = metric.change.startsWith('+');
@@ -168,7 +168,7 @@ const CustomerImpactSparklines = ({
 
                   {/* Value */}
                   <div className="mb-2">
-                    <div className="text-2xl font-bold text-white font-space-grotesk">
+                    <div className="text-lg font-bold text-white font-space-grotesk">
                       {metric.value}
                     </div>
                     <div className="text-xs text-gray-400">{metric.label}</div>

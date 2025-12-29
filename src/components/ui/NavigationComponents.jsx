@@ -190,9 +190,9 @@ export const TopBar = ({ title, subtitle, actions = [], breadcrumbs, className }
         )}
 
         {/* Title and Actions */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div className="min-w-0 flex-1">
-            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white truncate">
+            <h1 className="text-lg sm:text-lg lg:text-lg font-bold text-gray-900 dark:text-white truncate">
               {title}
             </h1>
             {subtitle && (

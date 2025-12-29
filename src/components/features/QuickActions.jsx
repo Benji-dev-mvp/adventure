@@ -46,10 +46,10 @@ export const QuickActions = () => {
             return (
               <button
                 key={index}
-                className="flex flex-col items-start p-4 rounded-xl border border-gray-200 hover:border-accent-300 hover:bg-accent-50 transition-all group text-left"
+                className="flex flex-col items-start p-4 rounded-lg border border-gray-200 hover:border-accent-300 hover:bg-accent-50 transition-all group text-left"
               >
                 <div
-                  className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 ${action.color}`}
+                  className={`w-10 h-9 rounded-lg flex items-center justify-center mb-3 ${action.color}`}
                 >
                   <Icon size={20} />
                 </div>

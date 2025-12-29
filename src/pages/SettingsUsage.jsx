@@ -125,15 +125,15 @@ const SettingsUsage = () => {
 
   return (
     <DashboardLayout>
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="max-w-7xl mx-auto space-y-3">
         {/* Header */}
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-          className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4"
+          className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3"
         >
           <div>
-            <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+            <h1 className="text-lg font-bold text-white flex items-center gap-3">
               <BarChart3 className="h-7 w-7 text-cyan-400" />
               <GradientText gradient="cyber">Usage & Quotas</GradientText>
             </h1>
@@ -172,7 +172,7 @@ const SettingsUsage = () => {
               return (
                 <div
                   key={i}
-                  className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center gap-4"
+                  className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center gap-3"
                 >
                   <AlertTriangle className="h-5 w-5 text-amber-400 flex-shrink-0" />
                   <div className="flex-1">
@@ -202,15 +202,15 @@ const SettingsUsage = () => {
           transition={{ delay: 0.1 }}
         >
           <GlassCard variant="gradient">
-            <GlassCardContent className="p-6">
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-cyan-500 to-purple-500">
+            <GlassCardContent className="p-4">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="p-3 rounded-lg bg-gradient-to-br from-cyan-500 to-purple-500">
                     <CreditCard className="h-6 w-6 text-white" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <h2 className="text-xl font-bold text-white">{billingInfo.plan} Plan</h2>
+                      <h2 className="text-lg font-bold text-white">{billingInfo.plan} Plan</h2>
                       <Badge variant="secondary">Active</Badge>
                     </div>
                     <p className="text-slate-400 text-sm">
@@ -241,9 +241,9 @@ const SettingsUsage = () => {
           transition={{ delay: 0.2 }}
         >
           <GlassCard>
-            <GlassCardContent className="p-6">
+            <GlassCardContent className="p-4">
               <h3 className="text-lg font-semibold text-white mb-6">Current Usage</h3>
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-3">
                 {usageMetrics.map((metric, i) => {
                   const data = usage[metric.key];
                   if (!data) return null;
@@ -318,7 +318,7 @@ const SettingsUsage = () => {
           transition={{ delay: 0.3 }}
         >
           <GlassCard>
-            <GlassCardContent className="p-6">
+            <GlassCardContent className="p-4">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-semibold text-white">Usage Trends</h3>
                 <div className="flex items-center gap-2">
@@ -381,7 +381,7 @@ const SettingsUsage = () => {
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <div className="p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-start gap-4">
+          <div className="p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-start gap-3">
             <TrendingUp className="h-6 w-6 text-cyan-400 flex-shrink-0 mt-0.5" />
             <div>
               <h4 className="font-semibold text-cyan-400 mb-1">Need Higher Limits?</h4>

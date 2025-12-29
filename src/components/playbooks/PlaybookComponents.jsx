@@ -127,7 +127,7 @@ export const SalesPlaybooks = () => {
       </CardHeader>
       <CardContent>
         {!selectedPlaybook ? (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-3">
             {playbooks.map(playbook => (
               <div
                 key={playbook.id}
@@ -248,7 +248,7 @@ export const BattleCards = () => {
       </CardHeader>
       <CardContent>
         {!selectedCompetitor ? (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-3">
             {competitors.map(competitor => (
               <div
                 key={competitor.id}
@@ -268,14 +268,14 @@ export const BattleCards = () => {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <span className="text-4xl">{selectedCompetitor.logo}</span>
-                <h3 className="text-xl font-bold">{selectedCompetitor.name}</h3>
+                <h3 className="text-lg font-bold">{selectedCompetitor.name}</h3>
               </div>
               <Button size="sm" variant="outline" onClick={() => setSelectedCompetitor(null)}>
                 Back
               </Button>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {/* Our Advantage */}
               <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border-2 border-green-500">
                 <p className="text-xs font-semibold text-green-700 dark:text-green-300 mb-1">
@@ -441,7 +441,7 @@ export const ObjectionHandlers = () => {
         <p className="text-sm text-gray-600 dark:text-gray-400">When they say X, respond with Y</p>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           {objections.map((obj, idx) => (
             <div key={idx} className="border-2 border-gray-300 dark:border-gray-600 rounded-lg p-4">
               <div className="flex items-start justify-between mb-3">
@@ -507,9 +507,9 @@ export const ROICalculator = () => {
         </p>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-3">
           {/* Left: Inputs */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div>
               <label className="text-sm font-semibold mb-2 block">Number of SDRs</label>
               <Input
@@ -548,7 +548,7 @@ export const ROICalculator = () => {
 
           {/* Right: Results */}
           <div>
-            <div className="p-6 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl text-white mb-4">
+            <div className="p-4 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg text-white mb-4">
               <p className="text-sm opacity-90 mb-1">Total Annual Savings</p>
               <p className="text-5xl font-bold">${(calculations.savings / 1000).toFixed(0)}K</p>
               <p className="text-sm opacity-90 mt-2">ROI: {calculations.roi}%</p>
@@ -557,25 +557,25 @@ export const ROICalculator = () => {
             <div className="space-y-3">
               <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                 <p className="text-xs text-gray-600 mb-1">Current SDR Cost</p>
-                <p className="text-2xl font-bold text-blue-600">
+                <p className="text-lg font-bold text-blue-600">
                   ${(calculations.currentSDRCost / 1000).toFixed(0)}K/yr
                 </p>
               </div>
               <div className="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
                 <p className="text-xs text-gray-600 mb-1">Artisan Cost</p>
-                <p className="text-2xl font-bold text-purple-600">
+                <p className="text-lg font-bold text-purple-600">
                   ${(calculations.artisanTotalCost / 1000).toFixed(0)}K/yr
                 </p>
               </div>
               <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
                 <p className="text-xs text-gray-600 mb-1">Additional Revenue (Pipeline)</p>
-                <p className="text-2xl font-bold text-green-600">
+                <p className="text-lg font-bold text-green-600">
                   ${(calculations.additionalRevenue / 1000).toFixed(0)}K
                 </p>
               </div>
               <div className="p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
                 <p className="text-xs text-gray-600 mb-1">Time Recovered (hours/year)</p>
-                <p className="text-2xl font-bold text-orange-600">
+                <p className="text-lg font-bold text-orange-600">
                   {calculations.timeRecovered.toLocaleString()}
                 </p>
               </div>

@@ -87,7 +87,7 @@ export const AccessMatrix = ({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Role Selector */}
       <div className="flex flex-wrap gap-2">
         {roles.map(role => (
@@ -265,10 +265,10 @@ export const SecurityStatusCard = ({ status, securityScore, compact = false }) =
 
   return (
     <GlassCard variant="gradient">
-      <GlassCardContent className="p-6">
+      <GlassCardContent className="p-4">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-cyan-500/20">
+            <div className="p-2 rounded-lg bg-cyan-500/20">
               <ShieldCheck className="h-6 w-6 text-cyan-400" />
             </div>
             <div>
@@ -277,12 +277,12 @@ export const SecurityStatusCard = ({ status, securityScore, compact = false }) =
             </div>
           </div>
           <div className="text-right">
-            <div className="text-2xl font-bold text-white">{securityScore}%</div>
+            <div className="text-lg font-bold text-white">{securityScore}%</div>
             <div className="text-xs text-slate-400">Security Score</div>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-3">
           {items.map(item => (
             <div
               key={item.key}
@@ -428,10 +428,10 @@ export const SystemHealthCard = ({ services, overallHealth }) => {
 
   return (
     <GlassCard variant="gradient">
-      <GlassCardContent className="p-6">
+      <GlassCardContent className="p-4">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-xl ${statusColors[overallHealth]?.bg}`}>
+            <div className={`p-2 rounded-lg ${statusColors[overallHealth]?.bg}`}>
               <Activity className={`h-6 w-6 ${statusColors[overallHealth]?.text}`} />
             </div>
             <div>
@@ -461,7 +461,7 @@ export const SystemHealthCard = ({ services, overallHealth }) => {
                   <Icon className="h-4 w-4 text-slate-400" />
                   <span className="text-sm font-medium text-white">{service.name}</span>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   <span className="text-xs text-slate-400">{service.latencyMs}ms</span>
                   <span className="text-xs text-slate-400">{service.errorRate}% err</span>
                   <StatusIcon className={`h-4 w-4 ${statusColors[service.status]?.text}`} />
@@ -518,7 +518,7 @@ export const FeatureFlagRow = ({
           }
         }}
       >
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <button
             onClick={e => {
               e.stopPropagation();
@@ -544,7 +544,7 @@ export const FeatureFlagRow = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <div className="text-right">
             <div className="text-sm font-medium text-white">{flag.rolloutPercent}%</div>
             <div className="text-xs text-slate-400">rollout</div>
@@ -563,8 +563,8 @@ export const FeatureFlagRow = ({
             exit={{ height: 0 }}
             className="overflow-hidden"
           >
-            <div className="p-4 border-t border-slate-700 bg-slate-800/30 space-y-4">
-              <div className="grid grid-cols-3 gap-4">
+            <div className="p-4 border-t border-slate-700 bg-slate-800/30 space-y-3">
+              <div className="grid grid-cols-3 gap-3">
                 <div>
                   <div className="text-xs text-slate-400 block mb-1">Owner</div>
                   <span className="text-sm text-white">{flag.owner}</span>
@@ -607,7 +607,7 @@ export const FeatureFlagRow = ({
                 >
                   Rollout Percentage
                 </label>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   <input
                     id={`rollout-${flag.key}`}
                     type="range"
@@ -677,7 +677,7 @@ export const EnterpriseReadinessMeter = ({ categories, overallScore }) => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Overall Score */}
       <div className="text-center">
         <div className={`text-5xl font-bold ${getScoreColor(overallScore)}`}>{overallScore}%</div>
@@ -685,7 +685,7 @@ export const EnterpriseReadinessMeter = ({ categories, overallScore }) => {
       </div>
 
       {/* Category Breakdown */}
-      <div className="space-y-4">
+      <div className="space-y-3">
         {categories.map(cat => (
           <div key={cat.id} className="space-y-2">
             <div className="flex items-center justify-between">

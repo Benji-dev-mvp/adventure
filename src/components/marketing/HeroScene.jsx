@@ -48,7 +48,7 @@ const HeroScene = ({ content }) => {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-20 md:py-32">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 py-20 md:py-32">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Column: Copy + CTA */}
           <div
@@ -78,12 +78,12 @@ const HeroScene = ({ content }) => {
             </h1>
 
             {/* Subhead */}
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
+            <p className="text-lg md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
               {content.subhead}
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-3 pt-4">
               <Button
                 size="lg"
                 className="text-lg px-8 py-6 bg-accent hover:bg-accent-600 text-white shadow-lg hover:shadow-xl transition-all duration-200 group"
@@ -105,10 +105,10 @@ const HeroScene = ({ content }) => {
             </div>
 
             {/* Metrics */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <div className="grid grid-cols-3 gap-3 pt-8 border-t border-gray-200 dark:border-gray-700">
               {content.metrics.map((metric, index) => (
                 <div key={index} className="text-center sm:text-left">
-                  <div className="text-3xl md:text-4xl font-bold text-accent dark:text-accent-400">
+                  <div className="text-lg md:text-4xl font-bold text-accent dark:text-accent-400">
                     {metric.value}
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
@@ -138,7 +138,7 @@ const HeroScene = ({ content }) => {
       {!isScrolled && (
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-400 dark:text-gray-500 animate-bounce">
           <span className="text-sm font-medium">Scroll to explore</span>
-          <div className="w-6 h-10 border-2 border-current rounded-full flex items-start justify-center p-2">
+          <div className="w-6 h-9 border-2 border-current rounded-full flex items-start justify-center p-2">
             <div className="w-1 h-3 bg-current rounded-full" />
           </div>
         </div>
@@ -169,7 +169,7 @@ const ProductFrame = ({ isScrolled }) => {
   return (
     <div className="relative group">
       {/* Frame Container */}
-      <div className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700 transition-all duration-300 group-hover:shadow-3xl">
+      <div className="relative bg-white dark:bg-gray-900 rounded-lg shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700 transition-all duration-300 group-hover:shadow-3xl">
         {/* Browser Chrome */}
         <div className="flex items-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
           <div className="flex gap-2">
@@ -183,7 +183,7 @@ const ProductFrame = ({ isScrolled }) => {
         </div>
 
         {/* Product Screenshot/UI */}
-        <div className="aspect-[16/10] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 p-6">
+        <div className="aspect-[16/10] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 p-4">
           {activeView === 'dashboard' && <DashboardPreview />}
           {activeView === 'campaigns' && <CampaignsPreview />}
           {activeView === 'analytics' && <AnalyticsPreview />}
@@ -214,12 +214,12 @@ const ProductFrame = ({ isScrolled }) => {
  * Mini Preview Components
  */
 const DashboardPreview = () => (
-  <div className="space-y-4">
+  <div className="space-y-3">
     <div className="flex items-center justify-between">
       <div className="h-8 w-48 bg-primary dark:bg-primary-600 rounded" />
       <div className="h-8 w-24 bg-accent dark:bg-accent-600 rounded" />
     </div>
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-3 gap-3">
       {[1, 2, 3].map(i => (
         <div key={i} className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm space-y-2">
           <div className="h-4 w-20 bg-gray-300 dark:bg-gray-600 rounded" />
@@ -236,9 +236,9 @@ const CampaignsPreview = () => (
     {[1, 2, 3, 4].map(i => (
       <div
         key={i}
-        className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm flex items-center gap-4"
+        className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm flex items-center gap-3"
       >
-        <div className="w-12 h-12 bg-accent-200 dark:bg-accent-700 rounded-lg" />
+        <div className="w-12 h-9 bg-accent-200 dark:bg-accent-700 rounded-lg" />
         <div className="flex-1 space-y-2">
           <div className="h-4 w-3/4 bg-gray-300 dark:bg-gray-600 rounded" />
           <div className="h-3 w-1/2 bg-gray-200 dark:bg-gray-700 rounded" />
@@ -250,7 +250,7 @@ const CampaignsPreview = () => (
 );
 
 const AnalyticsPreview = () => (
-  <div className="space-y-4">
+  <div className="space-y-3">
     <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm h-40 flex items-end gap-2">
       {[40, 65, 45, 80, 60, 90, 70].map((height, i) => (
         <div
@@ -260,7 +260,7 @@ const AnalyticsPreview = () => (
         />
       ))}
     </div>
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-3">
       {[1, 2].map(i => (
         <div key={i} className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm space-y-2">
           <div className="h-3 w-16 bg-gray-300 dark:bg-gray-600 rounded" />
@@ -274,12 +274,12 @@ const AnalyticsPreview = () => (
 /**
  * FloatingMetric Component
  */
-const FloatingMetric = ({ icon: Icon, label, value, className = '' }) => (
+const FloatingMetric = ({ icon: Icon, label, value, className='' }) => (
   <div
-    className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 border border-gray-200 dark:border-gray-700 animate-float ${className}`}
+    className={`bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-gray-700 animate-float ${className}`}
   >
     <div className="flex items-center gap-3">
-      <div className="w-10 h-10 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+      <div className="w-10 h-9 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
         <Icon className="w-5 h-5 text-accent-600 dark:text-accent-400" />
       </div>
       <div>

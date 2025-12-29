@@ -68,7 +68,7 @@ export function DebateRing({ agents, arguments_, selectedAgenda }) {
 
   return (
     <GlassCard variant="subtle" className="h-full">
-      <GlassCardContent className="p-6 h-full flex flex-col">
+      <GlassCardContent className="p-4 h-full flex flex-col">
         <h3 className="text-lg font-semibold text-slate-100 mb-4">Debate Ring</h3>
 
         <div className="flex-1 relative">
@@ -181,7 +181,7 @@ export function DebateRing({ agents, arguments_, selectedAgenda }) {
         </div>
 
         {/* Legend */}
-        <div className="flex items-center justify-center gap-6 mt-4 pt-4 border-t border-white/5">
+        <div className="flex items-center justify-center gap-3 mt-4 pt-4 border-t border-white/5">
           {Object.entries(ARGUMENT_COLORS).map(([type, color]) => (
             <div key={type} className="flex items-center gap-2">
               <div className="w-3 h-1 rounded-full" style={{ backgroundColor: color }} />

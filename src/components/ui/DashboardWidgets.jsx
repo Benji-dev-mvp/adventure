@@ -48,7 +48,7 @@ export const KPICard = ({
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium text-gray-600 dark:text-gray-400 truncate">{title}</p>
           <div className="mt-2 flex items-baseline gap-2 flex-wrap">
-            <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
+            <p className="text-lg sm:text-lg lg:text-4xl font-bold text-gray-900 dark:text-white">
               {formatValue(value)}
             </p>
             {change !== undefined && (
@@ -63,7 +63,7 @@ export const KPICard = ({
         </div>
         {Icon && (
           <div className="flex-shrink-0 ml-4">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+            <div className="w-10 h-9 sm:w-12 sm:h-9 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
               <Icon className="text-white" size={20} />
             </div>
           </div>
@@ -89,11 +89,11 @@ export const StatsWidget = ({ title, stats = [], className, ...props }) => {
       {title && (
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{title}</h3>
       )}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {stats.map((stat, index) => (
           <div key={index} className="flex flex-col">
             <span className="text-xs text-gray-600 dark:text-gray-400 mb-1">{stat.label}</span>
-            <span className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
+            <span className="text-lg sm:text-lg font-bold text-gray-900 dark:text-white">
               {stat.value}
             </span>
             {stat.subtext && (
@@ -286,7 +286,7 @@ export const MetricCard = ({ label, value, change, icon: Icon, trend, className 
         {Icon && <Icon className="text-gray-400 dark:text-gray-600" size={18} />}
       </div>
       <div className="flex items-end justify-between">
-        <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">{value}</div>
+        <div className="text-lg sm:text-lg font-bold text-gray-900 dark:text-white">{value}</div>
         {change && (
           <div className={cn('flex items-center gap-1 text-sm font-medium', trendColor)}>
             <TrendIcon size={16} />
@@ -310,9 +310,9 @@ export const ActivityTimeline = ({ activities = [], className }) => {
       )}
     >
       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Recent Activity</h3>
-      <div className="space-y-4">
+      <div className="space-y-3">
         {activities.map((activity, index) => (
-          <div key={index} className="flex gap-3 sm:gap-4">
+          <div key={index} className="flex gap-3 sm:gap-3">
             <div className="flex-shrink-0">
               <div
                 className={cn(

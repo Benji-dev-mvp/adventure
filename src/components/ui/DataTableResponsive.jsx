@@ -91,7 +91,7 @@ export const DataTable = ({
   return (
     <div className={cn('w-full', className)}>
       {/* Toolbar */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-4">
+      <div className="flex flex-col sm:flex-row gap-3 mb-4">
         {/* Search */}
         {searchable && (
           <div className="relative flex-1">
@@ -159,7 +159,7 @@ export const DataTable = ({
                   </div>
                 </th>
               ))}
-              {actions && <th className="px-6 py-3"></th>}
+              {actions && <th className="px-4 py-3"></th>}
             </tr>
           </thead>
           <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
@@ -175,7 +175,7 @@ export const DataTable = ({
                 {columns.map((column, colIndex) => (
                   <td
                     key={colIndex}
-                    className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100"
+                    className="px-4 py-3 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100"
                   >
                     {column.render
                       ? column.render(row[column.accessor], row)
@@ -183,7 +183,7 @@ export const DataTable = ({
                   </td>
                 ))}
                 {actions && (
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm">
+                  <td className="px-4 py-3 whitespace-nowrap text-right text-sm">
                     <div className="flex items-center justify-end gap-2">{actions(row)}</div>
                   </td>
                 )}
@@ -195,7 +195,7 @@ export const DataTable = ({
 
       {/* Mobile Card View */}
       {mobileCardView && (
-        <div className="md:hidden space-y-4">
+        <div className="md:hidden space-y-3">
           {paginatedData.map((row, index) => (
             <div
               key={index}
@@ -232,7 +232,7 @@ export const DataTable = ({
 
       {/* Pagination */}
       {pagination && totalPages > 1 && (
-        <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="text-sm text-gray-600 dark:text-gray-400">
             Showing {(currentPage - 1) * pageSize + 1} to{' '}
             {Math.min(currentPage * pageSize, sortedData.length)} of {sortedData.length} results

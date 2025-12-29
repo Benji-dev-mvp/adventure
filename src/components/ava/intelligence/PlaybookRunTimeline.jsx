@@ -185,7 +185,7 @@ const TimelineTrack = ({ runs, selectedRun, onRunClick, dateRange }) => {
   }, [dateRange]);
 
   return (
-    <div className="relative h-32 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl overflow-hidden">
+    <div className="relative h-32 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-lg overflow-hidden">
       {/* Grid lines */}
       <div className="absolute inset-0 flex">
         {ticks.map((tick, i) => (
@@ -255,10 +255,10 @@ const RunDetailPanel = ({ run, onClose }) => {
     : null;
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 mt-4 animate-fadeIn">
+    <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 mt-4 animate-fadeIn">
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-center gap-3">
-          <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${config.bg}`}>
+          <div className={`w-10 h-9 rounded-lg flex items-center justify-center ${config.bg}`}>
             <Icon size={20} className={config.color} />
           </div>
           <div>
@@ -284,7 +284,7 @@ const RunDetailPanel = ({ run, onClose }) => {
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
         <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3 text-center">
           <Users size={18} className="mx-auto mb-1 text-gray-500" />
-          <div className="text-xl font-bold text-gray-900 dark:text-white">
+          <div className="text-lg font-bold text-gray-900 dark:text-white">
             <AnimatedCounter end={run.leads_targeted || 0} />
           </div>
           <div className="text-xs text-gray-500">Leads</div>
@@ -292,7 +292,7 @@ const RunDetailPanel = ({ run, onClose }) => {
 
         <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3 text-center">
           <Mail size={18} className="mx-auto mb-1 text-blue-500" />
-          <div className="text-xl font-bold text-gray-900 dark:text-white">
+          <div className="text-lg font-bold text-gray-900 dark:text-white">
             <AnimatedCounter end={run.emails_sent || 0} />
           </div>
           <div className="text-xs text-gray-500">Emails</div>
@@ -300,7 +300,7 @@ const RunDetailPanel = ({ run, onClose }) => {
 
         <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3 text-center">
           <MessageSquare size={18} className="mx-auto mb-1 text-purple-500" />
-          <div className="text-xl font-bold text-gray-900 dark:text-white">
+          <div className="text-lg font-bold text-gray-900 dark:text-white">
             <AnimatedCounter end={run.responses || 0} />
           </div>
           <div className="text-xs text-gray-500">Responses</div>
@@ -308,7 +308,7 @@ const RunDetailPanel = ({ run, onClose }) => {
 
         <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3 text-center">
           <Calendar size={18} className="mx-auto mb-1 text-green-500" />
-          <div className="text-xl font-bold text-green-600">
+          <div className="text-lg font-bold text-green-600">
             <AnimatedCounter end={run.meetings_booked || 0} />
           </div>
           <div className="text-xs text-gray-500">Meetings</div>
@@ -317,7 +317,7 @@ const RunDetailPanel = ({ run, onClose }) => {
         <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3 text-center">
           <Target size={18} className="mx-auto mb-1 text-pink-500" />
           <div
-            className={`text-xl font-bold ${
+            className={`text-lg font-bold ${
               performance >= 70
                 ? 'text-green-600'
                 : performance >= 40
@@ -488,12 +488,12 @@ export const PlaybookRunTimeline = ({ runs = [], playbooks = [] }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="p-5 border-b border-gray-200 dark:border-gray-700">
+      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-9 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
               <Clock className="text-white" size={20} />
             </div>
             <div>
@@ -540,7 +540,7 @@ export const PlaybookRunTimeline = ({ runs = [], playbooks = [] }) => {
       </div>
 
       {/* Content */}
-      <div className="p-5">
+      <div className="p-4">
         {/* Summary Stats */}
         <TimelineSummary runs={filteredRuns} />
 

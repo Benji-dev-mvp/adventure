@@ -76,12 +76,12 @@ const IntelligencePanel = ({ entity, type, onClose, onAction }: IntelligencePane
         </button>
       </div>
 
-      <div className="p-4 space-y-4">
+      <div className="p-4 space-y-3">
         {/* Score Overview */}
         <div className="bg-gray-800/50 rounded-lg p-4">
           <div className="flex items-center justify-between mb-3">
             <span className="text-sm text-gray-400">Overall Score</span>
-            <span className="text-2xl font-bold text-white">{entity.score}</span>
+            <span className="text-lg font-bold text-white">{entity.score}</span>
           </div>
           <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
             <motion.div

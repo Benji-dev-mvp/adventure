@@ -341,15 +341,15 @@ const PlaybookLibrary = ({ isOpen, onClose, onSelectPlaybook }) => {
       />
 
       {/* Modal */}
-      <div className="fixed inset-4 md:inset-10 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
+      <div className="fixed inset-4 md:inset-10 bg-white dark:bg-gray-800 rounded-lg shadow-2xl z-50 flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
               <BookOpen className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">Playbook Library</h2>
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white">Playbook Library</h2>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 Pre-built campaign templates to get started quickly
               </p>
@@ -365,7 +365,7 @@ const PlaybookLibrary = ({ isOpen, onClose, onSelectPlaybook }) => {
 
         {/* Search & Filters */}
         <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col md:flex-row gap-3">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
               <input
@@ -395,12 +395,12 @@ const PlaybookLibrary = ({ isOpen, onClose, onSelectPlaybook }) => {
         </div>
 
         {/* Playbook Grid */}
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex-1 overflow-y-auto p-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {filteredPlaybooks.map(playbook => (
               <div
                 key={playbook.id}
-                className="group bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl overflow-hidden hover:shadow-lg transition-all cursor-pointer"
+                className="group bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden hover:shadow-lg transition-all cursor-pointer"
                 role="button"
                 tabIndex={0}
                 aria-label={`Select ${playbook.name}`}
@@ -485,7 +485,7 @@ const PlaybookLibrary = ({ isOpen, onClose, onSelectPlaybook }) => {
 
           {filteredPlaybooks.length === 0 && (
             <div className="text-center py-12">
-              <BookOpen className="w-12 h-12 mx-auto text-gray-300 dark:text-gray-600 mb-4" />
+              <BookOpen className="w-12 h-9 mx-auto text-gray-300 dark:text-gray-600 mb-4" />
               <p className="text-gray-500 dark:text-gray-400">
                 No playbooks found matching your search
               </p>

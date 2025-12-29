@@ -24,7 +24,7 @@ export const Input = React.forwardRef(
           id={inputId}
           className={cn(
             'w-full rounded-[var(--radius-md)] border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 text-gray-900 dark:text-white',
-            'h-[var(--control-h-md)] px-[var(--space-3)] text-[var(--font-sm)]',
+            'h-[var(--control-h-sm)] px-[var(--space-3)] text-[var(--font-sm)]',
             'placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent',
             'disabled:bg-gray-50 dark:disabled:bg-white/5 disabled:cursor-not-allowed',
             error && 'border-red-500 focus:ring-red-500',
@@ -125,7 +125,7 @@ export const Select = React.forwardRef(({ className, label, error, children, ...
         id={selectId}
         className={cn(
           'w-full rounded-[var(--radius-lg)] border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 text-gray-900 dark:text-white',
-          'h-[var(--control-h-md)] px-[var(--space-4)] text-[var(--font-sm)]',
+          'h-[var(--control-h-sm)] px-[var(--space-4)] text-[var(--font-sm)]',
           'focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent',
           'disabled:bg-gray-50 dark:disabled:bg-white/5 disabled:cursor-not-allowed',
           error && 'border-red-500 focus:ring-red-500',

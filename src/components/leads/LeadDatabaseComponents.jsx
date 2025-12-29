@@ -18,7 +18,7 @@ export const BooleanSearchBuilder = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div>
             <label className="text-sm font-medium">Search Query</label>
             <Input
@@ -58,7 +58,7 @@ export const LookalikeAudience = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
             <p className="text-sm font-medium mb-2">Selected Seed Leads: {selectedLeads}</p>
             <p className="text-xs text-gray-600">

@@ -57,9 +57,9 @@ export const ABTestingModule = ({ onSave }) => {
         </p>
       </CardHeader>
       <CardContent>
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Test Configuration */}
-          <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 dark:bg-white/5 rounded-lg">
+          <div className="grid grid-cols-2 gap-3 p-4 bg-gray-50 dark:bg-white/5 rounded-lg">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Test Duration
@@ -94,7 +94,7 @@ export const ABTestingModule = ({ onSave }) => {
           </div>
 
           {/* Variants */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             {variants.map((variant, index) => (
               <div
                 key={variant.id}

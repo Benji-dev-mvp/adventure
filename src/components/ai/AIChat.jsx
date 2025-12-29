@@ -138,7 +138,7 @@ export function AIChat() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-4">
+    <div className="max-w-4xl mx-auto space-y-3">
       {/* AI Status */}
       {aiStatus && (
         <Card className="p-4 bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
@@ -160,14 +160,14 @@ export function AIChat() {
       )}
 
       {/* Chat Messages */}
-      <Card className="p-6 min-h-[400px] max-h-[600px] overflow-y-auto">
+      <Card className="p-4 min-h-[400px] max-h-[600px] overflow-y-auto">
         {messages.length === 0 ? (
           <div className="text-center text-gray-500 py-12">
             <p className="text-lg mb-2">👋 Hi! I'm Ava, your AI assistant</p>
             <p className="text-sm">Ask me anything about campaigns, leads, or sales strategy</p>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {messages.map((msg, idx) => (
               <div
                 key={idx}

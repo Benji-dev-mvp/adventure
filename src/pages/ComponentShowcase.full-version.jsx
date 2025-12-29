@@ -57,17 +57,17 @@ const ComponentShowcase = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-4">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Header */}
-        <div className="text-center space-y-4">
+        <div className="text-center space-y-3">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
             Artisan Design System
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400">
             A comprehensive component library built with Tailwind CSS, Radix UI, and React
           </p>
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-3">
             <Badge variant="success">Production Ready</Badge>
             <Badge variant="info">Accessible</Badge>
             <Badge variant="purple">Dark Mode</Badge>
@@ -76,9 +76,9 @@ const ComponentShowcase = () => {
 
         {/* Navigation */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Navigation</h2>
-            <div className="space-y-6">
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-4">Navigation</h2>
+            <div className="space-y-3">
               <div>
                 <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
                   Breadcrumb
@@ -106,8 +106,8 @@ const ComponentShowcase = () => {
 
         {/* Buttons */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Buttons</h2>
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-4">Buttons</h2>
             <div className="flex flex-wrap gap-3">
               <Button variant="primary">Primary</Button>
               <Button variant="secondary">Secondary</Button>
@@ -128,9 +128,9 @@ const ComponentShowcase = () => {
 
         {/* Form Components */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Form Components</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-6">Form Components</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <Input
                 label="Email Address"
                 type="email"
@@ -145,7 +145,7 @@ const ComponentShowcase = () => {
                 error="Password must be at least 8 characters"
               />
               <Textarea label="Description" placeholder="Enter description..." rows={4} />
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <Checkbox label="Accept terms and conditions" />
                 <Checkbox label="Subscribe to newsletter" />
                 <Switch
@@ -165,9 +165,9 @@ const ComponentShowcase = () => {
 
         {/* Alerts & Feedback */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Alerts & Feedback</h2>
-            <div className="space-y-4">
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-6">Alerts & Feedback</h2>
+            <div className="space-y-3">
               <Alert variant="info" title="Information">
                 This is an informational message with helpful details.
               </Alert>
@@ -193,10 +193,10 @@ const ComponentShowcase = () => {
 
         {/* Loading States */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Loading States</h2>
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-6">Loading States</h2>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
                 <Spinner size="xs" />
                 <Spinner size="sm" />
                 <Spinner size="md" />
@@ -231,8 +231,8 @@ const ComponentShowcase = () => {
 
         {/* Stats */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Statistics</h2>
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-6">Statistics</h2>
             <StatGroup>
               <Stat
                 label="Total Revenue"
@@ -265,8 +265,8 @@ const ComponentShowcase = () => {
 
         {/* Table */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Table</h2>
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-6">Table</h2>
             <Table>
               <TableHeader>
                 <TableRow>
@@ -308,8 +308,8 @@ const ComponentShowcase = () => {
 
         {/* Accordion */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Accordion</h2>
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-6">Accordion</h2>
             <Accordion type="single" defaultValue="item-1">
               <AccordionItem value="item-1">
                 <AccordionTrigger value="item-1">What is Artisan?</AccordionTrigger>
@@ -340,9 +340,9 @@ const ComponentShowcase = () => {
 
         {/* Badges & Avatars */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Badges & Avatars</h2>
-            <div className="space-y-6">
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-6">Badges & Avatars</h2>
+            <div className="space-y-3">
               <div>
                 <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
                   Badges
@@ -375,9 +375,9 @@ const ComponentShowcase = () => {
 
         {/* Tooltips */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Tooltips</h2>
-            <div className="flex gap-4">
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-6">Tooltips</h2>
+            <div className="flex gap-3">
               <Tooltip content="This appears on top" position="top">
                 <Button>Hover Top</Button>
               </Tooltip>
@@ -396,8 +396,8 @@ const ComponentShowcase = () => {
 
         {/* Drawer */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Drawer</h2>
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-6">Drawer</h2>
             <Button onClick={() => setDrawerOpen(true)}>Open Drawer</Button>
             <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
               <DrawerHeader>
@@ -405,7 +405,7 @@ const ComponentShowcase = () => {
                 <DrawerClose />
               </DrawerHeader>
               <DrawerContent>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <p className="text-gray-600 dark:text-gray-400">
                     This is a drawer component that slides in from the side. It's perfect for
                     navigation menus, settings panels, or any content that needs to overlay the main
@@ -428,8 +428,8 @@ const ComponentShowcase = () => {
 
         {/* Empty State */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Empty State</h2>
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-6">Empty State</h2>
             <EmptyState
               title="No items found"
               description="Get started by creating your first item. It only takes a few seconds."

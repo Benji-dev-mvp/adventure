@@ -352,7 +352,7 @@ const IntelligenceGraph = () => {
             >
               <h4 className="text-sm font-medium text-white mb-3">Filter Nodes</h4>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div>
                   <label
                     htmlFor="node-type-filter"
@@ -608,12 +608,12 @@ const IntelligenceGraph = () => {
               </button>
             </div>
 
-            <div className="p-4 space-y-4">
+            <div className="p-4 space-y-3">
               {/* Score Card */}
               <div className="bg-gray-800/50 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-sm text-gray-400">Overall Score</span>
-                  <span className="text-2xl font-bold text-white">{selectedNode.score}</span>
+                  <span className="text-lg font-bold text-white">{selectedNode.score}</span>
                 </div>
                 <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
                   <motion.div

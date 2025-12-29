@@ -138,16 +138,16 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white">
             {playbook ? 'Edit Playbook' : 'Create New Playbook'}
           </h2>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-4 space-y-3">
           {/* Basic Info */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div>
               <label
                 htmlFor="playbook-name"
@@ -185,7 +185,7 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
           </div>
 
           {/* Segment & Goal */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <label
                 htmlFor="playbook-segment"
@@ -295,7 +295,7 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
             <button
               type="submit"
               disabled={saving}
-              className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-medium hover:from-purple-600 hover:to-pink-600 transition-colors disabled:opacity-50 flex items-center gap-2"
+              className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-medium hover:from-purple-600 hover:to-pink-600 transition-colors disabled:opacity-50 flex items-center gap-2"
             >
               {saving && <Loader2 size={16} className="animate-spin" />}
               {playbook ? 'Save Changes' : 'Create Playbook'}
@@ -326,9 +326,9 @@ PlaybookModal.propTypes = {
 const RunHistoryModal = ({ playbook, runs, onClose }) => {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-3xl w-full max-h-[80vh] overflow-hidden">
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-2xl max-w-3xl w-full max-h-[80vh] overflow-hidden">
+        <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white">
             Run History: {playbook.name}
           </h2>
           <button
@@ -343,22 +343,22 @@ const RunHistoryModal = ({ playbook, runs, onClose }) => {
           <table className="w-full">
             <thead className="bg-gray-50 dark:bg-gray-700/50 sticky top-0">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
                   Started
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
                   Leads
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
                   Emails
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
                   Responses
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
                   Meetings
                 </th>
               </tr>
@@ -368,7 +368,7 @@ const RunHistoryModal = ({ playbook, runs, onClose }) => {
                 <tr>
                   <td
                     colSpan={6}
-                    className="px-6 py-8 text-center text-gray-500 dark:text-gray-400"
+                    className="px-4 py-8 text-center text-gray-500 dark:text-gray-400"
                   >
                     No runs yet. Click "Run Now" to execute this playbook.
                   </td>
@@ -376,22 +376,22 @@ const RunHistoryModal = ({ playbook, runs, onClose }) => {
               ) : (
                 runs.map(run => (
                   <tr key={run.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/30">
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3">
                       <StatusBadge status={run.status} />
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    <td className="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">
                       {run.started_at ? new Date(run.started_at).toLocaleString() : '-'}
                     </td>
-                    <td className="px-6 py-4 text-sm text-right text-gray-700 dark:text-gray-300">
+                    <td className="px-4 py-3 text-sm text-right text-gray-700 dark:text-gray-300">
                       {run.leads_targeted || 0}
                     </td>
-                    <td className="px-6 py-4 text-sm text-right text-gray-700 dark:text-gray-300">
+                    <td className="px-4 py-3 text-sm text-right text-gray-700 dark:text-gray-300">
                       {run.emails_sent || 0}
                     </td>
-                    <td className="px-6 py-4 text-sm text-right text-gray-700 dark:text-gray-300">
+                    <td className="px-4 py-3 text-sm text-right text-gray-700 dark:text-gray-300">
                       {run.responses || 0}
                     </td>
-                    <td className="px-6 py-4 text-sm text-right font-medium text-green-600 dark:text-green-400">
+                    <td className="px-4 py-3 text-sm text-right font-medium text-green-600 dark:text-green-400">
                       {run.meetings_booked || 0}
                     </td>
                   </tr>
@@ -441,12 +441,12 @@ const PlaybookCard = ({ playbook, onRun, onEdit, onPause, onActivate, onDelete, 
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-shadow">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-shadow">
       {/* Header */}
-      <div className="p-5 border-b border-gray-100 dark:border-gray-700">
+      <div className="p-4 border-b border-gray-100 dark:border-gray-700">
         <div className="flex justify-between items-start mb-2">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-9 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
               <GoalIcon goal={playbook.goal} />
             </div>
             <div>
@@ -591,43 +591,43 @@ const PlaybooksSummary = ({ stats }) => {
   if (!stats) return null;
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+      <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border border-gray-200 dark:border-gray-700">
         <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400 mb-2">
           <Zap size={20} />
           <span className="text-sm font-medium">Active Playbooks</span>
         </div>
-        <div className="text-2xl font-bold text-gray-900 dark:text-white">
+        <div className="text-lg font-bold text-gray-900 dark:text-white">
           {stats.active_playbooks} / {stats.total_playbooks}
         </div>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+      <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border border-gray-200 dark:border-gray-700">
         <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 mb-2">
           <Users size={20} />
           <span className="text-sm font-medium">Leads Targeted</span>
         </div>
-        <div className="text-2xl font-bold text-gray-900 dark:text-white">
+        <div className="text-lg font-bold text-gray-900 dark:text-white">
           <AnimatedCounter end={stats.total_leads_targeted} />
         </div>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+      <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border border-gray-200 dark:border-gray-700">
         <div className="flex items-center gap-2 text-green-600 dark:text-green-400 mb-2">
           <TrendingUp size={20} />
           <span className="text-sm font-medium">Response Rate</span>
         </div>
-        <div className="text-2xl font-bold text-gray-900 dark:text-white">
+        <div className="text-lg font-bold text-gray-900 dark:text-white">
           {stats.response_rate}%
         </div>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+      <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border border-gray-200 dark:border-gray-700">
         <div className="flex items-center gap-2 text-pink-600 dark:text-pink-400 mb-2">
           <Calendar size={20} />
           <span className="text-sm font-medium">Meetings Booked</span>
         </div>
-        <div className="text-2xl font-bold text-gray-900 dark:text-white">
+        <div className="text-lg font-bold text-gray-900 dark:text-white">
           <AnimatedCounter end={stats.total_meetings} />
         </div>
       </div>
@@ -802,11 +802,11 @@ export const AIPlaybooksManager = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
             <Zap className="text-purple-500" size={24} />
             AI Playbooks
           </h2>
@@ -831,8 +831,8 @@ export const AIPlaybooksManager = () => {
 
       {/* Playbooks Grid */}
       {playbooks.length === 0 ? (
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-12 text-center shadow-lg border border-gray-200 dark:border-gray-700">
-          <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-12 text-center shadow-lg border border-gray-200 dark:border-gray-700">
+          <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mx-auto mb-4">
             <Zap size={32} className="text-white" />
           </div>
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
@@ -844,14 +844,14 @@ export const AIPlaybooksManager = () => {
           </p>
           <button
             onClick={() => setShowModal(true)}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-medium hover:from-purple-600 hover:to-pink-600 transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-medium hover:from-purple-600 hover:to-pink-600 transition-colors"
           >
             <Plus size={18} />
             Create Your First Playbook
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {playbooks.map(playbook => (
             <PlaybookCard
               key={playbook.id}

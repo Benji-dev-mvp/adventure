@@ -92,17 +92,17 @@ export const BillingAnalytics = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-3">
           <div className="text-center p-4 bg-gray-50 dark:bg-white/5 rounded-lg">
-            <div className="text-2xl font-bold">1,247</div>
+            <div className="text-lg font-bold">1,247</div>
             <p className="text-sm text-gray-600">Credits Used</p>
           </div>
           <div className="text-center p-4 bg-gray-50 dark:bg-white/5 rounded-lg">
-            <div className="text-2xl font-bold">$2,450</div>
+            <div className="text-lg font-bold">$2,450</div>
             <p className="text-sm text-gray-600">This Month</p>
           </div>
           <div className="text-center p-4 bg-gray-50 dark:bg-white/5 rounded-lg">
-            <div className="text-2xl font-bold">12</div>
+            <div className="text-lg font-bold">12</div>
             <p className="text-sm text-gray-600">Active Users</p>
           </div>
         </div>

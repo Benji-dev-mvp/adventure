@@ -35,10 +35,10 @@ const UIShowcase = () => {
     <DashboardLayout>
       <div className="space-y-8">
         {/* Hero Section */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-purple-coral p-12 text-white shadow-2xl">
+        <div className="relative overflow-hidden rounded-lg bg-gradient-purple-coral p-12 text-white shadow-2xl">
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-4">
-              <Palette className="w-10 h-10" />
+              <Palette className="w-10 h-9" />
               <Badge variant="outline" className="border-white text-white">
                 Design System 2.0
               </Badge>
@@ -68,22 +68,22 @@ const UIShowcase = () => {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-xl border-2 border-green-500 bg-green-50 dark:bg-green-500/10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div className="p-4 rounded-lg border-2 border-green-500 bg-green-50 dark:bg-green-500/10">
                 <Check className="w-8 h-8 text-green-600 mb-3" />
                 <h3 className="font-semibold text-lg mb-2">React + Vite</h3>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
                   Lightning-fast HMR, modern build tooling, perfect for enterprise apps
                 </p>
               </div>
-              <div className="p-6 rounded-xl border-2 border-blue-500 bg-blue-50 dark:bg-blue-500/10">
+              <div className="p-4 rounded-lg border-2 border-blue-500 bg-blue-50 dark:bg-blue-500/10">
                 <Check className="w-8 h-8 text-blue-600 mb-3" />
                 <h3 className="font-semibold text-lg mb-2">Tailwind CSS</h3>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
                   Utility-first styling, customizable theme, no CSS bloat
                 </p>
               </div>
-              <div className="p-6 rounded-xl border-2 border-purple-500 bg-purple-50 dark:bg-purple-500/10">
+              <div className="p-4 rounded-lg border-2 border-purple-500 bg-purple-50 dark:bg-purple-500/10">
                 <Check className="w-8 h-8 text-purple-600 mb-3" />
                 <h3 className="font-semibold text-lg mb-2">TypeScript Ready</h3>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
@@ -92,7 +92,7 @@ const UIShowcase = () => {
               </div>
             </div>
 
-            <div className="mt-8 p-6 bg-gray-50 dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/10">
+            <div className="mt-8 p-4 bg-gray-50 dark:bg-white/5 rounded-lg border border-gray-200 dark:border-white/10">
               <h4 className="font-semibold mb-4 flex items-center gap-2">
                 <X className="w-5 h-5 text-red-500" />
                 Why NOT migrate to other frameworks?
@@ -134,7 +134,7 @@ const UIShowcase = () => {
               into your codebase.
             </p>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-3">
             {/* Enhanced Buttons */}
             <div>
               <h4 className="font-semibold mb-3">
@@ -175,13 +175,13 @@ const UIShowcase = () => {
                       LinkedIn, SMS, and calls.
                     </DialogDescription>
                   </DialogHeader>
-                  <div className="space-y-4 py-4">
+                  <div className="space-y-3 py-3">
                     <div>
                       <label className="text-sm font-medium mb-2 block">Campaign Name</label>
                       <input
                         type="text"
                         placeholder="Q1 2025 Enterprise Outreach"
-                        className="w-full px-4 py-2 rounded-xl border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 focus:ring-2 focus:ring-accent-500"
+                        className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 focus:ring-2 focus:ring-accent-500"
                       />
                     </div>
                     <div>
@@ -247,7 +247,7 @@ const UIShowcase = () => {
             </div>
 
             {/* Code Example */}
-            <div className="p-6 bg-gray-900 rounded-xl text-white overflow-x-auto">
+            <div className="p-4 bg-gray-900 rounded-lg text-white overflow-x-auto">
               <code className="text-sm font-mono">
                 {`import { Button } from '@/components/ui/Button';\nimport { Dialog, DialogTrigger, DialogContent } from '@/components/ui/Dialog';\n\n<Dialog>\n  <DialogTrigger asChild>\n    <Button variant="gradient">Open Modal</Button>\n  </DialogTrigger>\n  <DialogContent>\n    <DialogTitle>Your Content</DialogTitle>\n  </DialogContent>\n</Dialog>`}
               </code>
@@ -266,7 +266,7 @@ const UIShowcase = () => {
               60+ semantic class-based components. Perfect for quick iterations and MVPs.
             </p>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-3">
             {/* DaisyUI Buttons */}
             <div>
               <h4 className="font-semibold mb-3">DaisyUI Semantic Buttons (No Custom CSS)</h4>
@@ -321,7 +321,7 @@ const UIShowcase = () => {
             </div>
 
             {/* Code Example */}
-            <div className="p-6 bg-gray-900 rounded-xl text-white overflow-x-auto">
+            <div className="p-4 bg-gray-900 rounded-lg text-white overflow-x-auto">
               <code className="text-sm font-mono">
                 {`<!-- No imports needed, just Tailwind classes -->\n<button className="daisy-btn daisy-btn-primary">\n  Click Me\n</button>\n\n<div className="daisy-alert daisy-alert-success">\n  <span>Success message!</span>\n</div>`}
               </code>
@@ -338,8 +338,8 @@ const UIShowcase = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-6 rounded-xl bg-purple-50 dark:bg-purple-500/10 border-2 border-purple-500">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="p-4 rounded-lg bg-purple-50 dark:bg-purple-500/10 border-2 border-purple-500">
                 <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
                   <Sparkles className="w-5 h-5" />
                   Use Shadcn/ui When:
@@ -368,7 +368,7 @@ const UIShowcase = () => {
                 </ul>
               </div>
 
-              <div className="p-6 rounded-xl bg-yellow-50 dark:bg-yellow-500/10 border-2 border-yellow-500">
+              <div className="p-4 rounded-lg bg-yellow-50 dark:bg-yellow-500/10 border-2 border-yellow-500">
                 <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
                   <Zap className="w-5 h-5" />
                   Use DaisyUI When:
@@ -403,13 +403,13 @@ const UIShowcase = () => {
         {/* Benefits Summary */}
         <Card className="bg-gradient-to-r from-accent-500/10 to-purple-500/10 border-2 border-accent-500">
           <CardContent className="pt-6">
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-xl bg-accent-500 text-white">
+            <div className="flex items-start gap-3">
+              <div className="p-3 rounded-lg bg-accent-500 text-white">
                 <Code2 className="w-8 h-8" />
               </div>
               <div>
-                <h3 className="text-xl font-bold mb-2">🎉 Your New Architecture Benefits</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                <h3 className="text-lg font-bold mb-2">🎉 Your New Architecture Benefits</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
                   <div>
                     <h4 className="font-semibold mb-1">⚡ Better Performance</h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">

@@ -167,7 +167,7 @@ export const AnalyticsTab = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header with Actions */}
       <div className="flex items-center justify-between">
         <div>
@@ -202,7 +202,7 @@ export const AnalyticsTab = () => {
       </div>
 
       {/* Key Metrics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
         {metrics.map((metric, idx) => (
           <Card key={idx} className="dark:bg-slate-900/50 dark:backdrop-blur-xl">
             <CardContent className="p-4">
@@ -221,7 +221,7 @@ export const AnalyticsTab = () => {
                   {metric.change}
                 </div>
               </div>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+              <div className="text-lg font-bold text-gray-900 dark:text-white mb-1">
                 {metric.value}
               </div>
               <div className="text-xs text-gray-600 dark:text-gray-400">{metric.label}</div>
@@ -286,7 +286,7 @@ export const AnalyticsTab = () => {
       </Card>
 
       {/* Two Column Layout */}
-      <div className="grid lg:grid-cols-2 gap-6">
+      <div className="grid lg:grid-cols-2 gap-3">
         {/* Channel Performance */}
         <Card className="dark:bg-slate-900/50 dark:backdrop-blur-xl">
           <CardHeader>
@@ -365,8 +365,8 @@ export const AnalyticsTab = () => {
 
       {/* Insights Summary */}
       <Card className="dark:bg-slate-900/50 dark:backdrop-blur-xl border-blue-200 dark:border-blue-500/30">
-        <CardContent className="p-6">
-          <div className="flex items-start gap-4">
+        <CardContent className="p-4">
+          <div className="flex items-start gap-3">
             <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-full">
               <Target size={24} className="text-blue-600 dark:text-blue-400" />
             </div>

@@ -605,11 +605,11 @@ const WorkflowCanvas = ({
           {/* Dotted Grid Background */}
           <Background color="#94a3b8" gap={20} size={1.5} variant="dots" />
 
-          <Controls className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg" />
+          <Controls className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg" />
 
           <MiniMap
             nodeColor={nodeColor}
-            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg"
+            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg"
             maskColor="rgba(0, 0, 0, 0.1)"
             pannable
             zoomable
@@ -632,7 +632,7 @@ const WorkflowCanvas = ({
 
           {/* Campaign Name */}
           <Panel position="top-center">
-            <div className="bg-white dark:bg-gray-800 px-4 py-2 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 flex items-center gap-3">
+            <div className="bg-white dark:bg-gray-800 px-4 py-2 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 flex items-center gap-3">
               <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                 {campaignName}
               </h2>
@@ -656,7 +656,7 @@ const WorkflowCanvas = ({
 
           {/* Quick Help */}
           <Panel position="bottom-left">
-            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-3 py-2 rounded-lg text-xs text-gray-600 dark:text-gray-400 flex items-center gap-4">
+            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-3 py-2 rounded-lg text-xs text-gray-600 dark:text-gray-400 flex items-center gap-3">
               <span className="flex items-center gap-1">
                 <span className="w-6 h-6 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-[10px]">
                   ⌘

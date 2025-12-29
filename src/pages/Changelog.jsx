@@ -193,7 +193,7 @@ const ChangeItem = ({ change, index }) => {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="flex gap-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+      className="flex gap-3 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
     >
       <div
         className={cn(
@@ -234,10 +234,10 @@ const ChangelogEntry = ({ entry }) => {
     <Card className="overflow-hidden">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full text-left p-6 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+        className="w-full text-left p-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
       >
         <div className="flex items-start justify-between">
-          <div className="flex items-start gap-4">
+          <div className="flex items-start gap-3">
             <div className="relative">
               <div
                 className={cn(
@@ -326,7 +326,7 @@ const Changelog = () => {
 
   return (
     <DashboardLayout>
-      <div className="p-8 max-w-4xl mx-auto">
+      <div className="p-4 max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <motion.div
@@ -357,8 +357,8 @@ const Changelog = () => {
         </div>
 
         {/* Subscribe / Feedback Row */}
-        <div className="flex items-center justify-between mb-8 p-4 bg-gray-50 dark:bg-white/5 rounded-xl">
-          <div className="flex items-center gap-4">
+        <div className="flex items-center justify-between mb-8 p-4 bg-gray-50 dark:bg-white/5 rounded-lg">
+          <div className="flex items-center gap-3">
             <Button variant="outline" size="sm">
               <Star className="h-4 w-4 mr-2" />
               Subscribe to Updates
@@ -419,7 +419,7 @@ const Changelog = () => {
           {/* Timeline line */}
           <div className="absolute left-8 top-0 bottom-0 w-px bg-gray-200 dark:bg-white/10" />
 
-          <div className="space-y-6">
+          <div className="space-y-3">
             {filteredEntries.map(entry => (
               <ChangelogEntry key={entry.id} entry={entry} />
             ))}

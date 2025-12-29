@@ -43,7 +43,7 @@ const OptionButton = ({ option, isSelected, onClick, showDescription = true }) =
     <button
       onClick={onClick}
       className={`
-        flex-1 p-3 rounded-xl border text-left transition-all
+        flex-1 p-3 rounded-lg border text-left transition-all
         ${
           isSelected
             ? 'bg-cyan-500/10 border-cyan-500/30 ring-2 ring-cyan-500/20'
@@ -65,7 +65,7 @@ const OptionButton = ({ option, isSelected, onClick, showDescription = true }) =
 export function CallControls({ settings, updateSettings, onEmergencyTakeover, status }) {
   return (
     <GlassCard variant="subtle">
-      <GlassCardContent className="p-6">
+      <GlassCardContent className="p-4">
         <div className="flex items-center gap-2 mb-6">
           <Settings className="w-5 h-5 text-slate-400" />
           <h3 className="text-lg font-semibold text-slate-100">Call Settings</h3>
@@ -115,7 +115,7 @@ export function CallControls({ settings, updateSettings, onEmergencyTakeover, st
             whileHover={{ scale: status === 'in-call' ? 1.02 : 1 }}
             whileTap={{ scale: status === 'in-call' ? 0.98 : 1 }}
             className={`
-              w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl
+              w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg
               border-2 border-dashed transition-colors
               ${
                 status === 'in-call'
@@ -133,9 +133,9 @@ export function CallControls({ settings, updateSettings, onEmergencyTakeover, st
         </div>
 
         {/* Current settings summary */}
-        <div className="mt-6 p-4 bg-slate-800/50 rounded-xl">
+        <div className="mt-6 p-4 bg-slate-800/50 rounded-lg">
           <h4 className="text-xs font-medium text-slate-400 mb-2">Active Configuration</h4>
-          <div className="flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-3 text-sm">
             <span className="text-slate-300">
               Policy: <span className="text-purple-400 capitalize">{settings.policy}</span>
             </span>

@@ -44,7 +44,7 @@ const ChannelMixMini = ({ channelMix }) => {
   };
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-3">
       <svg viewBox="0 0 100 100" className="w-20 h-20">
         {channels.map(channel => {
           const value = channelMix[channel.key] || 0;
@@ -120,9 +120,9 @@ export function ProgramBrainPanel({ programs, selectedProgram }) {
   if (!program) {
     return (
       <GlassCard variant="subtle" className="h-full">
-        <GlassCardContent className="p-6 flex items-center justify-center h-full">
+        <GlassCardContent className="p-4 flex items-center justify-center h-full">
           <div className="text-center text-slate-400">
-            <Brain className="w-12 h-12 mx-auto mb-3 opacity-50" />
+            <Brain className="w-12 h-9 mx-auto mb-3 opacity-50" />
             <p>Select a program to view its brain</p>
           </div>
         </GlassCardContent>
@@ -132,9 +132,9 @@ export function ProgramBrainPanel({ programs, selectedProgram }) {
 
   return (
     <GlassCard variant="gradient" className="h-full">
-      <GlassCardContent className="p-6">
+      <GlassCardContent className="p-4">
         <div className="flex items-center gap-3 mb-6">
-          <div className="p-2.5 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20">
+          <div className="p-2.5 rounded-lg bg-gradient-to-br from-cyan-500/20 to-purple-500/20">
             <Brain className="w-5 h-5 text-cyan-400" />
           </div>
           <div>
@@ -149,7 +149,7 @@ export function ProgramBrainPanel({ programs, selectedProgram }) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="space-y-6"
+            className="space-y-3"
           >
             {/* ICP Description */}
             <div>

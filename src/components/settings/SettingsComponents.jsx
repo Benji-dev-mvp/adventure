@@ -16,7 +16,7 @@ export const EmailWarmup = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div>
             <label className="text-sm font-medium">Daily Send Limit</label>
             <Input type="number" placeholder="50" className="mt-1" />
@@ -94,7 +94,7 @@ export const TwoFactorAuth = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="text-center py-4">
+        <div className="text-center py-3">
           <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
             <Shield className="text-green-600" size={32} />
           </div>
@@ -121,7 +121,7 @@ export const RateLimiting = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div>
             <label className="text-sm font-medium">Emails per hour</label>
             <Input type="number" placeholder="100" className="mt-1" />

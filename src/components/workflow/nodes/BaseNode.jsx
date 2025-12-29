@@ -60,7 +60,7 @@ export const BaseNode = ({
   return (
     <div
       className={`
-        relative min-w-[200px] max-w-[280px] rounded-xl border-2 shadow-lg 
+        relative min-w-[200px] max-w-[280px] rounded-lg border-2 shadow-lg 
         transition-all duration-200 
         ${colorClasses[color]}
         ${selected ? 'ring-2 ring-offset-2 ring-blue-500' : ''}

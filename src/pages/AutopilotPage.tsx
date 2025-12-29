@@ -69,7 +69,7 @@ const StatusCard = ({
   return (
     <div className={`px-4 py-3 rounded-lg border ${bgColor} flex items-center gap-3`}>
       <div
-        className={`w-10 h-10 rounded-lg flex items-center justify-center bg-slate-800/50 ${statusColor}`}
+        className={`w-10 h-9 rounded-lg flex items-center justify-center bg-slate-800/50 ${statusColor}`}
       >
         <Icon className="w-5 h-5" />
       </div>
@@ -192,13 +192,13 @@ const AutopilotPage = () => {
     <Suspense fallback={<PageLoader />}>
       <div className="h-screen overflow-auto bg-slate-950">
         {/* Hero Status Strip */}
-        <div className="border-b border-slate-800 bg-gradient-to-r from-slate-900 via-violet-950/20 to-slate-900 p-6">
+        <div className="border-b border-slate-800 bg-gradient-to-r from-slate-900 via-violet-950/20 to-slate-900 p-4">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center">
+            <div className="w-10 h-9 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-semibold text-white flex items-center gap-2">
+              <h1 className="text-lg font-semibold text-white flex items-center gap-2">
                 Autonomous Engine
                 <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
                   ACTIVE
@@ -238,7 +238,7 @@ const AutopilotPage = () => {
         </div>
 
         {/* Main Dashboard */}
-        <div className="p-6">
+        <div className="p-4">
           <AutopilotDashboard />
         </div>
       </div>

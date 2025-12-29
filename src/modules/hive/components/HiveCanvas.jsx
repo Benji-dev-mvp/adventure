@@ -152,7 +152,7 @@ export function HiveCanvas({
   if (loading) {
     return (
       <GlassCard variant="subtle" className="h-full">
-        <GlassCardContent className="p-6 h-full flex items-center justify-center">
+        <GlassCardContent className="p-4 h-full flex items-center justify-center">
           <div className="text-center">
             <div className="w-16 h-16 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin mx-auto mb-4" />
             <p className="text-slate-400">Analyzing lead clusters...</p>
@@ -178,7 +178,7 @@ export function HiveCanvas({
         />
 
         {/* Legend */}
-        <div className="absolute top-4 left-4 z-10 flex items-center gap-4 px-3 py-2 bg-slate-900/80 rounded-lg border border-white/10">
+        <div className="absolute top-4 left-4 z-10 flex items-center gap-3 px-3 py-2 bg-slate-900/80 rounded-lg border border-white/10">
           <span className="text-xs text-slate-400">Intent:</span>
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">

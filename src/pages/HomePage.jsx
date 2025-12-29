@@ -154,8 +154,8 @@ const HomePage = () => {
       <section className="relative py-12 border-y border-white/10 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-purple-950/50 to-slate-950" />
         <FloatingParticles count={20} color="mixed" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {TRUST_STATS.map((stat, index) => (
               <RevealText key={index} delay={index * 100}>
                 <GlassCard variant="default" hover glow glowColor="cyan" className="text-center">
@@ -173,7 +173,7 @@ const HomePage = () => {
       </section>
 
       {/* Enterprise-grade Outbound OS Section */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
@@ -186,7 +186,7 @@ const HomePage = () => {
                   The operating system for compliant, AI-led outbound
                 </GradientText>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
                 Replace fragmented tooling with governed automation, enterprise identity, and live
                 controls your security and revenue leaders agree on.
               </p>
@@ -194,7 +194,7 @@ const HomePage = () => {
           </RevealText>
 
           {/* Quick Wins */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="grid md:grid-cols-3 gap-3 mb-16">
             {QUICK_WINS.map((win, index) => {
               const Icon = win.icon;
               return (
@@ -222,7 +222,7 @@ const HomePage = () => {
           </div>
 
           {/* CTA Row */}
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3">
             <Link to="/ai-tour">
               <GlowButton variant="primary" size="lg" glow className="gap-2">
                 <Play size={18} />
@@ -240,7 +240,7 @@ const HomePage = () => {
       </section>
 
       {/* Solutions by Team Size */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950 to-transparent" />
         <FloatingParticles count={15} color="mixed" />
 
@@ -252,12 +252,12 @@ const HomePage = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-6 font-space-grotesk">
               <GradientText gradient="aurora">Built for teams at every stage</GradientText>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
               Whether you're a lean startup or a global enterprise, Ava adapts to your workflow
             </p>
           </motion.div>
 
-          <motion.div {...staggerContainer} className="grid md:grid-cols-3 gap-8">
+          <motion.div {...staggerContainer} className="grid md:grid-cols-3 gap-3">
             {SOLUTIONS_BY_SIZE.map((solution, index) => {
               const Icon = solution.icon;
               return (
@@ -270,16 +270,16 @@ const HomePage = () => {
                       glowColor={index === 0 ? 'cyan' : index === 1 ? 'purple' : 'orange'}
                       className="h-full transition-all duration-500 group-hover:border-white/30"
                     >
-                      <GlassCardContent className="p-8">
+                      <GlassCardContent className="p-4">
                         {/* Icon */}
                         <div
-                          className={`w-14 h-14 rounded-xl bg-gradient-to-br ${solution.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+                          className={`w-14 h-14 rounded-lg bg-gradient-to-br ${solution.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
                         >
                           <Icon size={28} className="text-white" />
                         </div>
 
                         {/* Title & Tagline */}
-                        <h3 className="text-2xl font-bold text-white mb-1 font-space-grotesk group-hover:text-cyan-400 transition-colors">
+                        <h3 className="text-lg font-bold text-white mb-1 font-space-grotesk group-hover:text-cyan-400 transition-colors">
                           {solution.title}
                         </h3>
                         <p className="text-purple-300 text-sm font-medium mb-4">
@@ -301,7 +301,7 @@ const HomePage = () => {
 
                         {/* Stat */}
                         <div className="pt-4 border-t border-white/10 flex items-baseline gap-2">
-                          <span className="text-2xl font-bold font-space-grotesk">
+                          <span className="text-lg font-bold font-space-grotesk">
                             <GradientText gradient="cyber">{solution.stat.value}</GradientText>
                           </span>
                           <span className="text-sm text-gray-400">{solution.stat.label}</span>
@@ -326,11 +326,11 @@ const HomePage = () => {
       </section>
 
       {/* Page Teasers Grid */}
-      <section className="py-20 px-6 relative overflow-hidden bg-gradient-to-b from-transparent via-purple-950/20 to-transparent">
+      <section className="py-20 px-4 relative overflow-hidden bg-gradient-to-b from-transparent via-purple-950/20 to-transparent">
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="aurora">Explore the Artisan Platform</GradientText>
               </h2>
               <p className="text-gray-300 text-lg">
@@ -339,7 +339,7 @@ const HomePage = () => {
             </div>
           </RevealText>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {PAGE_TEASERS.map((teaser, index) => {
               const Icon = teaser.icon;
               return (
@@ -350,13 +350,13 @@ const HomePage = () => {
                       hover
                       className="h-full transition-all duration-300 group-hover:border-cyan-500/50"
                     >
-                      <GlassCardContent className="p-6">
+                      <GlassCardContent className="p-4">
                         <div
-                          className={`w-12 h-12 rounded-xl bg-gradient-to-br ${teaser.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+                          className={`w-12 h-9 rounded-lg bg-gradient-to-br ${teaser.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
                         >
                           <Icon size={24} className="text-white" />
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-2 font-space-grotesk group-hover:text-cyan-400 transition-colors">
+                        <h3 className="text-lg font-bold text-white mb-2 font-space-grotesk group-hover:text-cyan-400 transition-colors">
                           {teaser.title}
                         </h3>
                         <p className="text-gray-400 mb-4 text-sm leading-relaxed">
@@ -383,7 +383,7 @@ const HomePage = () => {
       <CustomerShowcase />
 
       {/* Industry-Leading Features CTA */}
-      <section className="py-20 px-6 relative">
+      <section className="py-20 px-4 relative">
         <div className="max-w-6xl mx-auto">
           {/* Glow Effects */}
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 blur-3xl -z-10 rounded-3xl" />
@@ -397,19 +397,19 @@ const HomePage = () => {
               {/* Floating Icons */}
               <div className="flex justify-center gap-3 mb-6">
                 <div
-                  className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center animate-bounce"
+                  className="w-10 h-9 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center animate-bounce"
                   style={{ animationDelay: '0s', animationDuration: '3s' }}
                 >
                   <Rocket className="text-white" size={20} />
                 </div>
                 <div
-                  className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center animate-bounce"
+                  className="w-10 h-9 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center animate-bounce"
                   style={{ animationDelay: '0.5s', animationDuration: '3s' }}
                 >
                   <Sparkles className="text-white" size={20} />
                 </div>
                 <div
-                  className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center animate-bounce"
+                  className="w-10 h-9 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center animate-bounce"
                   style={{ animationDelay: '1s', animationDuration: '3s' }}
                 >
                   <Zap className="text-white" size={20} />
@@ -420,7 +420,7 @@ const HomePage = () => {
                 <h2 className="text-4xl md:text-5xl font-black mb-4 text-white">
                   Industry-Leading AI Sales Platform
                 </h2>
-                <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+                <p className="text-lg text-slate-300 mb-10 max-w-2xl mx-auto">
                   21 exceptional features engineered to make your sales team{' '}
                   <span className="text-transparent bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text font-bold">
                     unstoppable
@@ -429,7 +429,7 @@ const HomePage = () => {
               </RevealText>
 
               {/* Stats Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto mb-10">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-3 max-w-4xl mx-auto mb-10">
                 {[
                   { count: 5, label: 'Real-Time', gradient: 'from-cyan-500 to-blue-600' },
                   { count: 4, label: 'Gamification', gradient: 'from-purple-500 to-pink-600' },
@@ -443,10 +443,10 @@ const HomePage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="group relative p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 cursor-pointer"
+                    className="group relative p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 cursor-pointer"
                   >
                     <div
-                      className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                      className={`absolute inset-0 rounded-lg bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
                     />
                     <div className="relative">
                       <p className="text-4xl font-black text-white mb-2">{feature.count}</p>
@@ -463,14 +463,14 @@ const HomePage = () => {
                     </div>
                     {/* Hover glow effect */}
                     <div
-                      className={`absolute -inset-1 bg-gradient-to-r ${feature.gradient} rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-300 -z-10`}
+                      className={`absolute -inset-1 bg-gradient-to-r ${feature.gradient} rounded-lg opacity-0 group-hover:opacity-20 blur transition-opacity duration-300 -z-10`}
                     />
                   </motion.div>
                 ))}
               </div>
 
               {/* CTA Button */}
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex flex-wrap justify-center gap-3">
                 <Link to="/exceptional">
                   <GlowButton variant="primary" size="xl" glow className="gap-2">
                     <Rocket size={20} />
@@ -492,7 +492,7 @@ const HomePage = () => {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
 
@@ -503,10 +503,10 @@ const HomePage = () => {
                 Ready to Transform Your Outbound?
               </GradientText>
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-lg text-gray-300 mb-8">
               Join 2,500+ sales teams already using Ava to book more meetings
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link to="/pricing#start">
                 <GlowButton variant="primary" size="xl" glow className="gap-2">
                   <Sparkles size={20} />
@@ -520,7 +520,7 @@ const HomePage = () => {
                 </GlowButtonOutline>
               </Link>
             </div>
-            <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+            <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm text-gray-400">
               <span className="flex items-center gap-2">
                 <CheckCircle2 size={16} className="text-emerald-400" />
                 No credit card required

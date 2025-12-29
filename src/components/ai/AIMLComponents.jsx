@@ -49,7 +49,7 @@ export const AILeadScoringTrainer = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
             <div className="flex justify-between items-center mb-2">
               <span className="font-semibold">Model Accuracy</span>
@@ -346,7 +346,7 @@ export const EmailReplyCategorizer = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="flex gap-1 h-4 rounded-full overflow-hidden">
             {categories.map(cat => (
               <div
@@ -410,7 +410,7 @@ export const ABTestOptimizer = () => {
                   {test.status}
                 </Badge>
               </div>
-              <div className="grid grid-cols-3 gap-4 text-sm">
+              <div className="grid grid-cols-3 gap-3 text-sm">
                 <div>
                   <p className="text-gray-600 text-xs">Variants</p>
                   <p className="font-bold">{test.variants}</p>
@@ -462,17 +462,17 @@ export const SentimentTrendAnalysis = () => {
             <Line type="monotone" dataKey="negative" stroke="#ef4444" strokeWidth={2} />
           </LineChart>
         </ResponsiveContainer>
-        <div className="grid grid-cols-3 gap-4 mt-4">
+        <div className="grid grid-cols-3 gap-3 mt-4">
           <div className="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-            <p className="text-2xl font-bold text-green-600">↑ 10%</p>
+            <p className="text-lg font-bold text-green-600">↑ 10%</p>
             <p className="text-xs text-gray-600">Positive Trend</p>
           </div>
           <div className="text-center p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
-            <p className="text-2xl font-bold text-yellow-600">→ 0%</p>
+            <p className="text-lg font-bold text-yellow-600">→ 0%</p>
             <p className="text-xs text-gray-600">Neutral Stable</p>
           </div>
           <div className="text-center p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
-            <p className="text-2xl font-bold text-red-600">↓ 5%</p>
+            <p className="text-lg font-bold text-red-600">↓ 5%</p>
             <p className="text-xs text-gray-600">Negative Down</p>
           </div>
         </div>
@@ -510,7 +510,7 @@ export const SmartReplyGenerator = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div>
             <label htmlFor="reply-context" className="text-sm font-medium">
               Context

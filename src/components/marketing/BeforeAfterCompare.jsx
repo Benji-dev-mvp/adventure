@@ -35,19 +35,19 @@ const BeforeAfterCompare = ({ content }) => {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16 space-y-4">
+        <div className="text-center mb-16 space-y-3">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary dark:text-white">
             {content.title}
           </h2>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg md:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             {content.subtitle}
           </p>
         </div>
 
         {/* Comparison Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid lg:grid-cols-2 gap-3 lg:gap-12">
           {/* Before Column */}
           <ComparisonCard
             data={content.before}
@@ -67,7 +67,7 @@ const BeforeAfterCompare = ({ content }) => {
 
         {/* VS Divider (Desktop) */}
         <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 items-center justify-center">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-xl shadow-2xl">
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-lg shadow-2xl">
             VS
           </div>
         </div>
@@ -96,7 +96,7 @@ const ComparisonCard = ({ data, variant, isVisible, delay }) => {
             : 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-900/10'
         }`}
       >
-        <CardContent className="p-8 space-y-6">
+        <CardContent className="p-4 space-y-3">
           {/* Header */}
           <div className="space-y-3">
             <Badge
@@ -109,7 +109,7 @@ const ComparisonCard = ({ data, variant, isVisible, delay }) => {
               {data.label}
             </Badge>
             <h3
-              className={`text-2xl md:text-3xl font-bold ${
+              className={`text-lg md:text-lg font-bold ${
                 isBefore ? 'text-red-900 dark:text-red-200' : 'text-green-900 dark:text-green-200'
               }`}
             >
@@ -118,7 +118,7 @@ const ComparisonCard = ({ data, variant, isVisible, delay }) => {
           </div>
 
           {/* Points List */}
-          <ul className="space-y-4">
+          <ul className="space-y-3">
             {data.points.map((point, index) => (
               <li
                 key={index}
@@ -145,7 +145,7 @@ const ComparisonCard = ({ data, variant, isVisible, delay }) => {
 
           {/* Metrics */}
           <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 gap-3">
               {data.metrics.map((metric, index) => (
                 <MetricDisplay
                   key={index}

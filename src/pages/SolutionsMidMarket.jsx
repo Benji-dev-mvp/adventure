@@ -135,7 +135,7 @@ const SolutionsMidMarket = () => {
   return (
     <AppShell>
       {/* Hero Section */}
-      <section className="relative pt-20 pb-24 px-6 overflow-hidden">
+      <section className="relative pt-20 pb-24 px-4 overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-transparent" />
 
@@ -148,10 +148,10 @@ const SolutionsMidMarket = () => {
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-space-grotesk">
               <GradientText gradient="aurora">Scale Without Chaos</GradientText>
             </h1>
-            <p className="text-2xl text-gray-300 mb-4 font-space-grotesk">
+            <p className="text-lg text-gray-300 mb-4 font-space-grotesk">
               Automate 80% of Manual Tasks
             </p>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+            <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
               Streamline your existing outbound workflow while keeping your team in control. Boost
               rep efficiency 3x, eliminate data entry, and orchestrate multichannel sequences from
               one platform.
@@ -160,12 +160,12 @@ const SolutionsMidMarket = () => {
             {/* Quick Stats */}
             <motion.div
               {...staggerContainer}
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-10"
+              className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto mb-10"
             >
               {MIDMARKET_STATS.map((stat, index) => (
                 <motion.div key={index} {...staggerItem}>
                   <GlassCard variant="default" hover className="text-center">
-                    <div className="text-3xl font-bold font-space-grotesk mb-1">
+                    <div className="text-lg font-bold font-space-grotesk mb-1">
                       <GradientText gradient="cyber">{stat.value}</GradientText>
                     </div>
                     <div className="text-sm text-gray-400">{stat.label}</div>
@@ -175,7 +175,7 @@ const SolutionsMidMarket = () => {
             </motion.div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link to="/pricing#start">
                 <GlowButton variant="primary" size="lg" glow className="gap-2">
                   <Sparkles size={18} />
@@ -194,7 +194,7 @@ const SolutionsMidMarket = () => {
       </section>
 
       {/* Channel Mix Section */}
-      <section className="py-16 px-6 relative overflow-hidden">
+      <section className="py-16 px-4 relative overflow-hidden">
         <FloatingParticles count={15} color="purple" />
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
@@ -202,7 +202,7 @@ const SolutionsMidMarket = () => {
               <p className="text-sm font-semibold text-cyan-400 uppercase tracking-wide mb-4">
                 Multichannel Orchestration
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">One Platform, Every Channel</GradientText>
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
@@ -220,7 +220,7 @@ const SolutionsMidMarket = () => {
       <MidMarketFlowOrchestration />
 
       {/* Features Section */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/20 to-transparent" />
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
@@ -231,25 +231,25 @@ const SolutionsMidMarket = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-6 font-space-grotesk">
                 <GradientText gradient="aurora">Everything You Need to Scale</GradientText>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
                 Replace your fragmented sales stack with a unified platform that grows with you
               </p>
             </div>
           </RevealText>
 
-          <motion.div {...staggerContainer} className="grid md:grid-cols-2 gap-8">
+          <motion.div {...staggerContainer} className="grid md:grid-cols-2 gap-3">
             {FEATURES.map((feature, index) => {
               const Icon = feature.icon;
               return (
                 <motion.div key={index} {...staggerItem}>
                   <GlassCard variant="gradient" hover className="h-full">
-                    <GlassCardContent className="p-8">
+                    <GlassCardContent className="p-4">
                       <div
-                        className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6`}
+                        className={`w-14 h-14 rounded-lg bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6`}
                       >
                         <Icon size={28} className="text-white" />
                       </div>
-                      <h3 className="text-2xl font-bold text-white mb-4 font-space-grotesk">
+                      <h3 className="text-lg font-bold text-white mb-4 font-space-grotesk">
                         {feature.title}
                       </h3>
                       <p className="text-gray-300 leading-relaxed">{feature.description}</p>
@@ -263,11 +263,11 @@ const SolutionsMidMarket = () => {
       </section>
 
       {/* ROI Calculator */}
-      <section className="py-20 px-6 relative overflow-hidden bg-slate-950/50">
+      <section className="py-20 px-4 relative overflow-hidden bg-slate-950/50">
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">Calculate Your Pipeline Growth</GradientText>
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
@@ -286,12 +286,12 @@ const SolutionsMidMarket = () => {
       </section>
 
       {/* Customer Impact */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <FloatingParticles count={20} color="cyan" />
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="aurora">Real Results from Real Teams</GradientText>
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
@@ -305,7 +305,7 @@ const SolutionsMidMarket = () => {
       </section>
 
       {/* Benefits Grid */}
-      <section className="py-20 px-6 relative overflow-hidden bg-gradient-to-b from-transparent via-purple-950/30 to-transparent">
+      <section className="py-20 px-4 relative overflow-hidden bg-gradient-to-b from-transparent via-purple-950/30 to-transparent">
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
@@ -316,26 +316,26 @@ const SolutionsMidMarket = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-6 font-space-grotesk">
                 <GradientText gradient="aurora">Why Midmarket Teams Choose Artisan</GradientText>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
                 Boost productivity without adding headcount. Get enterprise-grade capabilities at
                 midmarket pricing.
               </p>
             </div>
           </RevealText>
 
-          <motion.div {...staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div {...staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {BENEFITS.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
                 <motion.div key={index} {...staggerItem}>
                   <GlassCard variant="default" hover glow className="h-full">
-                    <GlassCardContent className="p-6">
+                    <GlassCardContent className="p-4">
                       <div
-                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center mb-4`}
+                        className={`w-12 h-9 rounded-lg bg-gradient-to-br ${benefit.gradient} flex items-center justify-center mb-4`}
                       >
                         <Icon size={24} className="text-white" />
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-3 font-space-grotesk">
+                      <h3 className="text-lg font-bold text-white mb-3 font-space-grotesk">
                         {benefit.title}
                       </h3>
                       <p className="text-gray-400 leading-relaxed">{benefit.description}</p>
@@ -349,7 +349,7 @@ const SolutionsMidMarket = () => {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
 
@@ -360,10 +360,10 @@ const SolutionsMidMarket = () => {
                 Ready to 3x Your Team's Efficiency?
               </GradientText>
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-lg text-gray-300 mb-8">
               Join growing midmarket teams scaling their outbound with Ava
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link to="/pricing#start">
                 <GlowButton variant="primary" size="xl" glow className="gap-2">
                   <Sparkles size={20} />
@@ -377,7 +377,7 @@ const SolutionsMidMarket = () => {
                 </GlowButtonOutline>
               </Link>
             </div>
-            <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+            <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm text-gray-400">
               <span className="flex items-center gap-2">
                 <CheckCircle size={16} className="text-emerald-400" />
                 No credit card required

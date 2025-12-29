@@ -53,7 +53,7 @@ export const EmailPreview = ({ subject, content, variables = [] }) => {
           </div>
 
           {/* Email Body */}
-          <div className="p-6 bg-white">
+          <div className="p-4 bg-white">
             <div className="prose max-w-none text-gray-700 whitespace-pre-wrap leading-relaxed">
               {renderContentWithVariables(content || 'Your email content will appear here...')}
             </div>

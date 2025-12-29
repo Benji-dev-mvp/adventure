@@ -66,7 +66,7 @@ const Sidebar = ({ isCollapsed = false }) => {
     >
       {/* Brand Header */}
       <div className="px-4 py-3 flex items-center gap-2 border-b border-slate-800">
-        <div className="h-8 w-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-violet-500 flex items-center justify-center flex-shrink-0">
+        <div className="h-8 w-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-violet-500 flex items-center justify-center flex-shrink-0">
           <Sparkles className="text-white" size={18} />
         </div>
         {!isCollapsed && (
@@ -80,7 +80,7 @@ const Sidebar = ({ isCollapsed = false }) => {
       </div>
 
       {/* Navigation Sections */}
-      <nav className="flex-1 overflow-y-auto px-2 py-4 space-y-6">
+      <nav className="flex-1 overflow-y-auto px-2 py-3 space-y-3">
         {sections.map(section => {
           const isEmphasized = emphasizedSections.includes(section.id);
           return (
@@ -116,7 +116,7 @@ const Sidebar = ({ isCollapsed = false }) => {
       {/* AI Status Card */}
       {!isCollapsed && (
         <div className="p-4 border-t border-slate-800">
-          <div className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-xl p-3 text-white shadow-lg">
+          <div className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-lg p-3 text-white shadow-lg">
             {/* Animated Background Pattern */}
             <div className={cn('absolute inset-0 opacity-10', prefersReducedMotion && 'hidden')}>
               <div className="absolute top-0 left-0 w-20 h-20 bg-white rounded-full blur-2xl animate-pulse"></div>

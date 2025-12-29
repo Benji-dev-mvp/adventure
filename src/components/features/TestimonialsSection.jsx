@@ -36,26 +36,26 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-br from-slate-950 via-slate-900 to-purple-950 text-white relative overflow-hidden">
+    <section className="py-20 px-4 bg-gradient-to-br from-slate-950 via-slate-900 to-purple-950 text-white relative overflow-hidden">
       <div className="absolute inset-0 grid-background opacity-10" />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 font-space-grotesk text-white">
             Loved by Sales Teams
           </h2>
-          <p className="text-xl text-gray-200">
+          <p className="text-lg text-gray-200">
             Join thousands of companies scaling their outbound with Artisan
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-3">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="group relative futuristic-card rounded-2xl p-8 border border-white/15 hover:border-purple-400/40 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              className="group relative futuristic-card rounded-lg p-4 border border-white/15 hover:border-purple-400/40 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
             >
               {/* Gradient glow on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10 blur-xl" />
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-500 rounded-lg opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10 blur-xl" />
 
               {/* Rating */}
               <div className="flex gap-1 mb-4">
@@ -77,7 +77,7 @@ const TestimonialsSection = () => {
 
               {/* Author Info */}
               <div className="flex items-center gap-3 pt-4 border-t border-white/10">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-full flex items-center justify-center text-2xl">
+                <div className="w-12 h-9 bg-gradient-to-br from-purple-600 to-pink-500 rounded-full flex items-center justify-center text-lg">
                   {testimonial.avatar}
                 </div>
                 <div>
@@ -94,7 +94,7 @@ const TestimonialsSection = () => {
           <p className="text-sm font-semibold text-gray-200 mb-6">TRUSTED BY 10,000+ COMPANIES</p>
           <div className="flex flex-wrap justify-center items-center gap-12">
             {['Salesforce', 'HubSpot', 'Zendesk', 'Stripe', 'Shopify', 'Slack'].map(company => (
-              <div key={company} className="text-2xl font-bold text-white opacity-90">
+              <div key={company} className="text-lg font-bold text-white opacity-90">
                 {company}
               </div>
             ))}

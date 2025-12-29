@@ -204,15 +204,15 @@ const AdminAIDecisions = () => {
 
   return (
     <DashboardLayout>
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="max-w-7xl mx-auto space-y-3">
         {/* Header */}
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-          className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4"
+          className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3"
         >
           <div>
-            <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+            <h1 className="text-lg font-bold text-white flex items-center gap-3">
               <Brain className="h-7 w-7 text-purple-400" />
               <GradientText gradient="aurora">AI Decisions Console</GradientText>
             </h1>
@@ -238,41 +238,41 @@ const AdminAIDecisions = () => {
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="grid grid-cols-2 md:grid-cols-6 gap-4"
+          className="grid grid-cols-2 md:grid-cols-6 gap-3"
         >
           <GlassCard>
             <GlassCardContent className="p-4 text-center">
-              <div className="text-3xl font-bold text-white">{stats.total}</div>
+              <div className="text-lg font-bold text-white">{stats.total}</div>
               <div className="text-xs text-slate-400">Total Decisions</div>
             </GlassCardContent>
           </GlassCard>
           <GlassCard>
             <GlassCardContent className="p-4 text-center">
-              <div className="text-3xl font-bold text-green-400">{stats.lowRisk}</div>
+              <div className="text-lg font-bold text-green-400">{stats.lowRisk}</div>
               <div className="text-xs text-slate-400">Low Risk</div>
             </GlassCardContent>
           </GlassCard>
           <GlassCard>
             <GlassCardContent className="p-4 text-center">
-              <div className="text-3xl font-bold text-amber-400">{stats.mediumRisk}</div>
+              <div className="text-lg font-bold text-amber-400">{stats.mediumRisk}</div>
               <div className="text-xs text-slate-400">Medium Risk</div>
             </GlassCardContent>
           </GlassCard>
           <GlassCard>
             <GlassCardContent className="p-4 text-center">
-              <div className="text-3xl font-bold text-red-400">{stats.highRisk}</div>
+              <div className="text-lg font-bold text-red-400">{stats.highRisk}</div>
               <div className="text-xs text-slate-400">High Risk</div>
             </GlassCardContent>
           </GlassCard>
           <GlassCard>
             <GlassCardContent className="p-4 text-center">
-              <div className="text-3xl font-bold text-purple-400">{stats.overridden}</div>
+              <div className="text-lg font-bold text-purple-400">{stats.overridden}</div>
               <div className="text-xs text-slate-400">Overridden</div>
             </GlassCardContent>
           </GlassCard>
           <GlassCard>
             <GlassCardContent className="p-4 text-center">
-              <div className="text-3xl font-bold text-cyan-400">{stats.avgConfidence}%</div>
+              <div className="text-lg font-bold text-cyan-400">{stats.avgConfidence}%</div>
               <div className="text-xs text-slate-400">Avg Confidence</div>
             </GlassCardContent>
           </GlassCard>
@@ -286,7 +286,7 @@ const AdminAIDecisions = () => {
         >
           <GlassCard>
             <GlassCardContent className="p-4">
-              <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex flex-col md:flex-row gap-3">
                 {/* Search */}
                 <div className="flex-1 relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
@@ -344,7 +344,7 @@ const AdminAIDecisions = () => {
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="space-y-4"
+          className="space-y-3"
         >
           {filteredDecisions.map((decision, index) => (
             <motion.div
@@ -364,7 +364,7 @@ const AdminAIDecisions = () => {
           {filteredDecisions.length === 0 && (
             <GlassCard>
               <GlassCardContent className="p-12 text-center">
-                <Brain className="h-12 w-12 mx-auto mb-4 text-slate-600" />
+                <Brain className="h-9 w-12 mx-auto mb-4 text-slate-600" />
                 <h3 className="text-lg font-semibold text-white mb-2">No Decisions Found</h3>
                 <p className="text-slate-400">No AI decisions match your current filters.</p>
               </GlassCardContent>
@@ -378,7 +378,7 @@ const AdminAIDecisions = () => {
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <div className="p-4 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-start gap-4">
+          <div className="p-4 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-start gap-3">
             <Bot className="h-6 w-6 text-purple-400 flex-shrink-0 mt-0.5" />
             <div>
               <h4 className="font-semibold text-purple-400 mb-1">AI Governance</h4>

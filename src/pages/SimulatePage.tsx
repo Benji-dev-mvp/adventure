@@ -89,9 +89,9 @@ const MetricDisplay: React.FC<{
   };
 
   return (
-    <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+    <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
       <div className="text-gray-400 text-sm mb-2">{label}</div>
-      <div className="text-3xl font-bold text-white mb-2">{formatValue(value.mean)}</div>
+      <div className="text-lg font-bold text-white mb-2">{formatValue(value.mean)}</div>
       <div className="text-sm text-gray-400">
         95% CI: {formatValue(value.low)} - {formatValue(value.high)}
       </div>
@@ -240,21 +240,21 @@ export const SimulatePage: React.FC = () => {
     .map(() => Math.random() * 100);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
+    <div className="min-h-screen bg-gray-900 text-white p-4">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-3xl font-bold">Simulation Engine</h1>
+        <h1 className="text-lg font-bold">Simulation Engine</h1>
         <p className="text-gray-400">
           Monte Carlo pipeline predictions and strategy stress testing
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 gap-3">
         {/* Configuration Panel */}
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-          <h2 className="text-xl font-semibold mb-6">Simulation Parameters</h2>
+        <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+          <h2 className="text-lg font-semibold mb-6">Simulation Parameters</h2>
 
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div>
               <h3 className="text-sm font-medium text-gray-300 mb-4">Engine Settings</h3>
               <ConfigSlider
@@ -342,7 +342,7 @@ export const SimulatePage: React.FC = () => {
           {result?.status === 'completed' && result.metrics ? (
             <>
               {/* Metrics Grid */}
-              <div className="grid grid-cols-4 gap-4 mb-6">
+              <div className="grid grid-cols-4 gap-3 mb-6">
                 <MetricDisplay
                   label="Expected Revenue"
                   value={result.metrics.expectedRevenue}
@@ -350,9 +350,9 @@ export const SimulatePage: React.FC = () => {
                 />
                 <MetricDisplay label="Expected Deals" value={result.metrics.expectedDeals} />
                 <MetricDisplay label="Expected ROI" value={result.metrics.roi} />
-                <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+                <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
                   <div className="text-gray-400 text-sm mb-2">Success Probability</div>
-                  <div className="text-3xl font-bold text-green-400">
+                  <div className="text-lg font-bold text-green-400">
                     {(result.metrics.probabilityOfSuccess * 100).toFixed(0)}%
                   </div>
                   <div className="text-sm text-gray-400">
@@ -362,7 +362,7 @@ export const SimulatePage: React.FC = () => {
               </div>
 
               {/* Distribution Chart */}
-              <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 mb-6">
+              <div className="bg-gray-800 rounded-lg p-4 border border-gray-700 mb-6">
                 <h3 className="text-lg font-semibold mb-4">Revenue Distribution</h3>
                 <DistributionChart data={distributionData} />
                 <div className="flex justify-between text-sm text-gray-400 mt-2">
@@ -373,9 +373,9 @@ export const SimulatePage: React.FC = () => {
               </div>
 
               {/* Insights */}
-              <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+              <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
                 <h3 className="text-lg font-semibold mb-4">Simulation Insights</h3>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {result.insights?.map((insight, i) => (
                     <InsightCard key={i} {...insight} />
                   ))}
@@ -391,7 +391,7 @@ export const SimulatePage: React.FC = () => {
             <div className="flex items-center justify-center h-full">
               <div className="text-center">
                 <div className="text-6xl mb-4">🎲</div>
-                <h3 className="text-xl font-semibold text-gray-400 mb-2">
+                <h3 className="text-lg font-semibold text-gray-400 mb-2">
                   Configure and Run Simulation
                 </h3>
                 <p className="text-gray-500 max-w-md">
@@ -405,9 +405,9 @@ export const SimulatePage: React.FC = () => {
       </div>
 
       {/* Scenario Comparison */}
-      <div className="mt-6 bg-gray-800 rounded-xl p-6 border border-gray-700">
+      <div className="mt-6 bg-gray-800 rounded-lg p-4 border border-gray-700">
         <h3 className="text-lg font-semibold mb-4">Scenario Comparison</h3>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-3">
           {['Conservative', 'Baseline', 'Optimistic', 'Aggressive'].map((scenario, i) => (
             <button
               key={scenario}

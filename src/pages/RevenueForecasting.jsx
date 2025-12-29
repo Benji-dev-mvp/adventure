@@ -64,14 +64,14 @@ const RevenueForecasting = () => {
 
   return (
     <DashboardLayout title="Revenue Forecasting" subtitle="Model your pipeline and predict revenue">
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Current Month</p>
-                <p className="text-3xl font-bold text-gray-900 dark:text-white">
+                <p className="text-lg font-bold text-gray-900 dark:text-white">
                   ${(currentRevenue / 1000000).toFixed(2)}M
                 </p>
               </div>
@@ -81,7 +81,7 @@ const RevenueForecasting = () => {
             <CardContent className="pt-6">
               <div className="text-center">
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Year End</p>
-                <p className="text-3xl font-bold text-green-600">
+                <p className="text-lg font-bold text-green-600">
                   ${(yearEndRevenue / 1000000).toFixed(2)}M
                 </p>
               </div>
@@ -91,7 +91,7 @@ const RevenueForecasting = () => {
             <CardContent className="pt-6">
               <div className="text-center">
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Annual Total</p>
-                <p className="text-3xl font-bold text-purple-600">
+                <p className="text-lg font-bold text-purple-600">
                   ${(forecastData.reduce((sum, d) => sum + d[scenario], 0) / 1000000).toFixed(2)}M
                 </p>
               </div>
@@ -101,19 +101,19 @@ const RevenueForecasting = () => {
             <CardContent className="pt-6">
               <div className="text-center">
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Growth Rate</p>
-                <p className="text-3xl font-bold text-blue-600">+60%</p>
+                <p className="text-lg font-bold text-blue-600">+60%</p>
               </div>
             </CardContent>
           </Card>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Controls */}
           <Card>
             <CardHeader>
               <CardTitle>Model Parameters</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-3">
               <div>
                 <label className="block text-sm font-medium mb-2">
                   Average Deal Size: ${dealSize.toLocaleString()}

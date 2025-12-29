@@ -195,7 +195,7 @@ const EnterpriseFlowOrchestration = () => {
   const currentStage = stages[activeStage];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900/50 to-orange-900/20">
+    <section className="py-20 px-4 sm:px-4 lg:px-8 bg-gradient-to-br from-slate-900/50 to-orange-900/20">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/20 border border-orange-500/30 text-orange-300 text-sm font-semibold mb-4">
@@ -205,7 +205,7 @@ const EnterpriseFlowOrchestration = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Security-First, Compliance-Native Implementation
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
             Watch how Fortune 500 companies deploy with zero security risk and 100% compliance
           </p>
         </div>
@@ -225,7 +225,7 @@ const EnterpriseFlowOrchestration = () => {
                   }}
                 >
                   <div
-                    className={`p-4 rounded-xl border-2 transition-all ${
+                    className={`p-4 rounded-lg border-2 transition-all ${
                       activeStage === idx
                         ? `bg-gradient-to-br ${stage.color} border-white shadow-2xl`
                         : 'bg-slate-800 border-slate-600'
@@ -233,7 +233,7 @@ const EnterpriseFlowOrchestration = () => {
                   >
                     <div className="flex flex-col items-center gap-2">
                       <div
-                        className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                        className={`w-12 h-9 rounded-lg flex items-center justify-center ${
                           activeStage === idx ? 'bg-white/20' : 'bg-slate-700'
                         }`}
                       >
@@ -274,19 +274,19 @@ const EnterpriseFlowOrchestration = () => {
         </div>
 
         {/* Active Stage Details */}
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-3">
           {/* Stage Info */}
           <div
-            className={`bg-gradient-to-br ${currentStage.color} p-8 rounded-2xl border-2 border-white/20`}
+            className={`bg-gradient-to-br ${currentStage.color} p-4 rounded-lg border-2 border-white/20`}
           >
             <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center">
+              <div className="flex items-center gap-3">
+                <div className="w-16 h-16 rounded-lg bg-white/20 flex items-center justify-center">
                   <currentStage.icon className="w-8 h-8 text-white" />
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-white/80">{currentStage.phase}</div>
-                  <h3 className="text-2xl font-bold text-white">{currentStage.title}</h3>
+                  <h3 className="text-lg font-bold text-white">{currentStage.title}</h3>
                   <p className="text-white/80">{currentStage.subtitle}</p>
                 </div>
               </div>
@@ -328,16 +328,16 @@ const EnterpriseFlowOrchestration = () => {
           </div>
 
           {/* Enterprise Metrics */}
-          <div className="space-y-4">
-            <div className="bg-slate-800 border-2 border-slate-700 rounded-xl p-6">
+          <div className="space-y-3">
+            <div className="bg-slate-800 border-2 border-slate-700 rounded-lg p-4">
               <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <Activity className="w-5 h-5 text-orange-400" />
                 Stage Metrics
               </h4>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 {Object.entries(currentStage.metrics).map(([key, value], idx) => (
                   <div key={idx} className="bg-slate-900 rounded-lg p-4">
-                    <div className="text-2xl font-bold text-orange-400 mb-1">{value}</div>
+                    <div className="text-lg font-bold text-orange-400 mb-1">{value}</div>
                     <div className="text-xs text-gray-400 capitalize">
                       {key.replace(/([A-Z])/g, ' $1')}
                     </div>
@@ -346,7 +346,7 @@ const EnterpriseFlowOrchestration = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-red-900/30 to-orange-900/30 border-2 border-red-500/30 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-red-900/30 to-orange-900/30 border-2 border-red-500/30 rounded-lg p-4">
               <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <Shield className="w-5 h-5 text-red-400" />
                 Security Posture
@@ -382,34 +382,34 @@ const EnterpriseFlowOrchestration = () => {
               </div>
             </div>
 
-            <div className="bg-slate-800 border-2 border-slate-700 rounded-xl p-6">
+            <div className="bg-slate-800 border-2 border-slate-700 rounded-lg p-4">
               <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <BarChart3 className="w-5 h-5 text-blue-400" />
                 Enterprise Scale
               </h4>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-orange-400">500</div>
+                  <div className="text-lg font-bold text-orange-400">500</div>
                   <div className="text-xs text-gray-400 mt-1">Users</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-400">$47M</div>
+                  <div className="text-lg font-bold text-blue-400">$47M</div>
                   <div className="text-xs text-gray-400 mt-1">Pipeline</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-green-400">50K</div>
+                  <div className="text-lg font-bold text-green-400">50K</div>
                   <div className="text-xs text-gray-400 mt-1">Daily Volume</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-400">15</div>
+                  <div className="text-lg font-bold text-purple-400">15</div>
                   <div className="text-xs text-gray-400 mt-1">Regions</div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-green-900/30 to-emerald-900/30 border-2 border-green-500/30 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-green-900/30 to-emerald-900/30 border-2 border-green-500/30 rounded-lg p-4">
               <h4 className="text-lg font-bold text-white mb-3">Enterprise ROI</h4>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm text-gray-400">Annual Software Savings</span>
@@ -437,13 +437,13 @@ const EnterpriseFlowOrchestration = () => {
                 <div className="border-t border-green-500/30 pt-3">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-300">12-Month ROI:</span>
-                    <span className="text-green-400 font-bold text-2xl">12.4x</span>
+                    <span className="text-green-400 font-bold text-lg">12.4x</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-900/30 to-red-900/30 border-2 border-orange-500/30 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-orange-900/30 to-red-900/30 border-2 border-orange-500/30 rounded-lg p-4">
               <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5 text-orange-400" />
                 Risk Mitigation

@@ -44,13 +44,13 @@ const TestimonialsCarousel = ({ content }) => {
         </svg>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16 space-y-4">
+        <div className="text-center mb-16 space-y-3">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary dark:text-white">
             {content.title}
           </h2>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg md:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             {content.subtitle}
           </p>
         </div>
@@ -85,7 +85,7 @@ const TestimonialsCarousel = ({ content }) => {
 
         {/* Case Studies Grid */}
         {content.caseStudies && (
-          <div className="grid md:grid-cols-2 gap-8 mt-16">
+          <div className="grid md:grid-cols-2 gap-3 mt-16">
             {content.caseStudies.map((caseStudy, index) => (
               <CaseStudyCard
                 key={index}
@@ -112,9 +112,9 @@ const TestimonialCard = ({ testimonial, isActive, isVisible }) => {
       } ${isVisible ? '' : 'translate-y-8'}`}
     >
       <Card className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 shadow-2xl border-2 border-gray-200 dark:border-gray-700 overflow-hidden">
-        <CardContent className="p-8 md:p-12 space-y-6">
+        <CardContent className="p-4 md:p-12 space-y-3">
           {/* Quote Icon */}
-          <div className="w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center">
+          <div className="w-12 h-9 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center">
             <Quote className="w-6 h-6 text-accent-600 dark:text-accent-400" />
           </div>
 
@@ -126,14 +126,14 @@ const TestimonialCard = ({ testimonial, isActive, isVisible }) => {
           </div>
 
           {/* Quote */}
-          <blockquote className="text-2xl md:text-3xl font-medium text-gray-800 dark:text-gray-200 leading-relaxed">
+          <blockquote className="text-lg md:text-lg font-medium text-gray-800 dark:text-gray-200 leading-relaxed">
             "{testimonial.quote}"
           </blockquote>
 
           {/* Author + Metrics */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-accent to-primary text-white flex items-center justify-center font-bold text-xl">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-6 border-t border-gray-200 dark:border-gray-700">
+            <div className="flex items-center gap-3">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-accent to-primary text-white flex items-center justify-center font-bold text-lg">
                 {testimonial.author[0]}
               </div>
               <div>
@@ -146,10 +146,10 @@ const TestimonialCard = ({ testimonial, isActive, isVisible }) => {
 
             {/* Metrics */}
             {testimonial.metrics && (
-              <div className="flex gap-6">
+              <div className="flex gap-3">
                 {Object.entries(testimonial.metrics).map(([key, value], idx) => (
                   <div key={idx} className="text-center">
-                    <div className="text-2xl font-bold text-accent">{value}</div>
+                    <div className="text-lg font-bold text-accent">{value}</div>
                     <div className="text-xs text-gray-600 dark:text-gray-400 capitalize">
                       {key.replace(/([A-Z])/g, ' $1').trim()}
                     </div>
@@ -175,11 +175,11 @@ const CaseStudyCard = ({ caseStudy, index, isVisible }) => {
       }`}
       style={{ transitionDelay: `${index * 0.2}s` }}
     >
-      <CardContent className="p-8 space-y-6">
+      <CardContent className="p-4 space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-2xl font-bold text-primary dark:text-white">{caseStudy.company}</h3>
+            <h3 className="text-lg font-bold text-primary dark:text-white">{caseStudy.company}</h3>
             <div className="flex gap-2 mt-2">
               <Badge className="bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300">
                 {caseStudy.industry}
@@ -238,13 +238,13 @@ export const LogoWall = ({ content }) => {
 
   return (
     <section ref={ref} className="relative py-16 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{content.title}</h3>
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{content.title}</h3>
         </div>
 
         {/* Logo Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8 items-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 items-center">
           {content.companies.map((company, index) => (
             <div
               key={index}
@@ -253,7 +253,7 @@ export const LogoWall = ({ content }) => {
               }`}
               style={{ transitionDelay: `${index * 0.05}s` }}
             >
-              <div className="w-full h-12 bg-gray-300 dark:bg-gray-600 rounded flex items-center justify-center text-gray-600 dark:text-gray-400 font-semibold text-sm grayscale hover:grayscale-0 transition-all">
+              <div className="w-full h-9 bg-gray-300 dark:bg-gray-600 rounded flex items-center justify-center text-gray-600 dark:text-gray-400 font-semibold text-sm grayscale hover:grayscale-0 transition-all">
                 {company.name}
               </div>
             </div>

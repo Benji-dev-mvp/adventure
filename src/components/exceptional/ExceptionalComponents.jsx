@@ -141,7 +141,7 @@ export const RealTimeActivityFeed = () => {
               }`}
             >
               <div className="flex items-start gap-3">
-                <span className="text-2xl">{activity.icon}</span>
+                <span className="text-lg">{activity.icon}</span>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{activity.text}</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{activity.time}</p>
@@ -214,8 +214,8 @@ export const AdvancedSequenceBuilder = () => {
       </CardHeader>
       <CardContent>
         {/* Canvas */}
-        <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-6 mb-4">
-          <div className="space-y-4">
+        <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 mb-4">
+          <div className="space-y-3">
             {steps.map((step, idx) => (
               <div key={step.id} className="relative">
                 {/* Indentation for conditional branches */}
@@ -282,19 +282,19 @@ export const AdvancedSequenceBuilder = () => {
         {/* Stats */}
         <div className="grid grid-cols-4 gap-3">
           <div className="text-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-            <p className="text-2xl font-bold text-blue-600">{steps.length}</p>
+            <p className="text-lg font-bold text-blue-600">{steps.length}</p>
             <p className="text-xs text-gray-600">Total Steps</p>
           </div>
           <div className="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-            <p className="text-2xl font-bold text-green-600">42%</p>
+            <p className="text-lg font-bold text-green-600">42%</p>
             <p className="text-xs text-gray-600">Completion Rate</p>
           </div>
           <div className="text-center p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-            <p className="text-2xl font-bold text-purple-600">8.5</p>
+            <p className="text-lg font-bold text-purple-600">8.5</p>
             <p className="text-xs text-gray-600">Avg Days to Reply</p>
           </div>
           <div className="text-center p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
-            <p className="text-2xl font-bold text-orange-600">28%</p>
+            <p className="text-lg font-bold text-orange-600">28%</p>
             <p className="text-xs text-gray-600">Meeting Booked</p>
           </div>
         </div>
@@ -417,7 +417,7 @@ export const AvaResearchAssistant = () => {
               </div>
             </div>
             <div className="text-right">
-              <div className="text-3xl font-bold text-green-600">{prospectData.score}</div>
+              <div className="text-lg font-bold text-green-600">{prospectData.score}</div>
               <p className="text-xs text-gray-600">Lead Score</p>
             </div>
           </div>
@@ -435,7 +435,7 @@ export const AvaResearchAssistant = () => {
               }`}
             >
               <div className="flex items-start gap-2">
-                <span className="text-xl">{insight.icon}</span>
+                <span className="text-lg">{insight.icon}</span>
                 <div className="flex-1">
                   <p className="text-xs font-semibold text-gray-600">{insight.category}</p>
                   <p className="text-sm">{insight.data}</p>
@@ -500,7 +500,7 @@ export const PredictiveAnalytics = () => {
         </p>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-2 gap-3 mb-4">
           {/* Left: Email Input */}
           <div>
             <label htmlFor="email-content-input" className="text-sm font-semibold mb-2 block">
@@ -523,17 +523,17 @@ export const PredictiveAnalytics = () => {
             <div className="grid grid-cols-2 gap-3 mb-4">
               <div className="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
                 <Eye className="mx-auto text-green-600 mb-1" size={20} />
-                <p className="text-2xl font-bold text-green-600">{predictions.openRate}%</p>
+                <p className="text-lg font-bold text-green-600">{predictions.openRate}%</p>
                 <p className="text-xs text-gray-600">Open Rate</p>
               </div>
               <div className="text-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                 <Send className="mx-auto text-blue-600 mb-1" size={20} />
-                <p className="text-2xl font-bold text-blue-600">{predictions.replyRate}%</p>
+                <p className="text-lg font-bold text-blue-600">{predictions.replyRate}%</p>
                 <p className="text-xs text-gray-600">Reply Rate</p>
               </div>
               <div className="text-center p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
                 <AlertTriangle className="mx-auto text-orange-600 mb-1" size={20} />
-                <p className="text-2xl font-bold text-orange-600">{predictions.spamScore}%</p>
+                <p className="text-lg font-bold text-orange-600">{predictions.spamScore}%</p>
                 <p className="text-xs text-gray-600">Spam Risk</p>
               </div>
               <div className="text-center p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">

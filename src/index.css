@@ -87,6 +87,7 @@
     --space-8: 2.5rem;
     --control-h-sm: 34px;
     --control-h-md: 40px;
+    --row-h: 44px; /* table/list row height */
     --card-pad-sm: 0.9rem;
     --card-pad-md: 1.25rem;
   }
@@ -170,6 +171,7 @@
     --space-8: 2.5rem;
     --control-h-sm: 34px;
     --control-h-md: 40px;
+    --row-h: 44px;
     --card-pad-sm: 0.9rem;
     --card-pad-md: 1.25rem;
   }
@@ -192,8 +194,14 @@
     --space-8: 2.1rem;
     --control-h-sm: 30px;
     --control-h-md: 34px;
+    --row-h: 38px;
     --card-pad-sm: 0.75rem;
     --card-pad-md: 1rem;
+  }
+
+  /* Propagate density to rem-based typography */
+  html {
+    font-size: var(--font-base);
   }
 
   html {

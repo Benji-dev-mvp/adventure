@@ -8,7 +8,7 @@ const PhaseTimeline = ({ phases, currentPhase }) => {
   const currentIndex = phases.findIndex(p => p.id === currentPhase);
 
   return (
-    <div className="flex items-center gap-2 p-4 bg-slate-800/50 rounded-xl mb-4">
+    <div className="flex items-center gap-2 p-4 bg-slate-800/50 rounded-lg mb-4">
       {phases.map((phase, index) => {
         const isActive = index === currentIndex;
         const isPast = index < currentIndex;
@@ -70,7 +70,7 @@ const TranscriptMessage = ({ message, isLatest }) => {
       <div className={`flex-1 max-w-[80%] ${isAva ? '' : 'text-right'}`}>
         <div
           className={`
-          inline-block p-3 rounded-2xl
+          inline-block p-3 rounded-lg
           ${isAva ? 'bg-slate-800 rounded-tl-sm' : 'bg-purple-500/20 rounded-tr-sm'}
           ${isLatest ? 'ring-2 ring-cyan-500/30' : ''}
         `}
@@ -95,7 +95,7 @@ export function TranscriptStream({ transcript, phases, currentPhase, status }) {
 
   return (
     <GlassCard variant="subtle" className="h-full flex flex-col">
-      <GlassCardContent className="p-6 h-full flex flex-col">
+      <GlassCardContent className="p-4 h-full flex flex-col">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-slate-100">Live Transcript</h3>
           {status === 'in-call' && (
@@ -110,11 +110,11 @@ export function TranscriptStream({ transcript, phases, currentPhase, status }) {
         <PhaseTimeline phases={phases} currentPhase={currentPhase} />
 
         {/* Transcript messages */}
-        <div ref={scrollRef} className="flex-1 overflow-y-auto space-y-4 pr-2">
+        <div ref={scrollRef} className="flex-1 overflow-y-auto space-y-3 pr-2">
           {transcript.length === 0 ? (
             <div className="h-full flex items-center justify-center text-slate-500 text-center">
               <div>
-                <Bot className="w-12 h-12 mx-auto mb-3 opacity-30" />
+                <Bot className="w-12 h-9 mx-auto mb-3 opacity-30" />
                 <p>Transcript will appear here when the call starts</p>
               </div>
             </div>

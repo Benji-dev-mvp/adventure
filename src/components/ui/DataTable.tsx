@@ -401,7 +401,7 @@ DataTable.Pagination = function DataTablePagination({
         )}
       </div>
 
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-3">
         {onPageSizeChange && (
           <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground">Rows per page</span>

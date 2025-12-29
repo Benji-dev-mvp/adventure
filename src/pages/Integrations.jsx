@@ -231,15 +231,15 @@ const Integrations = () => {
       subtitle="Connect your favorite tools and supercharge your workflow"
     >
       {/* Header Stats */}
-      <div className="grid md:grid-cols-3 gap-4 mb-6">
+      <div className="grid md:grid-cols-3 gap-3 mb-6">
         <Card>
           <CardContent>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-gray-600 mb-1">Connected</p>
-                <p className="text-2xl font-bold text-green-600">{connectedCount}</p>
+                <p className="text-lg font-bold text-green-600">{connectedCount}</p>
               </div>
-              <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-9 bg-green-100 rounded-lg flex items-center justify-center">
                 <CheckCircle2 size={20} className="text-green-600" />
               </div>
             </div>
@@ -251,9 +251,9 @@ const Integrations = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-gray-600 mb-1">Available</p>
-                <p className="text-2xl font-bold text-blue-600">{integrations.length}</p>
+                <p className="text-lg font-bold text-blue-600">{integrations.length}</p>
               </div>
-              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-9 bg-blue-100 rounded-lg flex items-center justify-center">
                 <Zap size={20} className="text-blue-600" />
               </div>
             </div>
@@ -265,11 +265,11 @@ const Integrations = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-gray-600 mb-1">Popular</p>
-                <p className="text-2xl font-bold text-purple-600">
+                <p className="text-lg font-bold text-purple-600">
                   {integrations.filter(i => i.popular).length}
                 </p>
               </div>
-              <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-9 bg-purple-100 rounded-lg flex items-center justify-center">
                 <TrendingUp size={20} className="text-purple-600" />
               </div>
             </div>
@@ -291,7 +291,7 @@ const Integrations = () => {
       {/* Search and Filters */}
       <Card className="mb-6">
         <CardContent>
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col md:flex-row gap-3">
             <div className="flex-1 relative">
               <Search
                 className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
@@ -326,7 +326,7 @@ const Integrations = () => {
 
       {/* Universal Database Import */}
       <Card className="mb-6">
-        <CardContent className="p-6">
+        <CardContent className="p-4">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-lg font-semibold text-gray-900">Universal Database Import</h3>
@@ -344,13 +344,13 @@ const Integrations = () => {
       </Card>
 
       {/* Integrations Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
         {filteredIntegrations.map(integration => (
           <Card key={integration.id} className="hover:shadow-lg transition-shadow">
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-start justify-between mb-4">
                 <div
-                  className={`w-14 h-14 ${integration.color} rounded-xl flex items-center justify-center text-2xl`}
+                  className={`w-14 h-14 ${integration.color} rounded-lg flex items-center justify-center text-lg`}
                 >
                   {integration.logo}
                 </div>
@@ -366,7 +366,7 @@ const Integrations = () => {
 
               <p className="text-sm text-gray-600 mb-4 line-clamp-2">{integration.description}</p>
 
-              <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
+              <div className="flex items-center gap-3 mb-4 text-sm text-gray-500">
                 <div className="flex items-center gap-1">
                   <Star size={14} className="text-yellow-400 fill-yellow-400" />
                   <span>{integration.rating}</span>
@@ -448,8 +448,8 @@ const Integrations = () => {
           <ModalTitle>Import Leads from CSV/JSON</ModalTitle>
         </ModalHeader>
         <ModalContent>
-          <div className="space-y-4">
-            <div className="grid md:grid-cols-2 gap-4">
+          <div className="space-y-3">
+            <div className="grid md:grid-cols-2 gap-3">
               <div>
                 <label className="text-sm text-gray-700">Source Name</label>
                 <Input
@@ -484,7 +484,7 @@ const Integrations = () => {
                 value={dbPaste}
                 onChange={e => setDbPaste(e.target.value)}
                 rows={8}
-                className="w-full rounded-xl border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-accent-500"
                 placeholder="name,email,company,title,location,score,status\nJane Doe,jane@acme.com,Acme,VP Sales,NYC,88,warm"
               />
               <p className="text-xs text-gray-500 mt-2">
@@ -537,7 +537,7 @@ const Integrations = () => {
       </Modal>
 
       {/* Advanced Integration Features */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mt-8">
         <WebhookBuilder />
         <CalendarSync />
         <IntegrationHealth />
@@ -545,10 +545,10 @@ const Integrations = () => {
 
       {/* Custom Integration CTA */}
       <Card className="mt-8 bg-gradient-to-br from-accent-500 to-primary-500">
-        <CardContent className="p-8 text-center">
+        <CardContent className="p-4 text-center">
           <div className="max-w-2xl mx-auto">
             <Zap size={48} className="text-white mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-white mb-3">Need a Custom Integration?</h3>
+            <h3 className="text-lg font-bold text-white mb-3">Need a Custom Integration?</h3>
             <p className="text-white/90 mb-6">
               Our team can build custom integrations for your enterprise needs
             </p>

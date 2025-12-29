@@ -540,7 +540,7 @@ export const CommandPalette = () => {
         <div className="max-h-[400px] overflow-y-auto">
           {filteredItems.length === 0 ? (
             <div className="p-12 text-center">
-              <Search className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+              <Search className="w-12 h-9 text-gray-400 mx-auto mb-3" />
               <p className="text-gray-600 dark:text-gray-400">No results found</p>
               <p className="text-sm text-gray-500 mt-1">Try a different search term</p>
             </div>
@@ -599,7 +599,7 @@ export const CommandPalette = () => {
 
         {/* Footer */}
         <div className="flex items-center justify-between px-4 py-3 border-t border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-gray-900/50">
-          <div className="flex items-center gap-4 text-xs text-gray-500">
+          <div className="flex items-center gap-3 text-xs text-gray-500">
             <div className="flex items-center gap-1">
               <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-800 rounded border border-gray-300 dark:border-gray-600">
                 ↑

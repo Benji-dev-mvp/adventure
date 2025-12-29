@@ -102,7 +102,7 @@ const BeforeAfterComparison = () => {
 
   return (
     <section className="py-20 bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 dark:bg-orange-900/30 border border-orange-200 dark:border-orange-800 text-orange-700 dark:text-orange-300 text-sm font-semibold mb-4">
@@ -112,7 +112,7 @@ const BeforeAfterComparison = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 font-space-grotesk">
             The Old Way vs The Ava Way
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
             See exactly what changes when you replace manual SDR workflows with AI-powered
             automation
           </p>
@@ -120,7 +120,7 @@ const BeforeAfterComparison = () => {
 
         {/* Tab Selector */}
         <div className="flex justify-center mb-8">
-          <div className="inline-flex bg-slate-200 dark:bg-slate-800 p-1 rounded-xl border-2 border-slate-300 dark:border-slate-700">
+          <div className="inline-flex bg-slate-200 dark:bg-slate-800 p-1 rounded-lg border-2 border-slate-300 dark:border-slate-700">
             <button
               onClick={() => setActiveTab('manual')}
               className={`px-8 py-3 rounded-lg font-semibold transition-all ${
@@ -151,13 +151,13 @@ const BeforeAfterComparison = () => {
         </div>
 
         {/* Comparison Content */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-8">
+        <div className="grid lg:grid-cols-2 gap-3 mb-8">
           {/* Left: Problems/Benefits */}
           <div>
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6">
               {currentScenario.title}
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {(currentScenario.problems || currentScenario.benefits).map((item, idx) => {
                 const Icon = item.icon;
                 const isAva = activeTab === 'ava';
@@ -165,22 +165,22 @@ const BeforeAfterComparison = () => {
                 return (
                   <div
                     key={idx}
-                    className={`p-6 rounded-xl border-2 transition-all hover:scale-105 ${
+                    className={`p-4 rounded-lg border-2 transition-all hover:scale-105 ${
                       isAva
                         ? 'bg-green-50 dark:bg-green-900/20 border-green-300 dark:border-green-800 hover:border-green-500'
                         : 'bg-red-50 dark:bg-red-900/20 border-red-300 dark:border-red-800 hover:border-red-500'
                     }`}
                   >
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-start gap-3">
                       <div
-                        className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                        className={`w-12 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${
                           isAva ? 'bg-green-500' : 'bg-red-500'
                         }`}
                       >
                         <Icon className="w-6 h-6 text-white" />
                       </div>
                       <div className="flex-1">
-                        <div className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+                        <div className="text-lg font-bold text-slate-900 dark:text-white mb-1">
                           {item.title}
                         </div>
                         <div className="text-slate-700 dark:text-slate-300 mb-2">
@@ -205,17 +205,17 @@ const BeforeAfterComparison = () => {
 
           {/* Right: Workflow Screenshot */}
           <div>
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6">
               {currentScenario.screenshot.title}
             </h3>
             <div
-              className={`rounded-xl border-2 p-8 ${
+              className={`rounded-lg border-2 p-4 ${
                 activeTab === 'ava'
                   ? 'bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-blue-300 dark:border-blue-800'
                   : 'bg-slate-50 dark:bg-slate-800 border-slate-300 dark:border-slate-700'
               }`}
             >
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {currentScenario.screenshot.steps.map((step, idx) => (
                   <div
                     key={idx}
@@ -249,10 +249,10 @@ const BeforeAfterComparison = () => {
         </div>
 
         {/* ROI Calculator */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-4 text-white">
           <div className="max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold mb-6 text-center">Quick ROI Breakdown</h3>
-            <div className="grid md:grid-cols-3 gap-6 text-center">
+            <h3 className="text-lg font-bold mb-6 text-center">Quick ROI Breakdown</h3>
+            <div className="grid md:grid-cols-3 gap-3 text-center">
               <div>
                 <div className="text-4xl font-bold mb-2">$408K</div>
                 <div className="text-sm text-blue-100">Annual Savings</div>

@@ -93,7 +93,7 @@ export function announceToScreenReader(message, priority = 'polite') {
   announcement.setAttribute('role', 'status');
   announcement.setAttribute('aria-live', priority);
   announcement.setAttribute('aria-atomic', 'true');
-  announcement.className = 'sr-only';
+  announcement.className='sr-only';
   announcement.textContent = message;
 
   document.body.appendChild(announcement);
@@ -158,7 +158,7 @@ export class LiveRegion {
     this.element.setAttribute('role', 'status');
     this.element.setAttribute('aria-live', priority);
     this.element.setAttribute('aria-atomic', 'true');
-    this.element.className = 'sr-only';
+    this.element.className='sr-only';
     document.body.appendChild(this.element);
   }
 
@@ -284,7 +284,7 @@ export function handleListNavigation(event, items, currentIndex, onSelect) {
 export function createSkipLink(targetId, text = 'Skip to main content') {
   const skipLink = document.createElement('a');
   skipLink.href = `#${targetId}`;
-  skipLink.className = 'skip-link';
+  skipLink.className='skip-link';
   skipLink.textContent = text;
 
   skipLink.style.cssText = `

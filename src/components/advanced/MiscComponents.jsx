@@ -50,7 +50,7 @@ export const GIFMemeLibrary = () => {
               key={idx}
               className="p-3 border rounded-lg text-center hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
             >
-              <p className="text-2xl mb-2">🎉</p>
+              <p className="text-lg mb-2">🎉</p>
               <p className="text-xs font-medium">{item.name}</p>
               <Badge variant="secondary" className="text-xs mt-1">
                 {item.count}
@@ -107,7 +107,7 @@ export const ImageEditor = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="border-2 border-dashed rounded-lg p-8 text-center mb-3">
+        <div className="border-2 border-dashed rounded-lg p-4 text-center mb-3">
           <Image size={48} className="mx-auto text-gray-400 mb-2" />
           <p className="text-sm text-gray-600">Drop image or click to upload</p>
         </div>
@@ -382,7 +382,7 @@ export const APIRateLimitDashboard = () => {
               ></div>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-4 text-center">
+          <div className="grid grid-cols-2 gap-3 text-center">
             <div className="p-2 bg-gray-50 dark:bg-white/5 rounded">
               <p className="text-xs text-gray-600">Remaining</p>
               <p className="font-bold">{usage.remaining}</p>
@@ -446,7 +446,7 @@ export const MultivariateTestBuilder = () => {
                   <Badge variant="success">Winner</Badge>
                 )}
               </div>
-              <div className="grid grid-cols-2 gap-4 text-center text-xs">
+              <div className="grid grid-cols-2 gap-3 text-center text-xs">
                 <div>
                   <p className="text-gray-600">Open Rate</p>
                   <p className="font-bold">{variant.openRate}%</p>

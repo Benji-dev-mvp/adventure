@@ -61,9 +61,9 @@ export const ResponsiveModal = ({
           onClick={e => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-start justify-between p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-start justify-between p-4 sm:p-4 border-b border-gray-200 dark:border-gray-700">
             <div className="flex-1 min-w-0">
-              <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+              <h2 className="text-lg sm:text-lg font-semibold text-gray-900 dark:text-white">
                 {title}
               </h2>
               {description && (
@@ -79,11 +79,11 @@ export const ResponsiveModal = ({
           </div>
 
           {/* Content */}
-          <div className="p-4 sm:p-6 max-h-[60vh] overflow-y-auto">{children}</div>
+          <div className="p-4 sm:p-4 max-h-[60vh] overflow-y-auto">{children}</div>
 
           {/* Footer */}
           {footer && (
-            <div className="flex flex-col-reverse sm:flex-row gap-2 sm:gap-3 p-4 sm:p-6 border-t border-gray-200 dark:border-gray-700 sm:justify-end">
+            <div className="flex flex-col-reverse sm:flex-row gap-2 sm:gap-3 p-4 sm:p-4 border-t border-gray-200 dark:border-gray-700 sm:justify-end">
               {footer}
             </div>
           )}
@@ -161,8 +161,8 @@ export const Drawer = ({
         )}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+        <div className="flex items-center justify-between p-4 sm:p-4 border-b border-gray-200 dark:border-gray-700">
+          <h2 className="text-lg sm:text-lg font-semibold text-gray-900 dark:text-white">
             {title}
           </h2>
           <button
@@ -174,11 +174,11 @@ export const Drawer = ({
         </div>
 
         {/* Content */}
-        <div className="p-4 sm:p-6 overflow-y-auto h-[calc(100%-140px)]">{children}</div>
+        <div className="p-4 sm:p-4 overflow-y-auto h-[calc(100%-140px)]">{children}</div>
 
         {/* Footer */}
         {footer && (
-          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
             {footer}
           </div>
         )}
@@ -386,7 +386,7 @@ export const NotificationCenter = ({ notifications = [], onMarkAsRead, onClear }
       {isOpen && (
         <>
           <div className="fixed inset-0 z-10" onClick={() => setIsOpen(false)} />
-          <div className="absolute right-0 mt-2 w-80 sm:w-96 max-h-[80vh] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl z-20 overflow-hidden">
+          <div className="absolute right-0 mt-2 w-80 sm:w-96 max-h-[80vh] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-2xl z-20 overflow-hidden">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Notifications</h3>
@@ -403,7 +403,7 @@ export const NotificationCenter = ({ notifications = [], onMarkAsRead, onClear }
             {/* Notifications List */}
             <div className="overflow-y-auto max-h-96">
               {notifications.length === 0 ? (
-                <div className="p-8 text-center text-gray-500 dark:text-gray-400">
+                <div className="p-4 text-center text-gray-500 dark:text-gray-400">
                   No notifications
                 </div>
               ) : (

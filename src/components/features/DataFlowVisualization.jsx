@@ -231,14 +231,14 @@ const FlowNode = ({
 
       {/* Glow effect when active */}
       <div
-        className={`absolute -inset-2 rounded-2xl bg-gradient-to-r ${stage.gradient} blur-xl transition-opacity duration-500 ${
+        className={`absolute -inset-2 rounded-lg bg-gradient-to-r ${stage.gradient} blur-xl transition-opacity duration-500 ${
           isActive || isHovered ? 'opacity-30' : 'opacity-0'
         }`}
       />
 
       {/* Node container */}
       <div
-        className={`relative p-4 lg:p-5 rounded-xl border transition-all duration-500 cursor-pointer ${
+        className={`relative p-4 lg:p-4 rounded-lg border transition-all duration-500 cursor-pointer ${
           isActive
             ? `bg-gradient-to-br ${stage.gradient} border-transparent shadow-2xl scale-110`
             : isComplete
@@ -257,7 +257,7 @@ const FlowNode = ({
 
         {/* Icon */}
         <div
-          className={`w-10 h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center mb-3 ${
+          className={`w-10 h-9 lg:w-12 lg:h-9 rounded-lg flex items-center justify-center mb-3 ${
             isActive ? 'bg-white/20' : `bg-gradient-to-br ${stage.gradient} bg-opacity-20`
           }`}
         >
@@ -280,7 +280,7 @@ const FlowNode = ({
         {/* Live metric when active or hovered */}
         {(isActive || isHovered) && (
           <div className="mt-3 pt-3 border-t border-white/20 animate-fadeIn">
-            <div className="text-lg lg:text-xl font-bold text-white">
+            <div className="text-lg lg:text-lg font-bold text-white">
               {stage.metrics.value}
               {stage.metrics.unit}
             </div>
@@ -339,7 +339,7 @@ const ChannelCard = ({ channel, isActive, delay }) => {
 
   return (
     <div
-      className={`relative p-4 rounded-xl bg-white/5 border border-white/10 transition-all duration-500 ${
+      className={`relative p-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-500 ${
         isActive ? 'border-cyan-500/50 shadow-lg shadow-cyan-500/10' : ''
       }`}
       style={{ animationDelay: `${delay}ms` }}
@@ -350,7 +350,7 @@ const ChannelCard = ({ channel, isActive, delay }) => {
 
       <Icon size={20} className={`text-${channel.color}-400 mb-2`} />
 
-      <div className="text-xl lg:text-2xl font-bold text-white">
+      <div className="text-lg lg:text-lg font-bold text-white">
         <CountUpText end={channel.value} duration={1500} />
       </div>
 
@@ -436,7 +436,7 @@ const DataFlowVisualization = () => {
     <section
       ref={containerRef}
       id="data-flow-viz"
-      className="py-20 lg:py-28 px-4 lg:px-6 relative overflow-hidden bg-[#030712]"
+      className="py-20 lg:py-28 px-4 lg:px-4 relative overflow-hidden bg-[#030712]"
     >
       {/* Background gradient orbs */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-radial from-cyan-900/20 to-transparent blur-3xl" />
@@ -451,13 +451,13 @@ const DataFlowVisualization = () => {
               <span className="text-sm text-cyan-400 font-medium">Live Data Flow</span>
             </div>
 
-            <h2 className="text-3xl lg:text-5xl xl:text-6xl font-bold mb-4 font-space-grotesk">
+            <h2 className="text-lg lg:text-5xl xl:text-6xl font-bold mb-4 font-space-grotesk">
               <GradientText gradient="aurora" animate>
                 Watch Your Pipeline in Action
               </GradientText>
             </h2>
 
-            <p className="text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-lg lg:text-lg text-gray-400 max-w-3xl mx-auto">
               From lead discovery to booked meeting — see how Ava orchestrates every step
             </p>
           </div>
@@ -475,7 +475,7 @@ const DataFlowVisualization = () => {
 
           {/* Flow nodes - horizontal scroll on mobile */}
           <div className="overflow-x-auto pb-4 -mx-4 px-4 lg:mx-0 lg:px-0">
-            <div className="flex items-center justify-start lg:justify-center gap-4 lg:gap-6 min-w-max lg:min-w-0">
+            <div className="flex items-center justify-start lg:justify-center gap-3 lg:gap-3 min-w-max lg:min-w-0">
               {FLOW_STAGES.map((stage, index) => (
                 <FlowNode
                   key={stage.id}
@@ -515,16 +515,16 @@ const DataFlowVisualization = () => {
 
         {/* Live metrics dashboard */}
         <RevealText delay={200}>
-          <GlassCard variant="gradient" className="p-6 lg:p-8" glow glowColor="purple">
-            <div className="grid lg:grid-cols-2 gap-8">
+          <GlassCard variant="gradient" className="p-4 lg:p-4" glow glowColor="purple">
+            <div className="grid lg:grid-cols-2 gap-3">
               {/* Left: Channel activity */}
               <div>
-                <h3 className="text-xl font-bold mb-6 font-space-grotesk flex items-center gap-2">
+                <h3 className="text-lg font-bold mb-6 font-space-grotesk flex items-center gap-2">
                   <Zap size={20} className="text-cyan-400" />
                   <GradientText gradient="cyber">Channel Activity</GradientText>
                 </h3>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3">
                   {CHANNEL_METRICS.map((channel, index) => (
                     <ChannelCard
                       key={channel.label}
@@ -538,18 +538,18 @@ const DataFlowVisualization = () => {
 
               {/* Right: Aggregate stats */}
               <div>
-                <h3 className="text-xl font-bold mb-6 font-space-grotesk flex items-center gap-2">
+                <h3 className="text-lg font-bold mb-6 font-space-grotesk flex items-center gap-2">
                   <BarChart3 size={20} className="text-purple-400" />
                   <GradientText gradient="aurora">Performance Metrics</GradientText>
                 </h3>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3">
                   {AGGREGATE_STATS.map((stat, index) => (
                     <div
                       key={stat.label}
-                      className="p-4 rounded-xl bg-white/5 border border-white/10"
+                      className="p-4 rounded-lg bg-white/5 border border-white/10"
                     >
-                      <div className="text-xl lg:text-2xl font-bold mb-1">
+                      <div className="text-lg lg:text-lg font-bold mb-1">
                         <GradientText gradient="cyber">
                           {stat.prefix}
                           <CountUpText
@@ -575,7 +575,7 @@ const DataFlowVisualization = () => {
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div
-                    className={`w-10 h-10 rounded-lg bg-gradient-to-br ${FLOW_STAGES[activeStage].gradient} flex items-center justify-center`}
+                    className={`w-10 h-9 rounded-lg bg-gradient-to-br ${FLOW_STAGES[activeStage].gradient} flex items-center justify-center`}
                   >
                     {React.createElement(FLOW_STAGES[activeStage].icon, {
                       size: 20,
@@ -588,7 +588,7 @@ const DataFlowVisualization = () => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-bold">
+                  <div className="text-lg font-bold">
                     <GlowText color="cyan">
                       {FLOW_STAGES[activeStage].metrics.value}
                       {FLOW_STAGES[activeStage].metrics.unit}

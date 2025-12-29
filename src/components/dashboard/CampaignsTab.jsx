@@ -140,7 +140,7 @@ export const CampaignsTab = ({ onNavigateToCampaign }) => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header Actions */}
       <div className="flex items-center justify-between">
         <div>
@@ -159,13 +159,13 @@ export const CampaignsTab = ({ onNavigateToCampaign }) => {
       </div>
 
       {/* Campaign Cards */}
-      <div className="grid gap-4">
+      <div className="grid gap-3">
         {campaigns.map(campaign => (
           <Card
             key={campaign.id}
             className="dark:bg-slate-900/50 dark:backdrop-blur-xl hover:shadow-lg transition-shadow"
           >
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
@@ -210,34 +210,34 @@ export const CampaignsTab = ({ onNavigateToCampaign }) => {
               </div>
 
               {/* Campaign Metrics */}
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-4">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
                 <div className="space-y-1">
                   <p className="text-xs text-gray-600 dark:text-gray-400">Leads</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">
                     {campaign.leads}
                   </p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs text-gray-600 dark:text-gray-400">Sent</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">
                     {campaign.sent}
                   </p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs text-gray-600 dark:text-gray-400">Open Rate</p>
-                  <p className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  <p className="text-lg font-bold text-green-600 dark:text-green-400">
                     {campaign.openRate.toFixed(1)}%
                   </p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs text-gray-600 dark:text-gray-400">Reply Rate</p>
-                  <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  <p className="text-lg font-bold text-blue-600 dark:text-blue-400">
                     {campaign.replyRate.toFixed(1)}%
                   </p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs text-gray-600 dark:text-gray-400">Meetings</p>
-                  <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                  <p className="text-lg font-bold text-purple-600 dark:text-purple-400">
                     {campaign.meetings}
                   </p>
                 </div>

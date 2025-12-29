@@ -142,7 +142,7 @@ const SolutionsEnterprise = () => {
   return (
     <AppShell>
       {/* Hero Section */}
-      <section className="relative pt-20 pb-24 px-6 overflow-hidden">
+      <section className="relative pt-20 pb-24 px-4 overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-orange-900/20 via-transparent to-transparent" />
 
@@ -155,10 +155,10 @@ const SolutionsEnterprise = () => {
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-space-grotesk">
               <GradientText gradient="aurora">Power Meets Governance</GradientText>
             </h1>
-            <p className="text-2xl text-gray-300 mb-4 font-space-grotesk">
+            <p className="text-lg text-gray-300 mb-4 font-space-grotesk">
               Top-Tier Tools + AI Colleague
             </p>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+            <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
               Equip your team with best-in-class tools for each stage of the outbound cycle,
               including an AI colleague to keep everything on track. SOC 2 certified, SSO/SCIM
               enabled, with dedicated support.
@@ -167,12 +167,12 @@ const SolutionsEnterprise = () => {
             {/* Enterprise Stats */}
             <motion.div
               {...staggerContainer}
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-10"
+              className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto mb-10"
             >
               {ENTERPRISE_STATS.map((stat, index) => (
                 <motion.div key={index} {...staggerItem}>
                   <GlassCard variant="default" hover className="text-center">
-                    <div className="text-2xl md:text-3xl font-bold font-space-grotesk mb-1">
+                    <div className="text-lg md:text-lg font-bold font-space-grotesk mb-1">
                       <GradientText gradient="cyber">{stat.value}</GradientText>
                     </div>
                     <div className="text-sm text-gray-400">{stat.label}</div>
@@ -182,7 +182,7 @@ const SolutionsEnterprise = () => {
             </motion.div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link to="/pricing#contact-sales">
                 <GlowButton variant="primary" size="lg" glow className="gap-2">
                   <Phone size={18} />
@@ -201,14 +201,14 @@ const SolutionsEnterprise = () => {
       </section>
 
       {/* Compliance Badges */}
-      <section className="py-12 px-6 border-y border-white/10 bg-slate-950/50">
+      <section className="py-12 px-4 border-y border-white/10 bg-slate-950/50">
         <div className="max-w-7xl mx-auto">
-          <motion.div {...staggerContainer} className="flex flex-wrap justify-center gap-8">
+          <motion.div {...staggerContainer} className="flex flex-wrap justify-center gap-3">
             {COMPLIANCE_BADGES.map((badge, index) => {
               const Icon = badge.icon;
               return (
                 <motion.div key={index} {...staggerItem}>
-                  <GlassCard variant="default" hover className="flex items-center gap-3 px-6 py-3">
+                  <GlassCard variant="default" hover className="flex items-center gap-3 px-4 py-3">
                     <Icon size={24} className="text-emerald-400" />
                     <span className="text-white font-semibold">{badge.name}</span>
                     <CheckCircle size={16} className="text-emerald-400" />
@@ -221,7 +221,7 @@ const SolutionsEnterprise = () => {
       </section>
 
       {/* Security Features */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <FloatingParticles count={15} color="cyan" />
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
@@ -234,25 +234,25 @@ const SolutionsEnterprise = () => {
                   Built for Security-First Organizations
                 </GradientText>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
                 Your security and compliance teams will love our enterprise-grade controls
               </p>
             </div>
           </RevealText>
 
-          <motion.div {...staggerContainer} className="grid md:grid-cols-2 gap-8">
+          <motion.div {...staggerContainer} className="grid md:grid-cols-2 gap-3">
             {SECURITY_FEATURES.map((feature, index) => {
               const Icon = feature.icon;
               return (
                 <motion.div key={index} {...staggerItem}>
                   <GlassCard variant="gradient" hover glow glowColor="cyan" className="h-full">
-                    <GlassCardContent className="p-8">
+                    <GlassCardContent className="p-4">
                       <div
-                        className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6`}
+                        className={`w-14 h-14 rounded-lg bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6`}
                       >
                         <Icon size={28} className="text-white" />
                       </div>
-                      <h3 className="text-2xl font-bold text-white mb-4 font-space-grotesk">
+                      <h3 className="text-lg font-bold text-white mb-4 font-space-grotesk">
                         {feature.title}
                       </h3>
                       <p className="text-gray-300 leading-relaxed">{feature.description}</p>
@@ -269,11 +269,11 @@ const SolutionsEnterprise = () => {
       <EnterpriseFlowOrchestration />
 
       {/* Pipeline Funnel */}
-      <section className="py-20 px-6 relative overflow-hidden bg-slate-950/50">
+      <section className="py-20 px-4 relative overflow-hidden bg-slate-950/50">
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">Enterprise Pipeline Performance</GradientText>
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
@@ -287,12 +287,12 @@ const SolutionsEnterprise = () => {
       </section>
 
       {/* ROI Calculator */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <FloatingParticles count={20} color="purple" />
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">Calculate Your Enterprise ROI</GradientText>
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
@@ -311,7 +311,7 @@ const SolutionsEnterprise = () => {
       </section>
 
       {/* Benefits Grid */}
-      <section className="py-20 px-6 relative overflow-hidden bg-gradient-to-b from-transparent via-purple-950/30 to-transparent">
+      <section className="py-20 px-4 relative overflow-hidden bg-gradient-to-b from-transparent via-purple-950/30 to-transparent">
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
@@ -322,25 +322,25 @@ const SolutionsEnterprise = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-6 font-space-grotesk">
                 <GradientText gradient="aurora">Why Enterprise Teams Choose Artisan</GradientText>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
                 Get the capabilities, controls, and support that enterprise organizations demand
               </p>
             </div>
           </RevealText>
 
-          <motion.div {...staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div {...staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {ENTERPRISE_BENEFITS.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
                 <motion.div key={index} {...staggerItem}>
                   <GlassCard variant="default" hover glow className="h-full">
-                    <GlassCardContent className="p-6">
+                    <GlassCardContent className="p-4">
                       <div
-                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center mb-4`}
+                        className={`w-12 h-9 rounded-lg bg-gradient-to-br ${benefit.gradient} flex items-center justify-center mb-4`}
                       >
                         <Icon size={24} className="text-white" />
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-3 font-space-grotesk">
+                      <h3 className="text-lg font-bold text-white mb-3 font-space-grotesk">
                         {benefit.title}
                       </h3>
                       <p className="text-gray-400 leading-relaxed">{benefit.description}</p>
@@ -354,12 +354,12 @@ const SolutionsEnterprise = () => {
       </section>
 
       {/* Customer Impact */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <FloatingParticles count={15} color="mixed" />
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="aurora">Enterprise Customer Results</GradientText>
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
@@ -373,7 +373,7 @@ const SolutionsEnterprise = () => {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
 
@@ -384,10 +384,10 @@ const SolutionsEnterprise = () => {
                 Ready for Enterprise-Grade Outbound?
               </GradientText>
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-lg text-gray-300 mb-8">
               Let's discuss how Artisan can transform your enterprise sales organization
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link to="/pricing#contact-sales">
                 <GlowButton variant="primary" size="xl" glow className="gap-2">
                   <Phone size={20} />
@@ -401,7 +401,7 @@ const SolutionsEnterprise = () => {
                 </GlowButtonOutline>
               </Link>
             </div>
-            <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+            <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm text-gray-400">
               <span className="flex items-center gap-2">
                 <CheckCircle size={16} className="text-emerald-400" />
                 Custom pricing available

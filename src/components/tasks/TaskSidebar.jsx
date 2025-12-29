@@ -404,7 +404,7 @@ export const TaskTrigger = ({ onClick, count = 0 }) => {
   return (
     <button
       onClick={onClick}
-      className="relative p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-xl transition-colors"
+      className="relative p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg transition-colors"
     >
       <CheckCircle2 className="h-5 w-5 text-gray-600 dark:text-gray-400" />
       {count > 0 && (

@@ -222,7 +222,7 @@ const ExceptionalHub = () => {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:64px_64px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-12 relative">
+      <div className="max-w-7xl mx-auto px-4 py-12 relative">
         {/* Hero Header */}
         <div className="mb-16 text-center">
           <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 border border-purple-500/20 mb-6 backdrop-blur-sm">
@@ -243,7 +243,7 @@ const ExceptionalHub = () => {
             </span>
           </h1>
 
-          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto mb-6 leading-relaxed">
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto mb-6 leading-relaxed">
             Industry-leading AI-powered sales automation tools designed to{' '}
             <span className="font-semibold text-purple-600 dark:text-purple-400">
               revolutionize
@@ -253,12 +253,12 @@ const ExceptionalHub = () => {
 
           {/* Live Stats Bar */}
           <div className="flex flex-wrap justify-center gap-3 mb-6">
-            <div className="group relative px-6 py-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg backdrop-blur-sm hover:shadow-xl transition-all hover:scale-105">
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/5 to-cyan-500/0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="group relative px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg backdrop-blur-sm hover:shadow-xl transition-all hover:scale-105">
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/5 to-cyan-500/0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative flex items-center gap-3">
                 <Users className="text-cyan-500" size={20} />
                 <div className="text-left">
-                  <div className="font-black text-2xl bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
+                  <div className="font-black text-lg bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
                     <AnimatedCounter end={liveStats.activeUsers} />
                   </div>
                   <div className="text-xs text-slate-600 dark:text-slate-400">Active Users Now</div>
@@ -266,12 +266,12 @@ const ExceptionalHub = () => {
               </div>
             </div>
 
-            <div className="group relative px-6 py-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg backdrop-blur-sm hover:shadow-xl transition-all hover:scale-105">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/5 to-purple-500/0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="group relative px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg backdrop-blur-sm hover:shadow-xl transition-all hover:scale-105">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/5 to-purple-500/0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative flex items-center gap-3">
                 <Activity className="text-purple-500 animate-pulse" size={20} />
                 <div className="text-left">
-                  <div className="font-black text-2xl bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent">
+                  <div className="font-black text-lg bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent">
                     <AnimatedCounter end={liveStats.campaignsRunning} />
                   </div>
                   <div className="text-xs text-slate-600 dark:text-slate-400">
@@ -281,12 +281,12 @@ const ExceptionalHub = () => {
               </div>
             </div>
 
-            <div className="group relative px-6 py-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg backdrop-blur-sm hover:shadow-xl transition-all hover:scale-105">
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-emerald-500/5 to-emerald-500/0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="group relative px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg backdrop-blur-sm hover:shadow-xl transition-all hover:scale-105">
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-emerald-500/5 to-emerald-500/0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative flex items-center gap-3">
                 <TrendingUp className="text-emerald-500" size={20} />
                 <div className="text-left">
-                  <div className="font-black text-2xl bg-gradient-to-r from-emerald-500 to-teal-600 bg-clip-text text-transparent">
+                  <div className="font-black text-lg bg-gradient-to-r from-emerald-500 to-teal-600 bg-clip-text text-transparent">
                     <AnimatedCounter end={liveStats.leadsProcessed} />
                   </div>
                   <div className="text-xs text-slate-600 dark:text-slate-400">
@@ -298,21 +298,21 @@ const ExceptionalHub = () => {
           </div>
 
           <div className="flex flex-wrap justify-center gap-3">
-            <div className="px-6 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg backdrop-blur-sm">
-              <span className="font-bold text-2xl bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
+            <div className="px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg backdrop-blur-sm">
+              <span className="font-bold text-lg bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
                 <AnimatedCounter end={21} duration={1500} />
               </span>
               <span className="text-sm text-slate-600 dark:text-slate-400 ml-2">
                 Advanced Features
               </span>
             </div>
-            <div className="px-6 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 backdrop-blur-sm">
+            <div className="px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 backdrop-blur-sm">
               <Zap className="inline w-4 h-4 text-cyan-500 mr-2 animate-pulse" />
               <span className="text-sm font-medium text-cyan-700 dark:text-cyan-300">
                 Real-time Updates
               </span>
             </div>
-            <div className="px-6 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 backdrop-blur-sm">
+            <div className="px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 backdrop-blur-sm">
               <Brain className="inline w-4 h-4 text-purple-500 mr-2" />
               <span className="text-sm font-medium text-purple-700 dark:text-purple-300">
                 AI-Powered Intelligence
@@ -322,7 +322,7 @@ const ExceptionalHub = () => {
         </div>
 
         {/* Feature Navigation Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-12">
           {features.map(feature => {
             const Icon = feature.icon;
             const isActive = activeTab === feature.id;
@@ -335,7 +335,7 @@ const ExceptionalHub = () => {
                 onMouseEnter={() => setHoveredFeature(feature.id)}
                 onMouseLeave={() => setHoveredFeature(null)}
                 className={`
-                  group relative p-4 rounded-2xl cursor-pointer transition-all duration-500 
+                  group relative p-4 rounded-lg cursor-pointer transition-all duration-500 
                   ${
                     isActive
                       ? 'bg-white dark:bg-slate-800 shadow-2xl shadow-purple-500/20 scale-105 -translate-y-2'
@@ -349,7 +349,7 @@ const ExceptionalHub = () => {
                 {isActive && (
                   <>
                     <div
-                      className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${feature.gradient} opacity-20 blur-sm -z-10`}
+                      className={`absolute inset-0 rounded-lg bg-gradient-to-r ${feature.gradient} opacity-20 blur-sm -z-10`}
                     />
                     <div className={`absolute -top-1 -right-1`}>
                       <LiveIndicator label="ACTIVE" />
@@ -360,7 +360,7 @@ const ExceptionalHub = () => {
                 {/* Icon with Gradient Background */}
                 <div
                   className={`
-                  relative w-12 h-12 rounded-xl mb-4 flex items-center justify-center
+                  relative w-12 h-9 rounded-lg mb-4 flex items-center justify-center
                   transition-all duration-500
                   ${
                     isActive
@@ -382,7 +382,7 @@ const ExceptionalHub = () => {
                   {/* Animated Ring */}
                   {(isActive || isHovered) && (
                     <div
-                      className={`absolute inset-0 rounded-xl bg-gradient-to-br ${feature.gradient} opacity-30 animate-ping`}
+                      className={`absolute inset-0 rounded-lg bg-gradient-to-br ${feature.gradient} opacity-30 animate-ping`}
                     />
                   )}
                 </div>
@@ -401,7 +401,7 @@ const ExceptionalHub = () => {
                 {/* Count Badge with Animation */}
                 <div className="flex items-center gap-2">
                   <span
-                    className={`text-2xl font-black transition-all ${
+                    className={`text-lg font-black transition-all ${
                       isActive
                         ? 'text-slate-900 dark:text-white'
                         : 'text-slate-300 dark:text-slate-700'
@@ -436,7 +436,7 @@ const ExceptionalHub = () => {
 
         {/* Tabs Content with Glassmorphism */}
         <div className="relative">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-3">
             {/* Hidden TabsList - Navigation handled by cards above */}
             <TabsList className="hidden">
               <TabsTrigger value="real-time">Real-Time</TabsTrigger>
@@ -449,16 +449,16 @@ const ExceptionalHub = () => {
             {/* Real-Time Tab */}
             <TabsContent
               value="real-time"
-              className="space-y-6 animate-in fade-in-50 slide-in-from-bottom-4 duration-500"
+              className="space-y-3 animate-in fade-in-50 slide-in-from-bottom-4 duration-500"
             >
               {/* Section Header with Gradient */}
-              <div className="relative p-6 rounded-3xl bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/5 border border-cyan-500/20 backdrop-blur-sm overflow-hidden">
+              <div className="relative p-4 rounded-3xl bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/5 border border-cyan-500/20 backdrop-blur-sm overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 rounded-full blur-3xl -z-10" />
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-12 h-9 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg">
                     <Activity className="text-white" size={24} />
                   </div>
-                  <h2 className="text-3xl font-black bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
+                  <h2 className="text-lg font-black bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
                     Real-Time Sales Experience
                   </h2>
                 </div>
@@ -468,15 +468,15 @@ const ExceptionalHub = () => {
                 </p>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-3">
                 <RealTimeActivityFeed />
 
-                <div className="grid lg:grid-cols-2 gap-6">
+                <div className="grid lg:grid-cols-2 gap-3">
                   <AvaResearchAssistant />
                   <PredictiveAnalytics />
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-6">
+                <div className="grid lg:grid-cols-2 gap-3">
                   <SmartMeetingScheduler />
                   <AdvancedSequenceBuilder />
                 </div>
@@ -486,15 +486,15 @@ const ExceptionalHub = () => {
             {/* Gamification Tab */}
             <TabsContent
               value="gamification"
-              className="space-y-6 animate-in fade-in-50 slide-in-from-bottom-4 duration-500"
+              className="space-y-3 animate-in fade-in-50 slide-in-from-bottom-4 duration-500"
             >
-              <div className="relative p-6 rounded-3xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-red-500/5 border border-amber-500/20 backdrop-blur-sm overflow-hidden">
+              <div className="relative p-4 rounded-3xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-red-500/5 border border-amber-500/20 backdrop-blur-sm overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-amber-400/20 to-orange-500/20 rounded-full blur-3xl -z-10" />
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-12 h-9 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg">
                     <Trophy className="text-white" size={24} />
                   </div>
-                  <h2 className="text-3xl font-black bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
+                  <h2 className="text-lg font-black bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
                     Sales Gamification
                   </h2>
                 </div>
@@ -503,10 +503,10 @@ const ExceptionalHub = () => {
                 </p>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-3">
                 <TeamLeaderboard />
 
-                <div className="grid lg:grid-cols-2 gap-6">
+                <div className="grid lg:grid-cols-2 gap-3">
                   <AchievementBadges />
                   <PointsRewardsSystem />
                 </div>
@@ -518,15 +518,15 @@ const ExceptionalHub = () => {
             {/* Playbooks Tab */}
             <TabsContent
               value="playbooks"
-              className="space-y-6 animate-in fade-in-50 slide-in-from-bottom-4 duration-500"
+              className="space-y-3 animate-in fade-in-50 slide-in-from-bottom-4 duration-500"
             >
-              <div className="relative p-8 rounded-3xl bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-rose-500/5 border border-purple-500/20 backdrop-blur-sm overflow-hidden">
+              <div className="relative p-4 rounded-3xl bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-rose-500/5 border border-purple-500/20 backdrop-blur-sm overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-400/20 to-pink-500/20 rounded-full blur-3xl -z-10" />
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-12 h-9 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
                     <BookOpen className="text-white" size={24} />
                   </div>
-                  <h2 className="text-3xl font-black bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
+                  <h2 className="text-lg font-black bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
                     Sales Enablement Playbooks
                   </h2>
                 </div>
@@ -535,13 +535,13 @@ const ExceptionalHub = () => {
                 </p>
               </div>
 
-              <div className="space-y-6">
-                <div className="grid lg:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <div className="grid lg:grid-cols-2 gap-3">
                   <SalesPlaybooks />
                   <BattleCards />
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-6">
+                <div className="grid lg:grid-cols-2 gap-3">
                   <ObjectionHandlers />
                   <ROICalculator />
                 </div>
@@ -551,15 +551,15 @@ const ExceptionalHub = () => {
             {/* Executive Tab */}
             <TabsContent
               value="executive"
-              className="space-y-6 animate-in fade-in-50 slide-in-from-bottom-4 duration-500"
+              className="space-y-3 animate-in fade-in-50 slide-in-from-bottom-4 duration-500"
             >
-              <div className="relative p-8 rounded-3xl bg-gradient-to-br from-emerald-500/10 via-teal-500/10 to-cyan-500/5 border border-emerald-500/20 backdrop-blur-sm overflow-hidden">
+              <div className="relative p-4 rounded-3xl bg-gradient-to-br from-emerald-500/10 via-teal-500/10 to-cyan-500/5 border border-emerald-500/20 backdrop-blur-sm overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-emerald-400/20 to-teal-500/20 rounded-full blur-3xl -z-10" />
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-12 h-9 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg">
                     <BarChart3 className="text-white" size={24} />
                   </div>
-                  <h2 className="text-3xl font-black bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
+                  <h2 className="text-lg font-black bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
                     Executive Command Center
                   </h2>
                 </div>
@@ -568,10 +568,10 @@ const ExceptionalHub = () => {
                 </p>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-3">
                 <CEOExecutiveDashboard />
 
-                <div className="grid lg:grid-cols-2 gap-6">
+                <div className="grid lg:grid-cols-2 gap-3">
                   <PipelineHealthScore />
                   <ForecastAccuracyTracker />
                 </div>
@@ -585,13 +585,13 @@ const ExceptionalHub = () => {
               value="integrations"
               className="space-y-8 animate-in fade-in-50 slide-in-from-bottom-4 duration-500"
             >
-              <div className="relative p-8 rounded-3xl bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/5 border border-indigo-500/20 backdrop-blur-sm overflow-hidden">
+              <div className="relative p-4 rounded-3xl bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/5 border border-indigo-500/20 backdrop-blur-sm overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-indigo-400/20 to-purple-500/20 rounded-full blur-3xl -z-10" />
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-12 h-9 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
                     <Link className="text-white" size={24} />
                   </div>
-                  <h2 className="text-3xl font-black bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+                  <h2 className="text-lg font-black bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
                     Deep Integrations
                   </h2>
                 </div>
@@ -601,13 +601,13 @@ const ExceptionalHub = () => {
                 </p>
               </div>
 
-              <div className="space-y-6">
-                <div className="grid lg:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <div className="grid lg:grid-cols-2 gap-3">
                   <TwoWaySalesforceSync />
                   <SlackTeamsDeepIntegration />
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-6">
+                <div className="grid lg:grid-cols-2 gap-3">
                   <CalendarAutoScheduler />
                   <ZapierActionBuilder />
                 </div>

@@ -87,10 +87,10 @@ export const PredictiveAnalytics = () => {
         <CardTitle>Predictive Forecast</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
             <h4 className="font-semibold mb-2">Next Month Prediction</h4>
-            <div className="text-3xl font-bold text-blue-600">64 meetings</div>
+            <div className="text-lg font-bold text-blue-600">64 meetings</div>
             <p className="text-sm text-gray-600 dark:text-gray-400">±8 meetings (87% confidence)</p>
           </div>
         </div>
@@ -109,7 +109,7 @@ export const CustomReportBuilder = () => {
         <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
           Drag and drop metrics to build custom reports
         </p>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-3">
           {['Reply Rate', 'Open Rate', 'Meetings', 'Pipeline', 'ROI', 'Conversion'].map(metric => (
             <div
               key={metric}
@@ -131,8 +131,8 @@ export const ROICalculator = () => {
         <CardTitle>ROI Calculator</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-3">
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <label htmlFor="total-spend" className="text-sm font-medium">
                 Total Spend

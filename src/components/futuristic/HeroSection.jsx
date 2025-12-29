@@ -23,7 +23,7 @@ export function HeroSection({
   backgroundVariant = 'default',
   showFloatingParticles = true,
   showMouseGlow = true,
-  className = '',
+  className='',
   children,
 }) {
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -78,7 +78,7 @@ export function HeroSection({
 
           {/* Subtitle */}
           <RevealText delay={400} duration={600}>
-            <p className="text-xl sm:text-2xl md:text-3xl text-white/80 font-light mb-8">
+            <p className="text-lg sm:text-lg md:text-lg text-white/80 font-light mb-8">
               {prefersReducedMotion ? (
                 subtitle
               ) : (
@@ -94,7 +94,7 @@ export function HeroSection({
 
           {/* CTA Buttons */}
           <RevealText delay={800}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <GlowButton
                 variant="primary"
                 size="lg"
@@ -150,12 +150,12 @@ export function HeroWithCards({ title, subtitle, description, features = [], ...
   return (
     <HeroSection title={title} subtitle={subtitle} description={description} {...heroProps}>
       {features.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-12">
           {features.map((feature, index) => (
             <RevealText key={index} delay={1000 + index * 100} direction="up">
               <GlassCard hover glow tilt className="h-full">
                 {feature.icon && (
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center text-cyan-400 mb-4">
+                  <div className="w-12 h-9 rounded-lg bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center text-cyan-400 mb-4">
                     {feature.icon}
                   </div>
                 )}
@@ -186,7 +186,7 @@ HeroWithCards.propTypes = {
 /**
  * HeroMinimal - Minimal hero for landing pages
  */
-export function HeroMinimal({ title, subtitle, cta, className = '' }) {
+export function HeroMinimal({ title, subtitle, cta, className='' }) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
@@ -213,7 +213,7 @@ export function HeroMinimal({ title, subtitle, cta, className = '' }) {
         </RevealText>
 
         <RevealText delay={300}>
-          <p className="text-xl text-white/60 max-w-xl mx-auto mb-8">{subtitle}</p>
+          <p className="text-lg text-white/60 max-w-xl mx-auto mb-8">{subtitle}</p>
         </RevealText>
 
         {cta && (
@@ -255,7 +255,7 @@ export function HeroSplit({
   secondaryCTA,
   visual,
   reversed = false,
-  className = '',
+  className='',
 }) {
   return (
     <ParticleBackground variant="minimal" className={`min-h-screen ${className}`}>
@@ -272,7 +272,7 @@ export function HeroSplit({
             </RevealText>
 
             <RevealText delay={300}>
-              <p className="text-xl text-white/80">{subtitle}</p>
+              <p className="text-lg text-white/80">{subtitle}</p>
             </RevealText>
 
             <RevealText delay={500}>
@@ -280,7 +280,7 @@ export function HeroSplit({
             </RevealText>
 
             <RevealText delay={700}>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3">
                 {primaryCTA && (
                   <GlowButton
                     variant="primary"

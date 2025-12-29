@@ -123,9 +123,9 @@ const ComplianceCenter = () => {
       title="Compliance Center"
       subtitle="GDPR, data retention, and audit management"
     >
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Overview Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
@@ -133,7 +133,7 @@ const ComplianceCenter = () => {
                   <CheckCircle className="w-6 h-6 text-green-600" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">1,245</p>
+                  <p className="text-lg font-bold">1,245</p>
                   <p className="text-sm text-gray-600">Active Consents</p>
                 </div>
               </div>
@@ -146,7 +146,7 @@ const ComplianceCenter = () => {
                   <XCircle className="w-6 h-6 text-red-600" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">37</p>
+                  <p className="text-lg font-bold">37</p>
                   <p className="text-sm text-gray-600">Unsubscribes (30d)</p>
                 </div>
               </div>
@@ -159,7 +159,7 @@ const ComplianceCenter = () => {
                   <AlertTriangle className="w-6 h-6 text-yellow-600" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">5</p>
+                  <p className="text-lg font-bold">5</p>
                   <p className="text-sm text-gray-600">Data Requests</p>
                 </div>
               </div>
@@ -172,7 +172,7 @@ const ComplianceCenter = () => {
                   <Shield className="w-6 h-6 text-blue-600" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">100%</p>
+                  <p className="text-lg font-bold">100%</p>
                   <p className="text-sm text-gray-600">Compliance Rate</p>
                 </div>
               </div>
@@ -180,7 +180,7 @@ const ComplianceCenter = () => {
           </Card>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Consent Tracking */}
           <Card>
             <CardHeader>
@@ -249,7 +249,7 @@ const ComplianceCenter = () => {
             <CardTitle>Data Retention Policies</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div className="p-4 border border-gray-200 dark:border-white/10 rounded-lg">
                 <div className="flex items-center gap-2 mb-3">
                   <Clock className="w-5 h-5 text-blue-600" />

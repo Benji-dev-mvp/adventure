@@ -94,7 +94,7 @@ export const ObjectionHandling = () => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           {objections.map((obj, i) => (
             <div key={i} className="p-4 border border-gray-200 dark:border-white/10 rounded-lg">
               <div className="flex items-start justify-between mb-2">

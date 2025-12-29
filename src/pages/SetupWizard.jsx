@@ -121,7 +121,7 @@ const PLAYBOOK_OPTIONS = [
 ];
 
 const StepIndicator = ({ steps, currentStep, completedSteps }) => (
-  <div className="flex items-center justify-center gap-4">
+  <div className="flex items-center justify-center gap-3">
     {steps.map((step, index) => (
       <React.Fragment key={step.id}>
         <div className="flex items-center gap-2">
@@ -173,13 +173,13 @@ const Step1CRM = ({ selectedCRM, onSelect }) => (
     className="max-w-2xl mx-auto"
   >
     <div className="text-center mb-8">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Connect Your CRM</h2>
+      <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Connect Your CRM</h2>
       <p className="text-gray-500 dark:text-gray-400">
         Sync your contacts and keep everything in one place
       </p>
     </div>
 
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
       {CRM_OPTIONS.map(crm => (
         <button
           key={crm.id}
@@ -215,13 +215,13 @@ const Step2ICP = ({ icpData, onUpdate }) => (
     className="max-w-2xl mx-auto"
   >
     <div className="text-center mb-8">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+      <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
         Define Your Ideal Customer
       </h2>
       <p className="text-gray-500 dark:text-gray-400">Help Ava understand who you're targeting</p>
     </div>
 
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Industries */}
       <div>
         <label className="block text-sm font-medium text-gray-900 dark:text-white mb-3">
@@ -290,7 +290,7 @@ const Step2ICP = ({ icpData, onUpdate }) => (
           placeholder="e.g., VP Sales, CRO, Head of Growth"
           value={icpData.titles || ''}
           onChange={e => onUpdate({ ...icpData, titles: e.target.value })}
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
+          className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
         />
       </div>
     </div>
@@ -305,13 +305,13 @@ const Step3Solution = ({ selectedSolution, onSelect }) => (
     className="max-w-4xl mx-auto"
   >
     <div className="text-center mb-8">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+      <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
         Choose Your Solution
       </h2>
       <p className="text-gray-500 dark:text-gray-400">Select the plan that best fits your team</p>
     </div>
 
-    <div className="grid md:grid-cols-3 gap-6">
+    <div className="grid md:grid-cols-3 gap-3">
       {SOLUTION_OPTIONS.map(solution => (
         <button
           key={solution.id}
@@ -338,7 +338,7 @@ const Step3Solution = ({ selectedSolution, onSelect }) => (
             <solution.icon className="h-7 w-7" />
           </div>
 
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{solution.name}</h3>
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{solution.name}</h3>
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{solution.description}</p>
 
           <ul className="space-y-2">
@@ -354,7 +354,7 @@ const Step3Solution = ({ selectedSolution, onSelect }) => (
           </ul>
 
           {selectedSolution === solution.id && (
-            <div className="absolute inset-0 rounded-2xl ring-2 ring-accent-500" />
+            <div className="absolute inset-0 rounded-lg ring-2 ring-accent-500" />
           )}
         </button>
       ))}
@@ -370,10 +370,10 @@ const Step4Ava = ({ selectedPlaybooks, onToggle }) => (
     className="max-w-2xl mx-auto"
   >
     <div className="text-center mb-8">
-      <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl mx-auto mb-4 flex items-center justify-center shadow-lg shadow-purple-500/30">
-        <Bot className="h-10 w-10 text-white" />
+      <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg mx-auto mb-4 flex items-center justify-center shadow-lg shadow-purple-500/30">
+        <Bot className="h-9 w-10 text-white" />
       </div>
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+      <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
         Meet Ava, Your AI SDR
       </h2>
       <p className="text-gray-500 dark:text-gray-400">
@@ -381,7 +381,7 @@ const Step4Ava = ({ selectedPlaybooks, onToggle }) => (
       </p>
     </div>
 
-    <div className="space-y-4">
+    <div className="space-y-3">
       {PLAYBOOK_OPTIONS.map(playbook => (
         <button
           key={playbook.id}
@@ -502,12 +502,12 @@ const SetupWizard = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 flex flex-col">
       {/* Header */}
-      <header className="p-6 flex items-center justify-between">
+      <header className="p-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-accent-500 to-primary-500 rounded-xl flex items-center justify-center">
+          <div className="w-10 h-9 bg-gradient-to-br from-accent-500 to-primary-500 rounded-lg flex items-center justify-center">
             <Wand2 className="h-5 w-5 text-white" />
           </div>
-          <span className="text-xl font-bold text-gray-900 dark:text-white">Artisan Setup</span>
+          <span className="text-lg font-bold text-gray-900 dark:text-white">Artisan Setup</span>
         </div>
         <button
           onClick={() => navigate('/dashboard')}
@@ -518,12 +518,12 @@ const SetupWizard = () => {
       </header>
 
       {/* Progress */}
-      <div className="px-6 py-4">
+      <div className="px-4 py-3">
         <StepIndicator steps={STEPS} currentStep={currentStep} completedSteps={completedSteps} />
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex items-center justify-center p-6">
+      <div className="flex-1 flex items-center justify-center p-4">
         <AnimatePresence mode="wait">
           {currentStep === 1 && (
             <Step1CRM key="step1" selectedCRM={selectedCRM} onSelect={setSelectedCRM} />
@@ -543,7 +543,7 @@ const SetupWizard = () => {
       </div>
 
       {/* Footer */}
-      <footer className="p-6 border-t border-gray-200 dark:border-white/10">
+      <footer className="p-4 border-t border-gray-200 dark:border-white/10">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <Button variant="ghost" onClick={handleBack} disabled={currentStep === 1}>
             <ArrowLeft className="h-4 w-4 mr-2" />

@@ -147,7 +147,7 @@ const SolutionsStartups = () => {
   return (
     <AppShell>
       {/* Hero Section */}
-      <section className="relative pt-20 pb-24 px-6 overflow-hidden">
+      <section className="relative pt-20 pb-24 px-4 overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-transparent" />
 
@@ -160,10 +160,10 @@ const SolutionsStartups = () => {
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-space-grotesk">
               <GradientText gradient="aurora">Hire Ava, Not a BDR</GradientText>
             </h1>
-            <p className="text-2xl text-gray-300 mb-4 font-space-grotesk">
+            <p className="text-lg text-gray-300 mb-4 font-space-grotesk">
               Your Outbound, Done For You
             </p>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+            <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
               Keep your team lean and efficient while Ava manages your entire outbound operation. Go
               live in 3 days, save \$450K vs. hiring, and book 10x more meetings.
             </p>
@@ -171,12 +171,12 @@ const SolutionsStartups = () => {
             {/* Quick Stats */}
             <motion.div
               {...staggerContainer}
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-10"
+              className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto mb-10"
             >
               {STARTUP_STATS.map((stat, index) => (
                 <motion.div key={index} {...staggerItem}>
                   <GlassCard variant="default" hover className="text-center">
-                    <div className="text-3xl font-bold font-space-grotesk mb-1">
+                    <div className="text-lg font-bold font-space-grotesk mb-1">
                       <GradientText gradient="cyber">
                         {stat.value}
                         {stat.suffix || ''}
@@ -189,7 +189,7 @@ const SolutionsStartups = () => {
             </motion.div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link to="/pricing#start">
                 <GlowButton variant="primary" size="lg" glow className="gap-2">
                   <Sparkles size={18} />
@@ -208,7 +208,7 @@ const SolutionsStartups = () => {
       </section>
 
       {/* ROI Calculator Section */}
-      <section className="py-16 px-6 relative overflow-hidden">
+      <section className="py-16 px-4 relative overflow-hidden">
         <FloatingParticles count={15} color="cyan" />
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
@@ -216,7 +216,7 @@ const SolutionsStartups = () => {
               <p className="text-sm font-semibold text-cyan-400 uppercase tracking-wide mb-4">
                 See Your Projected ROI
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">Calculate Your Pipeline Growth</GradientText>
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
@@ -239,7 +239,7 @@ const SolutionsStartups = () => {
       <StartupsFlowOrchestration />
 
       {/* Features Section */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/20 to-transparent" />
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
@@ -250,26 +250,26 @@ const SolutionsStartups = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-6 font-space-grotesk">
                 <GradientText gradient="aurora">Use Artisan to Find Your ICP</GradientText>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
                 Our platform provides a robust testing ground to hone in on your ideal customer
                 profile and messaging
               </p>
             </div>
           </RevealText>
 
-          <motion.div {...staggerContainer} className="grid md:grid-cols-2 gap-8">
+          <motion.div {...staggerContainer} className="grid md:grid-cols-2 gap-3">
             {FEATURES.map((feature, index) => {
               const Icon = feature.icon;
               return (
                 <motion.div key={index} {...staggerItem}>
                   <GlassCard variant="gradient" hover className="h-full">
-                    <GlassCardContent className="p-8">
+                    <GlassCardContent className="p-4">
                       <div
-                        className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6`}
+                        className={`w-14 h-14 rounded-lg bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6`}
                       >
                         <Icon size={28} className="text-white" />
                       </div>
-                      <h3 className="text-2xl font-bold text-white mb-4 font-space-grotesk">
+                      <h3 className="text-lg font-bold text-white mb-4 font-space-grotesk">
                         {feature.title}
                       </h3>
                       <p className="text-gray-300 leading-relaxed">{feature.description}</p>
@@ -283,11 +283,11 @@ const SolutionsStartups = () => {
       </section>
 
       {/* Funnel Visualization */}
-      <section className="py-20 px-6 relative overflow-hidden bg-slate-950/50">
+      <section className="py-20 px-4 relative overflow-hidden bg-slate-950/50">
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">Watch Your Pipeline Convert</GradientText>
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
@@ -302,24 +302,24 @@ const SolutionsStartups = () => {
       </section>
 
       {/* Global Coverage */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <FloatingParticles count={20} color="purple" />
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-4 mb-6">
-                <Globe className="w-12 h-12 text-blue-400" />
+              <div className="inline-flex items-center gap-3 mb-6">
+                <Globe className="w-12 h-9 text-blue-400" />
                 <div className="text-left">
                   <div className="text-5xl font-bold font-space-grotesk">
                     <GradientText gradient="cyber">200+</GradientText>
                   </div>
-                  <div className="text-xl text-gray-400">Countries Covered</div>
+                  <div className="text-lg text-gray-400">Countries Covered</div>
                 </div>
               </div>
               <h2 className="text-4xl font-bold text-white mb-4 font-space-grotesk">
                 B2B Data Coverage Worldwide
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-8">
                 Ava has data coverage globally, complementing her ability to research and write
                 emails in over 40 languages.
               </p>
@@ -327,7 +327,7 @@ const SolutionsStartups = () => {
               {/* Language Flags */}
               <motion.div
                 {...staggerContainer}
-                className="flex items-center justify-center gap-6 flex-wrap mb-8"
+                className="flex items-center justify-center gap-3 flex-wrap mb-8"
               >
                 {LANGUAGES.map((lang, idx) => (
                   <motion.div
@@ -340,7 +340,7 @@ const SolutionsStartups = () => {
                       hover
                       className="w-16 h-16 flex items-center justify-center"
                     >
-                      <span className="text-3xl">{lang.flag}</span>
+                      <span className="text-lg">{lang.flag}</span>
                     </GlassCard>
                     <span className="text-sm text-gray-400">{lang.name}</span>
                   </motion.div>
@@ -352,7 +352,7 @@ const SolutionsStartups = () => {
       </section>
 
       {/* Benefits Grid */}
-      <section className="py-20 px-6 relative overflow-hidden bg-gradient-to-b from-transparent via-purple-950/30 to-transparent">
+      <section className="py-20 px-4 relative overflow-hidden bg-gradient-to-b from-transparent via-purple-950/30 to-transparent">
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
@@ -363,26 +363,26 @@ const SolutionsStartups = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-6 font-space-grotesk">
                 <GradientText gradient="aurora">Why Startups Choose Artisan</GradientText>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
                 Consolidate your sales enablement stack, achieve lower cost per meeting, and scale
                 seamlessly
               </p>
             </div>
           </RevealText>
 
-          <motion.div {...staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div {...staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {BENEFITS.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
                 <motion.div key={index} {...staggerItem}>
                   <GlassCard variant="default" hover glow className="h-full">
-                    <GlassCardContent className="p-6">
+                    <GlassCardContent className="p-4">
                       <div
-                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center mb-4`}
+                        className={`w-12 h-9 rounded-lg bg-gradient-to-br ${benefit.gradient} flex items-center justify-center mb-4`}
                       >
                         <Icon size={24} className="text-white" />
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-3 font-space-grotesk">
+                      <h3 className="text-lg font-bold text-white mb-3 font-space-grotesk">
                         {benefit.title}
                       </h3>
                       <p className="text-gray-400 leading-relaxed">{benefit.description}</p>
@@ -396,7 +396,7 @@ const SolutionsStartups = () => {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
 
@@ -407,10 +407,10 @@ const SolutionsStartups = () => {
                 Ready to Scale Like the Top 1%?
               </GradientText>
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-lg text-gray-300 mb-8">
               Join hundreds of startups already scaling with Ava as their AI BDR
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link to="/pricing#start">
                 <GlowButton variant="primary" size="xl" glow className="gap-2">
                   <Sparkles size={20} />
@@ -424,7 +424,7 @@ const SolutionsStartups = () => {
                 </GlowButtonOutline>
               </Link>
             </div>
-            <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+            <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm text-gray-400">
               <span className="flex items-center gap-2">
                 <CheckCircle size={16} className="text-emerald-400" />
                 No credit card required

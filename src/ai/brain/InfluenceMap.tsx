@@ -567,7 +567,7 @@ const InfluenceMap = () => {
                   </button>
                 </div>
 
-                <div className="p-4 space-y-4">
+                <div className="p-4 space-y-3">
                   {/* Role & Influence */}
                   <div className="grid grid-cols-2 gap-3">
                     <div className={`rounded-lg p-3 ${getRoleColor(selectedStakeholder.role).bg}`}>
@@ -641,7 +641,7 @@ const InfluenceMap = () => {
                   <p className="text-xs text-gray-400 mt-1">AI-analyzed stakeholder dynamics</p>
                 </div>
 
-                <div className="p-4 space-y-4">
+                <div className="p-4 space-y-3">
                   {/* Buying Center */}
                   <div>
                     <h4 className="text-sm font-medium text-white mb-3">Buying Center</h4>

@@ -46,8 +46,8 @@ const BenefitCard = ({ icon: Icon, title, description, delay = 0 }) => {
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <div className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-500/30 transition-all duration-300 group">
-        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center flex-shrink-0 group-hover:from-cyan-500/30 group-hover:to-purple-500/30 transition-all duration-300">
+      <div className="flex items-start gap-3 p-4 rounded-lg bg-white/5 border border-white/10 hover:border-cyan-500/30 transition-all duration-300 group">
+        <div className="w-10 h-9 rounded-lg bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center flex-shrink-0 group-hover:from-cyan-500/30 group-hover:to-purple-500/30 transition-all duration-300">
           <Icon size={20} className="text-cyan-400" />
         </div>
         <div>
@@ -93,7 +93,7 @@ const TestimonialBubble = ({ quote, author, role, company, avatar, position, del
     >
       <GlassCard variant="default" className="p-4" blur="xl">
         <div className="flex items-start gap-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+          <div className="w-10 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
             {avatar || author[0]}
           </div>
           <div>
@@ -215,7 +215,7 @@ const EnhancedCTA = () => {
     <section
       ref={containerRef}
       id="enhanced-cta"
-      className="py-24 px-6 relative overflow-hidden bg-[#030712]"
+      className="py-24 px-4 relative overflow-hidden bg-[#030712]"
     >
       {/* Background effects */}
       <ParticleBackground variant="aurora" className="absolute inset-0" />
@@ -286,7 +286,7 @@ const EnhancedCTA = () => {
                   </h2>
 
                   {/* Subheadline with typewriter effect */}
-                  <div className="text-xl text-gray-300 mb-8 h-16">
+                  <div className="text-lg text-gray-300 mb-8 h-16">
                     {isVisible && (
                       <TypewriterText
                         text="Join 2,500+ revenue teams using Ava to book 3x more qualified meetings with 80% less effort."
@@ -297,16 +297,16 @@ const EnhancedCTA = () => {
                   </div>
 
                   {/* CTA Form */}
-                  <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                  <div className="flex flex-col sm:flex-row gap-3 mb-8">
                     <div className="relative flex-1 max-w-md">
                       <input
                         type="email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         placeholder="Enter your work email"
-                        className="w-full px-6 py-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300"
+                        className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300"
                       />
-                      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500/0 via-cyan-500/5 to-purple-500/0 pointer-events-none" />
+                      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-cyan-500/0 via-cyan-500/5 to-purple-500/0 pointer-events-none" />
                     </div>
                     <Link to="/onboarding">
                       <GlowButton
@@ -337,7 +337,7 @@ const EnhancedCTA = () => {
                 </div>
 
                 {/* Right: Benefits */}
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {benefits.map((benefit, index) => (
                     <BenefitCard
                       key={index}
@@ -347,13 +347,13 @@ const EnhancedCTA = () => {
                   ))}
 
                   {/* Social proof */}
-                  <div className="mt-8 p-6 rounded-xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20">
-                    <div className="flex items-center gap-4 mb-4">
+                  <div className="mt-8 p-4 rounded-lg bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20">
+                    <div className="flex items-center gap-3 mb-4">
                       <div className="flex -space-x-3">
                         {[1, 2, 3, 4, 5].map(i => (
                           <div
                             key={i}
-                            className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 border-2 border-[#0f0f23] flex items-center justify-center text-white text-xs font-bold"
+                            className="w-10 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 border-2 border-[#0f0f23] flex items-center justify-center text-white text-xs font-bold"
                           >
                             {String.fromCodePoint(64 + i)}
                           </div>
@@ -373,7 +373,7 @@ const EnhancedCTA = () => {
                   </div>
 
                   {/* Demo button */}
-                  <div className="flex items-center justify-center gap-4 mt-6">
+                  <div className="flex items-center justify-center gap-3 mt-6">
                     <GlowButtonOutline variant="secondary" size="md">
                       <Play size={16} className="mr-2" />
                       Watch 2-min Demo
@@ -393,7 +393,7 @@ const EnhancedCTA = () => {
 
         {/* Bottom stats bar */}
         <RevealText delay={500}>
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { label: 'Meetings Booked', value: 847000, suffix: '+' },
               { label: 'Pipeline Generated', value: 2.4, prefix: '$', suffix: 'B+' },
@@ -401,7 +401,7 @@ const EnhancedCTA = () => {
               { label: 'Enterprise Customers', value: 450, suffix: '+' },
             ].map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold mb-2 font-space-grotesk">
+                <div className="text-lg md:text-4xl font-bold mb-2 font-space-grotesk">
                   <GradientText gradient="cyber">
                     {stat.prefix}
                     <CountUpText

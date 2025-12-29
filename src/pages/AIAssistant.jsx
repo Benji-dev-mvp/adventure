@@ -354,21 +354,21 @@ const AIAssistant = () => {
           {/* Animated gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-white/5 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-          <CardContent className="relative p-8">
+          <CardContent className="relative p-4">
             {/* Futuristic Header */}
             <div className="mb-6 flex items-center justify-between">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 {/* Glowing Ava Logo */}
                 <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-2xl blur-xl opacity-75 animate-pulse" />
-                  <div className="relative w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-2xl border-2 border-white/30 transition-transform group-hover:scale-110 group-hover:rotate-3 duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg blur-xl opacity-75 animate-pulse" />
+                  <div className="relative w-20 h-20 rounded-lg bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-2xl border-2 border-white/30 transition-transform group-hover:scale-110 group-hover:rotate-3 duration-300">
                     <Sparkles className="text-white animate-pulse" size={32} />
                   </div>
                 </div>
 
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <h2 className="text-3xl font-black bg-gradient-to-r from-cyan-600 via-purple-600 to-pink-600 dark:from-cyan-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
+                    <h2 className="text-lg font-black bg-gradient-to-r from-cyan-600 via-purple-600 to-pink-600 dark:from-cyan-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
                       Ava AI Command Center
                     </h2>
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30">
@@ -381,7 +381,7 @@ const AIAssistant = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3">
                     <span className={cn('text-sm font-medium', textTones.muted)}>
                       <Brain className="inline w-4 h-4 mr-1 animate-pulse" />
                       Neural Engine Active
@@ -413,7 +413,7 @@ const AIAssistant = () => {
             </div>
 
             {/* Lead & Source Selector */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {/* Source Selector */}
               <div>
                 <label
@@ -469,7 +469,7 @@ const AIAssistant = () => {
 
             {/* Live Analytics Bar */}
             <div className="mt-6 relative group/analytics">
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl blur opacity-0 group-hover/analytics:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 rounded-lg blur opacity-0 group-hover/analytics:opacity-100 transition-opacity duration-300" />
               <div
                 className={cn(
                   'relative rounded-2xl p-6 transition-all duration-300 border-2',
@@ -478,9 +478,9 @@ const AIAssistant = () => {
                     : 'border-purple-200 bg-gradient-to-br from-white to-purple-50/30 shadow-xl hover:border-purple-300'
                 )}
               >
-                <div className="grid grid-cols-3 gap-4 text-center">
+                <div className="grid grid-cols-3 gap-3 text-center">
                   <div className="group/stat relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-xl opacity-0 group-hover/stat:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-lg opacity-0 group-hover/stat:opacity-100 transition-opacity" />
                     <p
                       className={cn(
                         'text-xs uppercase font-black tracking-wider mb-2',
@@ -490,7 +490,7 @@ const AIAssistant = () => {
                       <Zap className="inline w-3 h-3 mr-1 animate-pulse" />
                       Tokens Used
                     </p>
-                    <p className="text-3xl font-black bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
+                    <p className="text-lg font-black bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
                       <AnimatedCounter
                         end={stats.promptTokens + stats.responseTokens}
                         duration={1000}
@@ -502,7 +502,7 @@ const AIAssistant = () => {
                     </p>
                   </div>
                   <div className="border-l-2 border-r-2 border-white/10 group/stat relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl opacity-0 group-hover/stat:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-lg opacity-0 group-hover/stat:opacity-100 transition-opacity" />
                     <p
                       className={cn(
                         'text-xs uppercase font-black tracking-wider mb-2',
@@ -512,7 +512,7 @@ const AIAssistant = () => {
                       <Clock className="inline w-3 h-3 mr-1 animate-pulse" />
                       Response Time
                     </p>
-                    <p className="text-3xl font-black bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent">
+                    <p className="text-lg font-black bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent">
                       <AnimatedCounter end={stats.totalTime || 2500} duration={1000} suffix="ms" />
                     </p>
                     <p
@@ -526,7 +526,7 @@ const AIAssistant = () => {
                     </p>
                   </div>
                   <div className="group/stat relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-xl opacity-0 group-hover/stat:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-lg opacity-0 group-hover/stat:opacity-100 transition-opacity" />
                     <p
                       className={cn(
                         'text-xs uppercase font-black tracking-wider mb-2',
@@ -536,7 +536,7 @@ const AIAssistant = () => {
                       <TrendingUp className="inline w-3 h-3 mr-1 animate-pulse" />
                       Quality Score
                     </p>
-                    <p className="text-3xl font-black bg-gradient-to-r from-emerald-500 to-teal-600 bg-clip-text text-transparent">
+                    <p className="text-lg font-black bg-gradient-to-r from-emerald-500 to-teal-600 bg-clip-text text-transparent">
                       <AnimatedCounter end={9.2} duration={1500} />
                       <span className="text-lg">/10</span>
                     </p>
@@ -556,15 +556,15 @@ const AIAssistant = () => {
       </div>
 
       {/* Modern Grid Layout */}
-      <div className="grid lg:grid-cols-3 gap-4">
+      <div className="grid lg:grid-cols-3 gap-3">
         {/* Chat Interface - Glassmorphism */}
         <div className="lg:col-span-2">
           <div className="relative h-[calc(100vh-350px)]">
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-primary-500/5 rounded-3xl" />
             <Card className={cn('relative h-full flex flex-col', surfaces.panel)}>
-              <CardContent className="flex-1 flex flex-col p-6">
+              <CardContent className="flex-1 flex flex-col p-4">
                 {/* Messages with smooth animations */}
-                <div className="flex-1 overflow-y-auto mb-4 space-y-4 pr-4 scroll-smooth">
+                <div className="flex-1 overflow-y-auto mb-4 space-y-3 pr-4 scroll-smooth">
                   {messages.map((message, index) => (
                     <div
                       key={index}
@@ -575,9 +575,9 @@ const AIAssistant = () => {
                       >
                         {message.role === 'assistant' && (
                           <div className="flex items-center gap-3 mb-3 pl-2">
-                            <div className="relative w-10 h-10">
-                              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-xl blur opacity-75 animate-pulse" />
-                              <div className="relative w-10 h-10 bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center border-2 border-white/30 shadow-xl">
+                            <div className="relative w-10 h-9">
+                              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-lg blur opacity-75 animate-pulse" />
+                              <div className="relative w-10 h-9 bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 rounded-lg flex items-center justify-center border-2 border-white/30 shadow-xl">
                                 <Sparkles className="text-white" size={16} />
                               </div>
                             </div>
@@ -693,9 +693,9 @@ const AIAssistant = () => {
                     <div className="flex justify-start animate-in fade-in-50 slide-in-from-bottom-4 duration-300">
                       <div className="max-w-[85%]">
                         <div className="flex items-center gap-3 mb-3 pl-2">
-                          <div className="relative w-10 h-10">
-                            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-xl blur opacity-75 animate-pulse" />
-                            <div className="relative w-10 h-10 bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center border-2 border-white/30 shadow-xl">
+                          <div className="relative w-10 h-9">
+                            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-lg blur opacity-75 animate-pulse" />
+                            <div className="relative w-10 h-9 bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 rounded-lg flex items-center justify-center border-2 border-white/30 shadow-xl">
                               <Sparkles className="text-white animate-spin" size={16} />
                             </div>
                           </div>
@@ -711,9 +711,9 @@ const AIAssistant = () => {
                 </div>
 
                 {/* Builder and Input Area */}
-                <div className="border-t border-white/30 pt-6 space-y-4 bg-gradient-to-t from-white/10 to-transparent">
+                <div className="border-t border-white/30 pt-6 space-y-3 bg-gradient-to-t from-white/10 to-transparent">
                   {/* Builder row */}
-                  <div className="grid md:grid-cols-3 gap-4">
+                  <div className="grid md:grid-cols-3 gap-3">
                     <div className="group/builder">
                       <label
                         className={cn(
@@ -776,7 +776,7 @@ const AIAssistant = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-end gap-4">
+                  <div className="flex items-end gap-3">
                     <Textarea
                       value={input}
                       onChange={e => setInput(e.target.value)}
@@ -848,19 +848,19 @@ const AIAssistant = () => {
         </div>
 
         {/* Right Sidebar - Modern Cards */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           {/* Smart Actions */}
           <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent-500/25 to-primary-500/25 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+            <div className="absolute inset-0 bg-gradient-to-br from-accent-500/25 to-primary-500/25 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
             <Card
               className={cn(
                 'relative hover:shadow-3xl transition-all duration-300',
                 surfaces.panel
               )}
             >
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2.5 bg-gradient-to-br from-accent-500/30 to-primary-500/30 rounded-xl border border-accent-500/20">
+                  <div className="p-2.5 bg-gradient-to-br from-accent-500/30 to-primary-500/30 rounded-lg border border-accent-500/20">
                     <Sparkles
                       size={20}
                       className={isDark ? 'text-accent-300' : 'text-accent-600'}
@@ -894,16 +894,16 @@ const AIAssistant = () => {
 
           {/* Tone & Length Controls */}
           <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/25 to-pink-500/25 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/25 to-pink-500/25 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
             <Card
               className={cn(
                 'relative hover:shadow-3xl transition-all duration-300',
                 surfaces.panel
               )}
             >
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2.5 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-xl border border-purple-500/20">
+                  <div className="p-2.5 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-lg border border-purple-500/20">
                     <Sliders size={20} className={isDark ? 'text-purple-300' : 'text-purple-700'} />
                   </div>
                   <h3 className={cn('font-bold text-lg', textTones.heading)}>Content Settings</h3>
@@ -974,16 +974,16 @@ const AIAssistant = () => {
 
           {/* Prompt Templates */}
           <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/25 to-orange-500/25 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+            <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/25 to-orange-500/25 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
             <Card
               className={cn(
                 'relative hover:shadow-3xl transition-all duration-300',
                 surfaces.panel
               )}
             >
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2.5 bg-gradient-to-br from-yellow-500/30 to-orange-500/30 rounded-xl border border-yellow-500/20">
+                  <div className="p-2.5 bg-gradient-to-br from-yellow-500/30 to-orange-500/30 rounded-lg border border-yellow-500/20">
                     <Lightbulb
                       size={20}
                       className={isDark ? 'text-yellow-300' : 'text-amber-600'}
@@ -1039,16 +1039,16 @@ const AIAssistant = () => {
 
           {/* Saved Prompts */}
           <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-green-500/25 to-emerald-500/25 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+            <div className="absolute inset-0 bg-gradient-to-br from-green-500/25 to-emerald-500/25 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
             <Card
               className={cn(
                 'relative hover:shadow-3xl transition-all duration-300',
                 surfaces.panel
               )}
             >
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2.5 bg-gradient-to-br from-green-500/30 to-emerald-500/30 rounded-xl border border-green-500/20">
+                  <div className="p-2.5 bg-gradient-to-br from-green-500/30 to-emerald-500/30 rounded-lg border border-green-500/20">
                     <Lightbulb
                       size={20}
                       className={isDark ? 'text-green-300' : 'text-emerald-700'}
@@ -1118,16 +1118,16 @@ const AIAssistant = () => {
 
           {/* Source Citations */}
           <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/25 to-cyan-500/25 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/25 to-cyan-500/25 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
             <Card
               className={cn(
                 'relative hover:shadow-3xl transition-all duration-300',
                 surfaces.panel
               )}
             >
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2.5 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 rounded-xl border border-blue-500/20">
+                  <div className="p-2.5 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 rounded-lg border border-blue-500/20">
                     <FileText size={20} className={isDark ? 'text-blue-300' : 'text-blue-700'} />
                   </div>
                   <h3 className={cn('font-bold text-lg', textTones.heading)}>Source Citations</h3>
@@ -1158,16 +1158,16 @@ const AIAssistant = () => {
 
           {/* AI Stats */}
           <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-pink-500/25 to-red-500/25 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+            <div className="absolute inset-0 bg-gradient-to-br from-pink-500/25 to-red-500/25 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
             <Card
               className={cn(
                 'relative hover:shadow-3xl transition-all duration-300',
                 surfaces.panel
               )}
             >
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2.5 bg-gradient-to-br from-pink-500/30 to-red-500/30 rounded-xl border border-pink-500/20">
+                  <div className="p-2.5 bg-gradient-to-br from-pink-500/30 to-red-500/30 rounded-lg border border-pink-500/20">
                     <Sparkles
                       size={20}
                       className={cn(isDark ? 'text-pink-300' : 'text-rose-700', 'animate-pulse')}
@@ -1207,7 +1207,7 @@ const AIAssistant = () => {
                         <Mail className="inline w-3 h-3 mr-1" />
                         Emails Generated
                       </span>
-                      <p className="text-2xl font-black bg-gradient-to-r from-pink-500 to-rose-600 bg-clip-text text-transparent mt-1">
+                      <p className="text-lg font-black bg-gradient-to-r from-pink-500 to-rose-600 bg-clip-text text-transparent mt-1">
                         <AnimatedCounter end={liveMetrics.emailsGenerated} duration={2000} />
                       </p>
                     </div>
@@ -1236,7 +1236,7 @@ const AIAssistant = () => {
                         <Clock className="inline w-3 h-3 mr-1" />
                         Time Saved
                       </span>
-                      <p className="text-2xl font-black bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent mt-1">
+                      <p className="text-lg font-black bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent mt-1">
                         <AnimatedCounter end={Math.floor(liveMetrics.timeSaved)} duration={2000} />{' '}
                         hrs
                       </p>
@@ -1269,7 +1269,7 @@ const AIAssistant = () => {
                         <Target className="inline w-3 h-3 mr-1" />
                         Reply Rate
                       </span>
-                      <p className="text-2xl font-black bg-gradient-to-r from-purple-500 to-indigo-600 bg-clip-text text-transparent mt-1">
+                      <p className="text-lg font-black bg-gradient-to-r from-purple-500 to-indigo-600 bg-clip-text text-transparent mt-1">
                         +<AnimatedCounter end={Math.floor(liveMetrics.replyRate)} duration={2000} />
                         %
                       </p>

@@ -75,7 +75,7 @@ export const LiveIndicator = ({ label = 'LIVE', color = 'red' }) => {
 };
 
 // Animated Progress Bar
-export const AnimatedProgress = ({ value, color = 'cyan', label, className = '' }) => {
+export const AnimatedProgress = ({ value, color = 'cyan', label, className='' }) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -192,14 +192,14 @@ export const AnimatedStatCard = ({
   value,
   trend,
   gradient = 'from-cyan-500 to-blue-600',
-  className = '',
+  className='',
 }) => {
   return (
     <div
-      className={`group relative p-6 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 ${className}`}
+      className={`group relative p-4 rounded-lg backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 ${className}`}
     >
       <div
-        className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+        className={`absolute inset-0 rounded-lg bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
       />
       <div className="relative">
         {Icon && (
@@ -210,7 +210,7 @@ export const AnimatedStatCard = ({
         )}
         <p className="text-sm text-slate-400 mb-1">{label}</p>
         <p
-          className={`text-3xl font-black bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}
+          className={`text-lg font-black bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}
         >
           {typeof value === 'number' ? <AnimatedCounter end={value} /> : value}
         </p>

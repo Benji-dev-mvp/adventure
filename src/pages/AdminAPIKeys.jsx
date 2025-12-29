@@ -96,12 +96,12 @@ const AdminAPIKeys = () => {
 
   return (
     <DashboardLayout>
-      <div className="p-6 max-w-6xl">
+      <div className="p-4 max-w-6xl">
         {/* Header */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-2">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">API Keys</h1>
+              <h1 className="text-lg font-bold text-gray-900 dark:text-white">API Keys</h1>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Manage your API keys for programmatic access
               </p>
@@ -117,18 +117,18 @@ const AdminAPIKeys = () => {
         </div>
 
         {/* API Keys List */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           {apiKeys.map(apiKey => (
             <div
               key={apiKey.id}
-              className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6"
+              className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4"
             >
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
                     {apiKey.name}
                   </h3>
-                  <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+                  <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
                       Created {apiKey.created}
@@ -154,7 +154,7 @@ const AdminAPIKeys = () => {
 
               {/* API Key Display */}
               <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 mb-4">
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center justify-between gap-3">
                   <code className="flex-1 text-sm font-mono text-gray-700 dark:text-gray-300">
                     {revealedKeys.has(apiKey.id) ? apiKey.key : '••••••••••••••••••••••••••••'}
                   </code>
@@ -202,12 +202,12 @@ const AdminAPIKeys = () => {
         {/* Create Modal */}
         {showCreateModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 max-w-lg w-full p-6">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 max-w-lg w-full p-4">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                 Create New API Key
               </h2>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Key Name
@@ -277,7 +277,7 @@ const AdminAPIKeys = () => {
         )}
 
         {/* Documentation Section */}
-        <div className="mt-8 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-6">
+        <div className="mt-8 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
           <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-300 mb-2">
             Getting Started with the API
           </h3>

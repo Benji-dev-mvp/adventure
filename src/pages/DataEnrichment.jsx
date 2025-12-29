@@ -165,7 +165,7 @@ const DataEnrichment = () => {
     <DashboardLayout>
       <div className="max-w-7xl mx-auto">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
             Data Enrichment & Intent Engine
           </h1>
           <p className="text-gray-600 dark:text-gray-300">
@@ -174,14 +174,14 @@ const DataEnrichment = () => {
         </div>
 
         {/* Stats Overview */}
-        <div className="grid grid-cols-6 gap-4 mb-6">
+        <div className="grid grid-cols-6 gap-3 mb-6">
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center justify-between mb-2">
                 <Database size={20} className="text-blue-500" />
                 <TrendingUp size={16} className="text-green-500" />
               </div>
-              <p className="text-2xl font-bold">{enrichmentStats.totalEnriched.toLocaleString()}</p>
+              <p className="text-lg font-bold">{enrichmentStats.totalEnriched.toLocaleString()}</p>
               <p className="text-xs text-gray-600 dark:text-gray-400">Total Enriched</p>
             </CardContent>
           </Card>
@@ -194,7 +194,7 @@ const DataEnrichment = () => {
                   +24%
                 </Badge>
               </div>
-              <p className="text-2xl font-bold">{enrichmentStats.thisMonth.toLocaleString()}</p>
+              <p className="text-lg font-bold">{enrichmentStats.thisMonth.toLocaleString()}</p>
               <p className="text-xs text-gray-600 dark:text-gray-400">This Month</p>
             </CardContent>
           </Card>
@@ -204,7 +204,7 @@ const DataEnrichment = () => {
               <div className="flex items-center justify-between mb-2">
                 <CheckCircle size={20} className="text-green-500" />
               </div>
-              <p className="text-2xl font-bold">{enrichmentStats.successRate}%</p>
+              <p className="text-lg font-bold">{enrichmentStats.successRate}%</p>
               <p className="text-xs text-gray-600 dark:text-gray-400">Success Rate</p>
             </CardContent>
           </Card>
@@ -214,7 +214,7 @@ const DataEnrichment = () => {
               <div className="flex items-center justify-between mb-2">
                 <Clock size={20} className="text-orange-500" />
               </div>
-              <p className="text-2xl font-bold">{enrichmentStats.avgTimePerLead}</p>
+              <p className="text-lg font-bold">{enrichmentStats.avgTimePerLead}</p>
               <p className="text-xs text-gray-600 dark:text-gray-400">Avg Time/Lead</p>
             </CardContent>
           </Card>
@@ -224,7 +224,7 @@ const DataEnrichment = () => {
               <div className="flex items-center justify-between mb-2">
                 <Target size={20} className="text-cyan-500" />
               </div>
-              <p className="text-2xl font-bold">{enrichmentStats.dataPoints}</p>
+              <p className="text-lg font-bold">{enrichmentStats.dataPoints}</p>
               <p className="text-xs text-gray-600 dark:text-gray-400">Data Points</p>
             </CardContent>
           </Card>
@@ -234,7 +234,7 @@ const DataEnrichment = () => {
               <div className="flex items-center justify-between mb-2">
                 <Zap size={20} className="text-yellow-500" />
               </div>
-              <p className="text-2xl font-bold">{enrichmentStats.providers}</p>
+              <p className="text-lg font-bold">{enrichmentStats.providers}</p>
               <p className="text-xs text-gray-600 dark:text-gray-400">Data Providers</p>
             </CardContent>
           </Card>
@@ -250,10 +250,10 @@ const DataEnrichment = () => {
 
           {/* Enrichment Jobs */}
           <TabsContent value="jobs">
-            <div className="grid gap-4">
+            <div className="grid gap-3">
               {enrichmentJobs.map(job => (
                 <Card key={job.id}>
-                  <CardContent className="p-6">
+                  <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h3 className="text-lg font-semibold mb-1">{job.name}</h3>
@@ -306,21 +306,21 @@ const DataEnrichment = () => {
 
                     {/* Stats */}
                     {(job.status === 'completed' || job.status === 'running') && (
-                      <div className="grid grid-cols-4 gap-4 mb-4">
+                      <div className="grid grid-cols-4 gap-3 mb-4">
                         <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded">
-                          <p className="text-2xl font-bold text-green-600">{job.enriched}</p>
+                          <p className="text-lg font-bold text-green-600">{job.enriched}</p>
                           <p className="text-xs text-gray-600">Enriched</p>
                         </div>
                         <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded">
-                          <p className="text-2xl font-bold text-red-600">{job.failed}</p>
+                          <p className="text-lg font-bold text-red-600">{job.failed}</p>
                           <p className="text-xs text-gray-600">Failed</p>
                         </div>
                         <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded">
-                          <p className="text-2xl font-bold text-blue-600">{job.successRate}%</p>
+                          <p className="text-lg font-bold text-blue-600">{job.successRate}%</p>
                           <p className="text-xs text-gray-600">Success Rate</p>
                         </div>
                         <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded">
-                          <p className="text-2xl font-bold text-purple-600">
+                          <p className="text-lg font-bold text-purple-600">
                             {job.dataPoints.length}
                           </p>
                           <p className="text-xs text-gray-600">Data Points</p>
@@ -341,7 +341,7 @@ const DataEnrichment = () => {
                     </div>
 
                     {/* Timestamps */}
-                    <div className="flex items-center gap-4 text-xs text-gray-600">
+                    <div className="flex items-center gap-3 text-xs text-gray-600">
                       <span>Started: {job.startedAt}</span>
                       {job.completedAt && <span>Completed: {job.completedAt}</span>}
                     </div>
@@ -350,7 +350,7 @@ const DataEnrichment = () => {
               ))}
 
               <Card className="border-dashed border-2">
-                <CardContent className="p-8 text-center">
+                <CardContent className="p-4 text-center">
                   <Sparkles className="mx-auto mb-3 text-gray-400" size={32} />
                   <h3 className="text-lg font-semibold mb-2">Start New Enrichment Job</h3>
                   <p className="text-sm text-gray-600 mb-4">
@@ -367,14 +367,14 @@ const DataEnrichment = () => {
 
           {/* Available Fields */}
           <TabsContent value="fields">
-            <div className="grid gap-6">
+            <div className="grid gap-3">
               {enrichmentFields.map(category => (
                 <Card key={category.category}>
                   <CardHeader>
                     <CardTitle>{category.category}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-3">
                       {category.fields.map(field => (
                         <div
                           key={field.name}
@@ -412,10 +412,10 @@ const DataEnrichment = () => {
 
           {/* Data Providers */}
           <TabsContent value="providers">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               {dataProviders.map(provider => (
                 <Card key={provider.name}>
-                  <CardContent className="p-6">
+                  <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h3 className="text-lg font-semibold mb-1">{provider.name}</h3>
@@ -453,10 +453,10 @@ const DataEnrichment = () => {
 
           {/* Recent Activity */}
           <TabsContent value="recent">
-            <div className="space-y-4">
+            <div className="space-y-3">
               {recentEnrichments.map((item, index) => (
                 <Card key={index}>
-                  <CardContent className="p-6">
+                  <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h3 className="text-lg font-semibold">{item.name}</h3>
@@ -468,7 +468,7 @@ const DataEnrichment = () => {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-6">
+                    <div className="grid grid-cols-2 gap-3">
                       <div>
                         <p className="text-sm font-semibold mb-3 text-red-600">Before Enrichment</p>
                         <div className="space-y-2 text-sm">

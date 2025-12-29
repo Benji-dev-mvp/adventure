@@ -100,7 +100,7 @@ const SolutionsDropdown = ({ isOpen, onClose, prefersReducedMotion }) => {
                     className="flex items-start gap-3 p-3 rounded-lg hover:bg-white/5 transition-all group"
                   >
                     <div
-                      className={`w-10 h-10 rounded-lg bg-gradient-to-br ${solution.color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}
+                      className={`w-10 h-9 rounded-lg bg-gradient-to-br ${solution.color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}
                     >
                       <Icon size={20} className="text-white" />
                     </div>
@@ -155,7 +155,7 @@ const AppShell = ({ children, showBanner = true }) => {
 
       {/* Navigation Header */}
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#030712]/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 group">
@@ -169,7 +169,7 @@ const AppShell = ({ children, showBanner = true }) => {
               >
                 <span className="text-white font-bold text-lg">A</span>
               </GlassCard>
-              <span className="font-bold text-xl font-space-grotesk hidden sm:block">
+              <span className="font-bold text-lg font-space-grotesk hidden sm:block">
                 <GradientText gradient="aurora">Artisan</GradientText>
               </span>
             </Link>
@@ -278,7 +278,7 @@ const AppShell = ({ children, showBanner = true }) => {
               exit={prefersReducedMotion ? {} : { opacity: 0, height: 0 }}
               className="lg:hidden border-t border-white/10 bg-[#030712]/95 backdrop-blur-xl overflow-hidden"
             >
-              <nav className="max-w-7xl mx-auto px-4 py-4 space-y-1">
+              <nav className="max-w-7xl mx-auto px-4 py-3 space-y-1">
                 {NAV_ITEMS.map(item => {
                   if (item.type === 'dropdown') {
                     return (
@@ -396,7 +396,7 @@ const AppShell = ({ children, showBanner = true }) => {
       <main className="flex-1">{children}</main>
 
       {/* Footer */}
-      <footer className="bg-[#030712] text-white py-16 px-6 border-t border-white/10 relative overflow-hidden">
+      <footer className="bg-[#030712] text-white py-16 px-4 border-t border-white/10 relative overflow-hidden">
         {/* Subtle gradient orbs */}
         <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-gradient-radial from-purple-900/20 to-transparent blur-3xl pointer-events-none" />
         <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-gradient-radial from-cyan-900/10 to-transparent blur-3xl pointer-events-none" />
@@ -412,11 +412,11 @@ const AppShell = ({ children, showBanner = true }) => {
                   radius="lg"
                   glow
                   glowColor="purple"
-                  className="w-10 h-10 flex items-center justify-center"
+                  className="w-10 h-9 flex items-center justify-center"
                 >
                   <span className="text-white font-bold text-lg">A</span>
                 </GlassCard>
-                <span className="font-bold text-xl font-space-grotesk">
+                <span className="font-bold text-lg font-space-grotesk">
                   <GradientText gradient="aurora">Artisan</GradientText>
                 </span>
               </Link>
@@ -434,7 +434,7 @@ const AppShell = ({ children, showBanner = true }) => {
                     hover
                     padding="p-0"
                     radius="lg"
-                    className="w-10 h-10 flex items-center justify-center transition-all duration-300 group"
+                    className="w-10 h-9 flex items-center justify-center transition-all duration-300 group"
                   >
                     <span className="text-sm font-semibold text-gray-400 group-hover:text-cyan-400 transition-colors">
                       {social[0]}
@@ -546,9 +546,9 @@ const AppShell = ({ children, showBanner = true }) => {
           </div>
 
           {/* Bottom Bar */}
-          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-3">
             <div className="text-sm text-gray-400">© 2025 Artisan. All rights reserved.</div>
-            <div className="flex gap-6 text-sm text-gray-400">
+            <div className="flex gap-3 text-sm text-gray-400">
               <Link to="/security" className="hover:text-cyan-400 transition-colors">
                 Status
               </Link>

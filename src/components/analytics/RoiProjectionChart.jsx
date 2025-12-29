@@ -110,8 +110,8 @@ const RoiProjectionChart = ({
       transition={{ duration: 0.6 }}
     >
       <GlassCard variant="gradient" className="overflow-hidden">
-        <GlassCardContent className="p-6">
-          <h3 className="text-xl font-bold mb-6 font-space-grotesk">
+        <GlassCardContent className="p-4">
+          <h3 className="text-lg font-bold mb-6 font-space-grotesk">
             <GradientText gradient="cyber">{title}</GradientText>
           </h3>
 
@@ -168,31 +168,31 @@ const RoiProjectionChart = ({
           </div>
 
           {/* Summary metrics */}
-          <div className="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
+          <div className="grid grid-cols-3 gap-3 pt-6 border-t border-white/10">
             <motion.div
-              className="text-center p-4 rounded-xl bg-gradient-to-br from-cyan-500/10 to-purple-500/10"
+              className="text-center p-4 rounded-lg bg-gradient-to-br from-cyan-500/10 to-purple-500/10"
               whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
             >
               <TrendingUp className="w-6 h-6 mx-auto mb-2 text-cyan-400" />
-              <div className="text-2xl font-bold text-cyan-400">
+              <div className="text-lg font-bold text-cyan-400">
                 ${(annualUplift / 1000000).toFixed(1)}M
               </div>
               <div className="text-xs text-gray-400">Additional Pipeline</div>
             </motion.div>
             <motion.div
-              className="text-center p-4 rounded-xl bg-gradient-to-br from-purple-500/10 to-pink-500/10"
+              className="text-center p-4 rounded-lg bg-gradient-to-br from-purple-500/10 to-pink-500/10"
               whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
             >
               <DollarSign className="w-6 h-6 mx-auto mb-2 text-purple-400" />
-              <div className="text-2xl font-bold text-purple-400">{roiPercent}%</div>
+              <div className="text-lg font-bold text-purple-400">{roiPercent}%</div>
               <div className="text-xs text-gray-400">ROI Year 1</div>
             </motion.div>
             <motion.div
-              className="text-center p-4 rounded-xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10"
+              className="text-center p-4 rounded-lg bg-gradient-to-br from-emerald-500/10 to-teal-500/10"
               whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
             >
               <Target className="w-6 h-6 mx-auto mb-2 text-emerald-400" />
-              <div className="text-2xl font-bold text-emerald-400">3x</div>
+              <div className="text-lg font-bold text-emerald-400">3x</div>
               <div className="text-xs text-gray-400">Meeting Increase</div>
             </motion.div>
           </div>

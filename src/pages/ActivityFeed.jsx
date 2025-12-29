@@ -206,13 +206,13 @@ const ActivityFeed = () => {
 
   return (
     <DashboardLayout title="Activity Feed" subtitle="Real-time team activity across all channels">
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Stats Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-gray-900 dark:text-white">{stats.total}</p>
+                <p className="text-lg font-bold text-gray-900 dark:text-white">{stats.total}</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Total Activities</p>
               </div>
             </CardContent>
@@ -220,7 +220,7 @@ const ActivityFeed = () => {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-blue-600">{stats.emails}</p>
+                <p className="text-lg font-bold text-blue-600">{stats.emails}</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Email Events</p>
               </div>
             </CardContent>
@@ -228,7 +228,7 @@ const ActivityFeed = () => {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-pink-600">{stats.meetings}</p>
+                <p className="text-lg font-bold text-pink-600">{stats.meetings}</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Meetings Booked</p>
               </div>
             </CardContent>
@@ -236,7 +236,7 @@ const ActivityFeed = () => {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-indigo-600">{stats.calls}</p>
+                <p className="text-lg font-bold text-indigo-600">{stats.calls}</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Calls Completed</p>
               </div>
             </CardContent>
@@ -246,7 +246,7 @@ const ActivityFeed = () => {
         {/* Filters & Feed */}
         <Card>
           <CardHeader>
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
               <CardTitle>Live Activity Stream</CardTitle>
               <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
                 <Select value={filter} onValueChange={setFilter}>
@@ -292,7 +292,7 @@ const ActivityFeed = () => {
                   key={activity.id}
                   className={`p-4 rounded-lg ${getActivityColor(activity.type)} border border-gray-200 dark:border-white/10 transition-all hover:shadow-md`}
                 >
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 mt-1">{getActivityIcon(activity.type)}</div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1">
@@ -320,7 +320,7 @@ const ActivityFeed = () => {
 
             {filteredActivities.length === 0 && (
               <div className="text-center py-12">
-                <Clock className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                <Clock className="w-12 h-9 text-gray-400 mx-auto mb-3" />
                 <p className="text-gray-600 dark:text-gray-400">No activities match your filters</p>
               </div>
             )}
@@ -357,7 +357,7 @@ const ActivityFeed = () => {
                 );
               })}
             </div>
-            <div className="flex justify-center items-center gap-4 mt-4">
+            <div className="flex justify-center items-center gap-3 mt-4">
               <span className="text-xs text-gray-600">Less</span>
               <div className="flex gap-1">
                 <div className="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>

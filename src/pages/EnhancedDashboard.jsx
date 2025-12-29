@@ -251,11 +251,11 @@ const EnhancedDashboard = () => {
         <GridRow gap="lg" className="mb-8">
           {/* Progress Rings */}
           <GridCol xs={12} md={6} lg={4}>
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+            <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                 Campaign Progress
               </h3>
-              <div className="flex flex-col sm:flex-row gap-6 justify-around">
+              <div className="flex flex-col sm:flex-row gap-3 justify-around">
                 <ProgressRing value={75} label="Completion" size="md" color="blue" />
                 <ProgressRing value={88} label="Engagement" size="md" color="green" />
               </div>
@@ -264,7 +264,7 @@ const EnhancedDashboard = () => {
 
           {/* Gauge */}
           <GridCol xs={12} md={6} lg={4}>
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+            <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                 Performance Score
               </h3>
@@ -303,7 +303,7 @@ const EnhancedDashboard = () => {
 
         {/* Project Cards Grid */}
         <div className="mb-8">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Active Projects</h2>
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Active Projects</h2>
           <ResponsiveGrid cols={{ xs: 1, md: 2, lg: 3 }} gap="md">
             {projects.map((project, index) => (
               <ProjectCard
@@ -353,15 +353,15 @@ const EnhancedDashboard = () => {
 
         {/* Carousel */}
         <div className="mb-8">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
             Platform Features
           </h2>
           <Carousel items={carouselItems} autoPlay interval={5000} />
         </div>
 
         {/* Call to Action */}
-        <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+        <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
             Ready to Scale Your Outreach?
           </h3>
           <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
@@ -370,7 +370,7 @@ const EnhancedDashboard = () => {
           </p>
           <button
             onClick={() => setModalOpen(true)}
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium flex items-center gap-2 mx-auto"
+            className="px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium flex items-center gap-2 mx-auto"
           >
             <Sparkles size={20} />
             Get Started with AI
@@ -405,7 +405,7 @@ const EnhancedDashboard = () => {
           </>
         }
       >
-        <div className="space-y-4">
+        <div className="space-y-3">
           <p className="text-gray-600 dark:text-gray-400">Ava can help you:</p>
           <ul className="space-y-2">
             {[

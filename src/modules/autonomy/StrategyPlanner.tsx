@@ -163,12 +163,12 @@ const StrategyPlanner: React.FC<StrategyPlannerProps> = ({ onStrategyChange }) =
   };
 
   return (
-    <div className="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
+    <div className="bg-gray-900 rounded-lg border border-gray-800 overflow-hidden">
       {/* Header */}
-      <div className="p-6 border-b border-gray-800">
+      <div className="p-4 border-b border-gray-800">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
+            <div className="w-10 h-9 rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
               <Brain className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -227,7 +227,7 @@ const StrategyPlanner: React.FC<StrategyPlannerProps> = ({ onStrategyChange }) =
                   {strategy.status}
                 </span>
               </div>
-              <div className="flex items-center gap-4 text-sm">
+              <div className="flex items-center gap-3 text-sm">
                 <div className="flex items-center gap-1.5">
                   <Target className="w-3.5 h-3.5 text-gray-500" />
                   <span className="text-gray-400">
@@ -264,7 +264,7 @@ const StrategyPlanner: React.FC<StrategyPlannerProps> = ({ onStrategyChange }) =
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="space-y-4"
+                className="space-y-3"
               >
                 {/* ICP Info */}
                 <div className="bg-gray-800/50 rounded-lg p-4">

@@ -13,5 +13,11 @@
     }
   ],
   "amplicode.server.tsConfig": "./tsconfig.node.json",
-  "svn.ignoreMissingSvnWarning": true
+  "svn.ignoreMissingSvnWarning": true,
+
+  // Codecov extension settings
+  "codecov.uploadToken": "ba04d82e-6344-451c-be40-6c30b7e222e2",
+  "codecov.showCoverage": true,
+  "codecov.showLineCoverage": true,
+  "codecov.showStatusBarItem": true
 }

@@ -246,7 +246,7 @@ const ExecutionTimeline = () => {
     <div className="h-full flex flex-col bg-gray-950">
       {/* Header */}
       <div className="h-14 bg-gray-900 border-b border-gray-800 flex items-center justify-between px-4">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <h2 className="text-lg font-semibold text-white">Execution Timeline</h2>
           <button
             onClick={() => setIsLive(!isLive)}
@@ -307,7 +307,7 @@ const ExecutionTimeline = () => {
 
       {/* Stats Bar */}
       <div className="bg-gray-900/50 border-b border-gray-800 px-4 py-3">
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
             <Activity className="w-4 h-4 text-gray-500" />
             <span className="text-sm text-gray-400">Total:</span>
@@ -445,7 +445,7 @@ const ExecutionTimeline = () => {
                             className="border-t border-gray-800"
                           >
                             <div className="p-4 space-y-3">
-                              <div className="grid grid-cols-2 gap-4 text-sm">
+                              <div className="grid grid-cols-2 gap-3 text-sm">
                                 <div>
                                   <span className="text-gray-500">Event ID</span>
                                   <div className="text-white font-mono text-xs mt-0.5">

@@ -142,7 +142,7 @@ const MidMarketFlowOrchestration = () => {
   const currentStage = stages[activeStage];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900/50 to-blue-900/20">
+    <section className="py-20 px-4 sm:px-4 lg:px-8 bg-gradient-to-br from-slate-900/50 to-blue-900/20">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-300 text-sm font-semibold mb-4">
@@ -152,7 +152,7 @@ const MidMarketFlowOrchestration = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             From Fragmented Stack to Unified Platform
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
             Watch how a 15-person sales team consolidates 12 tools and scales output by 3x
           </p>
         </div>
@@ -172,7 +172,7 @@ const MidMarketFlowOrchestration = () => {
                   }}
                 >
                   <div
-                    className={`p-4 rounded-xl border-2 transition-all ${
+                    className={`p-4 rounded-lg border-2 transition-all ${
                       activeStage === idx
                         ? `bg-gradient-to-br ${stage.color} border-white shadow-2xl`
                         : 'bg-slate-800 border-slate-600'
@@ -180,7 +180,7 @@ const MidMarketFlowOrchestration = () => {
                   >
                     <div className="flex flex-col items-center gap-2">
                       <div
-                        className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                        className={`w-12 h-9 rounded-lg flex items-center justify-center ${
                           activeStage === idx ? 'bg-white/20' : 'bg-slate-700'
                         }`}
                       >
@@ -221,19 +221,19 @@ const MidMarketFlowOrchestration = () => {
         </div>
 
         {/* Active Stage Details */}
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-3">
           {/* Stage Info */}
           <div
-            className={`bg-gradient-to-br ${currentStage.color} p-8 rounded-2xl border-2 border-white/20`}
+            className={`bg-gradient-to-br ${currentStage.color} p-4 rounded-lg border-2 border-white/20`}
           >
             <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center">
+              <div className="flex items-center gap-3">
+                <div className="w-16 h-16 rounded-lg bg-white/20 flex items-center justify-center">
                   <currentStage.icon className="w-8 h-8 text-white" />
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-white/80">{currentStage.phase}</div>
-                  <h3 className="text-2xl font-bold text-white">{currentStage.title}</h3>
+                  <h3 className="text-lg font-bold text-white">{currentStage.title}</h3>
                   <p className="text-white/80">{currentStage.subtitle}</p>
                 </div>
               </div>
@@ -258,16 +258,16 @@ const MidMarketFlowOrchestration = () => {
           </div>
 
           {/* Metrics & Scale */}
-          <div className="space-y-4">
-            <div className="bg-slate-800 border-2 border-slate-700 rounded-xl p-6">
+          <div className="space-y-3">
+            <div className="bg-slate-800 border-2 border-slate-700 rounded-lg p-4">
               <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <Target className="w-5 h-5 text-blue-400" />
                 Stage Metrics
               </h4>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 {Object.entries(currentStage.metrics).map(([key, value], idx) => (
                   <div key={idx} className="bg-slate-900 rounded-lg p-4">
-                    <div className="text-2xl font-bold text-blue-400 mb-1">{value}</div>
+                    <div className="text-lg font-bold text-blue-400 mb-1">{value}</div>
                     <div className="text-xs text-gray-400 capitalize">
                       {key.replace(/([A-Z])/g, ' $1')}
                     </div>
@@ -276,12 +276,12 @@ const MidMarketFlowOrchestration = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-green-900/30 to-emerald-900/30 border-2 border-green-500/30 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-green-900/30 to-emerald-900/30 border-2 border-green-500/30 rounded-lg p-4">
               <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-green-400" />
                 Mid-Market Impact
               </h4>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm text-gray-400">Stack Consolidation</span>
@@ -321,32 +321,32 @@ const MidMarketFlowOrchestration = () => {
               </div>
             </div>
 
-            <div className="bg-slate-800 border-2 border-slate-700 rounded-xl p-6">
+            <div className="bg-slate-800 border-2 border-slate-700 rounded-lg p-4">
               <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <Users className="w-5 h-5 text-purple-400" />
                 Team Performance
               </h4>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-400">15</div>
+                  <div className="text-lg font-bold text-purple-400">15</div>
                   <div className="text-xs text-gray-400 mt-1">Active Reps</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-400">$2.4M</div>
+                  <div className="text-lg font-bold text-blue-400">$2.4M</div>
                   <div className="text-xs text-gray-400 mt-1">Pipeline</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-green-400">68%</div>
+                  <div className="text-lg font-bold text-green-400">68%</div>
                   <div className="text-xs text-gray-400 mt-1">Open Rate</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-orange-400">12%</div>
+                  <div className="text-lg font-bold text-orange-400">12%</div>
                   <div className="text-xs text-gray-400 mt-1">Reply Rate</div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-900/30 to-cyan-900/30 border-2 border-blue-500/30 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-blue-900/30 to-cyan-900/30 border-2 border-blue-500/30 rounded-lg p-4">
               <h4 className="text-lg font-bold text-white mb-3">Before Artisan vs After</h4>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between pb-2 border-b border-blue-500/30">

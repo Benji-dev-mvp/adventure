@@ -193,7 +193,7 @@ TimeHeatmap.propTypes = {
 
 // Health Legend
 const HealthLegend = () => (
-  <div className="flex items-center gap-4 text-xs">
+  <div className="flex items-center gap-3 text-xs">
     <span className="text-gray-600 dark:text-gray-400">Health:</span>
     <div className="flex items-center gap-1">
       <div className="w-4 h-4 rounded bg-green-500" />
@@ -223,7 +223,7 @@ const CellDetailPanel = ({ cell, onClose }) => {
   if (!cell) return null;
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+    <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
       <div className="flex justify-between items-start mb-4">
         <div>
           <h4 className="font-semibold text-gray-900 dark:text-white capitalize">
@@ -248,22 +248,22 @@ const CellDetailPanel = ({ cell, onClose }) => {
         </button>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div className="bg-white dark:bg-gray-700 rounded-lg p-3">
           <div className="text-xs text-gray-500 dark:text-gray-400">Leads Targeted</div>
-          <div className="text-xl font-bold text-gray-900 dark:text-white">
+          <div className="text-lg font-bold text-gray-900 dark:text-white">
             <AnimatedCounter end={cell.leads || 0} />
           </div>
         </div>
         <div className="bg-white dark:bg-gray-700 rounded-lg p-3">
           <div className="text-xs text-gray-500 dark:text-gray-400">Responses</div>
-          <div className="text-xl font-bold text-gray-900 dark:text-white">
+          <div className="text-lg font-bold text-gray-900 dark:text-white">
             <AnimatedCounter end={cell.responses || 0} />
           </div>
         </div>
         <div className="bg-white dark:bg-gray-700 rounded-lg p-3">
           <div className="text-xs text-gray-500 dark:text-gray-400">Meetings</div>
-          <div className="text-xl font-bold text-green-600 dark:text-green-400">
+          <div className="text-lg font-bold text-green-600 dark:text-green-400">
             <AnimatedCounter end={cell.meetings || 0} />
           </div>
         </div>
@@ -276,7 +276,7 @@ const CellDetailPanel = ({ cell, onClose }) => {
               <TrendingDown className="text-red-500" size={18} />
             )}
             <span
-              className={`text-xl font-bold ${cell.trend >= 0 ? 'text-green-600' : 'text-red-600'}`}
+              className={`text-lg font-bold ${cell.trend >= 0 ? 'text-green-600' : 'text-red-600'}`}
             >
               {cell.trend >= 0 ? '+' : ''}
               {cell.trend || 0}%
@@ -361,12 +361,12 @@ export const PlaybookHealthHeatmap = ({ playbooks = [], onDrillDown }) => {
   }, [heatmapData]);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="p-5 border-b border-gray-200 dark:border-gray-700">
+      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-9 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
               <Activity className="text-white" size={20} />
             </div>
             <div>
@@ -421,7 +421,7 @@ export const PlaybookHealthHeatmap = ({ playbooks = [], onDrillDown }) => {
       </div>
 
       {/* Heatmap Content */}
-      <div className="p-5">
+      <div className="p-4">
         {view === 'segment' ? (
           <div className="space-y-3">
             {/* Column Headers */}

@@ -29,15 +29,15 @@ export function AvatarPage() {
 
   return (
     <DashboardLayout>
-      <div className="flex flex-col h-full p-6 gap-6">
+      <div className="flex flex-col h-full p-4 gap-3">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="p-3 rounded-xl bg-gradient-to-br from-violet-500/20 to-pink-500/20 border border-violet-500/20">
+          <div className="flex items-center gap-3">
+            <div className="p-3 rounded-lg bg-gradient-to-br from-violet-500/20 to-pink-500/20 border border-violet-500/20">
               <Bot className="w-6 h-6 text-violet-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold">
+              <h1 className="text-lg font-bold">
                 <GradientText gradient="purple">AI Sales Avatar</GradientText>
               </h1>
               <p className="text-slate-400 mt-1">Live Agent - Autonomous sales conversations</p>
@@ -45,10 +45,10 @@ export function AvatarPage() {
           </div>
 
           {/* Status indicator */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <div
               className={`
-              flex items-center gap-2 px-4 py-2 rounded-xl border
+              flex items-center gap-2 px-4 py-2 rounded-lg border
               ${
                 status === 'in-call'
                   ? 'bg-emerald-500/10 border-emerald-500/30'
@@ -72,7 +72,7 @@ export function AvatarPage() {
               )}
             </div>
 
-            <div className="flex items-center gap-2 px-3 py-2 bg-slate-800/50 rounded-xl border border-white/5">
+            <div className="flex items-center gap-2 px-3 py-2 bg-slate-800/50 rounded-lg border border-white/5">
               <Sparkles className="w-4 h-4 text-purple-400" />
               <span className="text-sm text-slate-300">AI Powered</span>
             </div>
@@ -80,7 +80,7 @@ export function AvatarPage() {
         </div>
 
         {/* Main content */}
-        <div className="flex-1 grid grid-cols-12 gap-6 min-h-0">
+        <div className="flex-1 grid grid-cols-12 gap-3 min-h-0">
           {/* Left: Avatar Panel */}
           <div className="col-span-12 lg:col-span-5">
             <AvatarPanel

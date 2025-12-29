@@ -297,7 +297,7 @@ const ImmersiveCanvas: React.FC<{
       ref={canvasRef}
       width={800}
       height={600}
-      className="rounded-xl cursor-grab active:cursor-grabbing border border-gray-800 shadow-2xl"
+      className="rounded-lg cursor-grab active:cursor-grabbing border border-gray-800 shadow-2xl"
       style={{ maxWidth: '100%', height: 'auto' }}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
@@ -362,7 +362,7 @@ const NodeDetailPanel: React.FC<{ node: DataNode | null; onClose: () => void }> 
   if (!node) return null;
 
   return (
-    <div className="absolute top-4 right-4 w-80 bg-gray-900 border border-gray-700 rounded-xl p-5 shadow-2xl">
+    <div className="absolute top-4 right-4 w-80 bg-gray-900 border border-gray-700 rounded-lg p-4 shadow-2xl">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className="w-4 h-4 rounded-full" style={{ backgroundColor: node.color }} />
@@ -453,12 +453,12 @@ export const ImmersivePage: React.FC = () => {
       />
 
       {/* Header */}
-      <div className="relative z-10 flex items-center justify-between p-6">
+      <div className="relative z-10 flex items-center justify-between p-4">
         <div>
-          <h1 className="text-2xl font-bold">Immersive Intelligence</h1>
+          <h1 className="text-lg font-bold">Immersive Intelligence</h1>
           <p className="text-gray-400 text-sm">Multi-dimensional data exploration</p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <button
             onClick={() => setAmbientMode(!ambientMode)}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
@@ -500,7 +500,7 @@ export const ImmersivePage: React.FC = () => {
               <NodeDetailPanel node={focusedNode} onClose={() => setFocusedNode(null)} />
             </>
           ) : (
-            <div className="w-[800px] h-[600px] rounded-xl border border-gray-700 bg-gray-800 flex items-center justify-center text-gray-400">
+            <div className="w-[800px] h-[600px] rounded-lg border border-gray-700 bg-gray-800 flex items-center justify-center text-gray-400">
               No data available
             </div>
           )}
@@ -508,7 +508,7 @@ export const ImmersivePage: React.FC = () => {
       </div>
 
       {/* Stats Bar */}
-      <div className="relative z-10 flex items-center justify-center gap-8 mt-6 text-sm">
+      <div className="relative z-10 flex items-center justify-center gap-3 mt-6 text-sm">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-green-500" />
           <span className="text-gray-400">
@@ -553,7 +553,7 @@ export const ImmersivePage: React.FC = () => {
       )}
 
       {/* Navigation Hint */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-20 bg-gray-900/80 backdrop-blur rounded-lg px-6 py-3 text-sm text-gray-400">
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-20 bg-gray-900/80 backdrop-blur rounded-lg px-4 py-3 text-sm text-gray-400">
         <span className="mr-4">🖱️ Drag to rotate</span>
         <span className="mr-4">👆 Click to inspect</span>
         <span>⌨️ WASD to navigate</span>

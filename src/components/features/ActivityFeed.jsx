@@ -52,13 +52,13 @@ export const ActivityFeed = ({ activities = [] }) => {
         <CardTitle>Recent Activity</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           {displayActivities.map(activity => {
             const Icon = getIcon(activity);
             return (
-              <div key={activity.id} className="flex gap-4">
+              <div key={activity.id} className="flex gap-3">
                 <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${activity.color}`}
+                  className={`w-10 h-9 rounded-full flex items-center justify-center flex-shrink-0 ${activity.color}`}
                 >
                   <Icon size={18} />
                 </div>

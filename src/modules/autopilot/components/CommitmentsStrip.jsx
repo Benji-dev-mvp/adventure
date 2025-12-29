@@ -76,7 +76,7 @@ const CommitmentCard = ({ commitment, index }) => {
       transition={{ delay: index * 0.1 }}
     >
       <GlassCard variant="subtle" className="h-full">
-        <GlassCardContent className="p-5">
+        <GlassCardContent className="p-4">
           <div className="flex items-start justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-gradient-to-br from-cyan-500/20 to-purple-500/20">
@@ -153,12 +153,12 @@ const CommitmentCard = ({ commitment, index }) => {
 };
 
 const CommitmentsStripSkeleton = () => (
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
     {[1, 2, 3].map(i => (
-      <div key={i} className="bg-slate-800/50 rounded-xl p-5 border border-white/5">
+      <div key={i} className="bg-slate-800/50 rounded-lg p-4 border border-white/5">
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
-            <Skeleton className="w-10 h-10 rounded-lg" />
+            <Skeleton className="w-10 h-9 rounded-lg" />
             <div>
               <Skeleton className="w-24 h-4 mb-1" />
               <Skeleton className="w-16 h-3" />
@@ -179,7 +179,7 @@ export function CommitmentsStrip({ commitments, loading }) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
       {commitments.map((commitment, index) => (
         <CommitmentCard key={commitment.id} commitment={commitment} index={index} />
       ))}

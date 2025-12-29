@@ -168,15 +168,15 @@ const AdminEnterpriseReadiness = () => {
 
   return (
     <DashboardLayout>
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="max-w-7xl mx-auto space-y-3">
         {/* Header */}
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-          className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4"
+          className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3"
         >
           <div>
-            <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+            <h1 className="text-lg font-bold text-white flex items-center gap-3">
               <Shield className="h-7 w-7 text-emerald-400" />
               <GradientText gradient="nature">Enterprise Readiness</GradientText>
             </h1>
@@ -210,8 +210,8 @@ const AdminEnterpriseReadiness = () => {
           transition={{ delay: 0.1 }}
         >
           <GlassCard variant="gradient">
-            <GlassCardContent className="p-8">
-              <div className="flex flex-col lg:flex-row items-center gap-8">
+            <GlassCardContent className="p-4">
+              <div className="flex flex-col lg:flex-row items-center gap-3">
                 {/* Score Circle */}
                 <div className="relative">
                   <svg className="w-40 h-40 -rotate-90">
@@ -252,13 +252,13 @@ const AdminEnterpriseReadiness = () => {
 
                 {/* Summary */}
                 <div className="flex-1 text-center lg:text-left">
-                  <h2 className="text-2xl font-bold text-white mb-2">Enterprise Readiness Score</h2>
+                  <h2 className="text-lg font-bold text-white mb-2">Enterprise Readiness Score</h2>
                   <p className="text-slate-400 mb-4">
                     {completeItems} of {totalItems} items configured across{' '}
                     {READINESS_CATEGORIES.length} categories
                   </p>
 
-                  <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+                  <div className="flex flex-wrap justify-center lg:justify-start gap-3">
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="h-5 w-5 text-green-400" />
                       <span className="text-white">{completeItems} Complete</span>
@@ -291,7 +291,7 @@ const AdminEnterpriseReadiness = () => {
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-3"
         >
           {READINESS_CATEGORIES.map((category, i) => {
             const score = calculateCategoryScore(category.items);
@@ -306,7 +306,7 @@ const AdminEnterpriseReadiness = () => {
                 transition={{ delay: 0.1 * i }}
               >
                 <GlassCard className="h-full">
-                  <GlassCardContent className="p-6">
+                  <GlassCardContent className="p-4">
                     {/* Header */}
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
@@ -383,7 +383,7 @@ const AdminEnterpriseReadiness = () => {
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          <div className="p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-start gap-4">
+          <div className="p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-start gap-3">
             <Zap className="h-6 w-6 text-cyan-400 flex-shrink-0 mt-0.5" />
             <div>
               <h4 className="font-semibold text-cyan-400 mb-1">Need Help?</h4>

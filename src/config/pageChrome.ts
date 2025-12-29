@@ -1,4 +1,5 @@
 import { PageScaffoldConfig } from '@/components/layout/OperatorShell';
+import { PAGE_ROUTES } from './navigationFactory';
 
 export type PageChromeMode = 'shell' | 'plain';
 
@@ -8,6 +9,7 @@ interface PageChromeRule {
   mode?: PageChromeMode;
 }
 
+// Build rules from PAGE_ROUTES + additional routes
 const rules: PageChromeRule[] = [
   {
     paths: ['/home', '/'],
@@ -17,14 +19,16 @@ const rules: PageChromeRule[] = [
       badges: [{ label: 'Live', color: 'green' }],
     },
   },
-  {
-    paths: ['/dashboard'],
+  // Generate rules from PAGE_ROUTES
+  ...Object.entries(PAGE_ROUTES).map(([, route]) => ({
+    paths: route.paths,
     config: {
-      title: 'Dashboard',
-      subtitle: 'Executive signal and KPI pulse',
-      badges: [{ label: 'AI', color: 'cyan' }],
+      title: route.title,
+      subtitle: route.subtitle,
+      badges: [route.badge],
     },
-  },
+  })),
+  // Advanced AI features
   {
     paths: ['/orchestration', '/orchestrator'],
     config: {
@@ -125,22 +129,6 @@ const rules: PageChromeRule[] = [
     },
   },
   {
-    paths: ['/ai-assistant', '/ai-assistant-advanced'],
-    config: {
-      title: 'AI Assistant',
-      subtitle: 'Operator copilot and actions',
-      badges: [{ label: 'AI', color: 'cyan' }],
-    },
-  },
-  {
-    paths: ['/ava'],
-    config: {
-      title: 'Ava AI BDR',
-      subtitle: 'Autonomous BDR control surface',
-      badges: [{ label: 'Pro', color: 'blue' }],
-    },
-  },
-  {
     paths: ['/exceptional'],
     config: {
       title: 'Exceptional Hub',
@@ -154,14 +142,6 @@ const rules: PageChromeRule[] = [
       title: 'Advanced Hub',
       subtitle: 'Advanced capabilities and labs',
       badges: [{ label: 'New', color: 'green' }],
-    },
-  },
-  {
-    paths: ['/analytics'],
-    config: {
-      title: 'Analytics',
-      subtitle: 'Full-funnel performance analytics',
-      badges: [{ label: 'AI', color: 'cyan' }],
     },
   },
   {
@@ -181,38 +161,6 @@ const rules: PageChromeRule[] = [
     },
   },
   {
-    paths: ['/campaigns'],
-    config: {
-      title: 'Campaigns',
-      subtitle: 'Campaign builder and orchestration',
-      badges: [{ label: 'Ops', color: 'blue' }],
-    },
-  },
-  {
-    paths: ['/leads'],
-    config: {
-      title: 'Leads',
-      subtitle: 'Lead workbench and queues',
-      badges: [{ label: 'Ops', color: 'blue' }],
-    },
-  },
-  {
-    paths: ['/lead-database', '/advanced-lead-database'],
-    config: {
-      title: 'Lead Database',
-      subtitle: 'Unified lead intelligence',
-      badges: [{ label: 'AI', color: 'cyan' }],
-    },
-  },
-  {
-    paths: ['/templates', '/email-templates'],
-    config: {
-      title: 'Templates',
-      subtitle: 'Reusable assets and playbooks',
-      badges: [{ label: 'AI', color: 'cyan' }],
-    },
-  },
-  {
     paths: ['/sales-playbooks'],
     config: {
       title: 'Sales Playbooks',
@@ -229,7 +177,7 @@ const rules: PageChromeRule[] = [
     },
   },
   {
-    paths: ['/data-enrichment', '/data-enrichment'],
+    paths: ['/data-enrichment'],
     config: {
       title: 'Data Enrichment',
       subtitle: 'Signals, firmographics, and enrichment',
@@ -245,35 +193,11 @@ const rules: PageChromeRule[] = [
     },
   },
   {
-    paths: ['/integrations'],
-    config: {
-      title: 'Integrations',
-      subtitle: 'Connected systems and sync status',
-      badges: [{ label: 'Live', color: 'green' }],
-    },
-  },
-  {
-    paths: ['/settings'],
-    config: {
-      title: 'Settings',
-      subtitle: 'Workspace configuration',
-      badges: [{ label: 'Admin', color: 'purple' }],
-    },
-  },
-  {
     paths: ['/settings/usage'],
     config: {
       title: 'Usage & Quotas',
       subtitle: 'Consumption by seats, agents, and tokens',
       badges: [{ label: 'Usage', color: 'orange' }],
-    },
-  },
-  {
-    paths: ['/admin'],
-    config: {
-      title: 'Enterprise Admin',
-      subtitle: 'Access, audit, and controls',
-      badges: [{ label: 'Enterprise', color: 'amber' }],
     },
   },
 ];

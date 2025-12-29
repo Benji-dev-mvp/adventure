@@ -35,15 +35,15 @@ const AIAgentShowcase = ({ content }) => {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16 space-y-4">
+        <div className="text-center mb-16 space-y-3">
           <Badge className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 text-white border border-white/20">
             <Sparkles className="w-4 h-4" />
             AI-Powered
           </Badge>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">{content.title}</h2>
-          <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto">{content.subtitle}</p>
+          <p className="text-lg md:text-lg text-white/80 max-w-3xl mx-auto">{content.subtitle}</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
@@ -58,7 +58,7 @@ const AIAgentShowcase = ({ content }) => {
 
           {/* Right: Capabilities */}
           <div
-            className={`space-y-6 transition-all duration-700 delay-200 ${
+            className={`space-y-3 transition-all duration-700 delay-200 ${
               isVisible ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
             }`}
           >
@@ -93,11 +93,11 @@ const AIAgentShowcase = ({ content }) => {
 const PersonaCard = ({ persona }) => {
   return (
     <Card className="bg-white dark:bg-gray-900 shadow-2xl border-2 border-white/20 overflow-hidden sticky top-24">
-      <CardContent className="p-8 space-y-6">
+      <CardContent className="p-4 space-y-3">
         {/* Avatar Section */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3">
           <div className="relative">
-            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white text-3xl font-bold shadow-lg">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-white text-lg font-bold shadow-lg">
               {persona.name[0]}
             </div>
             <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-green-500 rounded-full border-4 border-white dark:border-gray-900 flex items-center justify-center">
@@ -105,7 +105,7 @@ const PersonaCard = ({ persona }) => {
             </div>
           </div>
           <div>
-            <h3 className="text-2xl font-bold text-primary dark:text-white">{persona.name}</h3>
+            <h3 className="text-lg font-bold text-primary dark:text-white">{persona.name}</h3>
             <p className="text-gray-600 dark:text-gray-300">{persona.role}</p>
           </div>
         </div>
@@ -113,17 +113,17 @@ const PersonaCard = ({ persona }) => {
         {/* Quote */}
         <blockquote className="relative">
           <div className="absolute -top-2 -left-2 text-6xl text-accent/20 font-serif">"</div>
-          <p className="text-xl italic text-gray-700 dark:text-gray-300 pl-8">{persona.quote}</p>
+          <p className="text-lg italic text-gray-700 dark:text-gray-300 pl-8">{persona.quote}</p>
         </blockquote>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 gap-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+        <div className="grid grid-cols-2 gap-3 pt-6 border-t border-gray-200 dark:border-gray-700">
           <div className="text-center">
-            <div className="text-3xl font-bold text-accent">24/7</div>
+            <div className="text-lg font-bold text-accent">24/7</div>
             <div className="text-sm text-gray-600 dark:text-gray-400">Always On</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-accent">∞</div>
+            <div className="text-lg font-bold text-accent">∞</div>
             <div className="text-sm text-gray-600 dark:text-gray-400">Scalability</div>
           </div>
         </div>
@@ -148,8 +148,8 @@ const CapabilityCard = ({ capability, index, isVisible }) => {
       }`}
       style={{ transitionDelay: `${index * 0.1 + 0.3}s` }}
     >
-      <CardContent className="p-6 space-y-3">
-        <div className="flex items-start justify-between gap-4">
+      <CardContent className="p-4 space-y-3">
+        <div className="flex items-start justify-between gap-3">
           <div className="flex-1">
             <h4 className="text-lg font-bold text-white mb-2">{capability.title}</h4>
             <p className="text-white/80 leading-relaxed">{capability.description}</p>
@@ -175,10 +175,10 @@ const CapabilityCard = ({ capability, index, isVisible }) => {
 const InteractiveDemo = ({ content, showInteractive, isGenerating, onTryIt }) => {
   return (
     <Card className="bg-white dark:bg-gray-900 shadow-2xl border-2 border-white/20 overflow-hidden">
-      <CardContent className="p-8 space-y-6">
+      <CardContent className="p-4 space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <h4 className="text-2xl font-bold text-primary dark:text-white">{content.title}</h4>
+          <h4 className="text-lg font-bold text-primary dark:text-white">{content.title}</h4>
           {!showInteractive && (
             <Button onClick={onTryIt} className="bg-accent hover:bg-accent-600 text-white">
               Try it now
@@ -196,7 +196,7 @@ const InteractiveDemo = ({ content, showInteractive, isGenerating, onTryIt }) =>
             </div>
 
             {/* Response */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 shadow-inner">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-inner">
               {isGenerating ? (
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-accent">
@@ -214,7 +214,7 @@ const InteractiveDemo = ({ content, showInteractive, isGenerating, onTryIt }) =>
                   </div>
                 </div>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
                     <Check className="w-5 h-5" />
                     <span className="font-medium">Generated in 1.3s</span>

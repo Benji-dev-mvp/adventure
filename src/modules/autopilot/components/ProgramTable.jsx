@@ -56,7 +56,7 @@ const ProgramRow = ({ program, isSelected, onSelect }) => {
       `}
       onClick={() => onSelect(program)}
     >
-      <td className="py-4 px-4">
+      <td className="py-3 px-4">
         <div className="flex items-center gap-3">
           <div
             className={`w-2 h-2 rounded-full ${statusConfig.pulse ? 'animate-pulse' : ''} ${
@@ -73,13 +73,13 @@ const ProgramRow = ({ program, isSelected, onSelect }) => {
           </div>
         </div>
       </td>
-      <td className="py-4 px-4">
+      <td className="py-3 px-4">
         <div className="flex items-center gap-2 text-sm text-slate-300">
           <Target className="w-4 h-4 text-cyan-400" />
           {program.goal}
         </div>
       </td>
-      <td className="py-4 px-4">
+      <td className="py-3 px-4">
         <span
           className={`
           inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium
@@ -90,13 +90,13 @@ const ProgramRow = ({ program, isSelected, onSelect }) => {
           {statusConfig.label}
         </span>
       </td>
-      <td className="py-4 px-4">
+      <td className="py-3 px-4">
         <div className="flex items-center gap-2 text-sm text-slate-400">
           <Clock className="w-4 h-4" />
           {program.nextActionEta}
         </div>
       </td>
-      <td className="py-4 px-4">
+      <td className="py-3 px-4">
         <span
           className={`
           inline-flex items-center px-2 py-0.5 rounded text-xs font-medium
@@ -106,7 +106,7 @@ const ProgramRow = ({ program, isSelected, onSelect }) => {
           {program.currentRisk.charAt(0).toUpperCase() + program.currentRisk.slice(1)}
         </span>
       </td>
-      <td className="py-4 px-4">
+      <td className="py-3 px-4">
         <div className="flex items-center gap-2">
           <div className="w-24 h-2 bg-slate-800 rounded-full overflow-hidden">
             <div
@@ -117,7 +117,7 @@ const ProgramRow = ({ program, isSelected, onSelect }) => {
           <span className="text-xs text-slate-400">{program.progress}%</span>
         </div>
       </td>
-      <td className="py-4 px-4">
+      <td className="py-3 px-4">
         <ChevronRight
           className={`w-4 h-4 transition-colors ${isSelected ? 'text-cyan-400' : 'text-slate-500'}`}
         />
@@ -129,7 +129,7 @@ const ProgramRow = ({ program, isSelected, onSelect }) => {
 const ProgramTableSkeleton = () => (
   <div className="space-y-3">
     {[1, 2, 3, 4].map(i => (
-      <div key={i} className="flex items-center gap-4 p-4 bg-slate-800/30 rounded-lg">
+      <div key={i} className="flex items-center gap-3 p-4 bg-slate-800/30 rounded-lg">
         <Skeleton className="w-2 h-2 rounded-full" />
         <div className="flex-1">
           <Skeleton className="w-32 h-4 mb-1" />
@@ -147,7 +147,7 @@ export function ProgramTable({ programs, loading, selectedProgram, onSelectProgr
   if (loading) {
     return (
       <GlassCard variant="subtle">
-        <GlassCardContent className="p-6">
+        <GlassCardContent className="p-4">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-semibold text-slate-100">Autonomous Programs</h3>
           </div>
@@ -159,7 +159,7 @@ export function ProgramTable({ programs, loading, selectedProgram, onSelectProgr
 
   return (
     <GlassCard variant="subtle">
-      <GlassCardContent className="p-6">
+      <GlassCardContent className="p-4">
         <div className="flex items-center justify-between mb-6">
           <div>
             <h3 className="text-lg font-semibold text-slate-100">Autonomous Programs</h3>

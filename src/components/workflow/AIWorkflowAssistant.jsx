@@ -545,7 +545,7 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
     <div className="fixed bottom-4 right-4 z-50 flex flex-col">
       {/* Chat Window */}
       <div
-        className={`bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 ${isExpanded ? 'w-96 h-[500px]' : 'w-96 h-16'}`}
+        className={`bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 ${isExpanded ? 'w-96 h-[500px]' : 'w-96 h-16'}`}
       >
         {/* Header */}
         <div
@@ -578,7 +578,7 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
         {isExpanded && (
           <>
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 h-[340px]">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3 h-[340px]">
               {messages.map((message, index) => (
                 <div
                   key={index}
@@ -604,7 +604,7 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
                       </div>
 
                       <div
-                        className={`rounded-2xl px-4 py-2 ${
+                        className={`rounded-lg px-4 py-2 ${
                           message.role === 'user'
                             ? 'bg-indigo-600 text-white'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
@@ -614,7 +614,7 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
 
                         {/* Workflow Preview */}
                         {message.workflow && (
-                          <div className="mt-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-600">
+                          <div className="mt-3 p-3 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-600">
                             <div className="flex items-center justify-between mb-2">
                               <span className="font-medium text-sm text-gray-900 dark:text-white">
                                 {message.workflow.name}
@@ -623,7 +623,7 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
                                 {Math.round(message.confidence * 100)}% match
                               </span>
                             </div>
-                            <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-3">
+                            <div className="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-400 mb-3">
                               <span>{message.workflow.nodes.length} nodes</span>
                               <span>{message.workflow.edges.length} connections</span>
                             </div>
@@ -648,7 +648,7 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
                     <div className="w-7 h-7 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
                       <Bot className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                     </div>
-                    <div className="bg-gray-100 dark:bg-gray-700 rounded-2xl px-4 py-3">
+                    <div className="bg-gray-100 dark:bg-gray-700 rounded-lg px-4 py-3">
                       <div className="flex items-center gap-2">
                         <Loader2 className="w-4 h-4 animate-spin text-purple-600" />
                         <span className="text-sm text-gray-600 dark:text-gray-300">

@@ -38,7 +38,7 @@ export const LinkedInAutomation = () => {
                   {campaign.status}
                 </Badge>
               </div>
-              <div className="grid grid-cols-3 gap-4 text-center text-sm">
+              <div className="grid grid-cols-3 gap-3 text-center text-sm">
                 <div>
                   <p className="text-gray-600 text-xs">Connections</p>
                   <p className="font-bold">{campaign.connections}</p>
@@ -124,7 +124,7 @@ export const WhatsAppIntegration = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
             <div className="flex items-center gap-2">
               <Badge variant="success">✓ Connected</Badge>
@@ -132,17 +132,17 @@ export const WhatsAppIntegration = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-3">
             <div className="text-center p-3 border rounded-lg">
-              <p className="text-2xl font-bold">{stats.conversations}</p>
+              <p className="text-lg font-bold">{stats.conversations}</p>
               <p className="text-xs text-gray-600">Active Chats</p>
             </div>
             <div className="text-center p-3 border rounded-lg">
-              <p className="text-2xl font-bold">{stats.messagesThisWeek}</p>
+              <p className="text-lg font-bold">{stats.messagesThisWeek}</p>
               <p className="text-xs text-gray-600">This Week</p>
             </div>
             <div className="text-center p-3 border rounded-lg">
-              <p className="text-2xl font-bold text-green-600">{stats.responseRate}%</p>
+              <p className="text-lg font-bold text-green-600">{stats.responseRate}%</p>
               <p className="text-xs text-gray-600">Response Rate</p>
             </div>
           </div>
@@ -270,7 +270,7 @@ export const VideoMessages = () => {
           {videos.map((video, idx) => (
             <div key={idx} className="p-3 border rounded-lg">
               <h4 className="font-semibold text-sm mb-3">{video.name}</h4>
-              <div className="grid grid-cols-3 gap-4 text-center text-xs">
+              <div className="grid grid-cols-3 gap-3 text-center text-xs">
                 <div>
                   <p className="text-gray-600">Views</p>
                   <p className="font-bold">{video.views}</p>
@@ -318,7 +318,7 @@ export const ChatbotBuilder = () => {
                   {bot.active ? 'Live' : 'Paused'}
                 </Badge>
               </div>
-              <div className="grid grid-cols-2 gap-4 text-center text-sm">
+              <div className="grid grid-cols-2 gap-3 text-center text-sm">
                 <div>
                   <p className="text-gray-600 text-xs">Conversations</p>
                   <p className="font-bold">{bot.conversations}</p>
@@ -373,7 +373,7 @@ export const SocialMediaMonitor = () => {
                   {mention.sentiment}
                 </Badge>
               </div>
-              <div className="grid grid-cols-2 gap-4 text-center text-xs">
+              <div className="grid grid-cols-2 gap-3 text-center text-xs">
                 <div>
                   <p className="text-gray-600">Mentions</p>
                   <p className="font-bold">{mention.mentions}</p>

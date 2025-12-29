@@ -242,12 +242,12 @@ const ExperimentEngine = () => {
   };
 
   return (
-    <div className="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
+    <div className="bg-gray-900 rounded-lg border border-gray-800 overflow-hidden">
       {/* Header */}
-      <div className="p-6 border-b border-gray-800">
+      <div className="p-4 border-b border-gray-800">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
+            <div className="w-10 h-9 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
               <FlaskConical className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -264,7 +264,7 @@ const ExperimentEngine = () => {
         </div>
 
         {/* Stats Row */}
-        <div className="grid grid-cols-4 gap-4 mt-6">
+        <div className="grid grid-cols-4 gap-3 mt-6">
           {[
             { label: 'Active', value: stats.active, icon: Play, color: 'text-blue-400' },
             {
@@ -291,7 +291,7 @@ const ExperimentEngine = () => {
                 <stat.icon className={`w-4 h-4 ${stat.color}`} />
                 <span className="text-sm text-gray-400">{stat.label}</span>
               </div>
-              <span className="text-2xl font-bold text-white">{stat.value}</span>
+              <span className="text-lg font-bold text-white">{stat.value}</span>
             </div>
           ))}
         </div>
@@ -397,7 +397,7 @@ const ExperimentEngine = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="space-y-4"
+                className="space-y-3"
               >
                 {/* Hypothesis */}
                 <div className="bg-gray-800/50 rounded-lg p-4">

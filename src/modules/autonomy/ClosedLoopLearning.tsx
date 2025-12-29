@@ -163,12 +163,12 @@ const ClosedLoopLearning = () => {
   };
 
   return (
-    <div className="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
+    <div className="bg-gray-900 rounded-lg border border-gray-800 overflow-hidden">
       {/* Header */}
-      <div className="p-6 border-b border-gray-800">
+      <div className="p-4 border-b border-gray-800">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
+            <div className="w-10 h-9 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
               <Brain className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -211,7 +211,7 @@ const ClosedLoopLearning = () => {
             <React.Fragment key={step.label}>
               <div className="flex flex-col items-center gap-2">
                 <div
-                  className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                  className={`w-12 h-9 rounded-full flex items-center justify-center ${
                     step.status === 'active'
                       ? 'bg-cyan-500/20 text-cyan-400'
                       : step.status === 'processing'
@@ -244,7 +244,7 @@ const ClosedLoopLearning = () => {
           <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-4">
             Model Status
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="bg-gray-800/50 rounded-lg p-4">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-sm text-gray-400">Current Version</span>
@@ -323,7 +323,7 @@ const ClosedLoopLearning = () => {
                     <TrendingUp className="w-3.5 h-3.5" />+{cycle.performanceImprovement}%
                   </span>
                 </div>
-                <div className="flex items-center gap-4 text-xs text-gray-400">
+                <div className="flex items-center gap-3 text-xs text-gray-400">
                   <span className="flex items-center gap-1">
                     <Database className="w-3 h-3" />
                     {cycle.outcomesProcessed.toLocaleString()} outcomes
@@ -344,7 +344,7 @@ const ClosedLoopLearning = () => {
             Cycle Details
           </h3>
           {currentCycle && (
-            <div className="space-y-4">
+            <div className="space-y-3">
               {/* Model Updates */}
               <div>
                 <h4 className="text-sm font-medium text-white mb-3">Model Updates</h4>

@@ -221,7 +221,7 @@ const Analytics = () => {
         title="Core KPIs"
         subtitle="Key performance indicators for the selected period"
       />
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
         {[
           {
             label: 'Total Sent',
@@ -279,7 +279,7 @@ const Analytics = () => {
                   <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">
                     {metric.label}
                   </p>
-                  <p className="text-2xl font-bold text-white mb-1">{metric.value}</p>
+                  <p className="text-lg font-bold text-white mb-1">{metric.value}</p>
                   <div
                     className={`flex items-center gap-1 text-xs ${metric.trend === 'up' ? 'text-emerald-400' : 'text-red-400'}`}
                   >
@@ -305,7 +305,7 @@ const Analytics = () => {
           <Badge className="bg-violet-500/10 text-violet-400 border-violet-500/20">3 New</Badge>
         }
       />
-      <div className="grid md:grid-cols-3 gap-4 mb-8">
+      <div className="grid md:grid-cols-3 gap-3 mb-8">
         {aiOptimizations.map((opt, index) => (
           <motion.div
             key={index}
@@ -337,7 +337,7 @@ const Analytics = () => {
         title="Pipeline Analysis"
         subtitle="Funnel performance and channel distribution"
       />
-      <div className="grid lg:grid-cols-2 gap-6 mb-8">
+      <div className="grid lg:grid-cols-2 gap-3 mb-8">
         {/* KPI Funnel Chart - Marketing Component */}
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
@@ -385,7 +385,7 @@ const Analytics = () => {
         title="Performance Trends"
         subtitle="Weekly activity over the last 6 weeks"
       />
-      <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6 mb-8">
+      <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4 mb-8">
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={performanceData}>
@@ -452,7 +452,7 @@ const Analytics = () => {
                 </span>
                 <p className="font-medium text-white">{performer.subject}</p>
               </div>
-              <div className="flex items-center gap-6 text-xs text-slate-400 ml-9">
+              <div className="flex items-center gap-3 text-xs text-slate-400 ml-9">
                 <span>
                   Sent: <span className="text-white">{performer.sent}</span>
                 </span>

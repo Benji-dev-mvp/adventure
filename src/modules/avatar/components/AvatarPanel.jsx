@@ -114,7 +114,7 @@ const AvatarVisualization = ({ status, isPlaying }) => {
 // Call controls
 const CallControls = ({ status, isPlaying, onStart, onEnd, onPause, onResume }) => {
   return (
-    <div className="flex items-center justify-center gap-4">
+    <div className="flex items-center justify-center gap-3">
       {status === 'idle' || status === 'ended' ? (
         <Button onClick={onStart} className="bg-gradient-to-r from-emerald-500 to-cyan-500 px-8">
           <Phone className="w-4 h-4 mr-2" />
@@ -122,22 +122,22 @@ const CallControls = ({ status, isPlaying, onStart, onEnd, onPause, onResume }) 
         </Button>
       ) : (
         <>
-          <Button variant="outline" size="icon" className="w-12 h-12 rounded-full">
+          <Button variant="outline" size="icon" className="w-12 h-9 rounded-full">
             <Mic className="w-5 h-5" />
           </Button>
-          <Button variant="outline" size="icon" className="w-12 h-12 rounded-full">
+          <Button variant="outline" size="icon" className="w-12 h-9 rounded-full">
             <Volume2 className="w-5 h-5" />
           </Button>
           <Button onClick={onEnd} className="w-14 h-14 rounded-full bg-rose-500 hover:bg-rose-600">
             <PhoneOff className="w-6 h-6" />
           </Button>
-          <Button variant="outline" size="icon" className="w-12 h-12 rounded-full">
+          <Button variant="outline" size="icon" className="w-12 h-9 rounded-full">
             <Video className="w-5 h-5" />
           </Button>
           <Button
             variant="outline"
             size="icon"
-            className="w-12 h-12 rounded-full"
+            className="w-12 h-9 rounded-full"
             onClick={isPlaying ? onPause : onResume}
           >
             {isPlaying ? (
@@ -167,11 +167,11 @@ export function AvatarPanel({
 }) {
   return (
     <GlassCard variant="gradient" className="h-full">
-      <GlassCardContent className="p-6 h-full flex flex-col">
+      <GlassCardContent className="p-4 h-full flex flex-col">
         {/* Prospect info (when in call) */}
         {status !== 'idle' && callInfo.prospect && (
           <div className="flex items-center gap-3 mb-4 pb-4 border-b border-white/5">
-            <div className="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center">
+            <div className="w-10 h-9 rounded-full bg-slate-700 flex items-center justify-center">
               <span className="text-sm font-medium text-slate-300">
                 {callInfo.prospect.name
                   .split(' ')

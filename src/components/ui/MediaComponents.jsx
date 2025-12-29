@@ -205,7 +205,7 @@ export const Carousel = ({ items = [], autoPlay = false, interval = 5000, classN
     <div className={cn('relative group', className)}>
       {/* Carousel Container */}
       <div
-        className="relative aspect-video overflow-hidden rounded-xl"
+        className="relative aspect-video overflow-hidden rounded-lg"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -229,8 +229,8 @@ export const Carousel = ({ items = [], autoPlay = false, interval = 5000, classN
                 </div>
               )}
               {item.title && (
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
-                  <h3 className="text-white text-xl sm:text-2xl font-bold">{item.title}</h3>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                  <h3 className="text-white text-lg sm:text-lg font-bold">{item.title}</h3>
                   {item.description && (
                     <p className="text-white/90 text-sm sm:text-base mt-2">{item.description}</p>
                   )}
@@ -338,7 +338,7 @@ export const VideoEmbed = ({
 
   return (
     <div className={cn('relative group', className)}>
-      <div className="relative aspect-video bg-black rounded-xl overflow-hidden">
+      <div className="relative aspect-video bg-black rounded-lg overflow-hidden">
         <video
           ref={videoRef}
           src={src}
@@ -393,7 +393,7 @@ export const VideoEmbed = ({
 
       {/* Native Controls */}
       {controls && (
-        <video controls src={src} poster={poster} className="w-full aspect-video rounded-xl">
+        <video controls src={src} poster={poster} className="w-full aspect-video rounded-lg">
           <track kind="captions" srcLang="en" label="English" />
           Your browser does not support the video tag.
         </video>

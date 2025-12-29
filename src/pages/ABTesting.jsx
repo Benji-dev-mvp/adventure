@@ -123,11 +123,11 @@ const ABTesting = () => {
       title="Campaign A/B Testing"
       subtitle="Compare variants and optimize performance"
     >
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Header Controls */}
         <Card>
           <CardContent className="pt-6">
-            <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+            <div className="flex flex-col md:flex-row gap-3 items-start md:items-center justify-between">
               <div className="flex-1">
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Select Campaign Test
@@ -176,8 +176,8 @@ const ABTesting = () => {
         {currentTest && currentTest.winner && (
           <Card className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-500/10 dark:to-emerald-500/10 border-green-500">
             <CardContent className="pt-6">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-green-500 rounded-xl">
+              <div className="flex items-start gap-3">
+                <div className="p-3 bg-green-500 rounded-lg">
                   <Crown className="w-6 h-6 text-white" />
                 </div>
                 <div className="flex-1">
@@ -202,7 +202,7 @@ const ABTesting = () => {
         )}
 
         {/* Variant Comparison */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Variant A */}
           <Card className="border-2 border-gray-300 dark:border-gray-600">
             <CardHeader>
@@ -214,32 +214,32 @@ const ABTesting = () => {
                 <strong>Subject:</strong> {currentTest?.subject.a}
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3">
               {/* Metrics Grid */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 <div className="p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                   <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Sent</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">
                     {currentTest?.variants.a.sent.toLocaleString()}
                   </p>
                 </div>
                 <div className="p-3 bg-blue-50 dark:bg-blue-500/10 rounded-lg">
                   <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Opened</p>
-                  <p className="text-2xl font-bold text-blue-600">
+                  <p className="text-lg font-bold text-blue-600">
                     {currentTest?.variants.a.opened.toLocaleString()}
                   </p>
                   <p className="text-xs text-gray-600 mt-1">{currentTest?.variants.a.openRate}%</p>
                 </div>
                 <div className="p-3 bg-purple-50 dark:bg-purple-500/10 rounded-lg">
                   <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Clicked</p>
-                  <p className="text-2xl font-bold text-purple-600">
+                  <p className="text-lg font-bold text-purple-600">
                     {currentTest?.variants.a.clicked.toLocaleString()}
                   </p>
                   <p className="text-xs text-gray-600 mt-1">{currentTest?.variants.a.clickRate}%</p>
                 </div>
                 <div className="p-3 bg-green-50 dark:bg-green-500/10 rounded-lg">
                   <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Replied</p>
-                  <p className="text-2xl font-bold text-green-600">
+                  <p className="text-lg font-bold text-green-600">
                     {currentTest?.variants.a.replied.toLocaleString()}
                   </p>
                   <p className="text-xs text-gray-600 mt-1">{currentTest?.variants.a.replyRate}%</p>
@@ -247,17 +247,17 @@ const ABTesting = () => {
               </div>
 
               {/* Conversion */}
-              <div className="p-4 bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700">
+              <div className="p-4 bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Meetings Booked</p>
-                    <p className="text-3xl font-bold text-gray-900 dark:text-white">
+                    <p className="text-lg font-bold text-gray-900 dark:text-white">
                       {currentTest?.variants.a.meetings}
                     </p>
                   </div>
                   <div className="text-right">
                     <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Conversion Rate</p>
-                    <p className="text-2xl font-bold text-orange-600">
+                    <p className="text-lg font-bold text-orange-600">
                       {currentTest?.variants.a.conversionRate}%
                     </p>
                   </div>
@@ -280,18 +280,18 @@ const ABTesting = () => {
                 <strong>Subject:</strong> {currentTest?.subject.b}
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3">
               {/* Metrics Grid */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 <div className="p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                   <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Sent</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">
                     {currentTest?.variants.b.sent.toLocaleString()}
                   </p>
                 </div>
                 <div className="p-3 bg-blue-50 dark:bg-blue-500/10 rounded-lg">
                   <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Opened</p>
-                  <p className="text-2xl font-bold text-blue-600">
+                  <p className="text-lg font-bold text-blue-600">
                     {currentTest?.variants.b.opened.toLocaleString()}
                   </p>
                   <div className="flex items-center justify-between mt-1">
@@ -312,7 +312,7 @@ const ABTesting = () => {
                 </div>
                 <div className="p-3 bg-purple-50 dark:bg-purple-500/10 rounded-lg">
                   <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Clicked</p>
-                  <p className="text-2xl font-bold text-purple-600">
+                  <p className="text-lg font-bold text-purple-600">
                     {currentTest?.variants.b.clicked.toLocaleString()}
                   </p>
                   <div className="flex items-center justify-between mt-1">
@@ -333,7 +333,7 @@ const ABTesting = () => {
                 </div>
                 <div className="p-3 bg-green-50 dark:bg-green-500/10 rounded-lg">
                   <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Replied</p>
-                  <p className="text-2xl font-bold text-green-600">
+                  <p className="text-lg font-bold text-green-600">
                     {currentTest?.variants.b.replied.toLocaleString()}
                   </p>
                   <div className="flex items-center justify-between mt-1">
@@ -355,17 +355,17 @@ const ABTesting = () => {
               </div>
 
               {/* Conversion */}
-              <div className="p-4 bg-gradient-to-r from-green-100 to-emerald-50 dark:from-green-500/20 dark:to-emerald-500/10 rounded-xl border border-green-300 dark:border-green-600">
+              <div className="p-4 bg-gradient-to-r from-green-100 to-emerald-50 dark:from-green-500/20 dark:to-emerald-500/10 rounded-lg border border-green-300 dark:border-green-600">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Meetings Booked</p>
-                    <p className="text-3xl font-bold text-green-700 dark:text-green-400">
+                    <p className="text-lg font-bold text-green-700 dark:text-green-400">
                       {currentTest?.variants.b.meetings}
                     </p>
                   </div>
                   <div className="text-right">
                     <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Conversion Rate</p>
-                    <p className="text-2xl font-bold text-green-600">
+                    <p className="text-lg font-bold text-green-600">
                       {currentTest?.variants.b.conversionRate}%
                     </p>
                     <span className="text-xs font-semibold text-green-600">
@@ -433,35 +433,35 @@ const ABTesting = () => {
             <CardDescription>Confidence intervals and significance testing</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-4 bg-blue-50 dark:bg-blue-500/10 rounded-xl border border-blue-200 dark:border-blue-500/20">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div className="p-4 bg-blue-50 dark:bg-blue-500/10 rounded-lg border border-blue-200 dark:border-blue-500/20">
                 <div className="flex items-center gap-2 mb-2">
                   <CheckCircle2 className="w-5 h-5 text-blue-600" />
                   <h4 className="font-semibold text-gray-900 dark:text-white">Confidence Level</h4>
                 </div>
-                <p className="text-3xl font-bold text-blue-600">{currentTest?.confidence}%</p>
+                <p className="text-lg font-bold text-blue-600">{currentTest?.confidence}%</p>
                 <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                   High confidence in results
                 </p>
               </div>
 
-              <div className="p-4 bg-green-50 dark:bg-green-500/10 rounded-xl border border-green-200 dark:border-green-500/20">
+              <div className="p-4 bg-green-50 dark:bg-green-500/10 rounded-lg border border-green-200 dark:border-green-500/20">
                 <div className="flex items-center gap-2 mb-2">
                   <TrendingUp className="w-5 h-5 text-green-600" />
                   <h4 className="font-semibold text-gray-900 dark:text-white">Performance Lift</h4>
                 </div>
-                <p className="text-3xl font-bold text-green-600">+{currentTest?.improvement}%</p>
+                <p className="text-lg font-bold text-green-600">+{currentTest?.improvement}%</p>
                 <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                   Variant B vs Control
                 </p>
               </div>
 
-              <div className="p-4 bg-purple-50 dark:bg-purple-500/10 rounded-xl border border-purple-200 dark:border-purple-500/20">
+              <div className="p-4 bg-purple-50 dark:bg-purple-500/10 rounded-lg border border-purple-200 dark:border-purple-500/20">
                 <div className="flex items-center gap-2 mb-2">
                   <Target className="w-5 h-5 text-purple-600" />
                   <h4 className="font-semibold text-gray-900 dark:text-white">Sample Size</h4>
                 </div>
-                <p className="text-3xl font-bold text-purple-600">10,000</p>
+                <p className="text-lg font-bold text-purple-600">10,000</p>
                 <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Total emails sent</p>
               </div>
             </div>

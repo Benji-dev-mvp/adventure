@@ -10,17 +10,17 @@ const ComponentShowcaseSimple = () => {
   const [email, setEmail] = useState('');
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-4">
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header */}
-        <div className="text-center space-y-4">
+        <div className="text-center space-y-3">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
             Artisan Component Library
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400">
             Production-ready components for the Artisan platform
           </p>
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-3">
             <Badge variant="success">✓ Working</Badge>
             <Badge variant="info">40+ Components</Badge>
           </div>
@@ -28,8 +28,8 @@ const ComponentShowcaseSimple = () => {
 
         {/* Buttons */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Buttons</h2>
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-4">Buttons</h2>
             <div className="flex flex-wrap gap-3">
               <Button variant="primary">Primary</Button>
               <Button variant="secondary">Secondary</Button>
@@ -42,9 +42,9 @@ const ComponentShowcaseSimple = () => {
 
         {/* Form */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Form Components</h2>
-            <div className="space-y-4 max-w-md">
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-4">Form Components</h2>
+            <div className="space-y-3 max-w-md">
               <Input
                 label="Email Address"
                 type="email"
@@ -62,9 +62,9 @@ const ComponentShowcaseSimple = () => {
 
         {/* Alerts */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Alerts</h2>
-            <div className="space-y-4">
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-4">Alerts</h2>
+            <div className="space-y-3">
               <Alert variant="info" title="Information">
                 This is an informational message.
               </Alert>
@@ -83,8 +83,8 @@ const ComponentShowcaseSimple = () => {
 
         {/* Badges */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Badges</h2>
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-4">Badges</h2>
             <div className="flex flex-wrap gap-2">
               <Badge>Default</Badge>
               <Badge variant="primary">Primary</Badge>
@@ -100,9 +100,9 @@ const ComponentShowcaseSimple = () => {
 
         {/* Loading */}
         <Card>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Loading States</h2>
-            <div className="flex items-center gap-4">
+          <div className="p-4">
+            <h2 className="text-lg font-bold mb-4">Loading States</h2>
+            <div className="flex items-center gap-3">
               <Spinner size="sm" />
               <Spinner size="md" />
               <Spinner size="lg" />

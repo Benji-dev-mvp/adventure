@@ -155,7 +155,7 @@ const AdvancedHub = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
             Advanced Features Hub
           </h1>
           <p className="text-gray-600 dark:text-gray-300">
@@ -184,7 +184,7 @@ const AdvancedHub = () => {
 
           {/* AI & ML Tab */}
           {activeTab === 'ai' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <AILeadScoringTrainer />
               <ConversationIntelligence />
               <ChurnPrediction />
@@ -198,7 +198,7 @@ const AdvancedHub = () => {
 
           {/* Automation Tab */}
           {activeTab === 'automation' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <VisualWorkflowBuilder />
               <LeadRoutingEngine />
               <TriggerBasedActions />
@@ -212,7 +212,7 @@ const AdvancedHub = () => {
 
           {/* Analytics Tab */}
           {activeTab === 'analytics' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <ExecutiveDashboard />
               <ConversionFunnelAnalyzer />
               <RevenueAttribution />
@@ -227,7 +227,7 @@ const AdvancedHub = () => {
 
           {/* Team Tab */}
           {activeTab === 'team' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <SharedInbox />
               <LeadNotesComments />
               <LeadHandoffWorkflow />
@@ -241,7 +241,7 @@ const AdvancedHub = () => {
 
           {/* Security Tab */}
           {activeTab === 'security' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <GDPRComplianceCenter />
               <SOC2AuditLogs />
               <DataRetentionPolicies />
@@ -255,7 +255,7 @@ const AdvancedHub = () => {
 
           {/* Communication Tab */}
           {activeTab === 'communication' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <LinkedInAutomation />
               <SMSCampaigns />
               <WhatsAppIntegration />
@@ -269,7 +269,7 @@ const AdvancedHub = () => {
 
           {/* Sales Intelligence Tab */}
           {activeTab === 'sales-intel' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <TechnographicFilters />
               <JobChangeAlerts />
               <FundingEventTriggers />
@@ -283,7 +283,7 @@ const AdvancedHub = () => {
 
           {/* ABM Tab */}
           {activeTab === 'abm' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <AccountScoring />
               <MultiThreadCampaigns />
               <AccountPlans />
@@ -297,7 +297,7 @@ const AdvancedHub = () => {
 
           {/* Content & Media Tab */}
           {activeTab === 'content' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <GIFMemeLibrary />
               <VideoRecorder />
               <ImageEditor />
@@ -308,7 +308,7 @@ const AdvancedHub = () => {
 
           {/* Search & Discovery Tab */}
           {activeTab === 'search' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <GlobalSearch />
               <SmartFilters />
               <DuplicateDetection />
@@ -317,7 +317,7 @@ const AdvancedHub = () => {
 
           {/* Developer Tools Tab */}
           {activeTab === 'developer' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <GraphQLPlayground />
               <WebhookTestConsole />
               <APIRateLimitDashboard />
@@ -327,7 +327,7 @@ const AdvancedHub = () => {
 
           {/* Testing & Optimization Tab */}
           {activeTab === 'testing' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <MultivariateTestBuilder />
               <SendTimeABTesting />
               <EmailHeatmapTracker />

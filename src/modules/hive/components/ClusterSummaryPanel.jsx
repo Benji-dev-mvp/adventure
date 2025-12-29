@@ -17,7 +17,7 @@ const ClusterCard = ({ cluster, index }) => {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="p-4 bg-slate-800/50 rounded-xl border border-white/5 hover:border-white/10 transition-colors"
+      className="p-4 bg-slate-800/50 rounded-lg border border-white/5 hover:border-white/10 transition-colors"
     >
       <div className="flex items-start justify-between mb-3">
         <div>
@@ -62,7 +62,7 @@ const AvaRecommendation = ({ clusters }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4 }}
-      className="p-4 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 rounded-xl border border-purple-500/20"
+      className="p-4 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 rounded-lg border border-purple-500/20"
     >
       <div className="flex items-center gap-2 mb-3">
         <div className="p-1.5 rounded-lg bg-purple-500/20">
@@ -109,12 +109,12 @@ export function ClusterSummaryPanel({ topClusters, summary, loading }) {
   if (loading) {
     return (
       <GlassCard variant="subtle" className="h-full">
-        <GlassCardContent className="p-6">
-          <div className="animate-pulse space-y-4">
+        <GlassCardContent className="p-4">
+          <div className="animate-pulse space-y-3">
             <div className="h-6 bg-slate-700 rounded w-32" />
             <div className="space-y-3">
               {[1, 2, 3].map(i => (
-                <div key={i} className="h-32 bg-slate-800/50 rounded-xl" />
+                <div key={i} className="h-32 bg-slate-800/50 rounded-lg" />
               ))}
             </div>
           </div>
@@ -125,7 +125,7 @@ export function ClusterSummaryPanel({ topClusters, summary, loading }) {
 
   return (
     <GlassCard variant="subtle" className="h-full">
-      <GlassCardContent className="p-6">
+      <GlassCardContent className="p-4">
         <div className="flex items-center justify-between mb-6">
           <h3 className="font-semibold text-slate-100">Cluster Summary</h3>
           <div className="flex items-center gap-1 text-xs text-slate-500">
@@ -137,11 +137,11 @@ export function ClusterSummaryPanel({ topClusters, summary, loading }) {
         {/* Summary stats */}
         <div className="grid grid-cols-2 gap-3 mb-6">
           <div className="p-3 bg-slate-800/50 rounded-lg text-center">
-            <p className="text-2xl font-bold text-cyan-400">{summary.totalAccounts}</p>
+            <p className="text-lg font-bold text-cyan-400">{summary.totalAccounts}</p>
             <p className="text-xs text-slate-500">Total Accounts</p>
           </div>
           <div className="p-3 bg-slate-800/50 rounded-lg text-center">
-            <p className="text-2xl font-bold text-emerald-400">{summary.totalPotentialMeetings}</p>
+            <p className="text-lg font-bold text-emerald-400">{summary.totalPotentialMeetings}</p>
             <p className="text-xs text-slate-500">Potential Meetings</p>
           </div>
         </div>

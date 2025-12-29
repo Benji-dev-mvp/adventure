@@ -21,7 +21,7 @@ export const CampaignCard = ({ campaign }) => {
 
   return (
     <Card className="hover:shadow-lg transition-shadow">
-      <CardContent className="p-6">
+      <CardContent className="p-4">
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-gray-900 mb-1">{campaign.name}</h3>
@@ -34,22 +34,22 @@ export const CampaignCard = ({ campaign }) => {
           </button>
         </div>
 
-        <div className="grid grid-cols-4 gap-4 mb-4">
+        <div className="grid grid-cols-4 gap-3 mb-4">
           <div>
             <p className="text-sm text-gray-600">Leads</p>
-            <p className="text-2xl font-bold text-gray-900">{campaign.leads}</p>
+            <p className="text-lg font-bold text-gray-900">{campaign.leads}</p>
           </div>
           <div>
             <p className="text-sm text-gray-600">Sent</p>
-            <p className="text-2xl font-bold text-gray-900">{campaign.sent}</p>
+            <p className="text-lg font-bold text-gray-900">{campaign.sent}</p>
           </div>
           <div>
             <p className="text-sm text-gray-600">Replies</p>
-            <p className="text-2xl font-bold text-gray-900">{campaign.replies ?? 0}</p>
+            <p className="text-lg font-bold text-gray-900">{campaign.replies ?? 0}</p>
           </div>
           <div>
             <p className="text-sm text-gray-600">Reply Rate</p>
-            <p className="text-2xl font-bold text-green-600">{campaign.replyRate ?? 0}%</p>
+            <p className="text-lg font-bold text-green-600">{campaign.replyRate ?? 0}%</p>
           </div>
         </div>
 

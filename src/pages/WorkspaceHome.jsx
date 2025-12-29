@@ -98,12 +98,12 @@ const StartupHero = ({ metrics, cta, navigate }) => {
   return (
     <motion.div
       {...(prefersReducedMotion ? {} : motionConfig)}
-      className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10 border border-white/10 p-8 mb-8"
+      className="relative overflow-hidden rounded-lg bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10 border border-white/10 p-4 mb-8"
     >
       {/* Background glow */}
       <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 blur-3xl opacity-30" />
 
-      <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8">
+      <div className="relative z-10 flex flex-col lg:flex-row items-center gap-3">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-4">
             <Bot className="h-6 w-6 text-cyan-400" />
@@ -113,7 +113,7 @@ const StartupHero = ({ metrics, cta, navigate }) => {
             </Badge>
           </div>
 
-          <h1 className="text-3xl lg:text-4xl font-bold mb-4 font-space-grotesk">
+          <h1 className="text-lg lg:text-4xl font-bold mb-4 font-space-grotesk">
             <GradientText gradient="cyber">
               {metrics?.headline || 'Let Ava run your outbound'}
             </GradientText>
@@ -135,7 +135,7 @@ const StartupHero = ({ metrics, cta, navigate }) => {
             in pipeline this month.
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3">
             <Button
               size="lg"
               className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-400 hover:to-purple-400 text-white font-semibold"
@@ -153,7 +153,7 @@ const StartupHero = ({ metrics, cta, navigate }) => {
         </div>
 
         {/* Quick stats */}
-        <div className="grid grid-cols-2 gap-4 lg:w-72">
+        <div className="grid grid-cols-2 gap-3 lg:w-72">
           <QuickStatCard
             label="Meetings"
             value={<AnimatedCounter end={metrics?.summary?.meetingsBooked || 0} />}
@@ -199,11 +199,11 @@ const MidmarketHero = ({ metrics, cta, navigate }) => {
   return (
     <motion.div
       {...(prefersReducedMotion ? {} : motionConfig)}
-      className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-orange-500/10 border border-white/10 p-8 mb-8"
+      className="relative overflow-hidden rounded-lg bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-orange-500/10 border border-white/10 p-4 mb-8"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-3xl opacity-30" />
 
-      <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8">
+      <div className="relative z-10 flex flex-col lg:flex-row items-center gap-3">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-4">
             <Rocket className="h-6 w-6 text-purple-400" />
@@ -213,7 +213,7 @@ const MidmarketHero = ({ metrics, cta, navigate }) => {
             </Badge>
           </div>
 
-          <h1 className="text-3xl lg:text-4xl font-bold mb-4 font-space-grotesk">
+          <h1 className="text-lg lg:text-4xl font-bold mb-4 font-space-grotesk">
             <GradientText gradient="sunset">
               {metrics?.headline || 'Automate 80% of outbound'}
             </GradientText>
@@ -231,7 +231,7 @@ const MidmarketHero = ({ metrics, cta, navigate }) => {
             tasks automated. Focus on what matters—closing deals.
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3">
             <Button
               size="lg"
               className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white font-semibold"
@@ -248,7 +248,7 @@ const MidmarketHero = ({ metrics, cta, navigate }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 lg:w-72">
+        <div className="grid grid-cols-2 gap-3 lg:w-72">
           <QuickStatCard
             label="Campaigns"
             value={<AnimatedCounter end={metrics?.summary?.activeCampaigns || 0} />}
@@ -294,7 +294,7 @@ const EnterpriseHero = ({ metrics, cta, navigate }) => {
   return (
     <motion.div
       {...(prefersReducedMotion ? {} : motionConfig)}
-      className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/50 via-slate-900/50 to-slate-800/50 border border-white/10 p-8 mb-8"
+      className="relative overflow-hidden rounded-lg bg-gradient-to-br from-slate-800/50 via-slate-900/50 to-slate-800/50 border border-white/10 p-4 mb-8"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 blur-3xl opacity-20" />
 
@@ -317,9 +317,9 @@ const EnterpriseHero = ({ metrics, cta, navigate }) => {
           ))}
         </div>
 
-        <div className="flex flex-col lg:flex-row items-start gap-8">
+        <div className="flex flex-col lg:flex-row items-start gap-3">
           <div className="flex-1">
-            <h1 className="text-3xl lg:text-4xl font-bold mb-4 font-space-grotesk">
+            <h1 className="text-lg lg:text-4xl font-bold mb-4 font-space-grotesk">
               <GradientText gradient="cyber">
                 {metrics?.headline || 'Full control at enterprise scale'}
               </GradientText>
@@ -340,7 +340,7 @@ const EnterpriseHero = ({ metrics, cta, navigate }) => {
               pipeline this quarter. Full visibility. Total control.
             </p>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-3">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold"
@@ -357,7 +357,7 @@ const EnterpriseHero = ({ metrics, cta, navigate }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 lg:w-80">
+          <div className="grid grid-cols-2 gap-3 lg:w-80">
             <QuickStatCard
               label="Total Seats"
               value={<AnimatedCounter end={metrics?.roiConfig?.seats || 0} />}
@@ -402,12 +402,12 @@ const EnterpriseHero = ({ metrics, cta, navigate }) => {
 // ============================================================================
 
 const QuickStatCard = ({ label, value, icon, trend }) => (
-  <div className="bg-slate-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-4">
+  <div className="bg-slate-800/50 backdrop-blur-sm border border-white/10 rounded-lg p-4">
     <div className="flex items-center justify-between mb-2">
       {icon}
       <span className="text-xs text-slate-400">{trend}</span>
     </div>
-    <div className="text-2xl font-bold text-white">{value}</div>
+    <div className="text-lg font-bold text-white">{value}</div>
     <div className="text-sm text-slate-400">{label}</div>
   </div>
 );
@@ -426,7 +426,7 @@ const QuickActionCard = ({ title, description, icon: Icon, path, color = 'cyan' 
     <motion.div
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className={`relative overflow-hidden rounded-xl bg-gradient-to-br ${colorClasses[color]} border p-5 cursor-pointer transition-all duration-200`}
+      className={`relative overflow-hidden rounded-lg bg-gradient-to-br ${colorClasses[color]} border p-4 cursor-pointer transition-all duration-200`}
       onClick={() => navigate(path)}
     >
       <div className="flex items-start justify-between">
@@ -557,7 +557,7 @@ const WorkspaceHome = () => {
       <DashboardLayout>
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-9 w-12 border-b-2 border-cyan-500 mx-auto mb-4"></div>
             <p className="text-slate-400">Loading your workspace...</p>
           </div>
         </div>
@@ -567,7 +567,7 @@ const WorkspaceHome = () => {
 
   return (
     <DashboardLayout>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8 py-6">
         {/* Segment-specific Hero */}
         {isEnterprise && (
           <EnterpriseHero metrics={metrics} cta={segmentCTA.cta} navigate={navigate} />
@@ -585,7 +585,7 @@ const WorkspaceHome = () => {
           className="mb-8"
         >
           <h2 className="text-lg font-semibold text-white mb-4">Quick Actions</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {quickActions.map((action, i) => (
               <QuickActionCard key={action.path} {...action} />
             ))}
@@ -601,14 +601,14 @@ const WorkspaceHome = () => {
           <h2 className="text-lg font-semibold text-white mb-4">Performance Overview</h2>
 
           {isStartup && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-8">
               <RoiProjectionChart {...roiConfig} title="Your ROI with Ava" />
               <KpiFunnelChart data={kpiFunnel} title="Your Pipeline Funnel" />
             </div>
           )}
 
           {isMidmarket && (
-            <div className="space-y-6 mb-8">
+            <div className="space-y-3 mb-8">
               <CustomerImpactSparklines
                 metrics={sparklines.map(s => ({
                   ...s,
@@ -623,7 +623,7 @@ const WorkspaceHome = () => {
                   chartType: 'area',
                 }))}
               />
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 <KpiFunnelChart data={kpiFunnel} title="Pipeline Funnel" />
                 <ChannelMixChart data={channelMix} title="Channel Distribution" />
               </div>
@@ -631,7 +631,7 @@ const WorkspaceHome = () => {
           )}
 
           {isEnterprise && (
-            <div className="space-y-6 mb-8">
+            <div className="space-y-3 mb-8">
               <CustomerImpactSparklines
                 metrics={sparklines.map(s => ({
                   ...s,
@@ -648,7 +648,7 @@ const WorkspaceHome = () => {
                   chartType: 'area',
                 }))}
               />
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 <KpiFunnelChart data={kpiFunnel} title="Enterprise Pipeline" />
                 <ChannelMixChart data={channelMix} title="Channel Mix" />
                 <RoiProjectionChart {...roiConfig} title="ROI Projection" />
@@ -666,10 +666,10 @@ const WorkspaceHome = () => {
             className="mt-8"
           >
             <GlassCard variant="gradient" className="border-dashed border-amber-500/30">
-              <GlassCardContent className="p-6">
+              <GlassCardContent className="p-4">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 rounded-xl bg-amber-500/20">
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 rounded-lg bg-amber-500/20">
                       <Crown className="h-6 w-6 text-amber-400" />
                     </div>
                     <div>

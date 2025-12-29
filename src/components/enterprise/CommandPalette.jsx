@@ -225,9 +225,9 @@ const CommandPalette = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh] bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="w-full max-w-2xl bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden animate-in zoom-in-95 duration-200">
+      <div className="w-full max-w-2xl bg-white dark:bg-gray-900 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden animate-in zoom-in-95 duration-200">
         {/* Search Input */}
-        <div className="flex items-center gap-3 px-4 py-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
           <Search className="text-gray-400" size={20} />
           <input
             type="text"
@@ -288,7 +288,7 @@ const CommandPalette = ({ isOpen, onClose }) => {
         {/* Footer */}
         <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
           <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <span className="flex items-center gap-1">
                 <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-900 rounded border border-gray-200 dark:border-gray-700">
                   ↑↓

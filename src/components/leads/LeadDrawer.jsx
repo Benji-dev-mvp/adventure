@@ -212,7 +212,7 @@ const ScoreBadge = ({ score }) => {
 };
 
 const OverviewTab = ({ lead }) => (
-  <div className="space-y-6">
+  <div className="space-y-3">
     {/* Contact Info */}
     <div>
       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
@@ -249,9 +249,9 @@ const OverviewTab = ({ lead }) => (
     {/* Company Info */}
     <div>
       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">Company</h4>
-      <div className="bg-gray-50 dark:bg-white/5 rounded-xl p-4 space-y-3">
+      <div className="bg-gray-50 dark:bg-white/5 rounded-lg p-4 space-y-3">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-accent-500 to-primary-500 rounded-lg flex items-center justify-center text-white font-bold">
+          <div className="w-10 h-9 bg-gradient-to-br from-accent-500 to-primary-500 rounded-lg flex items-center justify-center text-white font-bold">
             {lead.company.name.charAt(0)}
           </div>
           <div>
@@ -302,11 +302,11 @@ const OverviewTab = ({ lead }) => (
 );
 
 const TimelineTab = ({ lead }) => (
-  <div className="space-y-4">
+  <div className="space-y-3">
     {lead.timeline.map((event, index) => {
       const Icon = timelineIcons[event.icon] || Clock;
       return (
-        <div key={event.id} className="flex gap-4">
+        <div key={event.id} className="flex gap-3">
           <div className="relative">
             <div className="w-8 h-8 bg-gray-100 dark:bg-white/10 rounded-full flex items-center justify-center">
               <Icon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
@@ -331,7 +331,7 @@ const EmailsTab = ({ lead }) => (
     {lead.emails.map(email => (
       <div
         key={email.id}
-        className="bg-gray-50 dark:bg-white/5 rounded-xl p-4 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors cursor-pointer"
+        className="bg-gray-50 dark:bg-white/5 rounded-lg p-4 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors cursor-pointer"
       >
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1">
@@ -344,7 +344,7 @@ const EmailsTab = ({ lead }) => (
             {email.status}
           </Badge>
         </div>
-        <div className="flex gap-4 mt-3 text-xs text-gray-500 dark:text-gray-400">
+        <div className="flex gap-3 mt-3 text-xs text-gray-500 dark:text-gray-400">
           <span className="flex items-center gap-1">
             <Mail className="h-3 w-3" />
             {email.opens} opens
@@ -360,22 +360,22 @@ const EmailsTab = ({ lead }) => (
 );
 
 const AISummaryTab = ({ lead }) => (
-  <div className="space-y-6">
+  <div className="space-y-3">
     {/* Intent & Stage */}
-    <div className="grid grid-cols-2 gap-4">
-      <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-4 border border-purple-500/20">
+    <div className="grid grid-cols-2 gap-3">
+      <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-lg p-4 border border-purple-500/20">
         <div className="flex items-center gap-2 text-purple-500 mb-2">
           <Brain className="h-4 w-4" />
           <span className="text-xs font-semibold uppercase">Intent Level</span>
         </div>
-        <p className="text-2xl font-bold text-gray-900 dark:text-white">{lead.aiSummary.intent}</p>
+        <p className="text-lg font-bold text-gray-900 dark:text-white">{lead.aiSummary.intent}</p>
       </div>
-      <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-xl p-4 border border-cyan-500/20">
+      <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-lg p-4 border border-cyan-500/20">
         <div className="flex items-center gap-2 text-cyan-500 mb-2">
           <Target className="h-4 w-4" />
           <span className="text-xs font-semibold uppercase">Buying Stage</span>
         </div>
-        <p className="text-2xl font-bold text-gray-900 dark:text-white">
+        <p className="text-lg font-bold text-gray-900 dark:text-white">
           {lead.aiSummary.buyingStage}
         </p>
       </div>
@@ -434,12 +434,12 @@ const AISummaryTab = ({ lead }) => (
     </div>
 
     {/* Predictions */}
-    <div className="grid grid-cols-2 gap-4">
-      <div className="bg-gray-50 dark:bg-white/5 rounded-xl p-4">
+    <div className="grid grid-cols-2 gap-3">
+      <div className="bg-gray-50 dark:bg-white/5 rounded-lg p-4">
         <p className="text-xs text-gray-500 dark:text-gray-400">Close Probability</p>
-        <p className="text-2xl font-bold text-green-500">{lead.aiSummary.predictedClose}</p>
+        <p className="text-lg font-bold text-green-500">{lead.aiSummary.predictedClose}</p>
       </div>
-      <div className="bg-gray-50 dark:bg-white/5 rounded-xl p-4">
+      <div className="bg-gray-50 dark:bg-white/5 rounded-lg p-4">
         <p className="text-xs text-gray-500 dark:text-gray-400">Best Time to Contact</p>
         <p className="text-sm font-medium text-gray-900 dark:text-white">
           {lead.aiSummary.bestTimeToContact}
@@ -452,7 +452,7 @@ const AISummaryTab = ({ lead }) => (
 const PlaybookFitTab = ({ lead }) => (
   <div className="space-y-3">
     {lead.playbooks.map(playbook => (
-      <div key={playbook.id} className="bg-gray-50 dark:bg-white/5 rounded-xl p-4">
+      <div key={playbook.id} className="bg-gray-50 dark:bg-white/5 rounded-lg p-4">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1">
             <p className="text-sm font-medium text-gray-900 dark:text-white">{playbook.name}</p>
@@ -517,15 +517,15 @@ const LeadDrawer = ({ isOpen, onClose, leadId }) => {
             className="fixed right-0 top-0 bottom-0 w-full max-w-lg bg-white dark:bg-gray-900 shadow-2xl z-50 flex flex-col"
           >
             {/* Header */}
-            <div className="p-6 border-b border-gray-200 dark:border-white/10">
+            <div className="p-4 border-b border-gray-200 dark:border-white/10">
               <div className="flex items-start justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-accent-500 to-primary-500 rounded-xl flex items-center justify-center text-white text-xl font-bold">
+                <div className="flex items-center gap-3">
+                  <div className="w-14 h-14 bg-gradient-to-br from-accent-500 to-primary-500 rounded-lg flex items-center justify-center text-white text-lg font-bold">
                     {lead.firstName.charAt(0)}
                     {lead.lastName.charAt(0)}
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white">
                       {lead.firstName} {lead.lastName}
                     </h2>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -558,7 +558,7 @@ const LeadDrawer = ({ isOpen, onClose, leadId }) => {
 
             {/* Tabs */}
             <div className="flex-1 overflow-hidden flex flex-col">
-              <div className="px-6 pt-4 border-b border-gray-200 dark:border-white/10">
+              <div className="px-4 pt-4 border-b border-gray-200 dark:border-white/10">
                 <div className="flex gap-1">
                   {[
                     { id: 'overview', label: 'Overview', icon: User },
@@ -585,7 +585,7 @@ const LeadDrawer = ({ isOpen, onClose, leadId }) => {
               </div>
 
               {/* Tab Content */}
-              <div className="flex-1 overflow-y-auto p-6">
+              <div className="flex-1 overflow-y-auto p-4">
                 {activeTab === 'overview' && <OverviewTab lead={lead} />}
                 {activeTab === 'timeline' && <TimelineTab lead={lead} />}
                 {activeTab === 'emails' && <EmailsTab lead={lead} />}

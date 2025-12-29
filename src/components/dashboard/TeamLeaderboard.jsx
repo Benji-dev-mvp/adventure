@@ -93,7 +93,7 @@ export const TeamLeaderboard = () => {
               <div className="flex items-center justify-center w-8">{getRankIcon(member.rank)}</div>
 
               <div className="flex items-center gap-3 flex-1">
-                <div className="text-3xl">{member.avatar}</div>
+                <div className="text-lg">{member.avatar}</div>
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-gray-900 dark:text-white">{member.name}</p>
                   <div className="flex items-center gap-3 mt-1">

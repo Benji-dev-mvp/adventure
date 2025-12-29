@@ -119,9 +119,9 @@ export default function HealthRoutesPage() {
   };
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="p-4 max-w-6xl mx-auto">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+        <h1 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
           Route Health Check
         </h1>
         <p className="text-gray-600 dark:text-gray-400">
@@ -129,11 +129,11 @@ export default function HealthRoutesPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-4 gap-3 mb-6">
         <Card className="">
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 dark:text-white">{stats.total}</div>
+              <div className="text-lg font-bold text-gray-900 dark:text-white">{stats.total}</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Total Routes</div>
             </div>
           </CardContent>
@@ -142,7 +142,7 @@ export default function HealthRoutesPage() {
         <Card className="">
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-green-600">{stats.success}</div>
+              <div className="text-lg font-bold text-green-600">{stats.success}</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Passing</div>
             </div>
           </CardContent>
@@ -151,7 +151,7 @@ export default function HealthRoutesPage() {
         <Card className="">
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-red-600">{stats.error}</div>
+              <div className="text-lg font-bold text-red-600">{stats.error}</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Failing</div>
             </div>
           </CardContent>
@@ -160,7 +160,7 @@ export default function HealthRoutesPage() {
         <Card className="">
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-gray-400">{stats.pending}</div>
+              <div className="text-lg font-bold text-gray-400">{stats.pending}</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Pending</div>
             </div>
           </CardContent>
@@ -201,7 +201,7 @@ export default function HealthRoutesPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   {route.loadTime && (
                     <span className="text-sm text-gray-600 dark:text-gray-400">
                       {route.loadTime.toFixed(0)}ms

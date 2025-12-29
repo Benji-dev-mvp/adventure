@@ -155,7 +155,7 @@ const LeadInbox = () => {
 
   return (
     <DashboardLayout title="Lead Inbox" subtitle="Unified inbox for all lead conversations">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-12rem)]">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 h-[calc(100vh-12rem)]">
         {/* Lead List */}
         <Card className="lg:col-span-1 overflow-hidden flex flex-col">
           <div className="p-4 border-b border-gray-200 dark:border-white/10">
@@ -292,7 +292,7 @@ const LeadInbox = () => {
               </div>
 
               {/* Thread */}
-              <CardContent className="flex-1 overflow-y-auto p-4 space-y-4">
+              <CardContent className="flex-1 overflow-y-auto p-4 space-y-3">
                 {selectedLead.thread.map((msg, i) => (
                   <div
                     key={i}

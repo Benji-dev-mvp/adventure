@@ -46,13 +46,13 @@ export default function FuturisticDemo() {
               </h2>
             </RevealText>
             <RevealText delay={200}>
-              <p className="text-xl text-white/60 max-w-2xl mx-auto">
+              <p className="text-lg text-white/60 max-w-2xl mx-auto">
                 Everything you need to build beautiful, futuristic interfaces
               </p>
             </RevealText>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <RevealText delay={300}>
               <FeatureCard
                 icon={<Zap className="w-6 h-6" />}
@@ -81,7 +81,7 @@ export default function FuturisticDemo() {
       {/* Stats Section */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <StatCard
               icon={<Users className="w-5 h-5" />}
               value={<CountUpText end={10000} suffix="+" />}
@@ -113,23 +113,23 @@ export default function FuturisticDemo() {
       {/* Buttons Showcase */}
       <section className="py-24 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-white mb-12">
+          <h2 className="text-lg font-bold text-white mb-12">
             <GlowText color="cyan">Button Variants</GlowText>
           </h2>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
             <GlowButton variant="primary">Primary</GlowButton>
             <GlowButton variant="secondary">Secondary</GlowButton>
             <GlowButton variant="success">Success</GlowButton>
             <GlowButton variant="ghost">Ghost</GlowButton>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
             <GlowButtonOutline variant="primary">Outline Primary</GlowButtonOutline>
             <GlowButtonOutline variant="secondary">Outline Secondary</GlowButtonOutline>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3">
             <GlowButton size="sm">Small</GlowButton>
             <GlowButton size="md">Medium</GlowButton>
             <GlowButton size="lg">Large</GlowButton>
@@ -141,23 +141,23 @@ export default function FuturisticDemo() {
       {/* Glass Cards Showcase */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-white text-center mb-12">
+          <h2 className="text-lg font-bold text-white text-center mb-12">
             <GradientText gradient="aurora">Glass Card Variants</GradientText>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <GlassCard variant="default" hover glow>
-              <h3 className="text-xl font-semibold text-white mb-2">Default</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">Default</h3>
               <p className="text-white/60">Standard glass effect with hover and glow</p>
             </GlassCard>
 
             <GlassCard variant="neon" hover glow glowColor="cyan">
-              <h3 className="text-xl font-semibold text-white mb-2">Neon</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">Neon</h3>
               <p className="text-white/60">Neon variant with cyan glow effect</p>
             </GlassCard>
 
             <GlassCard variant="gradient" tilt>
-              <h3 className="text-xl font-semibold text-white mb-2">With Tilt</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">With Tilt</h3>
               <p className="text-white/60">Gradient variant with 3D tilt on hover</p>
             </GlassCard>
           </div>
@@ -167,24 +167,24 @@ export default function FuturisticDemo() {
       {/* Text Effects */}
       <section className="py-24 px-4 text-center">
         <div className="max-w-4xl mx-auto space-y-8">
-          <h2 className="text-3xl font-bold text-white mb-12">Text Effects</h2>
+          <h2 className="text-lg font-bold text-white mb-12">Text Effects</h2>
 
-          <div className="space-y-6">
-            <p className="text-2xl">
+          <div className="space-y-3">
+            <p className="text-lg">
               <TypewriterText text="This text types itself letter by letter..." speed={50} />
             </p>
 
-            <p className="text-3xl font-bold">
+            <p className="text-lg font-bold">
               <GradientText gradient="cyber">Animated Gradient Text</GradientText>
             </p>
 
-            <p className="text-3xl font-bold">
+            <p className="text-lg font-bold">
               <GlowText color="cyan" pulse>
                 Pulsing Neon Glow
               </GlowText>
             </p>
 
-            <p className="text-3xl font-bold">
+            <p className="text-lg font-bold">
               <GlowText color="purple">Purple Glow Effect</GlowText>
             </p>
           </div>

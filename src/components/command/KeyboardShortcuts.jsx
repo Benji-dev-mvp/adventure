@@ -135,11 +135,11 @@ const KeyboardShortcuts = ({ commandPaletteOpen, setCommandPaletteOpen }) => {
       />
 
       {/* Shortcuts Panel */}
-      <div className="relative w-full max-w-2xl bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+      <div className="relative w-full max-w-2xl bg-white dark:bg-gray-900 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-10 h-10 bg-primary-100 dark:bg-primary-900/40 rounded-lg">
+            <div className="flex items-center justify-center w-10 h-9 bg-primary-100 dark:bg-primary-900/40 rounded-lg">
               <Command className="w-5 h-5 text-primary-600 dark:text-primary-400" />
             </div>
             <div>
@@ -160,7 +160,7 @@ const KeyboardShortcuts = ({ commandPaletteOpen, setCommandPaletteOpen }) => {
         </div>
 
         {/* Shortcuts List */}
-        <div className="p-6 max-h-[70vh] overflow-y-auto">
+        <div className="p-4 max-h-[70vh] overflow-y-auto">
           {Object.entries(groupedShortcuts).map(([category, items]) => (
             <div key={category} className="mb-6 last:mb-0">
               <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
@@ -186,7 +186,7 @@ const KeyboardShortcuts = ({ commandPaletteOpen, setCommandPaletteOpen }) => {
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+        <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
           <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
             Press <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-700 rounded mx-1">⌘/</kbd> or{' '}
             <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-700 rounded mx-1">?</kbd> to toggle

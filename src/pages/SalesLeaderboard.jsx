@@ -103,7 +103,7 @@ const SalesLeaderboard = () => {
       title="Sales Leaderboard"
       subtitle="Track performance and compete with your team"
     >
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Time Range Selector */}
         <div className="flex gap-2">
           {['week', 'month', 'quarter', 'year'].map(range => (
@@ -121,7 +121,7 @@ const SalesLeaderboard = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Leaderboard */}
           <Card className="lg:col-span-2">
             <CardHeader>
@@ -132,37 +132,37 @@ const SalesLeaderboard = () => {
                 {leaderboard.map(person => (
                   <div
                     key={person.rank}
-                    className={`p-4 rounded-xl border-2 transition-all ${
+                    className={`p-4 rounded-lg border-2 transition-all ${
                       person.rank <= 3
                         ? 'bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-500/10 dark:to-orange-500/10 border-yellow-400'
                         : 'border-gray-200 dark:border-white/10'
                     }`}
                   >
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3">
                       <div className="flex items-center gap-3">
                         {person.rank <= 3 ? (
                           <Trophy
                             className={`w-6 h-6 ${person.rank === 1 ? 'text-yellow-500' : person.rank === 2 ? 'text-gray-400' : 'text-amber-600'}`}
                           />
                         ) : (
-                          <span className="text-xl font-bold text-gray-400 w-6 text-center">
+                          <span className="text-lg font-bold text-gray-400 w-6 text-center">
                             {person.rank}
                           </span>
                         )}
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
+                        <div className="w-10 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
                           {person.avatar}
                         </div>
                       </div>
                       <div className="flex-1">
                         <p className="font-semibold">{person.name}</p>
-                        <div className="flex gap-4 text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        <div className="flex gap-3 text-sm text-gray-600 dark:text-gray-400 mt-1">
                           <span>{person.replies} replies</span>
                           <span>{person.meetings} meetings</span>
                           <span>{person.deals} deals</span>
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="text-2xl font-bold text-accent-600">{person.points}</p>
+                        <p className="text-lg font-bold text-accent-600">{person.points}</p>
                         <p className="text-xs text-gray-600">points</p>
                       </div>
                     </div>
@@ -173,7 +173,7 @@ const SalesLeaderboard = () => {
           </Card>
 
           {/* Sidebar */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Achievements */}
             <Card>
               <CardHeader>
@@ -247,7 +247,7 @@ const SalesLeaderboard = () => {
             <CardTitle>Rewards Track</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
               {rewards.map((reward, i) => (
                 <div key={i} className="p-4 border border-gray-200 dark:border-white/10 rounded-lg">
                   <div className="flex justify-between items-start mb-2">

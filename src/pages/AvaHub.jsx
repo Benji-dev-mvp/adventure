@@ -211,18 +211,18 @@ const AvaHub = () => {
           className="mb-6"
         >
           <GlassCard variant="gradient" className="overflow-hidden">
-            <GlassCardContent className="p-6">
-              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-                <div className="flex items-center gap-4">
+            <GlassCardContent className="p-4">
+              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
                   <div className="relative">
-                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg">
+                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center shadow-lg">
                       <Bot className="text-white" size={32} />
                     </div>
                     <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-slate-900 animate-pulse"></div>
                   </div>
                   <div>
                     <div className="flex items-center gap-3 mb-1">
-                      <h1 className="text-2xl lg:text-3xl font-bold text-white">
+                      <h1 className="text-lg lg:text-lg font-bold text-white">
                         <GradientText gradient="cyber">{segmentContent.headline}</GradientText>
                       </h1>
                       <Badge variant="outline" className="border-green-400/50 text-green-400">
@@ -278,7 +278,7 @@ const AvaHub = () => {
         {/* Quick Stats */}
         <div className="grid grid-cols-4 gap-3 mb-4">
           <div
-            className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl p-5 text-white shadow-lg hover:scale-105 transition-transform cursor-pointer"
+            className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg p-4 text-white shadow-lg hover:scale-105 transition-transform cursor-pointer"
             onClick={() =>
               showToast(
                 `${stats.prospects} high-intent prospects identified and ready to contact!`,
@@ -290,13 +290,13 @@ const AvaHub = () => {
               <Target size={24} className="opacity-80" />
               <LiveIndicator label="LIVE" />
             </div>
-            <p className="text-3xl font-bold mb-1">
+            <p className="text-lg font-bold mb-1">
               <AnimatedCounter end={stats.prospects} />
             </p>
             <p className="text-sm opacity-90">High-Intent Prospects</p>
           </div>
           <div
-            className="bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl p-5 text-white shadow-lg hover:scale-105 transition-transform cursor-pointer"
+            className="bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg p-4 text-white shadow-lg hover:scale-105 transition-transform cursor-pointer"
             onClick={() =>
               showToast(
                 `Your response rate is ${stats.responseRate}% - above industry average!`,
@@ -308,13 +308,13 @@ const AvaHub = () => {
               <TrendingUp size={24} className="opacity-80" />
               <LiveIndicator label="LIVE" color="blue" />
             </div>
-            <p className="text-3xl font-bold mb-1">
+            <p className="text-lg font-bold mb-1">
               <AnimatedCounter end={stats.responseRate} decimals={1} />%
             </p>
             <p className="text-sm opacity-90">Response Rate</p>
           </div>
           <div
-            className="bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl p-5 text-white shadow-lg hover:scale-105 transition-transform cursor-pointer"
+            className="bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg p-4 text-white shadow-lg hover:scale-105 transition-transform cursor-pointer"
             onClick={() =>
               showToast(`${stats.meetings} meetings booked this week! Keep it up!`, 'success')
             }
@@ -323,13 +323,13 @@ const AvaHub = () => {
               <Calendar size={24} className="opacity-80" />
               <LiveIndicator label="LIVE" color="green" />
             </div>
-            <p className="text-3xl font-bold mb-1">
+            <p className="text-lg font-bold mb-1">
               <AnimatedCounter end={stats.meetings} />
             </p>
             <p className="text-sm opacity-90">Meetings Booked This Week</p>
           </div>
           <div
-            className="bg-gradient-to-br from-orange-500 to-red-500 rounded-xl p-5 text-white shadow-lg hover:scale-105 transition-transform cursor-pointer"
+            className="bg-gradient-to-br from-orange-500 to-red-500 rounded-lg p-4 text-white shadow-lg hover:scale-105 transition-transform cursor-pointer"
             onClick={() =>
               showToast(
                 `Ava has mined ${stats.insights} actionable insights from 6 data sources!`,
@@ -341,7 +341,7 @@ const AvaHub = () => {
               <Brain size={24} className="opacity-80" />
               <LiveIndicator label="LIVE" color="orange" />
             </div>
-            <p className="text-3xl font-bold mb-1">
+            <p className="text-lg font-bold mb-1">
               <AnimatedCounter end={stats.insights} />
             </p>
             <p className="text-sm opacity-90">Data Insights Mined</p>
@@ -374,26 +374,26 @@ const AvaHub = () => {
 
           {/* Chat with Ava Tab */}
           {activeTab === 'chat' && (
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-3">
               <AvaChatInterface />
             </div>
           )}
 
           {/* AI Playbooks Tab */}
           {activeTab === 'playbooks' && (
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-3">
               <AIPlaybooksManager />
             </div>
           )}
 
           {/* Playbook Intelligence Tab - Phase 1 Visual Intelligence */}
           {activeTab === 'playbook-intelligence' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Analytics Panel - Summary */}
               <PlaybookAnalyticsPanel />
 
               {/* Health Heatmap + Strategy Cards Row */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 <PlaybookHealthHeatmap />
                 <StrategyRecommendationCards />
               </div>
@@ -408,37 +408,37 @@ const AvaHub = () => {
 
           {/* Autonomous Research Tab */}
           {activeTab === 'autonomous-research' && (
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-3">
               <AutonomousProspectResearcher />
             </div>
           )}
 
           {/* Objection Handler Tab */}
           {activeTab === 'objection-handler' && (
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-3">
               <ObjectionHandler />
             </div>
           )}
 
           {/* Meeting Booker Tab */}
           {activeTab === 'meeting-booker' && (
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-3">
               <AutonomousMeetingBooker />
             </div>
           )}
 
           {/* Auto Follow-Ups Tab */}
           {activeTab === 'follow-ups' && (
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-3">
               <AutonomousFollowUpEngine />
             </div>
           )}
 
           {/* Deliverability Tab */}
           {activeTab === 'deliverability' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <EmailDeliverabilityDashboard />
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6">
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg p-4">
                 <h3 className="text-lg font-bold mb-4">🔥 Ava's Deliverability Features</h3>
                 <ul className="space-y-3 text-sm">
                   <li className="flex items-start gap-2">
@@ -475,10 +475,10 @@ const AvaHub = () => {
 
           {/* Data Miner Tab */}
           {activeTab === 'data-miner' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <DataMinerDashboard />
-              <div className="space-y-6">
-                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl p-6">
+              <div className="space-y-3">
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg p-4">
                   <h3 className="text-lg font-bold mb-4">🧠 Data Sources Ava Uses</h3>
                   <ul className="space-y-2 text-sm">
                     <li>
@@ -501,7 +501,7 @@ const AvaHub = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl p-6">
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4">
                   <h3 className="text-lg font-bold mb-3">🎯 High-Intent Signals</h3>
                   <p className="text-sm mb-3">Ava identifies prospects showing buying intent:</p>
                   <div className="space-y-2 text-sm">
@@ -529,9 +529,9 @@ const AvaHub = () => {
 
           {/* Personalization Tab */}
           {activeTab === 'personalization' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <PersonalizationWaterfallViewer />
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6">
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg p-4">
                 <h3 className="text-lg font-bold mb-4">✨ How Ava's Waterfall Works</h3>
                 <p className="text-sm mb-4">
                   Ava uses a prioritized waterfall to choose the best personalization for each
@@ -581,10 +581,10 @@ const AvaHub = () => {
 
           {/* Sentiment Analysis Tab */}
           {activeTab === 'sentiment' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <SentimentAnalysisDashboard />
-              <div className="space-y-6">
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl p-6">
+              <div className="space-y-3">
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4">
                   <h3 className="text-lg font-bold mb-4">🎯 What Ava Does with Sentiment</h3>
                   <ul className="space-y-3 text-sm">
                     <li className="flex items-start gap-2">
@@ -610,7 +610,7 @@ const AvaHub = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl p-6">
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg p-4">
                   <h3 className="text-lg font-bold mb-3">🤖 AI Sentiment Detection</h3>
                   <p className="text-sm">
                     Ava uses advanced NLP to analyze response sentiment with 94% accuracy. She looks
@@ -629,23 +629,23 @@ const AvaHub = () => {
 
           {/* Qualified Leads Tab */}
           {activeTab === 'qualified-leads' && (
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-3">
               <LeadQualificationPipeline />
             </div>
           )}
 
           {/* Performance Tab */}
           {activeTab === 'performance' && (
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-3">
               <AvaPerformanceTracker />
             </div>
           )}
 
           {/* Training Tab */}
           {activeTab === 'training' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <AvaTrainingInterface />
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6">
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg p-4">
                 <h3 className="text-lg font-bold mb-4">🧠 How Ava Learns</h3>
                 <p className="text-sm mb-4">
                   Ava uses your feedback and campaign results to continuously improve:
@@ -686,7 +686,7 @@ const AvaHub = () => {
 
           {/* Database Tab */}
           {activeTab === 'database' && (
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-3">
               <B2BDatabaseSearch />
             </div>
           )}

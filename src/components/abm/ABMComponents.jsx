@@ -306,7 +306,7 @@ export const TerritoryManagement = () => {
                   {territory.quota}% to quota
                 </Badge>
               </div>
-              <div className="grid grid-cols-2 gap-4 text-center text-sm mt-2">
+              <div className="grid grid-cols-2 gap-3 text-center text-sm mt-2">
                 <div>
                   <p className="text-gray-600 text-xs">Accounts</p>
                   <p className="font-bold">{territory.accounts}</p>

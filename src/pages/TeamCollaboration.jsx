@@ -180,7 +180,7 @@ const TeamCollaboration = () => {
     <DashboardLayout>
       <div className="max-w-7xl mx-auto">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
             Team Collaboration
           </h1>
           <p className="text-gray-600 dark:text-gray-300">
@@ -189,47 +189,47 @@ const TeamCollaboration = () => {
         </div>
 
         {/* Stats Overview */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-4 gap-3 mb-6">
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center justify-between mb-2">
                 <Users size={20} className="text-blue-500" />
                 <Badge variant="success">Active</Badge>
               </div>
-              <p className="text-3xl font-bold">{teamMembers.length}</p>
+              <p className="text-lg font-bold">{teamMembers.length}</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">Team Members</p>
             </CardContent>
           </Card>
 
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center justify-between mb-2">
                 <Target size={20} className="text-green-500" />
                 <TrendingUp size={16} className="text-green-500" />
               </div>
-              <p className="text-3xl font-bold">2,471</p>
+              <p className="text-lg font-bold">2,471</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">Active Leads</p>
             </CardContent>
           </Card>
 
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center justify-between mb-2">
                 <Calendar size={20} className="text-purple-500" />
                 <Badge variant="success">+34%</Badge>
               </div>
-              <p className="text-3xl font-bold">154</p>
+              <p className="text-lg font-bold">154</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">Meetings Booked</p>
             </CardContent>
           </Card>
 
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center justify-between mb-2">
                 <Zap size={20} className="text-orange-500" />
                 <Badge variant="warning">{assignmentQueue.length}</Badge>
               </div>
-              <p className="text-3xl font-bold">{assignmentQueue.length}</p>
+              <p className="text-lg font-bold">{assignmentQueue.length}</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">Pending Assignments</p>
             </CardContent>
           </Card>
@@ -252,20 +252,20 @@ const TeamCollaboration = () => {
 
           {/* Workspaces */}
           <TabsContent value="workspaces">
-            <div className="grid gap-4">
+            <div className="grid gap-3">
               {workspaces.map(workspace => (
                 <Card key={workspace.id}>
-                  <CardContent className="p-6">
+                  <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-start gap-4">
+                      <div className="flex items-start gap-3">
                         <div
-                          className={`w-16 h-16 bg-gradient-to-br from-${workspace.color}-500 to-${workspace.color}-600 rounded-xl flex items-center justify-center text-white text-2xl font-bold`}
+                          className={`w-16 h-16 bg-gradient-to-br from-${workspace.color}-500 to-${workspace.color}-600 rounded-lg flex items-center justify-center text-white text-lg font-bold`}
                         >
                           {workspace.name.substring(0, 2)}
                         </div>
                         <div>
-                          <h3 className="text-xl font-semibold mb-1">{workspace.name}</h3>
-                          <div className="flex items-center gap-4 text-sm text-gray-600">
+                          <h3 className="text-lg font-semibold mb-1">{workspace.name}</h3>
+                          <div className="flex items-center gap-3 text-sm text-gray-600">
                             <span className="flex items-center gap-1">
                               <Users size={14} />
                               {workspace.members} members
@@ -288,21 +288,21 @@ const TeamCollaboration = () => {
                     </div>
 
                     {/* This Month Stats */}
-                    <div className="grid grid-cols-3 gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <div className="grid grid-cols-3 gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                       <div className="text-center">
-                        <p className="text-2xl font-bold text-blue-600">
+                        <p className="text-lg font-bold text-blue-600">
                           {workspace.thisMonth.leads}
                         </p>
                         <p className="text-xs text-gray-600">Leads Added</p>
                       </div>
                       <div className="text-center">
-                        <p className="text-2xl font-bold text-green-600">
+                        <p className="text-lg font-bold text-green-600">
                           {workspace.thisMonth.meetings}
                         </p>
                         <p className="text-xs text-gray-600">Meetings</p>
                       </div>
                       <div className="text-center">
-                        <p className="text-2xl font-bold text-purple-600">
+                        <p className="text-lg font-bold text-purple-600">
                           {workspace.thisMonth.closed}
                         </p>
                         <p className="text-xs text-gray-600">Deals Closed</p>
@@ -313,7 +313,7 @@ const TeamCollaboration = () => {
               ))}
 
               <Card className="border-dashed border-2">
-                <CardContent className="p-8 text-center">
+                <CardContent className="p-4 text-center">
                   <UserPlus className="mx-auto mb-3 text-gray-400" size={32} />
                   <h3 className="text-lg font-semibold mb-2">Create New Workspace</h3>
                   <p className="text-sm text-gray-600 mb-4">
@@ -327,14 +327,14 @@ const TeamCollaboration = () => {
 
           {/* Team Members */}
           <TabsContent value="team">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               {teamMembers.map(member => (
                 <Card key={member.id}>
-                  <CardContent className="p-6">
+                  <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-start gap-3">
                         <div className="relative">
-                          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-2xl">
+                          <div className="w-12 h-9 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-lg">
                             {member.avatar}
                           </div>
                           <div
@@ -391,7 +391,7 @@ const TeamCollaboration = () => {
               ))}
 
               <Card className="border-dashed border-2">
-                <CardContent className="p-8 text-center flex flex-col items-center justify-center h-full">
+                <CardContent className="p-4 text-center flex flex-col items-center justify-center h-full">
                   <UserPlus className="mx-auto mb-3 text-gray-400" size={32} />
                   <h3 className="text-lg font-semibold mb-2">Invite Team Member</h3>
                   <Button>Send Invitation</Button>
@@ -402,19 +402,19 @@ const TeamCollaboration = () => {
 
           {/* Assignment Queue */}
           <TabsContent value="assignments">
-            <div className="space-y-4">
+            <div className="space-y-3">
               {assignmentQueue.length === 0 ? (
                 <Card>
                   <CardContent className="p-12 text-center">
                     <CheckCircle className="mx-auto mb-3 text-green-500" size={48} />
-                    <h3 className="text-xl font-semibold mb-2">All Clear!</h3>
+                    <h3 className="text-lg font-semibold mb-2">All Clear!</h3>
                     <p className="text-gray-600">No pending assignments</p>
                   </CardContent>
                 </Card>
               ) : (
                 assignmentQueue.map(assignment => (
                   <Card key={assignment.id}>
-                    <CardContent className="p-6">
+                    <CardContent className="p-4">
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-2">
@@ -460,9 +460,9 @@ const TeamCollaboration = () => {
                 <CardTitle>Recent Handoffs</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {handoffHistory.map((handoff, index) => (
-                    <div key={index} className="flex items-center gap-4 p-4 border rounded-lg">
+                    <div key={index} className="flex items-center gap-3 p-4 border rounded-lg">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
                           <span className="font-semibold text-sm">{handoff.from}</span>

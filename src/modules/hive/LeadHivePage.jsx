@@ -36,15 +36,15 @@ export function LeadHivePage() {
 
   return (
     <DashboardLayout>
-      <div className="flex flex-col h-full p-6 gap-6">
+      <div className="flex flex-col h-full p-4 gap-3">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="p-3 rounded-xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 border border-emerald-500/20">
+          <div className="flex items-center gap-3">
+            <div className="p-3 rounded-lg bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 border border-emerald-500/20">
               <Hexagon className="w-6 h-6 text-emerald-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold">
+              <h1 className="text-lg font-bold">
                 <GradientText gradient="cyber">Lead Hive</GradientText>
               </h1>
               <p className="text-slate-400 mt-1">
@@ -56,7 +56,7 @@ export function LeadHivePage() {
           {/* Controls */}
           <div className="flex items-center gap-3">
             {/* Segment dropdown */}
-            <div className="flex items-center gap-2 px-3 py-2 bg-slate-800/50 rounded-xl border border-white/5">
+            <div className="flex items-center gap-2 px-3 py-2 bg-slate-800/50 rounded-lg border border-white/5">
               <Filter className="w-4 h-4 text-slate-400" />
               <select
                 value={filters.segment}
@@ -71,7 +71,7 @@ export function LeadHivePage() {
             </div>
 
             {/* Time horizon */}
-            <div className="flex items-center gap-2 px-3 py-2 bg-slate-800/50 rounded-xl border border-white/5">
+            <div className="flex items-center gap-2 px-3 py-2 bg-slate-800/50 rounded-lg border border-white/5">
               <Clock className="w-4 h-4 text-slate-400" />
               <select
                 value={filters.timeHorizon}
@@ -88,7 +88,7 @@ export function LeadHivePage() {
             <button
               onClick={handleToggleSynthetic}
               className={`
-                flex items-center gap-2 px-3 py-2 rounded-xl border transition-colors
+                flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors
                 ${
                   filters.showSynthetic
                     ? 'bg-purple-500/10 border-purple-500/30 text-purple-400'
@@ -103,7 +103,7 @@ export function LeadHivePage() {
         </div>
 
         {/* Main content */}
-        <div className="flex flex-1 gap-6 min-h-0">
+        <div className="flex flex-1 gap-3 min-h-0">
           {/* Canvas area */}
           <div className="flex-1">
             <HiveCanvas

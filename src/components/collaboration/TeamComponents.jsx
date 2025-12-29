@@ -327,7 +327,7 @@ export const TeamActivityFeed = () => {
         <div className="space-y-3 max-h-[300px] overflow-y-auto">
           {activities.map((activity, idx) => (
             <div key={idx} className="flex gap-3 items-start">
-              <span className="text-2xl">{activity.icon}</span>
+              <span className="text-lg">{activity.icon}</span>
               <div className="flex-1">
                 <p className="text-sm">
                   <span className="font-semibold">{activity.user}</span> {activity.action}{' '}
@@ -388,7 +388,7 @@ export const DealRooms = () => {
                 </div>
                 <span className="font-bold text-primary-600">{room.value}</span>
               </div>
-              <div className="grid grid-cols-3 gap-4 text-center text-xs">
+              <div className="grid grid-cols-3 gap-3 text-center text-xs">
                 <div>
                   <p className="font-bold">{room.members}</p>
                   <p className="text-gray-600">Members</p>

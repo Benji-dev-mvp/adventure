@@ -185,7 +185,7 @@ const CRMIntegrations = () => {
     <DashboardLayout>
       <div className="max-w-7xl mx-auto">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
             CRM & Calendar Integrations
           </h1>
           <p className="text-gray-600 dark:text-gray-300">
@@ -194,47 +194,47 @@ const CRMIntegrations = () => {
         </div>
 
         {/* Stats Overview */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-4 gap-3 mb-6">
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center justify-between mb-2">
                 <Plug size={20} className="text-blue-500" />
                 <Badge variant="success">Active</Badge>
               </div>
-              <p className="text-3xl font-bold">{syncStats.totalIntegrations}</p>
+              <p className="text-lg font-bold">{syncStats.totalIntegrations}</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">Connected Integrations</p>
             </CardContent>
           </Card>
 
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center justify-between mb-2">
                 <Activity size={20} className="text-green-500" />
                 <TrendingUp size={16} className="text-green-500" />
               </div>
-              <p className="text-3xl font-bold">{syncStats.totalSynced.toLocaleString()}</p>
+              <p className="text-lg font-bold">{syncStats.totalSynced.toLocaleString()}</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">Records Synced</p>
             </CardContent>
           </Card>
 
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center justify-between mb-2">
                 <Clock size={20} className="text-purple-500" />
                 <CheckCircle size={16} className="text-green-500" />
               </div>
-              <p className="text-3xl font-bold">{syncStats.lastSync}</p>
+              <p className="text-lg font-bold">{syncStats.lastSync}</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">Last Sync</p>
             </CardContent>
           </Card>
 
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center justify-between mb-2">
                 <AlertCircle size={20} className="text-red-500" />
                 <Badge variant="danger">{syncStats.syncErrors}</Badge>
               </div>
-              <p className="text-3xl font-bold">{syncStats.syncErrors}</p>
+              <p className="text-lg font-bold">{syncStats.syncErrors}</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">Sync Errors</p>
             </CardContent>
           </Card>
@@ -249,18 +249,18 @@ const CRMIntegrations = () => {
 
           {/* Connected Integrations */}
           <TabsContent value="connected">
-            <div className="grid gap-4">
+            <div className="grid gap-3">
               {integrations.map(integration => (
                 <Card key={integration.id}>
-                  <CardContent className="p-6">
+                  <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-start gap-4">
-                        <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center text-3xl">
+                      <div className="flex items-start gap-3">
+                        <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center text-lg">
                           {integration.logo}
                         </div>
                         <div>
                           <div className="flex items-center gap-2 mb-1">
-                            <h3 className="text-xl font-semibold">{integration.name}</h3>
+                            <h3 className="text-lg font-semibold">{integration.name}</h3>
                             {integration.status === 'connected' && (
                               <Badge variant="success">
                                 <CheckCircle size={12} className="mr-1" />
@@ -287,7 +287,7 @@ const CRMIntegrations = () => {
                     </div>
 
                     {/* Stats Row */}
-                    <div className="grid grid-cols-4 gap-4 mb-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <div className="grid grid-cols-4 gap-3 mb-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                       <div>
                         <p className="text-xs text-gray-600 mb-1">Records Synced</p>
                         <p className="text-lg font-bold">
@@ -354,11 +354,11 @@ const CRMIntegrations = () => {
 
           {/* Available Integrations */}
           <TabsContent value="available">
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-3">
               {availableIntegrations.map(integration => (
                 <Card key={integration.id}>
-                  <CardContent className="p-6 text-center">
-                    <div className="w-20 h-20 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-xl flex items-center justify-center text-4xl mx-auto mb-4">
+                  <CardContent className="p-4 text-center">
+                    <div className="w-20 h-20 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-lg flex items-center justify-center text-4xl mx-auto mb-4">
                       {integration.logo}
                     </div>
                     <h3 className="text-lg font-semibold mb-1">{integration.name}</h3>
@@ -382,8 +382,8 @@ const CRMIntegrations = () => {
             </div>
 
             <Card className="mt-6">
-              <CardContent className="p-8 text-center">
-                <h3 className="text-xl font-semibold mb-2">Need a Custom Integration?</h3>
+              <CardContent className="p-4 text-center">
+                <h3 className="text-lg font-semibold mb-2">Need a Custom Integration?</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   We can build custom integrations for your specific needs
                 </p>

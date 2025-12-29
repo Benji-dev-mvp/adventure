@@ -83,7 +83,7 @@ const CustomersPage = () => {
   return (
     <AppShell showBanner={false}>
       {/* Hero */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-violet-900/20 to-transparent" />
 
@@ -104,14 +104,14 @@ const CustomersPage = () => {
           </RevealText>
 
           <RevealText delay={200}>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
               See how sales teams like yours are using Ava to 3x their pipeline and book more
               meetings.
             </p>
           </RevealText>
 
           <RevealText delay={300}>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <a href="#case-studies">
                 <GlowButton variant="primary" size="lg" glow className="gap-2">
                   <Download size={18} />
@@ -130,13 +130,13 @@ const CustomersPage = () => {
       </section>
 
       {/* Aggregate Stats */}
-      <section className="py-16 px-6 relative overflow-hidden border-y border-white/10">
+      <section className="py-16 px-4 relative overflow-hidden border-y border-white/10">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {AGGREGATE_STATS.map((stat, index) => (
               <RevealText key={stat.label} delay={index * 100}>
                 <GlassCard variant="default" hover glow glowColor="purple" className="text-center">
-                  <GlassCardContent className="p-6">
+                  <GlassCardContent className="p-4">
                     <div className="text-4xl font-bold mb-2 font-space-grotesk">
                       <GradientText gradient="aurora" animate>
                         {stat.value}
@@ -155,13 +155,13 @@ const CustomersPage = () => {
       <ResultsShowcase />
 
       {/* Case Studies */}
-      <section id="case-studies" className="py-20 px-6 relative overflow-hidden">
+      <section id="case-studies" className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
 
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">Detailed Case Studies</GradientText>
               </h2>
               <p className="text-gray-300 text-lg">
@@ -177,13 +177,13 @@ const CustomersPage = () => {
                   <GlassCardContent className="p-0">
                     <div className="grid lg:grid-cols-3 gap-0">
                       {/* Company Info */}
-                      <div className="p-8 border-b lg:border-b-0 lg:border-r border-white/10">
-                        <div className="flex items-center gap-4 mb-6">
-                          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center">
-                            <span className="text-white font-bold text-xl">{study.logo}</span>
+                      <div className="p-4 border-b lg:border-b-0 lg:border-r border-white/10">
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center">
+                            <span className="text-white font-bold text-lg">{study.logo}</span>
                           </div>
                           <div>
-                            <h3 className="text-2xl font-bold text-white font-space-grotesk">
+                            <h3 className="text-lg font-bold text-white font-space-grotesk">
                               {study.company}
                             </h3>
                             <p className="text-gray-400 text-sm">
@@ -195,7 +195,7 @@ const CustomersPage = () => {
                           "{study.quote}"
                         </blockquote>
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center">
+                          <div className="w-10 h-9 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center">
                             <span className="text-white text-sm font-bold">{study.author[0]}</span>
                           </div>
                           <div>
@@ -206,17 +206,17 @@ const CustomersPage = () => {
                       </div>
 
                       {/* Results Grid */}
-                      <div className="lg:col-span-2 p-8">
+                      <div className="lg:col-span-2 p-4">
                         <h4 className="text-sm font-semibold text-cyan-400 uppercase tracking-wide mb-6">
                           Key Results
                         </h4>
-                        <div className="grid md:grid-cols-3 gap-6">
+                        <div className="grid md:grid-cols-3 gap-3">
                           {study.results.map(result => {
                             const Icon = result.icon;
                             return (
                               <div key={result.metric} className="text-center">
                                 <Icon size={28} className="mx-auto mb-3 text-cyan-400" />
-                                <div className="text-3xl font-bold mb-1 font-space-grotesk">
+                                <div className="text-lg font-bold mb-1 font-space-grotesk">
                                   <GradientText gradient="cyber">{result.value}</GradientText>
                                 </div>
                                 <div className="text-gray-400 text-sm">{result.metric}</div>
@@ -224,7 +224,7 @@ const CustomersPage = () => {
                             );
                           })}
                         </div>
-                        <div className="mt-8 pt-6 border-t border-white/10 flex justify-end gap-4">
+                        <div className="mt-8 pt-6 border-t border-white/10 flex justify-end gap-3">
                           <GlowButtonOutline variant="ghost" size="sm" className="gap-2">
                             <Download size={16} />
                             Download PDF
@@ -251,18 +251,18 @@ const CustomersPage = () => {
       <TestimonialsSection />
 
       {/* CTA */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
 
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 font-space-grotesk">
+            <h2 className="text-lg md:text-4xl font-bold mb-6 font-space-grotesk">
               <GradientText gradient="aurora">Ready to Join These Success Stories?</GradientText>
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-lg text-gray-300 mb-8">
               Start your free trial and see results within the first week
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link to="/pricing#start">
                 <GlowButton variant="primary" size="lg" glow className="gap-2">
                   Start Free Trial
@@ -275,7 +275,7 @@ const CustomersPage = () => {
                 </GlowButtonOutline>
               </Link>
             </div>
-            <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+            <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm text-gray-400">
               <span className="flex items-center gap-2">
                 <CheckCircle2 size={16} className="text-emerald-400" />
                 No credit card required

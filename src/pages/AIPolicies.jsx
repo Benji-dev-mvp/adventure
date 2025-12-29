@@ -205,7 +205,7 @@ const PolicyCard = ({ policy, onEdit, onDelete }) => {
     <Card className="overflow-hidden">
       <div className="p-4">
         <div className="flex items-start justify-between">
-          <div className="flex items-start gap-4">
+          <div className="flex items-start gap-3">
             <div className={cn('p-3 rounded-xl', categoryColors[policy.category])}>
               <CategoryIcon className="h-5 w-5" />
             </div>
@@ -309,12 +309,12 @@ const PreviewPanel = () => {
           Policy Preview
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-3">
         <div>
           <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
             Original (Would be blocked)
           </p>
-          <div className="p-4 bg-red-50 dark:bg-red-500/10 rounded-xl border border-red-200 dark:border-red-500/20">
+          <div className="p-4 bg-red-50 dark:bg-red-500/10 rounded-lg border border-red-200 dark:border-red-500/20">
             <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
               {originalText}
             </p>
@@ -343,7 +343,7 @@ const PreviewPanel = () => {
           <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
             Corrected (Policy-compliant)
           </p>
-          <div className="p-4 bg-green-50 dark:bg-green-500/10 rounded-xl border border-green-200 dark:border-green-500/20">
+          <div className="p-4 bg-green-50 dark:bg-green-500/10 rounded-lg border border-green-200 dark:border-green-500/20">
             <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
               {correctedText}
             </p>
@@ -397,7 +397,7 @@ const CodeEditor = ({ value, onChange }) => {
       <textarea
         value={value}
         onChange={e => onChange(e.target.value)}
-        className="w-full h-full pt-14 p-4 font-mono text-sm bg-gray-900 text-green-400 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-accent-500"
+        className="w-full h-full pt-14 p-4 font-mono text-sm bg-gray-900 text-green-400 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-accent-500"
         spellCheck={false}
       />
     </div>
@@ -415,11 +415,11 @@ const AIPolicies = () => {
 
   return (
     <DashboardLayout>
-      <div className="p-8">
+      <div className="p-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
+            <h1 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-3">
               <ShieldCheck className="h-8 w-8 text-accent-500" />
               AI Policies & Guardrails
             </h1>
@@ -441,7 +441,7 @@ const AIPolicies = () => {
 
         {/* Tabs */}
         <div className="mb-6">
-          <div className="flex items-center gap-4 border-b border-gray-200 dark:border-white/10">
+          <div className="flex items-center gap-3 border-b border-gray-200 dark:border-white/10">
             <button
               onClick={() => setActiveTab('visual')}
               className={cn(
@@ -470,9 +470,9 @@ const AIPolicies = () => {
         </div>
 
         {activeTab === 'visual' ? (
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-3">
             {/* Policies List */}
-            <div className="col-span-2 space-y-4">
+            <div className="col-span-2 space-y-3">
               {/* Filters */}
               <div className="flex items-center gap-2">
                 {['all', 'tone', 'content', 'escalation', 'compliance'].map(cat => (
@@ -492,7 +492,7 @@ const AIPolicies = () => {
               </div>
 
               {/* Policy Cards */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {filteredPolicies.map(policy => (
                   <PolicyCard
                     key={policy.id}
@@ -510,7 +510,7 @@ const AIPolicies = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-6 h-[600px]">
+          <div className="grid grid-cols-2 gap-3 h-[600px]">
             <CodeEditor value={policyJson} onChange={setPolicyJson} />
             <PreviewPanel />
           </div>

@@ -204,7 +204,7 @@ export const ProjectCard = ({ project, onView, onEdit, onDelete, className }) =>
 
       {/* Meta Info */}
       <div className="flex items-center justify-between text-xs">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           {project.members && (
             <div className="flex items-center gap-1 text-gray-600 dark:text-gray-400">
               <Users size={14} />
@@ -378,9 +378,9 @@ export const ActivityLog = ({ activities = [], className }) => {
         <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700" />
 
         {/* Activities */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {activities.map((activity, index) => (
-            <div key={index} className="relative flex gap-4">
+            <div key={index} className="relative flex gap-3">
               {/* Timeline Dot */}
               <div
                 className={cn(

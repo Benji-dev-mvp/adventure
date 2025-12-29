@@ -70,7 +70,7 @@ const SecurityPage = () => {
   return (
     <AppShell showBanner={false}>
       {/* Hero */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-orange-900/20 to-transparent" />
 
@@ -91,14 +91,14 @@ const SecurityPage = () => {
           </RevealText>
 
           <RevealText delay={200}>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
               Built for enterprise from day one. SOC 2 Type II attested, GDPR compliant, with full
               audit trails and data residency options.
             </p>
           </RevealText>
 
           <RevealText delay={300}>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <a href="#security-hub">
                 <GlowButton variant="primary" size="lg" glow className="gap-2">
                   <Shield size={18} />
@@ -117,9 +117,9 @@ const SecurityPage = () => {
       </section>
 
       {/* Compliance Badges */}
-      <section className="py-16 px-6 relative overflow-hidden">
+      <section className="py-16 px-4 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-4 gap-3">
             {COMPLIANCE_CERTS.map((cert, index) => (
               <RevealText key={cert.name} delay={index * 100}>
                 <GlassCard
@@ -129,7 +129,7 @@ const SecurityPage = () => {
                   glowColor="cyan"
                   className="text-center h-full"
                 >
-                  <GlassCardContent className="p-6">
+                  <GlassCardContent className="p-4">
                     <div
                       className={`inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 ${
                         cert.status === 'Attested' || cert.status === 'Compliant'
@@ -144,7 +144,7 @@ const SecurityPage = () => {
                       )}
                       <span className="text-xs font-medium">{cert.status}</span>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-2 font-space-grotesk">
+                    <h3 className="text-lg font-bold text-white mb-2 font-space-grotesk">
                       {cert.name}
                     </h3>
                     <p className="text-gray-400 text-sm">{cert.description}</p>
@@ -162,13 +162,13 @@ const SecurityPage = () => {
       </div>
 
       {/* Security Features Grid */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
 
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">Enterprise Security Features</GradientText>
               </h2>
               <p className="text-gray-300 text-lg">
@@ -177,19 +177,19 @@ const SecurityPage = () => {
             </div>
           </RevealText>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-3">
             {SECURITY_FEATURES.map((feature, index) => {
               const Icon = feature.icon;
               return (
                 <RevealText key={feature.title} delay={index * 100}>
                   <GlassCard variant="default" hover className="h-full">
-                    <GlassCardContent className="p-8">
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center flex-shrink-0">
+                    <GlassCardContent className="p-4">
+                      <div className="flex items-start gap-3">
+                        <div className="w-12 h-9 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center flex-shrink-0">
                           <Icon size={24} className="text-white" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-xl font-bold text-white mb-2 font-space-grotesk">
+                          <h3 className="text-lg font-bold text-white mb-2 font-space-grotesk">
                             {feature.title}
                           </h3>
                           <p className="text-gray-400 mb-4">{feature.description}</p>
@@ -219,17 +219,17 @@ const SecurityPage = () => {
       </section>
 
       {/* Trust Section */}
-      <section className="py-20 px-6 relative overflow-hidden bg-gradient-to-b from-transparent via-orange-950/10 to-transparent">
+      <section className="py-20 px-4 relative overflow-hidden bg-gradient-to-b from-transparent via-orange-950/10 to-transparent">
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="aurora">Trusted by Security Teams</GradientText>
               </h2>
             </div>
           </RevealText>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-3">
             {[
               { stat: '500+', label: 'Enterprise Customers', icon: FileCheck },
               { stat: '99.95%', label: 'Uptime (90 days)', icon: Server },
@@ -239,7 +239,7 @@ const SecurityPage = () => {
               return (
                 <RevealText key={item.label} delay={index * 100}>
                   <GlassCard variant="gradient" className="text-center">
-                    <GlassCardContent className="p-8">
+                    <GlassCardContent className="p-4">
                       <Icon size={32} className="mx-auto mb-4 text-orange-400" />
                       <div className="text-4xl font-bold mb-2 font-space-grotesk">
                         <GradientText gradient="cyber">{item.stat}</GradientText>
@@ -255,19 +255,19 @@ const SecurityPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
 
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 font-space-grotesk">
+            <h2 className="text-lg md:text-4xl font-bold mb-6 font-space-grotesk">
               <GradientText gradient="aurora">Need Security Documentation?</GradientText>
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-lg text-gray-300 mb-8">
               We're happy to share our SOC 2 report, security questionnaire, or schedule a call with
               our security team.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link to="/pricing#contact-sales">
                 <GlowButton variant="primary" size="lg" glow className="gap-2">
                   Request Security Docs

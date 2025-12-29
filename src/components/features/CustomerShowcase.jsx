@@ -134,7 +134,7 @@ const CustomerShowcase = () => {
       id="customers"
       className="w-full py-20 bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300 text-sm font-semibold mb-4">
@@ -144,14 +144,14 @@ const CustomerShowcase = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 font-space-grotesk">
             Join 2,800+ Companies Scaling with Ava
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
             From fast-growing startups to Fortune 500 enterprises, teams trust Artisan to drive
             predictable revenue growth
           </p>
         </div>
 
         {/* Impact Metrics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12">
           {impactMetrics.map((metric, idx) => {
             const Icon = metric.icon;
             return (
@@ -159,9 +159,9 @@ const CustomerShowcase = () => {
                 key={idx}
                 className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-center hover:shadow-xl transition-shadow"
               >
-                <CardContent className="p-6">
+                <CardContent className="p-4">
                   <Icon className="w-8 h-8 text-purple-500 mx-auto mb-2" />
-                  <div className="text-3xl font-bold text-slate-900 dark:text-white mb-1">
+                  <div className="text-lg font-bold text-slate-900 dark:text-white mb-1">
                     {metric.value}
                   </div>
                   <div className="text-sm text-slate-600 dark:text-slate-400">{metric.label}</div>
@@ -174,16 +174,16 @@ const CustomerShowcase = () => {
         {/* Customer Logos */}
         <div className="mb-12">
           <Card className="bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-900 border-slate-200 dark:border-slate-700">
-            <CardContent className="p-8">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            <CardContent className="p-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
                 {customers.map((customer, idx) => (
                   <div
                     key={idx}
-                    className="group relative aspect-square rounded-xl bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 hover:border-purple-500 transition-all hover:shadow-xl hover:scale-105 cursor-pointer"
+                    className="group relative aspect-square rounded-lg bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 hover:border-purple-500 transition-all hover:shadow-xl hover:scale-105 cursor-pointer"
                   >
                     <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
                       <div
-                        className={`w-16 h-16 rounded-xl bg-gradient-to-br ${customer.color} flex items-center justify-center text-white font-bold text-xl mb-2 shadow-lg`}
+                        className={`w-16 h-16 rounded-lg bg-gradient-to-br ${customer.color} flex items-center justify-center text-white font-bold text-lg mb-2 shadow-lg`}
                       >
                         {customer.logo}
                       </div>
@@ -205,16 +205,16 @@ const CustomerShowcase = () => {
 
         {/* Featured Testimonial */}
         <Card className="bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 border-purple-200 dark:border-purple-800 mb-12">
-          <CardContent className="p-8 md:p-12">
+          <CardContent className="p-4 md:p-12">
             <div className="max-w-4xl mx-auto">
-              <Quote className="w-12 h-12 text-purple-500 mb-6" />
+              <Quote className="w-12 h-9 text-purple-500 mb-6" />
 
-              <p className="text-2xl font-medium text-slate-900 dark:text-white mb-8 leading-relaxed">
+              <p className="text-lg font-medium text-slate-900 dark:text-white mb-8 leading-relaxed">
                 {testimonials[activeTestimonial].quote}
               </p>
 
-              <div className="flex items-center justify-between flex-wrap gap-6 mb-6">
-                <div className="flex items-center gap-4">
+              <div className="flex items-center justify-between flex-wrap gap-3 mb-6">
+                <div className="flex items-center gap-3">
                   <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg">
                     {testimonials[activeTestimonial].avatar}
                   </div>
@@ -230,7 +230,7 @@ const CustomerShowcase = () => {
                 </div>
 
                 {/* Testimonial Metrics */}
-                <div className="flex gap-4">
+                <div className="flex gap-3">
                   {Object.entries(testimonials[activeTestimonial].metrics).map(([key, value]) => (
                     <div
                       key={key}
@@ -266,7 +266,7 @@ const CustomerShowcase = () => {
         </Card>
 
         {/* Use Cases */}
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
+        <div className="grid md:grid-cols-2 gap-3 mb-12">
           {useCases.map((useCase, idx) => {
             const Icon = useCase.icon;
             return (
@@ -274,13 +274,13 @@ const CustomerShowcase = () => {
                 key={idx}
                 className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:shadow-xl transition-all group"
               >
-                <CardContent className="p-6">
+                <CardContent className="p-4">
                   <div
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${useCase.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+                    className={`w-12 h-9 rounded-lg bg-gradient-to-br ${useCase.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
                   >
                     <Icon className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
                     {useCase.title}
                   </h3>
                   <p className="text-slate-600 dark:text-slate-400 mb-4">{useCase.description}</p>
@@ -298,17 +298,17 @@ const CustomerShowcase = () => {
 
         {/* Case Study CTA */}
         <Card className="bg-gradient-to-r from-blue-600 to-purple-600 border-0 text-white">
-          <CardContent className="p-8">
-            <div className="flex items-center justify-between flex-wrap gap-6">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between flex-wrap gap-3">
               <div>
-                <h3 className="text-2xl font-bold mb-2">
+                <h3 className="text-lg font-bold mb-2">
                   See How TechCorp 3x'd Pipeline in 6 Months
                 </h3>
                 <p className="text-blue-100">
                   Download the full case study with implementation details and ROI breakdown
                 </p>
               </div>
-              <button className="px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors flex items-center gap-2 group">
+              <button className="px-4 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors flex items-center gap-2 group">
                 Download Case Study
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>

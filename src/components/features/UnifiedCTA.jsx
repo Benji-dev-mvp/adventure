@@ -93,19 +93,19 @@ const UnifiedCTA = ({
     return (
       <div
         ref={containerRef}
-        className="py-12 px-4 lg:px-6 relative overflow-hidden bg-gradient-to-r from-purple-900/20 via-[#030712] to-cyan-900/20"
+        className="py-12 px-4 lg:px-4 relative overflow-hidden bg-gradient-to-r from-purple-900/20 via-[#030712] to-cyan-900/20"
       >
         <div className="max-w-5xl mx-auto">
-          <GlassCard className="p-6 lg:p-8" variant="gradient" glow glowColor="purple">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+          <GlassCard className="p-4 lg:p-4" variant="gradient" glow glowColor="purple">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-3">
               <div className="text-center lg:text-left">
-                <h3 className="text-2xl font-bold text-white mb-2 font-space-grotesk">
+                <h3 className="text-lg font-bold text-white mb-2 font-space-grotesk">
                   <GradientText gradient="cyber">{headline}</GradientText>
                 </h3>
                 <p className="text-gray-400">{subheadline}</p>
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 <Link to="/onboarding">
                   <GlowButton
                     variant="primary"
@@ -136,9 +136,9 @@ const UnifiedCTA = ({
     return (
       <div
         ref={containerRef}
-        className="py-8 px-4 lg:px-6 border-y border-white/10 bg-white/[0.02]"
+        className="py-8 px-4 lg:px-4 border-y border-white/10 bg-white/[0.02]"
       >
-        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4 text-center sm:text-left">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 text-center sm:text-left">
           <Sparkles size={24} className="text-cyan-400 animate-pulse" />
           <span className="text-gray-300">{subheadline}</span>
           <Link to="/onboarding">
@@ -156,7 +156,7 @@ const UnifiedCTA = ({
     <section
       ref={containerRef}
       id="unified-cta"
-      className="py-20 lg:py-28 px-4 lg:px-6 relative overflow-hidden bg-[#030712]"
+      className="py-20 lg:py-28 px-4 lg:px-4 relative overflow-hidden bg-[#030712]"
     >
       {/* Background */}
       <ParticleBackground variant="aurora" className="absolute inset-0 opacity-40" />
@@ -181,7 +181,7 @@ const UnifiedCTA = ({
               variant="gradient"
               blur="2xl"
               radius="3xl"
-              className="relative p-8 lg:p-12 xl:p-16 overflow-hidden"
+              className="relative p-4 lg:p-12 xl:p-16 overflow-hidden"
             >
               {/* Floating particles */}
               <FloatingParticles count={15} color="mixed" />
@@ -196,24 +196,24 @@ const UnifiedCTA = ({
                 </div>
 
                 {/* Headline */}
-                <h2 className="text-3xl lg:text-5xl xl:text-6xl font-bold mb-6 font-space-grotesk">
+                <h2 className="text-lg lg:text-5xl xl:text-6xl font-bold mb-6 font-space-grotesk">
                   <GradientText gradient="aurora" animate>
                     {headline}
                   </GradientText>
                 </h2>
 
                 {/* Subheadline */}
-                <p className="text-lg lg:text-xl text-gray-300 mb-10">{subheadline}</p>
+                <p className="text-lg lg:text-lg text-gray-300 mb-10">{subheadline}</p>
 
                 {/* CTA Form */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-8">
                   <div className="relative w-full max-w-sm">
                     <input
                       type="email"
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                       placeholder="Enter your work email"
-                      className="w-full px-6 py-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 transition-all"
                     />
                   </div>
                   <Link to="/onboarding">
@@ -231,7 +231,7 @@ const UnifiedCTA = ({
                 </div>
 
                 {/* Trust signals */}
-                <div className="flex flex-wrap justify-center gap-4 mb-8">
+                <div className="flex flex-wrap justify-center gap-3 mb-8">
                   {TRUST_SIGNALS.map((signal, index) => {
                     const Icon = signal.icon;
                     return (
@@ -260,10 +260,10 @@ const UnifiedCTA = ({
         {/* Stats row */}
         {showStats && (
           <RevealText delay={200}>
-            <div className="mt-12 grid grid-cols-3 gap-6 max-w-2xl mx-auto">
+            <div className="mt-12 grid grid-cols-3 gap-3 max-w-2xl mx-auto">
               {QUICK_STATS.map((stat, index) => (
                 <div key={stat.label} className="text-center">
-                  <div className="text-2xl lg:text-3xl font-bold text-white mb-1">
+                  <div className="text-lg lg:text-lg font-bold text-white mb-1">
                     <CountUpText
                       end={isVisible ? stat.value : 0}
                       duration={1500}
@@ -286,12 +286,12 @@ const UnifiedCTA = ({
               {[1, 2, 3, 4, 5].map(i => (
                 <div
                   key={i}
-                  className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 border-2 border-[#030712] flex items-center justify-center text-white text-xs font-bold"
+                  className="w-10 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 border-2 border-[#030712] flex items-center justify-center text-white text-xs font-bold"
                 >
                   {String.fromCodePoint(64 + i)}
                 </div>
               ))}
-              <div className="w-10 h-10 rounded-full bg-white/10 border-2 border-[#030712] flex items-center justify-center text-white text-xs">
+              <div className="w-10 h-9 rounded-full bg-white/10 border-2 border-[#030712] flex items-center justify-center text-white text-xs">
                 +2.5K
               </div>
             </div>

@@ -134,17 +134,17 @@ const Onboarding = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-accent-500 via-primary-500 to-purple-600 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-accent-500 via-primary-500 to-purple-600 flex items-center justify-center p-4">
       <div className="w-full max-w-3xl">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-12 h-12 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
+            <div className="w-12 h-9 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center">
               <Sparkles className="text-white" size={28} />
             </div>
-            <span className="text-3xl font-bold text-white">Artisan</span>
+            <span className="text-lg font-bold text-white">Artisan</span>
           </div>
-          <h1 className="text-2xl font-bold text-white mb-2">Welcome! Let's set up your AI BDR</h1>
+          <h1 className="text-lg font-bold text-white mb-2">Welcome! Let's set up your AI BDR</h1>
           <p className="text-white/90">Just a few quick steps to get Ava working for you</p>
         </div>
 
@@ -154,7 +154,7 @@ const Onboarding = () => {
             {[...Array(totalSteps)].map((_, index) => (
               <div key={index} className="flex-1 flex items-center">
                 <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all ${
+                  className={`w-10 h-9 rounded-full flex items-center justify-center font-semibold transition-all ${
                     step > index + 1
                       ? 'bg-white text-accent-600'
                       : step === index + 1
@@ -176,21 +176,21 @@ const Onboarding = () => {
 
         {/* Content Card */}
         <Card>
-          <CardContent className="p-8">
+          <CardContent className="p-4">
             {/* Step 1: Role */}
             {step === 1 && (
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-3 bg-accent-100 rounded-xl">
+                  <div className="p-3 bg-accent-100 rounded-lg">
                     <Users className="text-accent-600" size={24} />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">What's your role?</h2>
+                    <h2 className="text-lg font-bold text-gray-900">What's your role?</h2>
                     <p className="text-gray-600">Help us personalize your experience</p>
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-3">
                   {[
                     { label: 'Founder/CEO', icon: '👔' },
                     { label: 'Sales Leader', icon: '📊' },
@@ -203,13 +203,13 @@ const Onboarding = () => {
                         key={role.label}
                         type="button"
                         onClick={() => updateFormData('role', role.label)}
-                        className={`p-6 border-2 rounded-xl text-left group transition-all ${
+                        className={`p-4 border-2 rounded-lg text-left group transition-all ${
                           isSelected
                             ? 'border-accent-500 bg-accent-50 shadow-sm'
                             : 'border-gray-200 hover:border-accent-500 hover:bg-accent-50'
                         }`}
                       >
-                        <div className="text-3xl mb-2">{role.icon}</div>
+                        <div className="text-lg mb-2">{role.icon}</div>
                         <p className="font-semibold text-gray-900">{role.label}</p>
                         {isSelected && <p className="text-xs text-accent-600 mt-2">Selected</p>}
                       </button>
@@ -223,16 +223,16 @@ const Onboarding = () => {
             {step === 2 && (
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-3 bg-accent-100 rounded-xl">
+                  <div className="p-3 bg-accent-100 rounded-lg">
                     <Mail className="text-accent-600" size={24} />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">Connect your email</h2>
+                    <h2 className="text-lg font-bold text-gray-900">Connect your email</h2>
                     <p className="text-gray-600">This allows Ava to send emails on your behalf</p>
                   </div>
                 </div>
 
-                <div className="space-y-4 mb-6">
+                <div className="space-y-3 mb-6">
                   <Input
                     label="Work Email"
                     type="email"
@@ -257,7 +257,7 @@ const Onboarding = () => {
                   />
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {/* Email Provider Buttons */}
                   <Button
                     className="w-full justify-start gap-3 h-16 text-lg"
@@ -295,12 +295,12 @@ const Onboarding = () => {
                         : 'Connect Outlook'}
                   </Button>
 
-                  <div className="text-center py-4">
+                  <div className="text-center py-3">
                     <span className="text-sm text-gray-500">or use custom SMTP</span>
                   </div>
 
                   <Input label="SMTP Server" placeholder="smtp.gmail.com" />
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-3">
                     <Input label="Port" placeholder="587" />
                     <Input label="Encryption" placeholder="TLS" />
                   </div>
@@ -322,16 +322,16 @@ const Onboarding = () => {
             {step === 3 && (
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-3 bg-accent-100 rounded-xl">
+                  <div className="p-3 bg-accent-100 rounded-lg">
                     <Target className="text-accent-600" size={24} />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">Define your ICP</h2>
+                    <h2 className="text-lg font-bold text-gray-900">Define your ICP</h2>
                     <p className="text-gray-600">Who are your ideal customers?</p>
                   </div>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <Select
                     label="Industry"
                     value={formData.icpIndustry}
@@ -387,16 +387,16 @@ const Onboarding = () => {
             {step === 4 && (
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-3 bg-accent-100 rounded-xl">
+                  <div className="p-3 bg-accent-100 rounded-lg">
                     <Building2 className="text-accent-600" size={24} />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">Connect your CRM</h2>
+                    <h2 className="text-lg font-bold text-gray-900">Connect your CRM</h2>
                     <p className="text-gray-600">Sync leads and track activity</p>
                   </div>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {[
                     { name: 'Salesforce', logo: '☁️', color: 'bg-blue-500' },
                     { name: 'HubSpot', logo: '🟠', color: 'bg-orange-500' },
@@ -405,11 +405,11 @@ const Onboarding = () => {
                   ].map(crm => (
                     <button
                       key={crm.name}
-                      className="w-full p-6 border-2 border-gray-200 rounded-xl hover:border-accent-500 hover:bg-accent-50 transition-all flex items-center justify-between group"
+                      className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-accent-500 hover:bg-accent-50 transition-all flex items-center justify-between group"
                     >
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-3">
                         <div
-                          className={`w-12 h-12 ${crm.color} rounded-xl flex items-center justify-center text-2xl`}
+                          className={`w-12 h-9 ${crm.color} rounded-lg flex items-center justify-center text-lg`}
                         >
                           {crm.logo}
                         </div>
@@ -419,7 +419,7 @@ const Onboarding = () => {
                     </button>
                   ))}
 
-                  <button className="w-full p-4 border-2 border-dashed border-gray-300 rounded-xl hover:border-accent-500 transition-all text-gray-600 hover:text-accent-600">
+                  <button className="w-full p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-accent-500 transition-all text-gray-600 hover:text-accent-600">
                     Skip for now
                   </button>
                 </div>
@@ -430,16 +430,16 @@ const Onboarding = () => {
             {step === 5 && (
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-3 bg-accent-100 rounded-xl">
+                  <div className="p-3 bg-accent-100 rounded-lg">
                     <Settings className="text-accent-600" size={24} />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">Set up your first campaign</h2>
+                    <h2 className="text-lg font-bold text-gray-900">Set up your first campaign</h2>
                     <p className="text-gray-600">Let Ava help you get started</p>
                   </div>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <Input label="Campaign Name" placeholder="Q1 Outreach" />
 
                   <Textarea
@@ -463,7 +463,7 @@ const Onboarding = () => {
                     placeholder="50"
                   />
 
-                  <div className="p-4 bg-gradient-to-br from-accent-50 to-primary-50 rounded-xl">
+                  <div className="p-4 bg-gradient-to-br from-accent-50 to-primary-50 rounded-lg">
                     <div className="flex items-start gap-3">
                       <Sparkles className="text-accent-600 flex-shrink-0 mt-1" size={20} />
                       <div>

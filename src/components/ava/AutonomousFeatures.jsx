@@ -77,19 +77,19 @@ export const AutonomousProspectResearcher = () => {
         {/* Stats Grid */}
         <div className="grid grid-cols-4 gap-3 mb-4">
           <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-purple-600">{insights.totalResearched}</p>
+            <p className="text-lg font-bold text-purple-600">{insights.totalResearched}</p>
             <p className="text-xs text-gray-600">Researched Today</p>
           </div>
           <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-blue-600">{insights.avgDataPoints}</p>
+            <p className="text-lg font-bold text-blue-600">{insights.avgDataPoints}</p>
             <p className="text-xs text-gray-600">Avg Data Points</p>
           </div>
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-green-600">{insights.highIntentFound}</p>
+            <p className="text-lg font-bold text-green-600">{insights.highIntentFound}</p>
             <p className="text-xs text-gray-600">High Intent</p>
           </div>
           <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-orange-600">{insights.autoEmailsGenerated}</p>
+            <p className="text-lg font-bold text-orange-600">{insights.autoEmailsGenerated}</p>
             <p className="text-xs text-gray-600">Emails Generated</p>
           </div>
         </div>
@@ -252,15 +252,15 @@ export const ObjectionHandler = () => {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-3 mb-4">
           <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-blue-600">42</p>
+            <p className="text-lg font-bold text-blue-600">42</p>
             <p className="text-xs text-gray-600">Handled Today</p>
           </div>
           <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-green-600">31</p>
+            <p className="text-lg font-bold text-green-600">31</p>
             <p className="text-xs text-gray-600">Auto-Resolved</p>
           </div>
           <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-purple-600">74%</p>
+            <p className="text-lg font-bold text-purple-600">74%</p>
             <p className="text-xs text-gray-600">Success Rate</p>
           </div>
         </div>
@@ -398,15 +398,15 @@ export const AutonomousMeetingBooker = () => {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-3 mb-4">
           <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-green-600">12</p>
+            <p className="text-lg font-bold text-green-600">12</p>
             <p className="text-xs text-gray-600">Booked This Week</p>
           </div>
           <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-blue-600">5</p>
+            <p className="text-lg font-bold text-blue-600">5</p>
             <p className="text-xs text-gray-600">In Progress</p>
           </div>
           <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-purple-600">0</p>
+            <p className="text-lg font-bold text-purple-600">0</p>
             <p className="text-xs text-gray-600">Human Input Needed</p>
           </div>
         </div>
@@ -553,15 +553,15 @@ export const AutonomousFollowUpEngine = () => {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-3 mb-4">
           <div className="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-orange-600">89</p>
+            <p className="text-lg font-bold text-orange-600">89</p>
             <p className="text-xs text-gray-600">Active Follow-Ups</p>
           </div>
           <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-green-600">34</p>
+            <p className="text-lg font-bold text-green-600">34</p>
             <p className="text-xs text-gray-600">Reactivated</p>
           </div>
           <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-blue-600">12</p>
+            <p className="text-lg font-bold text-blue-600">12</p>
             <p className="text-xs text-gray-600">Scheduled Today</p>
           </div>
         </div>

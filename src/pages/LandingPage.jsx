@@ -162,8 +162,8 @@ const LandingPage = () => {
       <section className="relative py-12 border-y border-white/10 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-purple-950/50 to-slate-950" />
         <FloatingParticles count={20} color="mixed" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {stats.map((stat, index) => (
               <RevealText key={index} delay={index * 100}>
                 <GlassCard variant="default" hover glow glowColor="cyan" className="text-center">
@@ -210,12 +210,12 @@ const LandingPage = () => {
       <TestimonialsSection />
 
       {/* Enterprise Platform Highlights - Simplified */}
-      <section id="platform" className="py-20 px-6 relative overflow-hidden">
+      <section id="platform" className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
 
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
-            <div className="flex flex-col gap-4 mb-12">
+            <div className="flex flex-col gap-3 mb-12">
               <p className="text-sm font-semibold text-cyan-400 uppercase tracking-wide">
                 Enterprise-ready from day one
               </p>
@@ -231,7 +231,7 @@ const LandingPage = () => {
             </div>
           </RevealText>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
             {enterprisePillars.map((pillar, index) => {
               const Icon = pillar.icon;
               return (
@@ -262,7 +262,7 @@ const LandingPage = () => {
       {/* REDUNDANT - Already included above via new unified components */}
 
       {/* Pricing */}
-      <section id="pricing" className="py-20 px-6 relative overflow-hidden bg-[#030712]">
+      <section id="pricing" className="py-20 px-4 relative overflow-hidden bg-[#030712]">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -273,11 +273,11 @@ const LandingPage = () => {
                   Simple, Transparent Pricing
                 </GradientText>
               </h2>
-              <p className="text-xl text-gray-300">Start free, scale as you grow</p>
+              <p className="text-lg text-gray-300">Start free, scale as you grow</p>
             </div>
           </RevealText>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-3">
             {pricingPlans.map((plan, index) => (
               <RevealText key={index} delay={index * 150}>
                 <GlassCard
@@ -288,7 +288,7 @@ const LandingPage = () => {
                   glowColor="purple"
                   className={`h-full ${plan.popular ? 'scale-105 border-2 border-purple-500/50' : ''}`}
                 >
-                  <GlassCardContent className="p-8">
+                  <GlassCardContent className="p-4">
                     {plan.popular && (
                       <GlassCard
                         variant="neon"
@@ -301,7 +301,7 @@ const LandingPage = () => {
                         <span className="text-sm font-semibold text-white">Most Popular</span>
                       </GlassCard>
                     )}
-                    <h3 className="text-2xl font-bold text-white mb-2 font-space-grotesk">
+                    <h3 className="text-lg font-bold text-white mb-2 font-space-grotesk">
                       {plan.name}
                     </h3>
                     <div className="mb-4">
@@ -345,7 +345,7 @@ const LandingPage = () => {
       <UnifiedCTA variant="full" />
 
       {/* Footer */}
-      <footer className="bg-[#030712] text-white py-16 px-6 border-t border-white/10 relative overflow-hidden">
+      <footer className="bg-[#030712] text-white py-16 px-4 border-t border-white/10 relative overflow-hidden">
         {/* Subtle gradient orb */}
         <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-gradient-radial from-purple-900/20 to-transparent blur-3xl pointer-events-none" />
         <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-gradient-radial from-cyan-900/10 to-transparent blur-3xl pointer-events-none" />
@@ -360,11 +360,11 @@ const LandingPage = () => {
                   radius="lg"
                   glow
                   glowColor="purple"
-                  className="w-10 h-10 flex items-center justify-center"
+                  className="w-10 h-9 flex items-center justify-center"
                 >
                   <span className="text-white font-bold text-lg">A</span>
                 </GlassCard>
-                <span className="font-bold text-xl font-space-grotesk">
+                <span className="font-bold text-lg font-space-grotesk">
                   <GradientText gradient="aurora">Artisan</GradientText>
                 </span>
               </div>
@@ -382,7 +382,7 @@ const LandingPage = () => {
                     hover
                     padding="p-0"
                     radius="lg"
-                    className="w-10 h-10 flex items-center justify-center transition-all duration-300 group"
+                    className="w-10 h-9 flex items-center justify-center transition-all duration-300 group"
                   >
                     <span className="text-sm font-semibold text-gray-400 group-hover:text-cyan-400 transition-colors">
                       {social[0]}
@@ -497,9 +497,9 @@ const LandingPage = () => {
             radius="none"
             className="border-t border-white/10 border-x-0 border-b-0 bg-transparent backdrop-blur-none"
           >
-            <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-3">
               <div className="text-sm text-gray-400">© 2025 Artisan. All rights reserved.</div>
-              <div className="flex gap-6 text-sm text-gray-400">
+              <div className="flex gap-3 text-sm text-gray-400">
                 <a href="#" className="hover:text-cyan-400 transition-colors">
                   Status
                 </a>

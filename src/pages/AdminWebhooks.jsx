@@ -124,12 +124,12 @@ const AdminWebhooks = () => {
 
   return (
     <DashboardLayout>
-      <div className="p-6 max-w-6xl">
+      <div className="p-4 max-w-6xl">
         {/* Header */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-2">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Webhooks</h1>
+              <h1 className="text-lg font-bold text-gray-900 dark:text-white">Webhooks</h1>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Configure webhooks to receive real-time event notifications
               </p>
@@ -145,11 +145,11 @@ const AdminWebhooks = () => {
         </div>
 
         {/* Webhooks List */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           {webhooks.map(webhook => (
             <div
               key={webhook.id}
-              className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6"
+              className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
@@ -159,7 +159,7 @@ const AdminWebhooks = () => {
                       {webhook.url}
                     </code>
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 ml-8">
+                  <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400 ml-8">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
                       Created {webhook.created}
@@ -182,7 +182,7 @@ const AdminWebhooks = () => {
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 mb-4 ml-8">
+              <div className="grid grid-cols-3 gap-3 mb-4 ml-8">
                 <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3">
                   <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Deliveries</p>
                   <p className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -256,12 +256,12 @@ const AdminWebhooks = () => {
         {/* Create Modal */}
         {showCreateModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 max-w-2xl w-full p-4 max-h-[90vh] overflow-y-auto">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                 Add New Webhook
               </h2>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Webhook URL
@@ -342,7 +342,7 @@ const AdminWebhooks = () => {
         )}
 
         {/* Documentation */}
-        <div className="mt-8 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-6">
+        <div className="mt-8 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
           <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-300 mb-2">
             Webhook Payload Example
           </h3>

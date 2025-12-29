@@ -72,7 +72,7 @@ export const PerformanceHeatmap = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-center gap-4 mt-4 pt-4 border-t border-gray-200 dark:border-white/10">
+        <div className="flex items-center justify-center gap-3 mt-4 pt-4 border-t border-gray-200 dark:border-white/10">
           <span className="text-xs text-gray-600 dark:text-gray-400">Less replies</span>
           <div className="flex gap-1">
             {[20, 40, 60, 80, 100].map(val => (

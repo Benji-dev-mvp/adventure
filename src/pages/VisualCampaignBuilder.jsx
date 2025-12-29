@@ -160,7 +160,7 @@ const VisualCampaignBuilder = () => {
       <div className="h-[calc(100vh-64px)] flex flex-col">
         {/* Top Bar */}
         <div className="flex items-center justify-between px-4 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             {/* Back Button */}
             <button
               onClick={() => window.history.back()}
@@ -273,7 +273,7 @@ const VisualCampaignBuilder = () => {
         {/* Settings Panel (Collapsible) */}
         {showSettings && (
           <div className="bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 p-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
               {/* Target Audience */}
               <div>
                 <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">

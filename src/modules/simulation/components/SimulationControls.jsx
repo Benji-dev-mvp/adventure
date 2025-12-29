@@ -64,7 +64,7 @@ const ControlSlider = ({
 export function SimulationControls({ params, updateParam }) {
   return (
     <GlassCard variant="subtle" className="h-full">
-      <GlassCardContent className="p-6">
+      <GlassCardContent className="p-4">
         <h3 className="text-lg font-semibold text-slate-100 mb-6">Simulation Controls</h3>
 
         <ControlSlider

@@ -93,7 +93,7 @@ const LeadDatabase = () => {
         showActivityPanel: false,
       }}
     >
-      <Tabs defaultValue="search" className="space-y-6">
+      <Tabs defaultValue="search" className="space-y-3">
         <TabsList className="w-full flex-wrap">
           <TabsTrigger value="search">Search Leads</TabsTrigger>
           <TabsTrigger value="upload">Upload Leads</TabsTrigger>
@@ -102,15 +102,15 @@ const LeadDatabase = () => {
 
         {/* Search Leads Tab */}
         <TabsContent value="search">
-          <div className="grid lg:grid-cols-4 gap-6">
+          <div className="grid lg:grid-cols-4 gap-3">
             {/* Filters Sidebar */}
-            <div className="lg:col-span-1 space-y-4">
+            <div className="lg:col-span-1 space-y-3">
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">Filters</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     {searchFilters.map(filter => {
                       const Icon = filter.icon;
                       return (
@@ -140,7 +140,7 @@ const LeadDatabase = () => {
               <Card>
                 <CardContent className="p-4">
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-accent-600 mb-1">300M+</p>
+                    <p className="text-lg font-bold text-accent-600 mb-1">300M+</p>
                     <p className="text-sm text-gray-600">Verified contacts</p>
                   </div>
                 </CardContent>
@@ -148,10 +148,10 @@ const LeadDatabase = () => {
             </div>
 
             {/* Search Results */}
-            <div className="lg:col-span-3 space-y-6">
+            <div className="lg:col-span-3 space-y-3">
               <Card>
-                <CardContent className="p-6">
-                  <div className="flex flex-col md:flex-row gap-4">
+                <CardContent className="p-4">
+                  <div className="flex flex-col md:flex-row gap-3">
                     <div className="flex-1 relative">
                       <Search
                         className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
@@ -222,7 +222,7 @@ const LeadDatabase = () => {
                     ].map((lead, index) => (
                       <div
                         key={index}
-                        className="p-4 border border-gray-200 rounded-xl hover:border-accent-300 transition-colors"
+                        className="p-4 border border-gray-200 rounded-lg hover:border-accent-300 transition-colors"
                       >
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
@@ -239,7 +239,7 @@ const LeadDatabase = () => {
                               {lead.title} at {lead.company}
                             </p>
                             <p className="text-sm text-gray-500 mb-3">{lead.location}</p>
-                            <div className="flex items-center gap-4 text-sm">
+                            <div className="flex items-center gap-3 text-sm">
                               <a
                                 href={`mailto:${lead.email}`}
                                 className="flex items-center gap-1 text-accent-600 hover:text-accent-700"
@@ -280,7 +280,7 @@ const LeadDatabase = () => {
 
         {/* Upload Leads Tab */}
         <TabsContent value="upload">
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-3">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -290,7 +290,7 @@ const LeadDatabase = () => {
                 <CardDescription>Import your existing lead lists</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="border-2 border-dashed border-gray-300 rounded-xl p-12 text-center hover:border-accent-400 transition-colors cursor-pointer">
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-accent-400 transition-colors cursor-pointer">
                   <Upload size={48} className="text-gray-400 mx-auto mb-4" />
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Drop your file here</h3>
                   <p className="text-sm text-gray-600 mb-4">or click to browse</p>
@@ -317,7 +317,7 @@ const LeadDatabase = () => {
               <CardContent>
                 <div className="space-y-3">
                   {recentUploads.map((upload, index) => (
-                    <div key={index} className="p-4 border border-gray-200 rounded-xl">
+                    <div key={index} className="p-4 border border-gray-200 rounded-lg">
                       <div className="flex items-start justify-between mb-2">
                         <h4 className="font-medium text-gray-900 text-sm">{upload.name}</h4>
                         <Badge variant="success">{upload.status}</Badge>
@@ -343,15 +343,15 @@ const LeadDatabase = () => {
 
         {/* Saved Searches Tab */}
         <TabsContent value="saved">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {savedSearches.map((search, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
+                <CardContent className="p-4">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{search.name}</h3>
                   <p className="text-sm text-gray-600 mb-4">{search.filters}</p>
                   <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-200">
                     <div>
-                      <p className="text-2xl font-bold text-accent-600">
+                      <p className="text-lg font-bold text-accent-600">
                         {search.results.toLocaleString()}
                       </p>
                       <p className="text-xs text-gray-500">leads found</p>
@@ -372,7 +372,7 @@ const LeadDatabase = () => {
             ))}
 
             <Card className="border-2 border-dashed border-gray-300 hover:border-accent-400 transition-colors cursor-pointer">
-              <CardContent className="p-6 flex flex-col items-center justify-center h-full text-center">
+              <CardContent className="p-4 flex flex-col items-center justify-center h-full text-center">
                 <Plus size={48} className="text-gray-400 mb-4" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Create New Search</h3>
                 <p className="text-sm text-gray-600">Save your search criteria for quick access</p>
@@ -383,13 +383,13 @@ const LeadDatabase = () => {
       </Tabs>
 
       {/* Advanced Lead Database Features */}
-      <div className="mt-8 space-y-6">
-        <h2 className="text-2xl font-bold">Advanced Search & Enrichment</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="mt-8 space-y-3">
+        <h2 className="text-lg font-bold">Advanced Search & Enrichment</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           <BooleanSearchBuilder />
           <LookalikeAudience />
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           <IntentSignals />
           <CompanyHierarchy />
           <ContactWaterfall />

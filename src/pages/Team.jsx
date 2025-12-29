@@ -94,15 +94,15 @@ const Team = () => {
   return (
     <DashboardLayout title="Team Management" subtitle="Manage your team members and permissions">
       {/* Team Stats */}
-      <div className="grid md:grid-cols-4 gap-6 mb-8">
+      <div className="grid md:grid-cols-4 gap-3 mb-8">
         <Card>
-          <CardContent className="p-6">
+          <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 mb-1">Total Members</p>
-                <p className="text-3xl font-bold text-gray-900">{teamMembers.length}</p>
+                <p className="text-lg font-bold text-gray-900">{teamMembers.length}</p>
               </div>
-              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+              <div className="w-12 h-9 bg-blue-100 rounded-lg flex items-center justify-center">
                 <Users size={24} className="text-blue-600" />
               </div>
             </div>
@@ -110,15 +110,15 @@ const Team = () => {
         </Card>
 
         <Card>
-          <CardContent className="p-6">
+          <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 mb-1">Active</p>
-                <p className="text-3xl font-bold text-green-600">
+                <p className="text-lg font-bold text-green-600">
                   {teamMembers.filter(m => m.status === 'active').length}
                 </p>
               </div>
-              <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+              <div className="w-12 h-9 bg-green-100 rounded-lg flex items-center justify-center">
                 <CheckCircle2 size={24} className="text-green-600" />
               </div>
             </div>
@@ -126,15 +126,15 @@ const Team = () => {
         </Card>
 
         <Card>
-          <CardContent className="p-6">
+          <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 mb-1">Pending</p>
-                <p className="text-3xl font-bold text-orange-600">
+                <p className="text-lg font-bold text-orange-600">
                   {teamMembers.filter(m => m.status === 'pending').length}
                 </p>
               </div>
-              <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
+              <div className="w-12 h-9 bg-orange-100 rounded-lg flex items-center justify-center">
                 <Clock size={24} className="text-orange-600" />
               </div>
             </div>
@@ -142,13 +142,13 @@ const Team = () => {
         </Card>
 
         <Card>
-          <CardContent className="p-6">
+          <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 mb-1">Seats Available</p>
-                <p className="text-3xl font-bold text-purple-600">6</p>
+                <p className="text-lg font-bold text-purple-600">6</p>
               </div>
-              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+              <div className="w-12 h-9 bg-purple-100 rounded-lg flex items-center justify-center">
                 <UserPlus size={24} className="text-purple-600" />
               </div>
             </div>
@@ -156,7 +156,7 @@ const Team = () => {
         </Card>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-6">
+      <div className="grid lg:grid-cols-3 gap-3">
         {/* Team Members List */}
         <div className="lg:col-span-2">
           <Card>
@@ -173,15 +173,15 @@ const Team = () => {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {teamMembers.map(member => (
                   <div
                     key={member.id}
-                    className="p-4 border border-gray-200 rounded-xl hover:border-accent-300 transition-colors"
+                    className="p-4 border border-gray-200 rounded-lg hover:border-accent-300 transition-colors"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-3">
-                        <Avatar className="w-12 h-12">
+                        <Avatar className="w-12 h-9">
                           <AvatarFallback className="text-base">{member.avatar}</AvatarFallback>
                         </Avatar>
                         <div>
@@ -208,13 +208,13 @@ const Team = () => {
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4 text-sm text-gray-600">
+                      <div className="flex items-center gap-3 text-sm text-gray-600">
                         <span className="font-medium text-accent-600">{member.role}</span>
                         <span>•</span>
                         <span>Joined {member.joinedDate}</span>
                       </div>
                       {member.status === 'active' && (
-                        <div className="flex items-center gap-4 text-sm text-gray-500">
+                        <div className="flex items-center gap-3 text-sm text-gray-500">
                           <span>{member.campaignsCreated} campaigns</span>
                           <span>•</span>
                           <span>{member.leadsManaged.toLocaleString()} leads</span>
@@ -236,14 +236,14 @@ const Team = () => {
               <CardDescription>Different access levels for your team</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {roles.map((role, index) => {
                   const Icon = role.icon;
                   return (
-                    <div key={index} className="p-4 border border-gray-200 rounded-xl">
+                    <div key={index} className="p-4 border border-gray-200 rounded-lg">
                       <div className="flex items-start gap-3 mb-3">
                         <div
-                          className={`w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center ${role.color}`}
+                          className={`w-10 h-9 bg-gray-100 rounded-lg flex items-center justify-center ${role.color}`}
                         >
                           <Icon size={20} />
                         </div>
@@ -279,11 +279,11 @@ const Team = () => {
             <ModalTitle>Invite Team Member</ModalTitle>
           </ModalHeader>
           <ModalContent>
-            <div className="space-y-4">
+            <div className="space-y-3">
               <Input label="Email Address" type="email" placeholder="colleague@company.com" />
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Role</label>
-                <select className="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-accent-500">
+                <select className="w-full px-4 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-accent-500">
                   <option>Member</option>
                   <option>Admin</option>
                 </select>

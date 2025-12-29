@@ -52,7 +52,7 @@ export const SendTimeOptimizer = ({ leads = [], industry = null }) => {
         </p>
       </CardHeader>
       <CardContent>
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Optimal Times List */}
           {loading ? (
             <div className="text-center py-8 text-gray-500">
@@ -100,7 +100,7 @@ export const SendTimeOptimizer = ({ leads = [], industry = null }) => {
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                      <div className="text-lg font-bold text-gray-900 dark:text-white">
                         {slot.reply_rate}%
                       </div>
                       <div className="text-xs text-gray-600 dark:text-gray-400">reply rate</div>

@@ -16,13 +16,13 @@ const LandingHeader = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 p-5 mx-auto w-full transition z-50 max-w-7xl px-10 ${
+      className={`fixed top-0 left-0 right-0 p-4 mx-auto w-full transition z-50 max-w-7xl px-10 ${
         hasScrolled
           ? 'bg-slate-950/80 border-b border-white/10 shadow-[0_10px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl'
           : 'bg-transparent'
       }`}
     >
-      <nav className="flex relative gap-4 justify-between items-center w-full">
+      <nav className="flex relative gap-3 justify-between items-center w-full">
         {/* Logo */}
         <div className="flex items-center p-3 pr-6 rounded-full gap-7 glass-dark border border-white/20 backdrop-blur-lg hover-lift">
           <Link to="/" className="flex items-center gap-2">
@@ -30,7 +30,7 @@ const LandingHeader = () => {
               <div className="w-8 h-8 gradient-mesh rounded-lg flex items-center justify-center glow">
                 <span className="text-white font-bold text-lg">A</span>
               </div>
-              <span className="text-xl font-bold text-white font-space-grotesk">Artisan</span>
+              <span className="text-lg font-bold text-white font-space-grotesk">Artisan</span>
             </div>
           </Link>
           <div className="hidden md:flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white text-xs font-semibold">
@@ -62,7 +62,7 @@ const LandingHeader = () => {
             </button>
 
             {solutionsOpen && (
-              <div className="absolute top-full left-0 mt-2 w-56 rounded-2xl glass-dark border border-white/20 backdrop-blur-xl shadow-2xl overflow-hidden animate-fadeIn">
+              <div className="absolute top-full left-0 mt-2 w-56 rounded-lg glass-dark border border-white/20 backdrop-blur-xl shadow-2xl overflow-hidden animate-fadeIn">
                 <Link
                   to="/solutions/startups"
                   className="flex items-center gap-3 px-4 py-3 hover:bg-white/10 transition-colors border-b border-white/10"
@@ -184,13 +184,13 @@ const LandingHeader = () => {
             transition: 'clip-path 0.4s ease-in-out',
           }}
         >
-          <div className="flex flex-col gap-3 p-5 w-full h-full">
+          <div className="flex flex-col gap-3 p-4 w-full h-full">
             {/* Mobile Menu Header */}
-            <div className="flex gap-4 justify-between items-center">
+            <div className="flex gap-3 justify-between items-center">
               <div className="flex gap-2 items-center">
                 <Link
                   to="/login"
-                  className="px-4 py-3 text-sm font-medium rounded-xl transition-all duration-300 glass border border-white/10 text-white hover:bg-white/10"
+                  className="px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 glass border border-white/10 text-white hover:bg-white/10"
                 >
                   Login
                 </Link>
@@ -203,7 +203,7 @@ const LandingHeader = () => {
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="grid place-items-center w-10 h-10 rounded-full glass border border-white/10 text-white"
+                className="grid place-items-center w-10 h-9 rounded-full glass border border-white/10 text-white"
                 aria-label="Close menu"
               >
                 <X className="w-5 h-5" />
@@ -213,11 +213,11 @@ const LandingHeader = () => {
             <div className="border-b border-white/10"></div>
 
             {/* Mobile Menu Items */}
-            <div className="flex flex-col gap-4 pt-4">
+            <div className="flex flex-col gap-3 pt-4">
               <Link
                 to="/dashboard"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex gap-2 justify-between p-3 px-4 rounded-2xl glass border border-white/10 hover:bg-white/10 text-white transition-colors"
+                className="flex gap-2 justify-between p-3 px-4 rounded-lg glass border border-white/10 hover:bg-white/10 text-white transition-colors"
               >
                 <p className="font-medium">Login</p>
                 <ArrowRight className="w-4 h-4" />
@@ -231,7 +231,7 @@ const LandingHeader = () => {
                 <Link
                   to="/solutions/startups"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-3 p-3 px-4 rounded-2xl glass border border-white/10 hover:bg-white/10 text-white transition-colors"
+                  className="flex items-center gap-3 p-3 px-4 rounded-lg glass border border-white/10 hover:bg-white/10 text-white transition-colors"
                 >
                   <div className="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center">
                     <Rocket className="w-4 h-4 text-purple-400" />
@@ -245,7 +245,7 @@ const LandingHeader = () => {
                 <Link
                   to="/solutions/midmarket"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-3 p-3 px-4 rounded-2xl glass border border-white/10 hover:bg-white/10 text-white transition-colors"
+                  className="flex items-center gap-3 p-3 px-4 rounded-lg glass border border-white/10 hover:bg-white/10 text-white transition-colors"
                 >
                   <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
                     <Building className="w-4 h-4 text-blue-400" />
@@ -259,7 +259,7 @@ const LandingHeader = () => {
                 <Link
                   to="/solutions/enterprise"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-3 p-3 px-4 rounded-2xl glass border border-white/10 hover:bg-white/10 text-white transition-colors"
+                  className="flex items-center gap-3 p-3 px-4 rounded-lg glass border border-white/10 hover:bg-white/10 text-white transition-colors"
                 >
                   <div className="w-8 h-8 rounded-lg bg-orange-500/20 flex items-center justify-center">
                     <Building2 className="w-4 h-4 text-orange-400" />
@@ -275,7 +275,7 @@ const LandingHeader = () => {
               <a
                 href="#ai-tour"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex gap-2 justify-between p-3 px-4 rounded-2xl glass border border-white/10 hover:bg-white/10 text-white transition-colors"
+                className="flex gap-2 justify-between p-3 px-4 rounded-lg glass border border-white/10 hover:bg-white/10 text-white transition-colors"
               >
                 <p className="font-medium">AI Tour</p>
                 <ArrowRight className="w-4 h-4" />
@@ -283,7 +283,7 @@ const LandingHeader = () => {
               <a
                 href="#flow"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex gap-2 justify-between p-3 px-4 rounded-2xl glass border border-white/10 hover:bg-white/10 text-white transition-colors"
+                className="flex gap-2 justify-between p-3 px-4 rounded-lg glass border border-white/10 hover:bg-white/10 text-white transition-colors"
               >
                 <p className="font-medium">Flow</p>
                 <ArrowRight className="w-4 h-4" />
@@ -291,7 +291,7 @@ const LandingHeader = () => {
               <a
                 href="#platform"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex gap-2 justify-between p-3 px-4 rounded-2xl glass border border-white/10 hover:bg-white/10 text-white transition-colors"
+                className="flex gap-2 justify-between p-3 px-4 rounded-lg glass border border-white/10 hover:bg-white/10 text-white transition-colors"
               >
                 <p className="font-medium">Platform</p>
                 <ArrowRight className="w-4 h-4" />
@@ -299,7 +299,7 @@ const LandingHeader = () => {
               <a
                 href="#security"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex gap-2 justify-between p-3 px-4 rounded-2xl glass border border-white/10 hover:bg-white/10 text-white transition-colors"
+                className="flex gap-2 justify-between p-3 px-4 rounded-lg glass border border-white/10 hover:bg-white/10 text-white transition-colors"
               >
                 <p className="font-medium">Security</p>
                 <ArrowRight className="w-4 h-4" />
@@ -307,7 +307,7 @@ const LandingHeader = () => {
               <a
                 href="#customers"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex gap-2 justify-between p-3 px-4 rounded-2xl glass border border-white/10 hover:bg-white/10 text-white transition-colors"
+                className="flex gap-2 justify-between p-3 px-4 rounded-lg glass border border-white/10 hover:bg-white/10 text-white transition-colors"
               >
                 <p className="font-medium">Customers</p>
                 <ArrowRight className="w-4 h-4" />

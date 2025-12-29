@@ -59,9 +59,9 @@ export function RiskBreakdown({ risks, recommendation, activeStrategyData }) {
   if (!risks || risks.length === 0) {
     return (
       <GlassCard variant="subtle">
-        <GlassCardContent className="p-6">
+        <GlassCardContent className="p-4">
           <div className="text-center py-8 text-slate-400">
-            <AlertTriangle className="w-12 h-12 mx-auto mb-3 opacity-30" />
+            <AlertTriangle className="w-12 h-9 mx-auto mb-3 opacity-30" />
             <p>Select a strategy to view risk analysis</p>
           </div>
         </GlassCardContent>
@@ -75,7 +75,7 @@ export function RiskBreakdown({ risks, recommendation, activeStrategyData }) {
 
   return (
     <GlassCard variant="subtle">
-      <GlassCardContent className="p-6">
+      <GlassCardContent className="p-4">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-semibold text-slate-100">Risk Breakdown</h3>
           <div
@@ -86,7 +86,7 @@ export function RiskBreakdown({ risks, recommendation, activeStrategyData }) {
         </div>
 
         {/* Risk bars */}
-        <div className="space-y-4 mb-6">
+        <div className="space-y-3 mb-6">
           {risks.map((risk, index) => (
             <RiskBar key={risk.id} risk={risk} />
           ))}
@@ -97,7 +97,7 @@ export function RiskBreakdown({ risks, recommendation, activeStrategyData }) {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-4 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-xl border border-cyan-500/20"
+            className="p-4 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-lg border border-cyan-500/20"
           >
             <div className="flex items-start gap-3">
               <div className="p-2 rounded-lg bg-cyan-500/20">
@@ -113,15 +113,15 @@ export function RiskBreakdown({ risks, recommendation, activeStrategyData }) {
 
         {/* Summary stats */}
         {activeStrategyData?.summary && (
-          <div className="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-white/5">
+          <div className="grid grid-cols-2 gap-3 mt-6 pt-6 border-t border-white/5">
             <div className="text-center p-3 bg-slate-800/50 rounded-lg">
-              <p className="text-2xl font-bold text-emerald-400">
+              <p className="text-lg font-bold text-emerald-400">
                 ${(activeStrategyData.summary.projectedPipeline / 1000).toFixed(0)}K
               </p>
               <p className="text-xs text-slate-500">Projected Pipeline</p>
             </div>
             <div className="text-center p-3 bg-slate-800/50 rounded-lg">
-              <p className="text-2xl font-bold text-cyan-400">
+              <p className="text-lg font-bold text-cyan-400">
                 {activeStrategyData.summary.confidence}%
               </p>
               <p className="text-xs text-slate-500">Confidence</p>

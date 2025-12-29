@@ -168,7 +168,7 @@ const LiveCampaignSimulator = () => {
       <div className="absolute inset-0 grid-background opacity-10" />
       <div className="absolute top-20 left-20 w-96 h-96 bg-blue-600/20 blur-3xl animate-pulse-slow" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-dark border border-white/20 text-purple-300 text-sm font-semibold mb-4">
@@ -178,26 +178,26 @@ const LiveCampaignSimulator = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-space-grotesk">
             See Ava in Action - Real-Time
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
             Watch a live simulation of how Ava discovers leads, personalizes outreach, and drives
             conversations across multiple channels
           </p>
         </div>
 
         {/* Main Simulator Grid */}
-        <div className="grid lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid lg:grid-cols-3 gap-3 mb-8">
           {/* Lead Profile Card */}
           <Card className="lg:col-span-1 bg-slate-900/50 backdrop-blur-xl border-white/10">
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <User className="w-5 h-5 text-blue-400" />
                 Current Lead
               </h3>
 
               {leadData && (
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold">
+                    <div className="w-12 h-9 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold">
                       {leadData.avatar}
                     </div>
                     <div>
@@ -234,7 +234,7 @@ const LiveCampaignSimulator = () => {
 
           {/* Campaign Flow */}
           <Card className="lg:col-span-2 bg-slate-900/50 backdrop-blur-xl border-white/10">
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <Activity className="w-5 h-5 text-purple-400" />
                 Campaign Sequence
@@ -249,7 +249,7 @@ const LiveCampaignSimulator = () => {
                   return (
                     <div
                       key={step.id}
-                      className={`relative flex items-start gap-4 p-4 rounded-lg border transition-all duration-500 ${
+                      className={`relative flex items-start gap-3 p-4 rounded-lg border transition-all duration-500 ${
                         isActive
                           ? 'bg-gradient-to-r ' +
                             step.color +
@@ -260,7 +260,7 @@ const LiveCampaignSimulator = () => {
                       }`}
                     >
                       <div
-                        className={`w-10 h-10 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center flex-shrink-0 ${isActive ? 'animate-pulse' : ''}`}
+                        className={`w-10 h-9 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center flex-shrink-0 ${isActive ? 'animate-pulse' : ''}`}
                       >
                         <Icon className="w-5 h-5 text-white" />
                       </div>
@@ -290,35 +290,35 @@ const LiveCampaignSimulator = () => {
         </div>
 
         {/* Real-Time Metrics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
           <Card className="bg-slate-900/50 backdrop-blur-xl border-white/10 hover-lift">
-            <CardContent className="p-6 text-center">
+            <CardContent className="p-4 text-center">
               <Send className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-              <div className="text-3xl font-bold text-white mb-1">{metrics.sent}</div>
+              <div className="text-lg font-bold text-white mb-1">{metrics.sent}</div>
               <div className="text-sm text-gray-400">Sent</div>
             </CardContent>
           </Card>
 
           <Card className="bg-slate-900/50 backdrop-blur-xl border-white/10 hover-lift">
-            <CardContent className="p-6 text-center">
+            <CardContent className="p-4 text-center">
               <Eye className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-              <div className="text-3xl font-bold text-white mb-1">{metrics.opened}</div>
+              <div className="text-lg font-bold text-white mb-1">{metrics.opened}</div>
               <div className="text-sm text-gray-400">Opened</div>
             </CardContent>
           </Card>
 
           <Card className="bg-slate-900/50 backdrop-blur-xl border-white/10 hover-lift">
-            <CardContent className="p-6 text-center">
+            <CardContent className="p-4 text-center">
               <MousePointer className="w-8 h-8 text-orange-400 mx-auto mb-2" />
-              <div className="text-3xl font-bold text-white mb-1">{metrics.clicked}</div>
+              <div className="text-lg font-bold text-white mb-1">{metrics.clicked}</div>
               <div className="text-sm text-gray-400">Clicked</div>
             </CardContent>
           </Card>
 
           <Card className="bg-slate-900/50 backdrop-blur-xl border-white/10 hover-lift">
-            <CardContent className="p-6 text-center">
+            <CardContent className="p-4 text-center">
               <UserCheck className="w-8 h-8 text-green-400 mx-auto mb-2" />
-              <div className="text-3xl font-bold text-white mb-1">{metrics.replied}</div>
+              <div className="text-lg font-bold text-white mb-1">{metrics.replied}</div>
               <div className="text-sm text-gray-400">Replied</div>
             </CardContent>
           </Card>
@@ -326,7 +326,7 @@ const LiveCampaignSimulator = () => {
 
         {/* Timeline Progress */}
         <Card className="bg-slate-900/50 backdrop-blur-xl border-white/10">
-          <CardContent className="p-6">
+          <CardContent className="p-4">
             <div className="flex items-center justify-between mb-4">
               <h4 className="font-semibold text-white">Campaign Timeline</h4>
               <div className="text-sm text-gray-400">
@@ -357,7 +357,7 @@ const LiveCampaignSimulator = () => {
 
         {/* Key Insight */}
         <div className="mt-8 text-center">
-          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-dark border border-white/20">
+          <div className="inline-flex items-center gap-2 px-4 py-3 rounded-full glass-dark border border-white/20">
             <TrendingUp className="w-5 h-5 text-green-400" />
             <span className="text-white font-semibold">
               Average conversion time: 3.2 days | Response rate: 23% | Meeting rate: 12%

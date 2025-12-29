@@ -111,14 +111,14 @@ const SystemFlowDiagram = () => {
 
   return (
     <div className="w-full py-16 bg-gradient-to-b from-white to-slate-50 dark:from-slate-900 dark:to-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-semibold mb-4">
             <Activity className="w-4 h-4" />
             Live System Flow
           </div>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-3">
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-3">
             From Lead to Conversion in One Platform
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
@@ -128,7 +128,7 @@ const SystemFlowDiagram = () => {
         </div>
 
         {/* Flow Diagram */}
-        <div className="relative bg-white dark:bg-slate-800 rounded-2xl p-8 md:p-12 shadow-xl border border-slate-200 dark:border-slate-700 min-h-[500px] overflow-hidden">
+        <div className="relative bg-white dark:bg-slate-800 rounded-lg p-4 md:p-12 shadow-xl border border-slate-200 dark:border-slate-700 min-h-[500px] overflow-hidden">
           {/* Background pattern */}
           <div className="absolute inset-0 opacity-5">
             <div
@@ -209,11 +209,11 @@ const SystemFlowDiagram = () => {
                     isActive ? 'border-blue-500' : 'border-slate-200 dark:border-slate-600'
                   }`}
                 >
-                  <div className="p-5">
+                  <div className="p-4">
                     {/* Icon and Title */}
                     <div className="flex items-center gap-3 mb-3">
                       <div
-                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg ${isActive ? 'animate-pulse' : ''}`}
+                        className={`w-12 h-9 rounded-lg bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg ${isActive ? 'animate-pulse' : ''}`}
                       >
                         <Icon className="w-6 h-6 text-white" />
                       </div>
@@ -307,7 +307,7 @@ const SystemFlowDiagram = () => {
         </div>
 
         {/* Legend */}
-        <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-slate-600 dark:text-slate-400">
+        <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm text-slate-600 dark:text-slate-400">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse" />
             <span>Active Process</span>

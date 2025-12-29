@@ -89,7 +89,7 @@ const PlatformPage = () => {
   return (
     <AppShell showBanner={false}>
       {/* Hero */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/20 to-transparent" />
 
@@ -110,14 +110,14 @@ const PlatformPage = () => {
           </RevealText>
 
           <RevealText delay={200}>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
               AI personalization, multi-channel sequences, enterprise security, and deep
               integrations — all in one unified platform.
             </p>
           </RevealText>
 
           <RevealText delay={300}>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link to="/pricing#start">
                 <GlowButton variant="primary" size="lg" glow className="gap-2">
                   <Sparkles size={18} />
@@ -136,11 +136,11 @@ const PlatformPage = () => {
       </section>
 
       {/* Multi-Channel Section */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">True Multi-Channel Outreach</GradientText>
               </h2>
               <p className="text-gray-300 text-lg">
@@ -149,17 +149,17 @@ const PlatformPage = () => {
             </div>
           </RevealText>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
             {CHANNELS.map((channel, index) => {
               const Icon = channel.icon;
               return (
                 <RevealText key={channel.name} delay={index * 100}>
                   <GlassCard variant="default" hover glow glowColor="cyan" className="h-full">
-                    <GlassCardContent className="p-6 text-center">
-                      <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center">
+                    <GlassCardContent className="p-4 text-center">
+                      <div className="w-14 h-14 mx-auto mb-4 rounded-lg bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center">
                         <Icon size={28} className="text-white" />
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-2 font-space-grotesk">
+                      <h3 className="text-lg font-bold text-white mb-2 font-space-grotesk">
                         {channel.name}
                       </h3>
                       <p className="text-gray-400 text-sm">{channel.description}</p>
@@ -176,7 +176,7 @@ const PlatformPage = () => {
       <FeaturesShowcase />
 
       {/* Replaces Section */}
-      <section className="py-20 px-6 relative overflow-hidden bg-gradient-to-b from-transparent via-red-950/10 to-transparent">
+      <section className="py-20 px-4 relative overflow-hidden bg-gradient-to-b from-transparent via-red-950/10 to-transparent">
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
@@ -184,7 +184,7 @@ const PlatformPage = () => {
                 <RefreshCw size={16} className="text-red-400" />
                 <span className="text-sm text-red-300">Consolidate Your Stack</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="aurora">Replaces Them Entirely</GradientText>
               </h2>
               <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -193,7 +193,7 @@ const PlatformPage = () => {
             </div>
           </RevealText>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
             {REPLACES.map((tool, index) => (
               <RevealText key={tool} delay={index * 50}>
                 <GlassCard variant="default" hover className="text-center">
@@ -208,10 +208,10 @@ const PlatformPage = () => {
           <RevealText delay={600}>
             <div className="mt-12 text-center">
               <GlassCard variant="gradient" className="inline-block">
-                <GlassCardContent className="p-6">
-                  <div className="flex flex-col sm:flex-row items-center gap-4">
+                <GlassCardContent className="p-4">
+                  <div className="flex flex-col sm:flex-row items-center gap-3">
                     <div className="text-center sm:text-left">
-                      <div className="text-3xl font-bold mb-1">
+                      <div className="text-lg font-bold mb-1">
                         <GradientText gradient="cyber">Save $50k+/year</GradientText>
                       </div>
                       <p className="text-gray-400 text-sm">
@@ -235,7 +235,7 @@ const PlatformPage = () => {
       <IntegrationsShowcase />
 
       {/* Enterprise Pillars */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -244,7 +244,7 @@ const PlatformPage = () => {
               <p className="text-sm font-semibold text-cyan-400 uppercase tracking-wide mb-4">
                 Enterprise-ready from day one
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">
                   The Operating System for Compliant, AI-led Outbound
                 </GradientText>
@@ -256,7 +256,7 @@ const PlatformPage = () => {
             </div>
           </RevealText>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
             {ENTERPRISE_PILLARS.map((pillar, index) => {
               const Icon = pillar.icon;
               return (
@@ -285,18 +285,18 @@ const PlatformPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
 
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 font-space-grotesk">
+            <h2 className="text-lg md:text-4xl font-bold mb-6 font-space-grotesk">
               <GradientText gradient="aurora">Ready to Consolidate Your Stack?</GradientText>
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-lg text-gray-300 mb-8">
               See how Artisan replaces 10+ tools with one AI-powered platform
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link to="/pricing#start">
                 <GlowButton variant="primary" size="lg" glow className="gap-2">
                   Start Free Trial
@@ -310,7 +310,7 @@ const PlatformPage = () => {
                 </GlowButtonOutline>
               </Link>
             </div>
-            <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+            <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm text-gray-400">
               <span className="flex items-center gap-2">
                 <CheckCircle2 size={16} className="text-emerald-400" />
                 SOC 2 Type II

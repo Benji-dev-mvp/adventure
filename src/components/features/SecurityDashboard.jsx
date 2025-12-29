@@ -108,7 +108,7 @@ const SecurityDashboard = () => {
       <div className="absolute inset-0 grid-background opacity-10" />
       <div className="absolute bottom-20 right-20 w-96 h-96 bg-red-600/20 blur-3xl animate-pulse-slow" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-dark border border-white/20 text-green-300 text-sm font-semibold mb-4">
@@ -118,14 +118,14 @@ const SecurityDashboard = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-space-grotesk">
             Security-First Architecture
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
             SOC 2 Type II certified with real-time threat monitoring, comprehensive audit trails,
             and enterprise-grade access controls
           </p>
         </div>
 
         {/* Security Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
           {securityMetrics.map((metric, idx) => {
             const Icon = metric.icon;
             return (
@@ -133,10 +133,10 @@ const SecurityDashboard = () => {
                 key={idx}
                 className="bg-slate-900/50 backdrop-blur-xl border-white/10 hover-lift"
               >
-                <CardContent className="p-6">
+                <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-4">
                     <div
-                      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${metric.bgColor} flex items-center justify-center`}
+                      className={`w-12 h-9 rounded-lg bg-gradient-to-br ${metric.bgColor} flex items-center justify-center`}
                     >
                       <Icon className="w-6 h-6 text-white" />
                     </div>
@@ -145,7 +145,7 @@ const SecurityDashboard = () => {
                     )}
                   </div>
                   <h3 className="text-sm font-semibold text-gray-400 mb-1">{metric.title}</h3>
-                  <div className={`text-2xl font-bold ${metric.color} mb-1`}>{metric.status}</div>
+                  <div className={`text-lg font-bold ${metric.color} mb-1`}>{metric.status}</div>
                   <p className="text-xs text-gray-500">{metric.description}</p>
                 </CardContent>
               </Card>
@@ -154,10 +154,10 @@ const SecurityDashboard = () => {
         </div>
 
         {/* Main Dashboard Grid */}
-        <div className="grid lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid lg:grid-cols-3 gap-3 mb-8">
           {/* Real-Time Audit Log */}
           <Card className="lg:col-span-2 bg-slate-900/50 backdrop-blur-xl border-white/10">
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-bold text-white flex items-center gap-2">
                   <FileCheck className="w-5 h-5 text-blue-400" />
@@ -199,13 +199,13 @@ const SecurityDashboard = () => {
 
           {/* Access Control */}
           <Card className="bg-slate-900/50 backdrop-blur-xl border-white/10">
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <Key className="w-5 h-5 text-purple-400" />
                 Identity & Access
               </h3>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="p-4 rounded-lg glass-dark border border-white/10">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-semibold text-white">SSO/SAML</span>
@@ -243,10 +243,10 @@ const SecurityDashboard = () => {
         </div>
 
         {/* Compliance & Data Residency */}
-        <div className="grid lg:grid-cols-2 gap-6">
+        <div className="grid lg:grid-cols-2 gap-3">
           {/* Compliance Matrix */}
           <Card className="bg-slate-900/50 backdrop-blur-xl border-white/10">
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <Shield className="w-5 h-5 text-green-400" />
                 Compliance Certifications
@@ -284,7 +284,7 @@ const SecurityDashboard = () => {
 
           {/* Data Residency */}
           <Card className="bg-slate-900/50 backdrop-blur-xl border-white/10">
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <Globe className="w-5 h-5 text-blue-400" />
                 Data Residency Options
@@ -332,8 +332,8 @@ const SecurityDashboard = () => {
         </div>
 
         {/* Security Features Banner */}
-        <div className="mt-8 glass-dark border border-white/20 rounded-2xl p-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div className="mt-8 glass-dark border border-white/20 rounded-lg p-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
             <div>
               <Eye className="w-8 h-8 text-purple-400 mx-auto mb-2" />
               <div className="text-sm font-semibold text-white mb-1">Full Visibility</div>

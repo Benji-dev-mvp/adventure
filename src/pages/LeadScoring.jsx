@@ -209,18 +209,18 @@ const LeadScoring = () => {
       title="Advanced Lead Scoring"
       subtitle="Customize scoring models and analyze lead quality"
     >
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Summary Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Total Leads</p>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">1,050</p>
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">1,050</p>
                   <p className="text-sm text-green-600 mt-1">+12.5% this week</p>
                 </div>
-                <div className="p-3 bg-blue-100 dark:bg-blue-500/20 rounded-xl">
+                <div className="p-3 bg-blue-100 dark:bg-blue-500/20 rounded-lg">
                   <Users className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                 </div>
               </div>
@@ -232,10 +232,10 @@ const LeadScoring = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Hot Leads</p>
-                  <p className="text-3xl font-bold text-green-600">187</p>
+                  <p className="text-lg font-bold text-green-600">187</p>
                   <p className="text-sm text-gray-600 mt-1">Score 80+</p>
                 </div>
-                <div className="p-3 bg-green-100 dark:bg-green-500/20 rounded-xl">
+                <div className="p-3 bg-green-100 dark:bg-green-500/20 rounded-lg">
                   <TrendingUp className="w-6 h-6 text-green-600 dark:text-green-400" />
                 </div>
               </div>
@@ -247,10 +247,10 @@ const LeadScoring = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Avg Score</p>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">67.2</p>
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">67.2</p>
                   <p className="text-sm text-green-600 mt-1">+4.3 pts</p>
                 </div>
-                <div className="p-3 bg-purple-100 dark:bg-purple-500/20 rounded-xl">
+                <div className="p-3 bg-purple-100 dark:bg-purple-500/20 rounded-lg">
                   <Target className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                 </div>
               </div>
@@ -262,10 +262,10 @@ const LeadScoring = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Conversion Rate</p>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">23.8%</p>
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">23.8%</p>
                   <p className="text-sm text-green-600 mt-1">Hot leads → Customers</p>
                 </div>
-                <div className="p-3 bg-orange-100 dark:bg-orange-500/20 rounded-xl">
+                <div className="p-3 bg-orange-100 dark:bg-orange-500/20 rounded-lg">
                   <Zap className="w-6 h-6 text-orange-600 dark:text-orange-400" />
                 </div>
               </div>
@@ -273,9 +273,9 @@ const LeadScoring = () => {
           </Card>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Scoring Model Configuration */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-3">
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -301,7 +301,7 @@ const LeadScoring = () => {
                   </Select>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-3">
                 {/* Demographic Weight */}
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
@@ -309,7 +309,7 @@ const LeadScoring = () => {
                       Demographic Fit
                     </label>
                     <div className="flex items-center gap-2">
-                      <span className="text-2xl font-bold text-accent-600">
+                      <span className="text-lg font-bold text-accent-600">
                         {weights.demographic}%
                       </span>
                     </div>
@@ -334,7 +334,7 @@ const LeadScoring = () => {
                       Intent Signals
                     </label>
                     <div className="flex items-center gap-2">
-                      <span className="text-2xl font-bold text-purple-600">{weights.intent}%</span>
+                      <span className="text-lg font-bold text-purple-600">{weights.intent}%</span>
                     </div>
                   </div>
                   <input
@@ -357,7 +357,7 @@ const LeadScoring = () => {
                       Engagement Level
                     </label>
                     <div className="flex items-center gap-2">
-                      <span className="text-2xl font-bold text-green-600">
+                      <span className="text-lg font-bold text-green-600">
                         {weights.engagement}%
                       </span>
                     </div>
@@ -409,7 +409,7 @@ const LeadScoring = () => {
                           This may take a few moments.
                         </DialogDescription>
                       </DialogHeader>
-                      <div className="py-4">
+                      <div className="py-3">
                         <div className="p-4 bg-amber-50 dark:bg-amber-500/10 rounded-lg border border-amber-200 dark:border-amber-500/20">
                           <div className="flex gap-3">
                             <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
@@ -484,7 +484,7 @@ const LeadScoring = () => {
           </div>
 
           {/* Sample Leads Preview */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             <Card>
               <CardHeader>
                 <CardTitle>Live Score Preview</CardTitle>
@@ -508,7 +508,7 @@ const LeadScoring = () => {
                           <p className="text-xs text-gray-500 truncate">{lead.company}</p>
                         </div>
                         <div className="text-right ml-2">
-                          <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                          <div className="text-lg font-bold text-gray-900 dark:text-white">
                             {lead.score}
                           </div>
                           <Badge

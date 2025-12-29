@@ -38,7 +38,7 @@ const FinalCTA = ({ content }) => {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Main Content */}
         <div
           className={`text-center space-y-8 mb-16 transition-all duration-700 ${
@@ -58,12 +58,12 @@ const FinalCTA = ({ content }) => {
           </h2>
 
           {/* Subhead */}
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-lg text-white/90 max-w-3xl mx-auto leading-relaxed">
             {content.subhead}
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4">
             <Button
               size="lg"
               className="text-lg px-8 py-6 bg-white text-primary hover:bg-gray-100 shadow-2xl hover:shadow-3xl transition-all duration-200 group"
@@ -85,7 +85,7 @@ const FinalCTA = ({ content }) => {
           </div>
 
           {/* Feature List */}
-          <div className="flex flex-wrap justify-center gap-6 pt-8">
+          <div className="flex flex-wrap justify-center gap-3 pt-8">
             {content.features.map((feature, index) => (
               <div
                 key={index}
@@ -103,7 +103,7 @@ const FinalCTA = ({ content }) => {
 
         {/* Trust Indicators */}
         <div
-          className={`grid md:grid-cols-2 gap-8 max-w-4xl mx-auto transition-all duration-700 delay-300 ${
+          className={`grid md:grid-cols-2 gap-3 max-w-4xl mx-auto transition-all duration-700 delay-300 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}
         >
@@ -120,7 +120,7 @@ const FinalCTA = ({ content }) => {
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}
         >
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-16">
             <SocialProofMetric icon={Users} value="10,000+" label="Active Users" />
             <SocialProofMetric icon={Clock} value="99.95%" label="Uptime SLA" />
             <SocialProofMetric icon={Shield} value="SOC 2" label="Type II Certified" />
@@ -136,12 +136,12 @@ const FinalCTA = ({ content }) => {
  */
 const TrustCard = ({ icon: Icon, title, items }) => {
   return (
-    <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 space-y-4 hover:bg-white/15 transition-all duration-300">
+    <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 space-y-3 hover:bg-white/15 transition-all duration-300">
       <div className="flex items-center gap-3">
-        <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+        <div className="w-12 h-9 bg-white/20 rounded-lg flex items-center justify-center">
           <Icon className="w-6 h-6 text-white" />
         </div>
-        <h3 className="text-xl font-bold text-white">{title}</h3>
+        <h3 className="text-lg font-bold text-white">{title}</h3>
       </div>
       <ul className="space-y-3">
         {items.map((item, index) => (
@@ -160,12 +160,12 @@ const TrustCard = ({ icon: Icon, title, items }) => {
  */
 const SocialProofMetric = ({ icon: Icon, value, label }) => {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-3">
       <div className="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center">
         <Icon className="w-7 h-7 text-white" />
       </div>
       <div>
-        <div className="text-3xl font-bold text-white">{value}</div>
+        <div className="text-lg font-bold text-white">{value}</div>
         <div className="text-sm text-white/70">{label}</div>
       </div>
     </div>

@@ -144,12 +144,12 @@ const PipelineCommitments = () => {
   };
 
   return (
-    <div className="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
+    <div className="bg-gray-900 rounded-lg border border-gray-800 overflow-hidden">
       {/* Header */}
-      <div className="p-6 border-b border-gray-800">
+      <div className="p-4 border-b border-gray-800">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center">
+            <div className="w-10 h-9 rounded-lg bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center">
               <Target className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -164,7 +164,7 @@ const PipelineCommitments = () => {
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-4 gap-4 mt-6">
+        <div className="grid grid-cols-4 gap-3 mt-6">
           {[
             {
               label: 'Total Target',
@@ -200,7 +200,7 @@ const PipelineCommitments = () => {
                 <stat.icon className={`w-4 h-4 ${stat.color}`} />
                 <span className="text-sm text-gray-400">{stat.label}</span>
               </div>
-              <div className="text-xl font-bold text-white">{stat.value}</div>
+              <div className="text-lg font-bold text-white">{stat.value}</div>
               <div className="text-xs text-gray-500">{stat.subValue}</div>
             </div>
           ))}
@@ -294,7 +294,7 @@ const PipelineCommitments = () => {
             Burn-Down Analysis
           </h3>
           {selectedCommitment && (
-            <div className="space-y-4">
+            <div className="space-y-3">
               {/* Chart Placeholder */}
               <div className="bg-gray-800/50 rounded-lg p-4 h-48 flex items-center justify-center">
                 <div className="text-center">

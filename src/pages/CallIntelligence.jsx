@@ -117,7 +117,7 @@ const CallIntelligence = () => {
 
   return (
     <DashboardLayout title="Call Intelligence" subtitle="AI-powered call analysis and insights">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Transcript */}
         <Card className="lg:col-span-2">
           <CardHeader>
@@ -134,7 +134,7 @@ const CallIntelligence = () => {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4 max-h-[600px] overflow-y-auto">
+            <div className="space-y-3 max-h-[600px] overflow-y-auto">
               {call.transcript.map((line, i) => (
                 <div key={i} className="flex gap-3">
                   <span className="text-xs text-gray-500 min-w-[40px]">{line.time}</span>
@@ -155,7 +155,7 @@ const CallIntelligence = () => {
         </Card>
 
         {/* Insights */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Key Moments */}
           <Card>
             <CardHeader>

@@ -187,7 +187,7 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
         )}
       >
         <div className="flex items-center gap-3 mb-4">
-          <div className="p-2 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl">
+          <div className="p-2 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg">
             <Bot className="h-5 w-5 text-white" />
           </div>
           <div>
@@ -204,7 +204,7 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
                 <span className="text-xs text-gray-500 dark:text-gray-400">{highlight.metric}</span>
               </div>
               <div className="flex items-baseline gap-1 mt-1">
-                <span className="text-xl font-bold text-gray-900 dark:text-white">
+                <span className="text-lg font-bold text-gray-900 dark:text-white">
                   {highlight.value}
                 </span>
                 {highlight.change !== '0' && (
@@ -240,10 +240,10 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
       )}
     >
       {/* Header */}
-      <div className="p-6 border-b border-purple-500/10">
+      <div className="p-4 border-b border-purple-500/10">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl shadow-lg shadow-purple-500/25">
+            <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg shadow-lg shadow-purple-500/25">
               <Bot className="h-6 w-6 text-white" />
             </div>
             <div>
@@ -266,14 +266,14 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-4 gap-4 mt-6">
+        <div className="grid grid-cols-4 gap-3 mt-6">
           {summary.highlights.map(highlight => (
-            <div key={highlight.id} className="bg-white/50 dark:bg-white/5 rounded-xl p-4">
+            <div key={highlight.id} className="bg-white/50 dark:bg-white/5 rounded-lg p-4">
               <div className="flex items-center justify-between mb-2">
                 <highlight.icon className="h-5 w-5 text-gray-400" />
                 <MiniSparkline data={summary.sparklineData} />
               </div>
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">{highlight.value}</p>
+              <p className="text-lg font-bold text-gray-900 dark:text-white">{highlight.value}</p>
               <div className="flex items-center gap-2 mt-1">
                 <span className="text-xs text-gray-500 dark:text-gray-400">{highlight.metric}</span>
                 {highlight.change !== '0' && (
@@ -303,7 +303,7 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
             className="overflow-hidden"
           >
             {/* Actions List */}
-            <div className="p-6 border-b border-purple-500/10">
+            <div className="p-4 border-b border-purple-500/10">
               <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <Sparkles className="h-4 w-4 text-purple-500" />
                 Today's Actions
@@ -316,32 +316,32 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
             </div>
 
             {/* Weekly Stats */}
-            <div className="p-6 bg-white/30 dark:bg-white/5">
+            <div className="p-4 bg-white/30 dark:bg-white/5">
               <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <TrendingUp className="h-4 w-4 text-cyan-500" />
                 This Week's Impact
               </h3>
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-4 gap-3">
                 <div>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">
                     {summary.weeklyStats.leadsScored}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Leads Scored</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">
                     {summary.weeklyStats.emailsDrafted}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Emails Drafted</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">
                     {summary.weeklyStats.meetingsInfluenced}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Meetings Influenced</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-green-500">
+                  <p className="text-lg font-bold text-green-500">
                     {summary.weeklyStats.revenueInfluenced}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Revenue Influenced</p>

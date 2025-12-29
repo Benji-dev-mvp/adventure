@@ -30,9 +30,9 @@ const replacements = [
 ];
 
 const Tile = ({ item }) => (
-  <div className="group relative flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-white/25 hover:bg-white/10">
+  <div className="group relative flex items-center justify-center rounded-lg border border-white/10 bg-white/5 p-4 transition hover:border-white/25 hover:bg-white/10">
     <div
-      className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} text-sm font-bold text-white shadow-lg`}
+      className={`flex h-9 w-12 items-center justify-center rounded-lg bg-gradient-to-br ${item.gradient} text-sm font-bold text-white shadow-lg`}
     >
       {item.short}
     </div>
@@ -50,7 +50,7 @@ Tile.propTypes = {
 
 const IntegrationsShowcase = () => {
   return (
-    <section className="px-6 py-20">
+    <section className="px-4 py-20">
       <div className="mx-auto max-w-6xl">
         <div className="relative overflow-hidden rounded-[32px] bg-[#0b072d] text-white shadow-2xl">
           <div
@@ -63,19 +63,19 @@ const IntegrationsShowcase = () => {
           />
 
           <div className="relative grid gap-12 p-10 md:p-14 lg:grid-cols-[1fr_auto_1fr] items-center">
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/60">
                   Integrations
                 </p>
-                <h3 className="mt-2 text-3xl font-bold leading-tight md:text-4xl">
+                <h3 className="mt-2 text-lg font-bold leading-tight md:text-4xl">
                   Plays Well With Others
                 </h3>
                 <p className="mt-3 max-w-md text-lg text-white/70">
                   Easily integrates with the tools you already use.
                 </p>
               </div>
-              <div className="grid grid-cols-3 gap-4 max-w-md">
+              <div className="grid grid-cols-3 gap-3 max-w-md">
                 {integrations.map(item => (
                   <Tile key={item.name} item={item} />
                 ))}
@@ -84,23 +84,23 @@ const IntegrationsShowcase = () => {
 
             <div className="flex items-center justify-center">
               <div className="relative flex h-28 w-28 items-center justify-center rounded-[28px] bg-gradient-to-br from-white/10 to-white/5 shadow-2xl backdrop-blur">
-                <div className="h-16 w-16 rounded-2xl bg-gradient-magenta shadow-xl" />
+                <div className="h-16 w-16 rounded-lg bg-gradient-magenta shadow-xl" />
               </div>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div className="text-left lg:text-right">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/60">
                   Consolidation
                 </p>
-                <h3 className="mt-2 text-3xl font-bold leading-tight md:text-4xl">
+                <h3 className="mt-2 text-lg font-bold leading-tight md:text-4xl">
                   Replaces Them Entirely
                 </h3>
                 <p className="mt-3 text-lg text-white/70 lg:ml-auto lg:max-w-md">
                   Consolidate dozens of tools with one Artisan subscription.
                 </p>
               </div>
-              <div className="grid grid-cols-3 gap-4 sm:grid-cols-4">
+              <div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
                 {replacements.map(item => (
                   <Tile key={item.name} item={item} />
                 ))}

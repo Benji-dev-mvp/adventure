@@ -69,7 +69,7 @@ function Admin() {
       subtitle="System administration and monitoring"
       action={<Button onClick={() => window.location.reload()}>Refresh Data</Button>}
     >
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="w-full flex-wrap">
@@ -82,17 +82,17 @@ function Admin() {
 
           {/* Overview Tab */}
           <TabsContent value="overview">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
               <Card>
-                <CardContent className="p-6">
+                <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
                         Total Users
                       </p>
-                      <p className="text-2xl font-bold mt-1 text-gray-900 dark:text-white">1,234</p>
+                      <p className="text-lg font-bold mt-1 text-gray-900 dark:text-white">1,234</p>
                     </div>
-                    <div className="h-12 w-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                    <div className="h-9 w-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
                       <svg
                         className="w-6 h-6 text-blue-600 dark:text-blue-400"
                         fill="none"
@@ -112,15 +112,15 @@ function Admin() {
               </Card>
 
               <Card>
-                <CardContent className="p-6">
+                <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
                         Active Campaigns
                       </p>
-                      <p className="text-2xl font-bold mt-1 text-gray-900 dark:text-white">87</p>
+                      <p className="text-lg font-bold mt-1 text-gray-900 dark:text-white">87</p>
                     </div>
-                    <div className="h-12 w-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                    <div className="h-9 w-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
                       <svg
                         className="w-6 h-6 text-green-600 dark:text-green-400"
                         fill="none"
@@ -140,15 +140,15 @@ function Admin() {
               </Card>
 
               <Card>
-                <CardContent className="p-6">
+                <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
                         API Calls Today
                       </p>
-                      <p className="text-2xl font-bold mt-1 text-gray-900 dark:text-white">45.2K</p>
+                      <p className="text-lg font-bold mt-1 text-gray-900 dark:text-white">45.2K</p>
                     </div>
-                    <div className="h-12 w-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+                    <div className="h-9 w-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
                       <svg
                         className="w-6 h-6 text-purple-600 dark:text-purple-400"
                         fill="none"
@@ -168,13 +168,13 @@ function Admin() {
               </Card>
 
               <Card>
-                <CardContent className="p-6">
+                <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
                         System Status
                       </p>
-                      <p className="text-2xl font-bold mt-1 text-gray-900 dark:text-white">
+                      <p className="text-lg font-bold mt-1 text-gray-900 dark:text-white">
                         {systemHealth?.overall_status || 'Loading...'}
                       </p>
                     </div>
@@ -214,14 +214,14 @@ function Admin() {
           {/* System Health Tab */}
           <TabsContent value="health">
             {systemHealth && (
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* System Resources */}
                 <Card>
                   <CardHeader>
                     <CardTitle>System Resources</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                       <div>
                         <div className="flex items-center justify-between mb-2">
                           <span className={isDark ? 'text-gray-300' : 'text-gray-700'}>
@@ -304,7 +304,7 @@ function Admin() {
                     <CardTitle>Services Status</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-4">
+                    <div className="space-y-3">
                       {Object.entries(systemHealth.services).map(([service, info]) => (
                         <div
                           key={service}
@@ -438,13 +438,13 @@ function Admin() {
         </Tabs>
 
         {/* Advanced Admin Features */}
-        <div className="mt-8 space-y-6">
-          <h2 className="text-2xl font-bold">Advanced Administration</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="mt-8 space-y-3">
+          <h2 className="text-lg font-bold">Advanced Administration</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             <UserActivityDashboard />
             <BillingAnalytics />
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             <PermissionMatrix />
             <FeatureFlags />
           </div>

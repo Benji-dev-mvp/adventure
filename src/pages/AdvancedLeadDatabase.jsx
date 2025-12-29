@@ -125,7 +125,7 @@ const AdvancedLeadDatabase = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
             B2B Contact Database
           </h1>
           <p className="text-gray-600 dark:text-gray-300">
@@ -134,15 +134,15 @@ const AdvancedLeadDatabase = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-4 gap-3 mb-6">
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-9 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
                   <Users className="text-white" size={24} />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">
+                  <p className="text-lg font-bold">
                     {(stats.totalContacts / 1000000).toFixed(0)}M+
                   </p>
                   <p className="text-xs text-gray-600">Total Contacts</p>
@@ -151,13 +151,13 @@ const AdvancedLeadDatabase = () => {
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-9 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
                   <CheckCircle className="text-white" size={24} />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">
+                  <p className="text-lg font-bold">
                     {(stats.verifiedEmails / 1000000).toFixed(0)}M+
                   </p>
                   <p className="text-xs text-gray-600">Verified Emails</p>
@@ -166,26 +166,26 @@ const AdvancedLeadDatabase = () => {
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-9 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
                   <Briefcase className="text-white" size={24} />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">{(stats.directDials / 1000000).toFixed(0)}M+</p>
+                  <p className="text-lg font-bold">{(stats.directDials / 1000000).toFixed(0)}M+</p>
                   <p className="text-xs text-gray-600">Direct Dials</p>
                 </div>
               </div>
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-9 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
                   <TrendingUp className="text-white" size={24} />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">
+                  <p className="text-lg font-bold">
                     {(stats.activeJobChanges / 1000000).toFixed(1)}M+
                   </p>
                   <p className="text-xs text-gray-600">Job Changes</p>
@@ -195,7 +195,7 @@ const AdvancedLeadDatabase = () => {
           </Card>
         </div>
 
-        <div className="grid grid-cols-12 gap-6">
+        <div className="grid grid-cols-12 gap-3">
           {/* Filters Sidebar */}
           <div className="col-span-3">
             <Card className="sticky top-4">
@@ -205,7 +205,7 @@ const AdvancedLeadDatabase = () => {
                   Filters
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-3">
                 {/* Job Title */}
                 <div>
                   <label className="text-sm font-semibold mb-2 block">Job Title</label>
@@ -321,15 +321,15 @@ const AdvancedLeadDatabase = () => {
             </div>
 
             {/* Results List */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               {searchResults.map(contact => (
                 <Card key={contact.id} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
+                  <CardContent className="p-4">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         {/* Contact Info */}
-                        <div className="flex items-start gap-4 mb-4">
-                          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-xl font-bold">
+                        <div className="flex items-start gap-3 mb-4">
+                          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-lg font-bold">
                             {contact.name
                               .split(' ')
                               .map(n => n[0])

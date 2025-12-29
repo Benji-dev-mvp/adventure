@@ -93,9 +93,9 @@ const MetricCard: React.FC<{
   change?: number;
   unit?: string;
 }> = ({ label, value, change, unit }) => (
-  <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+  <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
     <div className="text-gray-400 text-sm mb-1">{label}</div>
-    <div className="text-2xl font-bold text-white">
+    <div className="text-lg font-bold text-white">
       {value}
       {unit && <span className="text-sm text-gray-400 ml-1">{unit}</span>}
     </div>
@@ -124,10 +124,10 @@ const AgentCard: React.FC<{ agent: AgentStatus }> = ({ agent }) => {
   };
 
   return (
-    <div className="bg-gray-800 rounded-xl p-4 border border-gray-700 hover:border-blue-500 transition-colors">
+    <div className="bg-gray-800 rounded-lg p-4 border border-gray-700 hover:border-blue-500 transition-colors">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
-          <span className="text-2xl">{typeIcons[agent.type]}</span>
+          <span className="text-lg">{typeIcons[agent.type]}</span>
           <div>
             <div className="font-semibold text-white">{agent.name}</div>
             <div className="text-sm text-gray-400 capitalize">{agent.type}</div>
@@ -165,7 +165,7 @@ const AgentCard: React.FC<{ agent: AgentStatus }> = ({ agent }) => {
 const TaskQueue: React.FC<{ tasks: Array<{ id: string; type: string; priority: string }> }> = ({
   tasks,
 }) => (
-  <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+  <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
     <h3 className="text-lg font-semibold text-white mb-3">Task Queue</h3>
     <div className="space-y-2 max-h-64 overflow-y-auto">
       {tasks.map(task => (
@@ -258,14 +258,14 @@ export const OrchestrationPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
+    <div className="min-h-screen bg-gray-900 text-white p-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-3xl font-bold">Agent Orchestration</h1>
+          <h1 className="text-lg font-bold">Agent Orchestration</h1>
           <p className="text-gray-400">Autonomous multi-agent command center</p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <button
             onClick={() => setShowCanvas(!showCanvas)}
             className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
@@ -280,7 +280,7 @@ export const OrchestrationPage: React.FC = () => {
       </div>
 
       {/* Metrics Row */}
-      <div className="grid grid-cols-6 gap-4 mb-6">
+      <div className="grid grid-cols-6 gap-3 mb-6">
         <MetricCard label="Active Agents" value={safeMetrics.activeAgents || 0} change={5} />
         <MetricCard label="Tasks in Queue" value={safeMetrics.tasksInQueue || 0} />
         <MetricCard label="Tasks Completed" value={safeMetrics.tasksCompleted || 0} change={12} />
@@ -300,10 +300,10 @@ export const OrchestrationPage: React.FC = () => {
 
       {/* Neural Canvas */}
       {showCanvas && (
-        <div className="mb-6 bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
+        <div className="mb-6 bg-gray-800 rounded-lg border border-gray-700 overflow-hidden">
           <div className="p-3 border-b border-gray-700 flex items-center justify-between">
             <h3 className="font-semibold">Neural Activity Graph</h3>
-            <div className="flex items-center gap-4 text-sm text-gray-400">
+            <div className="flex items-center gap-3 text-sm text-gray-400">
               <span className="flex items-center gap-1">
                 <div className="w-2 h-2 bg-green-500 rounded-full" /> Active
               </span>
@@ -320,11 +320,11 @@ export const OrchestrationPage: React.FC = () => {
       )}
 
       {/* Main Grid */}
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-4 gap-3">
         {/* Agent Cards */}
         <div className="col-span-3">
           <h3 className="text-lg font-semibold mb-4">Agent Fleet</h3>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-3">
             {safeAgents.length > 0 ? (
               safeAgents.map(agent => {
                 if (!agent || !agent.id) return null;
@@ -341,7 +341,7 @@ export const OrchestrationPage: React.FC = () => {
           <TaskQueue tasks={mockTasks || []} />
 
           {/* Quick Actions */}
-          <div className="mt-4 bg-gray-800 rounded-xl p-4 border border-gray-700">
+          <div className="mt-4 bg-gray-800 rounded-lg p-4 border border-gray-700">
             <h3 className="text-lg font-semibold text-white mb-3">Quick Actions</h3>
             <div className="space-y-2">
               <button className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors text-sm">

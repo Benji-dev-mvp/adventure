@@ -78,7 +78,7 @@ export const GoalTracking = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           {goals.map(goal => {
             const progress = getProgress(goal.current, goal.target);
             const status = getStatus(progress);

@@ -48,7 +48,7 @@ const DashboardLayout = ({ children, title, subtitle }) => {
       )}
 
       {/* Main Content */}
-      <main className="max-w-[1920px] mx-auto px-6 py-6">{children}</main>
+      <main className="max-w-[1920px] mx-auto px-4 py-6">{children}</main>
     </div>
   );
 };

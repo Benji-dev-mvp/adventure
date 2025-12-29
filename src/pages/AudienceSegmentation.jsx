@@ -40,13 +40,13 @@ const AudienceSegmentation = () => {
       title="Audience Segmentation"
       subtitle="Build smart segments with advanced filters"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Builder */}
         <Card className="lg:col-span-2">
           <CardHeader>
             <CardTitle>Segment Builder</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-3">
             <div>
               <label className="block text-sm font-medium mb-2">Segment Name</label>
               <input
@@ -131,7 +131,7 @@ const AudienceSegmentation = () => {
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-3xl font-bold text-blue-600">{matchCount}</p>
+                  <p className="text-lg font-bold text-blue-600">{matchCount}</p>
                   <p className="text-xs text-gray-600">leads match</p>
                 </div>
               </div>

@@ -83,7 +83,7 @@ export const EmailPreview = ({ subject, content, from }) => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="flex justify-center p-6 bg-gray-100 dark:bg-gray-900 rounded-lg">
+        <div className="flex justify-center p-4 bg-gray-100 dark:bg-gray-900 rounded-lg">
           <div
             className={`transition-all duration-300 rounded-lg shadow-xl overflow-hidden ${
               theme === 'dark' ? 'bg-gray-900' : 'bg-white'
@@ -130,7 +130,7 @@ export const EmailPreview = ({ subject, content, from }) => {
             </div>
 
             {/* Email Body */}
-            <div className={`p-6 ${device === 'mobile' ? 'p-4' : ''}`}>
+            <div className={`p-4 ${device === 'mobile' ? 'p-4' : ''}`}>
               <div className={`prose max-w-none ${theme === 'dark' ? 'prose-invert' : ''}`}>
                 {processContent(content)
                   ?.split('\n')

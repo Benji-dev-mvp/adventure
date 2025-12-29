@@ -107,7 +107,7 @@ const ContextStrip = ({ currentSection, currentItem }) => {
 
   return (
     <div
-      className="h-10 border-b backdrop-blur-sm flex items-center px-6 gap-3"
+      className="h-9 border-b backdrop-blur-sm flex items-center px-4 gap-3"
       style={{ borderColor: colors.border.primary, backgroundColor: colors.bg.secondary }}
     >
       {/* Demo Org indicator */}
@@ -141,7 +141,7 @@ const ContextStrip = ({ currentSection, currentItem }) => {
       {/* Micro-KPIs */}
       {microKpis.length > 0 && (
         <div
-          className="hidden md:flex items-center gap-4 ml-4 pl-4 border-l"
+          className="hidden md:flex items-center gap-3 ml-4 pl-4 border-l"
           style={{ borderColor: colors.border.primary }}
         >
           {microKpis.map((kpi, idx) => (
@@ -326,7 +326,7 @@ const PostLoginShell = ({ children }) => {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto px-2 py-4 space-y-6">
+        <nav className="flex-1 overflow-y-auto px-2 py-3 space-y-3">
           {sections.map(section => {
             const isEmphasized = emphasizedSections.includes(section.id);
             return (
@@ -362,7 +362,7 @@ const PostLoginShell = ({ children }) => {
         {/* Collapse Toggle */}
         <button
           onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-          className="h-10 border-t flex items-center justify-center transition-colors"
+          className="h-9 border-t flex items-center justify-center transition-colors"
           style={{
             borderColor: colors.border.primary,
             color: colors.text.secondary,
@@ -385,7 +385,7 @@ const PostLoginShell = ({ children }) => {
       >
         {/* Header */}
         <header
-          className="h-14 border-b backdrop-blur-xl flex items-center px-4 gap-4"
+          className="h-14 border-b backdrop-blur-xl flex items-center px-4 gap-3"
           style={{ borderColor: colors.border.primary, backgroundColor: colors.bg.secondary }}
         >
           {/* Mobile menu toggle */}
@@ -455,7 +455,7 @@ const PostLoginShell = ({ children }) => {
         {/* Optional Top Bar (section tabs) */}
         {showTopBar && (
           <div
-            className="h-12 border-b backdrop-blur-sm flex items-center px-6 gap-1 overflow-x-auto"
+            className="h-9 border-b backdrop-blur-sm flex items-center px-4 gap-1 overflow-x-auto"
             style={{ borderColor: colors.border.primary, backgroundColor: colors.bg.secondary }}
           >
             {sections.map(section => {
@@ -516,7 +516,7 @@ const PostLoginShell = ({ children }) => {
             </div>
 
             {/* Mobile Nav */}
-            <nav className="px-2 py-4 space-y-6">
+            <nav className="px-2 py-3 space-y-3">
               {sections.map(section => (
                 <div key={section.id}>
                   <div className="px-3 mb-2 text-[10px] font-medium uppercase tracking-[0.16em] text-slate-600">

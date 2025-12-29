@@ -183,7 +183,7 @@ const AttributionDetail = ({ segment, channel, metric, data, onClose }) => {
   const Icon = metricInfo.icon;
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl p-5 border border-gray-200 dark:border-gray-700 mt-4 animate-fadeIn">
+    <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700 mt-4 animate-fadeIn">
       <div className="flex justify-between items-start mb-4">
         <div>
           <h4 className="font-semibold text-gray-900 dark:text-white capitalize flex items-center gap-2">
@@ -203,23 +203,23 @@ const AttributionDetail = ({ segment, channel, metric, data, onClose }) => {
       </div>
 
       {/* Attribution Breakdown */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
         <div className="bg-white dark:bg-gray-700 rounded-lg p-4">
           <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">Current Value</div>
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">
+          <div className="text-lg font-bold text-gray-900 dark:text-white">
             {formatValue(data.value, metricInfo.format)}
           </div>
         </div>
         <div className="bg-white dark:bg-gray-700 rounded-lg p-4">
           <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">Benchmark</div>
-          <div className="text-2xl font-bold text-gray-900 dark:text-white">
+          <div className="text-lg font-bold text-gray-900 dark:text-white">
             {formatValue(data.benchmark, metricInfo.format)}
           </div>
         </div>
         <div className="bg-white dark:bg-gray-700 rounded-lg p-4">
           <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">vs. Benchmark</div>
           <div
-            className={`text-2xl font-bold ${data.value >= data.benchmark ? 'text-green-600' : 'text-red-600'}`}
+            className={`text-lg font-bold ${data.value >= data.benchmark ? 'text-green-600' : 'text-red-600'}`}
           >
             {((data.value / data.benchmark - 1) * 100).toFixed(1)}%
           </div>
@@ -227,7 +227,7 @@ const AttributionDetail = ({ segment, channel, metric, data, onClose }) => {
         <div className="bg-white dark:bg-gray-700 rounded-lg p-4">
           <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">Week-over-Week</div>
           <div
-            className={`text-2xl font-bold flex items-center gap-1 ${data.trend >= 0 ? 'text-green-600' : 'text-red-600'}`}
+            className={`text-lg font-bold flex items-center gap-1 ${data.trend >= 0 ? 'text-green-600' : 'text-red-600'}`}
           >
             {data.trend >= 0 ? <ArrowUpRight size={20} /> : <ArrowDownRight size={20} />}
             {Math.abs(data.trend)}%
@@ -292,7 +292,7 @@ AttributionDetail.propTypes = {
 
 // Legend
 const MatrixLegend = () => (
-  <div className="flex items-center gap-4 text-xs">
+  <div className="flex items-center gap-3 text-xs">
     <span className="text-gray-600 dark:text-gray-400">Performance:</span>
     {[
       { color: 'bg-green-500', label: 'Excellent' },
@@ -383,12 +383,12 @@ export const PlaybookAttributionMatrix = ({ playbooks = [], onDrillDown }) => {
   const metricInfo = metricConfig[selectedMetric];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="p-5 border-b border-gray-200 dark:border-gray-700">
+      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-9 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
               <Grid3X3 className="text-white" size={20} />
             </div>
             <div>
@@ -439,7 +439,7 @@ export const PlaybookAttributionMatrix = ({ playbooks = [], onDrillDown }) => {
       </div>
 
       {/* Matrix Content */}
-      <div className="p-5 overflow-x-auto">
+      <div className="p-4 overflow-x-auto">
         <div className="inline-block min-w-full">
           {/* Column Headers */}
           <div className="flex items-end mb-3">
@@ -521,7 +521,7 @@ export const PlaybookAttributionMatrix = ({ playbooks = [], onDrillDown }) => {
                 return (
                   <div
                     key={channel}
-                    className="w-24 h-12 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-lg"
+                    className="w-24 h-9 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-lg"
                   >
                     <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                       {formatValue(colAvg, metricInfo.format)}
@@ -529,7 +529,7 @@ export const PlaybookAttributionMatrix = ({ playbooks = [], onDrillDown }) => {
                   </div>
                 );
               })}
-              <div className="min-w-24 h-12 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 rounded-lg">
+              <div className="min-w-24 h-9 flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 rounded-lg">
                 <span className="text-sm font-bold text-purple-700 dark:text-purple-300">
                   {formatValue(benchmark, metricInfo.format)}
                 </span>

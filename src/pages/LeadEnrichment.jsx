@@ -101,14 +101,14 @@ const LeadEnrichment = () => {
           </CardHeader>
           <CardContent>
             {step === 1 && (
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <h3 className="font-semibold">Select Data Source</h3>
-                <div className="grid gap-4">
+                <div className="grid gap-3">
                   {sources.map(source => (
                     <div
                       key={source.id}
                       onClick={() => setSelectedSource(source.id)}
-                      className={`p-4 border-2 rounded-xl cursor-pointer transition-all ${
+                      className={`p-4 border-2 rounded-lg cursor-pointer transition-all ${
                         selectedSource === source.id
                           ? 'border-accent-500 bg-accent-50 dark:bg-accent-500/10'
                           : 'border-gray-200 dark:border-white/10 hover:border-accent-300'
@@ -131,7 +131,7 @@ const LeadEnrichment = () => {
             )}
 
             {step === 2 && (
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <h3 className="font-semibold">Preview Enrichment</h3>
                 <div className="space-y-2">
                   {leads.map(lead => (
@@ -155,7 +155,7 @@ const LeadEnrichment = () => {
             )}
 
             {step === 3 && (
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <h3 className="font-semibold">Confirm & Enrich</h3>
                 {!enriching && progress === 0 && (
                   <div className="p-4 bg-blue-50 dark:bg-blue-500/10 rounded-lg">

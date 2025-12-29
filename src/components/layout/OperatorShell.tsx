@@ -307,7 +307,7 @@ const InspectorContent: React.FC<{ entity: any }> = ({ entity }) => {
           ))}
         </>
       ) : (
-        <p style={{ color: colors.text.tertiary }} className="text-xs text-center py-4">
+        <p style={{ color: colors.text.tertiary }} className="text-xs text-center py-3">
           No additional details available
         </p>
       )}

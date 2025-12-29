@@ -57,7 +57,7 @@ export function GlassCard({
   blur = 'xl',
   radius = 'lg',
   padding = 'p-6',
-  className = '',
+  className='',
   hover = true,
   tilt = false,
   glow = false,
@@ -138,7 +138,7 @@ GlassCard.propTypes = {
 /**
  * GlassCardHeader - Header section for glass cards
  */
-export function GlassCardHeader({ children, className = '', ...props }) {
+export function GlassCardHeader({ children, className='', ...props }) {
   return (
     <div className={`mb-4 ${className}`} {...props}>
       {children}
@@ -154,9 +154,9 @@ GlassCardHeader.propTypes = {
 /**
  * GlassCardTitle - Title for glass cards
  */
-export function GlassCardTitle({ children, className = '', as: Component = 'h3', ...props }) {
+export function GlassCardTitle({ children, className='', as: Component = 'h3', ...props }) {
   return (
-    <Component className={`text-xl font-semibold text-white ${className}`} {...props}>
+    <Component className={`text-lg font-semibold text-white ${className}`} {...props}>
       {children}
     </Component>
   );
@@ -171,7 +171,7 @@ GlassCardTitle.propTypes = {
 /**
  * GlassCardDescription - Description text for glass cards
  */
-export function GlassCardDescription({ children, className = '', ...props }) {
+export function GlassCardDescription({ children, className='', ...props }) {
   return (
     <p className={`text-sm text-white/60 mt-1 ${className}`} {...props}>
       {children}
@@ -187,7 +187,7 @@ GlassCardDescription.propTypes = {
 /**
  * GlassCardContent - Main content area
  */
-export function GlassCardContent({ children, className = '', ...props }) {
+export function GlassCardContent({ children, className='', ...props }) {
   return (
     <div className={className} {...props}>
       {children}
@@ -203,7 +203,7 @@ GlassCardContent.propTypes = {
 /**
  * GlassCardFooter - Footer section
  */
-export function GlassCardFooter({ children, className = '', ...props }) {
+export function GlassCardFooter({ children, className='', ...props }) {
   return (
     <div className={`mt-6 pt-4 border-t border-white/10 ${className}`} {...props}>
       {children}
@@ -223,7 +223,7 @@ export function FeatureCard({
   icon,
   title,
   description,
-  className = '',
+  className='',
   variant = 'default',
   ...props
 }) {
@@ -231,7 +231,7 @@ export function FeatureCard({
     <GlassCard variant={variant} hover glow className={`group ${className}`} {...props}>
       {/* Icon container */}
       {icon && (
-        <div className="mb-4 w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform duration-300">
+        <div className="mb-4 w-12 h-9 rounded-lg bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform duration-300">
           {icon}
         </div>
       )}
@@ -264,7 +264,7 @@ export function StatCard({
   icon,
   trend,
   trendDirection = 'up',
-  className = '',
+  className='',
   ...props
 }) {
   const trendColors = {
@@ -276,12 +276,12 @@ export function StatCard({
   return (
     <GlassCard className={`text-center ${className}`} {...props}>
       {icon && (
-        <div className="mx-auto mb-3 w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center text-cyan-400">
+        <div className="mx-auto mb-3 w-10 h-9 rounded-lg bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center text-cyan-400">
           {icon}
         </div>
       )}
 
-      <div className="text-3xl font-bold text-white mb-1">{value}</div>
+      <div className="text-lg font-bold text-white mb-1">{value}</div>
 
       <div className="text-sm text-white/60">{label}</div>
 
@@ -308,7 +308,7 @@ StatCard.propTypes = {
 /**
  * GlassModal - Modal with glass effect
  */
-export function GlassModal({ isOpen, onClose, children, title, className = '', ...props }) {
+export function GlassModal({ isOpen, onClose, children, title, className='', ...props }) {
   if (!isOpen) return null;
 
   const handleKeyDown = e => {
@@ -356,7 +356,7 @@ export function GlassModal({ isOpen, onClose, children, title, className = '', .
         {/* Header */}
         {title && (
           <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/10">
-            <h2 id="modal-title" className="text-xl font-semibold text-white">
+            <h2 id="modal-title" className="text-lg font-semibold text-white">
               {title}
             </h2>
             <button

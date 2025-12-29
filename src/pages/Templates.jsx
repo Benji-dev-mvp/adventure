@@ -245,12 +245,12 @@ const Templates = () => {
     <DashboardLayout>
       <FuturisticBackground />
 
-      <div className="relative z-10 max-w-7xl mx-auto space-y-4">
+      <div className="relative z-10 max-w-7xl mx-auto space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+              <div className="w-12 h-9 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
                 <FileText className="text-white" size={24} />
               </div>
               Sales Templates
@@ -276,7 +276,7 @@ const Templates = () => {
                 <FileText size={20} className="text-purple-500" />
                 <LiveIndicator />
               </div>
-              <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
+              <div className="text-lg font-bold text-gray-900 dark:text-white mb-1">
                 <AnimatedCounter end={liveStats.totalTemplates} />
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-300">Total Templates</p>
@@ -288,7 +288,7 @@ const Templates = () => {
                 <CheckCircle2 size={20} className="text-green-500" />
                 <LiveIndicator color="green" />
               </div>
-              <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
+              <div className="text-lg font-bold text-gray-900 dark:text-white mb-1">
                 <AnimatedCounter end={liveStats.activeTemplates} />
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-300">Active Templates</p>
@@ -300,7 +300,7 @@ const Templates = () => {
                 <TrendingUp size={20} className="text-blue-500" />
                 <LiveIndicator color="blue" />
               </div>
-              <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
+              <div className="text-lg font-bold text-gray-900 dark:text-white mb-1">
                 <AnimatedCounter end={liveStats.avgPerformance} decimals={1} />%
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-300">Avg Performance</p>
@@ -312,7 +312,7 @@ const Templates = () => {
                 <Zap size={20} className="text-orange-500" />
                 <LiveIndicator color="orange" />
               </div>
-              <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
+              <div className="text-lg font-bold text-gray-900 dark:text-white mb-1">
                 <AnimatedCounter end={liveStats.templatesUsedToday} />
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-300">Used Today</p>
@@ -322,8 +322,8 @@ const Templates = () => {
 
         {/* Filters & Search */}
         <Card className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl border border-white/20">
-          <div className="p-6">
-            <div className="flex flex-wrap gap-4 items-center">
+          <div className="p-4">
+            <div className="flex flex-wrap gap-3 items-center">
               {/* Search */}
               <div className="flex-1 min-w-[300px]">
                 <div className="relative">
@@ -387,14 +387,14 @@ const Templates = () => {
         </Card>
 
         {/* Templates Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {filteredTemplates.map(template => (
             <Card
               key={template.id}
               className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl border border-white/20 hover:border-purple-500/50 transition-all cursor-pointer group"
               onClick={() => setSelectedTemplate(template)}
             >
-              <div className="p-5">
+              <div className="p-4">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-purple-500 transition-colors">
@@ -492,11 +492,11 @@ const Templates = () => {
               className="w-full max-w-4xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-2 border-purple-500/50 shadow-2xl max-h-[90vh] overflow-y-auto"
               onClick={e => e.stopPropagation()}
             >
-              <div className="p-8">
+              <div className="p-4">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div>
-                    <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                       Edit Template
                     </h2>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -512,8 +512,8 @@ const Templates = () => {
                 </div>
 
                 {/* Template Form */}
-                <div className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-3">
+                  <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Template Name
@@ -543,7 +543,7 @@ const Templates = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Industry
@@ -654,18 +654,18 @@ I noticed that {{company}} is..."
               className="w-full max-w-3xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-2 border-purple-500/50 shadow-2xl"
               onClick={e => e.stopPropagation()}
             >
-              <div className="p-8">
+              <div className="p-4">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3">
                     <div className="relative">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 via-pink-500 to-purple-600 flex items-center justify-center shadow-lg">
+                      <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-purple-500 via-pink-500 to-purple-600 flex items-center justify-center shadow-lg">
                         <Sparkles className="text-white" size={28} />
                       </div>
                       <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>
                     </div>
                     <div>
-                      <h2 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                      <h2 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
                         Ava Template Assistant
                         <Badge
                           variant="outline"
@@ -693,7 +693,7 @@ I noticed that {{company}} is..."
                 </div>
 
                 {/* Quick Actions Grid */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-2 gap-3 mb-6">
                   {aiActions.map(action => {
                     const Icon = action.icon;
                     const isActive = aiAction === action.id && isProcessing;
@@ -702,7 +702,7 @@ I noticed that {{company}} is..."
                         key={action.id}
                         onClick={() => handleAiAction(action.id)}
                         disabled={isProcessing}
-                        className={`relative group p-5 rounded-xl border-2 transition-all text-left overflow-hidden ${
+                        className={`relative group p-4 rounded-lg border-2 transition-all text-left overflow-hidden ${
                           isActive
                             ? 'border-purple-500 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 shadow-lg scale-105'
                             : 'border-gray-200 dark:border-gray-700 hover:border-purple-400 bg-white/70 dark:bg-gray-800/70 hover:shadow-md hover:scale-102'
@@ -711,9 +711,9 @@ I noticed that {{company}} is..."
                         {/* Gradient overlay on hover */}
                         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
-                        <div className="relative flex items-start gap-4">
+                        <div className="relative flex items-start gap-3">
                           <div
-                            className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${
+                            className={`w-12 h-9 rounded-lg flex items-center justify-center transition-all ${
                               isActive
                                 ? 'bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg shadow-purple-500/50'
                                 : 'bg-gradient-to-br from-purple-400 to-pink-400 group-hover:scale-110 group-hover:shadow-md'
@@ -749,11 +749,11 @@ I noticed that {{company}} is..."
 
                 {/* Response Area */}
                 {aiResponse && (
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <div className="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent"></div>
-                    <div className="p-5 rounded-xl bg-gradient-to-br from-green-50 via-emerald-50 to-green-50 dark:from-green-900/20 dark:via-emerald-900/20 dark:to-green-900/20 border-2 border-green-500/30 shadow-inner">
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center flex-shrink-0 shadow-md">
+                    <div className="p-4 rounded-lg bg-gradient-to-br from-green-50 via-emerald-50 to-green-50 dark:from-green-900/20 dark:via-emerald-900/20 dark:to-green-900/20 border-2 border-green-500/30 shadow-inner">
+                      <div className="flex items-start gap-3">
+                        <div className="w-10 h-9 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center flex-shrink-0 shadow-md">
                           <CheckCircle2 className="text-white" size={20} />
                         </div>
                         <div className="flex-1">

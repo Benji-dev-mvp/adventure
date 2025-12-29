@@ -33,7 +33,7 @@ export const WebhookBuilder = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div>
             <label htmlFor="webhook-url" className="block text-sm font-medium mb-2">
               Webhook URL
@@ -162,23 +162,23 @@ export const TwoWaySalesforceSync = () => {
         {/* Sync Stats */}
         <div className="grid grid-cols-4 gap-3 mb-6">
           <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-center">
-            <p className="text-2xl font-bold text-blue-600">
+            <p className="text-lg font-bold text-blue-600">
               {syncStats.leadsInSync.toLocaleString()}
             </p>
             <p className="text-xs text-gray-600">Leads in Sync</p>
           </div>
           <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg text-center">
-            <p className="text-2xl font-bold text-green-600">{syncStats.dealsInSync}</p>
+            <p className="text-lg font-bold text-green-600">{syncStats.dealsInSync}</p>
             <p className="text-xs text-gray-600">Opportunities</p>
           </div>
           <div className="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-center">
-            <p className="text-2xl font-bold text-purple-600">
+            <p className="text-lg font-bold text-purple-600">
               {syncStats.activitiesInSync.toLocaleString()}
             </p>
             <p className="text-xs text-gray-600">Activities</p>
           </div>
           <div className="p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg text-center">
-            <p className="text-2xl font-bold text-orange-600">{syncStats.conflicts}</p>
+            <p className="text-lg font-bold text-orange-600">{syncStats.conflicts}</p>
             <p className="text-xs text-gray-600">Conflicts</p>
           </div>
         </div>
@@ -614,7 +614,7 @@ export const ZapierActionBuilder = () => {
                 key={idx}
                 className="p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer text-center"
               >
-                <span className="text-3xl mb-2 block">{action.icon}</span>
+                <span className="text-lg mb-2 block">{action.icon}</span>
                 <p className="text-sm font-semibold">{action.app}</p>
                 <p className="text-xs text-gray-600">{action.action}</p>
               </div>
@@ -679,7 +679,7 @@ export const CalendarSync = () => {
           {calendars.map(cal => (
             <div key={cal.name} className="flex items-center justify-between p-3 border rounded-lg">
               <div className="flex items-center gap-3">
-                <span className="text-2xl">{cal.icon}</span>
+                <span className="text-lg">{cal.icon}</span>
                 <span className="font-medium">{cal.name}</span>
               </div>
               {cal.connected ? (

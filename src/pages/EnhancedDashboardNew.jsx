@@ -334,7 +334,7 @@ const EnhancedDashboardPage = () => {
         showInspector: true,
       }}
     >
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Segment-aware Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -381,9 +381,9 @@ const EnhancedDashboardPage = () => {
 
         {/* Segment Hero Message */}
         {plan === 'enterprise' && (
-          <div className="rounded-xl bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 p-4">
+          <div className="rounded-lg bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 p-4">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-amber-500/20 flex items-center justify-center">
+              <div className="h-9 w-10 rounded-lg bg-amber-500/20 flex items-center justify-center">
                 <Shield className="h-5 w-5 text-amber-500" />
               </div>
               <div>
@@ -399,9 +399,9 @@ const EnhancedDashboardPage = () => {
         )}
 
         {plan === 'startup' && (
-          <div className="rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 p-4">
+          <div className="rounded-lg bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 p-4">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-cyan-500/20 flex items-center justify-center">
+              <div className="h-9 w-10 rounded-lg bg-cyan-500/20 flex items-center justify-center">
                 <Zap className="h-5 w-5 text-cyan-500" />
               </div>
               <div className="flex-1">
@@ -422,7 +422,7 @@ const EnhancedDashboardPage = () => {
         )}
 
         {/* Live Performance Metrics - Enhanced */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           <AdvancedMetricCard
             title="Emails Sent"
             value={liveMetrics.emailsSent.toLocaleString()}
@@ -508,8 +508,8 @@ const EnhancedDashboardPage = () => {
           </TabsList>
 
           {/* Overview Tab */}
-          <TabsContent value="overview" className="space-y-6">
-            <div className="grid lg:grid-cols-2 gap-6">
+          <TabsContent value="overview" className="space-y-3">
+            <div className="grid lg:grid-cols-2 gap-3">
               {/* Advanced Performance Chart */}
               <AdvancedPerformanceChart
                 data={performanceData}
@@ -520,7 +520,7 @@ const EnhancedDashboardPage = () => {
               <RealTimeActivityStream activities={recentActivities} />
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-6">
+            <div className="grid lg:grid-cols-2 gap-3">
               {/* Conversion Funnel */}
               <ConversionFunnel data={funnelData} />
 
@@ -532,10 +532,10 @@ const EnhancedDashboardPage = () => {
             <AIInsightsCard insights={aiInsights} />
 
             {/* Quick Actions */}
-            <div className="grid md:grid-cols-4 gap-4">
+            <div className="grid md:grid-cols-4 gap-3">
               <Card className="cursor-pointer hover:shadow-lg transition-shadow bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20 border-cyan-200 dark:border-cyan-500/30">
-                <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                <CardContent className="p-4 text-center">
+                  <div className="w-12 h-9 bg-cyan-500 rounded-full flex items-center justify-center mx-auto mb-3">
                     <Rocket size={24} className="text-white" />
                   </div>
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">New Campaign</h3>
@@ -544,8 +544,8 @@ const EnhancedDashboardPage = () => {
               </Card>
 
               <Card className="cursor-pointer hover:shadow-lg transition-shadow bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border-purple-200 dark:border-purple-500/30">
-                <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                <CardContent className="p-4 text-center">
+                  <div className="w-12 h-9 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3">
                     <Users size={24} className="text-white" />
                   </div>
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Find Leads</h3>
@@ -554,8 +554,8 @@ const EnhancedDashboardPage = () => {
               </Card>
 
               <Card className="cursor-pointer hover:shadow-lg transition-shadow bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-500/30">
-                <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                <CardContent className="p-4 text-center">
+                  <div className="w-12 h-9 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
                     <Brain size={24} className="text-white" />
                   </div>
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Ask Ava</h3>
@@ -564,8 +564,8 @@ const EnhancedDashboardPage = () => {
               </Card>
 
               <Card className="cursor-pointer hover:shadow-lg transition-shadow bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 border-orange-200 dark:border-orange-500/30">
-                <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                <CardContent className="p-4 text-center">
+                  <div className="w-12 h-9 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
                     <BarChart3 size={24} className="text-white" />
                   </div>
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Analytics</h3>
@@ -576,19 +576,19 @@ const EnhancedDashboardPage = () => {
           </TabsContent>
 
           {/* Other tabs - now functional */}
-          <TabsContent value="campaigns" className="space-y-4">
+          <TabsContent value="campaigns" className="space-y-3">
             <CampaignsTab onNavigateToCampaign={id => navigate(`/campaigns/${id}`)} />
           </TabsContent>
 
-          <TabsContent value="analytics" className="space-y-4">
+          <TabsContent value="analytics" className="space-y-3">
             <AnalyticsTab />
           </TabsContent>
 
-          <TabsContent value="ai-insights" className="space-y-4">
+          <TabsContent value="ai-insights" className="space-y-3">
             <AIInsightsCard insights={aiInsights} />
           </TabsContent>
 
-          <TabsContent value="actions" className="space-y-4">
+          <TabsContent value="actions" className="space-y-3">
             <QuickActionsTab aiInsights={aiInsights} />
           </TabsContent>
         </Tabs>

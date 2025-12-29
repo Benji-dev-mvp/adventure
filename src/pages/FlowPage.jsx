@@ -45,7 +45,7 @@ const FlowPage = () => {
   return (
     <AppShell showBanner={false}>
       {/* Hero */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-cyan-900/20 to-transparent" />
 
@@ -66,14 +66,14 @@ const FlowPage = () => {
           </RevealText>
 
           <RevealText delay={200}>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
               Visualize how Ava orchestrates your entire outbound pipeline — from lead discovery to
               booked meetings, all on autopilot.
             </p>
           </RevealText>
 
           <RevealText delay={300}>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <a href="#live-flow">
                 <GlowButton variant="primary" size="lg" glow className="gap-2">
                   <Workflow size={18} />
@@ -97,11 +97,11 @@ const FlowPage = () => {
       </div>
 
       {/* Pipeline Funnel Visualization */}
-      <section className="py-20 px-6 relative overflow-hidden bg-slate-950/50">
+      <section className="py-20 px-4 relative overflow-hidden bg-slate-950/50">
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">Watch Your Pipeline Convert</GradientText>
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
@@ -115,13 +115,13 @@ const FlowPage = () => {
       </section>
 
       {/* Full 12-Step Architecture Timeline */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
 
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="aurora">End-to-End Architecture</GradientText>
               </h2>
               <p className="text-gray-300 text-lg">
@@ -131,13 +131,13 @@ const FlowPage = () => {
           </RevealText>
 
           {/* Timeline Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
             {ARCHITECTURE_STEPS.map((item, index) => (
               <RevealText key={item.step} delay={index * 50}>
                 <GlassCard variant="default" hover className="h-full group">
-                  <GlassCardContent className="p-5">
+                  <GlassCardContent className="p-4">
                     <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                      <div className="w-10 h-9 rounded-lg bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                         <span className="text-white font-bold">{item.step}</span>
                       </div>
                       <div>
@@ -157,8 +157,8 @@ const FlowPage = () => {
           <RevealText delay={600}>
             <div className="mt-12 text-center">
               <GlassCard variant="gradient" className="inline-block">
-                <GlassCardContent className="p-8">
-                  <div className="flex items-center gap-4 text-sm">
+                <GlassCardContent className="p-4">
+                  <div className="flex items-center gap-3 text-sm">
                     <div className="flex items-center gap-2">
                       <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
                       <span className="text-gray-300">AI Automation</span>
@@ -180,18 +180,18 @@ const FlowPage = () => {
       </section>
 
       {/* Integration Points */}
-      <section className="py-20 px-6 relative overflow-hidden bg-gradient-to-b from-transparent via-cyan-950/20 to-transparent">
+      <section className="py-20 px-4 relative overflow-hidden bg-gradient-to-b from-transparent via-cyan-950/20 to-transparent">
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4 font-space-grotesk">
+              <h2 className="text-lg font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">Seamless Integrations</GradientText>
               </h2>
               <p className="text-gray-300">Every step connects with your existing stack</p>
             </div>
           </RevealText>
 
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-4 gap-3">
             {[
               { category: 'CRM', tools: ['Salesforce', 'HubSpot', 'Pipedrive'] },
               { category: 'Email', tools: ['Gmail', 'Outlook', 'Custom SMTP'] },
@@ -200,7 +200,7 @@ const FlowPage = () => {
             ].map((integration, index) => (
               <RevealText key={integration.category} delay={index * 100}>
                 <GlassCard variant="default" hover className="h-full">
-                  <GlassCardContent className="p-6 text-center">
+                  <GlassCardContent className="p-4 text-center">
                     <h3 className="text-lg font-bold text-white mb-4 font-space-grotesk">
                       {integration.category}
                     </h3>
@@ -224,18 +224,18 @@ const FlowPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
 
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 font-space-grotesk">
+            <h2 className="text-lg md:text-4xl font-bold mb-6 font-space-grotesk">
               <GradientText gradient="aurora">See This Flow Running for Your Team</GradientText>
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-lg text-gray-300 mb-8">
               Get a personalized demo showing how Ava fits your outbound process
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link to="/pricing#start">
                 <GlowButton variant="primary" size="lg" glow className="gap-2">
                   Start Free Trial

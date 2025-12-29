@@ -94,15 +94,15 @@ const AdminObservability = () => {
 
   return (
     <DashboardLayout>
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="max-w-7xl mx-auto space-y-3">
         {/* Header */}
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-          className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4"
+          className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3"
         >
           <div>
-            <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+            <h1 className="text-lg font-bold text-white flex items-center gap-3">
               <Activity className="h-7 w-7 text-cyan-400" />
               <GradientText gradient="cyber">Observability Console</GradientText>
             </h1>
@@ -138,7 +138,7 @@ const AdminObservability = () => {
           <motion.div
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
             animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-            className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center gap-4"
+            className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center gap-3"
           >
             <AlertTriangle className="h-6 w-6 text-amber-400" />
             <div>
@@ -164,11 +164,11 @@ const AdminObservability = () => {
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="grid lg:grid-cols-2 gap-6"
+          className="grid lg:grid-cols-2 gap-3"
         >
           {/* Latency Chart */}
           <GlassCard variant="gradient">
-            <GlassCardContent className="p-6">
+            <GlassCardContent className="p-4">
               <h3 className="text-lg font-semibold text-white mb-4">Service Latency (ms)</h3>
               <div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
@@ -210,7 +210,7 @@ const AdminObservability = () => {
                   </LineChart>
                 </ResponsiveContainer>
               </div>
-              <div className="flex justify-center gap-6 mt-4">
+              <div className="flex justify-center gap-3 mt-4">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-cyan-500" />
                   <span className="text-sm text-slate-400">API</span>
@@ -229,7 +229,7 @@ const AdminObservability = () => {
 
           {/* Error Rate Chart */}
           <GlassCard variant="gradient">
-            <GlassCardContent className="p-6">
+            <GlassCardContent className="p-4">
               <h3 className="text-lg font-semibold text-white mb-4">Error Rate (%)</h3>
               <div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
@@ -272,9 +272,9 @@ const AdminObservability = () => {
           transition={{ delay: 0.3 }}
         >
           <GlassCard variant="gradient">
-            <GlassCardContent className="p-6">
+            <GlassCardContent className="p-4">
               <h3 className="text-lg font-semibold text-white mb-6">SLO Compliance</h3>
-              <div className="grid md:grid-cols-5 gap-4">
+              <div className="grid md:grid-cols-5 gap-3">
                 {sloMetrics.map((metric, i) => {
                   const passing = getSLOStatus(metric);
                   return (
@@ -294,7 +294,7 @@ const AdminObservability = () => {
                           <XCircle className="h-4 w-4 text-red-400" />
                         )}
                       </div>
-                      <div className="text-2xl font-bold text-white">
+                      <div className="text-lg font-bold text-white">
                         {metric.actual}
                         {metric.unit}
                       </div>
@@ -317,13 +317,13 @@ const AdminObservability = () => {
           transition={{ delay: 0.4 }}
         >
           <GlassCard variant="gradient">
-            <GlassCardContent className="p-6">
+            <GlassCardContent className="p-4">
               <h3 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
                 <Zap className="h-5 w-5 text-purple-400" />
                 AI Infrastructure
               </h3>
-              <div className="grid md:grid-cols-4 gap-6">
-                <div className="space-y-4">
+              <div className="grid md:grid-cols-4 gap-3">
+                <div className="space-y-3">
                   <UsageBar
                     label="Model Latency (P95)"
                     used={320}
@@ -332,13 +332,13 @@ const AdminObservability = () => {
                     showTrend={false}
                   />
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <UsageBar label="Token Usage" used={847000} limit={1000000} showTrend={false} />
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <UsageBar label="Fallback Rate" used={2} limit={100} unit="%" showTrend={false} />
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <UsageBar
                     label="Cache Hit Rate"
                     used={78}

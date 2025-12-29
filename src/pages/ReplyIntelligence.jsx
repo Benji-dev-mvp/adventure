@@ -131,7 +131,7 @@ const ReplyIntelligence = () => {
     <DashboardLayout>
       <div className="max-w-7xl mx-auto">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
             Reply Intelligence & Sentiment Analysis
           </h1>
           <p className="text-gray-600 dark:text-gray-300">
@@ -140,16 +140,16 @@ const ReplyIntelligence = () => {
         </div>
 
         {/* Stats Overview */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-4 gap-3 mb-6">
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600 mb-1">Total Replies</p>
-                  <p className="text-3xl font-bold">203</p>
+                  <p className="text-lg font-bold">203</p>
                   <p className="text-xs text-green-600 mt-1">+18% vs last week</p>
                 </div>
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-9 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
                   <Mail className="text-white" size={24} />
                 </div>
               </div>
@@ -157,14 +157,14 @@ const ReplyIntelligence = () => {
           </Card>
 
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600 mb-1">Positive Rate</p>
-                  <p className="text-3xl font-bold">62%</p>
+                  <p className="text-lg font-bold">62%</p>
                   <p className="text-xs text-green-600 mt-1">+5% improvement</p>
                 </div>
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-9 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
                   <ThumbsUp className="text-white" size={24} />
                 </div>
               </div>
@@ -172,14 +172,14 @@ const ReplyIntelligence = () => {
           </Card>
 
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600 mb-1">Meetings Booked</p>
-                  <p className="text-3xl font-bold">47</p>
+                  <p className="text-lg font-bold">47</p>
                   <p className="text-xs text-green-600 mt-1">From AI detection</p>
                 </div>
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-9 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
                   <Calendar className="text-white" size={24} />
                 </div>
               </div>
@@ -187,14 +187,14 @@ const ReplyIntelligence = () => {
           </Card>
 
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600 mb-1">Auto-Handled</p>
-                  <p className="text-3xl font-bold">156</p>
+                  <p className="text-lg font-bold">156</p>
                   <p className="text-xs text-blue-600 mt-1">77% of total</p>
                 </div>
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-9 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
                   <Zap className="text-white" size={24} />
                 </div>
               </div>
@@ -202,9 +202,9 @@ const ReplyIntelligence = () => {
           </Card>
         </div>
 
-        <div className="grid grid-cols-12 gap-6">
+        <div className="grid grid-cols-12 gap-3">
           {/* Recent Replies */}
-          <div className="col-span-8 space-y-4">
+          <div className="col-span-8 space-y-3">
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -361,7 +361,7 @@ const ReplyIntelligence = () => {
           </div>
 
           {/* Analytics Sidebar */}
-          <div className="col-span-4 space-y-4">
+          <div className="col-span-4 space-y-3">
             {/* Sentiment Distribution */}
             <Card>
               <CardHeader>

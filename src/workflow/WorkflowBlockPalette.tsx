@@ -164,7 +164,7 @@ const WorkflowBlockPalette = ({ onDragStart, onBlockSelect }: WorkflowBlockPalet
         <p className="text-xs text-gray-500 mt-1">Drag blocks to canvas</p>
       </div>
 
-      <div className="p-3 space-y-4">
+      <div className="p-3 space-y-3">
         {blockCategories.map(category => (
           <div key={category.id}>
             <div className="text-xs text-gray-500 uppercase tracking-wider mb-2 px-1">

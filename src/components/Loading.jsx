@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Loader2 } from 'lucide-react';
 
-export const LoadingSpinner = ({ size = 'md', className = '' }) => {
+export const LoadingSpinner = ({ size = 'md', className='' }) => {
   const sizes = {
     sm: 'w-4 h-4',
     md: 'w-8 h-8',
@@ -26,7 +26,7 @@ export const PageLoader = ({ message = 'Loading...' }) => {
 
 export const InlineLoader = ({ message }) => {
   return (
-    <div className="flex items-center justify-center gap-3 p-8">
+    <div className="flex items-center justify-center gap-3 p-4">
       <LoadingSpinner size="md" />
       {message && <span className="text-gray-600">{message}</span>}
     </div>

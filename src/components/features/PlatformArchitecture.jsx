@@ -463,20 +463,20 @@ const PlatformArchitecture = () => {
 
   return (
     <div className="w-full py-20 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
             Enterprise Platform Architecture
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
             See how Artisan connects AI, data, and execution in a governed, enterprise-grade
             platform
           </p>
         </div>
 
         {/* Data Flow Timeline */}
-        <div className="mb-12 bg-white dark:bg-slate-800 rounded-xl p-8 shadow-lg border border-slate-200 dark:border-slate-700">
+        <div className="mb-12 bg-white dark:bg-slate-800 rounded-lg p-4 shadow-lg border border-slate-200 dark:border-slate-700">
           <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
             <Activity className="w-5 h-5 text-blue-500" />
             Live Data Flow - End-to-End Architecture
@@ -494,7 +494,7 @@ const PlatformArchitecture = () => {
                     }`}
                   >
                     <div
-                      className={`p-5 rounded-xl border-2 transition-all duration-500 ${
+                      className={`p-4 rounded-lg border-2 transition-all duration-500 ${
                         stage.active
                           ? `bg-gradient-to-br ${stage.color} border-white shadow-2xl shadow-blue-500/50 ring-4 ring-white/20`
                           : 'border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/50 hover:border-slate-400 dark:hover:border-slate-500 hover:shadow-lg'
@@ -732,7 +732,7 @@ const PlatformArchitecture = () => {
           </div>
 
           {/* Legend */}
-          <div className="flex items-center justify-center gap-6 text-xs text-slate-500 dark:text-slate-400">
+          <div className="flex items-center justify-center gap-3 text-xs text-slate-500 dark:text-slate-400">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded border-2 border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700" />
               <span>Pending</span>
@@ -749,7 +749,7 @@ const PlatformArchitecture = () => {
         </div>
 
         {/* Architecture Diagram */}
-        <div className="relative bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-8 border-2 border-slate-300 dark:border-slate-700 shadow-2xl overflow-hidden">
+        <div className="relative bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 rounded-lg p-4 border-2 border-slate-300 dark:border-slate-700 shadow-2xl overflow-hidden">
           {/* Background Grid */}
           <div className="absolute inset-0 opacity-20">
             <div
@@ -880,7 +880,7 @@ const PlatformArchitecture = () => {
 
           {/* Grid Layout for Nodes */}
           <div
-            className="relative z-10 grid gap-4"
+            className="relative z-10 grid gap-3"
             style={{
               gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
               gridTemplateRows: 'auto auto auto',
@@ -920,9 +920,9 @@ const PlatformArchitecture = () => {
                   {/* Pulsing ring for active node */}
                   {isNodeActive && (
                     <>
-                      <div className="absolute inset-0 rounded-2xl bg-blue-500/20 animate-ping" />
+                      <div className="absolute inset-0 rounded-lg bg-blue-500/20 animate-ping" />
                       <div
-                        className="absolute inset-0 rounded-2xl bg-purple-500/20 animate-pulse"
+                        className="absolute inset-0 rounded-lg bg-purple-500/20 animate-pulse"
                         style={{ animationDelay: '0.5s' }}
                       />
                     </>
@@ -1049,9 +1049,9 @@ const PlatformArchitecture = () => {
                 >
                   {isNodeActive && (
                     <>
-                      <div className="absolute inset-0 rounded-2xl bg-blue-500/20 animate-ping" />
+                      <div className="absolute inset-0 rounded-lg bg-blue-500/20 animate-ping" />
                       <div
-                        className="absolute inset-0 rounded-2xl bg-purple-500/20 animate-pulse"
+                        className="absolute inset-0 rounded-lg bg-purple-500/20 animate-pulse"
                         style={{ animationDelay: '0.5s' }}
                       />
                     </>
@@ -1167,9 +1167,9 @@ const PlatformArchitecture = () => {
                 >
                   {isNodeActive && (
                     <>
-                      <div className="absolute inset-0 rounded-2xl bg-blue-500/20 animate-ping" />
+                      <div className="absolute inset-0 rounded-lg bg-blue-500/20 animate-ping" />
                       <div
-                        className="absolute inset-0 rounded-2xl bg-purple-500/20 animate-pulse"
+                        className="absolute inset-0 rounded-lg bg-purple-500/20 animate-pulse"
                         style={{ animationDelay: '0.5s' }}
                       />
                     </>
@@ -1253,7 +1253,7 @@ const PlatformArchitecture = () => {
           </div>
 
           {/* Live Stats Overlay */}
-          <div className="absolute top-4 right-4 z-20 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-xl p-4 border border-slate-300 dark:border-slate-700 shadow-xl">
+          <div className="absolute top-4 right-4 z-20 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-4 border border-slate-300 dark:border-slate-700 shadow-xl">
             <div className="flex items-center gap-2 mb-3">
               <Activity className="w-4 h-4 text-green-500 animate-pulse" />
               <span className="text-sm font-semibold text-slate-900 dark:text-white">
@@ -1261,19 +1261,19 @@ const PlatformArchitecture = () => {
               </span>
             </div>
             <div className="space-y-2 text-xs">
-              <div className="flex justify-between gap-4">
+              <div className="flex justify-between gap-3">
                 <span className="text-slate-600 dark:text-slate-400">Active Connections:</span>
                 <span className="font-bold text-green-600 dark:text-green-400">
                   {connections.length}
                 </span>
               </div>
-              <div className="flex justify-between gap-4">
+              <div className="flex justify-between gap-3">
                 <span className="text-slate-600 dark:text-slate-400">Data Flowing:</span>
                 <span className="font-bold text-blue-600 dark:text-blue-400">
                   {particles.length}
                 </span>
               </div>
-              <div className="flex justify-between gap-4">
+              <div className="flex justify-between gap-3">
                 <span className="text-slate-600 dark:text-slate-400">Processing Stage:</span>
                 <span className="font-bold text-purple-600 dark:text-purple-400">
                   {dataFlow + 1}/6
@@ -1292,9 +1292,9 @@ const PlatformArchitecture = () => {
         </div>
 
         {/* Key Benefits */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-3">
           <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 border-blue-200 dark:border-blue-800">
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center gap-3 mb-3">
                 <div className="p-2 rounded-lg bg-blue-500">
                   <Users className="w-5 h-5 text-white" />
@@ -1308,7 +1308,7 @@ const PlatformArchitecture = () => {
           </Card>
 
           <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 border-purple-200 dark:border-purple-800">
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center gap-3 mb-3">
                 <div className="p-2 rounded-lg bg-purple-500">
                   <Zap className="w-5 h-5 text-white" />
@@ -1323,7 +1323,7 @@ const PlatformArchitecture = () => {
           </Card>
 
           <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border-green-200 dark:border-green-800">
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="flex items-center gap-3 mb-3">
                 <div className="p-2 rounded-lg bg-green-500">
                   <Globe className="w-5 h-5 text-white" />
@@ -1338,22 +1338,22 @@ const PlatformArchitecture = () => {
         </div>
 
         {/* Stats Bar */}
-        <div className="mt-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-8 text-white">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div className="mt-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-4 text-white">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
             <div>
-              <div className="text-3xl font-bold mb-1">300M+</div>
+              <div className="text-lg font-bold mb-1">300M+</div>
               <div className="text-sm text-blue-100">B2B Contacts</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-1">99.95%</div>
+              <div className="text-lg font-bold mb-1">99.95%</div>
               <div className="text-sm text-blue-100">Uptime SLA</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-1">4</div>
+              <div className="text-lg font-bold mb-1">4</div>
               <div className="text-sm text-blue-100">Channels</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-1">SOC 2</div>
+              <div className="text-lg font-bold mb-1">SOC 2</div>
               <div className="text-sm text-blue-100">Type II Certified</div>
             </div>
           </div>

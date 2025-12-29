@@ -559,7 +559,7 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
   );
 
   return (
-    <div className="relative rounded-xl overflow-hidden border border-indigo-500/30 bg-slate-900">
+    <div className="relative rounded-lg overflow-hidden border border-indigo-500/30 bg-slate-900">
       <canvas
         ref={canvasRef}
         width={width}

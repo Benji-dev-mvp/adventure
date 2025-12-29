@@ -51,12 +51,12 @@ const ChannelMixChart = ({
       transition={{ duration: 0.6 }}
     >
       <GlassCard variant="gradient" className="overflow-hidden">
-        <GlassCardContent className="p-6">
-          <h3 className="text-xl font-bold mb-6 font-space-grotesk">
+        <GlassCardContent className="p-4">
+          <h3 className="text-lg font-bold mb-6 font-space-grotesk">
             <GradientText gradient="cyber">{title}</GradientText>
           </h3>
 
-          <div className="flex flex-col lg:flex-row items-center gap-8">
+          <div className="flex flex-col lg:flex-row items-center gap-3">
             {/* Pie Chart */}
             <div className="w-full lg:w-1/2 h-64">
               <ResponsiveContainer width="100%" height="100%">
@@ -95,7 +95,7 @@ const ChannelMixChart = ({
 
             {/* Legend with icons */}
             {showLegend && (
-              <div className="w-full lg:w-1/2 space-y-4">
+              <div className="w-full lg:w-1/2 space-y-3">
                 {data.map((channel, index) => {
                   const Icon = channel.icon;
                   return (
@@ -104,14 +104,14 @@ const ChannelMixChart = ({
                       initial={prefersReducedMotion ? {} : { opacity: 0, x: 20 }}
                       animate={isVisible && !prefersReducedMotion ? { opacity: 1, x: 0 } : {}}
                       transition={{ delay: index * 0.1 }}
-                      className={`flex items-center gap-4 p-3 rounded-lg transition-all ${
+                      className={`flex items-center gap-3 p-3 rounded-lg transition-all ${
                         activeIndex === index ? 'bg-white/10' : 'bg-white/5'
                       }`}
                       onMouseEnter={() => setActiveIndex(index)}
                       onMouseLeave={() => setActiveIndex(null)}
                     >
                       <div
-                        className="w-10 h-10 rounded-lg flex items-center justify-center"
+                        className="w-10 h-9 rounded-lg flex items-center justify-center"
                         style={{ backgroundColor: `${channel.color}30` }}
                       >
                         <Icon size={20} style={{ color: channel.color }} />
@@ -143,7 +143,7 @@ const ChannelMixChart = ({
           </div>
 
           {/* Performance metrics */}
-          <div className="grid grid-cols-4 gap-4 mt-6 pt-6 border-t border-white/10">
+          <div className="grid grid-cols-4 gap-3 mt-6 pt-6 border-t border-white/10">
             {[
               { label: 'Avg Reply Rate', value: '24%', color: 'cyan' },
               { label: 'Deliverability', value: '98.5%', color: 'emerald' },
@@ -151,7 +151,7 @@ const ChannelMixChart = ({
               { label: 'Open Rate', value: '47%', color: 'purple' },
             ].map((metric, i) => (
               <div key={metric.label} className="text-center">
-                <div className={`text-xl font-bold text-${metric.color}-400`}>{metric.value}</div>
+                <div className={`text-lg font-bold text-${metric.color}-400`}>{metric.value}</div>
                 <div className="text-xs text-gray-400">{metric.label}</div>
               </div>
             ))}

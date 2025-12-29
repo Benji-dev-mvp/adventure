@@ -5,7 +5,7 @@ const AnimatedButton = ({
   children,
   onClick,
   variant = 'gradient',
-  className = '',
+  className='',
   disabled = false,
   ...props
 }) => {
@@ -22,7 +22,7 @@ const AnimatedButton = ({
       disabled={disabled}
       className={`
         group relative flex items-center justify-center gap-3 
-        font-bold rounded-full py-3 px-6 
+        font-bold rounded-full py-3 px-4 
         transition-all duration-300 transform hover:scale-[1.02]
         ${variants[variant]} 
         ${className}

@@ -91,7 +91,7 @@ const VisualOutcomesShowcase = () => {
 
   return (
     <section className="py-20 bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 text-sm font-semibold mb-4">
@@ -101,19 +101,19 @@ const VisualOutcomesShowcase = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 font-space-grotesk">
             See The Results Your Peers Achieved
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
             From struggling with scale to 3x pipeline growth—see the quantified outcomes that
             convinced their boards
           </p>
         </div>
 
         {/* Main Outcome Card */}
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border-2 border-slate-200 dark:border-slate-700 overflow-hidden mb-8">
+        <div className="bg-white dark:bg-slate-800 rounded-lg shadow-2xl border-2 border-slate-200 dark:border-slate-700 overflow-hidden mb-8">
           {/* Company Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6">
-            <div className="flex items-center justify-between flex-wrap gap-4">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-4">
+            <div className="flex items-center justify-between flex-wrap gap-3">
               <div>
-                <h3 className="text-2xl font-bold text-white mb-2">{currentOutcome.company}</h3>
+                <h3 className="text-lg font-bold text-white mb-2">{currentOutcome.company}</h3>
                 <p className="text-blue-100">
                   {currentOutcome.industry} • {currentOutcome.timeline} implementation
                 </p>
@@ -141,12 +141,12 @@ const VisualOutcomesShowcase = () => {
             </div>
           </div>
 
-          <div className="p-8">
+          <div className="p-4">
             {/* Challenge & Solution */}
-            <div className="grid md:grid-cols-2 gap-6 mb-8">
-              <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-xl p-6">
+            <div className="grid md:grid-cols-2 gap-3 mb-8">
+              <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-lg p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center">
+                  <div className="w-10 h-9 rounded-full bg-red-500 flex items-center justify-center">
                     <span className="text-white font-bold text-lg">!</span>
                   </div>
                   <h4 className="font-bold text-slate-900 dark:text-white">The Challenge</h4>
@@ -154,9 +154,9 @@ const VisualOutcomesShowcase = () => {
                 <p className="text-slate-700 dark:text-slate-300">{currentOutcome.challenge}</p>
               </div>
 
-              <div className="bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-800 rounded-xl p-6">
+              <div className="bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-800 rounded-lg p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center">
+                  <div className="w-10 h-9 rounded-full bg-green-500 flex items-center justify-center">
                     <Zap className="w-5 h-5 text-white" />
                   </div>
                   <h4 className="font-bold text-slate-900 dark:text-white">The Solution</h4>
@@ -171,11 +171,11 @@ const VisualOutcomesShowcase = () => {
                 <BarChart3 className="w-5 h-5 text-blue-500" />
                 Quantified Results
               </h4>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 {currentOutcome.results.map((result, idx) => (
                   <div
                     key={idx}
-                    className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800 rounded-xl p-5 border-2 border-slate-200 dark:border-slate-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all hover:shadow-lg hover:scale-105"
+                    className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800 rounded-lg p-4 border-2 border-slate-200 dark:border-slate-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all hover:shadow-lg hover:scale-105"
                   >
                     <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase mb-2">
                       {result.label}
@@ -214,9 +214,9 @@ const VisualOutcomesShowcase = () => {
             </div>
 
             {/* Testimonial */}
-            <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-xl p-6 border-2 border-purple-200 dark:border-purple-800">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+            <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 border-2 border-purple-200 dark:border-purple-800">
+              <div className="flex items-start gap-3">
+                <div className="w-12 h-9 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
                   {currentOutcome.author
                     .split(' ')
                     .map(n => n[0])
@@ -247,23 +247,23 @@ const VisualOutcomesShowcase = () => {
         </div>
 
         {/* Quick Stats Summary */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="text-center p-6 bg-white dark:bg-slate-800 rounded-xl border-2 border-slate-200 dark:border-slate-700">
-            <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1">2,847</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="text-center p-4 bg-white dark:bg-slate-800 rounded-lg border-2 border-slate-200 dark:border-slate-700">
+            <div className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-1">2,847</div>
             <div className="text-sm text-slate-600 dark:text-slate-400">Companies Using Ava</div>
           </div>
-          <div className="text-center p-6 bg-white dark:bg-slate-800 rounded-xl border-2 border-slate-200 dark:border-slate-700">
-            <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-1">3.2x</div>
+          <div className="text-center p-4 bg-white dark:bg-slate-800 rounded-lg border-2 border-slate-200 dark:border-slate-700">
+            <div className="text-lg font-bold text-green-600 dark:text-green-400 mb-1">3.2x</div>
             <div className="text-sm text-slate-600 dark:text-slate-400">Avg Pipeline Growth</div>
           </div>
-          <div className="text-center p-6 bg-white dark:bg-slate-800 rounded-xl border-2 border-slate-200 dark:border-slate-700">
-            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-1">$48M</div>
+          <div className="text-center p-4 bg-white dark:bg-slate-800 rounded-lg border-2 border-slate-200 dark:border-slate-700">
+            <div className="text-lg font-bold text-purple-600 dark:text-purple-400 mb-1">$48M</div>
             <div className="text-sm text-slate-600 dark:text-slate-400">
               Pipeline Generated (30d)
             </div>
           </div>
-          <div className="text-center p-6 bg-white dark:bg-slate-800 rounded-xl border-2 border-slate-200 dark:border-slate-700">
-            <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-1">
+          <div className="text-center p-4 bg-white dark:bg-slate-800 rounded-lg border-2 border-slate-200 dark:border-slate-700">
+            <div className="text-lg font-bold text-orange-600 dark:text-orange-400 mb-1">
               98.4%
             </div>
             <div className="text-sm text-slate-600 dark:text-slate-400">Customer Satisfaction</div>
@@ -272,7 +272,7 @@ const VisualOutcomesShowcase = () => {
 
         {/* Call to Action */}
         <div className="mt-8 text-center">
-          <button className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-bold text-lg hover:shadow-2xl transition-all hover:scale-105 group">
+          <button className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-bold text-lg hover:shadow-2xl transition-all hover:scale-105 group">
             <Sparkles className="w-5 h-5" />
             See How Ava Can Transform Your Outbound
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

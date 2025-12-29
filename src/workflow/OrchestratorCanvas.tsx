@@ -576,7 +576,7 @@ const OrchestratorCanvas = () => {
                       </button>
                     </div>
 
-                    <div className="p-4 space-y-4">
+                    <div className="p-4 space-y-3">
                       <div>
                         <label htmlFor="block-name" className="block text-sm text-gray-400 mb-1">
                           Name
@@ -708,7 +708,7 @@ const OrchestratorCanvas = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={e => e.stopPropagation()}
-              className="bg-gray-900 rounded-xl border border-gray-700 p-6 w-[600px] max-h-[80vh] overflow-y-auto"
+              className="bg-gray-900 rounded-lg border border-gray-700 p-4 w-[600px] max-h-[80vh] overflow-y-auto"
             >
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-semibold text-white">Add Block</h2>
@@ -730,7 +730,7 @@ const OrchestratorCanvas = () => {
                       className="p-4 bg-gray-800 hover:bg-gray-700 rounded-lg border border-gray-700 hover:border-gray-600 transition-all text-left group"
                     >
                       <div
-                        className={`w-10 h-10 rounded-lg ${config.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}
+                        className={`w-10 h-9 rounded-lg ${config.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}
                       >
                         <Icon className="w-5 h-5 text-white" />
                       </div>

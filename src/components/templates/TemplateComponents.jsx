@@ -17,7 +17,7 @@ export const RichTemplateEditor = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="flex gap-2 border-b pb-2">
             <Button size="sm" variant="outline">
               Bold
@@ -108,7 +108,7 @@ export const TemplatePerformance = () => {
               <h4 className="font-semibold">Cold Outreach V3</h4>
               <Badge variant="success">Best Performer</Badge>
             </div>
-            <div className="grid grid-cols-3 gap-4 text-sm">
+            <div className="grid grid-cols-3 gap-3 text-sm">
               <div>
                 <p className="text-gray-600">Open Rate</p>
                 <p className="text-lg font-bold">45%</p>

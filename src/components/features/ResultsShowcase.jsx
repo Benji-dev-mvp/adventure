@@ -154,7 +154,7 @@ const MetricCard = ({ metric, isVisible, delay }) => {
 
   return (
     <div
-      className="relative group p-4 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-500/30 transition-all duration-300"
+      className="relative group p-4 rounded-lg bg-white/5 border border-white/10 hover:border-cyan-500/30 transition-all duration-300"
       style={{ animationDelay: `${delay}ms` }}
     >
       {/* Before/After comparison */}
@@ -169,7 +169,7 @@ const MetricCard = ({ metric, isVisible, delay }) => {
           {formatValue(metric.before, metric.format)}
         </div>
         <ArrowUpRight size={20} className="text-emerald-400" />
-        <div className="text-xl font-bold text-emerald-400">
+        <div className="text-lg font-bold text-emerald-400">
           {isVisible ? formatValue(metric.after, metric.format) : '—'}
         </div>
       </div>
@@ -182,7 +182,7 @@ const MetricCard = ({ metric, isVisible, delay }) => {
       </div>
 
       {/* Hover glow */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500/0 via-cyan-500/5 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-cyan-500/0 via-cyan-500/5 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
     </div>
   );
 };
@@ -214,7 +214,7 @@ const CustomerCard = ({ customer, isActive, onClick }) => {
       tabIndex={0}
       onClick={onClick}
       onKeyDown={handleKeyDown}
-      className={`cursor-pointer p-4 rounded-xl border transition-all duration-500 ${
+      className={`cursor-pointer p-4 rounded-lg border transition-all duration-500 ${
         isActive
           ? `bg-gradient-to-br from-${customer.color}-500/20 to-${customer.color}-600/10 border-${customer.color}-500/50 shadow-lg shadow-${customer.color}-500/10`
           : 'bg-white/5 border-white/10 hover:border-white/20'
@@ -222,7 +222,7 @@ const CustomerCard = ({ customer, isActive, onClick }) => {
     >
       <div className="flex items-center gap-3">
         <div
-          className={`w-12 h-12 rounded-xl bg-gradient-to-br from-${customer.color}-500 to-${customer.color}-600 flex items-center justify-center text-white font-bold`}
+          className={`w-12 h-9 rounded-lg bg-gradient-to-br from-${customer.color}-500 to-${customer.color}-600 flex items-center justify-center text-white font-bold`}
         >
           {customer.logo}
         </div>
@@ -260,7 +260,7 @@ const StatCard = ({ stat, isVisible, delay }) => {
 
   return (
     <div
-      className="relative group p-6 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 overflow-hidden"
+      className="relative group p-4 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 overflow-hidden"
       style={{ animationDelay: `${delay}ms` }}
     >
       {/* Background glow */}
@@ -279,7 +279,7 @@ const StatCard = ({ stat, isVisible, delay }) => {
           </div>
         </div>
 
-        <div className="text-3xl lg:text-4xl font-bold text-white mb-1">
+        <div className="text-lg lg:text-4xl font-bold text-white mb-1">
           {stat.prefix}
           <CountUpText
             end={isVisible ? stat.value : 0}
@@ -356,7 +356,7 @@ const ResultsShowcase = () => {
     <section
       ref={containerRef}
       id="results-showcase"
-      className="py-20 lg:py-28 px-4 lg:px-6 relative overflow-hidden bg-[#030712]"
+      className="py-20 lg:py-28 px-4 lg:px-4 relative overflow-hidden bg-[#030712]"
     >
       {/* Background effects */}
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-gradient-radial from-emerald-900/20 to-transparent blur-3xl -translate-y-1/2" />
@@ -371,20 +371,20 @@ const ResultsShowcase = () => {
               <span className="text-sm text-emerald-400 font-medium">Verified Results</span>
             </div>
 
-            <h2 className="text-3xl lg:text-5xl xl:text-6xl font-bold mb-4 font-space-grotesk">
+            <h2 className="text-lg lg:text-5xl xl:text-6xl font-bold mb-4 font-space-grotesk">
               <GradientText gradient="aurora" animate>
                 Results Your Peers Achieved
               </GradientText>
             </h2>
 
-            <p className="text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-lg lg:text-lg text-gray-400 max-w-3xl mx-auto">
               Real metrics from real teams. No fluff, just outcomes.
             </p>
           </div>
         </RevealText>
 
         {/* Aggregate stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-12 lg:mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-3 mb-12 lg:mb-16">
           {AGGREGATE_METRICS.map((stat, index) => (
             <StatCard key={stat.label} stat={stat} isVisible={isVisible} delay={index * 150} />
           ))}
@@ -392,8 +392,8 @@ const ResultsShowcase = () => {
 
         {/* Customer results */}
         <RevealText delay={300}>
-          <GlassCard variant="gradient" className="p-6 lg:p-8" glow glowColor="purple">
-            <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+          <GlassCard variant="gradient" className="p-4 lg:p-4" glow glowColor="purple">
+            <div className="grid lg:grid-cols-3 gap-3 lg:gap-3">
               {/* Customer selector */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between mb-4">
@@ -428,7 +428,7 @@ const ResultsShowcase = () => {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-2 gap-3 mb-6">
                   {currentCustomer.results.map((metric, index) => (
                     <MetricCard
                       key={metric.metric}
@@ -440,7 +440,7 @@ const ResultsShowcase = () => {
                 </div>
 
                 {/* Quote */}
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+                <div className="p-4 rounded-lg bg-white/5 border border-white/10">
                   <p className="text-gray-300 italic mb-3">"{currentCustomer.quote}"</p>
                   <div className="flex items-center gap-3">
                     <div

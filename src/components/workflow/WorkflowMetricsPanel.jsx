@@ -46,7 +46,7 @@ const WorkflowMetricsPanel = ({
   }, {});
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
       <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20">
         <div className="flex items-center justify-between">
@@ -61,7 +61,7 @@ const WorkflowMetricsPanel = ({
         </div>
       </div>
 
-      <div className="p-4 space-y-4">
+      <div className="p-4 space-y-3">
         {/* Key Metrics Grid */}
         <div className="grid grid-cols-2 gap-3">
           <MetricCard
@@ -196,7 +196,7 @@ const MetricCard = ({ label, value, change, icon: Icon, color }) => {
           </div>
         )}
       </div>
-      <div className="text-xl font-bold text-gray-900 dark:text-white">{value}</div>
+      <div className="text-lg font-bold text-gray-900 dark:text-white">{value}</div>
       <div className="text-xs text-gray-500 dark:text-gray-400">{label}</div>
     </div>
   );

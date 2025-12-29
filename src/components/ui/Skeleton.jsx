@@ -53,14 +53,14 @@ function SkeletonTable({ rows = 5, columns = 4, className, ...props }) {
   return (
     <div className={cn('space-y-3', className)} {...props}>
       {/* Header row */}
-      <div className="flex gap-4">
+      <div className="flex gap-3">
         {Array.from({ length: columns }).map((_, i) => (
           <Skeleton key={`header-${i}`} className="h-6 flex-1" />
         ))}
       </div>
       {/* Data rows */}
       {Array.from({ length: rows }).map((_, rowIndex) => (
-        <div key={rowIndex} className="flex gap-4">
+        <div key={rowIndex} className="flex gap-3">
           {Array.from({ length: columns }).map((_, colIndex) => (
             <Skeleton key={`${rowIndex}-${colIndex}`} className="h-4 flex-1" />
           ))}
@@ -74,7 +74,7 @@ function SkeletonList({ items = 5, className, ...props }) {
   return (
     <div className={cn('space-y-4', className)} {...props}>
       {Array.from({ length: items }).map((_, i) => (
-        <div key={i} className="flex items-center gap-4">
+        <div key={i} className="flex items-center gap-3">
           <Skeleton variant="avatar" />
           <div className="flex-1 space-y-2">
             <Skeleton variant="text" />
@@ -90,7 +90,7 @@ function SkeletonDashboard({ className, ...props }) {
   return (
     <div className={cn('space-y-6', className)} {...props}>
       {/* Stats cards grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
         {Array.from({ length: 4 }).map((_, i) => (
           <SkeletonCard key={i} />
         ))}

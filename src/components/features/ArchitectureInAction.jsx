@@ -108,7 +108,7 @@ const WorkflowNode = ({
         variant={isActive ? 'neon' : 'default'}
         glow={isActive}
         glowColor="cyan"
-        className="relative p-6 min-h-[200px]"
+        className="relative p-4 min-h-[200px]"
       >
         {/* Completion checkmark */}
         {isComplete && (
@@ -119,7 +119,7 @@ const WorkflowNode = ({
 
         {/* Icon */}
         <div
-          className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 transition-all duration-500 ${
+          className={`w-14 h-14 rounded-lg flex items-center justify-center mb-4 transition-all duration-500 ${
             isActive
               ? 'bg-gradient-to-br from-cyan-500 to-purple-600 shadow-lg shadow-cyan-500/30'
               : 'bg-white/5 border border-white/10'
@@ -129,7 +129,7 @@ const WorkflowNode = ({
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold mb-2 font-space-grotesk">
+        <h3 className="text-lg font-bold mb-2 font-space-grotesk">
           {isActive ? (
             <GradientText gradient="cyber">{title}</GradientText>
           ) : (
@@ -285,7 +285,7 @@ const ArchitectureInAction = () => {
     <section
       ref={containerRef}
       id="architecture-in-action"
-      className="py-24 px-6 relative overflow-hidden bg-[#030712]"
+      className="py-24 px-4 relative overflow-hidden bg-[#030712]"
     >
       {/* Background effects */}
       <ParticleBackground variant="aurora" className="absolute inset-0 opacity-30" />
@@ -307,7 +307,7 @@ const ArchitectureInAction = () => {
               </GradientText>
             </h2>
 
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
               Watch how Ava orchestrates your entire outbound pipeline—from prospect discovery to
               booked meetings—in real-time.
             </p>
@@ -333,7 +333,7 @@ const ArchitectureInAction = () => {
                   setIsAutoPlaying(false);
                   setCompletedSteps(Array.from({ length: index }, (_, i) => i));
                 }}
-                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 ${
+                className={`w-10 h-9 rounded-full flex items-center justify-center transition-all duration-500 ${
                   index === activeStep
                     ? 'bg-gradient-to-r from-cyan-500 to-purple-500 scale-125 shadow-lg shadow-cyan-500/30'
                     : completedSteps.includes(index)
@@ -352,7 +352,7 @@ const ArchitectureInAction = () => {
         </div>
 
         {/* Workflow visualization */}
-        <div className="grid lg:grid-cols-5 gap-6 mb-16">
+        <div className="grid lg:grid-cols-5 gap-3 mb-16">
           {workflowSteps.map((step, index) => (
             <WorkflowNode
               key={index}
@@ -366,26 +366,26 @@ const ArchitectureInAction = () => {
 
         {/* Live activity feed */}
         <RevealText delay={300}>
-          <GlassCard variant="gradient" className="p-8 mt-8" glow glowColor="purple">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <GlassCard variant="gradient" className="p-4 mt-8" glow glowColor="purple">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-3">
               {/* Left: Live stats */}
               <div className="flex-1">
-                <h3 className="text-2xl font-bold mb-6 font-space-grotesk">
+                <h3 className="text-lg font-bold mb-6 font-space-grotesk">
                   <GradientText gradient="cyber">Live Activity Feed</GradientText>
                 </h3>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {channels.map((channel, index) => {
                     const Icon = channel.icon;
                     return (
                       <div
                         key={index}
-                        className={`relative p-4 rounded-xl bg-white/5 border border-white/10 transition-all duration-500 ${
+                        className={`relative p-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-500 ${
                           activeStep === 3 ? 'animate-pulse border-cyan-500/50' : ''
                         }`}
                       >
                         <Icon size={24} className={`text-${channel.color}-400 mb-2`} />
-                        <div className="text-2xl font-bold text-white">
+                        <div className="text-lg font-bold text-white">
                           <CountUpText
                             end={activeStep >= 3 ? channel.count : 0}
                             duration={1500}
@@ -406,9 +406,9 @@ const ArchitectureInAction = () => {
 
               {/* Right: AI status */}
               <div className="lg:w-80">
-                <GlassCard variant="neon" className="p-6" glow glowColor="cyan">
+                <GlassCard variant="neon" className="p-4" glow glowColor="cyan">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center">
+                    <div className="w-12 h-9 rounded-lg bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center">
                       <Brain size={24} className="text-white" />
                     </div>
                     <div>
@@ -457,7 +457,7 @@ const ArchitectureInAction = () => {
         </RevealText>
 
         {/* Controls */}
-        <div className="flex justify-center gap-4 mt-8">
+        <div className="flex justify-center gap-3 mt-8">
           <GlowButtonOutline
             variant="secondary"
             size="md"

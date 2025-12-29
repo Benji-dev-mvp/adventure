@@ -36,15 +36,15 @@ export function AutopilotPage() {
 
   return (
     <DashboardLayout>
-      <div className="flex flex-col gap-6 p-6">
+      <div className="flex flex-col gap-3 p-4">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="p-3 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-cyan-500/20">
+          <div className="flex items-center gap-3">
+            <div className="p-3 rounded-lg bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-cyan-500/20">
               <Zap className="w-6 h-6 text-cyan-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold">
+              <h1 className="text-lg font-bold">
                 <GradientText gradient="cyber">Autonomous Growth Autopilot</GradientText>
               </h1>
               <p className="text-slate-400 mt-1">
@@ -53,9 +53,9 @@ export function AutopilotPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             {/* Summary stats */}
-            <div className="flex items-center gap-6 px-4 py-2 bg-slate-800/50 rounded-xl border border-white/5">
+            <div className="flex items-center gap-3 px-4 py-2 bg-slate-800/50 rounded-lg border border-white/5">
               <div className="flex items-center gap-2">
                 <Play className="w-4 h-4 text-emerald-400" />
                 <span className="text-sm text-slate-300">
@@ -87,7 +87,7 @@ export function AutopilotPage() {
             <button
               onClick={handleToggleAutopilot}
               className={`
-                relative flex items-center gap-3 px-5 py-2.5 rounded-xl font-medium transition-all
+                relative flex items-center gap-3 px-5 py-2.5 rounded-lg font-medium transition-all
                 ${
                   autopilotEnabled
                     ? 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white shadow-lg shadow-cyan-500/20'
@@ -108,7 +108,7 @@ export function AutopilotPage() {
         <CommitmentsStrip commitments={commitments} loading={loadingPrograms} />
 
         {/* Row 2: Programs Table + Brain Panel */}
-        <div className="grid grid-cols-12 gap-6">
+        <div className="grid grid-cols-12 gap-3">
           <div className="col-span-12 lg:col-span-7">
             <ProgramTable
               programs={programs}

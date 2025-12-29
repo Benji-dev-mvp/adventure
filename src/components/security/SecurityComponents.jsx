@@ -22,18 +22,18 @@ export const GDPRComplianceCenter = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
-          <div className="grid grid-cols-3 gap-4">
+        <div className="space-y-3">
+          <div className="grid grid-cols-3 gap-3">
             <div className="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-              <p className="text-2xl font-bold">98%</p>
+              <p className="text-lg font-bold">98%</p>
               <p className="text-xs text-gray-600">Compliance Score</p>
             </div>
             <div className="text-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-              <p className="text-2xl font-bold">12</p>
+              <p className="text-lg font-bold">12</p>
               <p className="text-xs text-gray-600">Consent Records</p>
             </div>
             <div className="text-center p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
-              <p className="text-2xl font-bold">3</p>
+              <p className="text-lg font-bold">3</p>
               <p className="text-xs text-gray-600">Pending Requests</p>
             </div>
           </div>
@@ -364,15 +364,15 @@ export const DataPrivacyDashboard = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-3">
+          <div className="grid grid-cols-2 gap-3">
             <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
               <p className="text-xs text-gray-600 mb-1">Total Records</p>
-              <p className="text-2xl font-bold">{scanResults.totalRecords.toLocaleString()}</p>
+              <p className="text-lg font-bold">{scanResults.totalRecords.toLocaleString()}</p>
             </div>
             <div className="p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
               <p className="text-xs text-gray-600 mb-1">PII Detected</p>
-              <p className="text-2xl font-bold">{scanResults.piiFound}</p>
+              <p className="text-lg font-bold">{scanResults.piiFound}</p>
             </div>
           </div>
 

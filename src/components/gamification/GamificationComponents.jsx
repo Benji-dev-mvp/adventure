@@ -105,11 +105,11 @@ export const TeamLeaderboard = () => {
                       : 'border-gray-300 dark:border-gray-600'
               }`}
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 {/* Rank */}
                 <div className="text-center w-12">
-                  <div className="text-3xl font-bold">{person.rank}</div>
-                  {person.badge && <div className="text-2xl">{person.badge}</div>}
+                  <div className="text-lg font-bold">{person.rank}</div>
+                  {person.badge && <div className="text-lg">{person.badge}</div>}
                 </div>
 
                 {/* Avatar & Name */}
@@ -226,7 +226,7 @@ export const AchievementBadges = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-3">
           {achievements.map(achievement => (
             <div
               key={achievement.id}
@@ -308,7 +308,7 @@ export const TeamCompetitions = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           {competitions.map(comp => (
             <div
               key={comp.id}
@@ -342,14 +342,14 @@ export const TeamCompetitions = () => {
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        <span className="text-2xl">{team.avatar}</span>
+                        <span className="text-lg">{team.avatar}</span>
                         <div>
                           <p className="font-semibold">{team.name}</p>
                           <p className="text-xs text-gray-600">{team.members} members</p>
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="text-2xl font-bold">{team.score}</p>
+                        <p className="text-lg font-bold">{team.score}</p>
                         {team.winning && (
                           <Badge variant="success" className="text-xs">
                             LEADING
@@ -361,12 +361,12 @@ export const TeamCompetitions = () => {
                 </div>
               ) : (
                 <div className="flex items-center gap-3 p-3 bg-yellow-100 dark:bg-yellow-900/30 rounded">
-                  <span className="text-3xl">{comp.leader.avatar}</span>
+                  <span className="text-lg">{comp.leader.avatar}</span>
                   <div className="flex-1">
                     <p className="font-semibold">{comp.leader.name}</p>
                     <p className="text-xs text-gray-600">Current Leader</p>
                   </div>
-                  <div className="text-2xl font-bold text-green-600">{comp.leader.score}</div>
+                  <div className="text-lg font-bold text-green-600">{comp.leader.score}</div>
                 </div>
               )}
             </div>
@@ -411,7 +411,7 @@ export const PointsRewardsSystem = () => {
       </CardHeader>
       <CardContent>
         {/* Current Points */}
-        <div className="mb-4 p-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl text-white">
+        <div className="mb-4 p-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white">
           <div className="flex justify-between items-start mb-4">
             <div>
               <p className="text-sm opacity-90">Your Points</p>

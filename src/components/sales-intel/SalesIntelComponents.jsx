@@ -33,7 +33,7 @@ export const TechnographicFilters = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3">
           <Input placeholder="Search technologies..." />
 
           <div className="space-y-3 max-h-[300px] overflow-y-auto">
@@ -378,7 +378,7 @@ export const MarketSegmentation = () => {
                 <h4 className="font-semibold">{segment.name}</h4>
                 <Badge variant="success">{segment.growth}</Badge>
               </div>
-              <div className="grid grid-cols-3 gap-4 text-center text-sm">
+              <div className="grid grid-cols-3 gap-3 text-center text-sm">
                 <div>
                   <p className="text-gray-600 text-xs">Accounts</p>
                   <p className="font-bold">{segment.size}</p>

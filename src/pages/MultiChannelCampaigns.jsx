@@ -74,7 +74,7 @@ const MultiChannelCampaigns = () => {
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            <h1 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
               Multi-Channel Campaigns
             </h1>
             <p className="text-gray-600 dark:text-gray-300">
@@ -88,17 +88,17 @@ const MultiChannelCampaigns = () => {
         </div>
 
         {/* Channel Overview */}
-        <div className="grid grid-cols-5 gap-4 mb-6">
+        <div className="grid grid-cols-5 gap-3 mb-6">
           {channels.map(channel => (
             <Card key={channel.id} className="hover:shadow-lg transition-shadow cursor-pointer">
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div
-                  className={`w-12 h-12 bg-${channel.color}-50 dark:bg-${channel.color}-900/20 rounded-xl flex items-center justify-center mb-3`}
+                  className={`w-12 h-9 bg-${channel.color}-50 dark:bg-${channel.color}-900/20 rounded-lg flex items-center justify-center mb-3`}
                 >
                   {channel.icon}
                 </div>
                 <h3 className="font-bold text-lg mb-1">{channel.name}</h3>
-                <p className="text-2xl font-bold text-blue-600">{channel.active}</p>
+                <p className="text-lg font-bold text-blue-600">{channel.active}</p>
                 <p className="text-xs text-gray-600">active sequences</p>
               </CardContent>
             </Card>
@@ -106,7 +106,7 @@ const MultiChannelCampaigns = () => {
         </div>
 
         {/* Campaign Builder */}
-        <div className="grid grid-cols-12 gap-6">
+        <div className="grid grid-cols-12 gap-3">
           {/* Sequence Steps */}
           <div className="col-span-8">
             <Card>
@@ -120,7 +120,7 @@ const MultiChannelCampaigns = () => {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {campaignSteps.map((step, idx) => (
                     <div key={step.id} className="relative">
                       {/* Connection Line */}
@@ -128,10 +128,10 @@ const MultiChannelCampaigns = () => {
                         <div className="absolute left-6 top-16 w-0.5 h-8 bg-gray-300 dark:bg-gray-700"></div>
                       )}
 
-                      <div className="flex items-start gap-4 p-4 border rounded-lg bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-800/50">
+                      <div className="flex items-start gap-3 p-4 border rounded-lg bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-800/50">
                         {/* Step Number */}
                         <div className="flex-shrink-0">
-                          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+                          <div className="w-12 h-9 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
                             {idx + 1}
                           </div>
                         </div>
@@ -222,13 +222,13 @@ const MultiChannelCampaigns = () => {
           </div>
 
           {/* Channel Performance */}
-          <div className="col-span-4 space-y-4">
+          <div className="col-span-4 space-y-3">
             <Card>
               <CardHeader>
                 <CardTitle className="text-base">Channel Performance</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {/* Email Stats */}
                   <div className="p-3 border rounded-lg">
                     <div className="flex items-center gap-2 mb-2">

@@ -70,7 +70,7 @@ const Toast = ({ message, type, onClose }) => {
 
   return (
     <div
-      className={`flex items-center gap-3 min-w-[320px] p-4 rounded-xl border shadow-lg ${styles[type]} animate-slide-in`}
+      className={`flex items-center gap-3 min-w-[320px] p-4 rounded-lg border shadow-lg ${styles[type]} animate-slide-in`}
     >
       <div className="flex-shrink-0">{icons[type]}</div>
       <p className="flex-1 text-sm font-medium text-gray-900">{message}</p>

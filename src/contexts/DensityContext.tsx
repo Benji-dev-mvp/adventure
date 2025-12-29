@@ -14,9 +14,9 @@ const STORAGE_KEY = 'artisan_density';
 
 export const DensityProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [density, setDensityState] = useState<DensityMode>(() => {
-    if (typeof window === 'undefined') return 'comfortable';
+    if (typeof window === 'undefined') return 'compact';
     const saved = localStorage.getItem(STORAGE_KEY) as DensityMode | null;
-    return saved === 'compact' ? 'compact' : 'comfortable';
+    return saved === 'compact' ? 'compact' : 'compact';
   });
 
   useEffect(() => {

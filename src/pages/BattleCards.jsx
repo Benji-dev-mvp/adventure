@@ -110,7 +110,7 @@ const BattleCards = () => {
       title="Battle Cards"
       subtitle="Competitive intel, objection handlers, and success stories"
     >
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Tab Navigation */}
         <div className="flex gap-2 overflow-x-auto">
           {[
@@ -136,7 +136,7 @@ const BattleCards = () => {
 
         {/* Competitor Cards */}
         {selectedCard === 'competitors' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {competitors.map((comp, i) => (
               <Card key={i}>
                 <CardHeader>
@@ -150,7 +150,7 @@ const BattleCards = () => {
                     </button>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3">
                   <div>
                     <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                       Their Strengths:
@@ -201,7 +201,7 @@ const BattleCards = () => {
 
         {/* Objection Handlers */}
         {selectedCard === 'objections' && (
-          <div className="grid grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 gap-3">
             {objections.map((obj, i) => (
               <Card key={i}>
                 <CardContent className="pt-6">
@@ -239,17 +239,17 @@ const BattleCards = () => {
 
         {/* Feature-Benefit Matrix */}
         {selectedCard === 'features' && (
-          <div className="grid grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 gap-3">
             {features.map((feature, i) => (
               <Card key={i}>
                 <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-3">
                     <div className="p-3 bg-purple-100 dark:bg-purple-500/20 rounded-lg">
                       <Target className="w-6 h-6 text-purple-600" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold mb-2">{feature.feature}</h3>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                         <div>
                           <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
                             Benefit:
@@ -288,7 +288,7 @@ const BattleCards = () => {
 
         {/* Success Stories */}
         {selectedCard === 'stories' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {stories.map((story, i) => (
               <Card key={i}>
                 <CardHeader>
@@ -307,7 +307,7 @@ const BattleCards = () => {
                     </button>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3">
                   <div>
                     <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
                       Challenge:

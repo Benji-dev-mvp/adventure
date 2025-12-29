@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { Button } from '../ui/Button';
 import { ParticleBackground, FloatingParticles, MouseFollowGlow } from '../futuristic';
 import { GradientText, GlowText, RevealText, TypewriterText } from '../futuristic/AnimatedText';
 import { GlowButton } from '../futuristic/GlowButton';

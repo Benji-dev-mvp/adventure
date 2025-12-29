@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
-import { Sparkles, ArrowRight, CheckCircle2, Clock } from 'lucide-react';
+import { Sparkles, CheckCircle2 } from 'lucide-react';
 
 export const QuickWins = () => {
   const wins = [

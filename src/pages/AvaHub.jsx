@@ -35,7 +35,7 @@ import {
 } from '../components/ui/AnimatedComponents';
 import { useTenant } from '../contexts/TenantContext';
 import { useWorkspaceMetrics } from '../hooks/useWorkspaceMetrics';
-import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
+import { useReducedMotion } from '../hooks/useMotion';
 import { RoiProjectionChart, CustomerImpactSparklines } from '../components/analytics';
 import { GlassCard, GlassCardContent, GradientText } from '../components/futuristic';
 

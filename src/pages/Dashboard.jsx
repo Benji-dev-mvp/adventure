@@ -8,8 +8,8 @@ import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { useTenant } from '../contexts/TenantContext';
 import { useWorkspaceMetrics, useSegmentCTA } from '../hooks/useWorkspaceMetrics';
-import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
-import { KpiFunnelChart, CustomerImpactSparklines } from '../components/analytics';
+import { useReducedMotion } from '../hooks/useMotion';
+import { CustomerImpactSparklines } from '../components/analytics';
 import {
   Activity,
   TrendingUp,
@@ -49,7 +49,6 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../components/Toast';
 import { getDashboardStats } from '../lib/dataService';
-import { GradientText } from '../components/futuristic';
 
 // Animated Counter Component
 const AnimatedCounter = ({ end, duration = 2000, suffix = '', prefix = '' }) => {

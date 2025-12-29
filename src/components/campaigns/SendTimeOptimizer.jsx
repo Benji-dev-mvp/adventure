@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Badge } from '../ui/Badge';
-import { Clock, Sparkles, Calendar, TrendingUp } from 'lucide-react';
+import { Clock, Sparkles, Calendar } from 'lucide-react';
 import { dataService } from '../../lib/dataService';
 
 export const SendTimeOptimizer = ({ leads = [], industry = null }) => {

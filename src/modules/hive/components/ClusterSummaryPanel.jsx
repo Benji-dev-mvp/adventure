@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, Calendar, Sparkles, ArrowRight, TrendingUp, Target, Zap, Bot } from 'lucide-react';
-import { GlassCard, GlassCardContent, GradientText } from '../../../components/futuristic';
+import { Sparkles, ArrowRight, TrendingUp, Target, Zap, Bot } from 'lucide-react';
+import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 import { Button } from '../../../components/ui/Button';
 
 const ClusterCard = ({ cluster, index }) => {

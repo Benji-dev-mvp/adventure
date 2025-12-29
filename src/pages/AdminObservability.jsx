@@ -11,7 +11,6 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { Button } from '../components/ui/Button';
-import { Badge } from '../components/ui/Badge';
 import { SystemHealthCard, UsageBar } from '../components/enterprise';
 import { useSystemStatus } from '../hooks/useEnterprise';
 import { useReducedMotion } from '../hooks/useMotion';

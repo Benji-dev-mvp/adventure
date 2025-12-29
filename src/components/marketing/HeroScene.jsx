@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
-import { ArrowRight, Sparkles, TrendingUp, Users, Zap } from 'lucide-react';
+import { ArrowRight, Sparkles, TrendingUp, Users } from 'lucide-react';
 import { useScrollProgress } from '../../hooks/useScrollAnimation';
 
 /**

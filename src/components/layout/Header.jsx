@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Bell, User, Moon, Sun, Command, Sparkles } from 'lucide-react';
-import { Button } from '../ui/Button';
+import { Search, User, Moon, Sun, Command } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 import { NotificationBell } from '../activity';
 import { WorkspaceSwitcher } from './WorkspaceSwitcher';

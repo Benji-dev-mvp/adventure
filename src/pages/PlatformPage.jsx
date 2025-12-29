@@ -19,7 +19,6 @@ import {
 import AppShell from '../components/layout/AppShell';
 import FeaturesShowcase from '../components/features/FeaturesShowcase';
 import IntegrationsShowcase from '../components/features/IntegrationsShowcase';
-import { ChannelMixChart } from '../components/analytics';
 import {
   GlassCard,
   GlassCardContent,

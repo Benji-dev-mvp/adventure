@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
-import { Badge } from '../ui/Badge';
 import { Activity, Mail, Calendar, MousePointerClick, UserPlus, TrendingUp } from 'lucide-react';
 
 export const LiveActivityFeed = () => {

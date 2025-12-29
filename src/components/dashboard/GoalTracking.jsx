@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Badge } from '../ui/Badge';
-import { Target, TrendingUp, Calendar } from 'lucide-react';
+import { Target, Calendar } from 'lucide-react';
 
 export const GoalTracking = () => {
   const goals = [

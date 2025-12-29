@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Building2, ChevronDown, Check, Plus, Users, Crown, Shield, Sparkles } from 'lucide-react';
+import { ChevronDown, Check, Plus, Users, Crown, Shield } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useWorkspaces } from '@/hooks/useWorkspaces';
 

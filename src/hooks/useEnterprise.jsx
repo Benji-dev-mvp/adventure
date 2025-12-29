@@ -9,7 +9,7 @@
  * - Workspace/environment management
  */
 
-import { useState, useEffect, useMemo, useCallback, createContext, useContext } from 'react';
+import { useState, useMemo, useCallback, createContext, useContext } from 'react';
 import { useTenant } from '../contexts/TenantContext';
 
 // ============================================================================

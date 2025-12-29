@@ -31,7 +31,6 @@ import {
   Target,
   TrendingUp,
 } from 'lucide-react';
-import { AnimatedCounter } from '../../ui/AnimatedComponents';
 
 // Metric configurations
 const metricConfig = {

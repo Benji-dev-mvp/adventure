@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect, createContext, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 // Context for registering commands from anywhere in the app
 const CommandPaletteContext = createContext(null);

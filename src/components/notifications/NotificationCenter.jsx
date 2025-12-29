@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/Dialog';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
-import { TabsRadix, TabsListRadix, TabsTriggerRadix, TabsContentRadix } from '../ui/TabsRadix';
+import { TabsRadix, TabsListRadix, TabsTriggerRadix } from '../ui/TabsRadix';
 import {
   Bell,
   Mail,

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../components/ui/Button';
 import {
   Sparkles,
   CheckCircle2,
@@ -12,7 +11,6 @@ import {
   Lock,
   Globe2,
 } from 'lucide-react';
-import { Card, CardContent } from '../components/ui/Card';
 import AnnouncementBanner from '../components/features/AnnouncementBanner';
 import LandingHeader from '../components/layout/LandingHeader';
 import HeroSection from '../components/features/HeroSection';

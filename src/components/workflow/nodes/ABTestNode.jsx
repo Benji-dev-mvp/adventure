@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shuffle, BarChart3 } from 'lucide-react';
+import { Shuffle } from 'lucide-react';
 import BaseNode from './BaseNode';
 
 export const ABTestNode = ({ data, selected }) => {

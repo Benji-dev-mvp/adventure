@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DashboardLayout from '../components/layout/DashboardLayout';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/Card';
+import { Card, CardContent } from '../components/ui/Card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
@@ -29,7 +29,7 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../components/Toast';
-import { useSegmentExperience, useSegmentKpis, formatKpiValue } from '@/hooks/useSegmentExperience';
+import { useSegmentExperience, useSegmentKpis } from '@/hooks/useSegmentExperience';
 import { useTenant } from '@/contexts/TenantContext';
 import { cn } from '@/lib/utils';
 import {

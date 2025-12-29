@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Badge } from '../ui/Badge';
-import { Mail, Shield, Clock, Globe, Key } from 'lucide-react';
+import { Mail, Shield, Clock, Globe } from 'lucide-react';
 
 export const EmailWarmup = () => {
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Clock } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import BaseNode from './BaseNode';
 
 export const CallNode = ({ data, selected }) => {

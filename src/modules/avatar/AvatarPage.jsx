@@ -1,7 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import DashboardLayout from '../../components/layout/DashboardLayout';
-import { GlassCard, GlassCardContent, GradientText } from '../../components/futuristic';
+import { GradientText } from '../../components/futuristic';
 import { Bot, Phone, Sparkles } from 'lucide-react';
 
 import { AvatarPanel } from './components/AvatarPanel';

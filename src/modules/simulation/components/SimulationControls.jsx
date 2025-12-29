@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { DollarSign, Users, Mail, BarChart3, Percent, Target } from 'lucide-react';
 import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 

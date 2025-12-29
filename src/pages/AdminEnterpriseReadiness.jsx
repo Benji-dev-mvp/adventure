@@ -14,8 +14,8 @@ import { motion } from 'framer-motion';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import { EnterpriseReadinessMeter, SecurityStatusCard, UsageBar } from '../components/enterprise';
-import { useEnterpriseReadiness, useSecurityStatus } from '../hooks/useEnterprise';
+import { SecurityStatusCard } from '../components/enterprise';
+import { useSecurityStatus } from '../hooks/useEnterprise';
 import { useReducedMotion } from '../hooks/useMotion';
 import {
   Shield,

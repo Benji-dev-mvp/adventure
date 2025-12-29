@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
-import { Badge } from '../components/ui/Badge';
-import { DollarSign, TrendingUp, Users, Calculator, Download } from 'lucide-react';
+import { Download } from 'lucide-react';
 import {
   LineChart,
   Line,

@@ -3,7 +3,6 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import { Input, Textarea } from '../components/ui/Input';
 import {
   Mail,
   Linkedin,

@@ -10,8 +10,7 @@ import {
   TrendingUp,
   MoreVertical,
 } from 'lucide-react';
-import { GlassCard, GlassCardContent, GradientText } from '../../../components/futuristic';
-import { Badge } from '../../../components/ui/Badge';
+import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 import { Button } from '../../../components/ui/Button';
 import { Skeleton } from '../../../components/ui/Skeleton';
 

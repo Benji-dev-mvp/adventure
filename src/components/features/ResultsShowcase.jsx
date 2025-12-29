@@ -30,7 +30,7 @@ import {
   Award,
   Zap,
 } from 'lucide-react';
-import { GlassCard, GradientText, GlowText, RevealText, CountUpText } from '../futuristic';
+import { GlassCard, GradientText, RevealText, CountUpText } from '../futuristic';
 
 // ============================================================================
 // DATA

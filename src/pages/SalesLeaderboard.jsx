@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
-import { Trophy, TrendingUp, Flame, Award, Target, Users, Star } from 'lucide-react';
+import { Trophy, Flame, Target, Users, Star } from 'lucide-react';
 
 const SalesLeaderboard = () => {
   const [timeRange, setTimeRange] = useState('month');

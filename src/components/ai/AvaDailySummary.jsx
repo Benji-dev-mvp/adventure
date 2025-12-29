@@ -20,7 +20,6 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
 import { AreaChart, Area, ResponsiveContainer } from 'recharts';
 
 // Mock data for Ava's daily activity

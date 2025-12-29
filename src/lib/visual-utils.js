@@ -2,7 +2,6 @@
  * Visual Utilities
  * CSS-in-JS utilities for futuristic visual effects
  */
-import { colors, effects, animation } from './design-tokens';
 
 // ============================================
 // GLASSMORPHISM UTILITIES

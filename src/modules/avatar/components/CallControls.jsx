@@ -10,7 +10,6 @@ import {
   UserCheck,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent } from '../../../components/futuristic';
-import { Button } from '../../../components/ui/Button';
 
 const POLICY_OPTIONS = [
   {

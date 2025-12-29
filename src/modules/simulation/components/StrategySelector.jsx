@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Zap, Scale, Shield, Check, TrendingUp, Target } from 'lucide-react';
-import { GlassCard, GlassCardContent } from '../../../components/futuristic';
+import { Zap, Scale, Shield, Check, Target } from 'lucide-react';
 
 const MODEL_CONFIG = {
   aggressive: {

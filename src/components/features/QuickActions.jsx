@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/Card';
-import { Button } from '../ui/Button';
 import { Mail, Target, Sparkles, TrendingUp } from 'lucide-react';
 
 export const QuickActions = () => {

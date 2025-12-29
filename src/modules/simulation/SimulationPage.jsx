@@ -1,7 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import DashboardLayout from '../../components/layout/DashboardLayout';
-import { GlassCard, GlassCardContent, GradientText } from '../../components/futuristic';
+import { GradientText } from '../../components/futuristic';
 import { FlaskConical, Play, RefreshCw, Download } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 

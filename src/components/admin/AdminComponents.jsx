@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Badge } from '../ui/Badge';
-import { Users, Shield, DollarSign, ToggleLeft, Activity } from 'lucide-react';
+import { Shield, DollarSign, ToggleLeft, Activity } from 'lucide-react';
 
 export const UserActivityDashboard = () => {
   const activities = [

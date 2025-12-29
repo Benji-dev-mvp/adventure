@@ -19,7 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../components/ui/Select';
-import { Sparkles, Database, CheckCircle2, Loader2, Download } from 'lucide-react';
+import { Sparkles, CheckCircle2, Loader2, Download } from 'lucide-react';
 
 const LeadEnrichment = () => {
   const [step, setStep] = useState(1);

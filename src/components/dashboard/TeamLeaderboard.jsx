@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { Trophy, TrendingUp, Award, Medal } from 'lucide-react';
-import { Avatar } from '../ui/Avatar';
 
 export const TeamLeaderboard = () => {
   const teamMembers = [

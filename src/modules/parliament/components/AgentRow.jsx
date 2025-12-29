@@ -1,7 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GlassCard, GlassCardContent } from '../../../components/futuristic';
-import { Badge } from '../../../components/ui/Badge';
 
 export function AgentRow({ agents, activeAgents = [] }) {
   return (

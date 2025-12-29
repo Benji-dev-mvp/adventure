@@ -1,8 +1,7 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import DashboardLayout from '../../components/layout/DashboardLayout';
-import { GlassCard, GlassCardContent, GradientText } from '../../components/futuristic';
-import { Users, MessageSquare, Gavel, AlertTriangle, CheckCircle, Clock } from 'lucide-react';
+import { GradientText } from '../../components/futuristic';
+import { MessageSquare, Gavel, CheckCircle, Clock } from 'lucide-react';
 
 import { AgentRow } from './components/AgentRow';
 import { DebateRing } from './components/DebateRing';

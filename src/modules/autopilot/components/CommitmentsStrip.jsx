@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp, TrendingDown, Target, Users, Briefcase, Sparkles } from 'lucide-react';
-import { GlassCard, GlassCardContent, GradientText } from '../../../components/futuristic';
+import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 import { Skeleton } from '../../../components/ui/Skeleton';
 
 // Mini sparkline component

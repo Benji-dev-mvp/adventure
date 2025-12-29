@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Bot, Phone, PhoneOff, Mic, MicOff, Volume2, VolumeX, Video, VideoOff } from 'lucide-react';
+import { Bot, Phone, PhoneOff, Mic, Volume2, Video } from 'lucide-react';
 import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 import { Button } from '../../../components/ui/Button';
 

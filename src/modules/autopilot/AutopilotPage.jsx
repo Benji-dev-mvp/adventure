@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import DashboardLayout from '../../components/layout/DashboardLayout';
-import { GlassCard, GlassCardContent, GradientText } from '../../components/futuristic';
-import { Zap, Power, Settings, RefreshCw, TrendingUp, AlertTriangle, Play } from 'lucide-react';
-import { Button } from '../../components/ui/Button';
+import { GradientText } from '../../components/futuristic';
+import { Zap, Power, TrendingUp, AlertTriangle, Play } from 'lucide-react';
 import { useToast } from '../../components/Toast';
 
 import { CommitmentsStrip } from './components/CommitmentsStrip';

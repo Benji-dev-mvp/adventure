@@ -13,7 +13,6 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import {
@@ -55,7 +54,7 @@ import {
   Edit,
   Eye,
 } from 'lucide-react';
-import { GlassCard, GlassCardContent, GradientText } from '../futuristic';
+import { GlassCard, GlassCardContent } from '../futuristic';
 import { useReducedMotion } from '../../hooks/useMotion';
 
 // ============================================================================

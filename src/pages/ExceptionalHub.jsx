@@ -1,6 +1,5 @@
 // Exceptional Hub - Futuristic Showcase of Industry-Leading Features
 import React, { useState, useEffect, useRef } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs';
 import {
   Zap,
@@ -17,7 +16,6 @@ import {
   Users,
   Target,
 } from 'lucide-react';
-import { Badge } from '../components/ui/Badge';
 
 // Animated Counter Component
 const AnimatedCounter = ({ end, duration = 2000, suffix = '', prefix = '' }) => {

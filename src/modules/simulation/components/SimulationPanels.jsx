@@ -9,8 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { TrendingUp, Calendar, DollarSign } from 'lucide-react';
-import { GlassCard, GlassCardContent, GradientText } from '../../../components/futuristic';
+import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 
 const MODEL_COLORS = {
   aggressive: { primary: '#ef4444', secondary: '#f97316' },

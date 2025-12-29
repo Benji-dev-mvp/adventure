@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { Tabs } from '../components/ui/Tabs';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import {
   Brain,
   Zap,

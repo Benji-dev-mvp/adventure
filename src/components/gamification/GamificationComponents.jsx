@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
-import { Trophy, Star, Target, Zap, TrendingUp, Award, Crown, Flame, Medal } from 'lucide-react';
+import { Trophy, Star, Target, Award, Flame } from 'lucide-react';
 import {
   BarChart,
   Bar,

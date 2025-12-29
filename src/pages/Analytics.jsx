@@ -1,12 +1,11 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '../components/layout/DashboardLayout';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { useTenant } from '../contexts/TenantContext';
 import { useWorkspaceMetrics } from '../hooks/useWorkspaceMetrics';
-import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
+import { useReducedMotion } from '../hooks/useMotion';
 import {
   KpiFunnelChart,
   ChannelMixChart,

@@ -3,7 +3,7 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
-import { Phone, ThumbsUp, ThumbsDown, AlertCircle, Lightbulb, Download } from 'lucide-react';
+import { ThumbsUp, AlertCircle, Lightbulb, Download } from 'lucide-react';
 
 const CallIntelligence = () => {
   const [selectedCall, setSelectedCall] = useState(0);

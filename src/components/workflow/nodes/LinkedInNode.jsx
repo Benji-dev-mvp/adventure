@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Linkedin, UserPlus } from 'lucide-react';
+import { Linkedin } from 'lucide-react';
 import BaseNode from './BaseNode';
 
 export const LinkedInNode = ({ data, selected }) => {

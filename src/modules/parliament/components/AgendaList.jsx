@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { AlertTriangle, Clock, CheckCircle, ChevronRight, Flame, TrendingDown } from 'lucide-react';
-import { GlassCard, GlassCardContent, GradientText } from '../../../components/futuristic';
+import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 
 const PRIORITY_CONFIG = {
   critical: {

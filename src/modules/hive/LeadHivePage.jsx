@@ -1,10 +1,7 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import DashboardLayout from '../../components/layout/DashboardLayout';
-import { GlassCard, GlassCardContent, GradientText } from '../../components/futuristic';
-import { Hexagon, Filter, Clock, Eye, EyeOff, ChevronDown, Sparkles } from 'lucide-react';
-import { Button } from '../../components/ui/Button';
-import { Select } from '../../components/ui/Select';
+import { GradientText } from '../../components/futuristic';
+import { Hexagon, Filter, Clock, Eye, EyeOff } from 'lucide-react';
 
 import { HiveCanvas } from './components/HiveCanvas';
 import { ClusterSummaryPanel } from './components/ClusterSummaryPanel';

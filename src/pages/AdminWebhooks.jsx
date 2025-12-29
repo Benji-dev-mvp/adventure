@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Webhook, Plus, Globe, Zap, AlertCircle, Check, X, Calendar, Activity } from 'lucide-react';
+import { Plus, Globe, Zap, AlertCircle, X, Calendar, Activity } from 'lucide-react';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { useToast } from '../components/Toast';
 

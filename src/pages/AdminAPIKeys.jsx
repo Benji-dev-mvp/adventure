@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Key, Plus, Copy, Eye, EyeOff, Trash2, Calendar, Check, AlertTriangle } from 'lucide-react';
+import { Plus, Copy, Eye, EyeOff, Trash2, Calendar, AlertTriangle } from 'lucide-react';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { useToast } from '../components/Toast';
 

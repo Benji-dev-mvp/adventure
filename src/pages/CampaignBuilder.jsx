@@ -6,7 +6,7 @@ import { Input, Textarea, Select } from '../components/ui/Input';
 import { Badge } from '../components/ui/Badge';
 import { useToast } from '../components/Toast';
 import { InlineLoader } from '../components/Loading';
-import { useFormValidation, validateRequired, validateMinLength } from '../lib/validation';
+import { useFormValidation } from '../lib/validation';
 import { saveCampaignDraft, getCampaignDraft } from '../lib/storage';
 import { dataService } from '../lib/dataService';
 import {

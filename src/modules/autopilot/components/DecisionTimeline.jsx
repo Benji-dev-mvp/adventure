@@ -14,8 +14,7 @@ import {
   ArrowRight,
   Calendar,
 } from 'lucide-react';
-import { GlassCard, GlassCardContent, GradientText } from '../../../components/futuristic';
-import { Button } from '../../../components/ui/Button';
+import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 import { Skeleton } from '../../../components/ui/Skeleton';
 
 const TYPE_CONFIG = {

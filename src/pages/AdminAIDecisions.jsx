@@ -12,7 +12,6 @@ import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { Button } from '../components/ui/Button';
-import { Badge } from '../components/ui/Badge';
 import { AIDecisionCard } from '../components/enterprise';
 import { useReducedMotion } from '../hooks/useMotion';
 import {

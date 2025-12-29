@@ -12,8 +12,7 @@ import {
   ArrowRight,
   Clock,
 } from 'lucide-react';
-import { GlassCard, GlassCardContent, GradientText } from '../../../components/futuristic';
-import { Badge } from '../../../components/ui/Badge';
+import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 
 // Mini pie chart for channel mix
 const ChannelMixMini = ({ channelMix }) => {

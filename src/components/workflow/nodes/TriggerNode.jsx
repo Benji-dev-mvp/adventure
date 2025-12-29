@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Play, Clock, Users, Zap, Calendar } from 'lucide-react';
+import { Play, Users, Zap, Calendar } from 'lucide-react';
 import BaseNode from './BaseNode';
 
 export const TriggerNode = ({ data, selected }) => {

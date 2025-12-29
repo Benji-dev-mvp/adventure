@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
-import { Input } from '../ui/Input';
 import {
   TrendingUp,
   Activity,

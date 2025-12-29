@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '../ui/Card';
 import { Badge } from '../ui/Badge';
-import { Star, Quote, TrendingUp, Clock } from 'lucide-react';
+import { Star, Quote, TrendingUp } from 'lucide-react';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 /**

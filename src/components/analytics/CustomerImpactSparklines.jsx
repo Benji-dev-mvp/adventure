@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { AreaChart, Area, BarChart, Bar, ResponsiveContainer } from 'recharts';
-import { TrendingUp, Users, Mail, Target, Clock, ArrowUp } from 'lucide-react';
+import { TrendingUp, Users, Mail, Clock, ArrowUp } from 'lucide-react';
 import { useReducedMotion, viewportSettings } from '../../hooks/useMotion';
 import { GlassCard, GlassCardContent, GradientText } from '../futuristic';
 

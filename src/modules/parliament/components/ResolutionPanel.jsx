@@ -10,7 +10,7 @@ import {
   ThumbsDown,
   Edit3,
 } from 'lucide-react';
-import { GlassCard, GlassCardContent, GradientText } from '../../../components/futuristic';
+import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 import { Button } from '../../../components/ui/Button';
 
 const RISK_CONFIG = {

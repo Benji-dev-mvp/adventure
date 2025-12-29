@@ -28,7 +28,7 @@ import WorkflowToolbar from './WorkflowToolbar';
 import ExecutionOverlay from './ExecutionOverlay';
 import WorkflowMetricsPanel from './WorkflowMetricsPanel';
 import { useToast } from '../Toast';
-import { Trash2, Percent, Zap, ArrowRight } from 'lucide-react';
+import { Zap } from 'lucide-react';
 
 // Custom node types
 const nodeTypes = {

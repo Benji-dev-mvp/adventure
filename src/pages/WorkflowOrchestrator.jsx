@@ -3,7 +3,7 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import { Play, Plus, Save, GitBranch, Zap, Mail, UserPlus, Database } from 'lucide-react';
+import { Play, Plus, Save, GitBranch, Zap } from 'lucide-react';
 
 const WorkflowOrchestrator = () => {
   const [nodes, setNodes] = useState([

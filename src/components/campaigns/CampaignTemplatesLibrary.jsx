@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
-import { Sparkles, Mail, Briefcase, Zap, TrendingUp, Target } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 export const CampaignTemplatesLibrary = ({ onSelect }) => {
   const [selectedCategory, setSelectedCategory] = useState('all');

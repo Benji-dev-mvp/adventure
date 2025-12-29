@@ -101,15 +101,20 @@ const ClusterBoundary = ({ cluster, isSelected, onClick }) => {
         x={`${cluster.position.x}%`}
         y={`${cluster.position.y - cluster.size * 0.35}%`}
         textAnchor="middle"
-        className="text-xs font-medium fill-slate-300 pointer-events-none"
+        fontSize="3"
+        fontWeight="500"
+        fill="#cbd5e1"
+        className="pointer-events-none"
       >
         {cluster.name}
       </text>
       <text
         x={`${cluster.position.x}%`}
-        y={`${cluster.position.y - cluster.size * 0.35 + 4}%`}
+        y={`${cluster.position.y - cluster.size * 0.35 + 3.5}%`}
         textAnchor="middle"
-        className="text-[10px] fill-slate-500 pointer-events-none"
+        fontSize="2"
+        fill="#64748b"
+        className="pointer-events-none"
       >
         {cluster.accounts} accounts
       </text>

@@ -45,7 +45,7 @@ export function initializeOfflineStorage(): Promise<IDBDatabase> {
 
     request.onerror = () => {
       console.error('[OfflineStorage] Failed to open database:', request.error);
-      reject(request.error);
+      reject(new Error(request.error?.message || 'Failed to open database'));
     };
 
     request.onsuccess = () => {
@@ -119,7 +119,7 @@ export async function get<T>(store: StoreName, key: string): Promise<T | undefin
     const request = objectStore.get(key);
 
     request.onsuccess = () => resolve(request.result as T);
-    request.onerror = () => reject(request.error);
+    request.onerror = () => reject(new Error(request.error?.message || 'Failed to get data'));
   });
 }
 
@@ -135,7 +135,7 @@ export async function getAll<T>(store: StoreName): Promise<T[]> {
     const request = objectStore.getAll();
 
     request.onsuccess = () => resolve(request.result as T[]);
-    request.onerror = () => reject(request.error);
+    request.onerror = () => reject(new Error(request.error?.message || 'Failed to get all data'));
   });
 }
 
@@ -151,7 +151,7 @@ export async function put<T>(store: StoreName, data: T): Promise<void> {
     const request = objectStore.put(data);
 
     request.onsuccess = () => resolve();
-    request.onerror = () => reject(request.error);
+    request.onerror = () => reject(new Error(request.error?.message || 'Failed to put data'));
   });
 }
 
@@ -167,7 +167,7 @@ export async function remove(store: StoreName, key: string): Promise<void> {
     const request = objectStore.delete(key);
 
     request.onsuccess = () => resolve();
-    request.onerror = () => reject(request.error);
+    request.onerror = () => reject(new Error(request.error?.message || 'Failed to delete data'));
   });
 }
 
@@ -183,7 +183,7 @@ export async function clear(store: StoreName): Promise<void> {
     const request = objectStore.clear();
 
     request.onsuccess = () => resolve();
-    request.onerror = () => reject(request.error);
+    request.onerror = () => reject(new Error(request.error?.message || 'Failed to clear data'));
   });
 }
 
@@ -299,7 +299,7 @@ export async function clearExpiredCache(): Promise<void> {
     };
 
     transaction.oncomplete = () => resolve();
-    transaction.onerror = () => reject(transaction.error);
+    transaction.onerror = () => reject(new Error(transaction.error?.message || 'Transaction failed'));
   });
 }
 

@@ -11,5 +11,7 @@
       "fileMatch": ["/package-lock.json"],
       "url": "https://json.schemastore.org/package-lock.json"
     }
-  ]
+  ],
+  "amplicode.server.tsConfig": "./tsconfig.node.json",
+  "svn.ignoreMissingSvnWarning": true
 }

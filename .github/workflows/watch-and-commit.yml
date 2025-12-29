@@ -1,0 +1,95 @@
+name: Watch and Auto-Commit
+
+on:
+  # Run on schedule (every 30 minutes)
+  schedule:
+    - cron: '*/30 * * * *'
+
+  # Allow manual triggering
+  workflow_dispatch:
+    inputs:
+      commit_message:
+        description: 'Custom commit message (optional)'
+        required: false
+        default: 'Auto-commit: Scheduled update'
+
+jobs:
+  watch-and-commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git fetch origin main
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "has_local_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_local_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create PR branch
+        if: steps.check_changes.outputs.has_local_changes == 'true'
+        id: create_branch
+        run: |
+          TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+          BRANCH_NAME="auto-scheduled-${TIMESTAMP}"
+          echo "branch_name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+          git checkout -b ${BRANCH_NAME}
+
+      - name: Commit and push
+        if: steps.check_changes.outputs.has_local_changes == 'true'
+        run: |
+          git add .
+          COMMIT_MSG="${{ github.event.inputs.commit_message }}"
+          if [ -z "$COMMIT_MSG" ]; then
+            COMMIT_MSG="🤖 Scheduled auto-commit: $(date '+%Y-%m-%d %H:%M:%S')"
+          fi
+          git commit -m "$COMMIT_MSG"
+          git push origin ${{ steps.create_branch.outputs.branch_name }}
+
+      - name: Create Pull Request
+        if: steps.check_changes.outputs.has_local_changes == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ steps.create_branch.outputs.branch_name }}
+          title: "🤖 Scheduled Auto-commit: $(date '+%Y-%m-%d %H:%M')"
+          body: |
+            ## Scheduled Automated Changes
+
+            This PR was automatically created by the scheduled watch workflow.
+
+            **Run Time:** $(date '+%Y-%m-%d %H:%M:%S UTC')
+            **Trigger:** ${{ github.event_name }}
+
+            ### What happened?
+            The workflow detected uncommitted changes and automatically:
+            1. Created a new branch
+            2. Committed all changes
+            3. Opened this PR for review
+
+            ### Next Steps
+            - Review the changes in the Files tab
+            - Run any necessary tests
+            - Merge or request changes as needed
+
+            ---
+            *Automated by GitHub Actions - Schedule: Every 30 minutes*
+          labels: |
+            automated
+            scheduled
+            auto-pr

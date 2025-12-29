@@ -397,7 +397,8 @@ export class WriterAgent extends BaseAgent {
     
     // Weight by success rate and context match
     return templates.reduce((best, current) => 
-      current.successRate > best.successRate ? current : best
+      current.successRate > best.successRate ? current : best,
+      templates[0]
     );
   }
 

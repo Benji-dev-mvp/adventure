@@ -356,6 +356,101 @@ const HomePage = () => {
       {/* Customer Logos */}
       <CustomerShowcase />
 
+      {/* Industry-Leading Features CTA */}
+      <section className="py-20 px-6 relative">
+        <div className="max-w-6xl mx-auto">
+          {/* Glow Effects */}
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 blur-3xl -z-10 rounded-3xl" />
+          
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 dark:from-slate-800 dark:via-purple-900 dark:to-slate-800 border border-purple-500/20">
+            {/* Animated Grid Overlay */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px]" />
+            
+            {/* Content */}
+            <div className="relative p-12 text-center">
+              {/* Floating Icons */}
+              <div className="flex justify-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}>
+                  <Rocket className="text-white" size={20} />
+                </div>
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '3s' }}>
+                  <Sparkles className="text-white" size={20} />
+                </div>
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center animate-bounce" style={{ animationDelay: '1s', animationDuration: '3s' }}>
+                  <Zap className="text-white" size={20} />
+                </div>
+              </div>
+              
+              <RevealText>
+                <h2 className="text-4xl md:text-5xl font-black mb-4 text-white">
+                  Industry-Leading AI Sales Platform
+                </h2>
+                <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+                  21 exceptional features engineered to make your sales team <span className="text-transparent bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text font-bold">unstoppable</span>
+                </p>
+              </RevealText>
+              
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto mb-10">
+                {[
+                  { count: 5, label: 'Real-Time', gradient: 'from-cyan-500 to-blue-600' },
+                  { count: 4, label: 'Gamification', gradient: 'from-purple-500 to-pink-600' },
+                  { count: 4, label: 'Playbooks', gradient: 'from-amber-500 to-orange-600' },
+                  { count: 4, label: 'Executive', gradient: 'from-emerald-500 to-teal-600' },
+                  { count: 4, label: 'Integrations', gradient: 'from-rose-500 to-red-600' },
+                ].map((feature, index) => (
+                  <motion.div
+                    key={feature.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="group relative p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 cursor-pointer"
+                  >
+                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                    <div className="relative">
+                      <p className="text-4xl font-black text-white mb-2">
+                        {feature.count}
+                      </p>
+                      <p className="text-sm text-slate-300 font-medium">{feature.label}</p>
+                      <div className="mt-2 h-1 bg-white/10 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${feature.count * 20}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: index * 0.1 }}
+                          className={`h-full bg-gradient-to-r ${feature.gradient}`}
+                        />
+                      </div>
+                    </div>
+                    {/* Hover glow effect */}
+                    <div className={`absolute -inset-1 bg-gradient-to-r ${feature.gradient} rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-300 -z-10`} />
+                  </motion.div>
+                ))}
+              </div>
+              
+              {/* CTA Button */}
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link to="/exceptional">
+                  <GlowButton variant="primary" size="xl" glow className="gap-2">
+                    <Rocket size={20} />
+                    Explore All Features
+                    <Sparkles size={20} />
+                  </GlowButton>
+                </Link>
+                
+                <Link to="/ai-tour">
+                  <GlowButtonOutline variant="secondary" size="xl" className="gap-2">
+                    <Play size={20} />
+                    View Demo
+                  </GlowButtonOutline>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Bottom CTA */}
       <section className="py-20 px-6 relative overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />

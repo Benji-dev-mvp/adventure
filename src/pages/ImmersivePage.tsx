@@ -123,14 +123,22 @@ const ImmersiveCanvas: React.FC<{ nodes: DataNode[]; focusedNode: DataNode | nul
       ctx.fillStyle = '#0f1419';
       ctx.fillRect(0, 0, 800, 600);
 
-      // Draw grid
+      // Draw grid - with vertical lines too for better depth perception
       ctx.strokeStyle = '#1a2332';
       ctx.lineWidth = 1;
-      for (let i = 0; i < 10; i++) {
-        const y = 60 + i * 60;
+      for (let i = 0; i <= 10; i++) {
+        // Horizontal lines
+        const y = 60 * i;
         ctx.beginPath();
         ctx.moveTo(0, y);
         ctx.lineTo(800, y);
+        ctx.stroke();
+        
+        // Vertical lines
+        const x = 80 * i;
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, 600);
         ctx.stroke();
       }
 
@@ -183,12 +191,25 @@ const ImmersiveCanvas: React.FC<{ nodes: DataNode[]; focusedNode: DataNode | nul
           ctx.stroke();
         }
 
-        // Label
+        // Label - with better sizing and shadow for readability
         if (radius > 15 || isFocused) {
-          ctx.fillStyle = '#ffffff';
-          ctx.font = `${10 * pos.scale}px Inter, sans-serif`;
+          const fontSize = Math.max(10, Math.min(14, 10 * pos.scale));
+          ctx.font = `${fontSize}px Inter, sans-serif`;
           ctx.textAlign = 'center';
-          ctx.fillText(node.label, pos.x, pos.y + radius + 15);
+          ctx.textBaseline = 'top';
+          
+          // Text shadow for better readability
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+          ctx.shadowBlur = 4;
+          ctx.shadowOffsetX = 0;
+          ctx.shadowOffsetY = 1;
+          
+          ctx.fillStyle = '#ffffff';
+          ctx.fillText(node.label, pos.x, pos.y + radius + 8);
+          
+          // Reset shadow
+          ctx.shadowColor = 'transparent';
+          ctx.shadowBlur = 0;
         }
       });
 
@@ -240,7 +261,8 @@ const ImmersiveCanvas: React.FC<{ nodes: DataNode[]; focusedNode: DataNode | nul
       ref={canvasRef}
       width={800}
       height={600}
-      className="rounded-xl cursor-grab active:cursor-grabbing"
+      className="rounded-xl cursor-grab active:cursor-grabbing border border-gray-800 shadow-2xl"
+      style={{ maxWidth: '100%', height: 'auto' }}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
@@ -288,8 +310,8 @@ const InsightCard: React.FC<{ insight: Insight }> = ({ insight }) => {
       <p className="text-sm text-gray-400 mb-2">{insight.description}</p>
       <div className="flex items-center justify-between text-xs">
         <span className="text-gray-500">{insight.timestamp}</span>
-        <span className={`${typeStyles[insight.type]}`}>
-          {(insight.confidence * 100).toFixed(0)}% confident
+        <span className="font-medium">
+          {Math.round(insight.confidence * 100)}% confident
         </span>
       </div>
     </div>

@@ -363,6 +363,9 @@ const ExecutionTimeline = () => {
 
                     {/* Event card */}
                     <div
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => e.key === 'Enter' && setSelectedEvent(event.id)}
                       className={`bg-gray-900 border rounded-lg overflow-hidden cursor-pointer transition-colors ${
                         event.status === 'failed' ? 'border-red-500/30 hover:border-red-500/50' :
                         event.status === 'running' ? 'border-amber-500/30 hover:border-amber-500/50' :

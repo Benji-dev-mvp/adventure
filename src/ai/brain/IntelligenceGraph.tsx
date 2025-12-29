@@ -220,8 +220,8 @@ const IntelligenceGraph = () => {
               
               <div className="space-y-4">
                 <div>
-                  <label className="text-xs text-gray-400 uppercase tracking-wider mb-2 block">Node Type</label>
-                  <div className="flex flex-wrap gap-2">
+                  <label htmlFor="node-type-filter" className="text-xs text-gray-400 uppercase tracking-wider mb-2 block">Node Type</label>
+                  <div id="node-type-filter" className="flex flex-wrap gap-2">
                     {['account', 'contact', 'technology', 'signal'].map(type => (
                       <button
                         key={type}
@@ -244,8 +244,8 @@ const IntelligenceGraph = () => {
                 </div>
 
                 <div>
-                  <label className="text-xs text-gray-400 uppercase tracking-wider mb-2 block">Intent Level</label>
-                  <div className="flex flex-wrap gap-2">
+                  <label htmlFor="intent-level-filter" className="text-xs text-gray-400 uppercase tracking-wider mb-2 block">Intent Level</label>
+                  <div id="intent-level-filter" className="flex flex-wrap gap-2">
                     {[
                       { id: 'hot', color: 'bg-red-500' },
                       { id: 'warm', color: 'bg-amber-500' },

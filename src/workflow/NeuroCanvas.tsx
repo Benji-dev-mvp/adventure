@@ -380,8 +380,8 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
     edge: CanvasEdge
   ) => {
     const gradient = ctx.createLinearGradient(source.x, source.y, target.x, target.y);
-    gradient.addColorStop(0, source.color + '40');
-    gradient.addColorStop(1, target.color + '40');
+    gradient.addColorStop(0, addAlpha(source.color, '40'));
+    gradient.addColorStop(1, addAlpha(target.color, '40'));
     
     // Draw edge line
     ctx.strokeStyle = gradient;
@@ -403,8 +403,8 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
       
       // Glow effect
       const glowGradient = ctx.createRadialGradient(x, y, 0, x, y, particle.size * 3);
-      glowGradient.addColorStop(0, particle.color + '80');
-      glowGradient.addColorStop(1, particle.color + '00');
+      glowGradient.addColorStop(0, addAlpha(particle.color, '80'));
+      glowGradient.addColorStop(1, addAlpha(particle.color, '00'));
       ctx.beginPath();
       ctx.arc(x, y, particle.size * 3, 0, Math.PI * 2);
       ctx.fillStyle = glowGradient;
@@ -426,8 +426,8 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
       node.x, node.y, radius * 0.5,
       node.x, node.y, glowRadius
     );
-    glowGradient.addColorStop(0, node.color + Math.floor(node.pulseIntensity * 60).toString(16).padStart(2, '0'));
-    glowGradient.addColorStop(1, node.color + '00');
+    glowGradient.addColorStop(0, addAlpha(node.color, Math.floor(node.pulseIntensity * 60).toString(16).padStart(2, '0')));
+    glowGradient.addColorStop(1, addAlpha(node.color, '00'));
     
     ctx.beginPath();
     ctx.arc(node.x, node.y, glowRadius, 0, Math.PI * 2);
@@ -580,10 +580,25 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
 
 function adjustColor(color: string, amount: number): string {
   const hex = color.replace('#', '');
-  const r = Math.max(0, Math.min(255, parseInt(hex.slice(0, 2), 16) + amount));
-  const g = Math.max(0, Math.min(255, parseInt(hex.slice(2, 4), 16) + amount));
-  const b = Math.max(0, Math.min(255, parseInt(hex.slice(4, 6), 16) + amount));
+  const r = Math.max(0, Math.min(255, Number.parseInt(hex.slice(0, 2), 16) + amount));
+  const g = Math.max(0, Math.min(255, Number.parseInt(hex.slice(2, 4), 16) + amount));
+  const b = Math.max(0, Math.min(255, Number.parseInt(hex.slice(4, 6), 16) + amount));
   return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+}
+
+/**
+ * Add alpha channel to hex color
+ * Handles both 3-char (#fff) and 6-char (#ffffff) hex codes
+ */
+function addAlpha(color: string, alpha: string): string {
+  let hex = color.replace('#', '');
+  
+  // Expand 3-char hex to 6-char
+  if (hex.length === 3) {
+    hex = hex.split('').map(char => char + char).join('');
+  }
+  
+  return `#${hex}${alpha}`;
 }
 
 export default NeuroCanvas;

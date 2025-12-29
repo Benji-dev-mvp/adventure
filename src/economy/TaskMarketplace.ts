@@ -130,13 +130,15 @@ export class TaskMarketplace {
     switch (strategy) {
       case 'lowest':
         winner = bids.reduce((min, b) => 
-          b.proposedCredits < min.proposedCredits ? b : min
+          b.proposedCredits < min.proposedCredits ? b : min,
+          bids[0]
         );
         break;
 
       case 'highest-confidence':
         winner = bids.reduce((max, b) => 
-          b.confidence > max.confidence ? b : max
+          b.confidence > max.confidence ? b : max,
+          bids[0]
         );
         break;
 

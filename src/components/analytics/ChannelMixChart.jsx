@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  PieChart, 
-  Pie, 
-  Cell, 
-  ResponsiveContainer,
-  Tooltip,
-  Legend 
-} from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import { Mail, Linkedin, Phone, MessageSquare } from 'lucide-react';
 import { useReducedMotion, viewportSettings } from '../../hooks/useMotion';
 import { GlassCard, GlassCardContent, GradientText } from '../futuristic';

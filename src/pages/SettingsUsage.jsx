@@ -162,20 +162,28 @@ const SettingsUsage = () => {
             transition={{ delay: 0.05 }}
             className="space-y-2"
           >
-            {warnings.map((warning, i) => (
-              <div
-                key={i}
-                className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center gap-4"
-              >
-                <AlertTriangle className="h-5 w-5 text-amber-400 flex-shrink-0" />
-                <div className="flex-1">
-                  <span className="text-amber-200">{warning}</span>
+            {warnings.map((warning, i) => {
+              const metricLabel = usageMetrics.find(m => m.key === warning.key)?.label || warning.key;
+              return (
+                <div
+                  key={i}
+                  className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center gap-4"
+                >
+                  <AlertTriangle className="h-5 w-5 text-amber-400 flex-shrink-0" />
+                  <div className="flex-1">
+                    <span className="text-amber-200">
+                      {warning.atLimit 
+                        ? `${metricLabel} limit reached (${warning.used.toLocaleString()} / ${warning.limit.toLocaleString()})` 
+                        : `${metricLabel} usage at ${warning.percent}% (${warning.used.toLocaleString()} / ${warning.limit.toLocaleString()})`
+                      }
+                    </span>
+                  </div>
+                  <Button variant="outline" size="sm" className="text-amber-400 border-amber-500/50">
+                    Upgrade Plan
+                  </Button>
                 </div>
-                <Button variant="outline" size="sm" className="text-amber-400 border-amber-500/50">
-                  Upgrade Plan
-                </Button>
-              </div>
-            ))}
+              );
+            })}
           </motion.div>
         )}
 

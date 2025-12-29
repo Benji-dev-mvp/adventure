@@ -253,11 +253,11 @@ class Orchestrator {
     switch (strategy) {
       case 'aggressive':
         // Lowest cost
-        return bids.reduce((a, b) => a.proposedCost < b.proposedCost ? a : b);
+        return bids.reduce((a, b) => a.proposedCost < b.proposedCost ? a : b, bids[0]);
       
       case 'quality-first':
         // Highest confidence
-        return bids.reduce((a, b) => a.confidence > b.confidence ? a : b);
+        return bids.reduce((a, b) => a.confidence > b.confidence ? a : b, bids[0]);
       
       case 'balanced':
       default:

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // TODO: Add proper TypeScript types for this experimental module
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';

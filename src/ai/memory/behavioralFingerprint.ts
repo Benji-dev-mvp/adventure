@@ -1,4 +1,3 @@
-// @ts-nocheck
 // TODO: Complete implementation of behavioral fingerprinting
 /**
  * Behavioral Fingerprinting Engine

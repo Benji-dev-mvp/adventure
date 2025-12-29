@@ -1,4 +1,3 @@
-// @ts-nocheck
 // TODO: Complete implementation of pattern indexing
 /**
  * Pattern Index - Self-Improving Message Pattern Recognition

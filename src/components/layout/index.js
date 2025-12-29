@@ -7,3 +7,4 @@ export { default as Sidebar } from './Sidebar';
 export { default as PostLoginShell } from './PostLoginShell';
 export { default as AppShell } from './AppShell';
 export { default as WorkspaceSwitcher } from './WorkspaceSwitcher';
+export { PageScaffold, SectionHeader } from './PageScaffold';

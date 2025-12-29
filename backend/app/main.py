@@ -36,6 +36,7 @@ from app.api.routes.playbooks import router as playbooks_router  # New enhanced 
 from app.api.routes.tasks import router as tasks_router  # NEW
 from app.api.routes.campaign_intelligence import router as campaign_intelligence_router  # Campaign business logic
 from app.api.routes.ai_advanced import router as ai_advanced_router  # Advanced AI integrations
+from app.api.routes.activity import router as activity_router  # Activity Event Spine
 from app.core.db import init_db, seed_if_empty, engine
 from app.core.security import SecurityHeadersMiddleware, RequestSizeLimitMiddleware, RequestIDMiddleware, RateLimitMiddleware
 from app.core.cache import cache
@@ -195,3 +196,6 @@ app.include_router(playbooks_router, prefix="/api", tags=["ai-playbooks"])  # En
 # Include advanced AI/ML features
 app.include_router(advanced_features_router, prefix="/api/advanced", tags=["ml-ai"])
 app.include_router(oauth_router, prefix="/api", tags=["oauth"])
+
+# Include Activity Event Spine
+app.include_router(activity_router, prefix="/api", tags=["activity-events"])

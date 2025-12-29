@@ -147,6 +147,9 @@ function App() {
                 
                 {/* ===== POST-LOGIN APP ROUTES (with unified shell) ===== */}
                 <Route element={<PostLoginShell />}>
+                  {/* Dev Tools (not in navConfig) */}
+                  <Route path="/health/routes" element={<RouteHealthPage />} />
+                  
                   {/* App Routes */}
                   <Route path="/marketing" element={<Marketing />} />
                   <Route path="/onboarding" element={<Onboarding />} />

@@ -36,6 +36,8 @@ from app.api.routes.playbooks import router as playbooks_router  # New enhanced 
 from app.api.routes.tasks import router as tasks_router  # NEW
 from app.api.routes.campaign_intelligence import router as campaign_intelligence_router  # Campaign business logic
 from app.api.routes.ai_advanced import router as ai_advanced_router  # Advanced AI integrations
+from app.api.routes.api_keys import router as api_keys_router  # API key management
+from app.api.routes.webhooks_admin import router as webhooks_admin_router  # Webhook management
 from app.core.db import init_db, seed_if_empty, engine
 from app.core.security import SecurityHeadersMiddleware, RequestSizeLimitMiddleware, RequestIDMiddleware, RateLimitMiddleware
 from app.core.cache import cache
@@ -195,3 +197,5 @@ app.include_router(playbooks_router, prefix="/api", tags=["ai-playbooks"])  # En
 # Include advanced AI/ML features
 app.include_router(advanced_features_router, prefix="/api/advanced", tags=["ml-ai"])
 app.include_router(oauth_router, prefix="/api", tags=["oauth"])
+app.include_router(api_keys_router, prefix="/api/admin", tags=["api-keys"])  # API key management
+app.include_router(webhooks_admin_router, prefix="/api/admin", tags=["webhooks"])  # Webhook management

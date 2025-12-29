@@ -86,6 +86,9 @@ class User(BaseModel):
     created_at: datetime
     last_login: Optional[datetime] = None
     
+    # Organization membership
+    organization_id: Optional[int] = None
+    
     # OAuth fields
     oauth_provider: Optional[str] = None
     oauth_provider_id: Optional[str] = None

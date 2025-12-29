@@ -2,12 +2,13 @@
  * Activity Stream Component
  * 
  * Shared component for displaying activity/event streams
- * Uses getDemoEvents from demo data contract
+ * Now uses activityService and canonical ActivityEvent contract
  * Supports filtering by type (AI/Human/System) and importance
  */
 
-import React, { useMemo } from 'react';
-import { getDemoEvents, type DemoEvent } from '@/demo/demoData';
+import React, { useEffect, useState } from 'react';
+import { activityService } from '@/services/activityService';
+import type { ActivityEvent, ActorType, ImportanceLevel } from '@/contracts/activity';
 import { useAppPlan } from '@/state/appStore';
 import { cn } from '@/lib/utils';
 import { Card, CardContent } from '@/components/ui/Card';
@@ -20,7 +21,7 @@ interface ActivityStreamProps {
   limit?: number;
   showFilters?: boolean;
   compact?: boolean;
-  onEventClick?: (event: DemoEvent) => void;
+  onEventClick?: (event: ActivityEvent) => void;
 }
 
 export const ActivityStream: React.FC<ActivityStreamProps> = ({
@@ -32,26 +33,44 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
   onEventClick,
 }) => {
   const plan = useAppPlan();
-  const events = useMemo(() => getDemoEvents(plan), [plan]);
+  const [events, setEvents] = useState<ActivityEvent[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Apply filters
-  const filteredEvents = useMemo(() => {
-    let filtered = [...events];
+  // Load events from activity service
+  useEffect(() => {
+    const loadEvents = async () => {
+      setLoading(true);
+      try {
+        // Build filter params
+        const actorTypeFilter: ActorType[] | undefined = 
+          filterType === 'all' ? undefined :
+          filterType === 'ai' ? ['AI'] :
+          filterType === 'human' ? ['Human'] :
+          filterType === 'system' ? ['System'] :
+          undefined;
+        
+        const importanceFilter: ImportanceLevel | undefined =
+          filterImportance === 'all' ? undefined : filterImportance as ImportanceLevel;
+        
+        const response = await activityService.list({
+          actorType: actorTypeFilter,
+          importance: importanceFilter,
+          limit: limit || 50,
+        }, plan);
+        
+        setEvents(response.items);
+      } catch (error) {
+        console.error('[ActivityStream] Failed to load events:', error);
+        setEvents([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    loadEvents();
+  }, [plan, filterType, filterImportance, limit]);
 
-    if (filterType !== 'all') {
-      filtered = filtered.filter((e) => e.type === filterType);
-    }
-
-    if (filterImportance !== 'all') {
-      filtered = filtered.filter((e) => e.importance === filterImportance);
-    }
-
-    if (limit) {
-      filtered = filtered.slice(0, limit);
-    }
-
-    return filtered;
-  }, [events, filterType, filterImportance, limit]);
+  const filteredEvents = events;
 
   const formatTimeAgo = (timestamp: string): string => {
     const now = new Date();
@@ -67,8 +86,8 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
     return 'Just now';
   };
 
-  const getTypeIcon = (type: string) => {
-    switch (type) {
+  const getTypeIcon = (actorType: string) => {
+    switch (actorType.toLowerCase()) {
       case 'ai':
         return Bot;
       case 'human':
@@ -80,8 +99,8 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
     }
   };
 
-  const getTypeColor = (type: string) => {
-    switch (type) {
+  const getTypeColor = (actorType: string) => {
+    switch (actorType.toLowerCase()) {
       case 'ai':
         return 'text-cyan-500 bg-cyan-500/10';
       case 'human':
@@ -104,6 +123,17 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
     }
   };
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-8 text-center">
+        <div>
+          <div className="w-8 h-8 border-2 border-slate-700 border-t-cyan-500 rounded-full animate-spin mx-auto mb-2" />
+          <p className="text-sm text-slate-400">Loading activity...</p>
+        </div>
+      </div>
+    );
+  }
+
   if (filteredEvents.length === 0) {
     return (
       <div className="flex items-center justify-center py-8 text-center">
@@ -118,8 +148,8 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
   return (
     <div className="space-y-2">
       {filteredEvents.map((event) => {
-        const TypeIcon = getTypeIcon(event.type);
-        const typeColor = getTypeColor(event.type);
+        const TypeIcon = getTypeIcon(event.actorType);
+        const typeColor = getTypeColor(event.actorType);
 
         if (compact) {
           return (
@@ -136,7 +166,7 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm text-white truncate">
-                  <span className="font-medium">{event.actor}</span> {event.action} {event.target}
+                  {event.summary}
                 </p>
               </div>
               <span className="text-xs text-slate-500 flex-shrink-0">{formatTimeAgo(event.timestamp)}</span>
@@ -161,18 +191,18 @@ export const ActivityStream: React.FC<ActivityStreamProps> = ({
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <p className="text-sm font-medium text-white">
-                      {event.actor}
+                      {event.actorName}
                     </p>
                     <BadgePill variant="default" className="text-xs">
-                      {event.type.toUpperCase()}
+                      {event.actorType.toUpperCase()}
                     </BadgePill>
                     {getImportanceBadge(event.importance)}
                   </div>
                   <p className="text-sm text-slate-300 mb-1">
-                    {event.action} <span className="text-white font-medium">{event.target}</span>
+                    {event.summary}
                   </p>
-                  {event.details && (
-                    <p className="text-xs text-slate-400">{event.details}</p>
+                  {event.description && event.description !== event.summary && (
+                    <p className="text-xs text-slate-400">{event.description}</p>
                   )}
                 </div>
                 <span className="text-xs text-slate-500 flex-shrink-0">{formatTimeAgo(event.timestamp)}</span>

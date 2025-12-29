@@ -16,7 +16,7 @@
 export function safeColor(color: string | undefined | null, fallback = '#6B7280'): string {
   if (!color) return fallback;
   
-  // Check for valid hex color
+  // Check for valid hex color (3 or 6 digits)
   if (/^#[0-9A-Fa-f]{3}$/.test(color) || /^#[0-9A-Fa-f]{6}$/.test(color)) {
     return color;
   }
@@ -37,6 +37,59 @@ export function safeColor(color: string | undefined | null, fallback = '#6B7280'
   }
   
   return fallback;
+}
+
+/**
+ * Safely add opacity to a hex color
+ * Converts 3-digit hex to 6-digit, then adds opacity
+ * Returns rgba() format for reliable opacity support
+ */
+export function addColorOpacity(color: string | undefined | null, opacity: number, fallback = '#6B7280'): string {
+  const safeCol = safeColor(color, fallback);
+  const safeOp = safeOpacity(opacity);
+  
+  // Handle hex colors
+  if (safeCol.startsWith('#')) {
+    let hex = safeCol.slice(1);
+    
+    // Convert 3-digit to 6-digit
+    if (hex.length === 3) {
+      hex = hex.split('').map(c => c + c).join('');
+    }
+    
+    // Parse RGB values
+    if (hex.length === 6) {
+      const r = parseInt(hex.slice(0, 2), 16);
+      const g = parseInt(hex.slice(2, 4), 16);
+      const b = parseInt(hex.slice(4, 6), 16);
+      return `rgba(${r}, ${g}, ${b}, ${safeOp})`;
+    }
+  }
+  
+  // Handle rgb/rgba - replace alpha or add it
+  if (safeCol.startsWith('rgb')) {
+    const match = safeCol.match(/rgba?\(([^)]+)\)/);
+    if (match) {
+      const parts = match[1].split(',').map(p => p.trim());
+      if (parts.length >= 3) {
+        return `rgba(${parts[0]}, ${parts[1]}, ${parts[2]}, ${safeOp})`;
+      }
+    }
+  }
+  
+  // Handle hsl/hsla - replace alpha or add it
+  if (safeCol.startsWith('hsl')) {
+    const match = safeCol.match(/hsla?\(([^)]+)\)/);
+    if (match) {
+      const parts = match[1].split(',').map(p => p.trim());
+      if (parts.length >= 3) {
+        return `hsla(${parts[0]}, ${parts[1]}, ${parts[2]}, ${safeOp})`;
+      }
+    }
+  }
+  
+  // Fallback - return color as-is (might not support opacity but won't crash)
+  return safeCol;
 }
 
 /**
@@ -251,6 +304,7 @@ export function createSafeGradient(
 
 export default {
   safeColor,
+  addColorOpacity,
   safeNumber,
   safeArray,
   isCanvasReady,

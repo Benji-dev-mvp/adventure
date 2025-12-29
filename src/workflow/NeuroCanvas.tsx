@@ -14,7 +14,8 @@ import type { AgentRole } from '../autonomy/agents/types';
 import { 
   getSafeCanvasContext, 
   safeNumber, 
-  safeColor
+  safeColor,
+  addColorOpacity
 } from '../lib/renderSafety';
 
 // === Types ===
@@ -381,8 +382,8 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
     edge: CanvasEdge
   ) => {
     const gradient = ctx.createLinearGradient(source.x, source.y, target.x, target.y);
-    gradient.addColorStop(0, source.color + '40');
-    gradient.addColorStop(1, target.color + '40');
+    gradient.addColorStop(0, addColorOpacity(source.color, 0.25));
+    gradient.addColorStop(1, addColorOpacity(target.color, 0.25));
     
     // Draw edge line
     ctx.strokeStyle = gradient;
@@ -399,13 +400,13 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
       
       ctx.beginPath();
       ctx.arc(x, y, particle.size, 0, Math.PI * 2);
-      ctx.fillStyle = particle.color;
+      ctx.fillStyle = safeColor(particle.color, '#ffffff');
       ctx.fill();
       
       // Glow effect
       const glowGradient = ctx.createRadialGradient(x, y, 0, x, y, particle.size * 3);
-      glowGradient.addColorStop(0, particle.color + '80');
-      glowGradient.addColorStop(1, particle.color + '00');
+      glowGradient.addColorStop(0, addColorOpacity(particle.color, 0.5));
+      glowGradient.addColorStop(1, addColorOpacity(particle.color, 0));
       ctx.beginPath();
       ctx.arc(x, y, particle.size * 3, 0, Math.PI * 2);
       ctx.fillStyle = glowGradient;
@@ -427,8 +428,9 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
       node.x, node.y, radius * 0.5,
       node.x, node.y, glowRadius
     );
-    glowGradient.addColorStop(0, node.color + Math.floor(node.pulseIntensity * 60).toString(16).padStart(2, '0'));
-    glowGradient.addColorStop(1, node.color + '00');
+    const glowOpacity = Math.floor(node.pulseIntensity * 60) / 255;
+    glowGradient.addColorStop(0, addColorOpacity(node.color, glowOpacity));
+    glowGradient.addColorStop(1, addColorOpacity(node.color, 0));
     
     ctx.beginPath();
     ctx.arc(node.x, node.y, glowRadius, 0, Math.PI * 2);
@@ -440,7 +442,7 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
       node.x - radius * 0.3, node.y - radius * 0.3, 0,
       node.x, node.y, radius
     );
-    bodyGradient.addColorStop(0, node.color);
+    bodyGradient.addColorStop(0, safeColor(node.color));
     bodyGradient.addColorStop(1, adjustColor(node.color, -40));
     
     ctx.beginPath();
@@ -449,7 +451,7 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
     ctx.fill();
     
     // Status indicator
-    const statusColor = STATUS_COLORS[node.status];
+    const statusColor = safeColor(STATUS_COLORS[node.status]);
     ctx.beginPath();
     ctx.arc(node.x + radius * 0.7, node.y - radius * 0.7, 6, 0, Math.PI * 2);
     ctx.fillStyle = statusColor;
@@ -579,11 +581,35 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
 
 // === Utility Functions ===
 
+/**
+ * Safely adjust color brightness
+ * Works with hex colors, validates and handles 3-digit and 6-digit hex
+ */
 function adjustColor(color: string, amount: number): string {
-  const hex = color.replace('#', '');
+  // Validate and normalize the color first
+  const safeCol = safeColor(color);
+  
+  // Only works with hex colors
+  if (!safeCol.startsWith('#')) {
+    return safeCol; // Return as-is if not hex
+  }
+  
+  let hex = safeCol.slice(1);
+  
+  // Convert 3-digit to 6-digit
+  if (hex.length === 3) {
+    hex = hex.split('').map(c => c + c).join('');
+  }
+  
+  // Must be 6 digits now
+  if (hex.length !== 6) {
+    return safeCol; // Return original if still invalid
+  }
+  
   const r = Math.max(0, Math.min(255, parseInt(hex.slice(0, 2), 16) + amount));
   const g = Math.max(0, Math.min(255, parseInt(hex.slice(2, 4), 16) + amount));
   const b = Math.max(0, Math.min(255, parseInt(hex.slice(4, 6), 16) + amount));
+  
   return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 }
 

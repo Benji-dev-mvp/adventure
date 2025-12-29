@@ -23,7 +23,6 @@ import {
   RefreshCw,
   CheckCheck,
   ExternalLink,
-  Search,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useActivityFeed } from '@/hooks/useActivityFeed';

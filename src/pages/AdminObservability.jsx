@@ -7,7 +7,7 @@
  * - Dependencies: CRM, email provider, webhooks status
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { Button } from '../components/ui/Button';
@@ -16,20 +16,11 @@ import { useSystemStatus } from '../hooks/useEnterprise';
 import { useReducedMotion } from '../hooks/useMotion';
 import {
   Activity,
-  Server,
   Zap,
-  Database,
-  Mail,
-  Webhook,
   RefreshCw,
   AlertTriangle,
   CheckCircle,
   XCircle,
-  Clock,
-  TrendingUp,
-  TrendingDown,
-  BarChart3,
-  Settings,
   Bell,
   Download,
 } from 'lucide-react';

@@ -10,12 +10,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../components/ui/Select';
-import {
-  TabsRadix,
-  TabsListRadix,
-  TabsTriggerRadix,
-  TabsContentRadix,
-} from '../components/ui/TabsRadix';
+
+
 import { LineChart } from 'recharts/es6/chart/LineChart.js';
 import { Line } from 'recharts/es6/cartesian/Line.js';
 import { XAxis } from 'recharts/es6/cartesian/XAxis.js';
@@ -27,13 +23,10 @@ import { Legend } from 'recharts/es6/component/Legend.js';
 import {
   Trophy,
   TrendingUp,
-  Mail,
-  Calendar,
   Target,
   Crown,
   AlertCircle,
   CheckCircle2,
-  ArrowUpRight,
 } from 'lucide-react';
 
 const ABTesting = () => {

@@ -17,13 +17,8 @@ import PropTypes from 'prop-types';
 import {
   BarChart3,
   TrendingUp,
-  TrendingDown,
   Download,
-  Filter,
   RefreshCw,
-  Maximize2,
-  ChevronDown,
-  ArrowRight,
   Users,
   Mail,
   MessageSquare,

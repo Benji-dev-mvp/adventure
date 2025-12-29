@@ -7,26 +7,12 @@ import {
   Rocket,
   Play,
   Pause,
-  Settings,
   Eye,
-  Mail,
-  Users,
-  TrendingUp,
   Calendar,
-  Target,
-  MoreVertical,
-  Edit,
-  Copy,
-  Trash2,
-  BarChart3,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { AreaChart } from 'recharts/es6/chart/AreaChart.js';
 import { Area } from 'recharts/es6/cartesian/Area.js';
-import { XAxis } from 'recharts/es6/cartesian/XAxis.js';
-import { YAxis } from 'recharts/es6/cartesian/YAxis.js';
-import { CartesianGrid } from 'recharts/es6/cartesian/CartesianGrid.js';
-import { Tooltip } from 'recharts/es6/component/Tooltip.js';
 import { ResponsiveContainer } from 'recharts/es6/component/ResponsiveContainer.js';
 
 export const CampaignsTab = ({ onNavigateToCampaign }) => {

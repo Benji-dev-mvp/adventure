@@ -1,23 +1,17 @@
 // Enhanced Dashboard Page - Showcases New Responsive UI Kit
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../components/Toast';
 import {
   Activity,
-  TrendingUp,
   Users,
-  Target,
   Mail,
   Calendar,
   Sparkles,
-  Brain,
-  Zap,
-  BarChart3,
   Clock,
   Rocket,
   DollarSign,
-  ShoppingCart,
   TrendingDown,
   Eye,
   Download,
@@ -35,16 +29,13 @@ import {
   Gauge,
   MetricCard,
   TopBar,
-  Breadcrumbs,
   DataTable,
   TableActions,
   ResponsiveModal,
-  TaskList,
   ProjectCard,
   CalendarWidget,
   ActivityLog,
   StatusBadge,
-  ImageGallery,
   Carousel,
 } from '../components/ui/ResponsiveDashboardKit';
 

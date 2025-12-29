@@ -11,28 +11,20 @@
  * - Interactive exploration
  */
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
   Shield,
   ShieldCheck,
   Lock,
   Key,
-  Eye,
-  EyeOff,
   Server,
-  Database,
   Globe,
   Activity,
   CheckCircle2,
-  AlertTriangle,
-  XCircle,
-  Clock,
   Users,
   Fingerprint,
   FileCheck,
-  Building2,
-  Cpu,
   Zap,
   ArrowUpRight,
   RefreshCw,

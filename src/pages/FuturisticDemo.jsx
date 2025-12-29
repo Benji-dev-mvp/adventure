@@ -4,7 +4,6 @@
 import React from 'react';
 import {
   HeroSection,
-  HeroWithCards,
   GlassCard,
   FeatureCard,
   StatCard,
@@ -16,7 +15,6 @@ import {
   RevealText,
   CountUpText,
   ParticleBackground,
-  FloatingParticles,
 } from '../components/futuristic';
 import { Zap, Shield, Rocket, Star, TrendingUp, Users } from 'lucide-react';
 

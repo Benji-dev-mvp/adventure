@@ -5,12 +5,9 @@ import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import {
   TrendingUp,
-  TrendingDown,
-  Target,
   DollarSign,
   Users,
   Calendar,
-  Mail,
   Award,
   ArrowUp,
   ArrowDown,
@@ -22,8 +19,6 @@ import {
   Activity,
   Zap,
 } from 'lucide-react';
-import { LineChart } from 'recharts/es6/chart/LineChart.js';
-import { Line } from 'recharts/es6/cartesian/Line.js';
 import { BarChart } from 'recharts/es6/chart/BarChart.js';
 import { Bar } from 'recharts/es6/cartesian/Bar.js';
 import { AreaChart } from 'recharts/es6/chart/AreaChart.js';
@@ -36,7 +31,6 @@ import { YAxis } from 'recharts/es6/cartesian/YAxis.js';
 import { CartesianGrid } from 'recharts/es6/cartesian/CartesianGrid.js';
 import { Tooltip } from 'recharts/es6/component/Tooltip.js';
 import { ResponsiveContainer } from 'recharts/es6/component/ResponsiveContainer.js';
-import { Legend } from 'recharts/es6/component/Legend.js';
 
 /**
  * Boardroom-style Executive Dashboard

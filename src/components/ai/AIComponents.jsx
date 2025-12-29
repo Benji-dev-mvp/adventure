@@ -1,6 +1,5 @@
 // AI Assistant Components
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';

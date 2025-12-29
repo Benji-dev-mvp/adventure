@@ -22,8 +22,6 @@ import {
   ArrowRight,
   Zap,
   Target,
-  Users,
-  Mail,
   Clock,
   Sparkles,
   ChevronRight,

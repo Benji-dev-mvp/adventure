@@ -4,7 +4,6 @@ import {
   Search,
   Star,
   Clock,
-  Users,
   TrendingUp,
   ChevronRight,
   Plus,

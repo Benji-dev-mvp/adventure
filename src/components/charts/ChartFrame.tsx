@@ -11,7 +11,7 @@
 
 import React, { ReactNode, useMemo } from 'react';
 import { cn } from '@/lib/utils';
-import { colors, shadows, spacing, typography } from '@/theme/tokens';
+import { colors, shadows, typography } from '@/theme/tokens';
 import { AlertCircle, Loader2 } from 'lucide-react';
 
 export interface ChartFrameProps {

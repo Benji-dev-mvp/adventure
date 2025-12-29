@@ -2,17 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  ArrowRight,
-  Users,
   Target,
   Zap,
   TrendingUp,
   Clock,
-  DollarSign,
   Brain,
   Sparkles,
   CheckCircle,
-  BarChart3,
   Building2,
   Phone,
   Play,
@@ -20,8 +16,6 @@ import {
   Layers,
   RefreshCcw,
   LineChart,
-  Mail,
-  MessageSquare,
   Database,
 } from 'lucide-react';
 import AppShell from '../components/layout/AppShell';

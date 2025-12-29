@@ -17,21 +17,9 @@ import { useReducedMotion } from '../hooks/useMotion';
 import {
   Brain,
   Search,
-  Filter,
   Download,
-  AlertTriangle,
-  CheckCircle,
-  XCircle,
-  Clock,
-  Eye,
-  RotateCcw,
   Shield,
-  TrendingUp,
   Bot,
-  Zap,
-  ThumbsUp,
-  ThumbsDown,
-  MessageSquare,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent, GradientText } from '../components/futuristic';
 

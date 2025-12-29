@@ -3,7 +3,6 @@ import { Card, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import {
   CheckSquare,
-  Mail,
   Tag,
   UserPlus,
   Trash2,

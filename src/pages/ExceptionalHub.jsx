@@ -10,11 +10,8 @@ import {
   BarChart3,
   Link,
   Sparkles,
-  Rocket,
-  Star,
   TrendingUp,
   Users,
-  Target,
 } from 'lucide-react';
 
 // Animated Counter Component

@@ -18,10 +18,6 @@ import {
   TrendingUp,
   TrendingDown,
   AlertTriangle,
-  ChevronDown,
-  Filter,
-  Maximize2,
-  Info,
   Zap,
 } from 'lucide-react';
 import { AnimatedCounter } from '../../ui/AnimatedComponents';

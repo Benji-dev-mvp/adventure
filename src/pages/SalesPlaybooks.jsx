@@ -7,18 +7,11 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs'
 import {
   BookOpen,
   Target,
-  TrendingUp,
-  AlertCircle,
   CheckCircle,
-  MessageSquare,
-  Phone,
-  Mail,
   Clock,
   Award,
-  Zap,
   FileText,
   Play,
-  Users,
 } from 'lucide-react';
 
 const SalesPlaybooks = () => {

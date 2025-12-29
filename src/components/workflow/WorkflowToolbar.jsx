@@ -9,7 +9,6 @@ import {
   Redo2,
   Download,
   Upload,
-  Settings,
   Loader2,
 } from 'lucide-react';
 

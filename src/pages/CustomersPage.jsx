@@ -22,7 +22,6 @@ import {
   GlowButtonOutline,
   RevealText,
   ParticleBackground,
-  CountUpText,
 } from '../components/futuristic';
 
 const CASE_STUDIES = [

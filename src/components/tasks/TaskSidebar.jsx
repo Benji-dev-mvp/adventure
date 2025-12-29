@@ -5,7 +5,6 @@ import {
   Circle,
   Clock,
   Calendar,
-  Star,
   Plus,
   ChevronRight,
   Trash2,
@@ -14,8 +13,6 @@ import {
   Mail,
   Phone,
   Bot,
-  MoreHorizontal,
-  Filter,
   X,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';

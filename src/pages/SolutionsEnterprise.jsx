@@ -2,20 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  ArrowRight,
-  Users,
-  Target,
-  Zap,
   TrendingUp,
-  Clock,
   Shield,
   Brain,
-  Sparkles,
   CheckCircle,
-  BarChart3,
   Building,
   Phone,
-  Play,
   Lock,
   Server,
   Key,
@@ -31,7 +23,6 @@ import {
   KpiFunnelChart,
   RoiProjectionChart,
   CustomerImpactSparklines,
-  ChannelMixChart,
 } from '../components/analytics';
 import {
   GlassCard,

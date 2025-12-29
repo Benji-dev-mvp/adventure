@@ -6,18 +6,15 @@ import {
   MessageSquare,
   Phone,
   CheckCircle,
-  Clock,
   TrendingUp,
   Zap,
   Brain,
   Target,
-  BarChart3,
   Linkedin,
   Send,
   Eye,
   MousePointer,
   UserCheck,
-  Calendar,
   Activity,
 } from 'lucide-react';
 

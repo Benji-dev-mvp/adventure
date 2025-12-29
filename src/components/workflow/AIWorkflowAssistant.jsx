@@ -4,13 +4,9 @@ import {
   Send,
   X,
   Loader2,
-  MessageSquare,
-  Zap,
   Wand2,
   ChevronUp,
   ChevronDown,
-  Copy,
-  Check,
   Bot,
   User,
 } from 'lucide-react';

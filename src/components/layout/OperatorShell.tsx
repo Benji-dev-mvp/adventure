@@ -10,9 +10,7 @@
 import React, { ReactNode, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import { useUIStore } from '@/stores/uiStore';
-import { useTheme } from '@/contexts/ThemeContext';
-import { useTenant } from '@/contexts/TenantContext';
-import { colors, spacing, border, zIndex } from '@/theme/tokens';
+import { colors, zIndex } from '@/theme/tokens';
 import { X } from 'lucide-react';
 
 export interface PageScaffoldConfig {

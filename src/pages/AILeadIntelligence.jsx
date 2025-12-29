@@ -6,7 +6,6 @@ import {
   Zap,
   Clock,
   Star,
-  ArrowRight,
   AlertCircle,
   CheckCircle2,
   Loader2,

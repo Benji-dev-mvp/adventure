@@ -13,23 +13,14 @@ import { useTenant } from '@/contexts/TenantContext';
 import {
   Brain,
   Target,
-  BarChart3,
-  Users,
   Zap,
   Cpu,
   TrendingUp,
   Shield,
   Activity,
-  Sparkles,
-  Play,
-  Network,
-  Presentation,
-  FileText,
-  Database,
   Clock,
   Mail,
   Calendar,
-  CheckCircle,
 } from 'lucide-react';
 
 /**

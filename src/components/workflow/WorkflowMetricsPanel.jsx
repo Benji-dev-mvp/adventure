@@ -7,7 +7,6 @@ import {
   MousePointer,
   Clock,
   CheckCircle,
-  AlertTriangle,
   BarChart3,
   ArrowUpRight,
   ArrowDownRight,

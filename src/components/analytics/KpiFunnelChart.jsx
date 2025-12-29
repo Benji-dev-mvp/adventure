@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Cell,
-} from 'recharts';
+
+
 import { useReducedMotion, viewportSettings } from '../../hooks/useMotion';
 import { GlassCard, GlassCardContent, GradientText } from '../futuristic/index';
 

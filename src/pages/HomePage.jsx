@@ -30,7 +30,6 @@ import {
   RevealText,
   FloatingParticles,
   ParticleBackground,
-  FeatureCard,
 } from '../components/futuristic';
 
 const TRUST_STATS = [

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import {
   Play,
@@ -7,7 +7,6 @@ import {
   ChevronRight,
   Target,
   Clock,
-  TrendingUp,
   MoreVertical,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent } from '../../../components/futuristic';

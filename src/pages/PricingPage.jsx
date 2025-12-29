@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
-  ArrowRight,
   CreditCard,
   CheckCircle2,
-  Sparkles,
   Calculator,
   MessageSquare,
   Mail,
@@ -22,7 +20,6 @@ import {
   GlowButtonOutline,
   RevealText,
   ParticleBackground,
-  CountUpText,
 } from '../components/futuristic';
 
 const PRICING_PLANS = [

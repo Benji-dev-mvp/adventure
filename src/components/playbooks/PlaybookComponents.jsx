@@ -9,7 +9,6 @@ import {
   Shield,
   MessageSquare,
   Calculator,
-  ChevronRight,
   CheckCircle,
   Target,
   TrendingUp,

@@ -11,7 +11,6 @@ import {
   CheckCircle,
   Sparkles,
   Zap,
-  AlertTriangle,
   Clock,
   Play,
   Pause,

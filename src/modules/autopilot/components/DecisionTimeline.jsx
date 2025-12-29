@@ -6,12 +6,6 @@ import {
   Zap,
   ChevronDown,
   ChevronUp,
-  TrendingUp,
-  TrendingDown,
-  AlertTriangle,
-  Check,
-  X,
-  ArrowRight,
   Calendar,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent } from '../../../components/futuristic';

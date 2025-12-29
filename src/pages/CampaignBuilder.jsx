@@ -20,7 +20,6 @@ import {
   GripVertical,
   Trash2,
   Copy,
-  Settings,
   Play,
   Save,
 } from 'lucide-react';

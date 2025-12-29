@@ -12,7 +12,6 @@ import {
   Calendar,
   Target,
   FileText,
-  TrendingUp,
   Clock,
   LayoutDashboard,
   Bot,

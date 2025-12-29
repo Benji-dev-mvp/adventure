@@ -7,7 +7,6 @@ import { Input } from '../ui/Input';
 import {
   RefreshCw,
   CheckCircle,
-  XCircle,
   AlertTriangle,
   Cloud,
   MessageSquare,

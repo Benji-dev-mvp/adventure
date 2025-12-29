@@ -8,7 +8,6 @@ import {
   Database,
   Sparkles,
   CheckCircle,
-  XCircle,
   Clock,
   TrendingUp,
   Users,
@@ -20,7 +19,6 @@ import {
   Linkedin,
   Globe,
   Zap,
-  AlertCircle,
   Info,
 } from 'lucide-react';
 

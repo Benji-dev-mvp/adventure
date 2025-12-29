@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {
   TrendingUp,
-  Mail,
-  Users,
-  Calendar,
   ArrowRight,
   Sparkles,
-  CheckCircle,
   BarChart3,
   Target,
   Zap,

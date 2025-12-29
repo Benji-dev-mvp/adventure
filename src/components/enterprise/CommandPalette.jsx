@@ -1,13 +1,10 @@
 // Command Palette - Universal search and command execution (Cmd+K)
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import {
   Search,
   Command,
   ArrowRight,
-  Clock,
-  Star,
-  Hash,
   User,
   Settings,
   BarChart,

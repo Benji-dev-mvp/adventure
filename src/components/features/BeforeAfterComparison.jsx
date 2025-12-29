@@ -6,7 +6,6 @@ import {
   AlertCircle,
   Users,
   Clock,
-  DollarSign,
   TrendingUp,
   Zap,
   Shield,

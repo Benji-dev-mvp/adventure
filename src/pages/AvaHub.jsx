@@ -19,13 +19,9 @@ import {
   Clock,
   BookOpen,
   ChevronRight,
-  Users,
   DollarSign,
   Shield,
   Activity,
-  BarChart3,
-  Lightbulb,
-  Grid3X3,
 } from 'lucide-react';
 import { useToast } from '../components/Toast';
 import {

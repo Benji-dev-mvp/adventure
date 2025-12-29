@@ -5,8 +5,6 @@ import {
   Loader2,
   AlertCircle,
   Clock,
-  Users,
-  TrendingUp,
   Activity,
 } from 'lucide-react';
 

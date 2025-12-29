@@ -1,35 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Users,
   Brain,
   Mail,
   MessageSquare,
   Phone,
   Linkedin,
   Calendar,
-  TrendingUp,
   Zap,
   Target,
   Search,
-  Database,
-  BarChart3,
   CheckCircle2,
   ArrowRight,
-  Sparkles,
-  Shield,
   Clock,
   Send,
 } from 'lucide-react';
 import {
   GlassCard,
-  GlassCardContent,
   GradientText,
   GlowText,
   RevealText,
   CountUpText,
   ParticleBackground,
-  FloatingParticles,
   GlowButton,
   GlowButtonOutline,
 } from '../futuristic';

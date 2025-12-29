@@ -11,8 +11,6 @@ import {
   RotateCcw,
   Lightbulb,
   Sparkles,
-  AlertTriangle,
-  CheckCircle2,
   Clock,
 } from 'lucide-react';
 

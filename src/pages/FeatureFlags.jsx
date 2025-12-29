@@ -7,22 +7,17 @@ import {
   Flag,
   Search,
   Plus,
-  Filter,
   Edit,
   Trash2,
   ToggleLeft,
   ToggleRight,
   Users,
-  Building2,
-  Zap,
   Bot,
   BarChart3,
   Shield,
   AlertCircle,
   Check,
-  X,
   ChevronDown,
-  Settings,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 

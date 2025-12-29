@@ -10,14 +10,9 @@ import {
   XCircle,
   AlertCircle,
   RefreshCw,
-  Calendar,
   Activity,
   TrendingUp,
   Clock,
-  Users,
-  Mail,
-  Phone,
-  Video,
   Settings,
 } from 'lucide-react';
 

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { OperatorShell, PageScaffold } from '../components/layout/OperatorShell';
+import { PageScaffold } from '../components/layout/OperatorShell';
 import { Card, CardContent } from '../components/ui/Card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import {
   Activity,
-  TrendingUp,
   Users,
   Mail,
   Calendar,
@@ -17,15 +16,8 @@ import {
   Rocket,
   Target,
   DollarSign,
-  Globe,
-  Briefcase,
-  PhoneCall,
-  ArrowRight,
   RefreshCw,
   Shield,
-  Cpu,
-  Play,
-  Lock,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../components/Toast';

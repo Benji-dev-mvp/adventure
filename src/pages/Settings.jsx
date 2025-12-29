@@ -16,7 +16,6 @@ import {
   CreditCard,
   Bell,
   Zap,
-  Globe,
   Key,
   CheckCircle2,
   AlertCircle,
@@ -25,7 +24,6 @@ import {
   Moon,
   Layout,
   PanelLeft,
-  PanelTop,
 } from 'lucide-react';
 import {
   EmailWarmup,

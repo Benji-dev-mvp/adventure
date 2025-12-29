@@ -9,8 +9,6 @@ import {
   Star,
   ArrowRight,
   CheckCircle,
-  BarChart3,
-  Zap,
 } from 'lucide-react';
 
 const CustomerShowcase = () => {

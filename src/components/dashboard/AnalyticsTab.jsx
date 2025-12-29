@@ -5,20 +5,16 @@ import {
   TrendingUp,
   TrendingDown,
   Download,
-  Calendar,
   Mail,
   MousePointerClick,
   UserCheck,
   Target,
-  DollarSign,
   ArrowUpRight,
-  Filter,
 } from 'lucide-react';
 import { BarChart } from 'recharts/es6/chart/BarChart.js';
 import { Bar } from 'recharts/es6/cartesian/Bar.js';
 import { LineChart } from 'recharts/es6/chart/LineChart.js';
 import { Line } from 'recharts/es6/cartesian/Line.js';
-import { AreaChart } from 'recharts/es6/chart/AreaChart.js';
 import { Area } from 'recharts/es6/cartesian/Area.js';
 import { ComposedChart } from 'recharts/es6/chart/ComposedChart.js';
 import { XAxis } from 'recharts/es6/cartesian/XAxis.js';

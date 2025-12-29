@@ -1,14 +1,6 @@
 import React from 'react';
 import { Handle, Position } from 'reactflow';
 import {
-  Mail,
-  Linkedin,
-  Phone,
-  MessageSquare,
-  Clock,
-  GitBranch,
-  Play,
-  Shuffle,
   Trash2,
   Copy,
   MoreVertical,

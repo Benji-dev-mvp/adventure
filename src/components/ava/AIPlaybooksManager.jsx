@@ -13,7 +13,6 @@ import {
   Plus,
   Edit2,
   Trash2,
-  ChevronRight,
   Target,
   Mail,
   Linkedin,
@@ -22,12 +21,9 @@ import {
   TrendingUp,
   Users,
   CheckCircle,
-  Clock,
-  AlertCircle,
   Loader2,
   Zap,
   BarChart3,
-  Settings,
 } from 'lucide-react';
 import { useToast } from '../Toast';
 import { AnimatedCounter } from '../ui/AnimatedComponents';

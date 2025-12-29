@@ -17,7 +17,6 @@ import {
   BarChart,
   Bot,
   ChevronRight,
-  ExternalLink,
   Play,
   CheckCircle,
 } from 'lucide-react';

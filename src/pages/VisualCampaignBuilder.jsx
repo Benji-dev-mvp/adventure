@@ -7,8 +7,6 @@ import { useToast } from '../components/Toast';
 import { saveCampaignDraft, getCampaignDraft } from '../lib/storage';
 import {
   BookOpen,
-  Save,
-  Play,
   Settings,
   ChevronDown,
   Users,

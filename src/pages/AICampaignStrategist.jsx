@@ -11,7 +11,6 @@ import {
   Phone,
   Zap,
   CheckCircle2,
-  ArrowRight,
   Loader2,
   BarChart3,
 } from 'lucide-react';

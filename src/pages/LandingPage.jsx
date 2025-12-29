@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Sparkles,
   CheckCircle2,
-  ArrowRight,
   ShieldCheck,
   KeyRound,
   Server,
@@ -30,14 +28,11 @@ import UnifiedCTA from '../components/features/UnifiedCTA';
 import {
   GlassCard,
   GlassCardContent,
-  StatCard,
   FeatureCard,
   GlowButton,
   GlowButtonOutline,
   GradientText,
-  GlowText,
   RevealText,
-  CountUpText,
   ParticleBackground,
   FloatingParticles,
 } from '../components/futuristic';

@@ -18,19 +18,15 @@ import {
   Play,
   CheckCircle,
   XCircle,
-  AlertCircle,
   Pause,
   ChevronLeft,
   ChevronRight,
   Calendar,
   TrendingUp,
-  Filter,
-  Maximize2,
   Users,
   Mail,
   MessageSquare,
   Target,
-  Zap,
 } from 'lucide-react';
 import { AnimatedCounter } from '../../ui/AnimatedComponents';
 

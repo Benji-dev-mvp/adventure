@@ -11,9 +11,7 @@ import {
   Clock,
   Zap,
   TrendingUp,
-  Settings,
   Plus,
-  Play,
   CheckCircle,
 } from 'lucide-react';
 

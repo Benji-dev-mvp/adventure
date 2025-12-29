@@ -3,6 +3,8 @@ import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
+import unusedImports from 'eslint-plugin-unused-imports';
+import react from 'eslint-plugin-react';
 
 export default tseslint.config(
   { ignores: ['dist', 'node_modules', 'build', 'coverage', '.vite'] },
@@ -24,6 +26,8 @@ export default tseslint.config(
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      'unused-imports': unusedImports,
+      react,
     },
     rules: {
       // Disable React Hooks strict rules temporarily
@@ -35,6 +39,10 @@ export default tseslint.config(
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       'no-unused-vars': 'off',
+      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-vars': 'off',
+      // Keep JSX key rule off to avoid CI noise; we'll fix incrementally
+      'react/jsx-key': 'off',
       'react/prop-types': 'off',
       'no-console': 'off',
       'no-case-declarations': 'off',

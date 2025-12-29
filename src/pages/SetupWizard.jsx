@@ -7,21 +7,16 @@ import {
   ArrowLeft,
   Check,
   Building2,
-  Users,
   Target,
   Bot,
-  Plug,
   Sparkles,
   Rocket,
   CheckCircle2,
-  CircleDot,
   Circle,
   Database,
   Mail,
   Linkedin,
   Phone,
-  Calendar,
-  Zap,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';

@@ -12,20 +12,13 @@ import {
   Zap,
   ThumbsUp,
   ThumbsDown,
-  Clock,
   CheckCircle,
-  AlertCircle,
   Send,
   Brain,
   Target,
-  Loader,
 } from 'lucide-react';
 import { LineChart } from 'recharts/es6/chart/LineChart.js';
 import { Line } from 'recharts/es6/cartesian/Line.js';
-import { BarChart } from 'recharts/es6/chart/BarChart.js';
-import { Bar } from 'recharts/es6/cartesian/Bar.js';
-import { AreaChart } from 'recharts/es6/chart/AreaChart.js';
-import { Area } from 'recharts/es6/cartesian/Area.js';
 import { XAxis } from 'recharts/es6/cartesian/XAxis.js';
 import { YAxis } from 'recharts/es6/cartesian/YAxis.js';
 import { CartesianGrid } from 'recharts/es6/cartesian/CartesianGrid.js';

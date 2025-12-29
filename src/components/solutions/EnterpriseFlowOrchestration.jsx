@@ -9,7 +9,6 @@ import {
   FileCheck,
   CheckCircle,
   ArrowRight,
-  Zap,
   BarChart3,
   Globe,
   AlertTriangle,

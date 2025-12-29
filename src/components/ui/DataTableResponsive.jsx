@@ -1,14 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { cn } from '../../lib/utils';
 import {
-  ChevronDown,
-  ChevronUp,
   ChevronLeft,
   ChevronRight,
   Search,
   Filter,
   Download,
-  MoreVertical,
   ArrowUpDown,
   Eye,
   Edit,

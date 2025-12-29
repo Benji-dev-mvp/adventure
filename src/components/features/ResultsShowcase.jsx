@@ -16,19 +16,12 @@ import PropTypes from 'prop-types';
 import {
   TrendingUp,
   TrendingDown,
-  Users,
   DollarSign,
   Clock,
-  Target,
-  Mail,
   Calendar,
-  BarChart3,
   ArrowUpRight,
-  ArrowDownRight,
-  Sparkles,
   Building2,
   Award,
-  Zap,
 } from 'lucide-react';
 import { GlassCard, GradientText, RevealText, CountUpText } from '../futuristic';
 

@@ -6,16 +6,10 @@ import { Badge } from '../ui/Badge';
 import {
   Bot,
   Brain,
-  Zap,
   Calendar,
   CheckCircle,
   Clock,
-  Mail,
-  Phone,
   MessageSquare,
-  AlertCircle,
-  TrendingUp,
-  Target,
   Sparkles,
 } from 'lucide-react';
 

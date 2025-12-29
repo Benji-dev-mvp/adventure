@@ -7,9 +7,7 @@ import {
   TrendingUp,
   Globe,
   Server,
-  Database,
   Zap,
-  AlertCircle,
   BarChart3,
 } from 'lucide-react';
 

@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { TrendingUp, TrendingDown, Activity, DollarSign, Target, Zap } from 'lucide-react';
-import { LineChart } from 'recharts/es6/chart/LineChart.js';
-import { Line } from 'recharts/es6/cartesian/Line.js';
 import { AreaChart } from 'recharts/es6/chart/AreaChart.js';
 import { Area } from 'recharts/es6/cartesian/Area.js';
 import { BarChart } from 'recharts/es6/chart/BarChart.js';

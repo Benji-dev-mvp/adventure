@@ -6,10 +6,7 @@ import {
   Play,
   Pause,
   Trophy,
-  TrendingUp,
-  TrendingDown,
   BarChart3,
-  Percent,
   Users,
   Mail,
   MousePointer,
@@ -17,7 +14,6 @@ import {
   Sparkles,
   Plus,
   ChevronRight,
-  AlertCircle,
   CheckCircle2,
 } from 'lucide-react';
 

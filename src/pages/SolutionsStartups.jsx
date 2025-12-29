@@ -2,13 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  Mail,
-  ArrowRight,
-  Users,
   Target,
   Zap,
   Globe,
-  TrendingUp,
   Clock,
   DollarSign,
   Brain,
@@ -19,7 +15,6 @@ import {
   Rocket,
   Phone,
   Play,
-  ChevronRight,
 } from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import StartupsFlowOrchestration from '../components/solutions/StartupsFlowOrchestration';
@@ -27,7 +22,6 @@ import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
 import {
   RoiProjectionChart,
   KpiFunnelChart,
-  CustomerImpactSparklines,
 } from '../components/analytics';
 import {
   GlassCard,

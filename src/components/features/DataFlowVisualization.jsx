@@ -12,7 +12,7 @@
  * - Intersection Observer for performance
  */
 
-import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import {
   Search,
@@ -25,18 +25,10 @@ import {
   MessageSquare,
   Calendar,
   BarChart3,
-  TrendingUp,
-  Users,
   Zap,
   CheckCircle2,
-  ArrowRight,
-  Shield,
-  Globe,
-  Clock,
-  Sparkles,
   Activity,
   Send,
-  MousePointer,
   Eye,
 } from 'lucide-react';
 import { GlassCard, GradientText, GlowText, RevealText, CountUpText } from '../futuristic';

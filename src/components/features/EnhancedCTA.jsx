@@ -8,7 +8,6 @@ import {
   Shield,
   Clock,
   Users,
-  BarChart3,
   CheckCircle2,
   Play,
   Star,
@@ -18,7 +17,6 @@ import {
 } from 'lucide-react';
 import {
   GlassCard,
-  GlassCardContent,
   GradientText,
   GlowText,
   RevealText,

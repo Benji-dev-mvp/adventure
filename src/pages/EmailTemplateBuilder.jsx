@@ -11,13 +11,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogFooter,
 } from '../components/ui/Dialog';
 import {
   Type,
   Image,
   Link,
-  Code,
   AlignLeft,
   AlignCenter,
   Save,

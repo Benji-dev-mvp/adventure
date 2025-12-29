@@ -23,17 +23,14 @@ import {
   Zap,
   Clock,
   Users,
-  Calendar,
   Play,
 } from 'lucide-react';
 import {
   GlassCard,
   GradientText,
-  GlowText,
   RevealText,
   CountUpText,
   GlowButton,
-  GlowButtonOutline,
   FloatingParticles,
   ParticleBackground,
 } from '../futuristic';

@@ -16,8 +16,6 @@ import {
   Calendar,
   Clock,
   Video,
-  MapPin,
-  Link as LinkIcon,
   Copy,
   ExternalLink,
   Plus,

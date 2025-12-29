@@ -5,9 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   Bell,
   X,
-  Check,
   CheckCheck,
-  Filter,
   Rocket,
   Target,
   MessageSquare,

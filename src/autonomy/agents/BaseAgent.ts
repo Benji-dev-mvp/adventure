@@ -19,7 +19,6 @@ import type {
   Task,
   TaskBid,
   AgentMessage,
-  Learning as _Learning,
 } from './types';
 
 export interface AgentContext {

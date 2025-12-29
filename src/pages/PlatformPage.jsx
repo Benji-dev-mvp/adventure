@@ -8,8 +8,6 @@ import {
   Phone,
   Linkedin,
   MessageSquare,
-  Zap,
-  Target,
   BarChart3,
   Users,
   Shield,

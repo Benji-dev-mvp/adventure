@@ -7,12 +7,9 @@ import {
   Calendar,
   Clock,
   Users,
-  Tag,
   MoreVertical,
   Plus,
   Trash2,
-  Edit,
-  Star,
   Folder,
 } from 'lucide-react';
 

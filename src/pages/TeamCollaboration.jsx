@@ -14,11 +14,9 @@ import {
   TrendingUp,
   Target,
   Mail,
-  Phone,
   Award,
   Zap,
   Settings,
-  Bell,
 } from 'lucide-react';
 
 const TeamCollaboration = () => {

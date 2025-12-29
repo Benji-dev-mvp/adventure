@@ -235,11 +235,31 @@ export function useWorkflowTemplates() {
   };
 }
 
+// === Block Library Hook ===
+
 /**
- * Hook for block library
+ * Block template structure
+ */
+interface BlockTemplate {
+  type: string;
+  label: string;
+  description: string;
+}
+
+/**
+ * Block category structure
+ */
+interface BlockCategory {
+  id: string;
+  label: string;
+  blocks: BlockTemplate[];
+}
+
+/**
+ * Hook for block library and search
  */
 export function useBlockLibrary() {
-  const categories = useMemo(() => [
+  const categories = useMemo<BlockCategory[]>(() => [
     {
       id: 'data',
       label: 'Data',
@@ -278,17 +298,19 @@ export function useBlockLibrary() {
     },
   ], []);
 
-  const searchBlocks = useCallback((query: string) => {
+  const searchBlocks = useCallback((query: string): BlockCategory[] => {
     if (!query) return categories;
     
     const lowerQuery = query.toLowerCase();
-    return categories.map((cat: { id: string; label: string; blocks: Array<{ type: string; label: string; description: string }> }) => ({
-      ...cat,
-      blocks: cat.blocks.filter((b: { type: string; label: string; description: string }) =>
-        b.label.toLowerCase().includes(lowerQuery) ||
-        b.description.toLowerCase().includes(lowerQuery)
-      ),
-    })).filter((cat: { blocks: any[] }) => cat.blocks.length > 0);
+    return categories
+      .map((cat) => ({
+        ...cat,
+        blocks: cat.blocks.filter((b) =>
+          b.label.toLowerCase().includes(lowerQuery) ||
+          b.description.toLowerCase().includes(lowerQuery)
+        ),
+      }))
+      .filter((cat) => cat.blocks.length > 0);
   }, [categories]);
 
   return {

@@ -109,7 +109,7 @@ jobs:
     needs: frontend
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    if: ${{ github.event_name == 'pull_request' && secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '' }}
+    if: ${{ github.event_name == 'pull_request' }}
 
     steps:
       - name: Checkout repository

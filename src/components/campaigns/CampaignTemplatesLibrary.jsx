@@ -37,7 +37,7 @@ export const CampaignTemplatesLibrary = ({ onSelect }) => {
       channels: ['Email', 'LinkedIn', 'SMS'],
       replyRate: 18.7,
       popular: true,
-      preview: 'We\'re launching something exciting at {{company}}...',
+      preview: "We're launching something exciting at {{company}}...",
     },
     {
       id: 3,
@@ -48,7 +48,7 @@ export const CampaignTemplatesLibrary = ({ onSelect }) => {
       channels: ['Email'],
       replyRate: 6.8,
       popular: false,
-      preview: 'It\'s been a while since we last connected...',
+      preview: "It's been a while since we last connected...",
     },
     {
       id: 4,
@@ -81,13 +81,12 @@ export const CampaignTemplatesLibrary = ({ onSelect }) => {
       channels: ['Email', 'SMS'],
       replyRate: 22.1,
       popular: true,
-      preview: 'You\'ve been using {{product}} for {{days}} days...',
+      preview: "You've been using {{product}} for {{days}} days...",
     },
   ];
 
-  const filteredTemplates = selectedCategory === 'all' 
-    ? templates 
-    : templates.filter(t => t.category === selectedCategory);
+  const filteredTemplates =
+    selectedCategory === 'all' ? templates : templates.filter(t => t.category === selectedCategory);
 
   return (
     <Card>
@@ -103,7 +102,7 @@ export const CampaignTemplatesLibrary = ({ onSelect }) => {
       <CardContent>
         {/* Categories */}
         <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
-          {categories.map((cat) => (
+          {categories.map(cat => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
@@ -120,27 +119,30 @@ export const CampaignTemplatesLibrary = ({ onSelect }) => {
 
         {/* Templates Grid */}
         <div className="grid md:grid-cols-2 gap-4">
-          {filteredTemplates.map((template) => (
+          {filteredTemplates.map(template => (
             <button
               key={template.id}
               type="button"
               className="p-4 border border-gray-200 dark:border-white/10 rounded-lg hover:border-primary-300 dark:hover:border-primary-500 transition-all group cursor-pointer text-left w-full"
               onClick={() => onSelect?.(template)}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect?.(template); } }}
+              onKeyDown={e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onSelect?.(template);
+                }
+              }}
             >
               <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <h4 className="font-semibold text-gray-900 dark:text-white">
-                      {template.name}
-                    </h4>
+                    <h4 className="font-semibold text-gray-900 dark:text-white">{template.name}</h4>
                     {template.popular && (
-                      <Badge variant="accent" className="text-xs">Popular</Badge>
+                      <Badge variant="accent" className="text-xs">
+                        Popular
+                      </Badge>
                     )}
                   </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {template.description}
-                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{template.description}</p>
                 </div>
               </div>
 
@@ -158,8 +160,8 @@ export const CampaignTemplatesLibrary = ({ onSelect }) => {
                 "{template.preview}"
               </div>
 
-              <Button 
-                size="sm" 
+              <Button
+                size="sm"
                 variant="outline"
                 className="w-full group-hover:bg-primary-500 group-hover:text-white group-hover:border-primary-500 transition-all"
               >
@@ -174,5 +176,5 @@ export const CampaignTemplatesLibrary = ({ onSelect }) => {
 };
 
 CampaignTemplatesLibrary.propTypes = {
-  onSelect: PropTypes.func
+  onSelect: PropTypes.func,
 };

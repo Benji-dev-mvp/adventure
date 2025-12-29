@@ -6,15 +6,18 @@
 ## Baseline Metrics (Before)
 
 ### ESLint Report
+
 - **Total Errors:** 1,030
 - **Total Warnings:** 156
 - **Total Issues:** 1,186
 
 ### TypeScript Report
+
 - **Total Errors:** 2 (now fixed)
 - **Error Codes:** TS1128 (Declaration or statement expected)
 
 ### Combined Total
+
 - **Total Issues to Fix:** ~1,188
 
 ## Top 20 ESLint Rule Violations
@@ -64,38 +67,48 @@
 ## Fix Strategy (Priority Order)
 
 ### Phase 1: Stop the Bleed (CI Gates)
+
 - ✅ Migrate to ESLint 9 flat config
 - ✅ Fix critical TS errors (CampaignTemplatesLibrary.jsx)
 - ⏳ Add CI quality gates
 - ⏳ Add pre-commit hooks (optional)
 
 ### Phase 2: High-Volume Systemic Fixes (Quick Wins)
+
 **Target: 923 issues (77.8%)**
+
 - Auto-fix unused imports and variables
 - Use ESLint `--fix` for safe automated fixes
 - Prefix unavoidable unused vars with underscore `_`
 
 ### Phase 3: Type Safety Improvements
+
 **Target: 61 issues (5.1%)**
+
 - Replace `any` with proper types
 - Create shared type definitions in `/src/contracts`
 - Add viewmodels for data transformations
 
 ### Phase 4: React Hooks Compliance
+
 **Target: ~110 issues (9.3%)**
+
 - Fix dependency arrays (`exhaustive-deps`)
 - Remove state mutations (`immutability`, `purity`)
 - Fix state-in-effect patterns
 - Ensure proper component exports
 
 ### Phase 5: Code Quality & Safety
+
 **Target: ~40 issues (3.4%)**
+
 - Remove console.log statements (or use allowed patterns)
 - Fix remaining TS comment suppressions
 - Address const/let usage
 - Fix edge cases (empty blocks, escape sequences)
 
 ### Phase 6: Manual Navigation Testing
+
 - Click through all nav routes
 - Verify no runtime errors
 - Check "Error Details (Dev Only)" overlays
@@ -120,6 +133,7 @@
 ## Progress Tracking
 
 ### Completed
+
 - ✅ ESLint configuration migrated to v9 flat config
 - ✅ Fixed TypeScript errors (2 → 0)
 - ✅ Removed @ts-nocheck comments from 6 files
@@ -127,6 +141,7 @@
 - ✅ Reduced ESLint issues by 232 (1,186 → 954, ~20% reduction)
 
 ### Current Metrics (After Phase 1 + Phase 2)
+
 - TypeScript: **0 errors** ✅
 - ESLint: **954 issues** (798 errors, 156 warnings)
   - Unused vars: 697 (down from 927)
@@ -136,10 +151,12 @@
   - Other: ~47
 
 ### In Progress
-- ⏳ Prefix unused function parameters with underscore (_)
+
+- ⏳ Prefix unused function parameters with underscore (\_)
 - ⏳ Address remaining unused variables (type definitions, destructured props)
 
 ### Remaining
+
 - ⏳ Batch fix unused vars/imports (~923 issues)
 - ⏳ Type safety improvements (~61 issues)
 - ⏳ React hooks fixes (~110 issues)

@@ -44,7 +44,7 @@ export default function HealthRoutesPage() {
 
   const testRoute = async (route: RouteStatus): Promise<RouteStatus> => {
     const startTime = performance.now();
-    
+
     try {
       // Create a hidden iframe to test route loading
       const iframe = document.createElement('iframe');
@@ -69,7 +69,7 @@ export default function HealthRoutesPage() {
       });
 
       document.body.removeChild(iframe);
-      
+
       return {
         ...route,
         status: 'success',
@@ -87,7 +87,7 @@ export default function HealthRoutesPage() {
 
   const runAllTests = async () => {
     setTesting(true);
-    
+
     for (let i = 0; i < routes.length; i++) {
       const result = await testRoute(routes[i]);
       setRoutes(prev => {
@@ -96,7 +96,7 @@ export default function HealthRoutesPage() {
         return updated;
       });
     }
-    
+
     setTesting(false);
   };
 
@@ -133,12 +133,8 @@ export default function HealthRoutesPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 dark:text-white">
-                {stats.total}
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                Total Routes
-              </div>
+              <div className="text-3xl font-bold text-gray-900 dark:text-white">{stats.total}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Total Routes</div>
             </div>
           </CardContent>
         </Card>
@@ -146,12 +142,8 @@ export default function HealthRoutesPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-green-600">
-                {stats.success}
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                Passing
-              </div>
+              <div className="text-3xl font-bold text-green-600">{stats.success}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Passing</div>
             </div>
           </CardContent>
         </Card>
@@ -159,12 +151,8 @@ export default function HealthRoutesPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-red-600">
-                {stats.error}
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                Failing
-              </div>
+              <div className="text-3xl font-bold text-red-600">{stats.error}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Failing</div>
             </div>
           </CardContent>
         </Card>
@@ -172,12 +160,8 @@ export default function HealthRoutesPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-gray-400">
-                {stats.pending}
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                Pending
-              </div>
+              <div className="text-3xl font-bold text-gray-400">{stats.pending}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Pending</div>
             </div>
           </CardContent>
         </Card>
@@ -212,12 +196,8 @@ export default function HealthRoutesPage() {
                 <div className="flex items-center gap-3">
                   {getStatusIcon(route.status)}
                   <div>
-                    <div className="font-medium text-gray-900 dark:text-white">
-                      {route.name}
-                    </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
-                      {route.path}
-                    </div>
+                    <div className="font-medium text-gray-900 dark:text-white">{route.name}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">{route.path}</div>
                   </div>
                 </div>
 
@@ -227,15 +207,8 @@ export default function HealthRoutesPage() {
                       {route.loadTime.toFixed(0)}ms
                     </span>
                   )}
-                  {route.error && (
-                    <span className="text-sm text-red-600">
-                      {route.error}
-                    </span>
-                  )}
-                  <Link
-                    to={route.path}
-                    className="text-sm text-primary-600 hover:text-primary-700"
-                  >
+                  {route.error && <span className="text-sm text-red-600">{route.error}</span>}
+                  <Link to={route.path} className="text-sm text-primary-600 hover:text-primary-700">
                     Visit →
                   </Link>
                 </div>

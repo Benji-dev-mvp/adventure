@@ -96,7 +96,6 @@ jobs:
             NODE_ENV=production
 
       - name: Trigger Vercel/Render hooks (optional)
-        if: secrets.VERCEL_DEPLOY_HOOK != '' || secrets.RENDER_DEPLOY_HOOK != ''
         env:
           VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
           RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}

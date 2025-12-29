@@ -394,7 +394,9 @@ const ExecutionTimeline = () => {
                     <div
                       role="button"
                       tabIndex={0}
-                      onKeyDown={e => e.key === 'Enter' && setExpandedEvent(isExpanded ? null : event.id)}
+                      onKeyDown={e =>
+                        e.key === 'Enter' && setExpandedEvent(isExpanded ? null : event.id)
+                      }
                       className={`bg-gray-900 border rounded-lg overflow-hidden cursor-pointer transition-colors ${
                         event.status === 'failed'
                           ? 'border-red-500/30 hover:border-red-500/50'

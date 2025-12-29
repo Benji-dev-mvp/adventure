@@ -138,6 +138,42 @@ export interface DemoAIDecision {
   impact: string;
 }
 
+export interface DemoEntities {
+  leads: DemoLead[];
+  campaigns: DemoCampaign[];
+  playbooks: DemoPlaybook[];
+  integrations: DemoIntegration[];
+  sequences: DemoPlaybook[];
+}
+
+export interface DemoUsageQuotas {
+  users: {
+    current: number;
+    limit: number;
+    percentage: number;
+  };
+  leads: {
+    current: number;
+    limit: number;
+    percentage: number;
+  };
+  emails: {
+    current: number;
+    limit: number;
+    percentage: number;
+  };
+  campaigns: {
+    current: number;
+    limit: number;
+    percentage: number;
+  };
+  playbooks: {
+    current: number;
+    limit: number;
+    percentage: number;
+  };
+}
+
 /**
  * Get demo tenant data based on plan
  * TODO: Replace with GET /api/tenant
@@ -246,7 +282,7 @@ export function getDemoKpis(plan: PlanTier = 'enterprise'): DemoKpis {
  * Get demo entities (leads, campaigns, etc.) based on plan
  * TODO: Replace with respective API endpoints
  */
-export function getDemoEntities(plan: PlanTier = 'enterprise') {
+export function getDemoEntities(plan: PlanTier = 'enterprise'): DemoEntities {
   const leadCount = plan === 'startup' ? 10 : plan === 'midmarket' ? 25 : 50;
   const campaignCount = plan === 'startup' ? 3 : plan === 'midmarket' ? 8 : 15;
   const playbookCount = plan === 'startup' ? 2 : plan === 'midmarket' ? 5 : 10;
@@ -460,7 +496,7 @@ export function getDemoAIDecisions(plan: PlanTier = 'enterprise'): DemoAIDecisio
  * Get usage quotas for current plan
  * TODO: Replace with GET /api/tenant/usage
  */
-export function getDemoUsageQuotas(plan: PlanTier = 'enterprise') {
+export function getDemoUsageQuotas(plan: PlanTier = 'enterprise'): DemoUsageQuotas {
   const tenant = getDemoTenant(plan);
   
   return {

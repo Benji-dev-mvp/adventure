@@ -36,7 +36,7 @@ const RouteHealthPage = () => {
   );
 
   const checkRoute = (path: string) => {
-    setRouteStatuses((prev) => ({
+    setRouteStatuses((prev: Record<string, RouteStatus>) => ({
       ...prev,
       [path]: { path, status: 'checking' },
     }));
@@ -44,7 +44,7 @@ const RouteHealthPage = () => {
     // Simple check: Try to navigate and see if it loads
     // In a real implementation, this would be more sophisticated
     setTimeout(() => {
-      setRouteStatuses((prev) => ({
+      setRouteStatuses((prev: Record<string, RouteStatus>) => ({
         ...prev,
         [path]: { path, status: 'ok' },
       }));
@@ -97,7 +97,8 @@ const RouteHealthPage = () => {
                 const Icon = item.icon;
                 const status = routeStatuses[item.path];
                 const featureConfig = getFeatureConfig(item.id);
-                const access = useFeatureAccess(item.id, item.minPlan, item.adminOnly);
+                const itemWithOptional = item as any; // Type cast to access optional properties
+                const access = useFeatureAccess(item.id, itemWithOptional.minPlan, itemWithOptional.adminOnly);
 
                 return (
                   <div
@@ -212,7 +213,8 @@ const RouteHealthPage = () => {
             <p className="text-sm text-slate-400 mb-1">Unlocked</p>
             <p className="text-2xl font-bold text-emerald-500">
               {allRoutes.filter((r) => {
-                const access = useFeatureAccess(r.id, r.minPlan, r.adminOnly);
+                const rWithOptional = r as any;
+                const access = useFeatureAccess(r.id, rWithOptional.minPlan, rWithOptional.adminOnly);
                 return !access.locked;
               }).length}
             </p>
@@ -221,7 +223,8 @@ const RouteHealthPage = () => {
             <p className="text-sm text-slate-400 mb-1">Locked</p>
             <p className="text-2xl font-bold text-amber-500">
               {allRoutes.filter((r) => {
-                const access = useFeatureAccess(r.id, r.minPlan, r.adminOnly);
+                const rWithOptional = r as any;
+                const access = useFeatureAccess(r.id, rWithOptional.minPlan, rWithOptional.adminOnly);
                 return access.locked;
               }).length}
             </p>
@@ -229,13 +232,13 @@ const RouteHealthPage = () => {
           <div>
             <p className="text-sm text-slate-400 mb-1">Passing</p>
             <p className="text-2xl font-bold text-emerald-500">
-              {Object.values(routeStatuses).filter((s) => s.status === 'ok').length}
+              {Object.values(routeStatuses).filter((s: RouteStatus) => s.status === 'ok').length}
             </p>
           </div>
           <div>
             <p className="text-sm text-slate-400 mb-1">Failing</p>
             <p className="text-2xl font-bold text-red-500">
-              {Object.values(routeStatuses).filter((s) => s.status === 'error').length}
+              {Object.values(routeStatuses).filter((s: RouteStatus) => s.status === 'error').length}
             </p>
           </div>
         </div>

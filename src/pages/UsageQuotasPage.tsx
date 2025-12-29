@@ -89,24 +89,26 @@ const QuotaCard = ({ icon: Icon, title, current, limit, unit, percentage, trend 
   );
 };
 
-const UsageQuotasPage = () => {
+const UsageQuotasPage: FC = () => {
   const { plan } = useTenant();
   
   // Get usage quotas from demo data
-  const quotas = useMemo(() => getDemoUsageQuotas(plan), [plan]);
-  const tenantData = useMemo(() => getDemoTenant(plan), [plan]);
+  const quotas = useMemo(() => getDemoUsageQuotas(plan as PlanTier), [plan]);
 
-  const planBadges = {
+  const planBadges: Record<PlanTier, { text: string; variant: 'default' | 'pro' | 'exec' }> = {
     startup: { text: 'Startup', variant: 'default' as const },
     midmarket: { text: 'Midmarket', variant: 'pro' as const },
     enterprise: { text: 'Enterprise', variant: 'exec' as const },
   };
+  
+  const currentPlan = (plan as PlanTier) || 'enterprise';
+  const currentPlanBadge = planBadges[currentPlan];
 
   return (
     <PageScaffold
       title="Usage & Quotas"
       subtitle="Monitor your plan usage and resource consumption"
-      badges={[planBadges[plan]]}
+      badges={[currentPlanBadge]}
       actions={
         <Button 
           variant="primary"
@@ -135,8 +137,8 @@ const UsageQuotasPage = () => {
                   {plan === 'enterprise' && 'Full platform with enterprise controls and compliance'}
                 </p>
               </div>
-              <BadgePill variant={planBadges[plan].variant}>
-                {planBadges[plan].text}
+              <BadgePill variant={currentPlanBadge.variant}>
+                {currentPlanBadge.text}
               </BadgePill>
             </div>
           </CardContent>

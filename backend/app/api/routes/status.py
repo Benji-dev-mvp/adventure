@@ -1,7 +1,8 @@
 from datetime import datetime
+
 from fastapi import APIRouter
 
-from app.models.schemas import SystemStatus, ServiceStatus
+from app.models.schemas import ServiceStatus, SystemStatus
 
 router = APIRouter()
 

@@ -5,13 +5,15 @@ Defines explicit policies per use case: lead scoring, email, campaign, chat
 Each policy specifies model, temperature, tools, memory + RAG usage
 """
 
-from typing import List, Optional, Dict, Any
-from pydantic import BaseModel, Field
 from enum import Enum
+from typing import Any, Dict, List, Optional
+
+from pydantic import BaseModel, Field
 
 
 class UseCaseType(str, Enum):
     """Supported AI use cases"""
+
     LEAD_SCORING = "lead_scoring"
     EMAIL_GENERATION = "email_generation"
     CAMPAIGN_STRATEGY = "campaign_strategy"
@@ -22,6 +24,7 @@ class UseCaseType(str, Enum):
 
 class MemoryConfig(BaseModel):
     """Memory configuration for a use case"""
+
     enabled: bool = True
     memory_type: str = "buffer"  # buffer, summary, vector
     max_tokens: int = 2000
@@ -33,6 +36,7 @@ class MemoryConfig(BaseModel):
 
 class RAGConfig(BaseModel):
     """RAG configuration for a use case"""
+
     enabled: bool = False
     collections: List[str] = Field(default_factory=list)
     similarity_threshold: float = 0.7
@@ -44,6 +48,7 @@ class RAGConfig(BaseModel):
 
 class ToolConfig(BaseModel):
     """Tool configuration for a use case"""
+
     enabled: bool = False
     available_tools: List[str] = Field(default_factory=list)
     max_iterations: int = 5
@@ -51,6 +56,7 @@ class ToolConfig(BaseModel):
 
 class BudgetConfig(BaseModel):
     """Budget/cost control configuration"""
+
     max_tokens_per_request: Optional[int] = None
     max_cost_per_request: Optional[float] = None  # USD
     daily_token_limit: Optional[int] = None
@@ -60,7 +66,7 @@ class BudgetConfig(BaseModel):
 class AIPolicy(BaseModel):
     """
     Complete policy definition for an AI use case
-    
+
     Defines all parameters needed to execute an AI operation:
     - Which model and parameters to use
     - Memory configuration
@@ -68,32 +74,33 @@ class AIPolicy(BaseModel):
     - Available tools
     - Cost controls
     """
+
     use_case: UseCaseType
     name: str
     description: str
-    
+
     # Model configuration
     provider: str = "openai"  # Can be overridden via config
     model: str = "gpt-4"
     temperature: float = 0.7
     max_tokens: Optional[int] = None
     top_p: float = 1.0
-    
+
     # Capabilities
     memory: MemoryConfig = Field(default_factory=MemoryConfig)
     rag: RAGConfig = Field(default_factory=RAGConfig)
     tools: ToolConfig = Field(default_factory=ToolConfig)
     budget: BudgetConfig = Field(default_factory=BudgetConfig)
-    
+
     # Prompts
     system_prompt: str
     user_prompt_template: str
-    
+
     # Performance
     streaming_enabled: bool = False
     cache_results: bool = False
     cache_ttl_seconds: int = 300
-    
+
     # Observability
     trace_enabled: bool = True
     log_inputs: bool = True
@@ -151,7 +158,6 @@ Context from similar successful conversions:
         cache_results=True,
         cache_ttl_seconds=3600,  # Cache for 1 hour
     ),
-    
     UseCaseType.EMAIL_GENERATION: AIPolicy(
         use_case=UseCaseType.EMAIL_GENERATION,
         name="Email Generation v1",
@@ -202,7 +208,6 @@ Reference material:
 {rag_context}""",
         cache_results=False,  # Don't cache - each email should be unique
     ),
-    
     UseCaseType.CAMPAIGN_STRATEGY: AIPolicy(
         use_case=UseCaseType.CAMPAIGN_STRATEGY,
         name="Campaign Strategy v1",
@@ -226,7 +231,11 @@ Reference material:
         ),
         tools=ToolConfig(
             enabled=True,
-            available_tools=["analyze_past_campaigns", "fetch_industry_benchmarks", "calculate_roi"],
+            available_tools=[
+                "analyze_past_campaigns",
+                "fetch_industry_benchmarks",
+                "calculate_roi",
+            ],
             max_iterations=3,
         ),
         budget=BudgetConfig(
@@ -258,7 +267,6 @@ Industry insights:
         cache_results=True,
         cache_ttl_seconds=1800,  # 30 minutes
     ),
-    
     UseCaseType.CONVERSATION: AIPolicy(
         use_case=UseCaseType.CONVERSATION,
         name="AI Assistant Chat v1",

@@ -4,14 +4,16 @@ Enhanced RAG Document Schemas
 Normalized document ingestion pipeline with metadata, permissions, and versioning
 """
 
-from typing import List, Optional, Dict, Any
-from pydantic import BaseModel, Field
 from datetime import datetime
 from enum import Enum
+from typing import Any, Dict, List, Optional
+
+from pydantic import BaseModel, Field
 
 
 class DocumentSource(str, Enum):
     """Source system for documents"""
+
     CRM = "crm"
     KNOWLEDGE_BASE = "knowledge_base"
     EMAIL = "email"
@@ -24,6 +26,7 @@ class DocumentSource(str, Enum):
 
 class ObjectType(str, Enum):
     """Type of business object"""
+
     LEAD = "lead"
     CONTACT = "contact"
     ACCOUNT = "account"
@@ -38,6 +41,7 @@ class ObjectType(str, Enum):
 
 class AccessLevel(str, Enum):
     """Access control levels"""
+
     PUBLIC = "public"
     INTERNAL = "internal"
     RESTRICTED = "restricted"
@@ -47,49 +51,50 @@ class AccessLevel(str, Enum):
 class NormalizedDocument(BaseModel):
     """
     Normalized document schema for RAG ingestion
-    
+
     All documents ingested into RAG must conform to this schema
     for consistent metadata, permissions, and searchability
     """
+
     # Core identification
     document_id: str = Field(..., description="Unique document identifier")
     source: DocumentSource = Field(..., description="Source system")
     object_type: ObjectType = Field(..., description="Business object type")
-    
+
     # Content
     title: str = Field(..., min_length=1, max_length=500)
     content: str = Field(..., min_length=1)
     summary: Optional[str] = Field(None, max_length=1000, description="Document summary")
-    
+
     # Tenancy and permissions
     org_id: str = Field(..., description="Organization ID for tenant isolation")
     account_id: Optional[str] = Field(None, description="Account ID if account-specific")
     access_level: AccessLevel = AccessLevel.INTERNAL
     allowed_roles: List[str] = Field(default_factory=lambda: ["admin", "sales", "marketing"])
-    
+
     # Timestamps
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
     indexed_at: Optional[datetime] = None
-    
+
     # Metadata for search and filtering
     metadata: Dict[str, Any] = Field(default_factory=dict)
     tags: List[str] = Field(default_factory=list, max_items=20)
-    
+
     # Business context
     industry: Optional[str] = None
     region: Optional[str] = None
     product_lines: List[str] = Field(default_factory=list)
     deal_stage: Optional[str] = None
-    
+
     # Version control
     version: int = Field(1, ge=1)
     index_version: str = Field("kb_v1", description="RAG index version")
-    
+
     # Quality and relevance
     quality_score: Optional[float] = Field(None, ge=0.0, le=1.0)
     relevance_score: Optional[float] = Field(None, ge=0.0, le=1.0)
-    
+
     class Config:
         json_schema_extra = {
             "example": {
@@ -111,6 +116,7 @@ class NormalizedDocument(BaseModel):
 
 class ChunkingStrategy(str, Enum):
     """Document chunking strategies"""
+
     FIXED_SIZE = "fixed_size"
     SEMANTIC = "semantic"
     PARAGRAPH = "paragraph"
@@ -120,34 +126,35 @@ class ChunkingStrategy(str, Enum):
 class DocumentChunk(BaseModel):
     """
     Individual chunk for vector indexing
-    
+
     Documents are split into chunks for embedding and retrieval
     """
+
     chunk_id: str = Field(..., description="Unique chunk identifier")
     document_id: str = Field(..., description="Parent document ID")
-    
+
     content: str = Field(..., min_length=1)
     chunk_index: int = Field(..., ge=0, description="Position in document")
-    
+
     # Inherit key metadata from parent document
     org_id: str
     source: DocumentSource
     object_type: ObjectType
     access_level: AccessLevel
-    
+
     # Chunking metadata
     chunking_strategy: ChunkingStrategy
     token_count: Optional[int] = None
     char_count: Optional[int] = None
-    
+
     # Context for better retrieval
     previous_chunk_id: Optional[str] = None
     next_chunk_id: Optional[str] = None
     section_title: Optional[str] = None
-    
+
     # Search metadata
     metadata: Dict[str, Any] = Field(default_factory=dict)
-    
+
     class Config:
         json_schema_extra = {
             "example": {
@@ -167,6 +174,7 @@ class DocumentChunk(BaseModel):
 
 class IngestionRequest(BaseModel):
     """Request to ingest documents into RAG"""
+
     documents: List[NormalizedDocument] = Field(..., min_items=1, max_items=100)
     index_version: str = Field("kb_v1", description="Target index version")
     chunking_strategy: ChunkingStrategy = ChunkingStrategy.SEMANTIC
@@ -177,6 +185,7 @@ class IngestionRequest(BaseModel):
 
 class IngestionResult(BaseModel):
     """Result of document ingestion"""
+
     job_id: str
     documents_processed: int
     chunks_created: int
@@ -187,6 +196,7 @@ class IngestionResult(BaseModel):
 
 class SearchFilter(BaseModel):
     """Filters for RAG search"""
+
     org_id: str = Field(..., description="Required for tenant isolation")
     source: Optional[DocumentSource] = None
     object_type: Optional[ObjectType] = None
@@ -200,6 +210,7 @@ class SearchFilter(BaseModel):
 
 class SafeContextFilter(BaseModel):
     """Filters to mitigate prompt injection from RAG content"""
+
     max_chunk_length: int = Field(1000, description="Max characters per chunk")
     blocked_patterns: List[str] = Field(
         default_factory=lambda: [

@@ -1,21 +1,29 @@
 """
 API routes for ML Lead Scoring, Intent Signals, and Autonomous BDR
 """
-from typing import List, Dict
+
+from typing import Dict, List
+
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
+from app.core.autonomous_bdr import process_reply, start_autonomous_campaign
+from app.core.intent_signals import (
+    get_company_intent_score,
+    get_high_intent_accounts,
+    track_company_intent,
+)
 from app.core.ml_lead_scoring import predict_lead_score, train_lead_scoring_model
-from app.core.intent_signals import track_company_intent, get_company_intent_score, get_high_intent_accounts
-from app.core.autonomous_bdr import start_autonomous_campaign, process_reply
 
 router = APIRouter()
 
 
 # ============= ML Lead Scoring =============
 
+
 class LeadScoreRequest(BaseModel):
     """Request for lead scoring"""
+
     lead_id: str
     name: str
     title: str
@@ -37,7 +45,7 @@ class LeadScoreRequest(BaseModel):
 async def score_lead(request: LeadScoreRequest) -> Dict:
     """
     Score a lead using trained ML model
-    
+
     Returns lead score (0-100), tier (hot/warm/cold), and contributing factors
     """
     try:
@@ -46,7 +54,7 @@ async def score_lead(request: LeadScoreRequest) -> Dict:
             "success": True,
             "lead_id": request.lead_id,
             "lead_name": request.name,
-            **result
+            **result,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Scoring failed: {str(e)}")
@@ -54,6 +62,7 @@ async def score_lead(request: LeadScoreRequest) -> Dict:
 
 class MLTrainingRequest(BaseModel):
     """Request to train ML model"""
+
     training_samples: int = 5000
     retrain: bool = False
 
@@ -62,7 +71,7 @@ class MLTrainingRequest(BaseModel):
 async def train_model(request: MLTrainingRequest) -> Dict:
     """
     Train or retrain the ML lead scoring model
-    
+
     This would typically be run:
     - On initial setup
     - Weekly/monthly with new conversion data
@@ -70,18 +79,20 @@ async def train_model(request: MLTrainingRequest) -> Dict:
     """
     try:
         from app.core.ml_lead_scoring import generate_synthetic_training_data
-        
+
         # Generate training data (in production, use real conversion data)
         training_data, labels = generate_synthetic_training_data(n_samples=request.training_samples)
-        
+
         # Train model
         metrics = train_lead_scoring_model(training_data, labels)
-        
+
         return {
             "success": True,
             "message": "Model trained successfully",
             "metrics": metrics,
-            "recommendation": "Deploy to production" if metrics['accuracy'] >= 0.85 else "Needs improvement"
+            "recommendation": (
+                "Deploy to production" if metrics["accuracy"] >= 0.85 else "Needs improvement"
+            ),
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Training failed: {str(e)}")
@@ -91,19 +102,21 @@ async def train_model(request: MLTrainingRequest) -> Dict:
 async def get_model_status() -> Dict:
     """Get current ML model status"""
     from app.core.ml_lead_scoring import lead_scorer
-    
+
     return {
         "is_trained": lead_scorer.is_trained,
         "model_version": "xgboost_v1" if lead_scorer.is_trained else "rule_based_v1",
         "features": lead_scorer.feature_names if lead_scorer.is_trained else [],
-        "status": "ready" if lead_scorer.is_trained else "needs_training"
+        "status": "ready" if lead_scorer.is_trained else "needs_training",
     }
 
 
 # ============= Intent Signals =============
 
+
 class IntentTrackRequest(BaseModel):
     """Request to track company intent"""
+
     company_domain: str
     company_name: str
 
@@ -112,7 +125,7 @@ class IntentTrackRequest(BaseModel):
 async def track_intent(request: IntentTrackRequest) -> Dict:
     """
     Start tracking intent signals for a company
-    
+
     Scans for:
     - Job postings (hiring = growth)
     - Funding rounds (money = buying power)
@@ -121,10 +134,7 @@ async def track_intent(request: IntentTrackRequest) -> Dict:
     """
     try:
         result = await track_company_intent(request.company_domain, request.company_name)
-        return {
-            "success": True,
-            **result
-        }
+        return {"success": True, **result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Tracking failed: {str(e)}")
 
@@ -134,10 +144,7 @@ async def get_intent_score(company_domain: str) -> Dict:
     """Get current intent score for a company"""
     try:
         result = await get_company_intent_score(company_domain)
-        return {
-            "success": True,
-            **result
-        }
+        return {"success": True, **result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to get score: {str(e)}")
 
@@ -146,7 +153,7 @@ async def get_intent_score(company_domain: str) -> Dict:
 async def get_hot_accounts(min_score: int = 70) -> Dict:
     """
     Get all accounts showing high buying intent
-    
+
     Use this to:
     - Prioritize outreach
     - Auto-trigger campaigns
@@ -158,7 +165,7 @@ async def get_hot_accounts(min_score: int = 70) -> Dict:
             "success": True,
             "count": len(accounts),
             "accounts": accounts,
-            "min_score": min_score
+            "min_score": min_score,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to get accounts: {str(e)}")
@@ -166,8 +173,10 @@ async def get_hot_accounts(min_score: int = 70) -> Dict:
 
 # ============= Autonomous AI BDR =============
 
+
 class AutonomousCampaignRequest(BaseModel):
     """Request to start autonomous campaign"""
+
     lead_id: str
     name: str
     email: str
@@ -184,7 +193,7 @@ class AutonomousCampaignRequest(BaseModel):
 async def start_autonomous(request: AutonomousCampaignRequest) -> Dict:
     """
     Start fully autonomous AI BDR campaign
-    
+
     Ava will:
     1. Research the prospect
     2. Write personalized email (no templates)
@@ -199,7 +208,7 @@ async def start_autonomous(request: AutonomousCampaignRequest) -> Dict:
         return {
             "success": True,
             "message": f"Autonomous campaign started for {request.name}",
-            **result
+            **result,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to start campaign: {str(e)}")
@@ -207,6 +216,7 @@ async def start_autonomous(request: AutonomousCampaignRequest) -> Dict:
 
 class ReplyProcessRequest(BaseModel):
     """Request to process a reply"""
+
     lead_id: str
     reply_text: str
     lead: Dict
@@ -216,7 +226,7 @@ class ReplyProcessRequest(BaseModel):
 async def process_prospect_reply(request: ReplyProcessRequest) -> Dict:
     """
     Process incoming reply and take autonomous action
-    
+
     AI will:
     - Analyze sentiment and intent
     - Detect objections
@@ -226,14 +236,9 @@ async def process_prospect_reply(request: ReplyProcessRequest) -> Dict:
     """
     try:
         result = await process_reply(
-            lead_id=request.lead_id,
-            reply_text=request.reply_text,
-            lead=request.lead
+            lead_id=request.lead_id, reply_text=request.reply_text, lead=request.lead
         )
-        return {
-            "success": True,
-            **result
-        }
+        return {"success": True, **result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to process reply: {str(e)}")
 
@@ -246,11 +251,12 @@ async def list_autonomous_campaigns() -> Dict:
         "success": True,
         "campaigns": [],
         "total": 0,
-        "message": "Feature coming soon - query autonomous campaigns from database"
+        "message": "Feature coming soon - query autonomous campaigns from database",
     }
 
 
 # ============= Health Check =============
+
 
 @router.get("/advanced/health")
 async def health_check() -> Dict:
@@ -258,21 +264,18 @@ async def health_check() -> Dict:
     Check health of all advanced features
     """
     from app.core.ml_lead_scoring import lead_scorer
-    
+
     health = {
         "ml_model": {
             "status": "ready" if lead_scorer.is_trained else "not_trained",
-            "accuracy": "85%+" if lead_scorer.is_trained else "N/A"
+            "accuracy": "85%+" if lead_scorer.is_trained else "N/A",
         },
         "intent_engine": {
             "status": "ready",
-            "tracked_companies": 0  # Would get from intent_engine.tracked_companies
+            "tracked_companies": 0,  # Would get from intent_engine.tracked_companies
         },
-        "autonomous_bdr": {
-            "status": "ready",
-            "active_campaigns": 0
-        },
-        "overall_status": "operational"
+        "autonomous_bdr": {"status": "ready", "active_campaigns": 0},
+        "overall_status": "operational",
     }
-    
+
     return health

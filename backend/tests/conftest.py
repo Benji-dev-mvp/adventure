@@ -6,9 +6,10 @@ from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
+from sqlmodel import SQLModel
 
 from app.main import app
-from app.core.db import Base, get_session
+from app.core.db import get_session
 from app.core.cache import cache
 from app.models.user import User, UserRole
 from app.core.security import get_password_hash, create_access_token
@@ -36,13 +37,13 @@ def event_loop():
 @pytest.fixture(scope="function")
 def db_session() -> Generator:
     """Create a fresh database session for each test."""
-    Base.metadata.create_all(bind=engine)
+    SQLModel.metadata.create_all(bind=engine)
     session = TestingSessionLocal()
     try:
         yield session
     finally:
         session.close()
-        Base.metadata.drop_all(bind=engine)
+        SQLModel.metadata.drop_all(bind=engine)
 
 
 @pytest.fixture(scope="function")

@@ -2,17 +2,20 @@
 Follow-up Sequence API Routes
 Manage multi-step outreach sequences
 """
+
+from typing import Any, Dict, List, Optional
+
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel
-from typing import Optional, List, Dict, Any
+
 from app.services.sequence_service import (
-    sequence_service,
     Sequence,
+    SequenceEnrollment,
+    SequenceStatus,
     SequenceStep,
     SequenceStepType,
-    SequenceStatus,
-    SequenceEnrollment,
-    StepStatus
+    StepStatus,
+    sequence_service,
 )
 
 router = APIRouter()
@@ -21,6 +24,7 @@ router = APIRouter()
 # Request/Response Models
 class CreateSequenceRequest(BaseModel):
     """Request to create a sequence"""
+
     name: str
     description: Optional[str] = None
     sender_email: Optional[str] = None
@@ -29,6 +33,7 @@ class CreateSequenceRequest(BaseModel):
 
 class CreateStepRequest(BaseModel):
     """Request to add a step to a sequence"""
+
     step_type: SequenceStepType
     delay_days: int = 0
     delay_hours: int = 0
@@ -42,6 +47,7 @@ class CreateStepRequest(BaseModel):
 
 class EnrollLeadRequest(BaseModel):
     """Request to enroll a lead in a sequence"""
+
     lead_id: str
     lead_email: str
     lead_name: str
@@ -50,11 +56,13 @@ class EnrollLeadRequest(BaseModel):
 
 class BulkEnrollRequest(BaseModel):
     """Request to enroll multiple leads"""
+
     leads: List[EnrollLeadRequest]
 
 
 class UpdateSequenceRequest(BaseModel):
     """Request to update a sequence"""
+
     name: Optional[str] = None
     description: Optional[str] = None
     status: Optional[SequenceStatus] = None
@@ -79,7 +87,7 @@ async def create_sequence(request: CreateSequenceRequest):
         name=request.name,
         description=request.description,
         sender_email=request.sender_email,
-        sender_name=request.sender_name
+        sender_name=request.sender_name,
     )
     return sequence_service.create_sequence(sequence)
 
@@ -136,10 +144,10 @@ async def add_step(sequence_id: str, request: CreateStepRequest):
     sequence = sequence_service.get_sequence(sequence_id)
     if not sequence:
         raise HTTPException(status_code=404, detail="Sequence not found")
-    
+
     # Get next step number
     next_number = len(sequence.steps) + 1
-    
+
     step = SequenceStep(
         step_number=next_number,
         step_type=request.step_type,
@@ -150,12 +158,12 @@ async def add_step(sequence_id: str, request: CreateStepRequest):
         use_ai_personalization=request.use_ai_personalization,
         tone=request.tone,
         skip_if_replied=request.skip_if_replied,
-        skip_weekends=request.skip_weekends
+        skip_weekends=request.skip_weekends,
     )
-    
+
     sequence.steps.append(step)
     sequence_service.update_sequence(sequence_id, {"steps": sequence.steps})
-    
+
     return sequence
 
 
@@ -165,12 +173,12 @@ async def remove_step(sequence_id: str, step_number: int):
     sequence = sequence_service.get_sequence(sequence_id)
     if not sequence:
         raise HTTPException(status_code=404, detail="Sequence not found")
-    
+
     # Remove step and renumber
     new_steps = [s for s in sequence.steps if s.step_number != step_number]
     for i, step in enumerate(new_steps):
         step.step_number = i + 1
-    
+
     sequence_service.update_sequence(sequence_id, {"steps": new_steps})
     return {"status": "removed", "step_number": step_number}
 
@@ -184,15 +192,14 @@ async def enroll_lead(sequence_id: str, request: EnrollLeadRequest):
         lead_id=request.lead_id,
         lead_email=request.lead_email,
         lead_name=request.lead_name,
-        personalization_context=request.personalization_context
+        personalization_context=request.personalization_context,
     )
-    
+
     if not enrollment:
         raise HTTPException(
-            status_code=400,
-            detail="Could not enroll lead. Sequence may be inactive."
+            status_code=400, detail="Could not enroll lead. Sequence may be inactive."
         )
-    
+
     return enrollment
 
 
@@ -206,18 +213,20 @@ async def bulk_enroll(sequence_id: str, request: BulkEnrollRequest):
             lead_id=lead.lead_id,
             lead_email=lead.lead_email,
             lead_name=lead.lead_name,
-            personalization_context=lead.personalization_context
+            personalization_context=lead.personalization_context,
         )
-        results.append({
-            "lead_id": lead.lead_id,
-            "success": enrollment is not None,
-            "enrollment_id": enrollment.id if enrollment else None
-        })
-    
+        results.append(
+            {
+                "lead_id": lead.lead_id,
+                "success": enrollment is not None,
+                "enrollment_id": enrollment.id if enrollment else None,
+            }
+        )
+
     return {
         "total": len(results),
         "successful": len([r for r in results if r["success"]]),
-        "results": results
+        "results": results,
     }
 
 
@@ -227,16 +236,15 @@ async def list_enrollments(sequence_id: str):
     sequence = sequence_service.get_sequence(sequence_id)
     if not sequence:
         raise HTTPException(status_code=404, detail="Sequence not found")
-    
+
     enrollments = [
-        e for e in sequence_service._enrollments.values()
-        if e.sequence_id == sequence_id
+        e for e in sequence_service._enrollments.values() if e.sequence_id == sequence_id
     ]
-    
+
     return {
         "sequence_id": sequence_id,
         "total": len(enrollments),
-        "enrollments": enrollments
+        "enrollments": enrollments,
     }
 
 
@@ -291,7 +299,7 @@ async def get_stats(sequence_id: str):
 async def get_pending_steps(limit: int = Query(100, le=500)):
     """Get steps that are ready to be executed"""
     pending = sequence_service.get_pending_steps(limit=limit)
-    
+
     return {
         "count": len(pending),
         "steps": [
@@ -302,8 +310,8 @@ async def get_pending_steps(limit: int = Query(100, le=500)):
                 "step_number": p["step"].step_number,
                 "step_type": p["step"].step_type,
                 "subject": p["step"].subject_template,
-                "scheduled_for": p["enrollment"].next_step_at
+                "scheduled_for": p["enrollment"].next_step_at,
             }
             for p in pending
-        ]
+        ],
     }

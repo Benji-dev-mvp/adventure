@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlmodel import Session, select
 
 from app.core.db import get_session
-from app.models.schemas import AnalyticsSummary, DashboardSnapshot, Lead, Campaign
+from app.models.schemas import AnalyticsSummary, Campaign, DashboardSnapshot, Lead
 
 router = APIRouter()
 
@@ -10,7 +10,9 @@ router = APIRouter()
 @router.get("/analytics", response_model=AnalyticsSummary)
 def get_analytics_summary(session: Session = Depends(get_session)):
     total_leads = len(session.exec(select(Lead)).all())
-    active_campaigns = len(session.exec(select(Campaign).where(Campaign.active == True)).all())  # noqa: E712
+    active_campaigns = len(
+        session.exec(select(Campaign).where(Campaign.active == True)).all()
+    )  # noqa: E712
     conversion_rate = round(0.0725, 4)
     return AnalyticsSummary(
         total_leads=total_leads,
@@ -28,10 +30,42 @@ def get_dashboard_snapshot(session: Session = Depends(get_session)):
     sent = 12453
 
     kpis = [
-        {"title": "Emails Sent", "value": f"{sent:,}", "change": "+12.5%", "trend": "up", "icon": "Mail", "color": "text-blue-600", "bgColor": "bg-blue-100"},
-        {"title": "Reply Rate", "value": f"{reply_rate}%", "change": "+2.3%", "trend": "up", "icon": "TrendingUp", "color": "text-green-600", "bgColor": "bg-green-100"},
-        {"title": "Meetings Booked", "value": f"{meetings}", "change": "+18%", "trend": "up", "icon": "Calendar", "color": "text-purple-600", "bgColor": "bg-purple-100"},
-        {"title": "Active Leads", "value": f"{total_leads:,}", "change": "-3.2%", "trend": "down", "icon": "Users", "color": "text-orange-600", "bgColor": "bg-orange-100"},
+        {
+            "title": "Emails Sent",
+            "value": f"{sent:,}",
+            "change": "+12.5%",
+            "trend": "up",
+            "icon": "Mail",
+            "color": "text-blue-600",
+            "bgColor": "bg-blue-100",
+        },
+        {
+            "title": "Reply Rate",
+            "value": f"{reply_rate}%",
+            "change": "+2.3%",
+            "trend": "up",
+            "icon": "TrendingUp",
+            "color": "text-green-600",
+            "bgColor": "bg-green-100",
+        },
+        {
+            "title": "Meetings Booked",
+            "value": f"{meetings}",
+            "change": "+18%",
+            "trend": "up",
+            "icon": "Calendar",
+            "color": "text-purple-600",
+            "bgColor": "bg-purple-100",
+        },
+        {
+            "title": "Active Leads",
+            "value": f"{total_leads:,}",
+            "change": "-3.2%",
+            "trend": "down",
+            "icon": "Users",
+            "color": "text-orange-600",
+            "bgColor": "bg-orange-100",
+        },
     ]
 
     kpi_trends = {

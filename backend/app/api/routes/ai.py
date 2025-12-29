@@ -1,23 +1,24 @@
 import asyncio
-from typing import List, Optional, Dict, Any
+from typing import Any, Dict, List, Optional
+
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
+from app.core.ai_prompts import (
+    PROMPT_TEMPLATES,
+    AIPersonality,
+    PromptBuilder,
+    PromptTemplate,
+)
+from app.core.ai_provider import chat as ai_chat
 from app.core.ai_provider import (
-    chat as ai_chat,
     chat_with_history,
-    simple_lead_score,
     draft_email,
     generate_campaign_content,
     generate_from_template,
-    llm_client
-)
-from app.core.ai_prompts import (
-    AIPersonality,
-    PromptTemplate,
-    PromptBuilder,
-    PROMPT_TEMPLATES
+    llm_client,
+    simple_lead_score,
 )
 
 router = APIRouter()
@@ -75,18 +76,26 @@ async def chat(req: ChatRequest):
             personality = AIPersonality(req.personality)
         except ValueError:
             pass  # Use default
-    
+
     if req.history:
         # Add current prompt to history
         messages = req.history + [{"role": "user", "content": req.prompt}]
         response = await chat_with_history(messages)
         return {
-            **response, 
-            "suggestions": ["Apply guardrail", "Schedule optimal window", "Tune subject lines"],
-            "personality": personality.value
+            **response,
+            "suggestions": [
+                "Apply guardrail",
+                "Schedule optimal window",
+                "Tune subject lines",
+            ],
+            "personality": personality.value,
         }
     else:
-        response = await ai_chat(req.prompt, personality=personality, additional_context=req.additional_context)
+        response = await ai_chat(
+            req.prompt,
+            personality=personality,
+            additional_context=req.additional_context,
+        )
         return {**response, "personality": personality.value}
 
 
@@ -97,18 +106,24 @@ async def lead_score(lead: LeadPayload):
 
 @router.post("/ai/generate-email", response_model=EmailDraftResponse)
 async def generate_email(payload: EmailDraftRequest):
-    return draft_email(payload.lead.dict(), payload.prompt, payload.tone or "professional", payload.length or "medium")
+    return draft_email(
+        payload.lead.dict(),
+        payload.prompt,
+        payload.tone or "professional",
+        payload.length or "medium",
+    )
 
 
 @router.post("/ai/chat-stream")
 async def chat_stream(req: ChatRequest):
     """Server-Sent Events (SSE) streaming chat endpoint."""
+
     async def event_generator():
         try:
             messages = [{"role": "user", "content": req.prompt}]
             if req.history:
                 messages = req.history + messages
-            
+
             # Use real streaming if available
             if llm_client.provider.value != "mock":
                 result = await llm_client.chat(messages, stream=True)
@@ -123,12 +138,12 @@ async def chat_stream(req: ChatRequest):
                     chunk = word + (" " if i < len(words) - 1 else "")
                     yield f"data: {chunk}\n\n"
                     await asyncio.sleep(0.05)
-            
+
             yield "data: [DONE]\n\n"
         except Exception as e:
             yield f"data: Error: {str(e)}\n\n"
             yield "data: [DONE]\n\n"
-    
+
     return StreamingResponse(event_generator(), media_type="text/event-stream")
 
 
@@ -152,7 +167,7 @@ async def generate_campaign(payload: CampaignContentRequest):
         campaign_type=payload.campaign_type,
         target_audience=payload.target_audience,
         tone=payload.tone,
-        additional_context=payload.additional_context
+        additional_context=payload.additional_context,
     )
 
 
@@ -167,15 +182,15 @@ class ProviderStatusResponse(BaseModel):
 async def get_ai_status():
     """Get current AI provider status and capabilities."""
     capabilities = ["chat", "email_generation", "lead_scoring"]
-    
+
     if llm_client.provider.value != "mock":
         capabilities.extend(["streaming", "campaign_generation", "conversation_history"])
-    
+
     return {
         "provider": llm_client.provider.value,
         "model": llm_client.model,
         "available": llm_client.provider.value != "mock",
-        "capabilities": capabilities
+        "capabilities": capabilities,
     }
 
 
@@ -198,27 +213,30 @@ async def generate_from_template_endpoint(payload: TemplateGenerateRequest):
         template_enum = PromptTemplate(payload.template)
     except ValueError:
         return {"error": f"Unknown template: {payload.template}"}, 400
-    
+
     personality = None
     if payload.personality:
         try:
             personality = AIPersonality(payload.personality)
         except ValueError:
             pass
-    
+
     content = await generate_from_template(template_enum, payload.context, personality)
-    
+
     # Determine which personality was used
     used_personality = personality if personality else AIPersonality.AVA_PROFESSIONAL
     if template_enum == PromptTemplate.LEAD_ANALYSIS:
         used_personality = AIPersonality.ANALYST
-    elif template_enum in [PromptTemplate.EMAIL_SUBJECT_LINE, PromptTemplate.CALL_SCRIPT]:
+    elif template_enum in [
+        PromptTemplate.EMAIL_SUBJECT_LINE,
+        PromptTemplate.CALL_SCRIPT,
+    ]:
         used_personality = AIPersonality.COPYWRITER
-    
+
     return {
         "content": content,
         "template": payload.template,
-        "personality": used_personality.value
+        "personality": used_personality.value,
     }
 
 
@@ -231,19 +249,13 @@ class TemplatesListResponse(BaseModel):
 async def list_templates():
     """List all available prompt templates and personalities."""
     templates = [
-        {
-            "name": template.value,
-            "description": get_template_description(template)
-        }
+        {"name": template.value, "description": get_template_description(template)}
         for template in PromptTemplate
     ]
-    
+
     personalities = [p.value for p in AIPersonality]
-    
-    return {
-        "templates": templates,
-        "personalities": personalities
-    }
+
+    return {"templates": templates, "personalities": personalities}
 
 
 def get_template_description(template: PromptTemplate) -> str:
@@ -258,7 +270,6 @@ def get_template_description(template: PromptTemplate) -> str:
         PromptTemplate.MEETING_PREP: "Prepare for sales meetings and demos",
         PromptTemplate.EMAIL_SUBJECT_LINE: "Generate A/B testable subject lines",
         PromptTemplate.CALL_SCRIPT: "Create call scripts for different scenarios",
-        PromptTemplate.SMS_MESSAGE: "Write concise SMS outreach messages"
+        PromptTemplate.SMS_MESSAGE: "Write concise SMS outreach messages",
     }
     return descriptions.get(template, "No description available")
-

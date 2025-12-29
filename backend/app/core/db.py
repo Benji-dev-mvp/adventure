@@ -1,13 +1,13 @@
-from contextlib import contextmanager, asynccontextmanager
-from typing import Iterator, AsyncIterator
 import logging
+from contextlib import asynccontextmanager, contextmanager
+from typing import AsyncIterator, Iterator
 
-from sqlmodel import SQLModel, Session, create_engine, select
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
+from sqlmodel import Session, SQLModel, create_engine, select
 
 from app.core.config import settings
-from app.models.schemas import Lead, Campaign
+from app.models.schemas import Campaign, Lead
 
 logger = logging.getLogger(__name__)
 
@@ -72,17 +72,42 @@ def seed_if_empty() -> None:
         if not has_leads:
             session.add_all(
                 [
-                    Lead(id=1, name="Alice Johnson", email="alice@example.com", status="new"),
-                    Lead(id=2, name="Bob Smith", email="bob@example.com", status="contacted"),
-                    Lead(id=3, name="Charlie Brown", email="charlie@example.com", status="qualified"),
+                    Lead(
+                        id=1,
+                        name="Alice Johnson",
+                        email="alice@example.com",
+                        status="new",
+                    ),
+                    Lead(
+                        id=2,
+                        name="Bob Smith",
+                        email="bob@example.com",
+                        status="contacted",
+                    ),
+                    Lead(
+                        id=3,
+                        name="Charlie Brown",
+                        email="charlie@example.com",
+                        status="qualified",
+                    ),
                 ]
             )
 
         if not has_campaigns:
             session.add_all(
                 [
-                    Campaign(id=1, name="Holiday Promo", objective="Increase sales", active=True),
-                    Campaign(id=2, name="Referral Drive", objective="Grow referrals", active=False),
+                    Campaign(
+                        id=1,
+                        name="Holiday Promo",
+                        objective="Increase sales",
+                        active=True,
+                    ),
+                    Campaign(
+                        id=2,
+                        name="Referral Drive",
+                        objective="Grow referrals",
+                        active=False,
+                    ),
                 ]
             )
         session.commit()

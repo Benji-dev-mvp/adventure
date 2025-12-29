@@ -2,13 +2,15 @@
 Email A/B Testing Engine
 Auto-test subject lines, track winners, optimize campaigns
 """
-from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks
-from sqlmodel import Session
-from typing import List, Dict, Any, Optional
-from datetime import datetime, timedelta
-from pydantic import BaseModel
-from enum import Enum
+
 import random
+from datetime import datetime, timedelta
+from enum import Enum
+from typing import Any, Dict, List, Optional
+
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException
+from pydantic import BaseModel
+from sqlmodel import Session
 
 from app.core.db import get_session
 from app.core.security import get_current_user
@@ -34,6 +36,7 @@ class WinnerCriteria(str, Enum):
 
 class ABTestConfig(BaseModel):
     """Configuration for A/B test"""
+
     campaign_id: int
     test_type: ABTestType
     variants: List[Dict[str, Any]]  # Each variant has name + content
@@ -46,6 +49,7 @@ class ABTestConfig(BaseModel):
 
 class ABTestVariant(BaseModel):
     """Single variant in A/B test"""
+
     variant_id: str
     name: str
     content: Dict[str, Any]
@@ -54,15 +58,15 @@ class ABTestVariant(BaseModel):
     clicked_count: int = 0
     replied_count: int = 0
     converted_count: int = 0
-    
+
     @property
     def open_rate(self) -> float:
         return (self.opened_count / self.sent_count * 100) if self.sent_count > 0 else 0
-    
+
     @property
     def click_rate(self) -> float:
         return (self.clicked_count / self.sent_count * 100) if self.sent_count > 0 else 0
-    
+
     @property
     def reply_rate(self) -> float:
         return (self.replied_count / self.sent_count * 100) if self.sent_count > 0 else 0
@@ -70,6 +74,7 @@ class ABTestVariant(BaseModel):
 
 class ABTest(BaseModel):
     """Full A/B test with tracking"""
+
     test_id: int
     campaign_id: int
     test_type: ABTestType
@@ -93,11 +98,11 @@ test_counter = 0
 async def create_ab_test(
     config: ABTestConfig,
     background_tasks: BackgroundTasks,
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user),
 ):
     """
     Create and start A/B test
-    
+
     Process:
     1. Split audience into test group (20%) and holdout (80%)
     2. Send variants to test group
@@ -107,20 +112,20 @@ async def create_ab_test(
     """
     global test_counter
     test_counter += 1
-    
+
     # Create variant objects
     variants = []
     for i, variant_data in enumerate(config.variants):
         variant = ABTestVariant(
             variant_id=f"variant_{i+1}",
             name=variant_data.get("name", f"Variant {i+1}"),
-            content=variant_data
+            content=variant_data,
         )
         variants.append(variant)
-    
+
     # Create test
     test_ends_at = datetime.utcnow() + timedelta(hours=config.test_duration_hours)
-    
+
     ab_test = ABTest(
         test_id=test_counter,
         campaign_id=config.campaign_id,
@@ -129,39 +134,34 @@ async def create_ab_test(
         variants=variants,
         winner_criteria=config.winner_criteria,
         test_started_at=datetime.utcnow(),
-        test_ends_at=test_ends_at
+        test_ends_at=test_ends_at,
     )
-    
+
     ab_tests[test_counter] = ab_test
-    
+
     # Schedule winner selection
     if config.auto_send_winner:
         background_tasks.add_task(
-            _schedule_winner_selection,
-            test_counter,
-            config.test_duration_hours
+            _schedule_winner_selection, test_counter, config.test_duration_hours
         )
-    
+
     return {
         "test_id": test_counter,
         "status": "running",
         "variants": [v.dict() for v in variants],
         "test_ends_at": test_ends_at.isoformat(),
-        "message": f"A/B test started with {len(variants)} variants"
+        "message": f"A/B test started with {len(variants)} variants",
     }
 
 
 @router.get("/ab-tests/{test_id}", response_model=Dict[str, Any])
-async def get_ab_test(
-    test_id: int,
-    current_user: User = Depends(get_current_user)
-):
+async def get_ab_test(test_id: int, current_user: User = Depends(get_current_user)):
     """Get A/B test details and results"""
     if test_id not in ab_tests:
         raise HTTPException(status_code=404, detail="A/B test not found")
-    
+
     test = ab_tests[test_id]
-    
+
     return {
         "test_id": test.test_id,
         "campaign_id": test.campaign_id,
@@ -172,14 +172,14 @@ async def get_ab_test(
                 **v.dict(),
                 "open_rate": v.open_rate,
                 "click_rate": v.click_rate,
-                "reply_rate": v.reply_rate
+                "reply_rate": v.reply_rate,
             }
             for v in test.variants
         ],
         "winner_variant_id": test.winner_variant_id,
         "test_started_at": test.test_started_at.isoformat(),
         "test_ends_at": test.test_ends_at.isoformat(),
-        "time_remaining": _get_time_remaining(test)
+        "time_remaining": _get_time_remaining(test),
     }
 
 
@@ -189,19 +189,19 @@ async def track_event(
     event_type: str,  # "open", "click", "reply", "convert"
     variant_id: str,
     lead_email: str,
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user),
 ):
     """Track email engagement event for A/B test"""
     if test_id not in ab_tests:
         raise HTTPException(status_code=404, detail="A/B test not found")
-    
+
     test = ab_tests[test_id]
-    
+
     # Find variant
     variant = next((v for v in test.variants if v.variant_id == variant_id), None)
     if not variant:
         raise HTTPException(status_code=404, detail="Variant not found")
-    
+
     # Update counts
     if event_type == "open":
         variant.opened_count += 1
@@ -211,7 +211,7 @@ async def track_event(
         variant.replied_count += 1
     elif event_type == "convert":
         variant.converted_count += 1
-    
+
     return {
         "success": True,
         "test_id": test_id,
@@ -220,19 +220,16 @@ async def track_event(
         "updated_stats": {
             "open_rate": variant.open_rate,
             "click_rate": variant.click_rate,
-            "reply_rate": variant.reply_rate
-        }
+            "reply_rate": variant.reply_rate,
+        },
     }
 
 
 @router.post("/ab-tests/{test_id}/select-winner")
-async def select_winner(
-    test_id: int,
-    current_user: User = Depends(get_current_user)
-):
+async def select_winner(test_id: int, current_user: User = Depends(get_current_user)):
     """
     Manually select winner and send to remaining audience
-    
+
     Winner selection based on configured criteria:
     - open_rate: Most opens
     - click_rate: Most clicks
@@ -241,18 +238,18 @@ async def select_winner(
     """
     if test_id not in ab_tests:
         raise HTTPException(status_code=404, detail="A/B test not found")
-    
+
     test = ab_tests[test_id]
-    
+
     if test.status != "running":
         raise HTTPException(status_code=400, detail="Test is not running")
-    
+
     # Select winner based on criteria
     winner = _select_winner_variant(test)
-    
+
     test.winner_variant_id = winner.variant_id
     test.status = "completed"
-    
+
     return {
         "success": True,
         "test_id": test_id,
@@ -260,7 +257,7 @@ async def select_winner(
         "winner_name": winner.name,
         "winning_metric": _get_winning_metric(winner, test.winner_criteria),
         "improvement_over_others": _calculate_improvement(test, winner),
-        "message": "Winner selected - ready to send to remaining audience"
+        "message": "Winner selected - ready to send to remaining audience",
     }
 
 
@@ -268,49 +265,43 @@ async def select_winner(
 async def send_winner_to_audience(
     test_id: int,
     background_tasks: BackgroundTasks,
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user),
 ):
     """Send winning variant to remaining 80% of audience"""
     if test_id not in ab_tests:
         raise HTTPException(status_code=404, detail="A/B test not found")
-    
+
     test = ab_tests[test_id]
-    
+
     if test.status != "completed":
         raise HTTPException(status_code=400, detail="Test must be completed first")
-    
+
     if not test.winner_variant_id:
         raise HTTPException(status_code=400, detail="No winner selected")
-    
+
     winner = next(v for v in test.variants if v.variant_id == test.winner_variant_id)
-    
+
     # Simulate sending to remaining audience
     # In production, this would queue actual email sends
     background_tasks.add_task(_send_winner_emails, test_id, winner)
-    
+
     test.status = "winner_sent"
     test.winner_sent_at = datetime.utcnow()
-    
+
     return {
         "success": True,
         "test_id": test_id,
         "winner_variant": winner.dict(),
         "message": "Sending winner to remaining audience",
-        "estimated_sends": "80% of campaign list"
+        "estimated_sends": "80% of campaign list",
     }
 
 
 @router.get("/ab-tests/campaign/{campaign_id}")
-async def get_campaign_tests(
-    campaign_id: int,
-    current_user: User = Depends(get_current_user)
-):
+async def get_campaign_tests(campaign_id: int, current_user: User = Depends(get_current_user)):
     """Get all A/B tests for a campaign"""
-    campaign_tests = [
-        test for test in ab_tests.values()
-        if test.campaign_id == campaign_id
-    ]
-    
+    campaign_tests = [test for test in ab_tests.values() if test.campaign_id == campaign_id]
+
     return {
         "campaign_id": campaign_id,
         "total_tests": len(campaign_tests),
@@ -320,25 +311,26 @@ async def get_campaign_tests(
                 "test_type": t.test_type,
                 "status": t.status,
                 "winner_variant_id": t.winner_variant_id,
-                "started_at": t.test_started_at.isoformat()
+                "started_at": t.test_started_at.isoformat(),
             }
             for t in campaign_tests
-        ]
+        ],
     }
 
 
 async def _schedule_winner_selection(test_id: int, hours: int):
     """Background task to auto-select winner after test duration"""
     import asyncio
+
     await asyncio.sleep(hours * 3600)
-    
+
     if test_id in ab_tests:
         test = ab_tests[test_id]
         if test.status == "running":
             winner = _select_winner_variant(test)
             test.winner_variant_id = winner.variant_id
             test.status = "completed"
-            
+
             # Auto-send if configured
             await _send_winner_emails(test_id, winner)
             test.status = "winner_sent"
@@ -372,7 +364,7 @@ def _get_winning_metric(variant: ABTestVariant, criteria: WinnerCriteria) -> flo
 def _calculate_improvement(test: ABTest, winner: ABTestVariant) -> Dict[str, float]:
     """Calculate how much winner improved over other variants"""
     winner_metric = _get_winning_metric(winner, test.winner_criteria)
-    
+
     improvements = {}
     for variant in test.variants:
         if variant.variant_id != winner.variant_id:
@@ -380,7 +372,7 @@ def _calculate_improvement(test: ABTest, winner: ABTestVariant) -> Dict[str, flo
             if variant_metric > 0:
                 improvement = ((winner_metric - variant_metric) / variant_metric) * 100
                 improvements[variant.name] = round(improvement, 1)
-    
+
     return improvements
 
 
@@ -388,11 +380,11 @@ def _get_time_remaining(test: ABTest) -> str:
     """Get human-readable time remaining"""
     if test.status != "running":
         return "Test completed"
-    
+
     remaining = test.test_ends_at - datetime.utcnow()
     hours = remaining.seconds // 3600
     minutes = (remaining.seconds % 3600) // 60
-    
+
     return f"{hours}h {minutes}m remaining"
 
 
@@ -402,5 +394,5 @@ async def _send_winner_emails(test_id: int, winner: ABTestVariant):
     # In production: queue emails, update campaign, track deliverability
     test = ab_tests[test_id]
     test.total_winner_sends = int(test.total_test_sends * 4)  # 80% of total
-    
+
     return {"sent": test.total_winner_sends}

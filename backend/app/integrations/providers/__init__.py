@@ -4,10 +4,10 @@ AI Provider Abstraction Layer
 Eliminates hardcoded AI_PROVIDER checks throughout codebase
 """
 
-from .base import AIProvider, ProviderResponse
-from .openai_provider import OpenAIProvider
 from .anthropic_provider import AnthropicProvider
+from .base import AIProvider, ProviderResponse
 from .factory import ProviderFactory
+from .openai_provider import OpenAIProvider
 
 __all__ = [
     "AIProvider",

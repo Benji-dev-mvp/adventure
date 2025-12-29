@@ -2,11 +2,14 @@
 GraphQL API implementation for flexible querying (alternative to REST)
 Provides more efficient data fetching and reduces over-fetching
 """
-import strawberry
-from typing import List, Optional
+
 from datetime import datetime
+from typing import List, Optional
+
+import strawberry
 from strawberry.fastapi import GraphQLRouter
 from strawberry.types import Info
+
 
 # Type definitions
 @strawberry.type
@@ -83,41 +86,41 @@ class LeadFilterInput:
 class Query:
     @strawberry.field
     async def leads(
-        self, 
+        self,
         info: Info,
         filter: Optional[LeadFilterInput] = None,
         limit: int = 100,
-        offset: int = 0
+        offset: int = 0,
     ) -> List[Lead]:
         """Fetch leads with optional filtering"""
         # TODO: Implement actual database query
         # This is a placeholder - in production, query from database
         return []
-    
+
     @strawberry.field
     async def lead(self, info: Info, id: int) -> Optional[Lead]:
         """Fetch a single lead by ID"""
         # TODO: Implement actual database query
         return None
-    
+
     @strawberry.field
     async def campaigns(
         self,
         info: Info,
         status: Optional[str] = None,
         limit: int = 100,
-        offset: int = 0
+        offset: int = 0,
     ) -> List[Campaign]:
         """Fetch campaigns with optional filtering"""
         # TODO: Implement actual database query
         return []
-    
+
     @strawberry.field
     async def campaign(self, info: Info, id: int) -> Optional[Campaign]:
         """Fetch a single campaign by ID"""
         # TODO: Implement actual database query
         return None
-    
+
     @strawberry.field
     async def analytics(self, info: Info) -> AnalyticsSummary:
         """Fetch analytics summary"""
@@ -127,9 +130,9 @@ class Query:
             active_campaigns=0,
             conversion_rate=0.0,
             total_revenue=0.0,
-            avg_deal_size=0.0
+            avg_deal_size=0.0,
         )
-    
+
     @strawberry.field
     async def me(self, info: Info) -> Optional[User]:
         """Fetch current authenticated user"""
@@ -145,41 +148,27 @@ class Mutation:
         """Create a new lead"""
         # TODO: Implement actual database insert
         raise NotImplementedError("Database integration required")
-    
+
     @strawberry.mutation
-    async def update_lead(
-        self, 
-        info: Info, 
-        id: int, 
-        input: LeadInput
-    ) -> Lead:
+    async def update_lead(self, info: Info, id: int, input: LeadInput) -> Lead:
         """Update an existing lead"""
         # TODO: Implement actual database update
         raise NotImplementedError("Database integration required")
-    
+
     @strawberry.mutation
     async def delete_lead(self, info: Info, id: int) -> bool:
         """Delete a lead (soft delete)"""
         # TODO: Implement actual database soft delete
         return False
-    
+
     @strawberry.mutation
-    async def create_campaign(
-        self, 
-        info: Info, 
-        input: CampaignInput
-    ) -> Campaign:
+    async def create_campaign(self, info: Info, input: CampaignInput) -> Campaign:
         """Create a new campaign"""
         # TODO: Implement actual database insert
         raise NotImplementedError("Database integration required")
-    
+
     @strawberry.mutation
-    async def update_campaign_status(
-        self,
-        info: Info,
-        id: int,
-        status: str
-    ) -> Campaign:
+    async def update_campaign_status(self, info: Info, id: int, status: str) -> Campaign:
         """Update campaign status"""
         # TODO: Implement actual database update
         raise NotImplementedError("Database integration required")
@@ -201,7 +190,7 @@ class Subscription:
         # TODO: Implement WebSocket subscription
         # This would stream campaign stats updates
         yield {"message": "Real-time updates coming soon"}
-    
+
     @strawberry.subscription
     async def lead_activity(self, info: Info):
         """Subscribe to lead activity feed"""
@@ -211,7 +200,5 @@ class Subscription:
 
 # Enhanced schema with subscriptions
 schema_with_subscriptions = strawberry.Schema(
-    query=Query,
-    mutation=Mutation,
-    subscription=Subscription
+    query=Query, mutation=Mutation, subscription=Subscription
 )

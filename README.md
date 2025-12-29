@@ -1,5 +1,8 @@
 # Artisan - AI BDR SaaS Platform
 
+![CI Status](https://github.com/Benji-dev-mvp/adventure/actions/workflows/ci.yml/badge.svg)
+![CD Status](https://github.com/Benji-dev-mvp/adventure/actions/workflows/cd.yml/badge.svg)
+
 A production-ready AI Business Development Representative (BDR) platform built with React, featuring Ava - an intelligent AI assistant that automates outbound sales workflows.
 
 ## Features
@@ -134,18 +137,30 @@ A production-ready AI Business Development Representative (BDR) platform built w
 
 ## Getting Started
 
+### Prerequisites
+- Node.js 20.x (see `.nvmrc`)
+- Python 3.11.x (for backend)
+- npm or yarn
+
 ### Installation
 ```bash
+# Frontend
 npm install
+
+# Backend
+cd backend
+pip install -r requirements.txt
 ```
 
 ### Development Server
 ```bash
+# Frontend (runs on http://localhost:3004)
 npm run dev
-# or
-npm start
+
+# Backend (runs on http://localhost:8000)
+cd backend
+uvicorn app.main:app --reload --port 8000
 ```
-The app will run on `http://localhost:3004`
 
 Backend API runs on `http://localhost:8000` (proxy configured in Vite)
 
@@ -162,12 +177,30 @@ npm run preview
 
 ### Run Tests
 ```bash
-npm test
+# Frontend tests
+npm test            # Watch mode
+npm run test:ci     # CI mode with coverage
+
+# Backend tests
+cd backend
+pytest -v --cov=app
+
+# E2E tests
+npm run test:e2e         # Interactive
+npm run test:e2e:ci      # CI mode
 ```
 
-### Type Checking
+### Linting & Type Checking
 ```bash
-npm run type-check
+# Frontend
+npm run lint        # ESLint
+npm run typecheck   # TypeScript
+
+# Backend
+cd backend
+flake8 app          # Python linting
+black app           # Format code
+isort app           # Sort imports
 ```
 
 ## 📚 Documentation
@@ -180,6 +213,106 @@ All documentation has been organized for easy access:
 - **[Features Documentation](docs/features/)** - Detailed feature guides
 - **[Deployment Guide](docs/deployment/DEPLOYMENT.md)** - Production deployment instructions
 - **[Production Checklist](docs/deployment/PRODUCTION_CHECKLIST.md)** - Pre-launch checklist
+
+## 🚀 CI/CD Pipeline
+
+This repository implements comprehensive continuous integration and deployment workflows.
+
+### CI Workflow (`.github/workflows/ci.yml`)
+
+Runs on every pull request and push to `main`/`develop`:
+
+**Frontend Checks:**
+- ✅ ESLint (zero warnings enforced)
+- ✅ TypeScript type checking
+- ✅ Vitest unit tests with coverage
+- ✅ Production build validation
+
+**Backend Checks:**
+- ✅ Flake8 linting (strict error mode)
+- ✅ Black formatting validation
+- ✅ isort import order checking
+- ✅ Pytest with 80% coverage requirement
+- ✅ Import smoke test
+
+**E2E Tests:**
+- ✅ Playwright browser tests against built artifacts
+
+**Kubernetes:**
+- ⚠️ Helm chart validation (informational)
+- ⚠️ K8s manifest validation with kubeval
+
+### CD Workflow (`.github/workflows/cd.yml`)
+
+Triggers on push to `main` or version tags (`v*.*.*`):
+
+**Docker Image Build & Push:**
+- 🐳 Backend image → `ghcr.io/<repo>/backend`
+- 🐳 Frontend image → `ghcr.io/<repo>/frontend`
+- 📦 Multi-arch support (linux/amd64)
+- ⚡ GitHub Actions cache for layer reuse
+- 🏷️ Semantic versioning tags
+
+### Running CI Checks Locally
+
+Before pushing, verify your changes pass all CI checks:
+
+```bash
+# Frontend checks
+npm run lint
+npm run typecheck
+npm run test:ci
+npm run build
+
+# Backend checks
+cd backend
+flake8 app --count --select=E9,F63,F7,F82 --show-source --statistics
+black --check app
+isort --check-only app
+pytest -v --cov=app
+
+# E2E tests (after building)
+npm run build
+npm run preview &
+npm run test:e2e:ci
+```
+
+### Branch Protection
+
+Recommended GitHub branch protection rules for `main`:
+
+- ✅ Require status checks: `CI Success`
+- ✅ Require branches to be up to date
+- ✅ Require pull request reviews (1+ approvers)
+- ✅ Dismiss stale reviews on new commits
+- ✅ Require linear history
+
+### Concurrency & Performance
+
+- **Parallel job execution**: Frontend, backend, and K8s checks run concurrently
+- **Concurrency groups**: Auto-cancel stale workflow runs on new commits
+- **Caching**: npm and pip dependencies cached per branch
+- **Docker layer caching**: GitHub Actions cache for faster image builds
+- **Timeouts**: All jobs have 10-20 minute timeouts to prevent runaway builds
+
+### Troubleshooting CI Failures
+
+**Frontend lint fails:**
+```bash
+npm run lint:fix  # Auto-fix ESLint issues
+```
+
+**Backend formatting fails:**
+```bash
+cd backend
+black app        # Auto-format with black
+isort app        # Auto-sort imports
+```
+
+**Tests fail:**
+- Check that you're using the correct Node/Python versions
+- Clear caches: `npm ci` (frontend) or `pip install --force-reinstall -r requirements.txt` (backend)
+- Run tests locally with same environment variables as CI
 
 ## Project Structure
 

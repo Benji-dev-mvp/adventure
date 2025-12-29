@@ -1,6 +1,7 @@
-from typing import Optional, List, Dict
-from sqlmodel import SQLModel, Field
+from typing import Dict, List, Optional
+
 from pydantic import EmailStr
+from sqlmodel import Field, SQLModel
 
 
 class Lead(SQLModel, table=True):
@@ -53,6 +54,7 @@ class AuthToken(SQLModel):
 
 class Token(SQLModel):
     """OAuth/JWT token response"""
+
     access_token: str
     token_type: str = "bearer"
     expires_in: Optional[int] = None

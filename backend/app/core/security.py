@@ -1,22 +1,37 @@
+import logging
 import re
 import time
 import uuid
-import logging
-from typing import Optional, List, Callable, Dict
 from collections import defaultdict
-from functools import wraps
 from datetime import datetime, timedelta
-import jwt
+from functools import wraps
+from typing import Callable, Dict, List, Optional
 
+import jwt
+from fastapi import Depends, HTTPException, status
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from passlib.context import CryptContext
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
 from starlette.requests import Request
-from starlette.responses import Response, JSONResponse
-from fastapi import HTTPException, Depends, status
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from starlette.responses import JSONResponse, Response
 
-from app.models.user import User, UserRole, Permission, ROLE_PERMISSIONS
-from app.core.config import settings
 from app.core.cache import cache
+from app.core.config import settings
+from app.models.user import ROLE_PERMISSIONS, Permission, User, UserRole
+
+# Password hashing context
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+
+def get_password_hash(password: str) -> str:
+    """Hash a password using bcrypt."""
+    return pwd_context.hash(password)
+
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    """Verify a password against a hash."""
+    return pwd_context.verify(plain_password, hashed_password)
+
 
 security = HTTPBearer()
 logger = logging.getLogger(__name__)
@@ -36,14 +51,13 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         # This API doesn't serve HTML; a restrictive CSP is fine.
         response.headers.setdefault(
             "Content-Security-Policy",
-            "default-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+            "default-src 'none'; frame-ancestors 'none'; base-uri 'none'",
         )
         response.headers.setdefault("X-Content-Type-Options", "nosniff")
         response.headers.setdefault("X-Frame-Options", "DENY")
         response.headers.setdefault("Referrer-Policy", "no-referrer")
         response.headers.setdefault(
-            "Permissions-Policy",
-            "camera=(), microphone=(), geolocation=()"
+            "Permissions-Policy", "camera=(), microphone=(), geolocation=()"
         )
         return response
 
@@ -80,27 +94,30 @@ class RequestIDMiddleware(BaseHTTPMiddleware):
     """
     Attaches a unique request ID to each request for tracing and logging.
     """
+
     async def dispatch(self, request: Request, call_next: RequestResponseEndpoint) -> Response:
         request_id = str(uuid.uuid4())
         request.state.request_id = request_id
-        
+
         # Attach request_id to log records for this request
         old_factory = logging.getLogRecordFactory()
+
         def record_factory(*args, **kwargs):
             record = old_factory(*args, **kwargs)
             record.request_id = request_id
             return record
+
         logging.setLogRecordFactory(record_factory)
-        
+
         start_time = time.time()
         response = await call_next(request)
         duration = time.time() - start_time
-        
+
         response.headers["X-Request-ID"] = request_id
         response.headers["X-Response-Time"] = f"{duration:.3f}s"
-        
+
         logger.info(f"{request.method} {request.url.path} {response.status_code} {duration:.3f}s")
-        
+
         # Restore original factory
         logging.setLogRecordFactory(old_factory)
         return response
@@ -111,6 +128,7 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
     Per-user rate limiter using Redis for distributed rate limiting.
     Falls back to IP-based limiting for unauthenticated requests.
     """
+
     def __init__(self, app, max_requests: int = 100, window_seconds: int = 60):
         super().__init__(app)
         self.max_requests = max_requests
@@ -124,18 +142,20 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
         if auth_header and auth_header.startswith("Bearer "):
             try:
                 token = auth_header.split(" ")[1]
-                payload = jwt.decode(token, settings.secret_key, algorithms=[settings.jwt_algorithm])
+                payload = jwt.decode(
+                    token, settings.secret_key, algorithms=[settings.jwt_algorithm]
+                )
                 user_key = f"ratelimit:user:{payload.get('sub')}"
             except:
                 pass
-        
+
         # Fallback to IP-based rate limiting
         if not user_key:
             client_ip = request.client.host if request.client else "unknown"
             user_key = f"ratelimit:ip:{client_ip}"
-        
+
         now = time.time()
-        
+
         # Try Redis first
         try:
             count = cache.get(user_key) or 0
@@ -143,16 +163,21 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
                 return JSONResponse(
                     {"detail": "Rate limit exceeded. Try again later."},
                     status_code=429,
-                    headers={"X-RateLimit-Limit": str(self.max_requests), "X-RateLimit-Remaining": "0"}
+                    headers={
+                        "X-RateLimit-Limit": str(self.max_requests),
+                        "X-RateLimit-Remaining": "0",
+                    },
                 )
             cache.set(user_key, count + 1, ttl=self.window_seconds)
         except:
             # Fallback to in-memory
-            self.requests[user_key] = [ts for ts in self.requests[user_key] if now - ts < self.window_seconds]
+            self.requests[user_key] = [
+                ts for ts in self.requests[user_key] if now - ts < self.window_seconds
+            ]
             if len(self.requests[user_key]) >= self.max_requests:
                 return JSONResponse({"detail": "Rate limit exceeded"}, status_code=429)
             self.requests[user_key].append(now)
-        
+
         response = await call_next(request)
         response.headers["X-RateLimit-Limit"] = str(self.max_requests)
         return response
@@ -179,7 +204,10 @@ def sanitize_text(text: str) -> str:
 # RBAC Functions and Decorators
 # ============================================================================
 
-async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)) -> User:
+
+async def get_current_user(
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+) -> User:
     """
     Get current user from JWT token with full validation.
     Checks token signature, expiry, and user status.
@@ -190,7 +218,7 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
-    
+
     try:
         # Decode and validate JWT
         payload = jwt.decode(token, settings.secret_key, algorithms=[settings.jwt_algorithm])
@@ -198,7 +226,7 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
         email: str = payload.get("email")
         if user_id is None or email is None:
             raise credentials_exception
-        
+
         # Check token expiry
         exp = payload.get("exp")
         if exp and datetime.fromtimestamp(exp) < datetime.now():
@@ -207,7 +235,7 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
                 detail="Token has expired",
                 headers={"WWW-Authenticate": "Bearer"},
             )
-        
+
         # Get user from cache or database
         cache_key = f"user:{user_id}"
         cached_user = cache.get(cache_key)
@@ -225,17 +253,16 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
                 "created_at": datetime.now().isoformat(),
             }
             cache.set(cache_key, user_data, ttl=300)
-        
+
         user = User(**user_data)
-        
+
         if not user.is_active:
             raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="User account is disabled"
+                status_code=status.HTTP_403_FORBIDDEN, detail="User account is disabled"
             )
-        
+
         return user
-        
+
     except jwt.ExpiredSignatureError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -249,44 +276,50 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
 def require_role(*roles: UserRole):
     """
     Decorator to require specific role(s) for an endpoint.
-    
+
     Usage:
         @require_role(UserRole.ADMIN, UserRole.MANAGER)
         async def admin_only_endpoint(user: User = Depends(get_current_user)):
             ...
     """
+
     def decorator(func: Callable):
         @wraps(func)
         async def wrapper(*args, user: User = Depends(get_current_user), **kwargs):
             if user.role not in roles:
                 raise HTTPException(
                     status_code=403,
-                    detail=f"Access denied. Required roles: {[r.value for r in roles]}"
+                    detail=f"Access denied. Required roles: {[r.value for r in roles]}",
                 )
             return await func(*args, user=user, **kwargs)
+
         return wrapper
+
     return decorator
 
 
 def require_permission(*permissions: Permission):
     """
     Decorator to require specific permission(s) for an endpoint.
-    
+
     Usage:
         @require_permission(Permission.CAMPAIGN_DELETE)
         async def delete_campaign(user: User = Depends(get_current_user)):
             ...
     """
+
     def decorator(func: Callable):
         @wraps(func)
         async def wrapper(*args, user: User = Depends(get_current_user), **kwargs):
             if not user.has_all_permissions(list(permissions)):
                 raise HTTPException(
                     status_code=403,
-                    detail=f"Access denied. Required permissions: {[p.value for p in permissions]}"
+                    detail=f"Access denied. Required permissions: {[p.value for p in permissions]}",
                 )
             return await func(*args, user=user, **kwargs)
+
         return wrapper
+
     return decorator
 
 
@@ -304,13 +337,9 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -
         expire = datetime.utcnow() + expires_delta
     else:
         expire = datetime.utcnow() + timedelta(hours=settings.jwt_expiration_hours)
-    
-    to_encode.update({
-        "exp": expire,
-        "iat": datetime.utcnow(),
-        "type": "access"
-    })
-    
+
+    to_encode.update({"exp": expire, "iat": datetime.utcnow(), "type": "access"})
+
     encoded_jwt = jwt.encode(to_encode, settings.secret_key, algorithm=settings.jwt_algorithm)
     return encoded_jwt
 
@@ -321,13 +350,9 @@ def create_refresh_token(data: dict) -> str:
     """
     to_encode = data.copy()
     expire = datetime.utcnow() + timedelta(days=7)
-    
-    to_encode.update({
-        "exp": expire,
-        "iat": datetime.utcnow(),
-        "type": "refresh"
-    })
-    
+
+    to_encode.update({"exp": expire, "iat": datetime.utcnow(), "type": "refresh"})
+
     encoded_jwt = jwt.encode(to_encode, settings.secret_key, algorithm=settings.jwt_algorithm)
     return encoded_jwt
 
@@ -340,19 +365,17 @@ def verify_refresh_token(token: str) -> Dict:
         payload = jwt.decode(token, settings.secret_key, algorithms=[settings.jwt_algorithm])
         if payload.get("type") != "refresh":
             raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid token type"
+                status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token type"
             )
         return payload
     except jwt.ExpiredSignatureError:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Refresh token has expired"
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Refresh token has expired"
         )
     except jwt.JWTError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate refresh token"
+            detail="Could not validate refresh token",
         )
 
 
@@ -369,5 +392,5 @@ async def get_current_user_ws(token: str) -> User:
         name="WebSocket User",
         role=UserRole.USER,
         is_active=True,
-        created_at=datetime.now()
+        created_at=datetime.now(),
     )

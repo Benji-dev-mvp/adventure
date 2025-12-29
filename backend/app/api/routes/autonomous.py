@@ -2,12 +2,14 @@
 AI Autonomous Features API Routes
 Handles autonomous prospect research, objection handling, meeting booking, and follow-ups
 """
-from fastapi import APIRouter, Depends, HTTPException, status
-from sqlmodel import Session, select
-from typing import List, Dict, Any, Optional
-from datetime import datetime, timedelta
-from pydantic import BaseModel
+
 import random
+from datetime import datetime, timedelta
+from typing import Any, Dict, List, Optional
+
+from fastapi import APIRouter, Depends, HTTPException, status
+from pydantic import BaseModel
+from sqlmodel import Session, select
 
 from app.core.db import get_session
 from app.core.security import get_current_user
@@ -43,7 +45,7 @@ class MeetingProposal(BaseModel):
 async def start_prospect_research(
     request: ProspectResearchRequest,
     current_user: User = Depends(get_current_user),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     """
     Start autonomous research for a prospect
@@ -67,13 +69,13 @@ async def start_prospect_research(
             "Tech Stack Analysis",
             "News Mentions",
             "Funding Database",
-            "Social Media Activity"
-        ]
+            "Social Media Activity",
+        ],
     }
-    
+
     return {
         "research_job": research_job,
-        "message": f"Ava has started researching {request.prospect_name}. This typically takes 3-5 minutes."
+        "message": f"Ava has started researching {request.prospect_name}. This typically takes 3-5 minutes.",
     }
 
 
@@ -81,7 +83,7 @@ async def start_prospect_research(
 async def get_research_queue(
     status: Optional[str] = None,
     current_user: User = Depends(get_current_user),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     """
     Get the current research queue
@@ -96,7 +98,7 @@ async def get_research_queue(
             "progress": 75,
             "data_points_found": 12,
             "intent_signal": "high",
-            "started_at": (datetime.now() - timedelta(minutes=3)).isoformat()
+            "started_at": (datetime.now() - timedelta(minutes=3)).isoformat(),
         },
         {
             "id": "research_12346",
@@ -107,21 +109,17 @@ async def get_research_queue(
             "data_points_found": 18,
             "intent_signal": "very-high",
             "started_at": (datetime.now() - timedelta(minutes=10)).isoformat(),
-            "completed_at": (datetime.now() - timedelta(minutes=5)).isoformat()
-        }
+            "completed_at": (datetime.now() - timedelta(minutes=5)).isoformat(),
+        },
     ]
-    
+
     if status:
         queue_items = [item for item in queue_items if item["status"] == status]
-    
+
     return {
         "queue": queue_items,
         "total": len(queue_items),
-        "stats": {
-            "queued": 1,
-            "researching": 3,
-            "completed_today": 247
-        }
+        "stats": {"queued": 1, "researching": 3, "completed_today": 247},
     }
 
 
@@ -129,7 +127,7 @@ async def get_research_queue(
 async def get_research_results(
     research_id: str,
     current_user: User = Depends(get_current_user),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     """
     Get detailed research results for a prospect
@@ -142,7 +140,7 @@ async def get_research_results(
             "company": "Acme Corp",
             "email": "john@acme.com",
             "linkedin": "linkedin.com/in/johndoe",
-            "location": "San Francisco, CA"
+            "location": "San Francisco, CA",
         },
         "company_intel": {
             "size": "201-500 employees",
@@ -152,71 +150,71 @@ async def get_research_results(
                 "stage": "Series B",
                 "amount": "$25M",
                 "date": "3 months ago",
-                "investors": ["Sequoia", "Accel"]
+                "investors": ["Sequoia", "Accel"],
             },
             "tech_stack": ["Salesforce", "HubSpot", "Slack", "AWS"],
-            "recent_hiring": "Hiring 12 SDRs in last 2 months"
+            "recent_hiring": "Hiring 12 SDRs in last 2 months",
         },
         "intent_signals": [
             {
                 "type": "job_change",
                 "priority": 1,
                 "data": "Started as VP Sales 2 weeks ago",
-                "confidence": 95
+                "confidence": 95,
             },
             {
                 "type": "funding",
                 "priority": 2,
                 "data": "Series B - $25M raised 3 months ago",
-                "confidence": 98
+                "confidence": 98,
             },
             {
                 "type": "social_activity",
                 "priority": 3,
                 "data": "Posted about sales automation challenges on LinkedIn",
-                "confidence": 82
-            }
+                "confidence": 82,
+            },
         ],
         "recent_activity": [
             {
                 "source": "LinkedIn",
                 "type": "post",
                 "date": "2 days ago",
-                "content": "Looking for ways to scale our outbound without losing personalization..."
+                "content": "Looking for ways to scale our outbound without losing personalization...",
             },
             {
                 "source": "Twitter",
                 "type": "like",
                 "date": "1 week ago",
-                "content": "Liked article about AI in sales"
-            }
+                "content": "Liked article about AI in sales",
+            },
         ],
         "personalization_suggestions": [
             {
                 "type": "opening_line",
                 "text": "Congrats on the new VP of Sales role at Acme! I noticed you just raised $25M...",
-                "priority": "high"
+                "priority": "high",
             },
             {
                 "type": "pain_point",
                 "text": "Scaling outbound while maintaining personalization (from LinkedIn post)",
-                "priority": "high"
+                "priority": "high",
             },
             {
                 "type": "common_ground",
                 "text": "Also using Salesforce - we integrate directly",
-                "priority": "medium"
-            }
+                "priority": "medium",
+            },
         ],
         "recommended_email": {
             "subject": "Scaling outbound @ Acme with AI (congrats on the $25M!)",
             "body": "Hi John,\n\nCongrats on the VP of Sales role and the Series B! I saw your post about scaling outbound without losing personalization - that's exactly what we solve at Artisan.\n\nWith 12 new SDRs onboarding, you're probably thinking about how to maintain quality at scale. We help teams like yours automate research and personalization for each prospect.\n\nWould you be open to a quick 15-min call to discuss how we could support your ramp-up?\n\nBest,\n[Your name]",
-            "confidence": 91
+            "confidence": 91,
         },
         "researched_at": datetime.now().isoformat(),
-        "data_points_collected": 18
+        "data_points_collected": 18,
     }
-    
+
     return research_data
 
 
@@ -225,7 +223,7 @@ async def get_research_results(
 async def get_recent_objections(
     status: Optional[str] = None,
     current_user: User = Depends(get_current_user),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     """
     Get recent objections detected and Ava's responses
@@ -241,10 +239,10 @@ async def get_recent_objections(
             "ava_response": {
                 "text": "I completely understand - many of our best customers felt the same way before seeing how we complement existing tools. Would you be open to a 10-minute call to discuss how we integrate with [current solution]?",
                 "confidence": 92,
-                "status": "auto-sent"
+                "status": "auto-sent",
             },
             "result": "positive_reply",
-            "reply_received": True
+            "reply_received": True,
         },
         {
             "id": "obj_12346",
@@ -256,24 +254,24 @@ async def get_recent_objections(
             "ava_response": {
                 "text": "I hear you on budget concerns. Many teams start with our Starter plan at $49/user to prove ROI first. Would it help to see a breakdown of typical payback periods for teams your size?",
                 "confidence": 88,
-                "status": "auto-sent"
+                "status": "auto-sent",
             },
             "result": "pending",
-            "reply_received": False
-        }
+            "reply_received": False,
+        },
     ]
-    
+
     if status:
         objections = [obj for obj in objections if obj["ava_response"]["status"] == status]
-    
+
     return {
         "objections": objections,
         "stats": {
             "total_handled_today": 42,
             "auto_resolved": 31,
             "awaiting_approval": 5,
-            "success_rate": 74
-        }
+            "success_rate": 74,
+        },
     }
 
 
@@ -281,7 +279,7 @@ async def get_recent_objections(
 async def approve_objection_response(
     objection_id: str,
     current_user: User = Depends(get_current_user),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     """
     Approve Ava's objection response and send it
@@ -290,7 +288,7 @@ async def approve_objection_response(
         "objection_id": objection_id,
         "status": "approved",
         "sent_at": datetime.now().isoformat(),
-        "message": "Response approved and sent. Ava will learn from this approval."
+        "message": "Response approved and sent. Ava will learn from this approval.",
     }
 
 
@@ -299,7 +297,7 @@ async def approve_objection_response(
 async def get_autonomous_meetings(
     status: Optional[str] = None,
     current_user: User = Depends(get_current_user),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     """
     Get meetings booked autonomously by Ava
@@ -317,7 +315,7 @@ async def get_autonomous_meetings(
             "conversation_exchanges": 5,
             "booked_at": (datetime.now() - timedelta(hours=3)).isoformat(),
             "calendar_event_created": True,
-            "100_percent_autonomous": True
+            "100_percent_autonomous": True,
         },
         {
             "id": "meet_12346",
@@ -327,21 +325,21 @@ async def get_autonomous_meetings(
             "status": "proposing_times",
             "conversation_exchanges": 3,
             "last_interaction": (datetime.now() - timedelta(minutes=30)).isoformat(),
-            "100_percent_autonomous": True
-        }
+            "100_percent_autonomous": True,
+        },
     ]
-    
+
     if status:
         meetings = [m for m in meetings if m["status"] == status]
-    
+
     return {
         "meetings": meetings,
         "stats": {
             "booked_this_week": 12,
             "in_progress": 5,
             "human_input_needed": 0,
-            "avg_exchanges_to_book": 4.2
-        }
+            "avg_exchanges_to_book": 4.2,
+        },
     }
 
 
@@ -349,7 +347,7 @@ async def get_autonomous_meetings(
 async def propose_meeting_times(
     proposal: MeetingProposal,
     current_user: User = Depends(get_current_user),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     """
     Ava proposes meeting times based on calendar availability
@@ -358,11 +356,11 @@ async def propose_meeting_times(
         "proposal_id": f"prop_{random.randint(10000, 99999)}",
         "prospect_email": proposal.prospect_email,
         "proposed_times": proposal.proposed_times,
-        "message_draft": f"Hi! I have the following times available for a {proposal.meeting_duration}-minute {proposal.meeting_type}:\n\n" + 
-                        "\n".join([f"• {time}" for time in proposal.proposed_times]) +
-                        "\n\nDo any of these work for you?",
+        "message_draft": f"Hi! I have the following times available for a {proposal.meeting_duration}-minute {proposal.meeting_type}:\n\n"
+        + "\n".join([f"• {time}" for time in proposal.proposed_times])
+        + "\n\nDo any of these work for you?",
         "status": "ready_to_send",
-        "calendar_checked": True
+        "calendar_checked": True,
     }
 
 
@@ -370,7 +368,7 @@ async def propose_meeting_times(
 @router.get("/followups/queue")
 async def get_followup_queue(
     current_user: User = Depends(get_current_user),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     """
     Get automated follow-up queue
@@ -385,7 +383,7 @@ async def get_followup_queue(
             "scheduled_for": (datetime.now() + timedelta(days=1, hours=2)).isoformat(),
             "reason": "No reply to first email",
             "ava_strategy": "Different angle: mention recent funding",
-            "draft_ready": True
+            "draft_ready": True,
         },
         {
             "id": "followup_12346",
@@ -396,17 +394,17 @@ async def get_followup_queue(
             "scheduled_for": (datetime.now() + timedelta(hours=5)).isoformat(),
             "reason": "Email opened but no reply",
             "ava_strategy": "Multi-channel: try LinkedIn",
-            "draft_ready": True
-        }
+            "draft_ready": True,
+        },
     ]
-    
+
     return {
         "followups": followups,
         "stats": {
             "active_sequences": 89,
             "scheduled_today": 12,
-            "reactivated_this_week": 34
-        }
+            "reactivated_this_week": 34,
+        },
     }
 
 
@@ -414,7 +412,7 @@ async def get_followup_queue(
 async def execute_followup(
     followup_id: str,
     current_user: User = Depends(get_current_user),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     """
     Execute a scheduled follow-up immediately
@@ -423,7 +421,7 @@ async def execute_followup(
         "followup_id": followup_id,
         "status": "sent",
         "sent_at": datetime.now().isoformat(),
-        "next_followup_scheduled": (datetime.now() + timedelta(days=3)).isoformat()
+        "next_followup_scheduled": (datetime.now() + timedelta(days=3)).isoformat(),
     }
 
 
@@ -431,7 +429,7 @@ async def execute_followup(
 @router.get("/insights/autonomous")
 async def get_autonomous_insights(
     current_user: User = Depends(get_current_user),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     """
     Get insights on Ava's autonomous performance
@@ -444,30 +442,30 @@ async def get_autonomous_insights(
             "objections_handled": 42,
             "objections_resolved_autonomously": 31,
             "meetings_booked_this_week": 12,
-            "followups_sent_today": 34
+            "followups_sent_today": 34,
         },
         "performance_trends": {
             "research_quality_score": 94,
             "objection_resolution_rate": 74,
             "meeting_booking_success_rate": 68,
-            "followup_response_rate": 23
+            "followup_response_rate": 23,
         },
         "learning_progress": {
             "total_interactions": 3247,
             "approved_responses": 2891,
             "rejected_responses": 156,
-            "learning_accuracy": 94.8
+            "learning_accuracy": 94.8,
         },
         "recommendations": [
             {
                 "type": "optimization",
-                "message": "Ava has learned that mentioning recent funding increases response rates by 18%"
+                "message": "Ava has learned that mentioning recent funding increases response rates by 18%",
             },
             {
                 "type": "insight",
-                "message": "Best time to send follow-ups for your prospects: Tuesday 9-11 AM EST"
-            }
-        ]
+                "message": "Best time to send follow-ups for your prospects: Tuesday 9-11 AM EST",
+            },
+        ],
     }
-    
+
     return insights

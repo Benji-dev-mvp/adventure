@@ -1,46 +1,59 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from starlette.middleware.trustedhost import TrustedHostMiddleware
-from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
 import logging
 import time
 
-from app.core.config import settings
-from app.api.routes.leads import router as leads_router
-from app.api.routes.campaigns import router as campaigns_router
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
+from starlette.middleware.trustedhost import TrustedHostMiddleware
+
+from app.api.routes.admin import router as admin_router
+from app.api.routes.advanced_features import router as advanced_features_router
+from app.api.routes.ai import router as ai_router
+from app.api.routes.ai_advanced import router as ai_advanced_router  # Advanced AI integrations
 from app.api.routes.analytics import router as analytics_router
 from app.api.routes.auth import router as auth_router
-from app.api.routes.status import router as status_router
-from app.api.routes.ai import router as ai_router
-from app.api.routes.health import router as health_router
-from app.api.routes.admin import router as admin_router
-from app.api.routes.oauth_mfa import router as oauth_mfa_router
-from app.api.routes.websocket import router as websocket_router
-from app.api.routes.feature_flags import router as feature_flags_router
-from app.api.routes.files import router as files_router
+from app.api.routes.autonomous import router as autonomous_router
 from app.api.routes.backup import router as backup_router
+from app.api.routes.campaign_intelligence import (
+    router as campaign_intelligence_router,  # Campaign business logic
+)
+from app.api.routes.campaigns import router as campaigns_router
 from app.api.routes.compliance import router as compliance_router
 from app.api.routes.deliverability import router as deliverability_router
-from app.api.routes.autonomous import router as autonomous_router
-from app.api.routes.advanced_features import router as advanced_features_router
-from app.api.routes.oauth import router as oauth_router
+from app.api.routes.feature_flags import router as feature_flags_router
+from app.api.routes.files import router as files_router
+from app.api.routes.health import router as health_router
+from app.api.routes.leads import router as leads_router
 from app.api.routes.new_features import (
-    multichannel_router,
-    lead_db_router,
     enrichment_router,
+    lead_db_router,
+    multichannel_router,
+)
+from app.api.routes.new_features import (
+    playbooks_router as legacy_playbooks_router,  # Renamed to avoid conflict
+)
+from app.api.routes.new_features import (
     reply_router,
     team_router,
-    playbooks_router as legacy_playbooks_router  # Renamed to avoid conflict
 )
+from app.api.routes.oauth import router as oauth_router
+from app.api.routes.oauth_mfa import router as oauth_mfa_router
 from app.api.routes.playbooks import router as playbooks_router  # New enhanced playbooks
+from app.api.routes.status import router as status_router
 from app.api.routes.tasks import router as tasks_router  # NEW
-from app.api.routes.campaign_intelligence import router as campaign_intelligence_router  # Campaign business logic
-from app.api.routes.ai_advanced import router as ai_advanced_router  # Advanced AI integrations
-from app.core.db import init_db, seed_if_empty, engine
-from app.core.security import SecurityHeadersMiddleware, RequestSizeLimitMiddleware, RequestIDMiddleware, RateLimitMiddleware
+from app.api.routes.websocket import router as websocket_router
 from app.core.cache import cache
-from app.core.sentry import init_sentry
+from app.core.config import settings
+from app.core.db import engine, init_db, seed_if_empty
 from app.core.metrics import PrometheusMiddleware, metrics_endpoint
+from app.core.security import (
+    RateLimitMiddleware,
+    RequestIDMiddleware,
+    RequestSizeLimitMiddleware,
+    SecurityHeadersMiddleware,
+)
+from app.core.sentry import init_sentry
+
 # from app.core.tracing import init_tracing  # Commented out - OpenTelemetry not installed
 
 logger = logging.getLogger(__name__)
@@ -86,6 +99,7 @@ app.add_middleware(RequestSizeLimitMiddleware, max_body_size=settings.max_reques
 app.add_middleware(RequestIDMiddleware)
 app.add_middleware(RateLimitMiddleware, max_requests=100, window_seconds=60)
 
+
 @app.get("/health")
 async def health():
     """Basic health check - always returns OK if app is running."""
@@ -96,7 +110,7 @@ async def health():
 async def readiness():
     """Readiness check - verifies all dependencies are operational."""
     checks = {"database": "unknown", "cache": "unknown"}
-    
+
     # Check database
     try:
         with engine.connect() as conn:
@@ -105,7 +119,7 @@ async def readiness():
     except Exception as e:
         logger.error(f"Database health check failed: {e}")
         checks["database"] = "unhealthy"
-    
+
     # Check cache
     try:
         cache.set("health_check", "ok", ttl=10)
@@ -116,15 +130,16 @@ async def readiness():
     except Exception as e:
         logger.error(f"Cache health check failed: {e}")
         checks["cache"] = "unhealthy"
-    
+
     all_healthy = all(v == "healthy" for v in checks.values())
     status_code = 200 if all_healthy else 503
-    
+
     return {
         "status": "ready" if all_healthy else "not_ready",
         "checks": checks,
-        "timestamp": time.time()
+        "timestamp": time.time(),
     }
+
 
 @app.get("/")
 async def root():
@@ -137,14 +152,16 @@ async def root():
             "security": ["RBAC", "Rate Limiting", "Audit Logging"],
             "monitoring": ["Prometheus", "Sentry", "OpenTelemetry"],
             "compliance": ["GDPR", "Data Portability", "Right to be Forgotten"],
-            "advanced": ["WebSockets", "Webhooks", "Feature Flags", "File Storage"]
-        }
+            "advanced": ["WebSockets", "Webhooks", "Feature Flags", "File Storage"],
+        },
     }
+
 
 # Prometheus metrics endpoint
 @app.get("/metrics")
 async def metrics():
     return await metrics_endpoint(None)
+
 
 @app.on_event("startup")
 def on_startup():
@@ -171,8 +188,12 @@ app.include_router(auth_router, prefix="/api", tags=["auth"])
 app.include_router(ai_router, prefix="/api", tags=["ai"])
 app.include_router(health_router, prefix="/api", tags=["health"])
 app.include_router(admin_router, prefix="/api/admin", tags=["admin"])
-app.include_router(campaign_intelligence_router, prefix="/api", tags=["campaign-intelligence"])  # Campaign business logic
-app.include_router(ai_advanced_router, prefix="/api", tags=["ai-advanced"])  # Advanced AI integrations
+app.include_router(
+    campaign_intelligence_router, prefix="/api", tags=["campaign-intelligence"]
+)  # Campaign business logic
+app.include_router(
+    ai_advanced_router, prefix="/api", tags=["ai-advanced"]
+)  # Advanced AI integrations
 app.include_router(tasks_router, prefix="/api", tags=["tasks"])  # NEW: Task management
 app.include_router(oauth_mfa_router, tags=["oauth-mfa"])
 app.include_router(websocket_router, tags=["websocket"])
@@ -190,7 +211,9 @@ app.include_router(enrichment_router, tags=["enrichment"])
 app.include_router(reply_router, tags=["reply-intelligence"])
 app.include_router(team_router, tags=["team-collaboration"])
 app.include_router(legacy_playbooks_router, tags=["sales-playbooks-legacy"])
-app.include_router(playbooks_router, prefix="/api", tags=["ai-playbooks"])  # Enhanced playbooks with CRUD
+app.include_router(
+    playbooks_router, prefix="/api", tags=["ai-playbooks"]
+)  # Enhanced playbooks with CRUD
 
 # Include advanced AI/ML features
 app.include_router(advanced_features_router, prefix="/api/advanced", tags=["ml-ai"])

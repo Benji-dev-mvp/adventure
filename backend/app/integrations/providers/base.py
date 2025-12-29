@@ -5,13 +5,15 @@ Defines contract for all AI provider implementations
 """
 
 from abc import ABC, abstractmethod
-from typing import Dict, Any, List, Optional, AsyncIterator
-from pydantic import BaseModel, Field
 from datetime import datetime
+from typing import Any, AsyncIterator, Dict, List, Optional
+
+from pydantic import BaseModel, Field
 
 
 class ProviderResponse(BaseModel):
     """Standardized response from any AI provider"""
+
     content: str
     model: str
     provider: str
@@ -24,106 +26,96 @@ class ProviderResponse(BaseModel):
 
 class AIProvider(ABC):
     """Abstract base class for AI providers"""
-    
+
     def __init__(
-        self,
-        model: str,
-        temperature: float = 0.7,
-        max_tokens: Optional[int] = None,
-        **kwargs
+        self, model: str, temperature: float = 0.7, max_tokens: Optional[int] = None, **kwargs
     ):
         self.model = model
         self.temperature = temperature
         self.max_tokens = max_tokens
         self.extra_params = kwargs
-    
+
     @abstractmethod
     async def generate(
-        self,
-        prompt: str,
-        system_prompt: Optional[str] = None,
-        **kwargs
+        self, prompt: str, system_prompt: Optional[str] = None, **kwargs
     ) -> ProviderResponse:
         """
         Generate completion from prompt
-        
+
         Args:
             prompt: User prompt
             system_prompt: Optional system prompt
             **kwargs: Provider-specific parameters
-            
+
         Returns:
             ProviderResponse with generated content
         """
         pass
-    
+
     @abstractmethod
     async def generate_structured(
         self,
         prompt: str,
         response_model: type[BaseModel],
         system_prompt: Optional[str] = None,
-        **kwargs
+        **kwargs,
     ) -> tuple[BaseModel, ProviderResponse]:
         """
         Generate structured output validated against Pydantic model
-        
+
         Args:
             prompt: User prompt
             response_model: Pydantic model for output validation
             system_prompt: Optional system prompt
             **kwargs: Provider-specific parameters
-            
+
         Returns:
             Tuple of (validated_model, provider_response)
         """
         pass
-    
+
     @abstractmethod
     async def stream(
-        self,
-        prompt: str,
-        system_prompt: Optional[str] = None,
-        **kwargs
+        self, prompt: str, system_prompt: Optional[str] = None, **kwargs
     ) -> AsyncIterator[str]:
         """
         Stream completion tokens
-        
+
         Args:
             prompt: User prompt
             system_prompt: Optional system prompt
             **kwargs: Provider-specific parameters
-            
+
         Yields:
             Content chunks as they arrive
         """
         pass
-    
+
     @abstractmethod
     def count_tokens(self, text: str) -> int:
         """
         Count tokens in text (provider-specific tokenization)
-        
+
         Args:
             text: Text to tokenize
-            
+
         Returns:
             Token count
         """
         pass
-    
+
     @property
     @abstractmethod
     def name(self) -> str:
         """Provider name (e.g., 'openai', 'anthropic')"""
         pass
-    
+
     @property
     @abstractmethod
     def supports_streaming(self) -> bool:
         """Whether provider supports streaming"""
         pass
-    
+
     @property
     @abstractmethod
     def supports_function_calling(self) -> bool:

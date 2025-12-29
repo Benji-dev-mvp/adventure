@@ -1,11 +1,13 @@
-from enum import Enum
 from datetime import datetime
-from typing import Optional, List
+from enum import Enum
+from typing import List, Optional
+
 from pydantic import BaseModel, EmailStr
 
 
 class UserRole(str, Enum):
     """User role hierarchy"""
+
     ADMIN = "admin"
     MANAGER = "manager"
     USER = "user"
@@ -13,13 +15,14 @@ class UserRole(str, Enum):
 
 class Permission(str, Enum):
     """Granular permissions"""
+
     # Campaign permissions
     CAMPAIGN_CREATE = "campaign:create"
     CAMPAIGN_READ = "campaign:read"
     CAMPAIGN_UPDATE = "campaign:update"
     CAMPAIGN_DELETE = "campaign:delete"
     CAMPAIGN_SEND = "campaign:send"
-    
+
     # Lead permissions
     LEAD_CREATE = "lead:create"
     LEAD_READ = "lead:read"
@@ -27,23 +30,23 @@ class Permission(str, Enum):
     LEAD_DELETE = "lead:delete"
     LEAD_EXPORT = "lead:export"
     LEAD_IMPORT = "lead:import"
-    
+
     # Analytics permissions
     ANALYTICS_READ = "analytics:read"
     ANALYTICS_EXPORT = "analytics:export"
-    
+
     # Team permissions
     TEAM_CREATE = "team:create"
     TEAM_READ = "team:read"
     TEAM_UPDATE = "team:update"
     TEAM_DELETE = "team:delete"
-    
+
     # User management
     USER_CREATE = "user:create"
     USER_READ = "user:read"
     USER_UPDATE = "user:update"
     USER_DELETE = "user:delete"
-    
+
     # System permissions
     SYSTEM_ADMIN = "system:admin"
     AUDIT_LOG_READ = "audit:read"
@@ -78,6 +81,7 @@ ROLE_PERMISSIONS = {
 
 class User(BaseModel):
     """User model"""
+
     id: int
     email: EmailStr
     name: str
@@ -85,25 +89,25 @@ class User(BaseModel):
     is_active: bool = True
     created_at: datetime
     last_login: Optional[datetime] = None
-    
+
     # OAuth fields
     oauth_provider: Optional[str] = None
     oauth_provider_id: Optional[str] = None
     is_verified: bool = False
-    
+
     # MFA/2FA fields
     mfa_enabled: bool = False
     mfa_secret: Optional[str] = None
     mfa_backup_codes: Optional[List[str]] = None
-    
+
     def has_permission(self, permission: Permission) -> bool:
         """Check if user has a specific permission"""
         return permission in ROLE_PERMISSIONS.get(self.role, [])
-    
+
     def has_any_permission(self, permissions: List[Permission]) -> bool:
         """Check if user has any of the specified permissions"""
         return any(self.has_permission(p) for p in permissions)
-    
+
     def has_all_permissions(self, permissions: List[Permission]) -> bool:
         """Check if user has all of the specified permissions"""
         return all(self.has_permission(p) for p in permissions)
@@ -111,6 +115,7 @@ class User(BaseModel):
 
 class UserCreate(BaseModel):
     """User creation schema"""
+
     email: EmailStr
     name: str
     password: str
@@ -119,6 +124,7 @@ class UserCreate(BaseModel):
 
 class UserUpdate(BaseModel):
     """User update schema"""
+
     name: Optional[str] = None
     role: Optional[UserRole] = None
     is_active: Optional[bool] = None
@@ -126,4 +132,5 @@ class UserUpdate(BaseModel):
 
 class UserInDB(User):
     """User with password hash"""
+
     hashed_password: str

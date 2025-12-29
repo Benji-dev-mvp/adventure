@@ -145,6 +145,11 @@ function App() {
                 {/* Legacy single-page landing (accessible at /landing) */}
                 <Route path="/landing" element={<LandingPage />} />
                 
+                {/* ===== PUBLIC SOLUTIONS PAGES (marketing, outside app shell) ===== */}
+                <Route path="/solutions/startups" element={<SolutionsStartups />} />
+                <Route path="/solutions/midmarket" element={<SolutionsMidMarket />} />
+                <Route path="/solutions/enterprise" element={<SolutionsEnterprise />} />
+                
                 {/* ===== POST-LOGIN APP ROUTES (with unified shell) ===== */}
                 <Route element={<PostLoginShell />}>
                   {/* App Routes */}
@@ -174,11 +179,6 @@ function App() {
                   <Route path="/ui-showcase" element={<UIShowcase />} />
                   <Route path="/component-showcase" element={<ComponentShowcase />} />
                   <Route path="/help" element={<HelpCenter />} />
-                
-                  {/* Solutions Pages */}
-                  <Route path="/solutions/startups" element={<SolutionsStartups />} />
-                  <Route path="/solutions/midmarket" element={<SolutionsMidMarket />} />
-                  <Route path="/solutions/enterprise" element={<SolutionsEnterprise />} />
                 
                   {/* Advanced Features */}
                   <Route path="/lead-scoring" element={<LeadScoring />} />

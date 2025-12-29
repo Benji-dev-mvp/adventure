@@ -10,16 +10,17 @@ Exposes advanced AI capabilities through REST API:
 - RAG document search
 """
 
+import os
+from typing import Any, Dict, List, Optional
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, Field
-from typing import List, Dict, Any, Optional
 from sqlmodel import Session
-from ...core.db import get_session
+
 from ...core.ai_orchestrator import UnifiedAIOrchestrator
+from ...core.db import get_session
 from ...core.security import get_current_user
 from ...models.user import User
-import os
-
 
 router = APIRouter(prefix="/ai-advanced", tags=["AI Advanced"])
 
@@ -28,13 +29,16 @@ router = APIRouter(prefix="/ai-advanced", tags=["AI Advanced"])
 # Request/Response Models
 # ============================================================================
 
+
 class LeadScoreRequest(BaseModel):
     """Request for lead scoring"""
+
     lead_data: Dict[str, Any] = Field(..., description="Lead information")
 
 
 class LeadScoreResponse(BaseModel):
     """Response for lead scoring"""
+
     lead_score: Dict[str, Any]
     past_interactions: int
     similar_leads_found: int
@@ -43,6 +47,7 @@ class LeadScoreResponse(BaseModel):
 
 class EmailGenerationRequest(BaseModel):
     """Request for email generation"""
+
     lead_data: Dict[str, Any] = Field(..., description="Lead information")
     campaign_objective: str = Field(..., description="Campaign objective")
     tone: str = Field(default="professional", description="Email tone")
@@ -50,6 +55,7 @@ class EmailGenerationRequest(BaseModel):
 
 class EmailGenerationResponse(BaseModel):
     """Response for email generation"""
+
     email: Dict[str, Any]
     preferences_applied: bool
     past_interactions_considered: int
@@ -58,6 +64,7 @@ class EmailGenerationResponse(BaseModel):
 
 class CampaignStrategyRequest(BaseModel):
     """Request for campaign strategy"""
+
     objective: str = Field(..., description="Campaign objective")
     target_audience: str = Field(..., description="Target audience description")
     budget_range: str = Field(..., description="Budget range (e.g., $10k-$20k)")
@@ -65,6 +72,7 @@ class CampaignStrategyRequest(BaseModel):
 
 class CampaignStrategyResponse(BaseModel):
     """Response for campaign strategy"""
+
     strategy: Dict[str, Any]
     tactical_recommendations: str
     past_learnings_incorporated: int
@@ -73,12 +81,14 @@ class CampaignStrategyResponse(BaseModel):
 
 class ConversationRequest(BaseModel):
     """Request for conversational assistance"""
+
     message: str = Field(..., min_length=1, max_length=2000)
     context: Optional[str] = Field(None, description="Optional conversation context")
 
 
 class ConversationResponse(BaseModel):
     """Response for conversation"""
+
     response: str
     memory_context_used: bool
     knowledge_base_used: bool
@@ -87,6 +97,7 @@ class ConversationResponse(BaseModel):
 
 class MemoryAddRequest(BaseModel):
     """Request to add memory"""
+
     content: str = Field(..., description="Memory content")
     category: str = Field(..., description="Memory category")
     metadata: Optional[Dict[str, Any]] = Field(None, description="Additional metadata")
@@ -94,6 +105,7 @@ class MemoryAddRequest(BaseModel):
 
 class MemorySearchRequest(BaseModel):
     """Request to search memories"""
+
     query: str = Field(..., description="Search query")
     category: Optional[str] = Field(None, description="Filter by category")
     limit: int = Field(default=10, ge=1, le=50)
@@ -101,12 +113,14 @@ class MemorySearchRequest(BaseModel):
 
 class RAGIngestRequest(BaseModel):
     """Request to ingest documents into RAG"""
+
     documents: List[Dict[str, Any]] = Field(..., description="Documents to ingest")
     index_name: str = Field(default="default", description="Index name")
 
 
 class RAGQueryRequest(BaseModel):
     """Request to query RAG"""
+
     query: str = Field(..., description="Query text")
     index_name: str = Field(default="default", description="Index name")
     top_k: int = Field(default=5, ge=1, le=20)
@@ -114,12 +128,14 @@ class RAGQueryRequest(BaseModel):
 
 class BatchLeadAnalysisRequest(BaseModel):
     """Request for batch lead analysis"""
+
     leads: List[Dict[str, Any]] = Field(..., min_items=1, max_items=100)
 
 
 # ============================================================================
 # Initialize Orchestrator
 # ============================================================================
+
 
 def get_orchestrator() -> UnifiedAIOrchestrator:
     """Get or create orchestrator instance"""
@@ -136,6 +152,7 @@ def get_orchestrator() -> UnifiedAIOrchestrator:
 # API Endpoints
 # ============================================================================
 
+
 @router.post("/lead/score", response_model=LeadScoreResponse)
 async def score_lead(
     request: LeadScoreRequest,
@@ -144,7 +161,7 @@ async def score_lead(
 ):
     """
     Score a lead using intelligent context from memory and similar leads
-    
+
     Features:
     - Recalls past interactions with lead
     - Finds similar high-value leads
@@ -160,7 +177,7 @@ async def score_lead(
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Lead scoring failed: {str(e)}"
+            detail=f"Lead scoring failed: {str(e)}",
         )
 
 
@@ -172,7 +189,7 @@ async def generate_email(
 ):
     """
     Generate highly personalized email using all available context
-    
+
     Features:
     - Applies user email preferences
     - Considers past lead interactions
@@ -191,7 +208,7 @@ async def generate_email(
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Email generation failed: {str(e)}"
+            detail=f"Email generation failed: {str(e)}",
         )
 
 
@@ -203,7 +220,7 @@ async def create_campaign_strategy(
 ):
     """
     Create data-driven campaign strategy with tactical recommendations
-    
+
     Features:
     - Incorporates past campaign learnings
     - Analyzes historical performance data
@@ -222,7 +239,7 @@ async def create_campaign_strategy(
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Campaign strategy creation failed: {str(e)}"
+            detail=f"Campaign strategy creation failed: {str(e)}",
         )
 
 
@@ -234,7 +251,7 @@ async def conversational_assistance(
 ):
     """
     Get conversational assistance with full context awareness
-    
+
     Features:
     - Retrieves relevant memories
     - Searches knowledge base
@@ -251,7 +268,7 @@ async def conversational_assistance(
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Conversation failed: {str(e)}"
+            detail=f"Conversation failed: {str(e)}",
         )
 
 
@@ -263,7 +280,7 @@ async def batch_analyze_leads(
 ):
     """
     Analyze multiple leads in batch with intelligent prioritization
-    
+
     Features:
     - Scores all leads
     - Prioritizes by score
@@ -283,13 +300,14 @@ async def batch_analyze_leads(
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Batch analysis failed: {str(e)}"
+            detail=f"Batch analysis failed: {str(e)}",
         )
 
 
 # ============================================================================
 # Memory Management Endpoints
 # ============================================================================
+
 
 @router.post("/memory/add")
 async def add_memory(
@@ -301,7 +319,7 @@ async def add_memory(
     try:
         metadata = request.metadata or {}
         metadata["category"] = request.category
-        
+
         result = await orchestrator.memory.add_memory(
             messages=request.content,
             user_id=str(current_user.id),
@@ -313,7 +331,7 @@ async def add_memory(
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Memory add failed: {str(e)}"
+            detail=f"Memory add failed: {str(e)}",
         )
 
 
@@ -326,7 +344,7 @@ async def search_memory(
     """Search user's memories"""
     try:
         filters = {"category": request.category} if request.category else None
-        
+
         results = await orchestrator.memory.search_memory(
             query=request.query,
             user_id=str(current_user.id),
@@ -339,7 +357,7 @@ async def search_memory(
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Memory search failed: {str(e)}"
+            detail=f"Memory search failed: {str(e)}",
         )
 
 
@@ -359,7 +377,7 @@ async def get_all_memories(
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Memory retrieval failed: {str(e)}"
+            detail=f"Memory retrieval failed: {str(e)}",
         )
 
 
@@ -376,13 +394,14 @@ async def delete_memory(
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Memory deletion failed: {str(e)}"
+            detail=f"Memory deletion failed: {str(e)}",
         )
 
 
 # ============================================================================
 # RAG Endpoints
 # ============================================================================
+
 
 @router.post("/rag/ingest")
 async def ingest_documents(
@@ -394,17 +413,21 @@ async def ingest_documents(
     try:
         # Create user-specific index name
         index_name = f"{request.index_name}_{current_user.id}"
-        
+
         result = await orchestrator.rag.ingest_structured_data(
             data=request.documents,
             text_field="content",
             index_name=index_name,
         )
-        return {"success": True, "index_name": index_name, "document_count": len(request.documents)}
+        return {
+            "success": True,
+            "index_name": index_name,
+            "document_count": len(request.documents),
+        }
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Document ingestion failed: {str(e)}"
+            detail=f"Document ingestion failed: {str(e)}",
         )
 
 
@@ -418,7 +441,7 @@ async def query_documents(
     try:
         # Use user-specific index
         index_name = f"{request.index_name}_{current_user.id}"
-        
+
         result = await orchestrator.rag.query(
             query=request.query,
             index_name=index_name,
@@ -428,7 +451,7 @@ async def query_documents(
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"RAG query failed: {str(e)}"
+            detail=f"RAG query failed: {str(e)}",
         )
 
 
@@ -442,7 +465,7 @@ async def chat_with_documents(
     try:
         # Use user-specific index
         index_name = f"{request.index_name}_{current_user.id}"
-        
+
         result = await orchestrator.rag.chat(
             message=request.query,
             index_name=index_name,
@@ -452,13 +475,14 @@ async def chat_with_documents(
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"RAG chat failed: {str(e)}"
+            detail=f"RAG chat failed: {str(e)}",
         )
 
 
 # ============================================================================
 # System Status
 # ============================================================================
+
 
 @router.get("/status")
 async def get_system_status(
@@ -472,5 +496,5 @@ async def get_system_status(
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Status check failed: {str(e)}"
+            detail=f"Status check failed: {str(e)}",
         )

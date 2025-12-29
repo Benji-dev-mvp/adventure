@@ -6,11 +6,12 @@ for different use cases like email generation, lead analysis, campaign optimizat
 """
 
 from enum import Enum
-from typing import Dict, Any, List
+from typing import Any, Dict, List
 
 
 class AIPersonality(str, Enum):
     """Different AI assistant personalities"""
+
     AVA_PROFESSIONAL = "ava_professional"  # Default Ava persona
     AVA_CASUAL = "ava_casual"  # Friendly, conversational Ava
     ANALYST = "analyst"  # Data-focused, analytical
@@ -20,6 +21,7 @@ class AIPersonality(str, Enum):
 
 class PromptTemplate(str, Enum):
     """Pre-built prompt templates for common tasks"""
+
     EMAIL_COLD_OUTREACH = "email_cold_outreach"
     EMAIL_FOLLOW_UP = "email_follow_up"
     LINKEDIN_MESSAGE = "linkedin_message"
@@ -55,7 +57,6 @@ Guidelines:
 - Keep responses concise but comprehensive
 - Use examples from B2B sales context
 - Always consider ROI and efficiency""",
-
     AIPersonality.AVA_CASUAL: """You are Ava, a friendly AI sales assistant who helps teams crush their B2B sales goals.
 
 You're like a smart colleague who:
@@ -71,7 +72,6 @@ Your style:
 - Tells it straight but stays positive
 
 You still bring the same expertise - lead scoring, multi-channel campaigns, copy optimization - just with more personality!""",
-
     AIPersonality.ANALYST: """You are a data-driven B2B sales analyst specializing in performance metrics and optimization.
 
 Your focus:
@@ -87,7 +87,6 @@ Your approach:
 - Recommend data-driven experiments
 - Explain statistical significance
 - Visualize findings when possible""",
-
     AIPersonality.COPYWRITER: """You are a creative B2B sales copywriter with a track record of high-converting campaigns.
 
 Your strengths:
@@ -103,7 +102,6 @@ Your style:
 - Uses storytelling and social proof
 - Tests multiple angles
 - Writes for the reader, not yourself""",
-
     AIPersonality.COACH: """You are a sales coach helping teams improve their B2B outreach and conversion skills.
 
 Your role:
@@ -118,7 +116,7 @@ Your method:
 - Break complex topics into steps
 - Share frameworks and models
 - Celebrate progress and learning
-- Adapt explanations to skill level"""
+- Adapt explanations to skill level""",
 }
 
 
@@ -141,9 +139,8 @@ Requirements:
 - Personalized opening
 - Clear value proposition
 - Specific CTA
-- Keep it under 150 words"""
+- Keep it under 150 words""",
     },
-    
     PromptTemplate.EMAIL_FOLLOW_UP: {
         "system": SYSTEM_PROMPTS[AIPersonality.AVA_PROFESSIONAL],
         "user_template": """Write a follow-up email for:
@@ -159,9 +156,8 @@ Requirements:
 - Reference previous email naturally
 - Add new value or insight
 - Non-pushy but clear CTA
-- Keep brief (75-100 words)"""
+- Keep brief (75-100 words)""",
     },
-
     PromptTemplate.LINKEDIN_MESSAGE: {
         "system": SYSTEM_PROMPTS[AIPersonality.AVA_CASUAL],
         "user_template": """Write a LinkedIn connection/message for:
@@ -176,9 +172,8 @@ Requirements:
 - Conversational, not salesy
 - Mention specific mutual connection or interest
 - Under 150 characters (LinkedIn limits)
-- Clear but soft CTA"""
+- Clear but soft CTA""",
     },
-
     PromptTemplate.LEAD_ANALYSIS: {
         "system": SYSTEM_PROMPTS[AIPersonality.ANALYST],
         "user_template": """Analyze this lead:
@@ -198,9 +193,8 @@ Provide:
 2. Tier (Hot/Warm/Cold)
 3. Recommended next action
 4. Key insights
-5. Potential objections to prepare for"""
+5. Potential objections to prepare for""",
     },
-
     PromptTemplate.CAMPAIGN_STRATEGY: {
         "system": SYSTEM_PROMPTS[AIPersonality.AVA_PROFESSIONAL],
         "user_template": """Design a multi-channel campaign strategy for:
@@ -217,9 +211,8 @@ Provide:
 2. Sequence structure (touchpoints & timing)
 3. Messaging themes per channel
 4. Expected metrics and KPIs
-5. A/B test recommendations"""
+5. A/B test recommendations""",
     },
-
     PromptTemplate.OBJECTION_HANDLING: {
         "system": SYSTEM_PROMPTS[AIPersonality.COACH],
         "user_template": """Help handle this sales objection:
@@ -234,9 +227,8 @@ Provide:
 2. Clarifying questions to ask
 3. Response framework
 4. Proof points or social proof to share
-5. Path forward"""
+5. Path forward""",
     },
-
     PromptTemplate.EMAIL_SUBJECT_LINE: {
         "system": SYSTEM_PROMPTS[AIPersonality.COPYWRITER],
         "user_template": """Generate 10 email subject lines for:
@@ -251,9 +243,8 @@ Requirements:
 - Mix of approaches (question, curiosity, value, urgency)
 - Under 50 characters
 - No spam trigger words
-- A/B testable pairs"""
+- A/B testable pairs""",
     },
-
     PromptTemplate.CALL_SCRIPT: {
         "system": SYSTEM_PROMPTS[AIPersonality.AVA_PROFESSIONAL],
         "user_template": """Create a call script for:
@@ -269,9 +260,8 @@ Include:
 2. Discovery questions
 3. Value proposition
 4. Objection responses
-5. Closing/next steps"""
+5. Closing/next steps""",
     },
-
     PromptTemplate.SMS_MESSAGE: {
         "system": SYSTEM_PROMPTS[AIPersonality.AVA_CASUAL],
         "user_template": """Write an SMS message for:
@@ -286,9 +276,8 @@ Requirements:
 - Include name
 - Clear CTA
 - Professional but conversational
-- No links (unless requested)"""
+- No links (unless requested)""",
     },
-
     PromptTemplate.MEETING_PREP: {
         "system": SYSTEM_PROMPTS[AIPersonality.COACH],
         "user_template": """Prepare me for this meeting:
@@ -306,109 +295,109 @@ Provide:
 3. Key questions to ask
 4. Demo/presentation outline
 5. Potential objections and responses
-6. Closing strategy"""
-    }
+6. Closing strategy""",
+    },
 }
 
 
 class PromptBuilder:
     """Build customized prompts with context injection"""
-    
+
     def __init__(self, personality: AIPersonality = AIPersonality.AVA_PROFESSIONAL):
         self.personality = personality
         self.system_prompt = SYSTEM_PROMPTS[personality]
-    
+
     def build_from_template(
-        self, 
-        template: PromptTemplate, 
-        context: Dict[str, Any]
+        self, template: PromptTemplate, context: Dict[str, Any]
     ) -> List[Dict[str, str]]:
         """Build prompt messages from template with context"""
         template_config = PROMPT_TEMPLATES[template]
-        
+
         # Use template's system prompt or default
         system = template_config.get("system", self.system_prompt)
         user_template = template_config["user_template"]
-        
+
         # Inject context into user prompt
         user_prompt = user_template.format(**self._fill_defaults(context))
-        
+
         return [
             {"role": "system", "content": system},
-            {"role": "user", "content": user_prompt}
+            {"role": "user", "content": user_prompt},
         ]
-    
+
     def build_custom(
         self,
         user_prompt: str,
         additional_context: str = "",
-        conversation_history: List[Dict[str, str]] = None
+        conversation_history: List[Dict[str, str]] = None,
     ) -> List[Dict[str, str]]:
         """Build custom prompt with optional context and history"""
         messages = [{"role": "system", "content": self.system_prompt}]
-        
+
         # Add conversation history if provided
         if conversation_history:
             messages.extend(conversation_history)
-        
+
         # Add context to user prompt if provided
         full_prompt = user_prompt
         if additional_context:
             full_prompt = f"Context: {additional_context}\n\nQuestion: {user_prompt}"
-        
+
         messages.append({"role": "user", "content": full_prompt})
-        
+
         return messages
-    
+
     def inject_company_context(self, context: Dict[str, Any]) -> str:
         """Create context string from company/platform data"""
         ctx_parts = []
-        
+
         if context.get("company_name"):
             ctx_parts.append(f"Our Company: {context['company_name']}")
-        
+
         if context.get("product_description"):
             ctx_parts.append(f"Our Product: {context['product_description']}")
-        
+
         if context.get("target_industries"):
-            industries = ", ".join(context['target_industries'])
+            industries = ", ".join(context["target_industries"])
             ctx_parts.append(f"Target Industries: {industries}")
-        
+
         if context.get("key_benefits"):
-            benefits = ", ".join(context['key_benefits'])
+            benefits = ", ".join(context["key_benefits"])
             ctx_parts.append(f"Key Benefits: {benefits}")
-        
+
         if context.get("case_studies"):
-            ctx_parts.append(f"Success Stories: {len(context['case_studies'])} case studies available")
-        
+            ctx_parts.append(
+                f"Success Stories: {len(context['case_studies'])} case studies available"
+            )
+
         return "\n".join(ctx_parts)
-    
+
     def inject_lead_context(self, lead: Dict[str, Any]) -> str:
         """Create context string from lead data"""
         ctx = f"Lead: {lead.get('name', 'Unknown')}"
-        
-        if lead.get('title'):
+
+        if lead.get("title"):
             ctx += f"\nTitle: {lead['title']}"
-        if lead.get('company'):
+        if lead.get("company"):
             ctx += f"\nCompany: {lead['company']}"
-        if lead.get('industry'):
+        if lead.get("industry"):
             ctx += f"\nIndustry: {lead['industry']}"
-        if lead.get('company_size'):
+        if lead.get("company_size"):
             ctx += f"\nCompany Size: {lead['company_size']}"
-        
+
         # Add engagement data
-        activity = lead.get('activity', [])
+        activity = lead.get("activity", [])
         if activity:
             ctx += f"\nRecent Activity: {len(activity)} interactions"
-            opens = sum(1 for a in activity if 'open' in a.get('type', '').lower())
-            clicks = sum(1 for a in activity if 'click' in a.get('type', '').lower())
+            opens = sum(1 for a in activity if "open" in a.get("type", "").lower())
+            clicks = sum(1 for a in activity if "click" in a.get("type", "").lower())
             if opens:
                 ctx += f"\n- Email opens: {opens}"
             if clicks:
                 ctx += f"\n- Link clicks: {clicks}"
-        
+
         return ctx
-    
+
     def _fill_defaults(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """Fill missing context values with defaults"""
         defaults = {
@@ -450,9 +439,9 @@ class PromptBuilder:
             "attendees": "decision makers",
             "purpose": "discovery",
             "pain_points": "current process inefficiencies",
-            "employee_count": "100-500"
+            "employee_count": "100-500",
         }
-        
+
         # Merge with provided context
         return {**defaults, **context}
 
@@ -465,7 +454,7 @@ TONE_MODIFIERS = {
     "consultative": "Take an advisory, expert consultant approach.",
     "direct": "Be straightforward and to-the-point, no fluff.",
     "empathetic": "Show understanding of their challenges and pain points.",
-    "urgent": "Create appropriate sense of timeliness without being pushy."
+    "urgent": "Create appropriate sense of timeliness without being pushy.",
 }
 
 
@@ -483,13 +472,13 @@ PLATFORM_CONTEXT = {
         "AI-powered lead scoring",
         "Multi-channel campaigns (email, LinkedIn, SMS, calls)",
         "Real-time analytics and optimization",
-        "Personalization at scale"
+        "Personalization at scale",
     ],
     "target_industries": ["SaaS", "Technology", "Professional Services", "Finance"],
     "unique_features": [
         "Ava AI assistant for real-time guidance",
         "Predictive lead scoring",
         "Automated A/B testing",
-        "CRM integration"
-    ]
+        "CRM integration",
+    ],
 }

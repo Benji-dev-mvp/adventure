@@ -1,7 +1,13 @@
-from fastapi import APIRouter, HTTPException, Depends, Body
+from fastapi import APIRouter, Body, Depends, HTTPException
 from pydantic import BaseModel
-from app.models.schemas import LoginRequest, AuthToken
-from app.core.security import create_access_token, create_refresh_token, verify_refresh_token, get_current_user
+
+from app.core.security import (
+    create_access_token,
+    create_refresh_token,
+    get_current_user,
+    verify_refresh_token,
+)
+from app.models.schemas import AuthToken, LoginRequest
 from app.models.user import User, UserRole
 
 router = APIRouter()
@@ -28,16 +34,13 @@ async def login(payload: LoginRequest):
             "email": payload.username,
             "name": "Demo User",
             "role": UserRole.ADMIN.value,
-            "is_active": True
+            "is_active": True,
         }
-        
+
         access_token = create_access_token(user_data)
         refresh_token = create_refresh_token(user_data)
-        
-        return TokenPair(
-            access_token=access_token,
-            refresh_token=refresh_token
-        )
+
+        return TokenPair(access_token=access_token, refresh_token=refresh_token)
     raise HTTPException(status_code=400, detail="Invalid credentials")
 
 
@@ -49,23 +52,20 @@ async def refresh_token(payload: RefreshRequest):
     """
     # Verify refresh token
     token_data = verify_refresh_token(payload.refresh_token)
-    
+
     # Create new token pair
     user_data = {
         "sub": token_data.get("sub"),
         "email": token_data.get("email"),
         "name": token_data.get("name"),
         "role": token_data.get("role"),
-        "is_active": token_data.get("is_active", True)
+        "is_active": token_data.get("is_active", True),
     }
-    
+
     new_access_token = create_access_token(user_data)
     new_refresh_token = create_refresh_token(user_data)
-    
-    return TokenPair(
-        access_token=new_access_token,
-        refresh_token=new_refresh_token
-    )
+
+    return TokenPair(access_token=new_access_token, refresh_token=new_refresh_token)
 
 
 @router.post("/auth/logout")

@@ -8,7 +8,7 @@ import json
 import logging
 from functools import wraps
 from time import time
-from typing import Any, Dict, List, Optional, Type
+from typing import Any, Dict, List, Optional
 
 from sqlalchemy import text
 from sqlalchemy.orm import joinedload, selectinload

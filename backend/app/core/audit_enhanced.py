@@ -9,11 +9,9 @@ from datetime import datetime, timedelta
 from functools import wraps
 from typing import Any, Callable, Dict, Optional
 
-from fastapi import Request
 from sqlmodel import delete, select
 
 from app.core.db import get_session
-from app.models.user import User
 
 logger = logging.getLogger(__name__)
 
@@ -137,7 +135,6 @@ class GDPRCompliance:
             # Get user data
             from app.models.audit import AuditLog
             from app.models.schemas import Campaign, Lead
-            from app.models.user import User
 
             # User info (simplified - in production fetch from User table)
             data["user"] = {

@@ -1,6 +1,6 @@
 /**
  * Orchestration Page
- * 
+ *
  * Command center for the autonomous multi-agent system.
  * Visualizes agent activity, task flow, and system health.
  */
@@ -135,13 +135,13 @@ const AgentCard: React.FC<{ agent: AgentStatus }> = ({ agent }) => {
         </div>
         <div className={`w-3 h-3 rounded-full ${statusColors[agent.status]} animate-pulse`} />
       </div>
-      
+
       {agent.currentTask && (
         <div className="text-sm text-gray-300 mb-3 p-2 bg-gray-700 rounded">
           {agent.currentTask}
         </div>
       )}
-      
+
       <div className="grid grid-cols-3 gap-2 text-center">
         <div>
           <div className="text-lg font-bold text-white">{agent.performance.tasksCompleted}</div>
@@ -162,21 +162,27 @@ const AgentCard: React.FC<{ agent: AgentStatus }> = ({ agent }) => {
   );
 };
 
-const TaskQueue: React.FC<{ tasks: Array<{ id: string; type: string; priority: string }> }> = ({ tasks }) => (
+const TaskQueue: React.FC<{ tasks: Array<{ id: string; type: string; priority: string }> }> = ({
+  tasks,
+}) => (
   <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
     <h3 className="text-lg font-semibold text-white mb-3">Task Queue</h3>
     <div className="space-y-2 max-h-64 overflow-y-auto">
-      {tasks.map((task) => (
-        <div 
+      {tasks.map(task => (
+        <div
           key={task.id}
           className="flex items-center justify-between p-2 bg-gray-700 rounded text-sm"
         >
           <span className="text-gray-300">{task.type}</span>
-          <span className={`px-2 py-0.5 rounded text-xs ${
-            task.priority === 'high' ? 'bg-red-500/20 text-red-400' :
-            task.priority === 'medium' ? 'bg-yellow-500/20 text-yellow-400' :
-            'bg-gray-600 text-gray-400'
-          }`}>
+          <span
+            className={`px-2 py-0.5 rounded text-xs ${
+              task.priority === 'high'
+                ? 'bg-red-500/20 text-red-400'
+                : task.priority === 'medium'
+                  ? 'bg-yellow-500/20 text-yellow-400'
+                  : 'bg-gray-600 text-gray-400'
+            }`}
+          >
             {task.priority}
           </span>
         </div>
@@ -201,12 +207,14 @@ export const OrchestrationPage: React.FC = () => {
         tasksInQueue: Math.max(0, prev.tasksInQueue + Math.floor(Math.random() * 5) - 2),
         throughput: prev.throughput + (Math.random() - 0.5) * 5,
       }));
-      
+
       // Update agent statuses
-      setAgents(prev => prev.map(agent => ({
-        ...agent,
-        status: Math.random() > 0.7 ? 'working' : agent.status,
-      })));
+      setAgents(prev =>
+        prev.map(agent => ({
+          ...agent,
+          status: Math.random() > 0.7 ? 'working' : agent.status,
+        }))
+      );
     }, 2000);
 
     return () => clearInterval(interval);
@@ -250,8 +258,17 @@ export const OrchestrationPage: React.FC = () => {
         <MetricCard label="Tasks in Queue" value={metrics.tasksInQueue} />
         <MetricCard label="Tasks Completed" value={metrics.tasksCompleted} change={12} />
         <MetricCard label="Avg Latency" value={metrics.avgLatency} unit="ms" />
-        <MetricCard label="Error Rate" value={`${(metrics.errorRate * 100).toFixed(1)}%`} change={-15} />
-        <MetricCard label="Throughput" value={metrics.throughput.toFixed(1)} unit="/min" change={8} />
+        <MetricCard
+          label="Error Rate"
+          value={`${(metrics.errorRate * 100).toFixed(1)}%`}
+          change={-15}
+        />
+        <MetricCard
+          label="Throughput"
+          value={metrics.throughput.toFixed(1)}
+          unit="/min"
+          change={8}
+        />
       </div>
 
       {/* Neural Canvas */}
@@ -290,7 +307,7 @@ export const OrchestrationPage: React.FC = () => {
         {/* Task Queue */}
         <div>
           <TaskQueue tasks={mockTasks} />
-          
+
           {/* Quick Actions */}
           <div className="mt-4 bg-gray-800 rounded-xl p-4 border border-gray-700">
             <h3 className="text-lg font-semibold text-white mb-3">Quick Actions</h3>

@@ -45,7 +45,7 @@ from app.api.routes.websocket import router as websocket_router
 from app.core.cache import cache
 from app.core.config import settings
 from app.core.db import engine, init_db, seed_if_empty
-from app.core.metrics import PrometheusMiddleware, metrics_endpoint
+from app.core.metrics import metrics_endpoint
 from app.core.security import (
     RateLimitMiddleware,
     RequestIDMiddleware,
@@ -132,7 +132,7 @@ async def readiness():
         checks["cache"] = "unhealthy"
 
     all_healthy = all(v == "healthy" for v in checks.values())
-    status_code = 200 if all_healthy else 503
+    200 if all_healthy else 503
 
     return {
         "status": "ready" if all_healthy else "not_ready",

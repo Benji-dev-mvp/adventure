@@ -1,6 +1,6 @@
 /**
  * Simulation Engine Types
- * 
+ *
  * Predictive modeling for pipeline outcomes, persona resistance,
  * and strategy stress testing.
  */

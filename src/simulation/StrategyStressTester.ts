@@ -1,6 +1,6 @@
 /**
  * Strategy Stress Tester
- * 
+ *
  * Tests strategies against extreme scenarios to identify
  * weaknesses and build robust go-to-market plans.
  */
@@ -211,12 +211,9 @@ export class StrategyStressTester {
 
     // Run stressed simulations
     const stressedMetrics = new Map<string, StrategyMetrics>();
-    
+
     for (const stressScenario of this.scenarios) {
-      const stressedSimScenario = this.applyStressModifiers(
-        baseScenario,
-        stressScenario.modifiers
-      );
+      const stressedSimScenario = this.applyStressModifiers(baseScenario, stressScenario.modifiers);
       const result = await this.engine.simulate(stressedSimScenario);
       stressedMetrics.set(stressScenario.id, this.extractMetrics(result));
     }
@@ -225,17 +222,10 @@ export class StrategyStressTester {
     const resilience = this.calculateResilience(baselineMetrics, stressedMetrics);
 
     // Identify vulnerabilities
-    const vulnerabilities = this.identifyVulnerabilities(
-      baselineMetrics,
-      stressedMetrics
-    );
+    const vulnerabilities = this.identifyVulnerabilities(baselineMetrics, stressedMetrics);
 
     // Generate recommendations
-    const recommendations = this.generateRecommendations(
-      strategy,
-      vulnerabilities,
-      resilience
-    );
+    const recommendations = this.generateRecommendations(strategy, vulnerabilities, resilience);
 
     return {
       strategyId: strategy.id,
@@ -263,9 +253,7 @@ export class StrategyStressTester {
     }
 
     // Rank strategies
-    const ranked = results.sort(
-      (a, b) => b.resilience.overall - a.resilience.overall
-    );
+    const ranked = results.sort((a, b) => b.resilience.overall - a.resilience.overall);
 
     // Identify tradeoffs
     const tradeoffs = this.identifyTradeoffs(results);
@@ -284,23 +272,15 @@ export class StrategyStressTester {
       strategies: strategies.map(s => ({
         strategy: s,
         score: results.find(r => r.strategyId === s.id)?.resilience.overall || 0,
-        strengths: this.identifyStrengths(
-          results.find(r => r.strategyId === s.id)!
-        ),
-        weaknesses: this.identifyWeaknesses(
-          results.find(r => r.strategyId === s.id)!
-        ),
-        riskProfile: this.buildRiskProfile(
-          results.find(r => r.strategyId === s.id)!
-        ),
+        strengths: this.identifyStrengths(results.find(r => r.strategyId === s.id)!),
+        weaknesses: this.identifyWeaknesses(results.find(r => r.strategyId === s.id)!),
+        riskProfile: this.buildRiskProfile(results.find(r => r.strategyId === s.id)!),
       })),
       results: resultsMap,
       winner: {
         strategyId: winner.strategyId,
         reason: `Highest resilience score (${(winner.resilience.overall * 100).toFixed(0)}%) with balanced performance under stress`,
-        margin: ranked.length > 1 
-          ? winner.resilience.overall - ranked[1].resilience.overall 
-          : 0,
+        margin: ranked.length > 1 ? winner.resilience.overall - ranked[1].resilience.overall : 0,
       },
       tradeoffs,
       analysis,
@@ -315,12 +295,9 @@ export class StrategyStressTester {
     return {
       expectedRevenue: result.statistics.revenue.mean,
       expectedROI: result.statistics.roi.mean,
-      winRate: result.statistics.deals.mean / Math.max(
-        result.outcomes[0]?.meetings || 1, 1
-      ),
+      winRate: result.statistics.deals.mean / Math.max(result.outcomes[0]?.meetings || 1, 1),
       velocity: result.statistics.velocity.mean,
-      cost: result.outcomes.reduce((a: number, o: any) => a + o.cost, 0) / 
-        result.outcomes.length,
+      cost: result.outcomes.reduce((a: number, o: any) => a + o.cost, 0) / result.outcomes.length,
       riskScore: result.statistics.riskMetrics.probabilityOfLoss,
     };
   }
@@ -341,10 +318,10 @@ export class StrategyStressTester {
           stageConversionRates: scenario.parameters.pipeline.stageConversionRates.map(
             r => r * modifiers.meetingRateMultiplier
           ),
-          averageDealSize: scenario.parameters.pipeline.averageDealSize * 
-            modifiers.dealSizeMultiplier,
-          averageCycleDays: scenario.parameters.pipeline.averageCycleDays * 
-            modifiers.cycleTimeMultiplier,
+          averageDealSize:
+            scenario.parameters.pipeline.averageDealSize * modifiers.dealSizeMultiplier,
+          averageCycleDays:
+            scenario.parameters.pipeline.averageCycleDays * modifiers.cycleTimeMultiplier,
         },
         sequences: scenario.parameters.sequences.map(seq => ({
           ...seq,
@@ -367,14 +344,12 @@ export class StrategyStressTester {
     stressed: Map<string, StrategyMetrics>
   ): ResilienceScore {
     const breakdown: Record<string, number> = {};
-    
+
     for (const [scenarioId, metrics] of stressed) {
       // Resilience = how much performance is retained under stress
-      const revenueRetention = metrics.expectedRevenue / 
-        Math.max(baseline.expectedRevenue, 1);
-      const roiRetention = (metrics.expectedROI + 1) / 
-        Math.max(baseline.expectedROI + 1, 0.1);
-      
+      const revenueRetention = metrics.expectedRevenue / Math.max(baseline.expectedRevenue, 1);
+      const roiRetention = (metrics.expectedROI + 1) / Math.max(baseline.expectedROI + 1, 0.1);
+
       breakdown[scenarioId] = (revenueRetention + roiRetention) / 2;
     }
 
@@ -385,12 +360,8 @@ export class StrategyStressTester {
     const regulatoryScenarios = ['regulatory-change'];
 
     const categoryScore = (scenarios: string[]) => {
-      const scores = scenarios
-        .map(s => breakdown[s])
-        .filter(s => s !== undefined);
-      return scores.length > 0 
-        ? scores.reduce((a, b) => a + b, 0) / scores.length 
-        : 1;
+      const scores = scenarios.map(s => breakdown[s]).filter(s => s !== undefined);
+      return scores.length > 0 ? scores.reduce((a, b) => a + b, 0) / scores.length : 1;
     };
 
     const economic = categoryScore(economicScenarios);
@@ -423,10 +394,10 @@ export class StrategyStressTester {
       const scenario = this.scenarios.find(s => s.id === scenarioId);
       if (!scenario) continue;
 
-      const revenueDropPercent = (
-        (baseline.expectedRevenue - metrics.expectedRevenue) / 
-        Math.max(baseline.expectedRevenue, 1)
-      ) * 100;
+      const revenueDropPercent =
+        ((baseline.expectedRevenue - metrics.expectedRevenue) /
+          Math.max(baseline.expectedRevenue, 1)) *
+        100;
 
       // Critical: >50% drop
       // High: >30% drop
@@ -461,12 +432,18 @@ export class StrategyStressTester {
    */
   private suggestMitigation(scenarioId: string, _dropPercent: number): string {
     const mitigations: Record<string, string> = {
-      'economic-recession': 'Diversify into recession-resistant verticals, emphasize cost-savings messaging',
-      'competitor-surge': 'Strengthen differentiation, increase speed-to-value, build switching costs',
-      'market-saturation': 'Expand TAM with adjacent segments, invest in retention over acquisition',
-      'regulatory-change': 'Build compliance automation, diversify outreach channels, strengthen partnerships',
-      'budget-freeze': 'Offer flexible pricing, focus on existing customer expansion, reduce sales cycle',
-      'team-turnover': 'Automate more touchpoints, improve onboarding, build institutional knowledge',
+      'economic-recession':
+        'Diversify into recession-resistant verticals, emphasize cost-savings messaging',
+      'competitor-surge':
+        'Strengthen differentiation, increase speed-to-value, build switching costs',
+      'market-saturation':
+        'Expand TAM with adjacent segments, invest in retention over acquisition',
+      'regulatory-change':
+        'Build compliance automation, diversify outreach channels, strengthen partnerships',
+      'budget-freeze':
+        'Offer flexible pricing, focus on existing customer expansion, reduce sales cycle',
+      'team-turnover':
+        'Automate more touchpoints, improve onboarding, build institutional knowledge',
       'ai-disruption': 'Emphasize human-AI collaboration, focus on relationship-driven deals',
       'growth-mode': 'Scale capacity, maintain quality at volume',
     };
@@ -546,23 +523,23 @@ export class StrategyStressTester {
    */
   private identifyStrengths(result: StressTestResult): string[] {
     const strengths: string[] = [];
-    
+
     if (result.resilience.overall > 0.7) {
       strengths.push('Highly resilient under stress');
     }
-    
+
     if (result.resilience.economic > 0.6) {
       strengths.push('Robust against economic downturns');
     }
-    
+
     if (result.resilience.competitive > 0.6) {
       strengths.push('Strong competitive positioning');
     }
-    
+
     if (result.baselineMetrics.expectedROI > 3) {
       strengths.push('Excellent baseline ROI');
     }
-    
+
     if (result.baselineMetrics.velocity > 10) {
       strengths.push('High deal velocity');
     }
@@ -575,17 +552,17 @@ export class StrategyStressTester {
    */
   private identifyWeaknesses(result: StressTestResult): string[] {
     const weaknesses: string[] = [];
-    
+
     for (const vuln of result.vulnerabilities.filter(
       v => v.severity === 'critical' || v.severity === 'high'
     )) {
       weaknesses.push(`Vulnerable to ${vuln.scenario}`);
     }
-    
+
     if (result.resilience.economic < 0.4) {
       weaknesses.push('Fragile in economic stress');
     }
-    
+
     if (result.baselineMetrics.riskScore > 0.2) {
       weaknesses.push('Elevated baseline risk');
     }
@@ -600,12 +577,8 @@ export class StrategyStressTester {
     level: 'low' | 'medium' | 'high';
     factors: string[];
   } {
-    const criticalVulns = result.vulnerabilities.filter(
-      v => v.severity === 'critical'
-    ).length;
-    const highVulns = result.vulnerabilities.filter(
-      v => v.severity === 'high'
-    ).length;
+    const criticalVulns = result.vulnerabilities.filter(v => v.severity === 'critical').length;
+    const highVulns = result.vulnerabilities.filter(v => v.severity === 'high').length;
 
     let level: 'low' | 'medium' | 'high';
     if (criticalVulns > 0 || highVulns > 2) {
@@ -616,9 +589,7 @@ export class StrategyStressTester {
       level = 'low';
     }
 
-    const factors = result.vulnerabilities
-      .slice(0, 3)
-      .map(v => v.scenario);
+    const factors = result.vulnerabilities.slice(0, 3).map(v => v.scenario);
 
     return { level, factors };
   }
@@ -638,8 +609,10 @@ export class StrategyStressTester {
         const b = results[j];
 
         // Revenue vs Risk tradeoff
-        if (a.baselineMetrics.expectedRevenue > b.baselineMetrics.expectedRevenue &&
-            a.resilience.overall < b.resilience.overall) {
+        if (
+          a.baselineMetrics.expectedRevenue > b.baselineMetrics.expectedRevenue &&
+          a.resilience.overall < b.resilience.overall
+        ) {
           tradeoffs.push({
             strategy1: a.strategyId,
             strategy2: b.strategyId,
@@ -655,8 +628,10 @@ export class StrategyStressTester {
         }
 
         // Velocity vs Cost tradeoff
-        if (a.baselineMetrics.velocity > b.baselineMetrics.velocity &&
-            a.baselineMetrics.cost > b.baselineMetrics.cost) {
+        if (
+          a.baselineMetrics.velocity > b.baselineMetrics.velocity &&
+          a.baselineMetrics.cost > b.baselineMetrics.cost
+        ) {
           tradeoffs.push({
             strategy1: a.strategyId,
             strategy2: b.strategyId,
@@ -680,29 +655,26 @@ export class StrategyStressTester {
    * Generate comparison analysis
    */
   private generateComparisonAnalysis(results: StressTestResult[]): ComparisonAnalysis {
-    const sorted = [...results].sort(
-      (a, b) => b.resilience.overall - a.resilience.overall
-    );
+    const sorted = [...results].sort((a, b) => b.resilience.overall - a.resilience.overall);
 
-    const summary = sorted.length > 0
-      ? `${sorted[0].strategyName} shows strongest overall resilience at ${(sorted[0].resilience.overall * 100).toFixed(0)}%.`
-      : 'No strategies compared.';
+    const summary =
+      sorted.length > 0
+        ? `${sorted[0].strategyName} shows strongest overall resilience at ${(sorted[0].resilience.overall * 100).toFixed(0)}%.`
+        : 'No strategies compared.';
 
     const keyDifferences = [];
     if (sorted.length >= 2) {
       const margin = sorted[0].resilience.overall - sorted[1].resilience.overall;
-      keyDifferences.push(
-        `Resilience gap between top strategies: ${(margin * 100).toFixed(1)}%`
-      );
-      
-      const revenueDiff = sorted[0].baselineMetrics.expectedRevenue - 
-        sorted[1].baselineMetrics.expectedRevenue;
+      keyDifferences.push(`Resilience gap between top strategies: ${(margin * 100).toFixed(1)}%`);
+
+      const revenueDiff =
+        sorted[0].baselineMetrics.expectedRevenue - sorted[1].baselineMetrics.expectedRevenue;
       keyDifferences.push(
         `Revenue difference: $${Math.abs(revenueDiff).toLocaleString()} (${revenueDiff > 0 ? 'first' : 'second'} strategy leads)`
       );
     }
 
-    const contextualAdvice = 
+    const contextualAdvice =
       sorted[0]?.resilience.economic < 0.5
         ? 'In uncertain economic conditions, consider diversifying approaches.'
         : 'Current market conditions favor the leading strategy.';
@@ -741,11 +713,9 @@ export class StrategyStressTester {
   /**
    * Synthesize recommendations across all strategies
    */
-  private synthesizeRecommendations(
-    results: StressTestResult[]
-  ): StrategyRecommendation[] {
+  private synthesizeRecommendations(results: StressTestResult[]): StrategyRecommendation[] {
     const allRecs = results.flatMap(r => r.recommendations);
-    
+
     // Deduplicate by action
     const seen = new Set<string>();
     const unique = allRecs.filter(r => {

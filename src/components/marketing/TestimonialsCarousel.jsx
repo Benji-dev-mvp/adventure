@@ -15,13 +15,13 @@ const TestimonialsCarousel = ({ content }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % content.quotes.length);
+      setActiveIndex(prev => (prev + 1) % content.quotes.length);
     }, 6000);
     return () => clearInterval(interval);
   }, [content.quotes.length]);
 
   return (
-    <section 
+    <section
       ref={ref}
       className="relative py-24 md:py-32 bg-white dark:bg-gray-900 overflow-hidden"
     >
@@ -29,7 +29,14 @@ const TestimonialsCarousel = ({ content }) => {
       <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <pattern id="testimonial-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+            <pattern
+              id="testimonial-pattern"
+              x="0"
+              y="0"
+              width="40"
+              height="40"
+              patternUnits="userSpaceOnUse"
+            >
               <circle cx="20" cy="20" r="1" fill="currentColor" />
             </pattern>
           </defs>
@@ -38,7 +45,6 @@ const TestimonialsCarousel = ({ content }) => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        
         {/* Header */}
         <div className="text-center mb-16 space-y-4">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary dark:text-white">
@@ -67,8 +73,8 @@ const TestimonialsCarousel = ({ content }) => {
                 key={index}
                 onClick={() => setActiveIndex(index)}
                 className={`h-2 rounded-full transition-all duration-300 ${
-                  index === activeIndex 
-                    ? 'w-12 bg-accent' 
+                  index === activeIndex
+                    ? 'w-12 bg-accent'
                     : 'w-2 bg-gray-300 dark:bg-gray-600 hover:bg-accent/50'
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
@@ -81,8 +87,8 @@ const TestimonialsCarousel = ({ content }) => {
         {content.caseStudies && (
           <div className="grid md:grid-cols-2 gap-8 mt-16">
             {content.caseStudies.map((caseStudy, index) => (
-              <CaseStudyCard 
-                key={index} 
+              <CaseStudyCard
+                key={index}
                 caseStudy={caseStudy}
                 index={index}
                 isVisible={isVisible}
@@ -100,14 +106,13 @@ const TestimonialsCarousel = ({ content }) => {
  */
 const TestimonialCard = ({ testimonial, isActive, isVisible }) => {
   return (
-    <div 
+    <div
       className={`absolute inset-0 transition-all duration-700 ${
         isActive ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8 pointer-events-none'
       } ${isVisible ? '' : 'translate-y-8'}`}
     >
       <Card className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 shadow-2xl border-2 border-gray-200 dark:border-gray-700 overflow-hidden">
         <CardContent className="p-8 md:p-12 space-y-6">
-          
           {/* Quote Icon */}
           <div className="w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center">
             <Quote className="w-6 h-6 text-accent-600 dark:text-accent-400" />
@@ -115,7 +120,7 @@ const TestimonialCard = ({ testimonial, isActive, isVisible }) => {
 
           {/* Rating */}
           <div className="flex gap-1">
-            {[1, 2, 3, 4, 5].map((star) => (
+            {[1, 2, 3, 4, 5].map(star => (
               <Star key={star} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
             ))}
           </div>
@@ -132,9 +137,7 @@ const TestimonialCard = ({ testimonial, isActive, isVisible }) => {
                 {testimonial.author[0]}
               </div>
               <div>
-                <div className="font-bold text-primary dark:text-white">
-                  {testimonial.author}
-                </div>
+                <div className="font-bold text-primary dark:text-white">{testimonial.author}</div>
                 <div className="text-gray-600 dark:text-gray-400">
                   {testimonial.role}, {testimonial.company}
                 </div>
@@ -166,20 +169,17 @@ const TestimonialCard = ({ testimonial, isActive, isVisible }) => {
  */
 const CaseStudyCard = ({ caseStudy, index, isVisible }) => {
   return (
-    <Card 
+    <Card
       className={`border-2 border-gray-200 dark:border-gray-700 hover:border-accent hover:shadow-xl transition-all duration-500 ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
       }`}
       style={{ transitionDelay: `${index * 0.2}s` }}
     >
       <CardContent className="p-8 space-y-6">
-        
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-2xl font-bold text-primary dark:text-white">
-              {caseStudy.company}
-            </h3>
+            <h3 className="text-2xl font-bold text-primary dark:text-white">{caseStudy.company}</h3>
             <div className="flex gap-2 mt-2">
               <Badge className="bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300">
                 {caseStudy.industry}
@@ -194,39 +194,28 @@ const CaseStudyCard = ({ caseStudy, index, isVisible }) => {
 
         {/* Challenge */}
         <div>
-          <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2">
-            Challenge
-          </h4>
-          <p className="text-gray-700 dark:text-gray-300">
-            {caseStudy.challenge}
-          </p>
+          <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2">Challenge</h4>
+          <p className="text-gray-700 dark:text-gray-300">{caseStudy.challenge}</p>
         </div>
 
         {/* Solution */}
         <div>
-          <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2">
-            Solution
-          </h4>
-          <p className="text-gray-700 dark:text-gray-300">
-            {caseStudy.solution}
-          </p>
+          <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2">Solution</h4>
+          <p className="text-gray-700 dark:text-gray-300">{caseStudy.solution}</p>
         </div>
 
         {/* Results */}
         <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
-          <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-4">
-            Results
-          </h4>
+          <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-4">Results</h4>
           <div className="space-y-3">
             {caseStudy.results.map((result, idx) => (
-              <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                <span className="text-sm text-gray-700 dark:text-gray-300">
-                  {result.metric}
-                </span>
+              <div
+                key={idx}
+                className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"
+              >
+                <span className="text-sm text-gray-700 dark:text-gray-300">{result.metric}</span>
                 <div className="flex items-center gap-3">
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    {result.before}
-                  </span>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">{result.before}</span>
                   <span className="text-gray-400">→</span>
                   <span className="text-lg font-bold text-green-600 dark:text-green-400">
                     {result.after}
@@ -248,15 +237,10 @@ export const LogoWall = ({ content }) => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.2, triggerOnce: true });
 
   return (
-    <section 
-      ref={ref}
-      className="relative py-16 bg-gray-50 dark:bg-gray-800"
-    >
+    <section ref={ref} className="relative py-16 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-            {content.title}
-          </h3>
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{content.title}</h3>
         </div>
 
         {/* Logo Grid */}

@@ -21,7 +21,6 @@ const HowItWorksStepper = ({ content }) => {
 
   return (
     <section className="relative py-24 md:py-32 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
-      
       {/* Header */}
       <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary dark:text-white mb-6">
@@ -34,15 +33,10 @@ const HowItWorksStepper = ({ content }) => {
 
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          
           {/* Steps Column (Left) */}
           <div className="space-y-8">
             {content.steps.map((step, index) => (
-              <div
-                key={step.id}
-                ref={setStepRef(index)}
-                className="scroll-mt-32"
-              >
+              <div key={step.id} ref={setStepRef(index)} className="scroll-mt-32">
                 <StepCard
                   step={step}
                   index={index}
@@ -56,21 +50,17 @@ const HowItWorksStepper = ({ content }) => {
 
           {/* Visual Preview Column (Right) - Sticky */}
           <div className="lg:sticky lg:top-24 lg:h-[600px]">
-            <VisualPreview 
-              activeStep={activeStep} 
-              steps={content.steps}
-              hasStarted={hasStarted}
-            />
+            <VisualPreview activeStep={activeStep} steps={content.steps} hasStarted={hasStarted} />
           </div>
         </div>
       </div>
 
       {/* Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-gray-200 dark:bg-gray-800 z-50">
-        <div 
+        <div
           className="h-full bg-gradient-to-r from-accent to-primary transition-all duration-300 ease-out"
-          style={{ 
-            width: hasStarted ? `${((activeStep + 1) / content.steps.length) * 100}%` : '0%' 
+          style={{
+            width: hasStarted ? `${((activeStep + 1) / content.steps.length) * 100}%` : '0%',
           }}
         />
       </div>
@@ -83,10 +73,10 @@ const HowItWorksStepper = ({ content }) => {
  */
 const StepCard = ({ step, index, isActive, isPast, hasStarted }) => {
   return (
-    <Card 
+    <Card
       className={`relative overflow-hidden transition-all duration-500 border-2 ${
-        isActive 
-          ? 'border-accent shadow-2xl shadow-accent/20 scale-105' 
+        isActive
+          ? 'border-accent shadow-2xl shadow-accent/20 scale-105'
           : isPast
             ? 'border-green-300 dark:border-green-700 opacity-70'
             : 'border-gray-200 dark:border-gray-700 opacity-50'
@@ -94,19 +84,20 @@ const StepCard = ({ step, index, isActive, isPast, hasStarted }) => {
       style={{ transitionDelay: `${index * 0.1}s` }}
     >
       <CardContent className="p-8">
-        
         {/* Step Number Badge */}
         <div className="flex items-center gap-4 mb-6">
-          <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${
-            isPast
-              ? 'bg-green-500 text-white'
-              : isActive 
-                ? 'bg-accent text-white shadow-lg'
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
-          }`}>
+          <div
+            className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${
+              isPast
+                ? 'bg-green-500 text-white'
+                : isActive
+                  ? 'bg-accent text-white shadow-lg'
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
+            }`}
+          >
             {isPast ? <Check className="w-6 h-6" /> : step.id}
           </div>
-          
+
           {isActive && (
             <Badge className="bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 animate-pulse">
               In View
@@ -126,7 +117,7 @@ const StepCard = ({ step, index, isActive, isPast, hasStarted }) => {
           {/* Features List */}
           <div className="flex flex-wrap gap-2 pt-4">
             {step.features.map((feature, idx) => (
-              <span 
+              <span
                 key={idx}
                 className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-sm transition-all duration-300 ${
                   isActive || isPast
@@ -160,10 +151,11 @@ const VisualPreview = ({ activeStep, steps, hasStarted }) => {
   const figmaUrl = currentStep?.figmaUrl; // Figma embed URL (optional per step)
 
   return (
-    <div className={`relative transition-opacity duration-500 ${hasStarted ? 'opacity-100' : 'opacity-0'}`}>
+    <div
+      className={`relative transition-opacity duration-500 ${hasStarted ? 'opacity-100' : 'opacity-0'}`}
+    >
       {/* Frame Container */}
       <div className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border-2 border-gray-200 dark:border-gray-700">
-        
         {/* Browser Chrome */}
         <div className="flex items-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
           <div className="flex gap-2">
@@ -191,10 +183,7 @@ const VisualPreview = ({ activeStep, steps, hasStarted }) => {
             />
           ) : (
             <div className="p-6">
-              <div 
-                className="transition-all duration-500"
-                key={visualType}
-              >
+              <div className="transition-all duration-500" key={visualType}>
                 {visualType === 'lead-database' && <LeadDatabaseVisual />}
                 {visualType === 'campaign-builder' && <CampaignBuilderVisual />}
                 {visualType === 'ai-assistant' && <AIAssistantVisual />}
@@ -232,7 +221,10 @@ const VisualPreview = ({ activeStep, steps, hasStarted }) => {
 const LeadDatabaseVisual = () => (
   <div className="space-y-3 animate-fade-in">
     {[1, 2, 3, 4].map(i => (
-      <div key={i} className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm flex items-center gap-4">
+      <div
+        key={i}
+        className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm flex items-center gap-4"
+      >
         <div className="w-10 h-10 rounded-full bg-accent-200 dark:bg-accent-700" />
         <div className="flex-1 space-y-2">
           <div className="h-3 bg-gray-300 dark:bg-gray-600 rounded w-3/4" />
@@ -269,10 +261,12 @@ const AIAssistantVisual = () => (
       { align: 'left', width: 'w-3/4' },
       { align: 'right', width: 'w-2/3' },
       { align: 'left', width: 'w-4/5' },
-      { align: 'right', width: 'w-1/2' }
+      { align: 'right', width: 'w-1/2' },
     ].map((msg, i) => (
       <div key={i} className={`flex ${msg.align === 'right' ? 'justify-end' : 'justify-start'}`}>
-        <div className={`${msg.width} bg-${msg.align === 'right' ? 'accent' : 'white dark:bg-gray-800'} ${msg.align === 'right' ? 'text-white' : ''} rounded-lg p-3 shadow-sm`}>
+        <div
+          className={`${msg.width} bg-${msg.align === 'right' ? 'accent' : 'white dark:bg-gray-800'} ${msg.align === 'right' ? 'text-white' : ''} rounded-lg p-3 shadow-sm`}
+        >
           <div className="h-2 bg-current opacity-20 rounded mb-2" />
           <div className="h-2 bg-current opacity-20 rounded w-3/4" />
         </div>
@@ -285,8 +279,8 @@ const AnalyticsVisual = () => (
   <div className="space-y-4 animate-fade-in">
     <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm h-32 flex items-end gap-2">
       {[40, 65, 45, 80, 60, 90, 70, 55].map((height, i) => (
-        <div 
-          key={i} 
+        <div
+          key={i}
           className="flex-1 bg-gradient-to-t from-accent-500 to-accent-300 dark:from-accent-600 dark:to-accent-400 rounded-t"
           style={{ height: `${height}%` }}
         />

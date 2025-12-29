@@ -7,7 +7,9 @@ import { Loader2 } from 'lucide-react';
  * Pipeline commitments and forecast tracking
  */
 
-const PipelineCommitments = lazy(() => import('@/modules/autonomy/PipelineCommitments').then(m => ({ default: m.PipelineCommitments })));
+const PipelineCommitments = lazy(() =>
+  import('@/modules/autonomy/PipelineCommitments').then(m => ({ default: m.PipelineCommitments }))
+);
 
 const PageLoader = () => (
   <div className="h-screen w-full flex items-center justify-center bg-gray-950">

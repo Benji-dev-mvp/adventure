@@ -17,6 +17,7 @@ A production-ready, accessible, and performant React component library built wit
 ## 📦 Components Included
 
 ### Form Components
+
 - **Input** - Text, email, password, number inputs with validation
 - **Textarea** - Multi-line text input with character count
 - **Select** - Dropdown select with search and multi-select
@@ -26,17 +27,20 @@ A production-ready, accessible, and performant React component library built wit
 - **Button** - Primary, secondary, outline, ghost, danger variants
 
 ### Layout Components
+
 - **Card** - Container with header, content, footer sections
 - **Separator** - Horizontal/vertical dividers
 - **Container** - Max-width wrapper for content
 
 ### Navigation Components
+
 - **Breadcrumb** - Navigation trail with separators
 - **Pagination** - Page navigation with first/last/prev/next
 - **Tabs** - Tabbed content switcher
 - **Menu** - Dropdown and context menus
 
 ### Data Display Components
+
 - **Table** - Data table with sortable columns
 - **Badge** - Status indicators with color variants
 - **Avatar** - User profile images with fallback initials
@@ -44,6 +48,7 @@ A production-ready, accessible, and performant React component library built wit
 - **EmptyState** - Placeholder for empty data views
 
 ### Feedback Components
+
 - **Alert** - Inline messages (info, success, warning, error)
 - **Toast** - Temporary notifications
 - **Progress** - Loading progress indicators
@@ -53,6 +58,7 @@ A production-ready, accessible, and performant React component library built wit
 - **Skeleton** - Content placeholder loaders
 
 ### Overlay Components
+
 - **Dialog** - Modal dialogs with backdrop
 - **Modal** - Custom modal with header/body/footer
 - **Drawer** - Slide-out panels (left, right, top, bottom)
@@ -61,6 +67,7 @@ A production-ready, accessible, and performant React component library built wit
 - **DropdownMenu** - Action menus with keyboard navigation
 
 ### Interactive Components
+
 - **Accordion** - Collapsible content sections
 - **AnimatedButton** - Buttons with hover animations
 - **Command** - Command palette / quick actions
@@ -89,12 +96,7 @@ function MyComponent() {
         <Badge variant="success">Active</Badge>
       </Card.Header>
       <Card.Content>
-        <Input 
-          label="Email" 
-          type="email" 
-          placeholder="you@example.com"
-          required
-        />
+        <Input label="Email" type="email" placeholder="you@example.com" required />
       </Card.Content>
       <Card.Footer>
         <Button variant="primary">Submit</Button>
@@ -116,9 +118,9 @@ function LoginForm() {
   const [error, setError] = useState('');
   const toast = useToast();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    
+
     if (!validateEmail(email)) {
       setError('Invalid email format');
       return;
@@ -134,7 +136,7 @@ function LoginForm() {
         label="Email"
         type="email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={e => setEmail(e.target.value)}
         error={error}
         required
       />
@@ -158,16 +160,16 @@ function LoginForm() {
 
 ```javascript
 // Brand Colors
-primary: '#0F2540'      // Navy blue
-accent: '#3B82F6'       // Blue
-purple: '#7D37FF'       // Brand purple
-coral: '#FFAEA5'        // Brand coral
+primary: '#0F2540'; // Navy blue
+accent: '#3B82F6'; // Blue
+purple: '#7D37FF'; // Brand purple
+coral: '#FFAEA5'; // Brand coral
 
 // Semantic Colors
-success: '#10B981'      // Green
-warning: '#F59E0B'      // Amber
-error: '#EF4444'        // Red
-info: '#3B82F6'         // Blue
+success: '#10B981'; // Green
+warning: '#F59E0B'; // Amber
+error: '#EF4444'; // Red
+info: '#3B82F6'; // Blue
 ```
 
 ### Typography
@@ -210,30 +212,29 @@ import { useTheme } from '@/contexts/ThemeContext';
 
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
-  
-  return (
-    <Button onClick={toggleTheme}>
-      {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
-    </Button>
-  );
+
+  return <Button onClick={toggleTheme}>{theme === 'dark' ? '☀️ Light' : '🌙 Dark'}</Button>;
 }
 ```
 
 ## ♿ Accessibility
 
 ### Keyboard Navigation
+
 - `Tab` / `Shift+Tab` - Navigate between focusable elements
 - `Enter` / `Space` - Activate buttons and toggles
 - `Escape` - Close modals and dropdowns
 - `Arrow Keys` - Navigate menus and lists
 
 ### Screen Reader Support
+
 - Semantic HTML elements
 - Proper ARIA labels and roles
 - Live region announcements for dynamic content
 - Focus management for modals and overlays
 
 ### WCAG 2.1 AA Compliance
+
 - Sufficient color contrast ratios
 - Focus indicators on all interactive elements
 - Error messages associated with form fields
@@ -311,7 +312,7 @@ describe('Button', () => {
   it('calls onClick handler when clicked', () => {
     const handleClick = jest.fn();
     render(<Button onClick={handleClick}>Click me</Button>);
-    
+
     fireEvent.click(screen.getByText('Click me'));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -325,12 +326,12 @@ describe('Button', () => {
 
 ## 🚀 Performance Metrics
 
-| Metric | Value |
-|--------|-------|
-| Bundle Size | ~45KB (gzipped) |
-| Time to Interactive | < 2s |
-| First Contentful Paint | < 1s |
-| Lighthouse Score | 95+ |
+| Metric                 | Value           |
+| ---------------------- | --------------- |
+| Bundle Size            | ~45KB (gzipped) |
+| Time to Interactive    | < 2s            |
+| First Contentful Paint | < 1s            |
+| Lighthouse Score       | 95+             |
 
 ## 🔧 Customization
 
@@ -360,32 +361,25 @@ module.exports = {
 
 ```jsx
 // Override default styles with className
-<Button className="bg-purple-600 hover:bg-purple-700">
-  Custom Purple
-</Button>
+<Button className="bg-purple-600 hover:bg-purple-700">Custom Purple</Button>;
 
 // Extend with cn utility
 import { cn } from '@/lib/utils';
 
-<Button className={cn(
-  "custom-class",
-  isActive && "active-class"
-)}>
-  Dynamic Styles
-</Button>
+<Button className={cn('custom-class', isActive && 'active-class')}>Dynamic Styles</Button>;
 ```
 
 ## 📊 Component Comparison
 
-| Component | Artisan UI | MUI | Chakra UI | shadcn/ui |
-|-----------|-----------|-----|-----------|-----------|
-| Bundle Size | 45KB | 300KB+ | 150KB | 50KB |
-| Dark Mode | ✅ Native | ✅ Theme | ✅ Native | ✅ Native |
-| Customization | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| TypeScript | ✅ | ✅ | ✅ | ✅ |
-| Accessibility | WCAG 2.1 AA | WCAG 2.1 AA | WCAG 2.1 AA | WCAG 2.1 AA |
-| Tree Shaking | ✅ | ✅ | ✅ | ✅ |
-| Learning Curve | Low | Medium | Low | Low |
+| Component      | Artisan UI  | MUI         | Chakra UI   | shadcn/ui   |
+| -------------- | ----------- | ----------- | ----------- | ----------- |
+| Bundle Size    | 45KB        | 300KB+      | 150KB       | 50KB        |
+| Dark Mode      | ✅ Native   | ✅ Theme    | ✅ Native   | ✅ Native   |
+| Customization  | ⭐⭐⭐⭐⭐  | ⭐⭐⭐      | ⭐⭐⭐⭐    | ⭐⭐⭐⭐⭐  |
+| TypeScript     | ✅          | ✅          | ✅          | ✅          |
+| Accessibility  | WCAG 2.1 AA | WCAG 2.1 AA | WCAG 2.1 AA | WCAG 2.1 AA |
+| Tree Shaking   | ✅          | ✅          | ✅          | ✅          |
+| Learning Curve | Low         | Medium      | Low         | Low         |
 
 ## 🛠️ Tech Stack
 
@@ -413,20 +407,11 @@ import { cn } from '@/lib/utils';
 import React, { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 
-const MyComponent = forwardRef(({ 
-  className, 
-  variant = 'default',
-  children,
-  ...props 
-}, ref) => {
+const MyComponent = forwardRef(({ className, variant = 'default', children, ...props }, ref) => {
   return (
     <div
       ref={ref}
-      className={cn(
-        "base-classes",
-        variant === 'primary' && "variant-classes",
-        className
-      )}
+      className={cn('base-classes', variant === 'primary' && 'variant-classes', className)}
       {...props}
     >
       {children}
@@ -443,6 +428,7 @@ export default MyComponent;
 ## 📝 Changelog
 
 ### Version 1.0.0 (December 2025)
+
 - ✨ Initial release with 40+ components
 - ✨ Full dark mode support
 - ✨ Accessibility improvements (WCAG 2.1 AA)

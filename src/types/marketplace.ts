@@ -7,9 +7,20 @@
 // Marketplace Core Types
 // ============================================
 
-export type ExtensionType = 'playbook' | 'template' | 'integration' | 'ai_agent' | 'workflow' | 'theme';
+export type ExtensionType =
+  | 'playbook'
+  | 'template'
+  | 'integration'
+  | 'ai_agent'
+  | 'workflow'
+  | 'theme';
 export type ExtensionStatus = 'draft' | 'pending_review' | 'published' | 'deprecated' | 'removed';
-export type InstallStatus = 'not_installed' | 'installing' | 'installed' | 'update_available' | 'uninstalling';
+export type InstallStatus =
+  | 'not_installed'
+  | 'installing'
+  | 'installed'
+  | 'update_available'
+  | 'uninstalling';
 
 export interface Extension {
   id: string;

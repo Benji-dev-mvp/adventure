@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { 
-  CheckCircle, 
-  Loader2, 
-  AlertCircle, 
+import {
+  CheckCircle,
+  Loader2,
+  AlertCircle,
   Clock,
   Users,
   TrendingUp,
-  Activity
+  Activity,
 } from 'lucide-react';
 
 const ExecutionOverlay = ({ status, nodes }) => {
@@ -23,9 +23,7 @@ const ExecutionOverlay = ({ status, nodes }) => {
       {/* Header */}
       <div className="flex items-center gap-2 mb-4">
         <Activity className="w-5 h-5 text-indigo-500 animate-pulse" />
-        <span className="font-semibold text-gray-900 dark:text-white">
-          Execution Progress
-        </span>
+        <span className="font-semibold text-gray-900 dark:text-white">Execution Progress</span>
       </div>
 
       {/* Progress Bar */}
@@ -35,7 +33,7 @@ const ExecutionOverlay = ({ status, nodes }) => {
           <span>{progressPercent}%</span>
         </div>
         <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-          <div 
+          <div
             className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-500"
             style={{ width: `${progressPercent}%` }}
           />
@@ -49,12 +47,8 @@ const ExecutionOverlay = ({ status, nodes }) => {
           <div className="flex items-center justify-center w-8 h-8 mx-auto mb-1 bg-green-100 dark:bg-green-900/30 rounded-full">
             <CheckCircle className="w-4 h-4 text-green-600" />
           </div>
-          <div className="text-lg font-bold text-gray-900 dark:text-white">
-            {completedCount}
-          </div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">
-            Completed
-          </div>
+          <div className="text-lg font-bold text-gray-900 dark:text-white">{completedCount}</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">Completed</div>
         </div>
 
         {/* Running */}
@@ -62,12 +56,8 @@ const ExecutionOverlay = ({ status, nodes }) => {
           <div className="flex items-center justify-center w-8 h-8 mx-auto mb-1 bg-blue-100 dark:bg-blue-900/30 rounded-full">
             <Loader2 className="w-4 h-4 text-blue-600 animate-spin" />
           </div>
-          <div className="text-lg font-bold text-gray-900 dark:text-white">
-            {runningCount}
-          </div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">
-            Running
-          </div>
+          <div className="text-lg font-bold text-gray-900 dark:text-white">{runningCount}</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">Running</div>
         </div>
 
         {/* Pending */}
@@ -78,9 +68,7 @@ const ExecutionOverlay = ({ status, nodes }) => {
           <div className="text-lg font-bold text-gray-900 dark:text-white">
             {totalNodes - completedCount - runningCount - errorCount}
           </div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">
-            Pending
-          </div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">Pending</div>
         </div>
       </div>
 
@@ -97,13 +85,11 @@ const ExecutionOverlay = ({ status, nodes }) => {
       {/* Current node indicator */}
       {runningCount > 0 && (
         <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-          <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
-            Currently executing:
-          </div>
+          <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">Currently executing:</div>
           {nodes
             .filter(node => status[node.id] === 'running')
             .map(node => (
-              <div 
+              <div
                 key={node.id}
                 className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300"
               >
@@ -117,8 +103,8 @@ const ExecutionOverlay = ({ status, nodes }) => {
       {/* Estimated time remaining */}
       {runningCount > 0 && (
         <div className="mt-3 text-xs text-gray-500 dark:text-gray-400 text-center">
-          <Clock className="w-3 h-3 inline mr-1" />
-          ~{Math.max(1, (totalNodes - completedCount) * 2)} seconds remaining
+          <Clock className="w-3 h-3 inline mr-1" />~{Math.max(1, (totalNodes - completedCount) * 2)}{' '}
+          seconds remaining
         </div>
       )}
     </div>

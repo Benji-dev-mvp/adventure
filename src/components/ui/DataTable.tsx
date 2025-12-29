@@ -62,7 +62,7 @@ export function DataTable<T extends { id: string }>({
 
   const toggleRow = useCallback(
     (id: string) => {
-      setSelectedRows((prev) => {
+      setSelectedRows(prev => {
         const next = new Set(prev);
         if (next.has(id)) {
           next.delete(id);
@@ -77,17 +77,17 @@ export function DataTable<T extends { id: string }>({
   );
 
   const toggleAll = useCallback(() => {
-    setSelectedRows((prev) => {
-      const next = prev.size === data.length ? new Set<string>() : new Set(data.map((d) => d.id));
+    setSelectedRows(prev => {
+      const next = prev.size === data.length ? new Set<string>() : new Set(data.map(d => d.id));
       onSelectionChange?.(Array.from(next));
       return next;
     });
   }, [data, onSelectionChange]);
 
   const setSort = useCallback((column: string) => {
-    setSortColumn((prevColumn) => {
+    setSortColumn(prevColumn => {
       if (prevColumn === column) {
-        setSortDirection((prevDir) => {
+        setSortDirection(prevDir => {
           if (prevDir === 'asc') return 'desc';
           if (prevDir === 'desc') return null;
           return 'asc';
@@ -99,7 +99,7 @@ export function DataTable<T extends { id: string }>({
     });
   }, []);
 
-  const getRowById = useCallback((id: string) => data.find((d) => d.id === id), [data]);
+  const getRowById = useCallback((id: string) => data.find(d => d.id === id), [data]);
 
   const isAllSelected = data.length > 0 && selectedRows.size === data.length;
   const isPartiallySelected = selectedRows.size > 0 && selectedRows.size < data.length;
@@ -263,7 +263,9 @@ DataTable.Body = function DataTableBody<T extends { id: string }>({
     );
   }
 
-  return <tbody className={cn('[&_tr:last-child]:border-0', className)}>{data.map(children)}</tbody>;
+  return (
+    <tbody className={cn('[&_tr:last-child]:border-0', className)}>{data.map(children)}</tbody>
+  );
 };
 
 // ============================================
@@ -341,7 +343,7 @@ DataTable.RowCheckbox = function DataTableRowCheckbox({
         type="button"
         role="checkbox"
         aria-checked={isSelected}
-        onClick={(e) => {
+        onClick={e => {
           e.stopPropagation();
           toggleRow(id);
         }}
@@ -389,7 +391,9 @@ DataTable.Pagination = function DataTablePagination({
     <div className={cn('flex items-center justify-between px-2 py-4', className)}>
       <div className="flex-1 text-sm text-muted-foreground">
         {selectedRows.size > 0 ? (
-          <span>{selectedRows.size} of {total} row(s) selected</span>
+          <span>
+            {selectedRows.size} of {total} row(s) selected
+          </span>
         ) : (
           <span>
             Showing {start} to {end} of {total} results
@@ -403,10 +407,10 @@ DataTable.Pagination = function DataTablePagination({
             <span className="text-sm text-muted-foreground">Rows per page</span>
             <select
               value={pageSize}
-              onChange={(e) => onPageSizeChange(Number(e.target.value))}
+              onChange={e => onPageSizeChange(Number(e.target.value))}
               className="h-8 rounded-md border border-input bg-background px-2 text-sm"
             >
-              {pageSizeOptions.map((size) => (
+              {pageSizeOptions.map(size => (
                 <option key={size} value={size}>
                   {size}
                 </option>

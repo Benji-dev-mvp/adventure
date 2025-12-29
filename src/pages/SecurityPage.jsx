@@ -1,9 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, CheckCircle2, Lock, Globe2, Server, Eye, FileCheck, Clock } from 'lucide-react';
+import {
+  ArrowRight,
+  Shield,
+  CheckCircle2,
+  Lock,
+  Globe2,
+  Server,
+  Eye,
+  FileCheck,
+  Clock,
+} from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import EnterpriseSecurityHub from '../components/features/EnterpriseSecurityHub';
-import { 
+import {
   GlassCard,
   GlassCardContent,
   GradientText,
@@ -14,7 +24,11 @@ import {
 } from '../components/futuristic';
 
 const COMPLIANCE_CERTS = [
-  { name: 'SOC 2 Type II', status: 'Attested', description: 'Annual audit by independent third party' },
+  {
+    name: 'SOC 2 Type II',
+    status: 'Attested',
+    description: 'Annual audit by independent third party',
+  },
   { name: 'GDPR', status: 'Compliant', description: 'Full EU data protection compliance' },
   { name: 'CCPA', status: 'Compliant', description: 'California consumer privacy act' },
   { name: 'ISO 27001', status: 'In Progress', description: 'Information security management' },
@@ -31,7 +45,12 @@ const SECURITY_FEATURES = [
     icon: Eye,
     title: 'Audit & Compliance',
     description: 'Complete visibility into all system activity',
-    features: ['Full audit trails', 'Data retention controls', 'Export capabilities', 'Real-time monitoring'],
+    features: [
+      'Full audit trails',
+      'Data retention controls',
+      'Export capabilities',
+      'Real-time monitoring',
+    ],
   },
   {
     icon: Globe2,
@@ -54,7 +73,7 @@ const SecurityPage = () => {
       <section className="py-20 px-6 relative overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-orange-900/20 to-transparent" />
-        
+
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/20 border border-orange-500/30 mb-6">
@@ -62,7 +81,7 @@ const SecurityPage = () => {
               <span className="text-sm text-orange-300">Enterprise Security</span>
             </div>
           </RevealText>
-          
+
           <RevealText delay={100}>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 font-space-grotesk">
               <GradientText gradient="aurora" animate>
@@ -70,14 +89,14 @@ const SecurityPage = () => {
               </GradientText>
             </h1>
           </RevealText>
-          
+
           <RevealText delay={200}>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Built for enterprise from day one. SOC 2 Type II attested, 
-              GDPR compliant, with full audit trails and data residency options.
+              Built for enterprise from day one. SOC 2 Type II attested, GDPR compliant, with full
+              audit trails and data residency options.
             </p>
           </RevealText>
-          
+
           <RevealText delay={300}>
             <div className="flex flex-wrap justify-center gap-4">
               <a href="#security-hub">
@@ -103,25 +122,32 @@ const SecurityPage = () => {
           <div className="grid md:grid-cols-4 gap-6">
             {COMPLIANCE_CERTS.map((cert, index) => (
               <RevealText key={cert.name} delay={index * 100}>
-                <GlassCard variant="default" hover glow glowColor="cyan" className="text-center h-full">
+                <GlassCard
+                  variant="default"
+                  hover
+                  glow
+                  glowColor="cyan"
+                  className="text-center h-full"
+                >
                   <GlassCardContent className="p-6">
-                    <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 ${
-                      cert.status === 'Attested' || cert.status === 'Compliant' 
-                        ? 'bg-emerald-500/20 text-emerald-400' 
-                        : 'bg-yellow-500/20 text-yellow-400'
-                    }`}>
-                      {cert.status === 'Attested' || cert.status === 'Compliant' 
-                        ? <CheckCircle2 size={14} /> 
-                        : <Clock size={14} />
-                      }
+                    <div
+                      className={`inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 ${
+                        cert.status === 'Attested' || cert.status === 'Compliant'
+                          ? 'bg-emerald-500/20 text-emerald-400'
+                          : 'bg-yellow-500/20 text-yellow-400'
+                      }`}
+                    >
+                      {cert.status === 'Attested' || cert.status === 'Compliant' ? (
+                        <CheckCircle2 size={14} />
+                      ) : (
+                        <Clock size={14} />
+                      )}
                       <span className="text-xs font-medium">{cert.status}</span>
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2 font-space-grotesk">
                       {cert.name}
                     </h3>
-                    <p className="text-gray-400 text-sm">
-                      {cert.description}
-                    </p>
+                    <p className="text-gray-400 text-sm">{cert.description}</p>
                   </GlassCardContent>
                 </GlassCard>
               </RevealText>
@@ -138,7 +164,7 @@ const SecurityPage = () => {
       {/* Security Features Grid */}
       <section className="py-20 px-6 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
-        
+
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
@@ -166,13 +192,17 @@ const SecurityPage = () => {
                           <h3 className="text-xl font-bold text-white mb-2 font-space-grotesk">
                             {feature.title}
                           </h3>
-                          <p className="text-gray-400 mb-4">
-                            {feature.description}
-                          </p>
+                          <p className="text-gray-400 mb-4">{feature.description}</p>
                           <div className="grid grid-cols-2 gap-2">
-                            {feature.features.map((item) => (
-                              <div key={item} className="flex items-center gap-2 text-sm text-gray-300">
-                                <CheckCircle2 size={14} className="text-emerald-400 flex-shrink-0" />
+                            {feature.features.map(item => (
+                              <div
+                                key={item}
+                                className="flex items-center gap-2 text-sm text-gray-300"
+                              >
+                                <CheckCircle2
+                                  size={14}
+                                  className="text-emerald-400 flex-shrink-0"
+                                />
                                 {item}
                               </div>
                             ))}
@@ -227,16 +257,15 @@ const SecurityPage = () => {
       {/* CTA */}
       <section className="py-20 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
-        
+
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 font-space-grotesk">
-              <GradientText gradient="aurora">
-                Need Security Documentation?
-              </GradientText>
+              <GradientText gradient="aurora">Need Security Documentation?</GradientText>
             </h2>
             <p className="text-xl text-gray-300 mb-8">
-              We're happy to share our SOC 2 report, security questionnaire, or schedule a call with our security team.
+              We're happy to share our SOC 2 report, security questionnaire, or schedule a call with
+              our security team.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/pricing#contact-sales">

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from '../ui/Card';
-import { 
-  Database, 
-  Brain, 
-  Zap, 
+import {
+  Database,
+  Brain,
+  Zap,
   TrendingUp,
   Shield,
   CheckCircle2,
@@ -13,7 +13,7 @@ import {
   Mail,
   MessageSquare,
   Phone,
-  Linkedin
+  Linkedin,
 } from 'lucide-react';
 
 const SystemFlowDiagram = () => {
@@ -22,7 +22,7 @@ const SystemFlowDiagram = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % 5);
+      setActiveStep(prev => (prev + 1) % 5);
     }, 3000);
     return () => clearInterval(interval);
   }, []);
@@ -38,9 +38,9 @@ const SystemFlowDiagram = () => {
         'Technographic & firmographic data',
         'Real-time intent signals',
         'Contact-level enrichment',
-        'Job change alerts'
+        'Job change alerts',
       ],
-      position: { top: '50%', left: '5%' }
+      position: { top: '50%', left: '5%' },
     },
     {
       id: 1,
@@ -52,9 +52,9 @@ const SystemFlowDiagram = () => {
         'Context-aware messaging',
         'Multi-tone generation',
         'A/B test variants',
-        'Sentiment optimization'
+        'Sentiment optimization',
       ],
-      position: { top: '50%', left: '25%' }
+      position: { top: '50%', left: '25%' },
     },
     {
       id: 2,
@@ -66,9 +66,9 @@ const SystemFlowDiagram = () => {
         'Content approval gates',
         'DLP & PII scrubbing',
         'Compliance checks',
-        'Send limits & throttling'
+        'Send limits & throttling',
       ],
-      position: { top: '20%', left: '50%' }
+      position: { top: '20%', left: '50%' },
     },
     {
       id: 3,
@@ -76,19 +76,14 @@ const SystemFlowDiagram = () => {
       icon: Zap,
       color: 'from-green-500 to-emerald-500',
       description: 'Orchestrated outreach across all channels',
-      details: [
-        'Email campaigns',
-        'LinkedIn sequences',
-        'SMS messaging',
-        'Call scripts'
-      ],
+      details: ['Email campaigns', 'LinkedIn sequences', 'SMS messaging', 'Call scripts'],
       position: { top: '50%', left: '50%' },
       channels: [
         { icon: Mail, label: 'Email', color: 'text-blue-400' },
         { icon: Linkedin, label: 'LinkedIn', color: 'text-blue-600' },
         { icon: MessageSquare, label: 'SMS', color: 'text-green-400' },
-        { icon: Phone, label: 'Calls', color: 'text-purple-400' }
-      ]
+        { icon: Phone, label: 'Calls', color: 'text-purple-400' },
+      ],
     },
     {
       id: 4,
@@ -100,10 +95,10 @@ const SystemFlowDiagram = () => {
         'Engagement tracking',
         'Conversion analytics',
         'ROI measurement',
-        'Predictive insights'
+        'Predictive insights',
       ],
-      position: { top: '50%', left: '75%' }
-    }
+      position: { top: '50%', left: '75%' },
+    },
   ];
 
   const connections = [
@@ -111,7 +106,7 @@ const SystemFlowDiagram = () => {
     { from: 1, to: 2 },
     { from: 2, to: 3 },
     { from: 3, to: 4 },
-    { from: 4, to: 1 } // Feedback loop
+    { from: 4, to: 1 }, // Feedback loop
   ];
 
   return (
@@ -127,7 +122,8 @@ const SystemFlowDiagram = () => {
             From Lead to Conversion in One Platform
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Watch how data flows through AI-powered personalization, governance, and multi-channel execution
+            Watch how data flows through AI-powered personalization, governance, and multi-channel
+            execution
           </p>
         </div>
 
@@ -135,11 +131,11 @@ const SystemFlowDiagram = () => {
         <div className="relative bg-white dark:bg-slate-800 rounded-2xl p-8 md:p-12 shadow-xl border border-slate-200 dark:border-slate-700 min-h-[500px] overflow-hidden">
           {/* Background pattern */}
           <div className="absolute inset-0 opacity-5">
-            <div 
-              className="w-full h-full" 
+            <div
+              className="w-full h-full"
               style={{
                 backgroundImage: `radial-gradient(circle at 2px 2px, rgba(100, 116, 139, 0.4) 1px, transparent 0)`,
-                backgroundSize: '40px 40px'
+                backgroundSize: '40px 40px',
               }}
             />
           </div>
@@ -157,7 +153,7 @@ const SystemFlowDiagram = () => {
               const fromNode = flowSteps[conn.from];
               const toNode = flowSteps[conn.to];
               const isActive = activeStep === conn.to || activeStep === conn.from;
-              
+
               return (
                 <line
                   key={idx}
@@ -165,9 +161,9 @@ const SystemFlowDiagram = () => {
                   y1={fromNode.position.top}
                   x2={`calc(${toNode.position.left} + 5%)`}
                   y2={toNode.position.top}
-                  stroke={isActive ? "url(#lineGradient)" : "rgba(100, 116, 139, 0.2)"}
-                  strokeWidth={isActive ? "3" : "2"}
-                  strokeDasharray={isActive ? "5,5" : "none"}
+                  stroke={isActive ? 'url(#lineGradient)' : 'rgba(100, 116, 139, 0.2)'}
+                  strokeWidth={isActive ? '3' : '2'}
+                  strokeDasharray={isActive ? '5,5' : 'none'}
                   className="transition-all duration-500"
                 >
                   {isActive && (
@@ -189,25 +185,25 @@ const SystemFlowDiagram = () => {
             const Icon = step.icon;
             const isActive = activeStep === step.id;
             const isHovered = hoveredNode === step.id;
-            
+
             return (
               <div
                 key={step.id}
                 className="absolute transform -translate-x-1/2 -translate-y-1/2 z-10 transition-all duration-500"
-                style={{ 
-                  top: step.position.top, 
+                style={{
+                  top: step.position.top,
                   left: step.position.left,
-                  width: isHovered ? '320px' : '280px'
+                  width: isHovered ? '320px' : '280px',
                 }}
                 onMouseEnter={() => setHoveredNode(step.id)}
                 onMouseLeave={() => setHoveredNode(null)}
               >
-                <Card 
+                <Card
                   className={`relative cursor-pointer transition-all duration-300 ${
-                    isActive 
-                      ? 'ring-4 ring-blue-500 shadow-2xl scale-105' 
-                      : isHovered 
-                        ? 'shadow-xl scale-105' 
+                    isActive
+                      ? 'ring-4 ring-blue-500 shadow-2xl scale-105'
+                      : isHovered
+                        ? 'shadow-xl scale-105'
                         : 'shadow-md'
                   } bg-white dark:bg-slate-700 border-2 ${
                     isActive ? 'border-blue-500' : 'border-slate-200 dark:border-slate-600'
@@ -216,7 +212,9 @@ const SystemFlowDiagram = () => {
                   <div className="p-5">
                     {/* Icon and Title */}
                     <div className="flex items-center gap-3 mb-3">
-                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg ${isActive ? 'animate-pulse' : ''}`}>
+                      <div
+                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg ${isActive ? 'animate-pulse' : ''}`}
+                      >
                         <Icon className="w-6 h-6 text-white" />
                       </div>
                       <div className="flex-1">
@@ -243,7 +241,9 @@ const SystemFlowDiagram = () => {
                         {step.details.map((detail, idx) => (
                           <div key={idx} className="flex items-start gap-2">
                             <CheckCircle2 className="w-3 h-3 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-xs text-slate-700 dark:text-slate-300">{detail}</span>
+                            <span className="text-xs text-slate-700 dark:text-slate-300">
+                              {detail}
+                            </span>
                           </div>
                         ))}
                       </div>
@@ -254,7 +254,7 @@ const SystemFlowDiagram = () => {
                       <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-600">
                         <div className="grid grid-cols-2 gap-2">
                           {step.channels.map((channel, idx) => (
-                            <div 
+                            <div
                               key={idx}
                               className="flex items-center gap-2 px-2 py-1 rounded-lg bg-slate-50 dark:bg-slate-600"
                             >
@@ -270,11 +270,13 @@ const SystemFlowDiagram = () => {
 
                     {/* Step indicator */}
                     <div className="absolute top-3 right-3">
-                      <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                        isActive 
-                          ? 'bg-blue-500 text-white' 
-                          : 'bg-slate-200 dark:bg-slate-600 text-slate-600 dark:text-slate-300'
-                      }`}>
+                      <div
+                        className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                          isActive
+                            ? 'bg-blue-500 text-white'
+                            : 'bg-slate-200 dark:bg-slate-600 text-slate-600 dark:text-slate-300'
+                        }`}
+                      >
                         {idx + 1}
                       </div>
                     </div>
@@ -292,8 +294,8 @@ const SystemFlowDiagram = () => {
               <button
                 onClick={() => setActiveStep(step.id)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  activeStep === step.id 
-                    ? 'bg-blue-500 w-8' 
+                  activeStep === step.id
+                    ? 'bg-blue-500 w-8'
                     : 'bg-slate-300 dark:bg-slate-600 hover:bg-slate-400'
                 }`}
               />

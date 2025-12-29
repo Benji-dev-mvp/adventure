@@ -20,20 +20,22 @@ const BeforeAfterCompare = ({ content }) => {
   }, [isVisible]);
 
   return (
-    <section 
+    <section
       ref={ref}
       className="relative py-24 md:py-32 bg-white dark:bg-gray-900 overflow-hidden"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5 dark:opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-          backgroundSize: '32px 32px'
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
+            backgroundSize: '32px 32px',
+          }}
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        
         {/* Header */}
         <div className="text-center mb-16 space-y-4">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary dark:text-white">
@@ -46,7 +48,6 @@ const BeforeAfterCompare = ({ content }) => {
 
         {/* Comparison Grid */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          
           {/* Before Column */}
           <ComparisonCard
             data={content.before}
@@ -80,7 +81,7 @@ const BeforeAfterCompare = ({ content }) => {
  */
 const ComparisonCard = ({ data, variant, isVisible, delay }) => {
   const isBefore = variant === 'before';
-  
+
   return (
     <div
       className={`transform transition-all duration-700 ease-out ${
@@ -88,27 +89,30 @@ const ComparisonCard = ({ data, variant, isVisible, delay }) => {
       }`}
       style={{ transitionDelay: `${delay}s` }}
     >
-      <Card className={`relative overflow-hidden border-2 ${
-        isBefore 
-          ? 'border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-900/10' 
-          : 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-900/10'
-      }`}>
+      <Card
+        className={`relative overflow-hidden border-2 ${
+          isBefore
+            ? 'border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-900/10'
+            : 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-900/10'
+        }`}
+      >
         <CardContent className="p-8 space-y-6">
-          
           {/* Header */}
           <div className="space-y-3">
-            <Badge 
+            <Badge
               className={`text-sm font-semibold ${
-                isBefore 
-                  ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300' 
+                isBefore
+                  ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300'
                   : 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300'
               }`}
             >
               {data.label}
             </Badge>
-            <h3 className={`text-2xl md:text-3xl font-bold ${
-              isBefore ? 'text-red-900 dark:text-red-200' : 'text-green-900 dark:text-green-200'
-            }`}>
+            <h3
+              className={`text-2xl md:text-3xl font-bold ${
+                isBefore ? 'text-red-900 dark:text-red-200' : 'text-green-900 dark:text-green-200'
+              }`}
+            >
               {isBefore ? data.pain : data.benefit}
             </h3>
           </div>
@@ -116,27 +120,25 @@ const ComparisonCard = ({ data, variant, isVisible, delay }) => {
           {/* Points List */}
           <ul className="space-y-4">
             {data.points.map((point, index) => (
-              <li 
+              <li
                 key={index}
                 className={`flex items-start gap-3 transition-all duration-500 ${
                   isVisible ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
                 }`}
                 style={{ transitionDelay: `${delay + 0.1 * (index + 1)}s` }}
               >
-                <div className={`mt-1 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center ${
-                  isBefore 
-                    ? 'bg-red-100 dark:bg-red-900/30' 
-                    : 'bg-green-100 dark:bg-green-900/30'
-                }`}>
+                <div
+                  className={`mt-1 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center ${
+                    isBefore ? 'bg-red-100 dark:bg-red-900/30' : 'bg-green-100 dark:bg-green-900/30'
+                  }`}
+                >
                   {isBefore ? (
                     <X className="w-3 h-3 text-red-600 dark:text-red-400" />
                   ) : (
                     <Check className="w-3 h-3 text-green-600 dark:text-green-400" />
                   )}
                 </div>
-                <span className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  {point}
-                </span>
+                <span className="text-gray-700 dark:text-gray-300 leading-relaxed">{point}</span>
               </li>
             ))}
           </ul>
@@ -159,9 +161,11 @@ const ComparisonCard = ({ data, variant, isVisible, delay }) => {
         </CardContent>
 
         {/* Decorative Corner */}
-        <div className={`absolute top-0 right-0 w-32 h-32 ${
-          isBefore ? 'bg-red-500/10' : 'bg-green-500/10'
-        } blur-3xl`} />
+        <div
+          className={`absolute top-0 right-0 w-32 h-32 ${
+            isBefore ? 'bg-red-500/10' : 'bg-green-500/10'
+          } blur-3xl`}
+        />
       </Card>
     </div>
   );
@@ -175,7 +179,7 @@ const MetricDisplay = ({ metric, isNegative, isPositive, isVisible, delay }) => 
     start: 0,
     decimals: 0,
     prefix: '',
-    suffix: ''
+    suffix: '',
   });
 
   useEffect(() => {
@@ -185,11 +189,11 @@ const MetricDisplay = ({ metric, isNegative, isPositive, isVisible, delay }) => 
   }, [isVisible, animate, delay]);
 
   return (
-    <div 
+    <div
       className={`flex items-center justify-between p-4 rounded-lg transition-all duration-500 ${
-        isNegative 
-          ? 'bg-red-100/50 dark:bg-red-900/20' 
-          : isPositive 
+        isNegative
+          ? 'bg-red-100/50 dark:bg-red-900/20'
+          : isPositive
             ? 'bg-green-100/50 dark:bg-green-900/20'
             : 'bg-gray-100 dark:bg-gray-800'
       } ${isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}
@@ -198,17 +202,17 @@ const MetricDisplay = ({ metric, isNegative, isPositive, isVisible, delay }) => 
       <div className="flex items-center gap-3">
         {isNegative && <TrendingDown className="w-5 h-5 text-red-600 dark:text-red-400" />}
         {isPositive && <TrendingUp className="w-5 h-5 text-green-600 dark:text-green-400" />}
-        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-          {metric.label}
-        </span>
+        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{metric.label}</span>
       </div>
-      <span className={`text-lg font-bold ${
-        isNegative 
-          ? 'text-red-700 dark:text-red-300' 
-          : isPositive 
-            ? 'text-green-700 dark:text-green-300'
-            : 'text-gray-900 dark:text-gray-100'
-      }`}>
+      <span
+        className={`text-lg font-bold ${
+          isNegative
+            ? 'text-red-700 dark:text-red-300'
+            : isPositive
+              ? 'text-green-700 dark:text-green-300'
+              : 'text-gray-900 dark:text-gray-100'
+        }`}
+      >
         {metric.value}
       </span>
     </div>

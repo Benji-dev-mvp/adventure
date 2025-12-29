@@ -1,6 +1,6 @@
 /**
  * useWorkspaceMetrics Hook
- * 
+ *
  * Centralized data hook for workspace charts and metrics.
  * Returns plan-specific metrics for dashboards and analytics.
  * Mock data now, ready for backend wiring.
@@ -10,7 +10,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useTenant } from '../contexts/TenantContext';
 
 // Simulate API latency for realistic loading states
-const simulateApiCall = (data, delay = 500) => 
+const simulateApiCall = (data, delay = 500) =>
   new Promise(resolve => setTimeout(() => resolve(data), delay));
 
 // ============================================================================
@@ -40,10 +40,38 @@ const STARTUP_METRICS = {
     currentReplyRate: 4,
   },
   sparklines: [
-    { id: 'meetings', label: 'Meetings/Week', value: '12', change: '+140%', trend: 'up', color: '#06b6d4' },
-    { id: 'replies', label: 'Reply Rate', value: '18%', change: '+8%', trend: 'up', color: '#8b5cf6' },
-    { id: 'pipeline', label: 'Pipeline', value: '$45K', change: '+65%', trend: 'up', color: '#10b981' },
-    { id: 'timeSaved', label: 'Hours Saved', value: '24', change: '+12hrs', trend: 'up', color: '#f97316' },
+    {
+      id: 'meetings',
+      label: 'Meetings/Week',
+      value: '12',
+      change: '+140%',
+      trend: 'up',
+      color: '#06b6d4',
+    },
+    {
+      id: 'replies',
+      label: 'Reply Rate',
+      value: '18%',
+      change: '+8%',
+      trend: 'up',
+      color: '#8b5cf6',
+    },
+    {
+      id: 'pipeline',
+      label: 'Pipeline',
+      value: '$45K',
+      change: '+65%',
+      trend: 'up',
+      color: '#10b981',
+    },
+    {
+      id: 'timeSaved',
+      label: 'Hours Saved',
+      value: '24',
+      change: '+12hrs',
+      trend: 'up',
+      color: '#f97316',
+    },
   ],
   summary: {
     totalLeads: 1200,
@@ -82,10 +110,38 @@ const MIDMARKET_METRICS = {
     currentReplyRate: 6,
   },
   sparklines: [
-    { id: 'meetings', label: 'Meetings/Week', value: '72', change: '+180%', trend: 'up', color: '#06b6d4' },
-    { id: 'replies', label: 'Reply Rate', value: '22%', change: '+12%', trend: 'up', color: '#8b5cf6' },
-    { id: 'pipeline', label: 'Pipeline', value: '$1.2M', change: '+85%', trend: 'up', color: '#10b981' },
-    { id: 'efficiency', label: 'Rep Efficiency', value: '3.2x', change: '+1.8x', trend: 'up', color: '#f97316' },
+    {
+      id: 'meetings',
+      label: 'Meetings/Week',
+      value: '72',
+      change: '+180%',
+      trend: 'up',
+      color: '#06b6d4',
+    },
+    {
+      id: 'replies',
+      label: 'Reply Rate',
+      value: '22%',
+      change: '+12%',
+      trend: 'up',
+      color: '#8b5cf6',
+    },
+    {
+      id: 'pipeline',
+      label: 'Pipeline',
+      value: '$1.2M',
+      change: '+85%',
+      trend: 'up',
+      color: '#10b981',
+    },
+    {
+      id: 'efficiency',
+      label: 'Rep Efficiency',
+      value: '3.2x',
+      change: '+1.8x',
+      trend: 'up',
+      color: '#f97316',
+    },
   ],
   summary: {
     totalLeads: 8500,
@@ -124,10 +180,38 @@ const ENTERPRISE_METRICS = {
     currentReplyRate: 8,
   },
   sparklines: [
-    { id: 'meetings', label: 'Meetings/Week', value: '380', change: '+220%', trend: 'up', color: '#06b6d4' },
-    { id: 'replies', label: 'Reply Rate', value: '28%', change: '+16%', trend: 'up', color: '#8b5cf6' },
-    { id: 'pipeline', label: 'Pipeline', value: '$8.5M', change: '+125%', trend: 'up', color: '#10b981' },
-    { id: 'compliance', label: 'Compliance Score', value: '99.2%', change: '+2.1%', trend: 'up', color: '#f97316' },
+    {
+      id: 'meetings',
+      label: 'Meetings/Week',
+      value: '380',
+      change: '+220%',
+      trend: 'up',
+      color: '#06b6d4',
+    },
+    {
+      id: 'replies',
+      label: 'Reply Rate',
+      value: '28%',
+      change: '+16%',
+      trend: 'up',
+      color: '#8b5cf6',
+    },
+    {
+      id: 'pipeline',
+      label: 'Pipeline',
+      value: '$8.5M',
+      change: '+125%',
+      trend: 'up',
+      color: '#10b981',
+    },
+    {
+      id: 'compliance',
+      label: 'Compliance Score',
+      value: '99.2%',
+      change: '+2.1%',
+      trend: 'up',
+      color: '#f97316',
+    },
   ],
   summary: {
     totalLeads: 45000,
@@ -155,7 +239,7 @@ export function useWorkspaceMetrics(options = {}) {
   const [metrics, setMetrics] = useState(null);
 
   // Determine which metrics set to use based on plan
-  const getMetricsByPlan = useCallback((planType) => {
+  const getMetricsByPlan = useCallback(planType => {
     switch (planType) {
       case 'enterprise':
         return ENTERPRISE_METRICS;
@@ -170,15 +254,15 @@ export function useWorkspaceMetrics(options = {}) {
   // Fetch metrics (simulated for now, ready for real API)
   const fetchMetrics = useCallback(async () => {
     if (tenantLoading) return;
-    
+
     setIsLoading(true);
     setError(null);
-    
+
     try {
       // TODO: Replace with actual API call
       // const response = await fetch(`/api/workspace/metrics?plan=${plan}`);
       // const data = await response.json();
-      
+
       const data = await simulateApiCall(getMetricsByPlan(plan), 300);
       setMetrics(data);
     } catch (err) {
@@ -198,15 +282,16 @@ export function useWorkspaceMetrics(options = {}) {
   // Computed values
   const computed = useMemo(() => {
     if (!metrics) return null;
-    
+
     const { summary, roiConfig } = metrics;
-    
+
     return {
       conversionRate: summary.qualifiedLeads / summary.totalLeads,
       meetingToRevenueRate: summary.pipelineValue / summary.meetingsBooked,
       automationRate: summary.avaAutomatedTasks / (summary.avaAutomatedTasks + summary.emailsSent),
-      projectedAnnualROI: roiConfig ? 
-        (roiConfig.seats * roiConfig.avgAcv * 0.3 * 12) - (roiConfig.seats * 299 * 12) : 0,
+      projectedAnnualROI: roiConfig
+        ? roiConfig.seats * roiConfig.avgAcv * 0.3 * 12 - roiConfig.seats * 299 * 12
+        : 0,
     };
   }, [metrics]);
 
@@ -243,7 +328,7 @@ export function useWorkspaceMetrics(options = {}) {
  */
 export function useSegmentCTA() {
   const { plan, isStartup, isMidmarket, isEnterprise } = useTenant();
-  
+
   const segmentContent = useMemo(() => {
     if (isEnterprise) {
       return {
@@ -272,7 +357,7 @@ export function useSegmentCTA() {
       emphasis: 'automation',
     };
   }, [plan, isStartup, isMidmarket, isEnterprise]);
-  
+
   return segmentContent;
 }
 
@@ -281,10 +366,10 @@ export function useSegmentCTA() {
  */
 export function useQuickStats() {
   const { metrics, isLoading } = useWorkspaceMetrics();
-  
+
   const quickStats = useMemo(() => {
     if (!metrics?.summary) return [];
-    
+
     const { summary } = metrics;
     return [
       { label: 'Pipeline', value: `$${(summary.pipelineValue / 1000).toFixed(0)}K`, trend: '+12%' },
@@ -292,7 +377,7 @@ export function useQuickStats() {
       { label: 'Time Saved', value: `${summary.timeSavedHours}hrs`, trend: 'This week' },
     ];
   }, [metrics]);
-  
+
   return { quickStats, isLoading };
 }
 

@@ -1,9 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  AlertTriangle, Clock, CheckCircle, 
-  ChevronRight, Flame, TrendingDown
-} from 'lucide-react';
+import { AlertTriangle, Clock, CheckCircle, ChevronRight, Flame, TrendingDown } from 'lucide-react';
 import { GlassCard, GlassCardContent, GradientText } from '../../../components/futuristic';
 
 const PRIORITY_CONFIG = {
@@ -66,9 +63,10 @@ const AgendaItem = ({ agenda, isSelected, onSelect }) => {
       animate={{ opacity: 1, x: 0 }}
       className={`
         p-4 rounded-xl border cursor-pointer transition-all
-        ${isSelected 
-          ? 'bg-white/5 border-cyan-500/30 shadow-lg shadow-cyan-500/10' 
-          : 'bg-slate-800/30 border-white/5 hover:bg-white/5 hover:border-white/10'
+        ${
+          isSelected
+            ? 'bg-white/5 border-cyan-500/30 shadow-lg shadow-cyan-500/10'
+            : 'bg-slate-800/30 border-white/5 hover:bg-white/5 hover:border-white/10'
         }
       `}
       onClick={() => onSelect(agenda)}
@@ -78,38 +76,41 @@ const AgendaItem = ({ agenda, isSelected, onSelect }) => {
           <div className={`p-1.5 rounded-lg ${priorityConfig.bg}`}>
             <PriorityIcon className={`w-3.5 h-3.5 ${priorityConfig.color}`} />
           </div>
-          <span className={`
+          <span
+            className={`
             px-2 py-0.5 rounded-full text-xs font-medium
             ${statusConfig.bg} ${statusConfig.color}
             ${statusConfig.pulse ? 'animate-pulse' : ''}
-          `}>
+          `}
+          >
             {statusConfig.label}
           </span>
         </div>
-        <ChevronRight className={`w-4 h-4 transition-colors ${isSelected ? 'text-cyan-400' : 'text-slate-600'}`} />
+        <ChevronRight
+          className={`w-4 h-4 transition-colors ${isSelected ? 'text-cyan-400' : 'text-slate-600'}`}
+        />
       </div>
 
       <h4 className={`font-medium mb-1 ${isSelected ? 'text-slate-100' : 'text-slate-300'}`}>
         {agenda.title}
       </h4>
-      
-      <p className="text-xs text-slate-500 line-clamp-2 mb-3">
-        {agenda.description}
-      </p>
+
+      <p className="text-xs text-slate-500 line-clamp-2 mb-3">{agenda.description}</p>
 
       {/* Metrics */}
       <div className="flex flex-wrap gap-2">
-        {Object.entries(agenda.metrics).slice(0, 2).map(([key, value]) => (
-          <span 
-            key={key}
-            className="px-2 py-1 bg-slate-800/50 rounded text-xs text-slate-400"
-          >
-            {key.replace(/([A-Z])/g, ' $1').trim()}: 
-            <span className={`ml-1 ${String(value).startsWith('-') ? 'text-rose-400' : String(value).startsWith('+') ? 'text-emerald-400' : 'text-slate-300'}`}>
-              {value}
+        {Object.entries(agenda.metrics)
+          .slice(0, 2)
+          .map(([key, value]) => (
+            <span key={key} className="px-2 py-1 bg-slate-800/50 rounded text-xs text-slate-400">
+              {key.replace(/([A-Z])/g, ' $1').trim()}:
+              <span
+                className={`ml-1 ${String(value).startsWith('-') ? 'text-rose-400' : String(value).startsWith('+') ? 'text-emerald-400' : 'text-slate-300'}`}
+              >
+                {value}
+              </span>
             </span>
-          </span>
-        ))}
+          ))}
       </div>
 
       {/* Resolution note for resolved items */}

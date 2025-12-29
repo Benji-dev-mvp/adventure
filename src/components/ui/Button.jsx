@@ -7,13 +7,20 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-accent-500 text-white hover:bg-accent-600 focus:ring-accent-500 shadow-sm hover:shadow-md',
-        secondary: 'bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500 shadow-sm hover:shadow-md',
-        outline: 'border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/20 focus:ring-accent-500',
-        ghost: 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-white/10 focus:ring-gray-300',
-        danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 shadow-sm hover:shadow-md',
-        success: 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 shadow-sm hover:shadow-md',
-        gradient: 'bg-gradient-purple-coral text-white hover:opacity-90 focus:ring-artisan-purple shadow-lg',
+        primary:
+          'bg-accent-500 text-white hover:bg-accent-600 focus:ring-accent-500 shadow-sm hover:shadow-md',
+        secondary:
+          'bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500 shadow-sm hover:shadow-md',
+        outline:
+          'border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/20 focus:ring-accent-500',
+        ghost:
+          'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-white/10 focus:ring-gray-300',
+        danger:
+          'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 shadow-sm hover:shadow-md',
+        success:
+          'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 shadow-sm hover:shadow-md',
+        gradient:
+          'bg-gradient-purple-coral text-white hover:opacity-90 focus:ring-artisan-purple shadow-lg',
       },
       size: {
         sm: 'text-xs px-2.5 py-1.5 h-7',

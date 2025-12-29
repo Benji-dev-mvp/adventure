@@ -4,7 +4,7 @@ from typing import Any, Callable, Dict, Optional
 
 from fastapi import Request
 
-from app.models.audit import AuditAction, AuditLog, AuditLogCreate
+from app.models.audit import AuditAction, AuditLog
 from app.models.user import User
 
 # In-memory storage for demo - replace with database in production

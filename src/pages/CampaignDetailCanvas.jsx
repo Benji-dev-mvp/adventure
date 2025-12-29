@@ -129,7 +129,8 @@ const MOCK_CAMPAIGN = {
       id: 1,
       type: 'optimization',
       title: 'Optimize send times',
-      description: 'Your audience is most responsive on Tuesdays at 10am. Consider shifting Step 3.',
+      description:
+        'Your audience is most responsive on Tuesdays at 10am. Consider shifting Step 3.',
       impact: '+15% open rate',
       priority: 'high',
     },
@@ -180,7 +181,7 @@ const statusColors = {
 
 const StepNode = ({ step, index, totalSteps, onSelect }) => {
   const Icon = stepIcons[step.type] || Mail;
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -195,45 +196,51 @@ const StepNode = ({ step, index, totalSteps, onSelect }) => {
           {step.delay}
         </div>
       )}
-      
+
       {/* Step card */}
       <div
         onClick={() => onSelect(step)}
         className={cn(
-          "relative w-48 p-4 rounded-xl border-2 cursor-pointer transition-all group",
+          'relative w-48 p-4 rounded-xl border-2 cursor-pointer transition-all group',
           step.status === 'active'
-            ? "border-accent-500 bg-accent-500/10 shadow-lg shadow-accent-500/20"
+            ? 'border-accent-500 bg-accent-500/10 shadow-lg shadow-accent-500/20'
             : step.status === 'completed'
-            ? "border-green-500/50 bg-green-500/5"
-            : "border-gray-200 dark:border-white/10 bg-white dark:bg-gray-900/50 hover:border-accent-500/50"
+              ? 'border-green-500/50 bg-green-500/5'
+              : 'border-gray-200 dark:border-white/10 bg-white dark:bg-gray-900/50 hover:border-accent-500/50'
         )}
       >
         <div className="flex items-center gap-3 mb-3">
-          <div className={cn("p-2 rounded-lg text-white", stepColors[step.type])}>
+          <div className={cn('p-2 rounded-lg text-white', stepColors[step.type])}>
             <Icon className="h-4 w-4" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{step.name}</p>
+            <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+              {step.name}
+            </p>
             <p className="text-xs text-gray-500 dark:text-gray-400 capitalize">{step.type}</p>
           </div>
         </div>
-        
+
         {/* Stats */}
         <div className="grid grid-cols-2 gap-2 text-xs">
           <div>
             <p className="text-gray-500 dark:text-gray-400">Sent</p>
-            <p className="font-medium text-gray-900 dark:text-white">{step.sent.toLocaleString()}</p>
+            <p className="font-medium text-gray-900 dark:text-white">
+              {step.sent.toLocaleString()}
+            </p>
           </div>
           {step.opened !== null && (
             <div>
               <p className="text-gray-500 dark:text-gray-400">Opened</p>
-              <p className="font-medium text-gray-900 dark:text-white">{step.opened.toLocaleString()}</p>
+              <p className="font-medium text-gray-900 dark:text-white">
+                {step.opened.toLocaleString()}
+              </p>
             </div>
           )}
         </div>
-        
+
         {/* Status indicator */}
-        <div className={cn("absolute -top-2 -right-2", statusColors[step.status])}>
+        <div className={cn('absolute -top-2 -right-2', statusColors[step.status])}>
           {step.status === 'completed' && <CheckCircle2 className="h-5 w-5" />}
           {step.status === 'active' && (
             <div className="relative">
@@ -243,7 +250,7 @@ const StepNode = ({ step, index, totalSteps, onSelect }) => {
           )}
           {step.status === 'pending' && <Clock className="h-5 w-5" />}
         </div>
-        
+
         {/* Hover actions */}
         <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity">
           <div className="flex gap-2">
@@ -256,7 +263,7 @@ const StepNode = ({ step, index, totalSteps, onSelect }) => {
           </div>
         </div>
       </div>
-      
+
       {/* Connector */}
       {index < totalSteps - 1 && (
         <div className="flex flex-col items-center my-2">
@@ -277,7 +284,7 @@ const AISuggestionCard = ({ suggestion, onApply }) => {
   };
 
   return (
-    <div className={cn("p-4 rounded-xl border", priorityColors[suggestion.priority])}>
+    <div className={cn('p-4 rounded-xl border', priorityColors[suggestion.priority])}>
       <div className="flex items-start gap-3">
         <div className="p-2 bg-accent-500/10 rounded-lg shrink-0">
           <Sparkles className="h-4 w-4 text-accent-500" />
@@ -286,7 +293,9 @@ const AISuggestionCard = ({ suggestion, onApply }) => {
           <p className="text-sm font-medium text-gray-900 dark:text-white">{suggestion.title}</p>
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{suggestion.description}</p>
           <div className="flex items-center gap-2 mt-2">
-            <Badge variant="success" size="sm">{suggestion.impact}</Badge>
+            <Badge variant="success" size="sm">
+              {suggestion.impact}
+            </Badge>
             <Badge variant={suggestion.priority === 'high' ? 'danger' : 'secondary'} size="sm">
               {suggestion.priority} priority
             </Badge>
@@ -310,7 +319,7 @@ const CampaignDetailCanvas = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [selectedStep, setSelectedStep] = useState(null);
-  
+
   const campaign = MOCK_CAMPAIGN;
 
   return (
@@ -325,7 +334,7 @@ const CampaignDetailCanvas = () => {
             <ArrowLeft className="h-4 w-4" />
             Back to Campaigns
           </button>
-          
+
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-2">
               <Badge variant={campaign.status === 'active' ? 'success' : 'secondary'}>
@@ -335,7 +344,7 @@ const CampaignDetailCanvas = () => {
             <h1 className="text-xl font-bold text-gray-900 dark:text-white">{campaign.name}</h1>
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{campaign.segment}</p>
           </div>
-          
+
           <div className="space-y-4 mb-6">
             <div className="flex items-center justify-between text-sm">
               <span className="text-gray-500 dark:text-gray-400">Owner</span>
@@ -350,13 +359,15 @@ const CampaignDetailCanvas = () => {
               <span className="text-gray-900 dark:text-white">{campaign.endDate}</span>
             </div>
           </div>
-          
+
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Performance</h3>
-            
+
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-gray-50 dark:bg-white/5 rounded-lg p-3">
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">{campaign.stats.totalLeads.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {campaign.stats.totalLeads.toLocaleString()}
+                </p>
                 <p className="text-xs text-gray-500 dark:text-gray-400">Total Leads</p>
               </div>
               <div className="bg-gray-50 dark:bg-white/5 rounded-lg p-3">
@@ -373,7 +384,7 @@ const CampaignDetailCanvas = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="flex gap-2 mt-6">
             <Button variant="outline" className="flex-1">
               <Pause className="h-4 w-4 mr-2" />
@@ -398,17 +409,19 @@ const CampaignDetailCanvas = () => {
                 Edit Flow
               </Button>
             </div>
-            
+
             {/* Start Node */}
             <div className="flex flex-col items-center mb-4">
               <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white mb-2">
                 <Play className="h-5 w-5" />
               </div>
               <p className="text-sm font-medium text-gray-900 dark:text-white">Start</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">{campaign.stats.totalLeads.toLocaleString()} leads</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                {campaign.stats.totalLeads.toLocaleString()} leads
+              </p>
               <div className="w-0.5 h-6 bg-gray-200 dark:bg-white/10 mt-2" />
             </div>
-            
+
             {/* Steps */}
             {campaign.steps.map((step, index) => (
               <StepNode
@@ -419,7 +432,7 @@ const CampaignDetailCanvas = () => {
                 onSelect={setSelectedStep}
               />
             ))}
-            
+
             {/* End Node */}
             <div className="flex flex-col items-center mt-4">
               <div className="w-0.5 h-6 bg-gray-200 dark:bg-white/10 mb-2" />
@@ -428,7 +441,7 @@ const CampaignDetailCanvas = () => {
               </div>
               <p className="text-sm font-medium text-gray-900 dark:text-white mt-2">End</p>
             </div>
-            
+
             {/* Branches */}
             {campaign.branches.length > 0 && (
               <div className="mt-8 p-4 bg-white dark:bg-gray-900/50 rounded-xl border border-gray-200 dark:border-white/10">
@@ -437,12 +450,14 @@ const CampaignDetailCanvas = () => {
                   Conditional Branches
                 </h3>
                 <div className="space-y-2">
-                  {campaign.branches.map((branch) => (
+                  {campaign.branches.map(branch => (
                     <div key={branch.id} className="flex items-center gap-3 text-sm">
                       <AlertCircle className="h-4 w-4 text-amber-500 shrink-0" />
                       <span className="text-gray-600 dark:text-gray-400">{branch.condition}</span>
                       <ArrowRight className="h-4 w-4 text-gray-400" />
-                      <span className="text-gray-900 dark:text-white font-medium">{branch.nextStep}</span>
+                      <span className="text-gray-900 dark:text-white font-medium">
+                        {branch.nextStep}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -462,17 +477,17 @@ const CampaignDetailCanvas = () => {
               <p className="text-xs text-gray-500 dark:text-gray-400">Powered by Ava</p>
             </div>
           </div>
-          
+
           <div className="space-y-4">
-            {campaign.aiSuggestions.map((suggestion) => (
+            {campaign.aiSuggestions.map(suggestion => (
               <AISuggestionCard
                 key={suggestion.id}
                 suggestion={suggestion}
-                onApply={(s) => console.log('Apply suggestion:', s)}
+                onApply={s => console.log('Apply suggestion:', s)}
               />
             ))}
           </div>
-          
+
           <div className="mt-6 p-4 bg-gradient-to-br from-accent-500/10 to-primary-500/10 rounded-xl border border-accent-500/20">
             <div className="flex items-center gap-2 mb-2">
               <MessageSquare className="h-4 w-4 text-accent-500" />

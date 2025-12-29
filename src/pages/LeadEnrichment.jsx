@@ -3,8 +3,22 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '../components/ui/Dialog';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/Select';
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '../components/ui/Dialog';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/Select';
 import { Sparkles, Database, CheckCircle2, Loader2, Download } from 'lucide-react';
 
 const LeadEnrichment = () => {
@@ -14,15 +28,48 @@ const LeadEnrichment = () => {
   const [progress, setProgress] = useState(0);
 
   const sources = [
-    { id: 'linkedin', name: 'LinkedIn', fields: ['Title', 'Company', 'Location', 'Experience'], cost: '$0.50/lead' },
-    { id: 'clearbit', name: 'Clearbit', fields: ['Company Size', 'Industry', 'Revenue', 'Tech Stack'], cost: '$0.75/lead' },
-    { id: 'hunter', name: 'Hunter.io', fields: ['Email', 'Phone', 'Social Profiles'], cost: '$0.25/lead' },
+    {
+      id: 'linkedin',
+      name: 'LinkedIn',
+      fields: ['Title', 'Company', 'Location', 'Experience'],
+      cost: '$0.50/lead',
+    },
+    {
+      id: 'clearbit',
+      name: 'Clearbit',
+      fields: ['Company Size', 'Industry', 'Revenue', 'Tech Stack'],
+      cost: '$0.75/lead',
+    },
+    {
+      id: 'hunter',
+      name: 'Hunter.io',
+      fields: ['Email', 'Phone', 'Social Profiles'],
+      cost: '$0.25/lead',
+    },
   ];
 
   const [leads, setLeads] = useState([
-    { id: 1, name: 'Sarah Chen', company: 'TechCorp', email: 's.chen@techcorp.com', enriched: false },
-    { id: 2, name: 'Michael Rodriguez', company: 'Growth Inc', email: 'm.rodriguez@growth.com', enriched: false },
-    { id: 3, name: 'Emily Watson', company: 'Enterprise Systems', email: 'e.watson@enterprise.com', enriched: false },
+    {
+      id: 1,
+      name: 'Sarah Chen',
+      company: 'TechCorp',
+      email: 's.chen@techcorp.com',
+      enriched: false,
+    },
+    {
+      id: 2,
+      name: 'Michael Rodriguez',
+      company: 'Growth Inc',
+      email: 'm.rodriguez@growth.com',
+      enriched: false,
+    },
+    {
+      id: 3,
+      name: 'Emily Watson',
+      company: 'Enterprise Systems',
+      email: 'e.watson@enterprise.com',
+      enriched: false,
+    },
   ]);
 
   const handleEnrich = () => {
@@ -42,7 +89,10 @@ const LeadEnrichment = () => {
   };
 
   return (
-    <DashboardLayout title="AI Lead Enrichment" subtitle="Enrich leads with data from multiple sources">
+    <DashboardLayout
+      title="AI Lead Enrichment"
+      subtitle="Enrich leads with data from multiple sources"
+    >
       <div className="max-w-4xl mx-auto">
         <Card>
           <CardHeader>
@@ -55,12 +105,12 @@ const LeadEnrichment = () => {
                 <h3 className="font-semibold">Select Data Source</h3>
                 <div className="grid gap-4">
                   {sources.map(source => (
-                    <div 
+                    <div
                       key={source.id}
                       onClick={() => setSelectedSource(source.id)}
                       className={`p-4 border-2 rounded-xl cursor-pointer transition-all ${
-                        selectedSource === source.id 
-                          ? 'border-accent-500 bg-accent-50 dark:bg-accent-500/10' 
+                        selectedSource === source.id
+                          ? 'border-accent-500 bg-accent-50 dark:bg-accent-500/10'
                           : 'border-gray-200 dark:border-white/10 hover:border-accent-300'
                       }`}
                     >
@@ -87,13 +137,19 @@ const LeadEnrichment = () => {
                   {leads.map(lead => (
                     <div key={lead.id} className="p-3 border rounded-lg">
                       <p className="font-semibold">{lead.name}</p>
-                      <p className="text-sm text-gray-600">{lead.company} • {lead.email}</p>
+                      <p className="text-sm text-gray-600">
+                        {lead.company} • {lead.email}
+                      </p>
                     </div>
                   ))}
                 </div>
                 <div className="flex gap-2">
-                  <Button variant="outline" onClick={() => setStep(1)}>Back</Button>
-                  <Button onClick={() => setStep(3)} className="flex-1">Preview Data</Button>
+                  <Button variant="outline" onClick={() => setStep(1)}>
+                    Back
+                  </Button>
+                  <Button onClick={() => setStep(3)} className="flex-1">
+                    Preview Data
+                  </Button>
                 </div>
               </div>
             )}
@@ -103,8 +159,12 @@ const LeadEnrichment = () => {
                 <h3 className="font-semibold">Confirm & Enrich</h3>
                 {!enriching && progress === 0 && (
                   <div className="p-4 bg-blue-50 dark:bg-blue-500/10 rounded-lg">
-                    <p className="text-sm">Ready to enrich {leads.length} leads using {selectedSource}</p>
-                    <p className="text-xs text-gray-600 mt-1">Estimated cost: ${(leads.length * 0.50).toFixed(2)}</p>
+                    <p className="text-sm">
+                      Ready to enrich {leads.length} leads using {selectedSource}
+                    </p>
+                    <p className="text-xs text-gray-600 mt-1">
+                      Estimated cost: ${(leads.length * 0.5).toFixed(2)}
+                    </p>
                   </div>
                 )}
                 {enriching && (
@@ -114,7 +174,10 @@ const LeadEnrichment = () => {
                       <span>Enriching {leads.length} leads...</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div className="bg-accent-500 h-2 rounded-full transition-all" style={{ width: `${progress}%` }} />
+                      <div
+                        className="bg-accent-500 h-2 rounded-full transition-all"
+                        style={{ width: `${progress}%` }}
+                      />
                     </div>
                   </div>
                 )}
@@ -127,7 +190,9 @@ const LeadEnrichment = () => {
                 <div className="flex gap-2">
                   {!enriching && progress === 0 && (
                     <>
-                      <Button variant="outline" onClick={() => setStep(2)}>Back</Button>
+                      <Button variant="outline" onClick={() => setStep(2)}>
+                        Back
+                      </Button>
                       <Button onClick={handleEnrich} variant="gradient" className="flex-1">
                         <Sparkles className="w-4 h-4 mr-2" />
                         Start Enrichment

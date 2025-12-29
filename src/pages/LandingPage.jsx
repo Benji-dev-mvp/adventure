@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
-import { 
+import {
   Sparkles,
   CheckCircle2,
   ArrowRight,
@@ -29,14 +29,14 @@ import EnterpriseSecurityHub from '../components/features/EnterpriseSecurityHub'
 import UnifiedCTA from '../components/features/UnifiedCTA';
 
 // Futuristic components
-import { 
+import {
   GlassCard,
   GlassCardContent,
-  StatCard, 
+  StatCard,
   FeatureCard,
-  GlowButton, 
+  GlowButton,
   GlowButtonOutline,
-  GradientText, 
+  GradientText,
   GlowText,
   RevealText,
   CountUpText,
@@ -58,7 +58,8 @@ const LandingPage = () => {
     {
       icon: ShieldCheck,
       title: 'Governed AI BDR',
-      description: 'Policy-driven sending, approvals, and human-in-the-loop safeguards out of the box.',
+      description:
+        'Policy-driven sending, approvals, and human-in-the-loop safeguards out of the box.',
       highlights: ['Policy-based sequences', 'DLP and PII scrubbing', 'Approvals before sends'],
     },
     {
@@ -70,7 +71,8 @@ const LandingPage = () => {
     {
       icon: Server,
       title: 'Scale & Reliability',
-      description: 'Multi-region infrastructure, deliverability protection, and SLAs for enterprise workloads.',
+      description:
+        'Multi-region infrastructure, deliverability protection, and SLAs for enterprise workloads.',
       highlights: ['US/EU data residency', '99.95% uptime SLA', 'Adaptive sending guardrails'],
     },
     {
@@ -89,7 +91,11 @@ const LandingPage = () => {
     },
     {
       title: 'Identity, access, approvals',
-      points: ['SSO/SAML, SCIM provisioning', 'Role-based access + approvals', 'Audit logs for every touchpoint'],
+      points: [
+        'SSO/SAML, SCIM provisioning',
+        'Role-based access + approvals',
+        'Audit logs for every touchpoint',
+      ],
       icon: Lock,
     },
     {
@@ -146,9 +152,7 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen bg-[#030712]">
       {/* Announcement Banner */}
-      {showBanner && (
-        <AnnouncementBanner onClose={() => setShowBanner(false)} />
-      )}
+      {showBanner && <AnnouncementBanner onClose={() => setShowBanner(false)} />}
 
       {/* Navigation */}
       <LandingHeader />
@@ -166,7 +170,9 @@ const LandingPage = () => {
               <RevealText key={index} delay={index * 100}>
                 <GlassCard variant="default" hover glow glowColor="cyan" className="text-center">
                   <div className="text-4xl font-bold mb-2 font-space-grotesk">
-                    <GradientText gradient="cyber" animate>{stat.value}</GradientText>
+                    <GradientText gradient="cyber" animate>
+                      {stat.value}
+                    </GradientText>
                   </div>
                   <div className="text-purple-200">{stat.label}</div>
                 </GlassCard>
@@ -180,7 +186,7 @@ const LandingPage = () => {
       <AITour />
 
       {/* ===== NEW UNIFIED DATA-DRIVEN SECTIONS ===== */}
-      
+
       {/* Data Flow Visualization - Replaces Architecture in Action, Interactive Flow, Campaign Simulator */}
       <DataFlowVisualization />
 
@@ -208,18 +214,21 @@ const LandingPage = () => {
       {/* Enterprise Platform Highlights - Simplified */}
       <section id="platform" className="py-20 px-6 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
-        
+
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="flex flex-col gap-4 mb-12">
-              <p className="text-sm font-semibold text-cyan-400 uppercase tracking-wide">Enterprise-ready from day one</p>
+              <p className="text-sm font-semibold text-cyan-400 uppercase tracking-wide">
+                Enterprise-ready from day one
+              </p>
               <h2 className="text-4xl md:text-5xl font-bold leading-tight font-space-grotesk">
                 <GradientText gradient="cyber">
                   The operating system for compliant, AI-led outbound
                 </GradientText>
               </h2>
               <p className="text-lg text-gray-300 max-w-4xl">
-                Replace fragmented tooling with governed automation, enterprise identity, and live controls your security and revenue leaders agree on.
+                Replace fragmented tooling with governed automation, enterprise identity, and live
+                controls your security and revenue leaders agree on.
               </p>
             </div>
           </RevealText>
@@ -237,7 +246,7 @@ const LandingPage = () => {
                     className="h-full"
                   >
                     <ul className="space-y-2 text-sm text-gray-400 mt-4">
-                      {pillar.highlights.map((item) => (
+                      {pillar.highlights.map(item => (
                         <li key={item} className="flex items-center gap-2">
                           <span className="h-2 w-2 rounded-full bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.6)]" />
                           <span>{item}</span>
@@ -257,23 +266,23 @@ const LandingPage = () => {
       {/* Pricing */}
       <section id="pricing" className="py-20 px-6 relative overflow-hidden bg-[#030712]">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
-        
+
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold mb-4 font-space-grotesk">
-                <GradientText gradient="aurora" animate>Simple, Transparent Pricing</GradientText>
+                <GradientText gradient="aurora" animate>
+                  Simple, Transparent Pricing
+                </GradientText>
               </h2>
-              <p className="text-xl text-gray-300">
-                Start free, scale as you grow
-              </p>
+              <p className="text-xl text-gray-300">Start free, scale as you grow</p>
             </div>
           </RevealText>
 
           <div className="grid md:grid-cols-3 gap-8">
             {pricingPlans.map((plan, index) => (
               <RevealText key={index} delay={index * 150}>
-                <GlassCard 
+                <GlassCard
                   variant={plan.popular ? 'gradient' : 'default'}
                   hover
                   tilt={plan.popular}
@@ -283,10 +292,10 @@ const LandingPage = () => {
                 >
                   <GlassCardContent className="p-8">
                     {plan.popular && (
-                      <GlassCard 
-                        variant="neon" 
-                        padding="px-4 py-1.5" 
-                        radius="full" 
+                      <GlassCard
+                        variant="neon"
+                        padding="px-4 py-1.5"
+                        radius="full"
                         className="inline-flex mb-4"
                         glow
                         glowColor="purple"
@@ -294,7 +303,9 @@ const LandingPage = () => {
                         <span className="text-sm font-semibold text-white">Most Popular</span>
                       </GlassCard>
                     )}
-                    <h3 className="text-2xl font-bold text-white mb-2 font-space-grotesk">{plan.name}</h3>
+                    <h3 className="text-2xl font-bold text-white mb-2 font-space-grotesk">
+                      {plan.name}
+                    </h3>
                     <div className="mb-4">
                       <span className="text-4xl font-bold">
                         <GradientText gradient="cyber">{plan.price}</GradientText>
@@ -316,7 +327,10 @@ const LandingPage = () => {
                     <ul className="space-y-3">
                       {plan.features.map((feature, fIndex) => (
                         <li key={fIndex} className="flex items-start gap-2">
-                          <CheckCircle2 size={20} className="text-emerald-400 flex-shrink-0 mt-0.5 drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]" />
+                          <CheckCircle2
+                            size={20}
+                            className="text-emerald-400 flex-shrink-0 mt-0.5 drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]"
+                          />
                           <span className="text-gray-200">{feature}</span>
                         </li>
                       ))}
@@ -337,14 +351,14 @@ const LandingPage = () => {
         {/* Subtle gradient orb */}
         <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-gradient-radial from-purple-900/20 to-transparent blur-3xl pointer-events-none" />
         <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-gradient-radial from-cyan-900/10 to-transparent blur-3xl pointer-events-none" />
-        
+
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <GlassCard 
-                  variant="neon" 
-                  padding="p-2" 
+                <GlassCard
+                  variant="neon"
+                  padding="p-2"
                   radius="lg"
                   glow
                   glowColor="purple"
@@ -357,11 +371,11 @@ const LandingPage = () => {
                 </span>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                AI-powered outbound sales automation for modern teams. 
-                Automate 80% of your outbound workflow.
+                AI-powered outbound sales automation for modern teams. Automate 80% of your outbound
+                workflow.
               </p>
               <div className="flex gap-3 mt-6">
-                {['Twitter', 'LinkedIn', 'GitHub'].map((social) => (
+                {['Twitter', 'LinkedIn', 'GitHub'].map(social => (
                   <GlassCard
                     key={social}
                     as="a"
@@ -372,61 +386,131 @@ const LandingPage = () => {
                     radius="lg"
                     className="w-10 h-10 flex items-center justify-center transition-all duration-300 group"
                   >
-                    <span className="text-sm font-semibold text-gray-400 group-hover:text-cyan-400 transition-colors">{social[0]}</span>
+                    <span className="text-sm font-semibold text-gray-400 group-hover:text-cyan-400 transition-colors">
+                      {social[0]}
+                    </span>
                   </GlassCard>
                 ))}
               </div>
             </div>
-            
+
             <div>
               <h4 className="font-bold mb-4 text-lg font-space-grotesk">
                 <GradientText gradient="cyber">Product</GradientText>
               </h4>
               <ul className="space-y-3 text-sm text-gray-400">
-                <li><a href="#features" className="hover:text-cyan-400 transition-colors">Features</a></li>
-                <li><a href="#pricing" className="hover:text-cyan-400 transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Integrations</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">API</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Changelog</a></li>
+                <li>
+                  <a href="#features" className="hover:text-cyan-400 transition-colors">
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a href="#pricing" className="hover:text-cyan-400 transition-colors">
+                    Pricing
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-cyan-400 transition-colors">
+                    Integrations
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-cyan-400 transition-colors">
+                    API
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-cyan-400 transition-colors">
+                    Changelog
+                  </a>
+                </li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="font-bold mb-4 text-lg font-space-grotesk">
                 <GradientText gradient="cyber">Company</GradientText>
               </h4>
               <ul className="space-y-3 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Press</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Contact</a></li>
+                <li>
+                  <a href="#" className="hover:text-cyan-400 transition-colors">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-cyan-400 transition-colors">
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-cyan-400 transition-colors">
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-cyan-400 transition-colors">
+                    Press
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-cyan-400 transition-colors">
+                    Contact
+                  </a>
+                </li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="font-bold mb-4 text-lg font-space-grotesk">
                 <GradientText gradient="cyber">Legal</GradientText>
               </h4>
               <ul className="space-y-3 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Security</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">GDPR</a></li>
-                <li><a href="#" className="hover:text-cyan-400 transition-colors">Compliance</a></li>
+                <li>
+                  <a href="#" className="hover:text-cyan-400 transition-colors">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-cyan-400 transition-colors">
+                    Terms of Service
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-cyan-400 transition-colors">
+                    Security
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-cyan-400 transition-colors">
+                    GDPR
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-cyan-400 transition-colors">
+                    Compliance
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
-          
-          <GlassCard variant="default" radius="none" className="border-t border-white/10 border-x-0 border-b-0 bg-transparent backdrop-blur-none">
+
+          <GlassCard
+            variant="default"
+            radius="none"
+            className="border-t border-white/10 border-x-0 border-b-0 bg-transparent backdrop-blur-none"
+          >
             <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="text-sm text-gray-400">
-                © 2025 Artisan. All rights reserved.
-              </div>
+              <div className="text-sm text-gray-400">© 2025 Artisan. All rights reserved.</div>
               <div className="flex gap-6 text-sm text-gray-400">
-                <a href="#" className="hover:text-cyan-400 transition-colors">Status</a>
-                <a href="#" className="hover:text-cyan-400 transition-colors">Sitemap</a>
-                <a href="#" className="hover:text-cyan-400 transition-colors">Cookie Settings</a>
+                <a href="#" className="hover:text-cyan-400 transition-colors">
+                  Status
+                </a>
+                <a href="#" className="hover:text-cyan-400 transition-colors">
+                  Sitemap
+                </a>
+                <a href="#" className="hover:text-cyan-400 transition-colors">
+                  Cookie Settings
+                </a>
               </div>
             </div>
           </GlassCard>

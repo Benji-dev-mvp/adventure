@@ -4,10 +4,9 @@ Advanced validation utilities for enterprise-grade input validation
 
 import re
 from datetime import datetime
-from enum import Enum
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, EmailStr, Field, HttpUrl, validator
+from pydantic import BaseModel, EmailStr, Field, validator
 
 
 class ValidationError(Exception):

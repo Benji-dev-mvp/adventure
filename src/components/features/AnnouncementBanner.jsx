@@ -9,10 +9,7 @@ const AnnouncementBanner = ({ onClose }) => {
         <span className="text-xl">🎉</span>
         <p className="flex gap-1 text-sm font-bold">
           We've raised a $25M Series A.
-          <a 
-            href="#funding" 
-            className="flex gap-1 items-center font-medium hover:underline group"
-          >
+          <a href="#funding" className="flex gap-1 items-center font-medium hover:underline group">
             Read more
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </a>

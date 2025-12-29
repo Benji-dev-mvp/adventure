@@ -7,7 +7,9 @@ import { Loader2 } from 'lucide-react';
  * Node-based workflow builder
  */
 
-const OrchestratorCanvas = lazy(() => import('@/workflow/OrchestratorCanvas').then(m => ({ default: m.OrchestratorCanvas })));
+const OrchestratorCanvas = lazy(() =>
+  import('@/workflow/OrchestratorCanvas').then(m => ({ default: m.OrchestratorCanvas }))
+);
 
 const PageLoader = () => (
   <div className="h-screen w-full flex items-center justify-center bg-gray-950">

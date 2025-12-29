@@ -51,19 +51,14 @@ export function VirtualizedList<T>({
     getScrollElement: () => parentRef.current,
     estimateSize: () => estimateSize + gap,
     overscan,
-    getItemKey: getItemKey
-      ? (index) => getItemKey(items[index], index)
-      : undefined,
+    getItemKey: getItemKey ? index => getItemKey(items[index], index) : undefined,
   });
 
   const virtualItems = virtualizer.getVirtualItems();
 
   if (isLoading) {
     return (
-      <div
-        className={cn('flex items-center justify-center', className)}
-        style={{ height }}
-      >
+      <div className={cn('flex items-center justify-center', className)} style={{ height }}>
         {loadingPlaceholder || (
           <div className="flex flex-col items-center gap-3">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
@@ -76,21 +71,14 @@ export function VirtualizedList<T>({
 
   if (items.length === 0 && emptyState) {
     return (
-      <div
-        className={cn('flex items-center justify-center', className)}
-        style={{ height }}
-      >
+      <div className={cn('flex items-center justify-center', className)} style={{ height }}>
         {emptyState}
       </div>
     );
   }
 
   return (
-    <div
-      ref={parentRef}
-      className={cn('overflow-auto', className)}
-      style={{ height }}
-    >
+    <div ref={parentRef} className={cn('overflow-auto', className)} style={{ height }}>
       <div
         style={{
           height: `${virtualizer.getTotalSize()}px`,
@@ -98,7 +86,7 @@ export function VirtualizedList<T>({
           position: 'relative',
         }}
       >
-        {virtualItems.map((virtualRow) => (
+        {virtualItems.map(virtualRow => (
           <div
             key={virtualRow.key}
             data-index={virtualRow.index}
@@ -164,21 +152,14 @@ export function VirtualizedGrid<T>({
 
   if (items.length === 0 && emptyState) {
     return (
-      <div
-        className={cn('flex items-center justify-center', className)}
-        style={{ height }}
-      >
+      <div className={cn('flex items-center justify-center', className)} style={{ height }}>
         {emptyState}
       </div>
     );
   }
 
   return (
-    <div
-      ref={parentRef}
-      className={cn('overflow-auto', className)}
-      style={{ height }}
-    >
+    <div ref={parentRef} className={cn('overflow-auto', className)} style={{ height }}>
       <div
         style={{
           height: `${virtualizer.getTotalSize()}px`,
@@ -186,7 +167,7 @@ export function VirtualizedGrid<T>({
           position: 'relative',
         }}
       >
-        {virtualRows.map((virtualRow) => {
+        {virtualRows.map(virtualRow => {
           const startIndex = virtualRow.index * columns;
           const endIndex = Math.min(startIndex + columns, items.length);
           const rowItems = items.slice(startIndex, endIndex);
@@ -253,10 +234,7 @@ export function useInfiniteVirtualList<T>({
   // Check if we need to fetch more
   const lastItem = virtualItems[virtualItems.length - 1];
   const shouldFetch =
-    lastItem &&
-    lastItem.index >= items.length - 1 &&
-    hasNextPage &&
-    !isFetchingNextPage;
+    lastItem && lastItem.index >= items.length - 1 && hasNextPage && !isFetchingNextPage;
 
   // Fetch more when we reach the end
   React.useEffect(() => {

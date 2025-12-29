@@ -1,6 +1,6 @@
 /**
  * AI Decisions Console
- * 
+ *
  * Enterprise admin page for AI governance and explainability:
  * - View all autonomous AI decisions with explanations
  * - Risk ratings and confidence scores
@@ -15,10 +15,10 @@ import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { AIDecisionCard } from '../components/enterprise';
 import { useReducedMotion } from '../hooks/useMotion';
-import { 
-  Brain, 
-  Search, 
-  Filter, 
+import {
+  Brain,
+  Search,
+  Filter,
   Download,
   AlertTriangle,
   CheckCircle,
@@ -32,7 +32,7 @@ import {
   Zap,
   ThumbsUp,
   ThumbsDown,
-  MessageSquare
+  MessageSquare,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent, GradientText } from '../components/futuristic';
 
@@ -47,15 +47,16 @@ const MOCK_AI_DECISIONS = [
     decision: 'Qualified',
     confidence: 0.94,
     risk: 'low',
-    explanation: 'Lead matches ICP criteria: Enterprise company (5000+ employees), correct industry (SaaS), budget signals detected in recent 10-K filing, and engagement score of 85%.',
+    explanation:
+      'Lead matches ICP criteria: Enterprise company (5000+ employees), correct industry (SaaS), budget signals detected in recent 10-K filing, and engagement score of 85%.',
     factors: [
       { name: 'Company Size', score: 0.95, positive: true },
       { name: 'Industry Match', score: 0.92, positive: true },
       { name: 'Budget Signals', score: 0.88, positive: true },
-      { name: 'Engagement', score: 0.85, positive: true }
+      { name: 'Engagement', score: 0.85, positive: true },
     ],
     overridden: false,
-    approvedBy: null
+    approvedBy: null,
   },
   {
     id: 'dec-002',
@@ -66,14 +67,15 @@ const MOCK_AI_DECISIONS = [
     decision: 'Sent',
     confidence: 0.89,
     risk: 'medium',
-    explanation: 'Follow-up email automatically sent based on optimal timing prediction (Tuesday 10:15 AM recipient timezone) and positive engagement signals from previous touchpoint.',
+    explanation:
+      'Follow-up email automatically sent based on optimal timing prediction (Tuesday 10:15 AM recipient timezone) and positive engagement signals from previous touchpoint.',
     factors: [
       { name: 'Timing Optimization', score: 0.91, positive: true },
       { name: 'Previous Engagement', score: 0.87, positive: true },
-      { name: 'Subject Line A/B', score: 0.84, positive: true }
+      { name: 'Subject Line A/B', score: 0.84, positive: true },
     ],
     overridden: false,
-    approvedBy: null
+    approvedBy: null,
   },
   {
     id: 'dec-003',
@@ -84,14 +86,15 @@ const MOCK_AI_DECISIONS = [
     decision: 'Disqualified',
     confidence: 0.87,
     risk: 'high',
-    explanation: 'Lead disqualified due to company size (under 50 employees), recent layoff signals, and email bounced after enrichment attempt.',
+    explanation:
+      'Lead disqualified due to company size (under 50 employees), recent layoff signals, and email bounced after enrichment attempt.',
     factors: [
       { name: 'Company Size', score: 0.12, positive: false },
       { name: 'Financial Signals', score: 0.25, positive: false },
-      { name: 'Email Validity', score: 0.0, positive: false }
+      { name: 'Email Validity', score: 0.0, positive: false },
     ],
     overridden: true,
-    approvedBy: 'Sarah Chen'
+    approvedBy: 'Sarah Chen',
   },
   {
     id: 'dec-004',
@@ -102,14 +105,15 @@ const MOCK_AI_DECISIONS = [
     decision: 'Interested - Schedule Meeting',
     confidence: 0.96,
     risk: 'low',
-    explanation: 'Reply sentiment analysis indicates strong positive intent. Keywords detected: "interested", "schedule a call", "next week". Auto-tagged for SDR follow-up.',
+    explanation:
+      'Reply sentiment analysis indicates strong positive intent. Keywords detected: "interested", "schedule a call", "next week". Auto-tagged for SDR follow-up.',
     factors: [
       { name: 'Sentiment Score', score: 0.98, positive: true },
       { name: 'Intent Keywords', score: 0.95, positive: true },
-      { name: 'Response Time', score: 0.92, positive: true }
+      { name: 'Response Time', score: 0.92, positive: true },
     ],
     overridden: false,
-    approvedBy: null
+    approvedBy: null,
   },
   {
     id: 'dec-005',
@@ -120,21 +124,22 @@ const MOCK_AI_DECISIONS = [
     decision: 'Paused',
     confidence: 0.78,
     risk: 'high',
-    explanation: 'Campaign auto-paused due to bounce rate exceeding 5% threshold (current: 7.2%). Recommended action: Review email list quality before resuming.',
+    explanation:
+      'Campaign auto-paused due to bounce rate exceeding 5% threshold (current: 7.2%). Recommended action: Review email list quality before resuming.',
     factors: [
       { name: 'Bounce Rate', score: 0.28, positive: false },
       { name: 'Spam Reports', score: 0.65, positive: true },
-      { name: 'Domain Health', score: 0.72, positive: true }
+      { name: 'Domain Health', score: 0.72, positive: true },
     ],
     overridden: false,
-    approvedBy: null
-  }
+    approvedBy: null,
+  },
 ];
 
 const RISK_COLORS = {
   low: { bg: 'bg-green-500/10', border: 'border-green-500/30', text: 'text-green-400' },
   medium: { bg: 'bg-amber-500/10', border: 'border-amber-500/30', text: 'text-amber-400' },
-  high: { bg: 'bg-red-500/10', border: 'border-red-500/30', text: 'text-red-400' }
+  high: { bg: 'bg-red-500/10', border: 'border-red-500/30', text: 'text-red-400' },
 };
 
 const ACTION_TYPES = [
@@ -159,17 +164,17 @@ const AdminAIDecisions = () => {
     return MOCK_AI_DECISIONS.filter(d => {
       if (searchQuery) {
         const query = searchQuery.toLowerCase();
-        const matches = 
+        const matches =
           d.resource.name.toLowerCase().includes(query) ||
           d.decision.toLowerCase().includes(query) ||
           d.explanation.toLowerCase().includes(query);
         if (!matches) return false;
       }
-      
+
       if (selectedAction !== 'all' && d.action !== selectedAction) return false;
       if (selectedRisk !== 'all' && d.risk !== selectedRisk) return false;
       if (showOverriddenOnly && !d.overridden) return false;
-      
+
       return true;
     });
   }, [searchQuery, selectedAction, selectedRisk, showOverriddenOnly]);
@@ -182,11 +187,14 @@ const AdminAIDecisions = () => {
       mediumRisk: MOCK_AI_DECISIONS.filter(d => d.risk === 'medium').length,
       highRisk: MOCK_AI_DECISIONS.filter(d => d.risk === 'high').length,
       overridden: MOCK_AI_DECISIONS.filter(d => d.overridden).length,
-      avgConfidence: Math.round(MOCK_AI_DECISIONS.reduce((acc, d) => acc + d.confidence, 0) / MOCK_AI_DECISIONS.length * 100)
+      avgConfidence: Math.round(
+        (MOCK_AI_DECISIONS.reduce((acc, d) => acc + d.confidence, 0) / MOCK_AI_DECISIONS.length) *
+          100
+      ),
     };
   }, []);
 
-  const handleOverride = (decision) => {
+  const handleOverride = decision => {
     console.log('Override decision:', decision.id);
     // Would open override modal
   };
@@ -213,7 +221,7 @@ const AdminAIDecisions = () => {
               Monitor, explain, and override autonomous AI decisions
             </p>
           </div>
-          
+
           <div className="flex items-center gap-3">
             <Button variant="outline" size="sm" className="gap-2" onClick={handleExport}>
               <Download className="h-4 w-4" />
@@ -287,7 +295,7 @@ const AdminAIDecisions = () => {
                     type="text"
                     placeholder="Search decisions..."
                     value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={e => setSearchQuery(e.target.value)}
                     className="w-full pl-10 pr-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder:text-slate-500 focus:outline-none focus:border-purple-500"
                   />
                 </div>
@@ -296,17 +304,19 @@ const AdminAIDecisions = () => {
                 <div className="flex items-center gap-3 flex-wrap">
                   <select
                     value={selectedAction}
-                    onChange={(e) => setSelectedAction(e.target.value)}
+                    onChange={e => setSelectedAction(e.target.value)}
                     className="px-3 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-purple-500"
                   >
                     {ACTION_TYPES.map(a => (
-                      <option key={a.value} value={a.value}>{a.label}</option>
+                      <option key={a.value} value={a.value}>
+                        {a.label}
+                      </option>
                     ))}
                   </select>
 
                   <select
                     value={selectedRisk}
-                    onChange={(e) => setSelectedRisk(e.target.value)}
+                    onChange={e => setSelectedRisk(e.target.value)}
                     className="px-3 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-purple-500"
                   >
                     <option value="all">All Risks</option>
@@ -319,7 +329,7 @@ const AdminAIDecisions = () => {
                     <input
                       type="checkbox"
                       checked={showOverriddenOnly}
-                      onChange={(e) => setShowOverriddenOnly(e.target.checked)}
+                      onChange={e => setShowOverriddenOnly(e.target.checked)}
                       className="rounded border-slate-600 bg-slate-800 text-purple-500 focus:ring-purple-500"
                     />
                     Overridden Only
@@ -344,8 +354,8 @@ const AdminAIDecisions = () => {
               animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * index }}
             >
-              <AIDecisionCard 
-                decision={decision} 
+              <AIDecisionCard
+                decision={decision}
                 onOverride={() => handleOverride(decision)}
                 onViewDetails={() => setSelectedDecision(decision)}
               />
@@ -357,9 +367,7 @@ const AdminAIDecisions = () => {
               <GlassCardContent className="p-12 text-center">
                 <Brain className="h-12 w-12 mx-auto mb-4 text-slate-600" />
                 <h3 className="text-lg font-semibold text-white mb-2">No Decisions Found</h3>
-                <p className="text-slate-400">
-                  No AI decisions match your current filters.
-                </p>
+                <p className="text-slate-400">No AI decisions match your current filters.</p>
               </GlassCardContent>
             </GlassCard>
           )}
@@ -376,11 +384,15 @@ const AdminAIDecisions = () => {
             <div>
               <h4 className="font-semibold text-purple-400 mb-1">AI Governance</h4>
               <p className="text-sm text-slate-300">
-                All AI decisions are logged for compliance. High-risk decisions trigger human review alerts. 
-                Configure AI autonomy levels and approval workflows in{' '}
-                <a href="/admin/ai-policies" className="text-purple-400 hover:text-purple-300 underline">
+                All AI decisions are logged for compliance. High-risk decisions trigger human review
+                alerts. Configure AI autonomy levels and approval workflows in{' '}
+                <a
+                  href="/admin/ai-policies"
+                  className="text-purple-400 hover:text-purple-300 underline"
+                >
                   AI Policies
-                </a>.
+                </a>
+                .
               </p>
             </div>
           </div>

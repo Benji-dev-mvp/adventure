@@ -20,7 +20,7 @@ export const Modal = ({ isOpen, onClose, children, className, size = 'md' }) => 
         tabIndex={0}
         className="fixed inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
-        onKeyDown={(e) => {
+        onKeyDown={e => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             onClose();
@@ -45,12 +45,17 @@ Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   children: PropTypes.node,
   className: PropTypes.string,
-  size: PropTypes.oneOf(['sm', 'md', 'lg', 'xl'])
+  size: PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
 };
 
 export const ModalHeader = ({ children, onClose, className }) => {
   return (
-    <div className={cn('flex items-center justify-between p-6 border-b border-gray-100 dark:border-white/10', className)}>
+    <div
+      className={cn(
+        'flex items-center justify-between p-6 border-b border-gray-100 dark:border-white/10',
+        className
+      )}
+    >
       <div className="flex-1">{children}</div>
       {onClose && (
         <button
@@ -73,16 +78,17 @@ export const ModalTitle = ({ children, className }) => {
 };
 
 export const ModalContent = ({ children, className }) => {
-  return (
-    <div className={cn('p-6', className)}>
-      {children}
-    </div>
-  );
+  return <div className={cn('p-6', className)}>{children}</div>;
 };
 
 export const ModalFooter = ({ children, className }) => {
   return (
-    <div className={cn('flex items-center justify-end gap-3 p-6 border-t border-gray-100 dark:border-white/10', className)}>
+    <div
+      className={cn(
+        'flex items-center justify-end gap-3 p-6 border-t border-gray-100 dark:border-white/10',
+        className
+      )}
+    >
       {children}
     </div>
   );
@@ -91,20 +97,20 @@ export const ModalFooter = ({ children, className }) => {
 ModalHeader.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 ModalTitle.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 ModalContent.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 ModalFooter.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
 };

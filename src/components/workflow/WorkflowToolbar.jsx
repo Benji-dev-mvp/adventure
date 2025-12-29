@@ -1,22 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { 
-  Plus, 
-  Save, 
-  Play, 
-  LayoutGrid, 
-  Undo2, 
+import {
+  Plus,
+  Save,
+  Play,
+  LayoutGrid,
+  Undo2,
   Redo2,
   Download,
   Upload,
   Settings,
-  Loader2
+  Loader2,
 } from 'lucide-react';
 
-const WorkflowToolbar = ({ 
-  onAddNode, 
-  onSave, 
-  onExecute, 
+const WorkflowToolbar = ({
+  onAddNode,
+  onSave,
+  onExecute,
   onAutoLayout,
   onUndo,
   onRedo,
@@ -85,7 +85,7 @@ const WorkflowToolbar = ({
       >
         <Download className="w-4 h-4 text-gray-600 dark:text-gray-400" />
       </button>
-      
+
       {!readOnly && (
         <button
           onClick={onImport}
@@ -121,9 +121,7 @@ const WorkflowToolbar = ({
         onClick={onExecute}
         disabled={isExecuting || nodeCount === 0}
         className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors text-sm font-medium ${
-          isExecuting
-            ? 'bg-orange-500 text-white'
-            : 'bg-green-500 text-white hover:bg-green-600'
+          isExecuting ? 'bg-orange-500 text-white' : 'bg-green-500 text-white hover:bg-green-600'
         } disabled:opacity-50 disabled:cursor-not-allowed`}
       >
         {isExecuting ? (

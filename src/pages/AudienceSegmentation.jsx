@@ -3,13 +3,17 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/Select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/Select';
 import { Plus, X, Users, Save } from 'lucide-react';
 
 const AudienceSegmentation = () => {
-  const [rules, setRules] = useState([
-    { id: 1, field: 'score', operator: 'gte', value: '70' }
-  ]);
+  const [rules, setRules] = useState([{ id: 1, field: 'score', operator: 'gte', value: '70' }]);
   const [matchCount, setMatchCount] = useState(187);
   const [segmentName, setSegmentName] = useState('High Score Leads');
 
@@ -17,22 +21,25 @@ const AudienceSegmentation = () => {
     setRules([...rules, { id: Date.now(), field: 'industry', operator: 'equals', value: '' }]);
   };
 
-  const removeRule = (id) => {
+  const removeRule = id => {
     setRules(rules.filter(r => r.id !== id));
   };
 
   const updateRule = (id, key, value) => {
-    setRules(rules.map(r => r.id === id ? { ...r, [key]: value } : r));
+    setRules(rules.map(r => (r.id === id ? { ...r, [key]: value } : r)));
   };
 
   const savedSegments = [
     { name: 'Enterprise Tech', count: 432, rules: 3 },
     { name: 'SMB Healthcare', count: 189, rules: 4 },
-    { name: 'Hot Leads', count: 67, rules: 2 }
+    { name: 'Hot Leads', count: 67, rules: 2 },
   ];
 
   return (
-    <DashboardLayout title="Audience Segmentation" subtitle="Build smart segments with advanced filters">
+    <DashboardLayout
+      title="Audience Segmentation"
+      subtitle="Build smart segments with advanced filters"
+    >
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Builder */}
         <Card className="lg:col-span-2">
@@ -45,7 +52,7 @@ const AudienceSegmentation = () => {
               <input
                 type="text"
                 value={segmentName}
-                onChange={(e) => setSegmentName(e.target.value)}
+                onChange={e => setSegmentName(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-white dark:bg-gray-800"
                 placeholder="e.g. Enterprise Tech Leads"
               />
@@ -61,15 +68,16 @@ const AudienceSegmentation = () => {
               </div>
 
               {rules.map((rule, index) => (
-                <div key={rule.id} className="p-4 border border-gray-200 dark:border-white/10 rounded-lg space-y-2">
-                  {index > 0 && (
-                    <div className="text-sm font-medium text-gray-600 mb-2">AND</div>
-                  )}
+                <div
+                  key={rule.id}
+                  className="p-4 border border-gray-200 dark:border-white/10 rounded-lg space-y-2"
+                >
+                  {index > 0 && <div className="text-sm font-medium text-gray-600 mb-2">AND</div>}
                   <div className="grid grid-cols-12 gap-2">
                     <div className="col-span-4">
                       <select
                         value={rule.field}
-                        onChange={(e) => updateRule(rule.id, 'field', e.target.value)}
+                        onChange={e => updateRule(rule.id, 'field', e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-white dark:bg-gray-800 text-sm"
                       >
                         <option value="score">Lead Score</option>
@@ -82,7 +90,7 @@ const AudienceSegmentation = () => {
                     <div className="col-span-3">
                       <select
                         value={rule.operator}
-                        onChange={(e) => updateRule(rule.id, 'operator', e.target.value)}
+                        onChange={e => updateRule(rule.id, 'operator', e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-white dark:bg-gray-800 text-sm"
                       >
                         <option value="equals">Equals</option>
@@ -95,7 +103,7 @@ const AudienceSegmentation = () => {
                       <input
                         type="text"
                         value={rule.value}
-                        onChange={(e) => updateRule(rule.id, 'value', e.target.value)}
+                        onChange={e => updateRule(rule.id, 'value', e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-white dark:bg-gray-800 text-sm"
                         placeholder="Value"
                       />
@@ -118,7 +126,9 @@ const AudienceSegmentation = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-900 dark:text-white">Live Preview</p>
-                  <p className="text-xs text-gray-600 dark:text-gray-400">Matching leads in database</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">
+                    Matching leads in database
+                  </p>
                 </div>
                 <div className="text-right">
                   <p className="text-3xl font-bold text-blue-600">{matchCount}</p>
@@ -142,10 +152,15 @@ const AudienceSegmentation = () => {
           <CardContent>
             <div className="space-y-3">
               {savedSegments.map((segment, i) => (
-                <div key={i} className="p-3 border border-gray-200 dark:border-white/10 rounded-lg hover:border-accent-500 cursor-pointer transition-colors">
+                <div
+                  key={i}
+                  className="p-3 border border-gray-200 dark:border-white/10 rounded-lg hover:border-accent-500 cursor-pointer transition-colors"
+                >
                   <div className="flex justify-between items-start mb-2">
                     <p className="font-semibold text-sm">{segment.name}</p>
-                    <Badge variant="secondary" size="sm">{segment.rules} rules</Badge>
+                    <Badge variant="secondary" size="sm">
+                      {segment.rules} rules
+                    </Badge>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                     <Users className="w-4 h-4" />

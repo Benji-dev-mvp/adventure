@@ -22,36 +22,33 @@ const AIAgentShowcase = ({ content }) => {
   };
 
   return (
-    <section 
+    <section
       ref={ref}
       className="relative py-24 md:py-32 bg-gradient-to-br from-primary via-primary-600 to-accent dark:from-primary-900 dark:via-gray-900 dark:to-accent-900 overflow-hidden"
     >
       {/* Animated Background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: '1s' }}
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        
         {/* Header */}
         <div className="text-center mb-16 space-y-4">
           <Badge className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 text-white border border-white/20">
             <Sparkles className="w-4 h-4" />
             AI-Powered
           </Badge>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-            {content.title}
-          </h2>
-          <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto">
-            {content.subtitle}
-          </p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">{content.title}</h2>
+          <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto">{content.subtitle}</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          
           {/* Left: Persona Card */}
-          <div 
+          <div
             className={`transition-all duration-700 ${
               isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
             }`}
@@ -60,14 +57,14 @@ const AIAgentShowcase = ({ content }) => {
           </div>
 
           {/* Right: Capabilities */}
-          <div 
+          <div
             className={`space-y-6 transition-all duration-700 delay-200 ${
               isVisible ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
             }`}
           >
             {content.capabilities.map((capability, index) => (
-              <CapabilityCard 
-                key={index} 
+              <CapabilityCard
+                key={index}
                 capability={capability}
                 index={index}
                 isVisible={isVisible}
@@ -97,7 +94,6 @@ const PersonaCard = ({ persona }) => {
   return (
     <Card className="bg-white dark:bg-gray-900 shadow-2xl border-2 border-white/20 overflow-hidden sticky top-24">
       <CardContent className="p-8 space-y-6">
-        
         {/* Avatar Section */}
         <div className="flex items-center gap-6">
           <div className="relative">
@@ -109,21 +105,15 @@ const PersonaCard = ({ persona }) => {
             </div>
           </div>
           <div>
-            <h3 className="text-2xl font-bold text-primary dark:text-white">
-              {persona.name}
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300">
-              {persona.role}
-            </p>
+            <h3 className="text-2xl font-bold text-primary dark:text-white">{persona.name}</h3>
+            <p className="text-gray-600 dark:text-gray-300">{persona.role}</p>
           </div>
         </div>
 
         {/* Quote */}
         <blockquote className="relative">
           <div className="absolute -top-2 -left-2 text-6xl text-accent/20 font-serif">"</div>
-          <p className="text-xl italic text-gray-700 dark:text-gray-300 pl-8">
-            {persona.quote}
-          </p>
+          <p className="text-xl italic text-gray-700 dark:text-gray-300 pl-8">{persona.quote}</p>
         </blockquote>
 
         {/* Stats */}
@@ -152,7 +142,7 @@ const PersonaCard = ({ persona }) => {
  */
 const CapabilityCard = ({ capability, index, isVisible }) => {
   return (
-    <Card 
+    <Card
       className={`bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
       }`}
@@ -161,16 +151,12 @@ const CapabilityCard = ({ capability, index, isVisible }) => {
       <CardContent className="p-6 space-y-3">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
-            <h4 className="text-lg font-bold text-white mb-2">
-              {capability.title}
-            </h4>
-            <p className="text-white/80 leading-relaxed">
-              {capability.description}
-            </p>
+            <h4 className="text-lg font-bold text-white mb-2">{capability.title}</h4>
+            <p className="text-white/80 leading-relaxed">{capability.description}</p>
           </div>
           <Brain className="w-8 h-8 text-accent flex-shrink-0" />
         </div>
-        
+
         {/* Metric */}
         <div className="pt-3 border-t border-white/10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full">
@@ -190,17 +176,11 @@ const InteractiveDemo = ({ content, showInteractive, isGenerating, onTryIt }) =>
   return (
     <Card className="bg-white dark:bg-gray-900 shadow-2xl border-2 border-white/20 overflow-hidden">
       <CardContent className="p-8 space-y-6">
-        
         {/* Header */}
         <div className="flex items-center justify-between">
-          <h4 className="text-2xl font-bold text-primary dark:text-white">
-            {content.title}
-          </h4>
+          <h4 className="text-2xl font-bold text-primary dark:text-white">{content.title}</h4>
           {!showInteractive && (
-            <Button 
-              onClick={onTryIt}
-              className="bg-accent hover:bg-accent-600 text-white"
-            >
+            <Button onClick={onTryIt} className="bg-accent hover:bg-accent-600 text-white">
               Try it now
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
@@ -225,7 +205,11 @@ const InteractiveDemo = ({ content, showInteractive, isGenerating, onTryIt }) =>
                   </div>
                   <div className="space-y-2">
                     {[1, 2, 3].map(i => (
-                      <div key={i} className="h-3 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" style={{ width: `${100 - i * 15}%` }} />
+                      <div
+                        key={i}
+                        className="h-3 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"
+                        style={{ width: `${100 - i * 15}%` }}
+                      />
                     ))}
                   </div>
                 </div>

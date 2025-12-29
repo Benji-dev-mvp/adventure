@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
-import { 
-  CheckSquare, 
-  Mail, 
-  Tag, 
-  UserPlus, 
-  Trash2, 
+import {
+  CheckSquare,
+  Mail,
+  Tag,
+  UserPlus,
+  Trash2,
   Download,
   Archive,
   Star,
-  Send
+  Send,
 } from 'lucide-react';
 
 export const BulkActions = ({ selectedLeads = [], onAction }) => {
@@ -76,7 +76,7 @@ export const BulkActions = ({ selectedLeads = [], onAction }) => {
     },
   ];
 
-  const handleAction = async (actionId) => {
+  const handleAction = async actionId => {
     setIsProcessing(true);
     await new Promise(resolve => setTimeout(resolve, 500));
     onAction?.(actionId, selectedLeads);
@@ -102,7 +102,7 @@ export const BulkActions = ({ selectedLeads = [], onAction }) => {
               </p>
             </div>
           </div>
-          
+
           <Button
             variant="ghost"
             size="sm"
@@ -114,7 +114,7 @@ export const BulkActions = ({ selectedLeads = [], onAction }) => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-4">
-          {actions.map((action) => {
+          {actions.map(action => {
             const Icon = action.icon;
             return (
               <button
@@ -126,9 +126,7 @@ export const BulkActions = ({ selectedLeads = [], onAction }) => {
                 }`}
               >
                 <Icon className={action.color} size={16} />
-                <span className={`text-sm font-medium ${action.color}`}>
-                  {action.label}
-                </span>
+                <span className={`text-sm font-medium ${action.color}`}>{action.label}</span>
               </button>
             );
           })}

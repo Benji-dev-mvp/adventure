@@ -1,9 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Bot, Phone, PhoneOff, Mic, MicOff,
-  Volume2, VolumeX, Video, VideoOff
-} from 'lucide-react';
+import { Bot, Phone, PhoneOff, Mic, MicOff, Volume2, VolumeX, Video, VideoOff } from 'lucide-react';
 import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 import { Button } from '../../../components/ui/Button';
 
@@ -20,7 +17,7 @@ const AvatarVisualization = ({ status, isPlaying }) => {
   return (
     <div className="relative flex items-center justify-center h-64">
       {/* Background rings */}
-      {[1, 2, 3].map((ring) => (
+      {[1, 2, 3].map(ring => (
         <motion.div
           key={ring}
           className="absolute rounded-full border border-cyan-500/20"
@@ -28,10 +25,14 @@ const AvatarVisualization = ({ status, isPlaying }) => {
             width: `${ring * 60 + 80}px`,
             height: `${ring * 60 + 80}px`,
           }}
-          animate={isPlaying ? {
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.1, 0.3],
-          } : {}}
+          animate={
+            isPlaying
+              ? {
+                  scale: [1, 1.1, 1],
+                  opacity: [0.3, 0.1, 0.3],
+                }
+              : {}
+          }
           transition={{
             duration: 2,
             repeat: Infinity,
@@ -43,13 +44,17 @@ const AvatarVisualization = ({ status, isPlaying }) => {
       {/* Avatar circle */}
       <motion.div
         className="relative w-32 h-32 rounded-full bg-gradient-to-br from-cyan-500/30 to-purple-500/30 flex items-center justify-center border border-cyan-500/30"
-        animate={isPlaying ? {
-          boxShadow: [
-            '0 0 20px rgba(6, 182, 212, 0.2)',
-            '0 0 40px rgba(6, 182, 212, 0.4)',
-            '0 0 20px rgba(6, 182, 212, 0.2)',
-          ],
-        } : {}}
+        animate={
+          isPlaying
+            ? {
+                boxShadow: [
+                  '0 0 20px rgba(6, 182, 212, 0.2)',
+                  '0 0 40px rgba(6, 182, 212, 0.4)',
+                  '0 0 20px rgba(6, 182, 212, 0.2)',
+                ],
+              }
+            : {}
+        }
         transition={{ duration: 1.5, repeat: Infinity }}
       >
         <Bot className="w-16 h-16 text-cyan-400" />
@@ -57,7 +62,7 @@ const AvatarVisualization = ({ status, isPlaying }) => {
         {/* Speaking indicator */}
         {isPlaying && (
           <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-end gap-0.5 h-4">
-            {[1, 2, 3, 4, 5].map((bar) => (
+            {[1, 2, 3, 4, 5].map(bar => (
               <motion.div
                 key={bar}
                 className="w-1 bg-cyan-400 rounded-full"
@@ -77,19 +82,28 @@ const AvatarVisualization = ({ status, isPlaying }) => {
 
       {/* Status indicator */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
-        <div className={`
+        <div
+          className={`
           flex items-center gap-2 px-3 py-1.5 rounded-full
           ${STATUS_CONFIG[status].bg}
-        `}>
-          <div className={`
+        `}
+        >
+          <div
+            className={`
             w-2 h-2 rounded-full ${STATUS_CONFIG[status].color.replace('text-', 'bg-')}
             ${STATUS_CONFIG[status].pulse ? 'animate-pulse' : ''}
-          `} />
+          `}
+          />
           <span className={`text-sm font-medium ${STATUS_CONFIG[status].color}`}>
-            {status === 'idle' ? 'Ready' :
-             status === 'connecting' ? 'Connecting...' :
-             status === 'in-call' ? 'In Call' :
-             status === 'scheduling' ? 'Scheduling' : 'Call Ended'}
+            {status === 'idle'
+              ? 'Ready'
+              : status === 'connecting'
+                ? 'Connecting...'
+                : status === 'in-call'
+                  ? 'In Call'
+                  : status === 'scheduling'
+                    ? 'Scheduling'
+                    : 'Call Ended'}
           </span>
         </div>
       </div>
@@ -102,10 +116,7 @@ const CallControls = ({ status, isPlaying, onStart, onEnd, onPause, onResume }) 
   return (
     <div className="flex items-center justify-center gap-4">
       {status === 'idle' || status === 'ended' ? (
-        <Button 
-          onClick={onStart}
-          className="bg-gradient-to-r from-emerald-500 to-cyan-500 px-8"
-        >
+        <Button onClick={onStart} className="bg-gradient-to-r from-emerald-500 to-cyan-500 px-8">
           <Phone className="w-4 h-4 mr-2" />
           Start Call
         </Button>
@@ -117,18 +128,15 @@ const CallControls = ({ status, isPlaying, onStart, onEnd, onPause, onResume }) 
           <Button variant="outline" size="icon" className="w-12 h-12 rounded-full">
             <Volume2 className="w-5 h-5" />
           </Button>
-          <Button 
-            onClick={onEnd}
-            className="w-14 h-14 rounded-full bg-rose-500 hover:bg-rose-600"
-          >
+          <Button onClick={onEnd} className="w-14 h-14 rounded-full bg-rose-500 hover:bg-rose-600">
             <PhoneOff className="w-6 h-6" />
           </Button>
           <Button variant="outline" size="icon" className="w-12 h-12 rounded-full">
             <Video className="w-5 h-5" />
           </Button>
-          <Button 
-            variant="outline" 
-            size="icon" 
+          <Button
+            variant="outline"
+            size="icon"
             className="w-12 h-12 rounded-full"
             onClick={isPlaying ? onPause : onResume}
           >
@@ -147,15 +155,15 @@ const CallControls = ({ status, isPlaying, onStart, onEnd, onPause, onResume }) 
   );
 };
 
-export function AvatarPanel({ 
-  status, 
-  isPlaying, 
+export function AvatarPanel({
+  status,
+  isPlaying,
   formattedDuration,
   callInfo,
-  onStart, 
+  onStart,
   onEnd,
   onPause,
-  onResume 
+  onResume,
 }) {
   return (
     <GlassCard variant="gradient" className="h-full">
@@ -165,7 +173,10 @@ export function AvatarPanel({
           <div className="flex items-center gap-3 mb-4 pb-4 border-b border-white/5">
             <div className="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center">
               <span className="text-sm font-medium text-slate-300">
-                {callInfo.prospect.name.split(' ').map(n => n[0]).join('')}
+                {callInfo.prospect.name
+                  .split(' ')
+                  .map(n => n[0])
+                  .join('')}
               </span>
             </div>
             <div className="flex-1">
@@ -189,7 +200,7 @@ export function AvatarPanel({
 
         {/* Controls */}
         <div className="pt-6">
-          <CallControls 
+          <CallControls
             status={status}
             isPlaying={isPlaying}
             onStart={onStart}

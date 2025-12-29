@@ -14,15 +14,9 @@ from mem0 import Memory, MemoryClient
 from .memory_models import (
     RETENTION_CONFIG,
     BaseMemory,
-    CampaignResultMemory,
-    ChatConversationMemory,
-    EmailThreadMemory,
-    LeadInteractionMemory,
-    MeetingSummaryMemory,
     MemoryNamespace,
     MemoryType,
     PIIRedactor,
-    RetentionPolicy,
 )
 
 logger = logging.getLogger(__name__)

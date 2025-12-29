@@ -1,7 +1,6 @@
-// @ts-nocheck
 /**
  * Base Agent Class
- * 
+ *
  * Foundation for all autonomous agents with common capabilities:
  * - Task execution lifecycle
  * - Memory management
@@ -56,11 +55,7 @@ export abstract class BaseAgent implements Agent {
   private messageHandlers: Map<string, (msg: AgentMessage) => void> = new Map();
   private messageQueue: AgentMessage[] = [];
 
-  constructor(
-    role: AgentRole,
-    name: string,
-    config: Partial<AgentConfig> = {}
-  ) {
+  constructor(role: AgentRole, name: string, config: Partial<AgentConfig> = {}) {
     this.id = `agent_${role}_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     this.role = role;
     this.name = name;
@@ -112,7 +107,7 @@ export abstract class BaseAgent implements Agent {
    */
   canHandle(task: Task): boolean {
     const requiredCaps = task.requirements.capabilities;
-    return requiredCaps.every(cap => 
+    return requiredCaps.every(cap =>
       this.capabilities.some(c => c.id === cap && c.skillLevel >= task.requirements.minSkillLevel)
     );
   }
@@ -123,17 +118,17 @@ export abstract class BaseAgent implements Agent {
   generateBid(task: Task): TaskBid | null {
     if (!this.canHandle(task)) return null;
 
-    const relevantCaps = this.capabilities.filter(c => 
+    const relevantCaps = this.capabilities.filter(c =>
       task.requirements.capabilities.includes(c.id)
     );
 
     // Calculate bid based on capabilities and current load
     const avgSkill = relevantCaps.reduce((a, b) => a + b.skillLevel, 0) / relevantCaps.length;
     const loadFactor = this.taskQueue.length > 0 ? 1 + this.taskQueue.length * 0.1 : 1;
-    
+
     const baseCost = relevantCaps.reduce((a, b) => a + b.cost, 0);
     const proposedCost = baseCost * loadFactor * (1 - avgSkill * 0.2);
-    
+
     const baseLatency = relevantCaps.reduce((a, b) => Math.max(a, b.latency), 0);
     const estimatedLatency = baseLatency * loadFactor;
 
@@ -154,10 +149,10 @@ export abstract class BaseAgent implements Agent {
     task.status = 'assigned';
     task.assignedAgent = this.id;
     task.timeline.assigned = new Date();
-    
+
     this.taskQueue.push(task);
     this.remember('decision', { action: 'accepted-task', taskId: task.id, taskType: task.type });
-    
+
     this.processNextTask();
   }
 
@@ -178,10 +173,10 @@ export abstract class BaseAgent implements Agent {
 
     try {
       const result = await this.executeTask(task, context);
-      
+
       const latency = Date.now() - startTime;
       this.updatePerformance(true, latency);
-      
+
       task.status = 'completed';
       task.timeline.completed = new Date();
       task.output = {
@@ -199,21 +194,20 @@ export abstract class BaseAgent implements Agent {
 
       // Learn from success
       result.learnings.forEach(l => this.addLearning(l));
-      
-      this.remember('outcome', { 
-        taskId: task.id, 
-        success: true, 
+
+      this.remember('outcome', {
+        taskId: task.id,
+        success: true,
         latency,
         result: result.output,
       });
-
     } catch (error) {
       this.updatePerformance(false, Date.now() - startTime);
       task.status = 'failed';
-      
-      this.remember('outcome', { 
-        taskId: task.id, 
-        success: false, 
+
+      this.remember('outcome', {
+        taskId: task.id,
+        success: false,
         error: error instanceof Error ? error.message : 'Unknown error',
       });
     }
@@ -252,8 +246,8 @@ export abstract class BaseAgent implements Agent {
    */
   receive(message: AgentMessage): void {
     this.messageQueue.push(message);
-    this.remember('observation', { 
-      from: message.from, 
+    this.remember('observation', {
+      from: message.from,
       type: message.type,
       payload: message.payload,
     });
@@ -292,7 +286,7 @@ export abstract class BaseAgent implements Agent {
   handoff(task: Task, targetAgentId: string, reason: string): AgentMessage {
     task.status = 'pending';
     task.assignedAgent = undefined;
-    
+
     return this.send(targetAgentId, 'handoff', {
       task,
       reason,
@@ -333,7 +327,7 @@ export abstract class BaseAgent implements Agent {
    */
   protected addLearning(pattern: string): void {
     const existing = this.memory.learnings.find(l => l.pattern === pattern);
-    
+
     if (existing) {
       existing.applications += 1;
       existing.confidence = Math.min(existing.confidence + 0.1, 1);
@@ -355,7 +349,7 @@ export abstract class BaseAgent implements Agent {
   protected recall(query: string): unknown[] {
     // Simple keyword matching - would use embeddings in production
     const keywords = query.toLowerCase().split(' ');
-    
+
     return this.memory.shortTerm
       .filter(m => {
         const content = JSON.stringify(m.content).toLowerCase();
@@ -373,24 +367,24 @@ export abstract class BaseAgent implements Agent {
    */
   private updatePerformance(success: boolean, latency: number): void {
     const p = this.performance;
-    
+
     p.tasksCompleted += 1;
     p.averageLatency = (p.averageLatency * (p.tasksCompleted - 1) + latency) / p.tasksCompleted;
-    
+
     // Exponential moving average for success rate
     const alpha = 0.1;
     p.successRate = p.successRate * (1 - alpha) + (success ? 1 : 0) * alpha;
-    
+
     // Update streak
     if (success) {
       p.streak += 1;
     } else {
       p.streak = 0;
     }
-    
+
     // Update reputation
-    p.reputationScore = (p.successRate * 0.6 + Math.min(p.streak / 10, 0.4));
-    
+    p.reputationScore = p.successRate * 0.6 + Math.min(p.streak / 10, 0.4);
+
     p.lastEvaluation = new Date();
   }
 
@@ -427,17 +421,22 @@ export abstract class BaseAgent implements Agent {
     readiness: number;
     recommendations: string[];
   } {
-    const health = this.performance.successRate * 0.6 + 
-                  (1 - Math.min(this.taskQueue.length / 10, 1)) * 0.4;
-    
+    const health =
+      this.performance.successRate * 0.6 + (1 - Math.min(this.taskQueue.length / 10, 1)) * 0.4;
+
     const capacity = Math.max(0, 1 - this.taskQueue.length / 10);
-    
-    const readiness = this.status === 'idle' ? 1 :
-                     this.status === 'working' ? 0.5 :
-                     this.status === 'waiting' ? 0.7 : 0;
+
+    const readiness =
+      this.status === 'idle'
+        ? 1
+        : this.status === 'working'
+          ? 0.5
+          : this.status === 'waiting'
+            ? 0.7
+            : 0;
 
     const recommendations: string[] = [];
-    
+
     if (this.performance.successRate < 0.7) {
       recommendations.push('Consider reducing task complexity or providing more context');
     }

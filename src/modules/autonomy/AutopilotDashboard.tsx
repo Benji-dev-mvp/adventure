@@ -55,35 +55,87 @@ const AutopilotDashboard = () => {
   ]);
 
   const [interventions, _setInterventions] = useState([
-    { id: 'i1', type: 'pause', target: 'strategy', targetId: 'strat-1', label: 'Pause Enterprise Campaign', severity: 'safe' },
-    { id: 'i2', type: 'adjust', target: 'pacing', targetId: 'pace-1', label: 'Reduce Send Volume', severity: 'safe' },
-    { id: 'i3', type: 'override', target: 'experiment', targetId: 'exp-1', label: 'End Experiment Early', severity: 'caution' },
-    { id: 'i4', type: 'rollback', target: 'model', targetId: 'model-1', label: 'Rollback Model Update', severity: 'risky' },
+    {
+      id: 'i1',
+      type: 'pause',
+      target: 'strategy',
+      targetId: 'strat-1',
+      label: 'Pause Enterprise Campaign',
+      severity: 'safe',
+    },
+    {
+      id: 'i2',
+      type: 'adjust',
+      target: 'pacing',
+      targetId: 'pace-1',
+      label: 'Reduce Send Volume',
+      severity: 'safe',
+    },
+    {
+      id: 'i3',
+      type: 'override',
+      target: 'experiment',
+      targetId: 'exp-1',
+      label: 'End Experiment Early',
+      severity: 'caution',
+    },
+    {
+      id: 'i4',
+      type: 'rollback',
+      target: 'model',
+      targetId: 'model-1',
+      label: 'Rollback Model Update',
+      severity: 'risky',
+    },
   ]);
 
   const modes = [
-    { id: 'full_auto', label: 'Full Auto', description: 'System operates independently', icon: Zap },
-    { id: 'supervised', label: 'Supervised', description: 'AI suggests, human approves', icon: Eye },
-    { id: 'suggestion_only', label: 'Suggestions', description: 'AI only provides recommendations', icon: Brain },
+    {
+      id: 'full_auto',
+      label: 'Full Auto',
+      description: 'System operates independently',
+      icon: Zap,
+    },
+    {
+      id: 'supervised',
+      label: 'Supervised',
+      description: 'AI suggests, human approves',
+      icon: Eye,
+    },
+    {
+      id: 'suggestion_only',
+      label: 'Suggestions',
+      description: 'AI only provides recommendations',
+      icon: Brain,
+    },
     { id: 'manual', label: 'Manual', description: 'Full human control', icon: Hand },
   ];
 
   const getDecisionIcon = (type: string) => {
     switch (type) {
-      case 'strategy_change': return Brain;
-      case 'experiment_launch': return Zap;
-      case 'pacing_adjustment': return Gauge;
-      case 'model_update': return RefreshCw;
-      default: return ArrowUpRight;
+      case 'strategy_change':
+        return Brain;
+      case 'experiment_launch':
+        return Zap;
+      case 'pacing_adjustment':
+        return Gauge;
+      case 'model_update':
+        return RefreshCw;
+      default:
+        return ArrowUpRight;
     }
   };
 
   const getSeverityColor = (severity: string) => {
     switch (severity) {
-      case 'safe': return 'text-green-400 bg-green-400/10 border-green-400/20 hover:bg-green-400/20';
-      case 'caution': return 'text-amber-400 bg-amber-400/10 border-amber-400/20 hover:bg-amber-400/20';
-      case 'risky': return 'text-red-400 bg-red-400/10 border-red-400/20 hover:bg-red-400/20';
-      default: return 'text-gray-400 bg-gray-400/10 border-gray-400/20';
+      case 'safe':
+        return 'text-green-400 bg-green-400/10 border-green-400/20 hover:bg-green-400/20';
+      case 'caution':
+        return 'text-amber-400 bg-amber-400/10 border-amber-400/20 hover:bg-amber-400/20';
+      case 'risky':
+        return 'text-red-400 bg-red-400/10 border-red-400/20 hover:bg-red-400/20';
+      default:
+        return 'text-gray-400 bg-gray-400/10 border-gray-400/20';
     }
   };
 
@@ -102,11 +154,11 @@ const AutopilotDashboard = () => {
       <div className="p-6 border-b border-gray-800">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${
-              isActive 
-                ? 'bg-gradient-to-br from-green-500 to-emerald-600' 
-                : 'bg-gray-700'
-            }`}>
+            <div
+              className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${
+                isActive ? 'bg-gradient-to-br from-green-500 to-emerald-600' : 'bg-gray-700'
+              }`}
+            >
               <Gauge className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -136,7 +188,7 @@ const AutopilotDashboard = () => {
 
         {/* Mode Selector */}
         <div className="grid grid-cols-4 gap-2 mt-6">
-          {modes.map((mode) => (
+          {modes.map(mode => (
             <button
               key={mode.id}
               onClick={() => setAutopilotMode(mode.id)}
@@ -179,16 +231,22 @@ const AutopilotDashboard = () => {
                     }`}
                   >
                     <div className="flex items-start gap-3">
-                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                        decision.wasOverridden ? 'bg-amber-500/10' : 'bg-violet-500/10'
-                      }`}>
-                        <DecisionIcon className={`w-4 h-4 ${
-                          decision.wasOverridden ? 'text-amber-400' : 'text-violet-400'
-                        }`} />
+                      <div
+                        className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                          decision.wasOverridden ? 'bg-amber-500/10' : 'bg-violet-500/10'
+                        }`}
+                      >
+                        <DecisionIcon
+                          className={`w-4 h-4 ${
+                            decision.wasOverridden ? 'text-amber-400' : 'text-violet-400'
+                          }`}
+                        />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="font-medium text-white text-sm">{decision.description}</span>
+                          <span className="font-medium text-white text-sm">
+                            {decision.description}
+                          </span>
                           {decision.wasOverridden && (
                             <span className="px-1.5 py-0.5 bg-amber-500/10 text-amber-400 text-xs rounded">
                               Overridden
@@ -223,7 +281,7 @@ const AutopilotDashboard = () => {
             Available Interventions
           </h3>
           <div className="space-y-3">
-            {interventions.map((intervention) => (
+            {interventions.map(intervention => (
               <motion.button
                 key={intervention.id}
                 whileHover={{ scale: 1.02 }}
@@ -253,22 +311,30 @@ const AutopilotDashboard = () => {
                 { label: 'Model Performance', value: 87, status: 'good' },
                 { label: 'Experiment Coverage', value: 78, status: 'moderate' },
                 { label: 'Pipeline Pacing', value: 65, status: 'warning' },
-              ].map((metric) => (
+              ].map(metric => (
                 <div key={metric.label}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-sm text-gray-400">{metric.label}</span>
-                    <span className={`text-sm font-medium ${
-                      metric.status === 'good' ? 'text-green-400' :
-                      metric.status === 'moderate' ? 'text-amber-400' :
-                      'text-red-400'
-                    }`}>{metric.value}%</span>
+                    <span
+                      className={`text-sm font-medium ${
+                        metric.status === 'good'
+                          ? 'text-green-400'
+                          : metric.status === 'moderate'
+                            ? 'text-amber-400'
+                            : 'text-red-400'
+                      }`}
+                    >
+                      {metric.value}%
+                    </span>
                   </div>
                   <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
                     <motion.div
                       className={`h-full rounded-full ${
-                        metric.status === 'good' ? 'bg-green-500' :
-                        metric.status === 'moderate' ? 'bg-amber-500' :
-                        'bg-red-500'
+                        metric.status === 'good'
+                          ? 'bg-green-500'
+                          : metric.status === 'moderate'
+                            ? 'bg-amber-500'
+                            : 'bg-red-500'
                       }`}
                       initial={{ width: 0 }}
                       animate={{ width: `${metric.value}%` }}

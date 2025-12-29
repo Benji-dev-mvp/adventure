@@ -1,6 +1,6 @@
 /**
  * useSegmentExperience - Centralized segment-specific experience configuration
- * 
+ *
  * Provides segment-aware configurations for:
  * - Dashboard cards and modules to display
  * - KPIs to emphasize
@@ -40,14 +40,14 @@ const SEGMENT_CONFIGS = {
     title: 'Startup Workspace',
     subtitle: 'Lean, focused automation for growing teams',
     heroMessage: 'Let AI handle your outbound so you can focus on closing deals.',
-    
+
     // Primary KPIs to show prominently
     primaryKpis: [
       { id: 'meetings', label: 'Meetings Booked', icon: Calendar, color: 'cyan' },
       { id: 'replies', label: 'Replies Received', icon: Mail, color: 'green' },
       { id: 'timeSaved', label: 'Hours Saved', icon: Clock, color: 'purple' },
     ],
-    
+
     // Modules/cards to display on dashboard
     modules: [
       { id: 'ava-status', title: 'Ava AI BDR Status', priority: 1, size: 'large' },
@@ -55,32 +55,32 @@ const SEGMENT_CONFIGS = {
       { id: 'quick-analytics', title: 'Quick Analytics', priority: 3, size: 'medium' },
       { id: 'recent-activity', title: 'Recent Activity', priority: 4, size: 'small' },
     ],
-    
+
     // Features to emphasize in nav/UI
     emphasizedFeatures: ['ava-bdr', 'campaigns', 'analytics'],
-    
+
     // Features to de-emphasize (show as locked/upgrade)
     lockedFeatures: ['enterprise-admin', 'boardroom', 'observability', 'ai-decisions'],
-    
+
     // Chart types to use
     charts: ['funnel', 'sparklines'],
-    
+
     // Color theme accent
     accentColor: 'cyan',
   },
-  
+
   midmarket: {
     title: 'Revenue Operations Hub',
     subtitle: 'Scale your pipeline with intelligent automation',
     heroMessage: 'Full-funnel visibility with AI-powered execution.',
-    
+
     primaryKpis: [
       { id: 'pipeline', label: 'Pipeline Value', icon: TrendingUp, color: 'purple' },
       { id: 'coverage', label: 'AI Coverage', icon: Cpu, color: 'blue' },
       { id: 'efficiency', label: 'Automation Rate', icon: Zap, color: 'amber' },
       { id: 'conversions', label: 'Conversion Rate', icon: Target, color: 'green' },
     ],
-    
+
     modules: [
       { id: 'pipeline-overview', title: 'Pipeline Overview', priority: 1, size: 'large' },
       { id: 'campaign-performance', title: 'Campaign Performance', priority: 2, size: 'medium' },
@@ -89,18 +89,24 @@ const SEGMENT_CONFIGS = {
       { id: 'enrichment-queue', title: 'Data Enrichment Queue', priority: 5, size: 'small' },
       { id: 'team-activity', title: 'Team Activity', priority: 6, size: 'small' },
     ],
-    
-    emphasizedFeatures: ['campaigns', 'lead-scoring', 'sales-playbooks', 'data-enrichment', 'analytics'],
+
+    emphasizedFeatures: [
+      'campaigns',
+      'lead-scoring',
+      'sales-playbooks',
+      'data-enrichment',
+      'analytics',
+    ],
     lockedFeatures: ['boardroom', 'ai-decisions', 'enterprise-readiness'],
     charts: ['funnel', 'channelMix', 'sparklines', 'roi'],
     accentColor: 'purple',
   },
-  
+
   enterprise: {
     title: 'Autonomous GTM Command Center',
     subtitle: 'Enterprise-grade AI orchestration and governance',
     heroMessage: 'Full platform control with autonomous execution and complete observability.',
-    
+
     primaryKpis: [
       { id: 'aiDecisions', label: 'AI Decisions Today', icon: Brain, color: 'amber' },
       { id: 'systemHealth', label: 'System Health', icon: Activity, color: 'green' },
@@ -108,7 +114,7 @@ const SEGMENT_CONFIGS = {
       { id: 'pipeline', label: 'Pipeline Value', icon: TrendingUp, color: 'purple' },
       { id: 'compliance', label: 'Compliance Score', icon: Shield, color: 'blue' },
     ],
-    
+
     modules: [
       { id: 'executive-summary', title: 'Executive Summary', priority: 1, size: 'full' },
       { id: 'autonomous-status', title: 'Autonomous System Status', priority: 2, size: 'large' },
@@ -119,8 +125,16 @@ const SEGMENT_CONFIGS = {
       { id: 'usage-quotas', title: 'Usage & Quotas', priority: 7, size: 'small' },
       { id: 'audit-recent', title: 'Recent Audit Events', priority: 8, size: 'small' },
     ],
-    
-    emphasizedFeatures: ['autonomy', 'autopilot', 'orchestration', 'intelligence-graph', 'boardroom', 'ai-decisions', 'observability'],
+
+    emphasizedFeatures: [
+      'autonomy',
+      'autopilot',
+      'orchestration',
+      'intelligence-graph',
+      'boardroom',
+      'ai-decisions',
+      'observability',
+    ],
     lockedFeatures: [], // Enterprise has access to everything
     charts: ['funnel', 'channelMix', 'sparklines', 'roi', 'aiVsHuman', 'systemHealth'],
     accentColor: 'amber',
@@ -168,11 +182,11 @@ const SEGMENT_DEMO_DATA = {
  */
 export function useSegmentExperience() {
   const { plan, isDemo, isAdmin, tenant } = useTenant();
-  
+
   const config = useMemo(() => {
     const segmentConfig = SEGMENT_CONFIGS[plan] || SEGMENT_CONFIGS.startup;
     const demoData = SEGMENT_DEMO_DATA[plan] || SEGMENT_DEMO_DATA.startup;
-    
+
     return {
       ...segmentConfig,
       demoData,
@@ -180,21 +194,21 @@ export function useSegmentExperience() {
       isDemo,
       isAdmin,
       tenantName: tenant?.name || 'Demo Organization',
-      
+
       // Helper to check if a feature should be emphasized
-      isEmphasized: (featureId) => segmentConfig.emphasizedFeatures.includes(featureId),
-      
+      isEmphasized: featureId => segmentConfig.emphasizedFeatures.includes(featureId),
+
       // Helper to check if a feature is locked for this plan
-      isLocked: (featureId) => segmentConfig.lockedFeatures.includes(featureId),
-      
+      isLocked: featureId => segmentConfig.lockedFeatures.includes(featureId),
+
       // Helper to get module by ID
-      getModule: (moduleId) => segmentConfig.modules.find(m => m.id === moduleId),
-      
+      getModule: moduleId => segmentConfig.modules.find(m => m.id === moduleId),
+
       // Get modules sorted by priority
       getSortedModules: () => [...segmentConfig.modules].sort((a, b) => a.priority - b.priority),
     };
   }, [plan, isDemo, isAdmin, tenant]);
-  
+
   return config;
 }
 
@@ -203,11 +217,11 @@ export function useSegmentExperience() {
  */
 export function useSegmentKpis() {
   const { plan } = useTenant();
-  
+
   return useMemo(() => {
     const config = SEGMENT_CONFIGS[plan] || SEGMENT_CONFIGS.startup;
     const demoData = SEGMENT_DEMO_DATA[plan] || SEGMENT_DEMO_DATA.startup;
-    
+
     return config.primaryKpis.map(kpi => ({
       ...kpi,
       data: demoData[kpi.id] || { value: 0, change: 0, trend: 'stable' },
@@ -220,9 +234,9 @@ export function useSegmentKpis() {
  */
 export function formatKpiValue(data) {
   if (!data) return '–';
-  
+
   const { value, format, unit } = data;
-  
+
   if (format === 'currency') {
     if (value >= 1000000) {
       return `$${(value / 1000000).toFixed(1)}M`;
@@ -232,19 +246,19 @@ export function formatKpiValue(data) {
     }
     return `$${value}`;
   }
-  
+
   if (unit === '%') {
     return `${value}%`;
   }
-  
+
   if (unit === 'hrs') {
     return `${value} hrs`;
   }
-  
+
   if (value >= 1000) {
     return `${(value / 1000).toFixed(1)}K`;
   }
-  
+
   return String(value);
 }
 

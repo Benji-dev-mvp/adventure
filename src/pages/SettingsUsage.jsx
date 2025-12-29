@@ -1,6 +1,6 @@
 /**
  * Usage & Quotas Page
- * 
+ *
  * Settings page for viewing usage metrics and plan limits:
  * - AI tokens usage
  * - Email volume
@@ -18,11 +18,11 @@ import { UsageBar } from '../components/enterprise';
 import { useUsageQuotas } from '../hooks/useEnterprise';
 import { useTenant } from '../contexts/TenantContext';
 import { useReducedMotion } from '../hooks/useMotion';
-import { 
-  BarChart3, 
-  Zap, 
-  Mail, 
-  Users, 
+import {
+  BarChart3,
+  Zap,
+  Mail,
+  Users,
   Target,
   Database,
   TrendingUp,
@@ -33,10 +33,18 @@ import {
   RefreshCw,
   Download,
   CreditCard,
-  Clock
+  Clock,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent, GradientText, GlowButton } from '../components/futuristic';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
 
 // Mock usage history
 const USAGE_HISTORY = {
@@ -51,7 +59,7 @@ const USAGE_HISTORY = {
     { date: 'Week 2', used: 6800 },
     { date: 'Week 3', used: 5500 },
     { date: 'Week 4', used: 7000 },
-  ]
+  ],
 };
 
 const SettingsUsage = () => {
@@ -75,7 +83,7 @@ const SettingsUsage = () => {
       icon: Zap,
       color: 'purple',
       description: 'GPT-4 tokens used for AI operations',
-      resetPeriod: 'Monthly'
+      resetPeriod: 'Monthly',
     },
     {
       key: 'emailsSent',
@@ -83,7 +91,7 @@ const SettingsUsage = () => {
       icon: Mail,
       color: 'cyan',
       description: 'Outbound emails sent this billing cycle',
-      resetPeriod: 'Monthly'
+      resetPeriod: 'Monthly',
     },
     {
       key: 'contactsEnriched',
@@ -91,7 +99,7 @@ const SettingsUsage = () => {
       icon: Database,
       color: 'green',
       description: 'Lead enrichment credits used',
-      resetPeriod: 'Monthly'
+      resetPeriod: 'Monthly',
     },
     {
       key: 'activeCampaigns',
@@ -99,7 +107,7 @@ const SettingsUsage = () => {
       icon: Target,
       color: 'orange',
       description: 'Concurrent active campaigns',
-      resetPeriod: 'No reset'
+      resetPeriod: 'No reset',
     },
     {
       key: 'seats',
@@ -107,14 +115,14 @@ const SettingsUsage = () => {
       icon: Users,
       color: 'blue',
       description: 'Active team member seats',
-      resetPeriod: 'No reset'
-    }
+      resetPeriod: 'No reset',
+    },
   ];
 
   const billingInfo = {
     plan: planDisplay,
     nextBilling: 'January 15, 2025',
-    amount: plan === 'enterprise' ? 'Custom' : plan === 'midmarket' ? '$999/mo' : '$299/mo'
+    amount: plan === 'enterprise' ? 'Custom' : plan === 'midmarket' ? '$999/mo' : '$299/mo',
   };
 
   return (
@@ -131,15 +139,13 @@ const SettingsUsage = () => {
               <BarChart3 className="h-7 w-7 text-cyan-400" />
               <GradientText gradient="cyber">Usage & Quotas</GradientText>
             </h1>
-            <p className="text-slate-400 mt-1">
-              Monitor your plan usage and resource consumption
-            </p>
+            <p className="text-slate-400 mt-1">Monitor your plan usage and resource consumption</p>
           </div>
-          
+
           <div className="flex items-center gap-3">
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               className="gap-2"
               onClick={handleRefresh}
               disabled={refreshing}
@@ -163,7 +169,8 @@ const SettingsUsage = () => {
             className="space-y-2"
           >
             {warnings.map((warning, i) => {
-              const metricLabel = usageMetrics.find(m => m.key === warning.key)?.label || warning.key;
+              const metricLabel =
+                usageMetrics.find(m => m.key === warning.key)?.label || warning.key;
               return (
                 <div
                   key={i}
@@ -172,13 +179,16 @@ const SettingsUsage = () => {
                   <AlertTriangle className="h-5 w-5 text-amber-400 flex-shrink-0" />
                   <div className="flex-1">
                     <span className="text-amber-200">
-                      {warning.atLimit 
-                        ? `${metricLabel} limit reached (${warning.used.toLocaleString()} / ${warning.limit.toLocaleString()})` 
-                        : `${metricLabel} usage at ${warning.percent}% (${warning.used.toLocaleString()} / ${warning.limit.toLocaleString()})`
-                      }
+                      {warning.atLimit
+                        ? `${metricLabel} limit reached (${warning.used.toLocaleString()} / ${warning.limit.toLocaleString()})`
+                        : `${metricLabel} usage at ${warning.percent}% (${warning.used.toLocaleString()} / ${warning.limit.toLocaleString()})`}
                     </span>
                   </div>
-                  <Button variant="outline" size="sm" className="text-amber-400 border-amber-500/50">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-amber-400 border-amber-500/50"
+                  >
                     Upgrade Plan
                   </Button>
                 </div>
@@ -210,7 +220,7 @@ const SettingsUsage = () => {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-3">
                   <Button variant="outline" size="sm" className="gap-2">
                     <Clock className="h-4 w-4" />
@@ -239,11 +249,11 @@ const SettingsUsage = () => {
                 {usageMetrics.map((metric, i) => {
                   const data = usage[metric.key];
                   if (!data) return null;
-                  
+
                   const Icon = metric.icon;
                   const percent = getUsagePercent(metric.key);
                   const nearLimit = isNearLimit(metric.key);
-                  
+
                   return (
                     <motion.div
                       key={metric.key}
@@ -251,8 +261,8 @@ const SettingsUsage = () => {
                       animate={prefersReducedMotion ? {} : { opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 * i }}
                       className={`p-4 rounded-lg border ${
-                        nearLimit 
-                          ? 'bg-amber-500/5 border-amber-500/30' 
+                        nearLimit
+                          ? 'bg-amber-500/5 border-amber-500/30'
                           : 'bg-slate-800/30 border-slate-700/50'
                       }`}
                     >
@@ -270,7 +280,7 @@ const SettingsUsage = () => {
                           {metric.resetPeriod}
                         </Badge>
                       </div>
-                      
+
                       <UsageBar
                         label=""
                         used={data.used}
@@ -278,15 +288,20 @@ const SettingsUsage = () => {
                         showTrend={true}
                         trend={data.trend}
                       />
-                      
+
                       <div className="flex justify-between mt-2 text-xs">
                         <span className="text-slate-400">
                           {data.used.toLocaleString()} / {data.limit.toLocaleString()}
                         </span>
-                        <span className={`font-medium ${
-                          percent >= 90 ? 'text-red-400' :
-                          percent >= 75 ? 'text-amber-400' : 'text-slate-400'
-                        }`}>
+                        <span
+                          className={`font-medium ${
+                            percent >= 90
+                              ? 'text-red-400'
+                              : percent >= 75
+                                ? 'text-amber-400'
+                                : 'text-slate-400'
+                          }`}
+                        >
                           {percent}% used
                         </span>
                       </div>
@@ -324,33 +339,36 @@ const SettingsUsage = () => {
                   ))}
                 </div>
               </div>
-              
+
               <div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={USAGE_HISTORY[selectedMetric]}>
                     <defs>
                       <linearGradient id="usageGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.3}/>
-                        <stop offset="95%" stopColor="#06b6d4" stopOpacity={0}/>
+                        <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="#06b6d4" stopOpacity={0} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                     <XAxis dataKey="date" stroke="#94a3b8" tick={{ fontSize: 12 }} />
                     <YAxis stroke="#94a3b8" tick={{ fontSize: 12 }} />
-                    <Tooltip 
-                      contentStyle={{ 
-                        backgroundColor: '#1e293b', 
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: '#1e293b',
                         border: '1px solid #334155',
-                        borderRadius: '8px'
+                        borderRadius: '8px',
                       }}
-                      formatter={(value) => [value.toLocaleString(), selectedMetric === 'aiTokens' ? 'Tokens' : 'Emails']}
+                      formatter={value => [
+                        value.toLocaleString(),
+                        selectedMetric === 'aiTokens' ? 'Tokens' : 'Emails',
+                      ]}
                     />
-                    <Area 
-                      type="monotone" 
-                      dataKey="used" 
-                      stroke="#06b6d4" 
+                    <Area
+                      type="monotone"
+                      dataKey="used"
+                      stroke="#06b6d4"
                       strokeWidth={2}
-                      fill="url(#usageGradient)" 
+                      fill="url(#usageGradient)"
                     />
                   </AreaChart>
                 </ResponsiveContainer>
@@ -370,7 +388,7 @@ const SettingsUsage = () => {
             <div>
               <h4 className="font-semibold text-cyan-400 mb-1">Need Higher Limits?</h4>
               <p className="text-sm text-slate-300">
-                Upgrade your plan to increase quotas or contact sales for custom enterprise limits. 
+                Upgrade your plan to increase quotas or contact sales for custom enterprise limits.
                 All unused credits roll over to the next billing cycle.{' '}
                 <a href="/pricing" className="text-cyan-400 hover:text-cyan-300 underline">
                   View plan comparison

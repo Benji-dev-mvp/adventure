@@ -1,8 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  CheckCircle, AlertTriangle, TrendingUp, 
-  Settings, Play, ThumbsUp, ThumbsDown, Edit3
+import {
+  CheckCircle,
+  AlertTriangle,
+  TrendingUp,
+  Settings,
+  Play,
+  ThumbsUp,
+  ThumbsDown,
+  Edit3,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent, GradientText } from '../../../components/futuristic';
 import { Button } from '../../../components/ui/Button';
@@ -46,7 +52,7 @@ export function ResolutionPanel({ resolution, selectedAgenda, loading }) {
       <GlassCard variant="subtle" className="h-full">
         <GlassCardContent className="p-6">
           <h3 className="text-lg font-semibold text-slate-100 mb-4">Resolution</h3>
-          
+
           <div className="text-center py-8">
             <div className="w-16 h-16 rounded-full bg-purple-500/10 flex items-center justify-center mx-auto mb-4">
               <div className="w-8 h-8 border-3 border-purple-500/30 border-t-purple-500 rounded-full animate-spin" />
@@ -82,7 +88,9 @@ export function ResolutionPanel({ resolution, selectedAgenda, loading }) {
       <GlassCardContent className="p-6 h-full overflow-y-auto">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-semibold text-slate-100">Resolution</h3>
-          <div className={`px-2.5 py-1 rounded-full text-xs font-medium ${riskConfig.bg} ${riskConfig.color}`}>
+          <div
+            className={`px-2.5 py-1 rounded-full text-xs font-medium ${riskConfig.bg} ${riskConfig.color}`}
+          >
             {riskConfig.label}
           </div>
         </div>
@@ -137,15 +145,21 @@ export function ResolutionPanel({ resolution, selectedAgenda, loading }) {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <ThumbsUp className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm text-slate-300">{resolution.votingResult.approve} Approve</span>
+              <span className="text-sm text-slate-300">
+                {resolution.votingResult.approve} Approve
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <Edit3 className="w-4 h-4 text-amber-400" />
-              <span className="text-sm text-slate-300">{resolution.votingResult.modify} Modify</span>
+              <span className="text-sm text-slate-300">
+                {resolution.votingResult.modify} Modify
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <ThumbsDown className="w-4 h-4 text-rose-400" />
-              <span className="text-sm text-slate-300">{resolution.votingResult.reject} Reject</span>
+              <span className="text-sm text-slate-300">
+                {resolution.votingResult.reject} Reject
+              </span>
             </div>
           </div>
         </div>

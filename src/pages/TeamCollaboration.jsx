@@ -4,9 +4,21 @@ import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card'
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs';
-import { 
-  Users, UserPlus, MessageSquare, CheckCircle, Clock, Calendar, 
-  TrendingUp, Target, Mail, Phone, Award, Zap, Settings, Bell
+import {
+  Users,
+  UserPlus,
+  MessageSquare,
+  CheckCircle,
+  Clock,
+  Calendar,
+  TrendingUp,
+  Target,
+  Mail,
+  Phone,
+  Award,
+  Zap,
+  Settings,
+  Bell,
 } from 'lucide-react';
 
 const TeamCollaboration = () => {
@@ -18,7 +30,7 @@ const TeamCollaboration = () => {
       activeLeads: 847,
       campaigns: 8,
       thisMonth: { leads: 342, meetings: 47, closed: 12 },
-      color: 'blue'
+      color: 'blue',
     },
     {
       id: 2,
@@ -27,7 +39,7 @@ const TeamCollaboration = () => {
       activeLeads: 1203,
       campaigns: 12,
       thisMonth: { leads: 589, meetings: 78, closed: 23 },
-      color: 'green'
+      color: 'green',
     },
     {
       id: 3,
@@ -36,8 +48,8 @@ const TeamCollaboration = () => {
       activeLeads: 421,
       campaigns: 5,
       thisMonth: { leads: 178, meetings: 29, closed: 8 },
-      color: 'purple'
-    }
+      color: 'purple',
+    },
   ]);
 
   const [teamMembers] = useState([
@@ -52,10 +64,10 @@ const TeamCollaboration = () => {
         leads: 124,
         meetings: 18,
         replied: 47,
-        booked: 12
+        booked: 12,
       },
       recentActivity: 'Booked meeting with Acme Corp',
-      lastActive: 'Active now'
+      lastActive: 'Active now',
     },
     {
       id: 2,
@@ -68,10 +80,10 @@ const TeamCollaboration = () => {
         leads: 89,
         meetings: 14,
         replied: 38,
-        booked: 9
+        booked: 9,
       },
       recentActivity: 'Sent follow-up sequence',
-      lastActive: '5 min ago'
+      lastActive: '5 min ago',
     },
     {
       id: 3,
@@ -84,10 +96,10 @@ const TeamCollaboration = () => {
         leads: 156,
         meetings: 24,
         replied: 61,
-        booked: 18
+        booked: 18,
       },
       recentActivity: 'Closed deal with TechCo',
-      lastActive: '1 hour ago'
+      lastActive: '1 hour ago',
     },
     {
       id: 4,
@@ -100,11 +112,11 @@ const TeamCollaboration = () => {
         leads: 67,
         meetings: 9,
         replied: 23,
-        booked: 6
+        booked: 6,
       },
       recentActivity: 'Updated lead scoring',
-      lastActive: '3 hours ago'
-    }
+      lastActive: '3 hours ago',
+    },
   ]);
 
   const [assignmentQueue] = useState([
@@ -115,7 +127,7 @@ const TeamCollaboration = () => {
       reason: 'Replied with buying signals',
       priority: 'high',
       suggestedAssignee: 'Sarah Johnson',
-      timestamp: '2 minutes ago'
+      timestamp: '2 minutes ago',
     },
     {
       id: 2,
@@ -124,7 +136,7 @@ const TeamCollaboration = () => {
       reason: 'Requested demo next week',
       priority: 'high',
       suggestedAssignee: 'Michael Chen',
-      timestamp: '15 minutes ago'
+      timestamp: '15 minutes ago',
     },
     {
       id: 3,
@@ -133,8 +145,8 @@ const TeamCollaboration = () => {
       reason: 'Price objection detected',
       priority: 'medium',
       suggestedAssignee: 'Emma Wilson',
-      timestamp: '1 hour ago'
-    }
+      timestamp: '1 hour ago',
+    },
   ]);
 
   const [handoffHistory] = useState([
@@ -144,7 +156,7 @@ const TeamCollaboration = () => {
       lead: 'Acme Corp - John Smith',
       reason: 'Meeting booked',
       timestamp: '2024-01-15 14:30',
-      status: 'completed'
+      status: 'completed',
     },
     {
       from: 'Michael Chen (SDR)',
@@ -152,7 +164,7 @@ const TeamCollaboration = () => {
       lead: 'TechCo - Lisa Chen',
       reason: 'Qualified - Budget confirmed',
       timestamp: '2024-01-15 11:20',
-      status: 'completed'
+      status: 'completed',
     },
     {
       from: 'Ava (AI BDR)',
@@ -160,8 +172,8 @@ const TeamCollaboration = () => {
       lead: 'StartupXYZ - Mike Johnson',
       reason: 'Positive reply with questions',
       timestamp: '2024-01-15 09:45',
-      status: 'pending'
-    }
+      status: 'pending',
+    },
   ]);
 
   return (
@@ -230,7 +242,9 @@ const TeamCollaboration = () => {
             <TabsTrigger value="assignments">
               Assignments
               {assignmentQueue.length > 0 && (
-                <Badge variant="warning" className="ml-2">{assignmentQueue.length}</Badge>
+                <Badge variant="warning" className="ml-2">
+                  {assignmentQueue.length}
+                </Badge>
               )}
             </TabsTrigger>
             <TabsTrigger value="handoffs">Handoff History</TabsTrigger>
@@ -239,12 +253,14 @@ const TeamCollaboration = () => {
           {/* Workspaces */}
           <TabsContent value="workspaces">
             <div className="grid gap-4">
-              {workspaces.map((workspace) => (
+              {workspaces.map(workspace => (
                 <Card key={workspace.id}>
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-start gap-4">
-                        <div className={`w-16 h-16 bg-gradient-to-br from-${workspace.color}-500 to-${workspace.color}-600 rounded-xl flex items-center justify-center text-white text-2xl font-bold`}>
+                        <div
+                          className={`w-16 h-16 bg-gradient-to-br from-${workspace.color}-500 to-${workspace.color}-600 rounded-xl flex items-center justify-center text-white text-2xl font-bold`}
+                        >
                           {workspace.name.substring(0, 2)}
                         </div>
                         <div>
@@ -274,15 +290,21 @@ const TeamCollaboration = () => {
                     {/* This Month Stats */}
                     <div className="grid grid-cols-3 gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                       <div className="text-center">
-                        <p className="text-2xl font-bold text-blue-600">{workspace.thisMonth.leads}</p>
+                        <p className="text-2xl font-bold text-blue-600">
+                          {workspace.thisMonth.leads}
+                        </p>
                         <p className="text-xs text-gray-600">Leads Added</p>
                       </div>
                       <div className="text-center">
-                        <p className="text-2xl font-bold text-green-600">{workspace.thisMonth.meetings}</p>
+                        <p className="text-2xl font-bold text-green-600">
+                          {workspace.thisMonth.meetings}
+                        </p>
                         <p className="text-xs text-gray-600">Meetings</p>
                       </div>
                       <div className="text-center">
-                        <p className="text-2xl font-bold text-purple-600">{workspace.thisMonth.closed}</p>
+                        <p className="text-2xl font-bold text-purple-600">
+                          {workspace.thisMonth.closed}
+                        </p>
                         <p className="text-xs text-gray-600">Deals Closed</p>
                       </div>
                     </div>
@@ -306,7 +328,7 @@ const TeamCollaboration = () => {
           {/* Team Members */}
           <TabsContent value="team">
             <div className="grid grid-cols-2 gap-4">
-              {teamMembers.map((member) => (
+              {teamMembers.map(member => (
                 <Card key={member.id}>
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
@@ -315,11 +337,15 @@ const TeamCollaboration = () => {
                           <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-2xl">
                             {member.avatar}
                           </div>
-                          <div className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${
-                            member.status === 'online' ? 'bg-green-500' :
-                            member.status === 'away' ? 'bg-yellow-500' :
-                            'bg-gray-400'
-                          }`}></div>
+                          <div
+                            className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${
+                              member.status === 'online'
+                                ? 'bg-green-500'
+                                : member.status === 'away'
+                                  ? 'bg-yellow-500'
+                                  : 'bg-gray-400'
+                            }`}
+                          ></div>
                         </div>
                         <div>
                           <h3 className="font-semibold">{member.name}</h3>
@@ -386,7 +412,7 @@ const TeamCollaboration = () => {
                   </CardContent>
                 </Card>
               ) : (
-                assignmentQueue.map((assignment) => (
+                assignmentQueue.map(assignment => (
                   <Card key={assignment.id}>
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between mb-4">
@@ -395,9 +421,7 @@ const TeamCollaboration = () => {
                             <Badge variant={assignment.priority === 'high' ? 'danger' : 'warning'}>
                               {assignment.priority} priority
                             </Badge>
-                            <Badge variant="outline">
-                              {assignment.type.replace('_', ' ')}
-                            </Badge>
+                            <Badge variant="outline">{assignment.type.replace('_', ' ')}</Badge>
                             <span className="text-xs text-gray-600">{assignment.timestamp}</span>
                           </div>
                           <h3 className="text-lg font-semibold mb-1">{assignment.contact}</h3>
@@ -414,8 +438,12 @@ const TeamCollaboration = () => {
                           </span>
                         </div>
                         <div className="flex gap-2">
-                          <Button size="sm" variant="success">Accept</Button>
-                          <Button size="sm" variant="outline">Reassign</Button>
+                          <Button size="sm" variant="success">
+                            Accept
+                          </Button>
+                          <Button size="sm" variant="outline">
+                            Reassign
+                          </Button>
                         </div>
                       </div>
                     </CardContent>

@@ -125,3 +125,42 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# ===============================
+# Python / Backend ignores
+# ===============================
+# Virtual environments
+.venv/
+venv/
+backend/.venv/
+
+# Byte-compiled / cache
+__pycache__/
+backend/__pycache__/
+*.py[cod]
+
+# Test/coverage caches
+.pytest_cache/
+backend/.pytest_cache/
+.mypy_cache/
+backend/.mypy_cache/
+.coverage
+coverage.xml
+backend/htmlcov/
+
+# Packaging / build artifacts
+*.egg-info/
+backend/*.egg-info/
+build/
+backend/build/
+dist/
+backend/dist/
+
+# Ruff/flake caches (if present)
+.ruff_cache/
+backend/.ruff_cache/
+
+# Playwright report artifacts
+playwright-report/
+test-results/
+**/.playwright-cache/

@@ -7,7 +7,7 @@ namespacing, and PII redaction
 
 import logging
 import re
-from datetime import datetime, timedelta
+from datetime import datetime
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
@@ -314,7 +314,6 @@ class PIIRedactor:
         Returns:
             Tuple of (redacted_text, was_redacted)
         """
-        original_text = text
         was_redacted = False
 
         for pattern_name, pattern in cls.PATTERNS.items():

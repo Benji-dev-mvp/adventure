@@ -133,7 +133,7 @@ describe('Performance Utilities', () => {
         'slow-op-3': { count: 1, total: 1400, min: 1400, max: 1400, avg: 1400 },
         'slow-op-4': { count: 1, total: 1500, min: 1500, max: 1500, avg: 1500 },
       };
-      
+
       sessionStorage.setItem('artisan_perf_metrics', JSON.stringify(metrics));
       expect(isRunningSlowly()).toBe(true);
     });

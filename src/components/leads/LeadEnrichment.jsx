@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
-import { 
-  Sparkles, 
-  Building2, 
-  Users, 
-  DollarSign, 
-  MapPin, 
+import {
+  Sparkles,
+  Building2,
+  Users,
+  DollarSign,
+  MapPin,
   Globe,
   Linkedin,
   Twitter,
   Mail,
   Phone,
   CheckCircle2,
-  Loader2
+  Loader2,
 } from 'lucide-react';
 
 export const LeadEnrichment = ({ lead, onEnrich }) => {
@@ -23,10 +23,10 @@ export const LeadEnrichment = ({ lead, onEnrich }) => {
 
   const enrichLead = async () => {
     setIsEnriching(true);
-    
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     const enriched = {
       company: {
         revenue: '$50M - $100M',
@@ -55,7 +55,7 @@ export const LeadEnrichment = ({ lead, onEnrich }) => {
         recent_news: ['Product launch', 'Expansion to EMEA'],
       },
     };
-    
+
     setEnrichedData(enriched);
     setIsEnriching(false);
     onEnrich?.(enriched);
@@ -86,17 +86,11 @@ export const LeadEnrichment = ({ lead, onEnrich }) => {
             <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
               <Building2 className="text-primary-600 dark:text-primary-400" size={28} />
             </div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-              Enrich this lead
-            </h4>
+            <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Enrich this lead</h4>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
               Get company info, verified contact details, social profiles, and intent signals
             </p>
-            <Button
-              onClick={enrichLead}
-              disabled={isEnriching}
-              className="gap-2"
-            >
+            <Button onClick={enrichLead} disabled={isEnriching} className="gap-2">
               {isEnriching ? (
                 <>
                   <Loader2 size={16} className="animate-spin" />
@@ -147,7 +141,7 @@ export const LeadEnrichment = ({ lead, onEnrich }) => {
                 </p>
               </div>
               <div className="mt-2 flex flex-wrap gap-2">
-                {enrichedData.company.technologies.map((tech) => (
+                {enrichedData.company.technologies.map(tech => (
                   <Badge key={tech} variant="secondary" className="text-xs">
                     {tech}
                   </Badge>
@@ -165,9 +159,7 @@ export const LeadEnrichment = ({ lead, onEnrich }) => {
                 <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-white/5 rounded-lg">
                   <div className="flex items-center gap-2">
                     <Mail size={14} className="text-gray-600 dark:text-gray-400" />
-                    <span className="text-sm text-gray-700 dark:text-gray-300">
-                      Email verified
-                    </span>
+                    <span className="text-sm text-gray-700 dark:text-gray-300">Email verified</span>
                   </div>
                   <CheckCircle2 className="text-green-600" size={16} />
                 </div>

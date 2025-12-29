@@ -6,7 +6,7 @@ Defines contract for all AI provider implementations
 
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import Any, AsyncIterator, Dict, List, Optional
+from typing import Any, AsyncIterator, Dict, Optional
 
 from pydantic import BaseModel, Field
 
@@ -50,7 +50,6 @@ class AIProvider(ABC):
         Returns:
             ProviderResponse with generated content
         """
-        pass
 
     @abstractmethod
     async def generate_structured(
@@ -72,7 +71,6 @@ class AIProvider(ABC):
         Returns:
             Tuple of (validated_model, provider_response)
         """
-        pass
 
     @abstractmethod
     async def stream(
@@ -89,7 +87,6 @@ class AIProvider(ABC):
         Yields:
             Content chunks as they arrive
         """
-        pass
 
     @abstractmethod
     def count_tokens(self, text: str) -> int:
@@ -102,22 +99,18 @@ class AIProvider(ABC):
         Returns:
             Token count
         """
-        pass
 
     @property
     @abstractmethod
     def name(self) -> str:
         """Provider name (e.g., 'openai', 'anthropic')"""
-        pass
 
     @property
     @abstractmethod
     def supports_streaming(self) -> bool:
         """Whether provider supports streaming"""
-        pass
 
     @property
     @abstractmethod
     def supports_function_calling(self) -> bool:
         """Whether provider supports function/tool calling"""
-        pass

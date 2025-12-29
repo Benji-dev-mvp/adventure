@@ -3,10 +3,40 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/Select';
-import { TabsRadix, TabsListRadix, TabsTriggerRadix, TabsContentRadix } from '../components/ui/TabsRadix';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import { Trophy, TrendingUp, Mail, Calendar, Target, Crown, AlertCircle, CheckCircle2, ArrowUpRight } from 'lucide-react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/Select';
+import {
+  TabsRadix,
+  TabsListRadix,
+  TabsTriggerRadix,
+  TabsContentRadix,
+} from '../components/ui/TabsRadix';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from 'recharts';
+import {
+  Trophy,
+  TrendingUp,
+  Mail,
+  Calendar,
+  Target,
+  Crown,
+  AlertCircle,
+  CheckCircle2,
+  ArrowUpRight,
+} from 'lucide-react';
 
 const ABTesting = () => {
   const [selectedCampaign, setSelectedCampaign] = useState('email-outreach-q1');
@@ -31,7 +61,7 @@ const ABTesting = () => {
           openRate: 37.0,
           clickRate: 8.5,
           replyRate: 3.6,
-          conversionRate: 0.9
+          conversionRate: 0.9,
         },
         b: {
           name: 'Variant B (Test)',
@@ -43,17 +73,17 @@ const ABTesting = () => {
           openRate: 45.0,
           clickRate: 11.6,
           replyRate: 4.9,
-          conversionRate: 1.34
-        }
+          conversionRate: 1.34,
+        },
       },
       subject: {
         a: 'Quick question about {{company}}',
-        b: '{{firstName}}, saw your post about {{topic}}'
+        b: '{{firstName}}, saw your post about {{topic}}',
       },
       confidence: 95,
       winner: 'b',
-      improvement: 48.9
-    }
+      improvement: 48.9,
+    },
   ];
 
   const currentTest = tests.find(t => t.id === selectedCampaign);
@@ -86,7 +116,7 @@ const ABTesting = () => {
   };
 
   const calculateImprovement = (variantA, variantB) => {
-    const improvement = ((variantB - variantA) / variantA * 100).toFixed(1);
+    const improvement = (((variantB - variantA) / variantA) * 100).toFixed(1);
     return improvement > 0 ? `+${improvement}%` : `${improvement}%`;
   };
 
@@ -157,8 +187,9 @@ const ABTesting = () => {
                     Statistical Significance Achieved!
                   </h3>
                   <p className="text-sm text-green-700 dark:text-green-400 mb-3">
-                    Variant B is performing {currentTest.improvement}% better with {currentTest.confidence}% confidence.
-                    Ready to declare winner and apply to all future sends.
+                    Variant B is performing {currentTest.improvement}% better with{' '}
+                    {currentTest.confidence}% confidence. Ready to declare winner and apply to all
+                    future sends.
                   </p>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -178,9 +209,7 @@ const ABTesting = () => {
           <Card className="border-2 border-gray-300 dark:border-gray-600">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="text-base">
-                  {currentTest?.variants.a.name}
-                </CardTitle>
+                <CardTitle className="text-base">{currentTest?.variants.a.name}</CardTitle>
                 <Badge variant="secondary">Control</Badge>
               </div>
               <CardDescription className="mt-2">
@@ -243,9 +272,7 @@ const ABTesting = () => {
           <Card className="border-2 border-green-500 dark:border-green-600 shadow-lg">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="text-base">
-                  {currentTest?.variants.b.name}
-                </CardTitle>
+                <CardTitle className="text-base">{currentTest?.variants.b.name}</CardTitle>
                 <Badge variant="success" className="gap-1">
                   <Trophy className="w-3 h-3" />
                   Leading
@@ -271,8 +298,17 @@ const ABTesting = () => {
                   </p>
                   <div className="flex items-center justify-between mt-1">
                     <p className="text-xs text-gray-600">{currentTest?.variants.b.openRate}%</p>
-                    <span className={`text-xs font-semibold ${getComparisonColor(currentTest?.variants.a.openRate, currentTest?.variants.b.openRate)}`}>
-                      {getComparisonArrow(currentTest?.variants.a.openRate, currentTest?.variants.b.openRate)} {calculateImprovement(currentTest?.variants.a.openRate, currentTest?.variants.b.openRate)}
+                    <span
+                      className={`text-xs font-semibold ${getComparisonColor(currentTest?.variants.a.openRate, currentTest?.variants.b.openRate)}`}
+                    >
+                      {getComparisonArrow(
+                        currentTest?.variants.a.openRate,
+                        currentTest?.variants.b.openRate
+                      )}{' '}
+                      {calculateImprovement(
+                        currentTest?.variants.a.openRate,
+                        currentTest?.variants.b.openRate
+                      )}
                     </span>
                   </div>
                 </div>
@@ -283,8 +319,17 @@ const ABTesting = () => {
                   </p>
                   <div className="flex items-center justify-between mt-1">
                     <p className="text-xs text-gray-600">{currentTest?.variants.b.clickRate}%</p>
-                    <span className={`text-xs font-semibold ${getComparisonColor(currentTest?.variants.a.clickRate, currentTest?.variants.b.clickRate)}`}>
-                      {getComparisonArrow(currentTest?.variants.a.clickRate, currentTest?.variants.b.clickRate)} {calculateImprovement(currentTest?.variants.a.clickRate, currentTest?.variants.b.clickRate)}
+                    <span
+                      className={`text-xs font-semibold ${getComparisonColor(currentTest?.variants.a.clickRate, currentTest?.variants.b.clickRate)}`}
+                    >
+                      {getComparisonArrow(
+                        currentTest?.variants.a.clickRate,
+                        currentTest?.variants.b.clickRate
+                      )}{' '}
+                      {calculateImprovement(
+                        currentTest?.variants.a.clickRate,
+                        currentTest?.variants.b.clickRate
+                      )}
                     </span>
                   </div>
                 </div>
@@ -295,8 +340,17 @@ const ABTesting = () => {
                   </p>
                   <div className="flex items-center justify-between mt-1">
                     <p className="text-xs text-gray-600">{currentTest?.variants.b.replyRate}%</p>
-                    <span className={`text-xs font-semibold ${getComparisonColor(currentTest?.variants.a.replyRate, currentTest?.variants.b.replyRate)}`}>
-                      {getComparisonArrow(currentTest?.variants.a.replyRate, currentTest?.variants.b.replyRate)} {calculateImprovement(currentTest?.variants.a.replyRate, currentTest?.variants.b.replyRate)}
+                    <span
+                      className={`text-xs font-semibold ${getComparisonColor(currentTest?.variants.a.replyRate, currentTest?.variants.b.replyRate)}`}
+                    >
+                      {getComparisonArrow(
+                        currentTest?.variants.a.replyRate,
+                        currentTest?.variants.b.replyRate
+                      )}{' '}
+                      {calculateImprovement(
+                        currentTest?.variants.a.replyRate,
+                        currentTest?.variants.b.replyRate
+                      )}
                     </span>
                   </div>
                 </div>
@@ -317,7 +371,11 @@ const ABTesting = () => {
                       {currentTest?.variants.b.conversionRate}%
                     </p>
                     <span className="text-xs font-semibold text-green-600">
-                      ↑ {calculateImprovement(currentTest?.variants.a.conversionRate, currentTest?.variants.b.conversionRate)}
+                      ↑{' '}
+                      {calculateImprovement(
+                        currentTest?.variants.a.conversionRate,
+                        currentTest?.variants.b.conversionRate
+                      )}
                     </span>
                   </div>
                 </div>
@@ -337,27 +395,30 @@ const ABTesting = () => {
               <LineChart data={performanceData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" opacity={0.1} />
                 <XAxis dataKey="day" stroke="#9CA3AF" />
-                <YAxis stroke="#9CA3AF" label={{ value: 'Reply Rate (%)', angle: -90, position: 'insideLeft' }} />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: '#1F2937', 
+                <YAxis
+                  stroke="#9CA3AF"
+                  label={{ value: 'Reply Rate (%)', angle: -90, position: 'insideLeft' }}
+                />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#1F2937',
                     border: '1px solid #374151',
-                    borderRadius: '8px'
+                    borderRadius: '8px',
                   }}
                 />
                 <Legend />
-                <Line 
-                  type="monotone" 
-                  dataKey="variantA" 
-                  stroke="#9CA3AF" 
+                <Line
+                  type="monotone"
+                  dataKey="variantA"
+                  stroke="#9CA3AF"
                   strokeWidth={2}
                   name="Variant A (Control)"
                   dot={{ fill: '#9CA3AF', r: 4 }}
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="variantB" 
-                  stroke="#10B981" 
+                <Line
+                  type="monotone"
+                  dataKey="variantB"
+                  stroke="#10B981"
                   strokeWidth={3}
                   name="Variant B (Test)"
                   dot={{ fill: '#10B981', r: 5 }}
@@ -403,9 +464,7 @@ const ABTesting = () => {
                   <h4 className="font-semibold text-gray-900 dark:text-white">Sample Size</h4>
                 </div>
                 <p className="text-3xl font-bold text-purple-600">10,000</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                  Total emails sent
-                </p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Total emails sent</p>
               </div>
             </div>
 
@@ -413,11 +472,19 @@ const ABTesting = () => {
               <div className="flex gap-3">
                 <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
                 <div className="text-sm">
-                  <p className="font-semibold text-gray-900 dark:text-white mb-1">Recommendation:</p>
+                  <p className="font-semibold text-gray-900 dark:text-white mb-1">
+                    Recommendation:
+                  </p>
                   <p className="text-gray-700 dark:text-gray-300">
-                    Variant B has achieved statistical significance with {currentTest?.confidence}% confidence. 
-                    The {currentTest?.improvement}% improvement in conversion rate represents approximately {currentTest && Math.round(currentTest.variants.b.meetings - currentTest.variants.a.meetings)} additional meetings per month.
-                    We recommend declaring Variant B as the winner and applying it to all future sends.
+                    Variant B has achieved statistical significance with {currentTest?.confidence}%
+                    confidence. The {currentTest?.improvement}% improvement in conversion rate
+                    represents approximately{' '}
+                    {currentTest &&
+                      Math.round(
+                        currentTest.variants.b.meetings - currentTest.variants.a.meetings
+                      )}{' '}
+                    additional meetings per month. We recommend declaring Variant B as the winner
+                    and applying it to all future sends.
                   </p>
                 </div>
               </div>

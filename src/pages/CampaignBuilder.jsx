@@ -9,11 +9,11 @@ import { InlineLoader } from '../components/Loading';
 import { useFormValidation, validateRequired, validateMinLength } from '../lib/validation';
 import { saveCampaignDraft, getCampaignDraft } from '../lib/storage';
 import { dataService } from '../lib/dataService';
-import { 
-  Plus, 
-  Mail, 
-  Linkedin, 
-  Phone, 
+import {
+  Plus,
+  Mail,
+  Linkedin,
+  Phone,
   MessageSquare,
   Clock,
   Sparkles,
@@ -22,7 +22,7 @@ import {
   Copy,
   Settings,
   Play,
-  Save
+  Save,
 } from 'lucide-react';
 
 const CampaignBuilder = () => {
@@ -32,7 +32,7 @@ const CampaignBuilder = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [lastSaved, setLastSaved] = useState(null);
-  
+
   const [steps, setSteps] = useState([
     { id: 1, type: 'email', delay: 0, subject: '', content: '' },
   ]);
@@ -62,14 +62,17 @@ const CampaignBuilder = () => {
     return () => clearInterval(autoSaveInterval);
   }, [campaignName, targetAudience, steps]);
 
-  const handleSaveDraft = useCallback((isAutoSave = false) => {
-    const draft = { campaignName, targetAudience, steps, savedAt: new Date().toISOString() };
-    saveCampaignDraft(draft);
-    setLastSaved(new Date());
-    if (!isAutoSave) {
-      showToast('Draft saved successfully', 'success');
-    }
-  }, [campaignName, targetAudience, steps, showToast]);
+  const handleSaveDraft = useCallback(
+    (isAutoSave = false) => {
+      const draft = { campaignName, targetAudience, steps, savedAt: new Date().toISOString() };
+      saveCampaignDraft(draft);
+      setLastSaved(new Date());
+      if (!isAutoSave) {
+        showToast('Draft saved successfully', 'success');
+      }
+    },
+    [campaignName, targetAudience, steps, showToast]
+  );
 
   const channelTypes = [
     { value: 'email', label: 'Email', icon: Mail, color: 'bg-blue-100 text-blue-600' },
@@ -78,18 +81,21 @@ const CampaignBuilder = () => {
     { value: 'sms', label: 'SMS', icon: MessageSquare, color: 'bg-purple-100 text-purple-600' },
   ];
 
-  const addStep = (type) => {
-    setSteps([...steps, { 
-      id: steps.length + 1, 
-      type, 
-      delay: 2, 
-      subject: '', 
-      content: '' 
-    }]);
+  const addStep = type => {
+    setSteps([
+      ...steps,
+      {
+        id: steps.length + 1,
+        type,
+        delay: 2,
+        subject: '',
+        content: '',
+      },
+    ]);
     showToast(`${type} step added`, 'success');
   };
 
-  const removeStep = (id) => {
+  const removeStep = id => {
     if (steps.length === 1) {
       showToast('Campaign must have at least one step', 'error');
       return;
@@ -98,20 +104,20 @@ const CampaignBuilder = () => {
     showToast('Step removed', 'success');
   };
 
-  const handleGenerateContent = async (stepId) => {
+  const handleGenerateContent = async stepId => {
     setIsGenerating(true);
     try {
       // Simulate AI generation
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       const step = steps.find(s => s.id === stepId);
       if (step?.type === 'email') {
-        const updatedSteps = steps.map(s => 
-          s.id === stepId 
-            ? { 
-                ...s, 
+        const updatedSteps = steps.map(s =>
+          s.id === stepId
+            ? {
+                ...s,
                 subject: `Personalized outreach for ${campaignName || 'your campaign'}`,
-                content: `Hi {{firstName}},\n\nI noticed that {{company}} is growing rapidly in the {{industry}} space. I'd love to share how we've helped similar companies achieve their goals.\n\nWould you be open to a quick 15-minute call next week?\n\nBest,\n[Your Name]`
+                content: `Hi {{firstName}},\n\nI noticed that {{company}} is growing rapidly in the {{industry}} space. I'd love to share how we've helped similar companies achieve their goals.\n\nWould you be open to a quick 15-minute call next week?\n\nBest,\n[Your Name]`,
               }
             : s
         );
@@ -127,13 +133,13 @@ const CampaignBuilder = () => {
 
   const handleLaunchCampaign = async () => {
     setIsSaving(true);
-    
+
     try {
       // Call Python backend for comprehensive validation
       const response = await dataService.post('/campaigns/validate', {
         campaign_name: campaignName,
         target_audience: targetAudience,
-        steps: steps
+        steps: steps,
       });
 
       if (!response.can_launch) {
@@ -141,12 +147,12 @@ const CampaignBuilder = () => {
         response.errors.forEach(error => {
           showToast(error.message, 'error');
         });
-        
+
         // Show warnings
         response.warnings.forEach(warning => {
           showToast(warning.message, 'warning');
         });
-        
+
         setIsSaving(false);
         return;
       }
@@ -154,7 +160,7 @@ const CampaignBuilder = () => {
       // Show cost estimate
       showToast(
         `Campaign validated! Estimated cost: ${response.estimated_cost} credits, ` +
-        `reaching ${response.estimated_reach} leads over ${response.estimated_duration_days} days`,
+          `reaching ${response.estimated_reach} leads over ${response.estimated_duration_days} days`,
         'info'
       );
 
@@ -167,14 +173,13 @@ const CampaignBuilder = () => {
 
       // Proceed with launch
       showToast('Campaign launched successfully!', 'success');
-      
+
       // Clear draft after launch
       saveCampaignDraft(null);
-      
+
       setTimeout(() => {
         navigate('/campaigns');
       }, 1500);
-      
     } catch (error) {
       showToast(error.message || 'Failed to validate campaign', 'error');
     } finally {
@@ -182,12 +187,14 @@ const CampaignBuilder = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     const isValid = validateAll(
       {
-        campaignName: [(value) => (!value || !value.trim() ? 'Campaign name is required' : '')],
-        targetAudience: [(value) => (!value || !value.trim() ? 'Please select a target audience' : '')],
+        campaignName: [value => (!value || !value.trim() ? 'Campaign name is required' : '')],
+        targetAudience: [
+          value => (!value || !value.trim() ? 'Please select a target audience' : ''),
+        ],
       },
       { campaignName, targetAudience }
     );
@@ -201,8 +208,8 @@ const CampaignBuilder = () => {
   };
 
   return (
-    <DashboardLayout 
-      title="Campaign Builder" 
+    <DashboardLayout
+      title="Campaign Builder"
       subtitle="Create multi-channel sequences with AI-powered personalization"
       action={
         lastSaved && (
@@ -222,20 +229,20 @@ const CampaignBuilder = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <Input 
-                  label="Campaign Name" 
-                  placeholder="e.g., Q1 Enterprise Outreach" 
+                <Input
+                  label="Campaign Name"
+                  placeholder="e.g., Q1 Enterprise Outreach"
                   value={campaignName}
-                  onChange={(e) => {
+                  onChange={e => {
                     setCampaignName(e.target.value);
                     clearError('campaignName');
                   }}
                   error={errors.campaignName}
                 />
-                <Select 
+                <Select
                   label="Target Audience"
                   value={targetAudience}
-                  onChange={(e) => {
+                  onChange={e => {
                     setTargetAudience(e.target.value);
                     clearError('targetAudience');
                   }}
@@ -279,12 +286,15 @@ const CampaignBuilder = () => {
                   const Icon = channel.icon;
 
                   return (
-                    <div key={step.id} className="border border-gray-200 rounded-xl p-4 hover:border-accent-300 transition-colors">
+                    <div
+                      key={step.id}
+                      className="border border-gray-200 rounded-xl p-4 hover:border-accent-300 transition-colors"
+                    >
                       <div className="flex items-start gap-3">
                         <div className="pt-1">
                           <GripVertical size={20} className="text-gray-400 cursor-move" />
                         </div>
-                        
+
                         <div className="flex-1 space-y-3">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
@@ -292,7 +302,9 @@ const CampaignBuilder = () => {
                                 <Icon size={18} />
                               </div>
                               <div>
-                                <h4 className="font-semibold text-gray-900">Step {index + 1}: {channel.label}</h4>
+                                <h4 className="font-semibold text-gray-900">
+                                  Step {index + 1}: {channel.label}
+                                </h4>
                                 {index > 0 && (
                                   <p className="text-sm text-gray-500 flex items-center gap-1">
                                     <Clock size={14} />
@@ -305,7 +317,7 @@ const CampaignBuilder = () => {
                               <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                                 <Copy size={16} className="text-gray-600" />
                               </button>
-                              <button 
+                              <button
                                 onClick={() => removeStep(step.id)}
                                 className="p-2 hover:bg-red-50 rounded-lg transition-colors"
                               >
@@ -315,9 +327,9 @@ const CampaignBuilder = () => {
                           </div>
 
                           {index > 0 && (
-                            <Input 
-                              type="number" 
-                              label="Delay (days)" 
+                            <Input
+                              type="number"
+                              label="Delay (days)"
                               defaultValue={step.delay}
                               className="max-w-32"
                             />
@@ -325,19 +337,19 @@ const CampaignBuilder = () => {
 
                           {step.type === 'email' && (
                             <>
-                              <Input 
-                                label="Subject Line" 
+                              <Input
+                                label="Subject Line"
                                 placeholder="Quick question about {{company}}"
                               />
-                              <Textarea 
-                                label="Email Body" 
+                              <Textarea
+                                label="Email Body"
                                 rows={6}
                                 placeholder="Hi {{firstName}},&#10;&#10;I noticed that {{company}} is..."
                               />
                               <div className="flex items-center gap-2">
-                                <Button 
-                                  variant="outline" 
-                                  size="sm" 
+                                <Button
+                                  variant="outline"
+                                  size="sm"
                                   className="gap-2"
                                   onClick={() => handleGenerateContent(step.id)}
                                   disabled={isGenerating}
@@ -361,8 +373,8 @@ const CampaignBuilder = () => {
 
                           {step.type === 'linkedin' && (
                             <>
-                              <Textarea 
-                                label="LinkedIn Message" 
+                              <Textarea
+                                label="LinkedIn Message"
                                 rows={4}
                                 placeholder="Hi {{firstName}}, I saw your post about..."
                               />
@@ -377,8 +389,8 @@ const CampaignBuilder = () => {
 
                           {step.type === 'call' && (
                             <>
-                              <Textarea 
-                                label="Call Script" 
+                              <Textarea
+                                label="Call Script"
                                 rows={6}
                                 placeholder="Opening: Hi {{firstName}}, this is [Your Name] from..."
                               />
@@ -387,8 +399,8 @@ const CampaignBuilder = () => {
 
                           {step.type === 'sms' && (
                             <>
-                              <Textarea 
-                                label="SMS Message" 
+                              <Textarea
+                                label="SMS Message"
                                 rows={3}
                                 placeholder="Hi {{firstName}}, quick follow-up..."
                               />
@@ -403,7 +415,7 @@ const CampaignBuilder = () => {
 
                 {/* Add Step Buttons */}
                 <div className="flex flex-wrap gap-2">
-                  {channelTypes.map((channel) => {
+                  {channelTypes.map(channel => {
                     const Icon = channel.icon;
                     return (
                       <Button
@@ -434,11 +446,7 @@ const CampaignBuilder = () => {
                 Submit
               </Button>
               <Button variant="outline">Preview</Button>
-              <Button 
-                className="gap-2" 
-                onClick={handleLaunchCampaign}
-                disabled={isSaving}
-              >
+              <Button className="gap-2" onClick={handleLaunchCampaign} disabled={isSaving}>
                 {isSaving ? (
                   <>
                     <InlineLoader size="sm" />
@@ -467,11 +475,9 @@ const CampaignBuilder = () => {
             <CardContent>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Tone
-                  </label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Tone</label>
                   <div className="flex flex-wrap gap-2">
-                    {['Professional', 'Casual', 'Enthusiastic'].map((tone) => (
+                    {['Professional', 'Casual', 'Enthusiastic'].map(tone => (
                       <Badge key={tone} className="cursor-pointer hover:bg-accent-100">
                         {tone}
                       </Badge>
@@ -480,9 +486,7 @@ const CampaignBuilder = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Length
-                  </label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Length</label>
                   <Select>
                     <option>Short (50-100 words)</option>
                     <option>Medium (100-150 words)</option>
@@ -491,11 +495,9 @@ const CampaignBuilder = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Focus On
-                  </label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Focus On</label>
                   <div className="flex flex-wrap gap-2">
-                    {['Pain Points', 'Value Prop', 'Social Proof', 'Urgency'].map((focus) => (
+                    {['Pain Points', 'Value Prop', 'Social Proof', 'Urgency'].map(focus => (
                       <Badge key={focus} className="cursor-pointer hover:bg-accent-100">
                         {focus}
                       </Badge>
@@ -520,8 +522,17 @@ const CampaignBuilder = () => {
                 <div className="p-3 bg-gray-50 rounded-lg">
                   <p className="text-sm font-medium text-gray-700 mb-2">Available Variables:</p>
                   <div className="flex flex-wrap gap-2">
-                    {['{{firstName}}', '{{lastName}}', '{{company}}', '{{title}}', '{{industry}}']. map((variable) => (
-                      <code key={variable} className="text-xs bg-white px-2 py-1 rounded border border-gray-200">
+                    {[
+                      '{{firstName}}',
+                      '{{lastName}}',
+                      '{{company}}',
+                      '{{title}}',
+                      '{{industry}}',
+                    ].map(variable => (
+                      <code
+                        key={variable}
+                        className="text-xs bg-white px-2 py-1 rounded border border-gray-200"
+                      >
                         {variable}
                       </code>
                     ))}
@@ -531,7 +542,8 @@ const CampaignBuilder = () => {
                 <div className="p-3 bg-accent-50 rounded-lg">
                   <p className="text-sm font-medium text-accent-700 mb-1">AI Personalization</p>
                   <p className="text-xs text-gray-600">
-                    Ava will automatically personalize each email based on lead data, recent activity, and company news.
+                    Ava will automatically personalize each email based on lead data, recent
+                    activity, and company news.
                   </p>
                 </div>
               </div>

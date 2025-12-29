@@ -29,7 +29,7 @@ export function AuthGuard({
   const location = useLocation();
   const isAuthenticated = useUserStore(selectIsAuthenticated);
   const user = useUserStore(selectUser);
-  const isLoading = useUserStore((state) => state.isLoading);
+  const isLoading = useUserStore(state => state.isLoading);
 
   // Show loading state while checking authentication
   if (isLoading) {
@@ -44,7 +44,7 @@ export function AuthGuard({
   // Check role requirements
   if (requiredRole && user) {
     const roles = Array.isArray(requiredRole) ? requiredRole : [requiredRole];
-    
+
     if (!roles.includes(user.role)) {
       // User doesn't have required role - redirect to dashboard or show forbidden
       return <Navigate to="/dashboard" replace />;
@@ -58,22 +58,14 @@ export function AuthGuard({
  * AdminGuard - Convenience wrapper for admin-only routes
  */
 export function AdminGuard({ children }: { children: React.ReactNode }) {
-  return (
-    <AuthGuard requiredRole={['admin', 'super_admin']}>
-      {children}
-    </AuthGuard>
-  );
+  return <AuthGuard requiredRole={['admin', 'super_admin']}>{children}</AuthGuard>;
 }
 
 /**
  * SuperAdminGuard - Convenience wrapper for super-admin-only routes
  */
 export function SuperAdminGuard({ children }: { children: React.ReactNode }) {
-  return (
-    <AuthGuard requiredRole="super_admin">
-      {children}
-    </AuthGuard>
-  );
+  return <AuthGuard requiredRole="super_admin">{children}</AuthGuard>;
 }
 
 /**

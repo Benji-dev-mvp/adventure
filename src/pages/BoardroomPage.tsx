@@ -1,6 +1,6 @@
 /**
  * Boardroom Page
- * 
+ *
  * Executive-level strategic command center.
  * Real-time org health, projections, and strategic recommendations.
  */
@@ -47,12 +47,54 @@ interface RevenueProjection {
 // === Mock Data ===
 
 const EXECUTIVE_METRICS: ExecutiveMetric[] = [
-  { name: 'ARR', value: '$4.2M', change: 12, changeLabel: 'vs last Q', target: '$5M', status: 'on-track' },
-  { name: 'Pipeline', value: '$8.7M', change: -5, changeLabel: 'vs target', target: '$9M', status: 'at-risk' },
-  { name: 'Win Rate', value: '28%', change: 3, changeLabel: 'vs last Q', target: '30%', status: 'on-track' },
-  { name: 'CAC Payback', value: '14mo', change: -2, changeLabel: 'vs last Q', target: '12mo', status: 'behind' },
-  { name: 'NRR', value: '118%', change: 5, changeLabel: 'vs last Q', target: '115%', status: 'on-track' },
-  { name: 'Rep Quota Attainment', value: '72%', change: 8, changeLabel: 'vs last Q', target: '80%', status: 'at-risk' },
+  {
+    name: 'ARR',
+    value: '$4.2M',
+    change: 12,
+    changeLabel: 'vs last Q',
+    target: '$5M',
+    status: 'on-track',
+  },
+  {
+    name: 'Pipeline',
+    value: '$8.7M',
+    change: -5,
+    changeLabel: 'vs target',
+    target: '$9M',
+    status: 'at-risk',
+  },
+  {
+    name: 'Win Rate',
+    value: '28%',
+    change: 3,
+    changeLabel: 'vs last Q',
+    target: '30%',
+    status: 'on-track',
+  },
+  {
+    name: 'CAC Payback',
+    value: '14mo',
+    change: -2,
+    changeLabel: 'vs last Q',
+    target: '12mo',
+    status: 'behind',
+  },
+  {
+    name: 'NRR',
+    value: '118%',
+    change: 5,
+    changeLabel: 'vs last Q',
+    target: '115%',
+    status: 'on-track',
+  },
+  {
+    name: 'Rep Quota Attainment',
+    value: '72%',
+    change: 8,
+    changeLabel: 'vs last Q',
+    target: '80%',
+    status: 'at-risk',
+  },
 ];
 
 const RECOMMENDATIONS: StrategicRecommendation[] = [
@@ -63,7 +105,8 @@ const RECOMMENDATIONS: StrategicRecommendation[] = [
     impact: '+$1.2M pipeline',
     effort: '2 weeks',
     roi: 340,
-    description: 'AI identified 47 stalled deals with recent engagement signals. Re-sequence with personalized outreach.',
+    description:
+      'AI identified 47 stalled deals with recent engagement signals. Re-sequence with personalized outreach.',
   },
   {
     id: '2',
@@ -72,7 +115,8 @@ const RECOMMENDATIONS: StrategicRecommendation[] = [
     impact: '+15% rep productivity',
     effort: '1 week',
     roi: 280,
-    description: 'Current territory distribution is suboptimal. Redistribution based on ICP density and rep performance.',
+    description:
+      'Current territory distribution is suboptimal. Redistribution based on ICP density and rep performance.',
   },
   {
     id: '3',
@@ -99,7 +143,7 @@ const TEAM_HEALTH: TeamHealth[] = [
   { name: 'Mid-Market', performance: 0.75, capacity: 0.95, morale: 0.72, trend: 'stable' },
   { name: 'SMB', performance: 0.68, capacity: 0.88, morale: 0.65, trend: 'down' },
   { name: 'SDR Team', performance: 0.82, capacity: 0.92, morale: 0.78, trend: 'up' },
-  { name: 'Customer Success', performance: 0.88, capacity: 0.70, morale: 0.90, trend: 'stable' },
+  { name: 'Customer Success', performance: 0.88, capacity: 0.7, morale: 0.9, trend: 'stable' },
 ];
 
 const REVENUE_PROJECTIONS: RevenueProjection[] = [
@@ -117,24 +161,28 @@ const MetricCard: React.FC<{ metric: ExecutiveMetric }> = ({ metric }) => {
   const statusColors = {
     'on-track': 'border-green-500 bg-green-500/10',
     'at-risk': 'border-yellow-500 bg-yellow-500/10',
-    'behind': 'border-red-500 bg-red-500/10',
+    behind: 'border-red-500 bg-red-500/10',
   };
 
   const statusLabels = {
     'on-track': 'On Track',
     'at-risk': 'At Risk',
-    'behind': 'Behind',
+    behind: 'Behind',
   };
 
   return (
     <div className={`rounded-xl p-5 border-2 ${statusColors[metric.status]}`}>
       <div className="flex items-center justify-between mb-2">
         <span className="text-gray-400 text-sm font-medium">{metric.name}</span>
-        <span className={`text-xs px-2 py-0.5 rounded ${
-          metric.status === 'on-track' ? 'bg-green-500 text-white' :
-          metric.status === 'at-risk' ? 'bg-yellow-500 text-black' :
-          'bg-red-500 text-white'
-        }`}>
+        <span
+          className={`text-xs px-2 py-0.5 rounded ${
+            metric.status === 'on-track'
+              ? 'bg-green-500 text-white'
+              : metric.status === 'at-risk'
+                ? 'bg-yellow-500 text-black'
+                : 'bg-red-500 text-white'
+          }`}
+        >
           {statusLabels[metric.status]}
         </span>
       </div>
@@ -149,7 +197,11 @@ const MetricCard: React.FC<{ metric: ExecutiveMetric }> = ({ metric }) => {
   );
 };
 
-const RecommendationCard: React.FC<{ rec: StrategicRecommendation; onExecute: () => void; isExecuting?: boolean }> = ({ rec, onExecute, isExecuting }) => {
+const RecommendationCard: React.FC<{
+  rec: StrategicRecommendation;
+  onExecute: () => void;
+  isExecuting?: boolean;
+}> = ({ rec, onExecute, isExecuting }) => {
   const priorityColors = {
     critical: 'border-red-500 bg-red-500/10',
     high: 'border-orange-500 bg-orange-500/10',
@@ -174,10 +226,14 @@ const RecommendationCard: React.FC<{ rec: StrategicRecommendation; onExecute: ()
       <p className="text-gray-400 text-sm mb-4">{rec.description}</p>
       <div className="flex items-center justify-between">
         <div className="flex gap-4 text-sm">
-          <span className="text-gray-500">Impact: <span className="text-green-400">{rec.impact}</span></span>
-          <span className="text-gray-500">Effort: <span className="text-blue-400">{rec.effort}</span></span>
+          <span className="text-gray-500">
+            Impact: <span className="text-green-400">{rec.impact}</span>
+          </span>
+          <span className="text-gray-500">
+            Effort: <span className="text-blue-400">{rec.effort}</span>
+          </span>
         </div>
-        <button 
+        <button
           onClick={onExecute}
           disabled={isExecuting}
           className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${isExecuting ? 'bg-gray-600 cursor-wait' : 'bg-blue-600 hover:bg-blue-700'}`}
@@ -213,13 +269,19 @@ const TeamHealthRow: React.FC<{ team: TeamHealth }> = ({ team }) => {
       </td>
       <td className="py-3 px-4">
         <div className="flex items-center gap-2">
-          <HealthBar value={team.capacity} color={team.capacity > 0.9 ? 'bg-red-500' : 'bg-blue-500'} />
+          <HealthBar
+            value={team.capacity}
+            color={team.capacity > 0.9 ? 'bg-red-500' : 'bg-blue-500'}
+          />
           <span className="text-sm text-gray-400">{(team.capacity * 100).toFixed(0)}%</span>
         </div>
       </td>
       <td className="py-3 px-4">
         <div className="flex items-center gap-2">
-          <HealthBar value={team.morale} color={team.morale > 0.7 ? 'bg-green-500' : 'bg-yellow-500'} />
+          <HealthBar
+            value={team.morale}
+            color={team.morale > 0.7 ? 'bg-green-500' : 'bg-yellow-500'}
+          />
           <span className="text-sm text-gray-400">{(team.morale * 100).toFixed(0)}%</span>
         </div>
       </td>
@@ -238,12 +300,19 @@ const RevenueChart: React.FC<{ data: RevenueProjection[] }> = ({ data }) => {
     <svg width={width} height={height + 40} className="mx-auto">
       {/* Y-axis grid */}
       {[0, 0.25, 0.5, 0.75, 1].map((tick, i) => {
-        const y = height - (tick * height);
+        const y = height - tick * height;
         return (
           <g key={i}>
-            <line x1={padding} y1={y} x2={width - padding} y2={y} stroke="#374151" strokeWidth="1" />
+            <line
+              x1={padding}
+              y1={y}
+              x2={width - padding}
+              y2={y}
+              stroke="#374151"
+              strokeWidth="1"
+            />
             <text x={padding - 5} y={y + 4} fontSize="10" fill="#6B7280" textAnchor="end">
-              ${Math.round(tick * maxValue / 1000)}k
+              ${Math.round((tick * maxValue) / 1000)}k
             </text>
           </g>
         );
@@ -267,7 +336,7 @@ const RevenueChart: React.FC<{ data: RevenueProjection[] }> = ({ data }) => {
               opacity={0.5}
               rx={4}
             />
-            
+
             {/* Actual bar (if exists) */}
             {d.actual && (
               <rect
@@ -281,11 +350,11 @@ const RevenueChart: React.FC<{ data: RevenueProjection[] }> = ({ data }) => {
             )}
 
             {/* Month label */}
-            <text 
-              x={x + barWidth / 2} 
-              y={height + 20} 
-              fontSize="12" 
-              fill="#9CA3AF" 
+            <text
+              x={x + barWidth / 2}
+              y={height + 20}
+              fontSize="12"
+              fill="#9CA3AF"
               textAnchor="middle"
             >
               {d.month}
@@ -297,9 +366,13 @@ const RevenueChart: React.FC<{ data: RevenueProjection[] }> = ({ data }) => {
       {/* Legend */}
       <g transform={`translate(${width - 120}, 10)`}>
         <rect x="0" y="0" width="12" height="12" fill="#3B82F6" opacity="0.5" rx="2" />
-        <text x="18" y="10" fontSize="10" fill="#9CA3AF">Projected</text>
+        <text x="18" y="10" fontSize="10" fill="#9CA3AF">
+          Projected
+        </text>
         <rect x="0" y="18" width="12" height="12" fill="#10B981" rx="2" />
-        <text x="18" y="28" fontSize="10" fill="#9CA3AF">Actual</text>
+        <text x="18" y="28" fontSize="10" fill="#9CA3AF">
+          Actual
+        </text>
       </g>
     </svg>
   );
@@ -327,7 +400,7 @@ export const BoardroomPage: React.FC = () => {
         </div>
         <div className="flex items-center gap-4">
           <div className="flex bg-gray-800 rounded-lg p-1">
-            {['week', 'month', 'quarter', 'year'].map((tf) => (
+            {['week', 'month', 'quarter', 'year'].map(tf => (
               <button
                 key={tf}
                 onClick={() => setTimeframe(tf)}
@@ -411,10 +484,10 @@ export const BoardroomPage: React.FC = () => {
           <span className="text-sm text-gray-400">AI-generated based on current data</span>
         </div>
         <div className="grid grid-cols-2 gap-4">
-          {RECOMMENDATIONS.map((rec) => (
-            <RecommendationCard 
-              key={rec.id} 
-              rec={rec} 
+          {RECOMMENDATIONS.map(rec => (
+            <RecommendationCard
+              key={rec.id}
+              rec={rec}
               onExecute={() => handleExecute(rec.id)}
               isExecuting={executing === rec.id}
             />
@@ -453,16 +526,20 @@ export const BoardroomPage: React.FC = () => {
             { event: 'Pipeline risk', value: 'TechCorp', time: '18m ago', type: 'warning' },
             { event: 'New lead', value: 'ICP Match', time: '22m ago', type: 'info' },
           ].map((item, i) => (
-            <div 
+            <div
               key={i}
               className={`flex-shrink-0 px-4 py-2 rounded-lg ${
-                item.type === 'success' ? 'bg-green-500/10 border border-green-500/30' :
-                item.type === 'warning' ? 'bg-yellow-500/10 border border-yellow-500/30' :
-                'bg-blue-500/10 border border-blue-500/30'
+                item.type === 'success'
+                  ? 'bg-green-500/10 border border-green-500/30'
+                  : item.type === 'warning'
+                    ? 'bg-yellow-500/10 border border-yellow-500/30'
+                    : 'bg-blue-500/10 border border-blue-500/30'
               }`}
             >
               <div className="text-sm font-medium text-white">{item.event}</div>
-              <div className="text-xs text-gray-400">{item.value} • {item.time}</div>
+              <div className="text-xs text-gray-400">
+                {item.value} • {item.time}
+              </div>
             </div>
           ))}
         </div>

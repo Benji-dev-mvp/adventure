@@ -9,13 +9,13 @@ import { Link, useLocation } from 'react-router-dom';
  */
 
 // Responsive Sidebar with Mobile Drawer
-export const ResponsiveSidebar = ({ 
-  items = [], 
-  logo, 
+export const ResponsiveSidebar = ({
+  items = [],
+  logo,
   collapsed = false,
   onCollapse,
   className,
-  children 
+  children,
 }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
@@ -91,7 +91,7 @@ export const ResponsiveSidebar = ({
           tabIndex={0}
           className="lg:hidden fixed inset-0 bg-black/50 z-40"
           onClick={() => setMobileOpen(false)}
-          onKeyDown={(e) => {
+          onKeyDown={e => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
               setMobileOpen(false);
@@ -134,7 +134,7 @@ export const Breadcrumbs = ({ items = [], className }) => {
       >
         <Home size={16} />
       </Link>
-      
+
       {visibleItems.map((item, index) => (
         <React.Fragment key={index}>
           <ChevronRight size={14} className="text-gray-400" />
@@ -152,7 +152,7 @@ export const Breadcrumbs = ({ items = [], className }) => {
           )}
         </React.Fragment>
       ))}
-      
+
       {hasMore && !showAll && (
         <>
           <ChevronRight size={14} className="text-gray-400" />
@@ -169,13 +169,7 @@ export const Breadcrumbs = ({ items = [], className }) => {
 };
 
 // Top Bar / Header with responsive actions
-export const TopBar = ({ 
-  title, 
-  subtitle,
-  actions = [],
-  breadcrumbs,
-  className 
-}) => {
+export const TopBar = ({ title, subtitle, actions = [], breadcrumbs, className }) => {
   return (
     <div
       className={cn(
@@ -202,9 +196,7 @@ export const TopBar = ({
               {title}
             </h1>
             {subtitle && (
-              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                {subtitle}
-              </p>
+              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{subtitle}</p>
             )}
           </div>
 
@@ -228,7 +220,7 @@ export const MegaMenu = ({ trigger, categories = [], className }) => {
   const menuRef = useRef(null);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = event => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setIsOpen(false);
       }
@@ -253,10 +245,7 @@ export const MegaMenu = ({ trigger, categories = [], className }) => {
         )}
       >
         {trigger}
-        <ChevronDown
-          size={16}
-          className={cn('transition-transform', isOpen && 'rotate-180')}
-        />
+        <ChevronDown size={16} className={cn('transition-transform', isOpen && 'rotate-180')} />
       </button>
 
       {isOpen && (
@@ -315,12 +304,8 @@ export const CollapsibleMenu = ({ items = [], className }) => {
   const [openItems, setOpenItems] = useState([]);
   const location = useLocation();
 
-  const toggleItem = (index) => {
-    setOpenItems(prev =>
-      prev.includes(index)
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
-    );
+  const toggleItem = index => {
+    setOpenItems(prev => (prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]));
   };
 
   return (
@@ -339,8 +324,11 @@ export const CollapsibleMenu = ({ items = [], className }) => {
                 'px-3 py-2.5 rounded-lg',
                 'text-sm font-medium transition-all',
                 'hover:bg-gray-100 dark:hover:bg-gray-700',
-                location.pathname === item.path && 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400',
-                !hasChildren && location.pathname !== item.path && 'text-gray-700 dark:text-gray-300'
+                location.pathname === item.path &&
+                  'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400',
+                !hasChildren &&
+                  location.pathname !== item.path &&
+                  'text-gray-700 dark:text-gray-300'
               )}
             >
               <div className="flex items-center gap-3">
@@ -387,62 +375,76 @@ export const CollapsibleMenu = ({ items = [], className }) => {
 };
 
 ResponsiveSidebar.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape({
-    icon: PropTypes.elementType,
-    label: PropTypes.string,
-    path: PropTypes.string,
-    badge: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  })),
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      icon: PropTypes.elementType,
+      label: PropTypes.string,
+      path: PropTypes.string,
+      badge: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    })
+  ),
   logo: PropTypes.node,
   collapsed: PropTypes.bool,
   onCollapse: PropTypes.func,
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 Breadcrumbs.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string,
-    path: PropTypes.string
-  })),
-  className: PropTypes.string
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      path: PropTypes.string,
+    })
+  ),
+  className: PropTypes.string,
 };
 
 TopBar.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   actions: PropTypes.arrayOf(PropTypes.node),
-  breadcrumbs: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string,
-    path: PropTypes.string
-  })),
-  className: PropTypes.string
+  breadcrumbs: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      path: PropTypes.string,
+    })
+  ),
+  className: PropTypes.string,
 };
 
 MegaMenu.propTypes = {
   trigger: PropTypes.node.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.shape({
-      icon: PropTypes.elementType,
-      label: PropTypes.string,
-      path: PropTypes.string,
-      description: PropTypes.string
-    }))
-  })),
-  className: PropTypes.string
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          icon: PropTypes.elementType,
+          label: PropTypes.string,
+          path: PropTypes.string,
+          description: PropTypes.string,
+        })
+      ),
+    })
+  ),
+  className: PropTypes.string,
 };
 
 CollapsibleMenu.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape({
-    icon: PropTypes.elementType,
-    label: PropTypes.string,
-    path: PropTypes.string,
-    children: PropTypes.arrayOf(PropTypes.shape({
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
       icon: PropTypes.elementType,
       label: PropTypes.string,
-      path: PropTypes.string
-    }))
-  })),
-  className: PropTypes.string
+      path: PropTypes.string,
+      children: PropTypes.arrayOf(
+        PropTypes.shape({
+          icon: PropTypes.elementType,
+          label: PropTypes.string,
+          path: PropTypes.string,
+        })
+      ),
+    })
+  ),
+  className: PropTypes.string,
 };

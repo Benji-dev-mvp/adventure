@@ -8,7 +8,11 @@ import { ChevronLeft, ChevronRight, X, ZoomIn, Play, Pause, Volume2, VolumeX } f
  */
 
 // Image Gallery with Lightbox
-export const ImageGallery = ({ images = [], columns = { xs: 1, sm: 2, md: 3, lg: 4 }, className }) => {
+export const ImageGallery = ({
+  images = [],
+  columns = { xs: 1, sm: 2, md: 3, lg: 4 },
+  className,
+}) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
@@ -18,10 +22,10 @@ export const ImageGallery = ({ images = [], columns = { xs: 1, sm: 2, md: 3, lg:
     3: 'grid-cols-3',
     4: 'grid-cols-4',
     5: 'grid-cols-5',
-    6: 'grid-cols-6'
+    6: 'grid-cols-6',
   };
 
-  const openLightbox = (index) => {
+  const openLightbox = index => {
     setLightboxIndex(index);
     setSelectedImage(images[index]);
   };
@@ -43,7 +47,7 @@ export const ImageGallery = ({ images = [], columns = { xs: 1, sm: 2, md: 3, lg:
   };
 
   useEffect(() => {
-    const handleKeyPress = (e) => {
+    const handleKeyPress = e => {
       if (!selectedImage) return;
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowRight') nextImage();
@@ -157,32 +161,32 @@ export const Carousel = ({ items = [], autoPlay = false, interval = 5000, classN
     if (!isAutoPlaying) return;
 
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % items.length);
+      setCurrentIndex(prev => (prev + 1) % items.length);
     }, interval);
 
     return () => clearInterval(timer);
   }, [isAutoPlaying, interval, items.length]);
 
-  const goToSlide = (index) => {
+  const goToSlide = index => {
     setCurrentIndex(index);
     setIsAutoPlaying(false);
   };
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % items.length);
+    setCurrentIndex(prev => (prev + 1) % items.length);
     setIsAutoPlaying(false);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
+    setCurrentIndex(prev => (prev - 1 + items.length) % items.length);
     setIsAutoPlaying(false);
   };
 
-  const handleTouchStart = (e) => {
+  const handleTouchStart = e => {
     touchStartX.current = e.touches[0].clientX;
   };
 
-  const handleTouchMove = (e) => {
+  const handleTouchMove = e => {
     touchEndX.current = e.touches[0].clientX;
   };
 
@@ -287,28 +291,28 @@ ImageGallery.propTypes = {
       PropTypes.shape({
         url: PropTypes.string,
         alt: PropTypes.string,
-        title: PropTypes.string
-      })
+        title: PropTypes.string,
+      }),
     ])
   ),
   columns: PropTypes.shape({
     xs: PropTypes.number,
     sm: PropTypes.number,
     md: PropTypes.number,
-    lg: PropTypes.number
+    lg: PropTypes.number,
   }),
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 // Video Player
-export const VideoEmbed = ({ 
-  src, 
-  poster, 
+export const VideoEmbed = ({
+  src,
+  poster,
   type = 'video/mp4',
   title,
   controls = true,
   autoplay = false,
-  className 
+  className,
 }) => {
   const [isPlaying, setIsPlaying] = useState(autoplay);
   const [isMuted, setIsMuted] = useState(autoplay); // Autoplay videos should be muted
@@ -389,12 +393,7 @@ export const VideoEmbed = ({
 
       {/* Native Controls */}
       {controls && (
-        <video
-          controls
-          src={src}
-          poster={poster}
-          className="w-full aspect-video rounded-xl"
-        >
+        <video controls src={src} poster={poster} className="w-full aspect-video rounded-xl">
           <track kind="captions" srcLang="en" label="English" />
           Your browser does not support the video tag.
         </video>
@@ -406,10 +405,7 @@ export const VideoEmbed = ({
 // YouTube/Vimeo Embed
 export const VideoIframe = ({ url, title, aspectRatio = '16/9', className }) => {
   return (
-    <div
-      className={cn('relative overflow-hidden rounded-xl', className)}
-      style={{ aspectRatio }}
-    >
+    <div className={cn('relative overflow-hidden rounded-xl', className)} style={{ aspectRatio }}>
       <iframe
         src={url}
         title={title || 'Video'}
@@ -428,12 +424,12 @@ VideoEmbed.propTypes = {
   title: PropTypes.string,
   controls: PropTypes.bool,
   autoplay: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 VideoIframe.propTypes = {
   url: PropTypes.string.isRequired,
   title: PropTypes.string,
   aspectRatio: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 };

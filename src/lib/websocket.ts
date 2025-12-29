@@ -58,11 +58,11 @@ export function initializeSocket(token: string, options: WebSocketOptions = {}):
     reconnectAttempts = 0;
   });
 
-  socket.on('disconnect', (reason) => {
+  socket.on('disconnect', reason => {
     console.log('[WebSocket] Disconnected:', reason);
   });
 
-  socket.on('connect_error', (error) => {
+  socket.on('connect_error', error => {
     console.error('[WebSocket] Connection error:', error.message);
     reconnectAttempts++;
 
@@ -72,7 +72,7 @@ export function initializeSocket(token: string, options: WebSocketOptions = {}):
     }
   });
 
-  socket.on('error', (error) => {
+  socket.on('error', error => {
     console.error('[WebSocket] Error:', error);
   });
 
@@ -112,8 +112,8 @@ export function isSocketConnected(): boolean {
  * Hook to manage WebSocket connection lifecycle
  */
 export function useWebSocket() {
-  const token = useUserStore((state) => state.token);
-  const isAuthenticated = useUserStore((state) => state.isAuthenticated);
+  const token = useUserStore(state => state.token);
+  const isAuthenticated = useUserStore(state => state.isAuthenticated);
 
   useEffect(() => {
     if (isAuthenticated && token) {
@@ -153,8 +153,7 @@ export function useCampaignRealtime(campaignId: string | undefined) {
     const handleMetrics = (metrics: unknown) => {
       queryClient.setQueryData(
         queryKeys.campaigns.detail(campaignId),
-        (old: Record<string, unknown> | undefined) =>
-          old ? { ...old, metrics } : old
+        (old: Record<string, unknown> | undefined) => (old ? { ...old, metrics } : old)
       );
     };
 

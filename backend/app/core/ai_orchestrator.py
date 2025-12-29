@@ -17,9 +17,6 @@ from ..integrations.langchain_agent import LangChainOrchestrator
 from ..integrations.llamaindex_rag import LlamaIndexRAG
 from ..integrations.mem0_memory import Mem0MemoryManager
 from ..integrations.pydantic_agent import (
-    CampaignStrategy,
-    EmailGeneration,
-    LeadScore,
     PydanticAIAgent,
     SalesContext,
 )

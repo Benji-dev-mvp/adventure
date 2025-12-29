@@ -1,18 +1,19 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
-const AnimatedButton = ({ 
-  children, 
-  onClick, 
-  variant = 'gradient', 
+const AnimatedButton = ({
+  children,
+  onClick,
+  variant = 'gradient',
   className = '',
   disabled = false,
-  ...props 
+  ...props
 }) => {
   const variants = {
     gradient: 'bg-gradient-magenta hover:shadow-xl text-white',
     purple: 'bg-artisan-purple hover:bg-artisan-purple-dark text-white',
-    outline: 'border-2 border-gray-300 hover:border-artisan-purple hover:text-artisan-purple bg-white text-gray-700',
+    outline:
+      'border-2 border-gray-300 hover:border-artisan-purple hover:text-artisan-purple bg-white text-gray-700',
   };
 
   return (

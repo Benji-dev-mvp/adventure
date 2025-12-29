@@ -44,9 +44,9 @@ interface ExecutionEvent {
 }
 
 const mockExecutionEvents: ExecutionEvent[] = [
-  { 
-    id: 'ev-1', 
-    timestamp: new Date(Date.now() - 1000 * 60 * 2), 
+  {
+    id: 'ev-1',
+    timestamp: new Date(Date.now() - 1000 * 60 * 2),
     type: 'lead_entered',
     blockId: 'b1',
     blockName: 'Import Leads',
@@ -57,9 +57,9 @@ const mockExecutionEvents: ExecutionEvent[] = [
     details: 'Lead imported from CSV',
     duration: 0.3,
   },
-  { 
-    id: 'ev-2', 
-    timestamp: new Date(Date.now() - 1000 * 60 * 1.8), 
+  {
+    id: 'ev-2',
+    timestamp: new Date(Date.now() - 1000 * 60 * 1.8),
     type: 'scoring',
     blockId: 'b2',
     blockName: 'Lead Scoring',
@@ -70,9 +70,9 @@ const mockExecutionEvents: ExecutionEvent[] = [
     details: 'Score: 85 (High Intent)',
     duration: 0.8,
   },
-  { 
-    id: 'ev-3', 
-    timestamp: new Date(Date.now() - 1000 * 60 * 1.5), 
+  {
+    id: 'ev-3',
+    timestamp: new Date(Date.now() - 1000 * 60 * 1.5),
     type: 'enrichment',
     blockId: 'b3',
     blockName: 'Data Enrichment',
@@ -83,9 +83,9 @@ const mockExecutionEvents: ExecutionEvent[] = [
     details: 'Enriched with 12 new fields',
     duration: 2.1,
   },
-  { 
-    id: 'ev-4', 
-    timestamp: new Date(Date.now() - 1000 * 60 * 1.2), 
+  {
+    id: 'ev-4',
+    timestamp: new Date(Date.now() - 1000 * 60 * 1.2),
     type: 'condition',
     blockId: 'b4',
     blockName: 'Score Check',
@@ -97,9 +97,9 @@ const mockExecutionEvents: ExecutionEvent[] = [
     duration: 0.1,
     branch: 'true',
   },
-  { 
-    id: 'ev-5', 
-    timestamp: new Date(Date.now() - 1000 * 60 * 1), 
+  {
+    id: 'ev-5',
+    timestamp: new Date(Date.now() - 1000 * 60 * 1),
     type: 'email_sent',
     blockId: 'b5',
     blockName: 'Hot Lead Email',
@@ -110,9 +110,9 @@ const mockExecutionEvents: ExecutionEvent[] = [
     details: 'Sent: "Quick question about your Q4 goals"',
     duration: 1.5,
   },
-  { 
-    id: 'ev-6', 
-    timestamp: new Date(Date.now() - 1000 * 60 * 0.5), 
+  {
+    id: 'ev-6',
+    timestamp: new Date(Date.now() - 1000 * 60 * 0.5),
     type: 'lead_entered',
     blockId: 'b1',
     blockName: 'Import Leads',
@@ -123,9 +123,9 @@ const mockExecutionEvents: ExecutionEvent[] = [
     details: 'Lead imported from CSV',
     duration: 0.3,
   },
-  { 
-    id: 'ev-7', 
-    timestamp: new Date(Date.now() - 1000 * 30), 
+  {
+    id: 'ev-7',
+    timestamp: new Date(Date.now() - 1000 * 30),
     type: 'scoring',
     blockId: 'b2',
     blockName: 'Lead Scoring',
@@ -136,9 +136,9 @@ const mockExecutionEvents: ExecutionEvent[] = [
     details: 'Calculating score...',
     duration: null,
   },
-  { 
-    id: 'ev-8', 
-    timestamp: new Date(Date.now() - 1000 * 60 * 5), 
+  {
+    id: 'ev-8',
+    timestamp: new Date(Date.now() - 1000 * 60 * 5),
     type: 'email_sent',
     blockId: 'b5',
     blockName: 'Hot Lead Email',
@@ -159,22 +159,29 @@ const ExecutionTimeline = () => {
   const [expandedEvent, setExpandedEvent] = useState<string | null>(null);
   const [isLive, setIsLive] = useState(true);
 
-  const stats = useMemo(() => ({
-    total: events.length,
-    completed: events.filter(e => e.status === 'completed').length,
-    running: events.filter(e => e.status === 'running').length,
-    failed: events.filter(e => e.status === 'failed').length,
-    avgDuration: events.filter(e => e.duration).reduce((a, b) => a + (b.duration || 0), 0) / events.filter(e => e.duration).length,
-  }), [events]);
+  const stats = useMemo(
+    () => ({
+      total: events.length,
+      completed: events.filter(e => e.status === 'completed').length,
+      running: events.filter(e => e.status === 'running').length,
+      failed: events.filter(e => e.status === 'failed').length,
+      avgDuration:
+        events.filter(e => e.duration).reduce((a, b) => a + (b.duration || 0), 0) /
+        events.filter(e => e.duration).length,
+    }),
+    [events]
+  );
 
   const filteredEvents = useMemo(() => {
     return events.filter(event => {
       if (filter !== 'all' && event.status !== filter) return false;
       if (searchQuery) {
         const query = searchQuery.toLowerCase();
-        if (!event.leadName?.toLowerCase().includes(query) &&
-            !event.company?.toLowerCase().includes(query) &&
-            !event.blockName?.toLowerCase().includes(query)) {
+        if (
+          !event.leadName?.toLowerCase().includes(query) &&
+          !event.company?.toLowerCase().includes(query) &&
+          !event.blockName?.toLowerCase().includes(query)
+        ) {
           return false;
         }
       }
@@ -204,16 +211,26 @@ const ExecutionTimeline = () => {
 
   const getEventIcon = (type: string) => {
     switch (type) {
-      case 'lead_entered': return User;
-      case 'scoring': return Activity;
-      case 'enrichment': return Zap;
-      case 'condition': return ArrowRight;
-      case 'email_sent': return Mail;
-      case 'call_scheduled': return Phone;
-      case 'linkedin_sent': return Globe;
-      case 'ai_action': return Brain;
-      case 'wait_started': return Timer;
-      default: return Activity;
+      case 'lead_entered':
+        return User;
+      case 'scoring':
+        return Activity;
+      case 'enrichment':
+        return Zap;
+      case 'condition':
+        return ArrowRight;
+      case 'email_sent':
+        return Mail;
+      case 'call_scheduled':
+        return Phone;
+      case 'linkedin_sent':
+        return Globe;
+      case 'ai_action':
+        return Brain;
+      case 'wait_started':
+        return Timer;
+      default:
+        return Activity;
     }
   };
 
@@ -234,8 +251,8 @@ const ExecutionTimeline = () => {
           <button
             onClick={() => setIsLive(!isLive)}
             className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-              isLive 
-                ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
+              isLive
+                ? 'bg-green-500/20 text-green-400 border border-green-500/30'
                 : 'bg-gray-800 text-gray-400 border border-gray-700'
             }`}
           >
@@ -265,7 +282,7 @@ const ExecutionTimeline = () => {
               type="text"
               placeholder="Search events..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={e => setSearchQuery(e.target.value)}
               className="w-64 pl-9 pr-4 py-1.5 bg-gray-800 border border-gray-700 rounded-lg text-sm text-white placeholder-gray-500 focus:border-violet-500 focus:outline-none"
             />
           </div>
@@ -273,7 +290,7 @@ const ExecutionTimeline = () => {
           {/* Filter */}
           <select
             value={filter}
-            onChange={(e) => setFilter(e.target.value)}
+            onChange={e => setFilter(e.target.value)}
             className="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-lg text-sm text-white focus:border-violet-500 focus:outline-none"
           >
             <option value="all">All Events</option>
@@ -314,7 +331,9 @@ const ExecutionTimeline = () => {
           <div className="flex items-center gap-2 ml-auto">
             <Timer className="w-4 h-4 text-gray-500" />
             <span className="text-sm text-gray-400">Avg Duration:</span>
-            <span className="text-sm font-medium text-violet-400">{stats.avgDuration.toFixed(1)}s</span>
+            <span className="text-sm font-medium text-violet-400">
+              {stats.avgDuration.toFixed(1)}s
+            </span>
           </div>
         </div>
       </div>
@@ -346,18 +365,28 @@ const ExecutionTimeline = () => {
                   >
                     {/* Timeline node */}
                     <div className="absolute left-0 top-3 w-11 flex items-center justify-center">
-                      <div className={`w-7 h-7 rounded-full flex items-center justify-center ${
-                        event.status === 'completed' ? 'bg-green-500/20 ring-2 ring-green-500/50' :
-                        event.status === 'running' ? 'bg-amber-500/20 ring-2 ring-amber-500/50' :
-                        event.status === 'failed' ? 'bg-red-500/20 ring-2 ring-red-500/50' :
-                        'bg-gray-700'
-                      }`}>
-                        <EventIcon className={`w-3.5 h-3.5 ${
-                          event.status === 'completed' ? 'text-green-400' :
-                          event.status === 'running' ? 'text-amber-400' :
-                          event.status === 'failed' ? 'text-red-400' :
-                          'text-gray-400'
-                        }`} />
+                      <div
+                        className={`w-7 h-7 rounded-full flex items-center justify-center ${
+                          event.status === 'completed'
+                            ? 'bg-green-500/20 ring-2 ring-green-500/50'
+                            : event.status === 'running'
+                              ? 'bg-amber-500/20 ring-2 ring-amber-500/50'
+                              : event.status === 'failed'
+                                ? 'bg-red-500/20 ring-2 ring-red-500/50'
+                                : 'bg-gray-700'
+                        }`}
+                      >
+                        <EventIcon
+                          className={`w-3.5 h-3.5 ${
+                            event.status === 'completed'
+                              ? 'text-green-400'
+                              : event.status === 'running'
+                                ? 'text-amber-400'
+                                : event.status === 'failed'
+                                  ? 'text-red-400'
+                                  : 'text-gray-400'
+                          }`}
+                        />
                       </div>
                     </div>
 
@@ -365,20 +394,24 @@ const ExecutionTimeline = () => {
                     <div
                       role="button"
                       tabIndex={0}
-                      onKeyDown={(e) => e.key === 'Enter' && setSelectedEvent(event.id)}
+                      onKeyDown={e => e.key === 'Enter' && setExpandedEvent(isExpanded ? null : event.id)}
                       className={`bg-gray-900 border rounded-lg overflow-hidden cursor-pointer transition-colors ${
-                        event.status === 'failed' ? 'border-red-500/30 hover:border-red-500/50' :
-                        event.status === 'running' ? 'border-amber-500/30 hover:border-amber-500/50' :
-                        'border-gray-800 hover:border-gray-700'
+                        event.status === 'failed'
+                          ? 'border-red-500/30 hover:border-red-500/50'
+                          : event.status === 'running'
+                            ? 'border-amber-500/30 hover:border-amber-500/50'
+                            : 'border-gray-800 hover:border-gray-700'
                       }`}
                       onClick={() => setExpandedEvent(isExpanded ? null : event.id)}
                     >
                       <div className="p-3 flex items-center gap-3">
                         {getStatusIcon(event.status)}
-                        
+
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <span className="text-sm font-medium text-white">{event.blockName}</span>
+                            <span className="text-sm font-medium text-white">
+                              {event.blockName}
+                            </span>
                             <ChevronRight className="w-3 h-3 text-gray-600" />
                             <span className="text-sm text-gray-400 truncate">{event.leadName}</span>
                             <span className="text-xs text-gray-600">•</span>
@@ -391,8 +424,12 @@ const ExecutionTimeline = () => {
                           {event.duration && (
                             <span className="text-xs text-gray-500">{event.duration}s</span>
                           )}
-                          <span className="text-xs text-gray-600">{formatTime(event.timestamp)}</span>
-                          <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                          <span className="text-xs text-gray-600">
+                            {formatTime(event.timestamp)}
+                          </span>
+                          <ChevronDown
+                            className={`w-4 h-4 text-gray-500 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                          />
                         </div>
                       </div>
 
@@ -409,19 +446,27 @@ const ExecutionTimeline = () => {
                               <div className="grid grid-cols-2 gap-4 text-sm">
                                 <div>
                                   <span className="text-gray-500">Event ID</span>
-                                  <div className="text-white font-mono text-xs mt-0.5">{event.id}</div>
+                                  <div className="text-white font-mono text-xs mt-0.5">
+                                    {event.id}
+                                  </div>
                                 </div>
                                 <div>
                                   <span className="text-gray-500">Block ID</span>
-                                  <div className="text-white font-mono text-xs mt-0.5">{event.blockId}</div>
+                                  <div className="text-white font-mono text-xs mt-0.5">
+                                    {event.blockId}
+                                  </div>
                                 </div>
                                 <div>
                                   <span className="text-gray-500">Lead ID</span>
-                                  <div className="text-white font-mono text-xs mt-0.5">{event.leadId}</div>
+                                  <div className="text-white font-mono text-xs mt-0.5">
+                                    {event.leadId}
+                                  </div>
                                 </div>
                                 <div>
                                   <span className="text-gray-500">Timestamp</span>
-                                  <div className="text-white text-xs mt-0.5">{event.timestamp.toLocaleString()}</div>
+                                  <div className="text-white text-xs mt-0.5">
+                                    {event.timestamp.toLocaleString()}
+                                  </div>
                                 </div>
                               </div>
 
@@ -437,9 +482,11 @@ const ExecutionTimeline = () => {
                               {event.branch && (
                                 <div className="bg-gray-800 rounded-lg p-3">
                                   <span className="text-gray-500 text-sm">Branch taken:</span>
-                                  <span className={`ml-2 text-sm font-medium ${
-                                    event.branch === 'true' ? 'text-green-400' : 'text-red-400'
-                                  }`}>
+                                  <span
+                                    className={`ml-2 text-sm font-medium ${
+                                      event.branch === 'true' ? 'text-green-400' : 'text-red-400'
+                                    }`}
+                                  >
                                     {event.branch.toUpperCase()}
                                   </span>
                                 </div>

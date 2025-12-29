@@ -6,11 +6,10 @@ Handles spam scoring, send time optimization, content generation, validation.
 import logging
 import re
 from collections import Counter
-from datetime import datetime, time, timedelta
 from typing import Any, Dict, List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, status
-from pydantic import BaseModel, Field
+from fastapi import APIRouter, Depends
+from pydantic import BaseModel
 
 from app.core.security import get_current_user
 from app.models.user import User

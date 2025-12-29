@@ -64,7 +64,13 @@ export interface AIRecommendation {
 // Auto-Experimentation Types
 // ============================================
 
-export type ExperimentType = 'subject_line' | 'cta' | 'send_time' | 'persona_angle' | 'channel' | 'sequence_length';
+export type ExperimentType =
+  | 'subject_line'
+  | 'cta'
+  | 'send_time'
+  | 'persona_angle'
+  | 'channel'
+  | 'sequence_length';
 export type ExperimentStatus = 'draft' | 'running' | 'paused' | 'completed' | 'inconclusive';
 
 export interface ExperimentVariant {
@@ -117,7 +123,13 @@ export interface ExperimentEngine {
 // Closed-Loop Learning Types
 // ============================================
 
-export type OutcomeType = 'positive_reply' | 'negative_reply' | 'meeting_booked' | 'no_response' | 'unsubscribe' | 'bounce';
+export type OutcomeType =
+  | 'positive_reply'
+  | 'negative_reply'
+  | 'meeting_booked'
+  | 'no_response'
+  | 'unsubscribe'
+  | 'bounce';
 
 export interface OutcomeSignal {
   id: string;
@@ -181,7 +193,12 @@ export interface AutopilotState {
 
 export interface AutopilotDecision {
   id: string;
-  type: 'strategy_change' | 'experiment_launch' | 'experiment_end' | 'model_update' | 'pacing_adjustment';
+  type:
+    | 'strategy_change'
+    | 'experiment_launch'
+    | 'experiment_end'
+    | 'model_update'
+    | 'pacing_adjustment';
   description: string;
   reasoning: string;
   impact: string;

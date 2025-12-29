@@ -14,14 +14,14 @@ const DEFAULT_SHORTCUTS = {
   'g s': { action: 'navigate', path: '/settings', description: 'Go to Settings' },
   'g i': { action: 'navigate', path: '/integrations', description: 'Go to Integrations' },
   'g h': { action: 'navigate', path: '/help', description: 'Go to Help Center' },
-  
+
   // Actions
   'n c': { action: 'custom', id: 'newCampaign', description: 'New Campaign' },
   'n l': { action: 'custom', id: 'newLead', description: 'New Lead' },
   'n t': { action: 'custom', id: 'newTemplate', description: 'New Template' },
-  
+
   // UI
-  'Escape': { action: 'custom', id: 'closeModal', description: 'Close Modal/Dialog' },
+  Escape: { action: 'custom', id: 'closeModal', description: 'Close Modal/Dialog' },
   '?': { action: 'custom', id: 'showShortcuts', description: 'Show Shortcuts' },
 };
 
@@ -32,92 +32,91 @@ const DEFAULT_SHORTCUTS = {
  * @param {Object} options - Configuration options
  */
 export function useKeyboardShortcuts(customHandlers = {}, navigate = null, options = {}) {
-  const {
-    enabled = true,
-    shortcuts = DEFAULT_SHORTCUTS,
-    ignoreInputs = true,
-  } = options;
+  const { enabled = true, shortcuts = DEFAULT_SHORTCUTS, ignoreInputs = true } = options;
 
   const keySequence = useRef('');
   const keyTimeout = useRef(null);
 
-  const handleKeyDown = useCallback((event) => {
-    if (!enabled) return;
+  const handleKeyDown = useCallback(
+    event => {
+      if (!enabled) return;
 
-    // Ignore if typing in input, textarea, or contenteditable
-    if (ignoreInputs) {
-      const target = event.target;
-      const tagName = target.tagName.toLowerCase();
-      if (
-        tagName === 'input' ||
-        tagName === 'textarea' ||
-        tagName === 'select' ||
-        target.isContentEditable
-      ) {
-        // Allow Escape in inputs
-        if (event.key !== 'Escape') return;
+      // Ignore if typing in input, textarea, or contenteditable
+      if (ignoreInputs) {
+        const target = event.target;
+        const tagName = target.tagName.toLowerCase();
+        if (
+          tagName === 'input' ||
+          tagName === 'textarea' ||
+          tagName === 'select' ||
+          target.isContentEditable
+        ) {
+          // Allow Escape in inputs
+          if (event.key !== 'Escape') return;
+        }
       }
-    }
 
-    // Handle Command/Ctrl + K separately (for command palette)
-    if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
-      event.preventDefault();
-      if (customHandlers.openCommandPalette) {
-        customHandlers.openCommandPalette();
+      // Handle Command/Ctrl + K separately (for command palette)
+      if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+        event.preventDefault();
+        if (customHandlers.openCommandPalette) {
+          customHandlers.openCommandPalette();
+        }
+        return;
       }
-      return;
-    }
 
-    // Build key sequence for multi-key shortcuts
-    const key = event.key;
-    
-    // Clear previous timeout
-    if (keyTimeout.current) {
-      clearTimeout(keyTimeout.current);
-    }
+      // Build key sequence for multi-key shortcuts
+      const key = event.key;
 
-    // Add to sequence
-    if (keySequence.current) {
-      keySequence.current += ' ' + key;
-    } else {
-      keySequence.current = key;
-    }
-
-    // Check for matching shortcut
-    const shortcut = shortcuts[keySequence.current];
-    
-    if (shortcut) {
-      event.preventDefault();
-      keySequence.current = '';
-
-      switch (shortcut.action) {
-        case 'navigate':
-          if (navigate) {
-            navigate(shortcut.path);
-          }
-          break;
-        case 'custom':
-          if (customHandlers[shortcut.id]) {
-            customHandlers[shortcut.id]();
-          }
-          break;
-        default:
-          break;
+      // Clear previous timeout
+      if (keyTimeout.current) {
+        clearTimeout(keyTimeout.current);
       }
-    } else {
-      // Check if current sequence could lead to a valid shortcut
-      const couldMatch = Object.keys(shortcuts).some(s => s.startsWith(keySequence.current));
-      
-      if (!couldMatch) {
-        keySequence.current = '';
+
+      // Add to sequence
+      if (keySequence.current) {
+        keySequence.current += ' ' + key;
       } else {
-        // Set timeout to clear sequence
-        keyTimeout.current = setTimeout(() => {
-          keySequence.current = '';
-        }, 1000);
+        keySequence.current = key;
       }
-    }
-  }, [enabled, shortcuts, ignoreInputs, navigate, customHandlers]);
+
+      // Check for matching shortcut
+      const shortcut = shortcuts[keySequence.current];
+
+      if (shortcut) {
+        event.preventDefault();
+        keySequence.current = '';
+
+        switch (shortcut.action) {
+          case 'navigate':
+            if (navigate) {
+              navigate(shortcut.path);
+            }
+            break;
+          case 'custom':
+            if (customHandlers[shortcut.id]) {
+              customHandlers[shortcut.id]();
+            }
+            break;
+          default:
+            break;
+        }
+      } else {
+        // Check if current sequence could lead to a valid shortcut
+        const couldMatch = Object.keys(shortcuts).some(s => s.startsWith(keySequence.current));
+
+        if (!couldMatch) {
+          keySequence.current = '';
+        } else {
+          // Set timeout to clear sequence
+          keyTimeout.current = setTimeout(() => {
+            keySequence.current = '';
+          }, 1000);
+        }
+      }
+    },
+    [enabled, shortcuts, ignoreInputs, navigate, customHandlers]
+  );
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);

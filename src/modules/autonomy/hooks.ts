@@ -23,7 +23,7 @@ export function useAutopilot() {
         setIsLoading(true);
         // In production, this would be an API call
         await new Promise(resolve => setTimeout(resolve, 500));
-        
+
         setState({
           mode: 'supervised',
           isActive: true,
@@ -53,11 +53,11 @@ export function useAutopilot() {
   }, []);
 
   const setMode = useCallback((mode: AutopilotState['mode']) => {
-    setState(prev => prev ? { ...prev, mode } : null);
+    setState(prev => (prev ? { ...prev, mode } : null));
   }, []);
 
   const toggleActive = useCallback(() => {
-    setState(prev => prev ? { ...prev, isActive: !prev.isActive } : null);
+    setState(prev => (prev ? { ...prev, isActive: !prev.isActive } : null));
   }, []);
 
   const executeIntervention = useCallback((interventionId: string) => {
@@ -98,18 +98,22 @@ export function useStrategies() {
   }, []);
 
   const updateStrategy = useCallback((id: string, updates: Partial<StrategyPlan>) => {
-    setStrategies(prev => 
-      prev.map(s => s.id === id ? { ...s, ...updates } : s)
-    );
+    setStrategies(prev => prev.map(s => (s.id === id ? { ...s, ...updates } : s)));
   }, []);
 
-  const activateStrategy = useCallback((id: string) => {
-    updateStrategy(id, { status: 'active' });
-  }, [updateStrategy]);
+  const activateStrategy = useCallback(
+    (id: string) => {
+      updateStrategy(id, { status: 'active' });
+    },
+    [updateStrategy]
+  );
 
-  const pauseStrategy = useCallback((id: string) => {
-    updateStrategy(id, { status: 'paused' });
-  }, [updateStrategy]);
+  const pauseStrategy = useCallback(
+    (id: string) => {
+      updateStrategy(id, { status: 'paused' });
+    },
+    [updateStrategy]
+  );
 
   return {
     strategies,
@@ -144,15 +148,11 @@ export function useExperiments() {
   }, []);
 
   const startExperiment = useCallback((id: string) => {
-    setExperiments(prev =>
-      prev.map(e => e.id === id ? { ...e, status: 'running' } : e)
-    );
+    setExperiments(prev => prev.map(e => (e.id === id ? { ...e, status: 'running' } : e)));
   }, []);
 
   const pauseExperiment = useCallback((id: string) => {
-    setExperiments(prev =>
-      prev.map(e => e.id === id ? { ...e, status: 'paused' } : e)
-    );
+    setExperiments(prev => prev.map(e => (e.id === id ? { ...e, status: 'paused' } : e)));
   }, []);
 
   const declareWinner = useCallback((experimentId: string, variantId: string) => {
@@ -232,9 +232,7 @@ export function usePipelineCommitments() {
   }, []);
 
   const updateCommitment = useCallback((id: string, updates: Partial<PipelineCommitment>) => {
-    setCommitments(prev =>
-      prev.map(c => c.id === id ? { ...c, ...updates } : c)
-    );
+    setCommitments(prev => prev.map(c => (c.id === id ? { ...c, ...updates } : c)));
   }, []);
 
   const applyAdjustment = useCallback((commitmentId: string, adjustmentType: string) => {

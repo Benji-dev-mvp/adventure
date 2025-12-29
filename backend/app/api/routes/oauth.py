@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 from typing import Dict, Optional
 
 import httpx
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 
@@ -285,7 +285,7 @@ async def salesforce_callback(code: str, state: str):
     token_store.save_token(user_id, "salesforce", token)
 
     # Store instance URL
-    instance_url = token_data.get("instance_url", "")
+    token_data.get("instance_url", "")
     # TODO: Save to database
 
     return RedirectResponse(url=f"{settings.frontend_url}/integrations?salesforce=success")
@@ -408,7 +408,7 @@ async def gmail_webhook(request: Request):
 
         # Decode message
         message = data.get("message", {})
-        message_data = message.get("data", "")
+        message.get("data", "")
 
         # Process email notification
         # TODO: Fetch email, detect reply, analyze with AI, take action

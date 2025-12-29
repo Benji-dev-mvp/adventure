@@ -8,18 +8,18 @@ export interface FeatureFlags {
   enableRealTimeUpdates: boolean;
   enableAIAssistant: boolean;
   enableMultiChannelCampaigns: boolean;
-  
+
   // Beta Features
   enableAdvancedAnalytics: boolean;
   enableLeadScoring: boolean;
   enableABTesting: boolean;
   enableWorkflowAutomation: boolean;
-  
+
   // Experimental Features
   enableVoiceCommands: boolean;
   enablePredictiveLeadGen: boolean;
   enableAutoSequencing: boolean;
-  
+
   // UI/UX
   enableNewDashboard: boolean;
   enableDarkMode: boolean;
@@ -33,18 +33,18 @@ const defaultFlags: FeatureFlags = {
   enableRealTimeUpdates: true,
   enableAIAssistant: true,
   enableMultiChannelCampaigns: true,
-  
+
   // Beta - enabled for early adopters
   enableAdvancedAnalytics: true,
   enableLeadScoring: true,
   enableABTesting: false,
   enableWorkflowAutomation: false,
-  
+
   // Experimental - disabled by default
   enableVoiceCommands: false,
   enablePredictiveLeadGen: false,
   enableAutoSequencing: false,
-  
+
   // UI/UX - enabled by default
   enableNewDashboard: true,
   enableDarkMode: true,
@@ -93,7 +93,7 @@ export function isFeatureEnabled(flag: keyof FeatureFlags): boolean {
 export function updateFeatureFlags(updates: Partial<FeatureFlags>): void {
   const current = loadFeatureFlags();
   cachedFlags = { ...current, ...updates };
-  
+
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(cachedFlags));
   } catch (error) {
@@ -157,7 +157,11 @@ interface FeatureGateProps {
   fallback?: React.ReactNode;
 }
 
-export function FeatureGate({ flag, children, fallback = null }: FeatureGateProps): React.ReactNode {
+export function FeatureGate({
+  flag,
+  children,
+  fallback = null,
+}: FeatureGateProps): React.ReactNode {
   const isEnabled = useFeatureFlag(flag);
   return isEnabled ? children : fallback;
 }

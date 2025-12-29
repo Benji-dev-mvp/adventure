@@ -1,6 +1,6 @@
 /**
  * Simulate Page
- * 
+ *
  * Monte Carlo simulation interface for predictive
  * pipeline modeling and strategy stress testing.
  */
@@ -52,7 +52,8 @@ const ConfigSlider: React.FC<{
     <div className="flex justify-between mb-1">
       <span className="text-gray-400">{label}</span>
       <span className="text-white font-medium">
-        {value.toLocaleString()}{unit && ` ${unit}`}
+        {value.toLocaleString()}
+        {unit && ` ${unit}`}
       </span>
     </div>
     <input
@@ -61,7 +62,7 @@ const ConfigSlider: React.FC<{
       max={max}
       step={step}
       value={value}
-      onChange={(e) => onChange(Number(e.target.value))}
+      onChange={e => onChange(Number(e.target.value))}
       className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
     />
     <div className="flex justify-between text-xs text-gray-500 mt-1">
@@ -90,9 +91,7 @@ const MetricDisplay: React.FC<{
   return (
     <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
       <div className="text-gray-400 text-sm mb-2">{label}</div>
-      <div className="text-3xl font-bold text-white mb-2">
-        {formatValue(value.mean)}
-      </div>
+      <div className="text-3xl font-bold text-white mb-2">{formatValue(value.mean)}</div>
       <div className="text-sm text-gray-400">
         95% CI: {formatValue(value.low)} - {formatValue(value.high)}
       </div>
@@ -102,7 +101,7 @@ const MetricDisplay: React.FC<{
 
 const DistributionChart: React.FC<{ data: number[] }> = ({ data }) => {
   const max = Math.max(...data);
-  
+
   return (
     <div className="flex items-end gap-1 h-32">
       {data.map((value, i) => (
@@ -180,11 +179,12 @@ export const SimulatePage: React.FC = () => {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        
+
         // Generate mock results
-        const expectedRevenue = config.accounts * config.avgDealSize * config.replyRate * config.meetingRate * 0.2;
+        const expectedRevenue =
+          config.accounts * config.avgDealSize * config.replyRate * config.meetingRate * 0.2;
         const variance = expectedRevenue * 0.3;
-        
+
         setResult({
           id: `sim_${Date.now()}`,
           status: 'completed',
@@ -211,7 +211,8 @@ export const SimulatePage: React.FC = () => {
             {
               type: 'opportunity',
               title: 'High Upside Potential',
-              description: 'Top 5% scenarios show 2.5x revenue above baseline. Focus on high-intent accounts.',
+              description:
+                'Top 5% scenarios show 2.5x revenue above baseline. Focus on high-intent accounts.',
             },
             {
               type: 'warning',
@@ -228,27 +229,31 @@ export const SimulatePage: React.FC = () => {
         });
         setIsRunning(false);
       } else {
-        setResult(prev => prev ? { ...prev, progress } : null);
+        setResult(prev => (prev ? { ...prev, progress } : null));
       }
     }, 200);
   }, [config]);
 
   // Mock distribution data
-  const distributionData = Array(30).fill(0).map(() => Math.random() * 100);
+  const distributionData = Array(30)
+    .fill(0)
+    .map(() => Math.random() * 100);
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold">Simulation Engine</h1>
-        <p className="text-gray-400">Monte Carlo pipeline predictions and strategy stress testing</p>
+        <p className="text-gray-400">
+          Monte Carlo pipeline predictions and strategy stress testing
+        </p>
       </div>
 
       <div className="grid grid-cols-3 gap-6">
         {/* Configuration Panel */}
         <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-semibold mb-6">Simulation Parameters</h2>
-          
+
           <div className="space-y-6">
             <div>
               <h3 className="text-sm font-medium text-gray-300 mb-4">Engine Settings</h3>
@@ -258,7 +263,7 @@ export const SimulatePage: React.FC = () => {
                 min={100}
                 max={10000}
                 step={100}
-                onChange={(v) => updateConfig('iterations', v)}
+                onChange={v => updateConfig('iterations', v)}
               />
               <ConfigSlider
                 label="Time Horizon"
@@ -266,7 +271,7 @@ export const SimulatePage: React.FC = () => {
                 min={30}
                 max={365}
                 unit="days"
-                onChange={(v) => updateConfig('timeHorizon', v)}
+                onChange={v => updateConfig('timeHorizon', v)}
               />
             </div>
 
@@ -278,7 +283,7 @@ export const SimulatePage: React.FC = () => {
                 min={100}
                 max={5000}
                 step={50}
-                onChange={(v) => updateConfig('accounts', v)}
+                onChange={v => updateConfig('accounts', v)}
               />
               <ConfigSlider
                 label="Average Deal Size"
@@ -287,7 +292,7 @@ export const SimulatePage: React.FC = () => {
                 max={100000}
                 step={1000}
                 unit="$"
-                onChange={(v) => updateConfig('avgDealSize', v)}
+                onChange={v => updateConfig('avgDealSize', v)}
               />
             </div>
 
@@ -300,7 +305,7 @@ export const SimulatePage: React.FC = () => {
                 max={20}
                 step={0.5}
                 unit="%"
-                onChange={(v) => updateConfig('replyRate', v / 100)}
+                onChange={v => updateConfig('replyRate', v / 100)}
               />
               <ConfigSlider
                 label="Reply to Meeting Rate"
@@ -309,7 +314,7 @@ export const SimulatePage: React.FC = () => {
                 max={50}
                 step={1}
                 unit="%"
-                onChange={(v) => updateConfig('meetingRate', v / 100)}
+                onChange={v => updateConfig('meetingRate', v / 100)}
               />
             </div>
           </div>
@@ -318,9 +323,7 @@ export const SimulatePage: React.FC = () => {
             onClick={runSimulation}
             disabled={isRunning}
             className={`w-full mt-6 py-3 rounded-lg font-semibold transition-colors ${
-              isRunning
-                ? 'bg-gray-600 cursor-not-allowed'
-                : 'bg-blue-600 hover:bg-blue-700'
+              isRunning ? 'bg-gray-600 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
             }`}
           >
             {isRunning ? (
@@ -345,14 +348,8 @@ export const SimulatePage: React.FC = () => {
                   value={result.metrics.expectedRevenue}
                   format="currency"
                 />
-                <MetricDisplay
-                  label="Expected Deals"
-                  value={result.metrics.expectedDeals}
-                />
-                <MetricDisplay
-                  label="Expected ROI"
-                  value={result.metrics.roi}
-                />
+                <MetricDisplay label="Expected Deals" value={result.metrics.expectedDeals} />
+                <MetricDisplay label="Expected ROI" value={result.metrics.roi} />
                 <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
                   <div className="text-gray-400 text-sm mb-2">Success Probability</div>
                   <div className="text-3xl font-bold text-green-400">
@@ -398,8 +395,8 @@ export const SimulatePage: React.FC = () => {
                   Configure and Run Simulation
                 </h3>
                 <p className="text-gray-500 max-w-md">
-                  Adjust the parameters on the left and run a Monte Carlo simulation
-                  to see predicted outcomes with confidence intervals.
+                  Adjust the parameters on the left and run a Monte Carlo simulation to see
+                  predicted outcomes with confidence intervals.
                 </p>
               </div>
             </div>

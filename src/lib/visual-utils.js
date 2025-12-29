@@ -47,31 +47,37 @@ export const glass = {
 export const glow = {
   // Cyan glow
   cyan: {
-    boxShadow: '0 0 20px rgba(0, 245, 255, 0.3), 0 0 40px rgba(0, 245, 255, 0.2), 0 0 60px rgba(0, 245, 255, 0.1)',
+    boxShadow:
+      '0 0 20px rgba(0, 245, 255, 0.3), 0 0 40px rgba(0, 245, 255, 0.2), 0 0 60px rgba(0, 245, 255, 0.1)',
   },
 
   // Purple glow
   purple: {
-    boxShadow: '0 0 20px rgba(168, 85, 247, 0.3), 0 0 40px rgba(168, 85, 247, 0.2), 0 0 60px rgba(168, 85, 247, 0.1)',
+    boxShadow:
+      '0 0 20px rgba(168, 85, 247, 0.3), 0 0 40px rgba(168, 85, 247, 0.2), 0 0 60px rgba(168, 85, 247, 0.1)',
   },
 
   // Pink glow
   pink: {
-    boxShadow: '0 0 20px rgba(236, 72, 153, 0.3), 0 0 40px rgba(236, 72, 153, 0.2), 0 0 60px rgba(236, 72, 153, 0.1)',
+    boxShadow:
+      '0 0 20px rgba(236, 72, 153, 0.3), 0 0 40px rgba(236, 72, 153, 0.2), 0 0 60px rgba(236, 72, 153, 0.1)',
   },
 
   // Multi-color glow
   rainbow: {
-    boxShadow: '0 0 20px rgba(0, 245, 255, 0.2), 0 0 40px rgba(168, 85, 247, 0.2), 0 0 60px rgba(236, 72, 153, 0.2)',
+    boxShadow:
+      '0 0 20px rgba(0, 245, 255, 0.2), 0 0 40px rgba(168, 85, 247, 0.2), 0 0 60px rgba(236, 72, 153, 0.2)',
   },
 
   // Text glow
   text: {
     cyan: {
-      textShadow: '0 0 10px rgba(0, 245, 255, 0.8), 0 0 20px rgba(0, 245, 255, 0.5), 0 0 40px rgba(0, 245, 255, 0.3)',
+      textShadow:
+        '0 0 10px rgba(0, 245, 255, 0.8), 0 0 20px rgba(0, 245, 255, 0.5), 0 0 40px rgba(0, 245, 255, 0.3)',
     },
     purple: {
-      textShadow: '0 0 10px rgba(168, 85, 247, 0.8), 0 0 20px rgba(168, 85, 247, 0.5), 0 0 40px rgba(168, 85, 247, 0.3)',
+      textShadow:
+        '0 0 10px rgba(168, 85, 247, 0.8), 0 0 20px rgba(168, 85, 247, 0.5), 0 0 40px rgba(168, 85, 247, 0.3)',
     },
     white: {
       textShadow: '0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4)',
@@ -139,14 +145,16 @@ export const shimmer = {
 
   // Gradient shimmer
   gradient: {
-    background: 'linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.15), rgba(168, 85, 247, 0.15), transparent)',
+    background:
+      'linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.15), rgba(168, 85, 247, 0.15), transparent)',
     backgroundSize: '200% 100%',
     animation: 'shimmer 2.5s infinite',
   },
 
   // Skeleton loading
   skeleton: {
-    background: 'linear-gradient(90deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 100%)',
+    background:
+      'linear-gradient(90deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 100%)',
     backgroundSize: '200% 100%',
     animation: 'shimmer 1.5s infinite',
   },
@@ -341,10 +349,12 @@ export const tw = {
   glassCardHover: 'hover:bg-white/10 hover:border-white/20 transition-all duration-300',
 
   // Glow button classes
-  glowButton: 'relative overflow-hidden bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white font-semibold rounded-full shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 transition-all duration-300',
+  glowButton:
+    'relative overflow-hidden bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white font-semibold rounded-full shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 transition-all duration-300',
 
   // Text gradient classes
-  textGradient: 'bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent',
+  textGradient:
+    'bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent',
 
   // Neon text
   neonCyan: 'text-cyan-400 drop-shadow-[0_0_10px_rgba(0,245,255,0.8)]',

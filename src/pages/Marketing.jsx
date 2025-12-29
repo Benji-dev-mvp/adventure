@@ -17,7 +17,7 @@ const Marketing = () => {
   useEffect(() => {
     // Smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth';
-    
+
     // Reset scroll position on mount
     window.scrollTo(0, 0);
 

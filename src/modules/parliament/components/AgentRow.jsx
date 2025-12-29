@@ -8,7 +8,7 @@ export function AgentRow({ agents, activeAgents = [] }) {
     <div className="flex items-center justify-center gap-4 py-4">
       {agents.map((agent, index) => {
         const isActive = activeAgents.includes(agent.id);
-        
+
         return (
           <motion.div
             key={agent.id}
@@ -17,35 +17,36 @@ export function AgentRow({ agents, activeAgents = [] }) {
             transition={{ delay: index * 0.1 }}
             className="group relative"
           >
-            <div 
+            <div
               className={`
                 relative p-4 rounded-2xl border transition-all cursor-pointer
-                ${isActive 
-                  ? 'bg-gradient-to-br from-white/10 to-white/5 border-white/20 shadow-lg' 
-                  : 'bg-slate-800/50 border-white/5 hover:border-white/10'
+                ${
+                  isActive
+                    ? 'bg-gradient-to-br from-white/10 to-white/5 border-white/20 shadow-lg'
+                    : 'bg-slate-800/50 border-white/5 hover:border-white/10'
                 }
               `}
-              style={{ 
-                boxShadow: isActive ? `0 0 30px ${agent.color}30` : 'none' 
+              style={{
+                boxShadow: isActive ? `0 0 30px ${agent.color}30` : 'none',
               }}
             >
               {/* Avatar */}
-              <div 
+              <div
                 className="text-3xl mb-2 text-center"
                 style={{ filter: isActive ? 'none' : 'grayscale(0.5)' }}
               >
                 {agent.avatar}
               </div>
-              
+
               {/* Name */}
-              <p className={`text-sm font-medium text-center ${isActive ? 'text-slate-100' : 'text-slate-400'}`}>
+              <p
+                className={`text-sm font-medium text-center ${isActive ? 'text-slate-100' : 'text-slate-400'}`}
+              >
                 {agent.name}
               </p>
-              
+
               {/* Role */}
-              <p className="text-xs text-slate-500 text-center mt-0.5">
-                {agent.role}
-              </p>
+              <p className="text-xs text-slate-500 text-center mt-0.5">{agent.role}</p>
 
               {/* Active indicator */}
               {isActive && (
@@ -64,10 +65,10 @@ export function AgentRow({ agents, activeAgents = [] }) {
                 <p className="text-sm text-slate-300 mb-2">{agent.description}</p>
                 <div className="flex flex-wrap gap-1">
                   {agent.strengths.map((strength, i) => (
-                    <span 
+                    <span
                       key={i}
                       className="px-2 py-0.5 text-xs rounded-full"
-                      style={{ 
+                      style={{
                         backgroundColor: `${agent.color}20`,
                         color: agent.color,
                       }}

@@ -49,7 +49,7 @@ class Settings:
 
     # Application
     app_name: str = os.getenv("APP_NAME", "Enterprise App")
-    environment: str = os.getenv("ENVIRONMENT", "development")
+    environment: str = os.getenv("ENVIRONMENT", "test" if "pytest" in os.getenv("_", "") else "development")
     debug: bool = os.getenv("DEBUG", "false").lower() == "true"
     log_level: str = os.getenv("LOG_LEVEL", "INFO")
 

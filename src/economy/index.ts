@@ -1,6 +1,6 @@
 /**
  * Economic System Module
- * 
+ *
  * Tokenized task marketplace with credits, bidding,
  * and ROI-driven resource allocation.
  */
@@ -10,7 +10,12 @@ export * from './types';
 
 // Core Systems
 export { CreditManager, creditManager } from './CreditManager';
-export { TaskMarketplace, taskMarketplace, type MarketplaceEvent, type MarketplaceEventHandler } from './TaskMarketplace';
+export {
+  TaskMarketplace,
+  taskMarketplace,
+  type MarketplaceEvent,
+  type MarketplaceEventHandler,
+} from './TaskMarketplace';
 export { ROIOptimizer, roiOptimizer, type OptimizationStrategy } from './ROIOptimizer';
 
 // Convenience re-exports

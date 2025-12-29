@@ -17,7 +17,7 @@ import {
   Gauge,
   Cable,
   Landmark,
-  Sparkle
+  Sparkle,
 } from 'lucide-react';
 
 const templates = [
@@ -34,18 +34,22 @@ const templates = [
     aiActions: [
       'Auto-draft exec summary for economic buyer with quantified ROI',
       'Generate champion enablement kit with objection handling',
-      'Sequence stakeholders with policy-compliant sends and approvals'
+      'Sequence stakeholders with policy-compliant sends and approvals',
     ],
-    activationSignals: ['Active RFP or consolidation initiative', 'New CISO or CFO within 90 days', 'Low NPS for current tooling'],
+    activationSignals: [
+      'Active RFP or consolidation initiative',
+      'New CISO or CFO within 90 days',
+      'Low NPS for current tooling',
+    ],
     proofAssets: ['ROI one-pager', 'Security appendix', 'Exec sponsor note'],
     risks: ['No economic buyer access', 'Champion lacks budget influence'],
     plays: [
       'Discovery led with metrics, decision criteria, and pain quantification',
       'Economic buyer alignment with ROI one-pager and security appendix',
-      'Mutual action plan with procurement and legal milestones'
+      'Mutual action plan with procurement and legal milestones',
     ],
     icon: Target,
-    color: 'bg-purple-600'
+    color: 'bg-purple-600',
   },
   {
     id: 'challenger-industrial',
@@ -60,18 +64,26 @@ const templates = [
     aiActions: [
       'Draft commercial teaching deck with plant-specific benchmarks',
       'Generate phone talk-track highlighting downtime cost deltas',
-      'Create follow-up recap with tailored cost savings'
+      'Create follow-up recap with tailored cost savings',
     ],
-    activationSignals: ['Production downtime trend > 3% MoM', 'Excessive scrap rate vs peers', 'Upcoming plant modernization'],
-    proofAssets: ['Benchmark pack by sub-vertical', 'Downtime cost calculator', 'Reference story on throughput'],
+    activationSignals: [
+      'Production downtime trend > 3% MoM',
+      'Excessive scrap rate vs peers',
+      'Upcoming plant modernization',
+    ],
+    proofAssets: [
+      'Benchmark pack by sub-vertical',
+      'Downtime cost calculator',
+      'Reference story on throughput',
+    ],
     risks: ['Single-threaded with plant manager', 'Procurement-led before value established'],
     plays: [
       'Commercial teaching sequence that reframes hidden costs in downtime',
       'Segment-specific benchmarks for OEE, scrap, and throughput',
-      'Objection handling paths for legacy vendor lock-in'
+      'Objection handling paths for legacy vendor lock-in',
     ],
     icon: ShieldCheck,
-    color: 'bg-emerald-600'
+    color: 'bg-emerald-600',
   },
   {
     id: 'spiced-plg-expansion',
@@ -86,18 +98,26 @@ const templates = [
     aiActions: [
       'Trigger in-app nudge to power users with tailored next feature',
       'Draft exec outcome recap from telemetry for QBR',
-      'Auto-build upsell sequence segmented by usage cohorts'
+      'Auto-build upsell sequence segmented by usage cohorts',
     ],
-    activationSignals: ['Power users >3 logins/week', 'Feature flags requested', 'Team invites > 5 per week'],
-    proofAssets: ['Value recap from telemetry', 'Product roadmap alignment note', 'Usage-to-outcome dashboard'],
+    activationSignals: [
+      'Power users >3 logins/week',
+      'Feature flags requested',
+      'Team invites > 5 per week',
+    ],
+    proofAssets: [
+      'Value recap from telemetry',
+      'Product roadmap alignment note',
+      'Usage-to-outcome dashboard',
+    ],
     risks: ['Success not aligned on outcome', 'No exec sponsor beyond champion'],
     plays: [
       'User cohort scoring (success potential, pain, impact) to target upsell',
       'Personalized activation cadences for power users and exec sponsors',
-      'Value review deck auto-built from product telemetry'
+      'Value review deck auto-built from product telemetry',
     ],
     icon: Sparkles,
-    color: 'bg-pink-600'
+    color: 'bg-pink-600',
   },
   {
     id: 'sandler-finserv',
@@ -112,18 +132,26 @@ const templates = [
     aiActions: [
       'Draft upfront contract email including compliance milestones',
       'Generate regulator mapping appendix tailored to buyer stack',
-      'Build mutual action plan with owners and dates'
+      'Build mutual action plan with owners and dates',
     ],
-    activationSignals: ['Audit findings within 6 months', 'Regulator pressure or remediation plan', 'Core stack refresh'],
-    proofAssets: ['Control mapping to regulators', 'Procurement-ready pack', 'Mutual action plan with signatories'],
+    activationSignals: [
+      'Audit findings within 6 months',
+      'Regulator pressure or remediation plan',
+      'Core stack refresh',
+    ],
+    proofAssets: [
+      'Control mapping to regulators',
+      'Procurement-ready pack',
+      'Mutual action plan with signatories',
+    ],
     risks: ['Late entry after RFP freeze', 'InfoSec redlines not preempted'],
     plays: [
       'Mutual agenda with compliance checkpoints and RFP readiness',
       'Risk-reduction narrative with regulator mappings',
-      'Success criteria agreed before proof of concept'
+      'Success criteria agreed before proof of concept',
     ],
     icon: Workflow,
-    color: 'bg-blue-700'
+    color: 'bg-blue-700',
   },
   {
     id: 'consultative-healthcare',
@@ -138,18 +166,22 @@ const templates = [
     aiActions: [
       'Create clinical value pathway with throughput projections',
       'Draft HIPAA/GDPR stewardship note with data flows',
-      'Generate reference request email matching EMR profile'
+      'Generate reference request email matching EMR profile',
     ],
-    activationSignals: ['EMR upgrade planned', 'Patient throughput KPI miss', 'Clinical trial expansion'],
+    activationSignals: [
+      'EMR upgrade planned',
+      'Patient throughput KPI miss',
+      'Clinical trial expansion',
+    ],
     proofAssets: ['HIPAA/GDPR appendix', 'Clinical throughput model', 'Peer reference pack'],
     risks: ['No privacy officer alignment', 'Physician champions missing'],
     plays: [
       'Value pathway built around patient throughput and quality metrics',
       'Data stewardship appendix aligned to HIPAA/GDPR',
-      'Reference pairing with similar bed size and EMR stack'
+      'Reference pairing with similar bed size and EMR stack',
     ],
     icon: BarChart3,
-    color: 'bg-cyan-600'
+    color: 'bg-cyan-600',
   },
   {
     id: 'value-selling-cyber',
@@ -164,18 +196,22 @@ const templates = [
     aiActions: [
       'Draft board-ready cyber risk brief with quantified exposure',
       'Generate control coverage map vs NIST with gaps highlighted',
-      'Author security council agenda and follow-up actions'
+      'Author security council agenda and follow-up actions',
     ],
-    activationSignals: ['Pen test findings open', 'Board asks for cyber posture', 'Tool sprawl after M&A'],
+    activationSignals: [
+      'Pen test findings open',
+      'Board asks for cyber posture',
+      'Tool sprawl after M&A',
+    ],
     proofAssets: ['Attack surface assessment', 'Control coverage map', 'Board-ready heatmap'],
     risks: ['Security council not engaged', 'Budget tied to another program'],
     plays: [
       'Attack surface assessment summary with quantified exposure',
       'Control mapping to NIST/ISO/SOC2 with gaps and owners',
-      'Board-ready risk reduction one-pager'
+      'Board-ready risk reduction one-pager',
     ],
     icon: Building2,
-    color: 'bg-slate-700'
+    color: 'bg-slate-700',
   },
   {
     id: 'abm-strategic-accounts',
@@ -190,18 +226,22 @@ const templates = [
     aiActions: [
       'Generate 1:1 microsite copy and value hypotheses',
       'Draft exec alignment email with clear asks and timeline',
-      'Create partner co-brand brief and outreach sequence'
+      'Create partner co-brand brief and outreach sequence',
     ],
-    activationSignals: ['Strategic account list named', 'C-level initiative announced', 'Renewal + expansion cycle'],
+    activationSignals: [
+      'Strategic account list named',
+      'C-level initiative announced',
+      'Renewal + expansion cycle',
+    ],
     proofAssets: ['1:1 microsite', 'Value hypothesis brief', 'Partner co-brand deck'],
     risks: ['No exec cover', 'Pod lacks marketing/partner resourcing'],
     plays: [
       'Account research pack with initiatives, org map, and budget moments',
       '1:1 digital room with live timeline and value hypotheses',
-      'Partner-assisted motion with co-brand collateral'
+      'Partner-assisted motion with co-brand collateral',
     ],
     icon: Users,
-    color: 'bg-amber-600'
+    color: 'bg-amber-600',
   },
   {
     id: 'partner-cosell',
@@ -216,18 +256,26 @@ const templates = [
     aiActions: [
       'Draft joint value prop email set referencing mutual customers',
       'Build co-sell brief with sourced vs influenced SLAs',
-      'Generate marketplace private offer summary and next steps'
+      'Generate marketplace private offer summary and next steps',
     ],
-    activationSignals: ['Co-sell registration submitted', 'Marketplace private offer eligible', 'Mutual customer overlap > 15%'],
-    proofAssets: ['Joint value prop email kit', 'Co-sell brief with SLAs', 'Marketplace offer template'],
+    activationSignals: [
+      'Co-sell registration submitted',
+      'Marketplace private offer eligible',
+      'Mutual customer overlap > 15%',
+    ],
+    proofAssets: [
+      'Joint value prop email kit',
+      'Co-sell brief with SLAs',
+      'Marketplace offer template',
+    ],
     risks: ['Channel conflict unresolved', 'No clear sourced vs influenced rules'],
     plays: [
       'Sourced vs influenced routing with clear SLAs',
       'Joint value prop emails referencing mutual customers',
-      'Marketplace private offer with success plan and QBR cadence'
+      'Marketplace private offer with success plan and QBR cadence',
     ],
     icon: Orbit,
-    color: 'bg-indigo-600'
+    color: 'bg-indigo-600',
   },
   {
     id: 'partner-led-systems-integrator',
@@ -242,18 +290,22 @@ const templates = [
     aiActions: [
       'Draft program charter with governance cadence',
       'Create joint delivery plan with milestones and owners',
-      'Generate exec steering brief aligned to SI practice KPIs'
+      'Generate exec steering brief aligned to SI practice KPIs',
     ],
-    activationSignals: ['SI-led transformation initiative', 'New practice launch', 'Backlog of change requests'],
+    activationSignals: [
+      'SI-led transformation initiative',
+      'New practice launch',
+      'Backlog of change requests',
+    ],
     proofAssets: ['Program charter', 'Joint delivery plan', 'Exec steering cadence'],
     risks: ['SI revenue targets misaligned', 'Governance owners unclear'],
     plays: [
       'Value hypothesis built on SI reference architecture',
       'Program plan with staffing, governance, and risk log',
-      'Exec brief that ties to SI practice growth KPIs'
+      'Exec brief that ties to SI practice growth KPIs',
     ],
     icon: GitBranch,
-    color: 'bg-gray-700'
+    color: 'bg-gray-700',
   },
   {
     id: 'velocity-smb-outbound',
@@ -268,19 +320,23 @@ const templates = [
     aiActions: [
       'Auto-draft 3-step outbound with SMS follow-up tailored to vertical',
       'Generate mini ROI blurb using public signals (tech stack, hiring)',
-      'Create quick objection macros for price and timing'
+      'Create quick objection macros for price and timing',
     ],
-    activationSignals: ['Recent funding or hiring', 'Tech stack match detected', 'Active job postings in sales/ops'],
+    activationSignals: [
+      'Recent funding or hiring',
+      'Tech stack match detected',
+      'Active job postings in sales/ops',
+    ],
     proofAssets: ['One-slide ROI snap', 'Customer logo strip', 'Mini onboarding plan'],
     risks: ['Inbox fatigue from high volume', 'Owner unavailable for calls'],
     plays: [
       'SPIN-lite openers that expose cost/time constraints',
       'Day-0 to Day-3 rapid follow-up with channel switching',
-      'Calendly + SMS fallback to lock time quickly'
+      'Calendly + SMS fallback to lock time quickly',
     ],
     icon: Sparkle,
-    color: 'bg-teal-600'
-  }
+    color: 'bg-teal-600',
+  },
 ];
 
 const TemplateChooser = ({ onTemplateSelect }) => {
@@ -290,20 +346,22 @@ const TemplateChooser = ({ onTemplateSelect }) => {
   const [filterIndustry, setFilterIndustry] = useState('all');
   const [filterMethodology, setFilterMethodology] = useState('all');
 
-  const icps = ['all', ...new Set(templates.map((t) => t.icp))];
-  const industries = ['all', ...new Set(templates.flatMap((t) => t.industries))];
-  const methodologies = ['all', ...new Set(templates.map((t) => t.methodology))];
+  const icps = ['all', ...new Set(templates.map(t => t.icp))];
+  const industries = ['all', ...new Set(templates.flatMap(t => t.industries))];
+  const methodologies = ['all', ...new Set(templates.map(t => t.methodology))];
 
-  const filteredTemplates = templates.filter((t) => {
+  const filteredTemplates = templates.filter(t => {
     const matchesIcp = filterIcp === 'all' || t.icp === filterIcp;
     const matchesIndustry = filterIndustry === 'all' || t.industries.includes(filterIndustry);
     const matchesMethodology = filterMethodology === 'all' || t.methodology === filterMethodology;
     return matchesIcp && matchesIndustry && matchesMethodology;
   });
 
-  const selectedTemplateObj = selectedTemplate ? templates.find((t) => t.id === selectedTemplate) : null;
+  const selectedTemplateObj = selectedTemplate
+    ? templates.find(t => t.id === selectedTemplate)
+    : null;
 
-  const handleTemplateClick = (template) => {
+  const handleTemplateClick = template => {
     setSelectedTemplate(template.id);
     if (onTemplateSelect) {
       onTemplateSelect(template);
@@ -316,7 +374,9 @@ const TemplateChooser = ({ onTemplateSelect }) => {
       <div className="space-y-2">
         <h2 className="text-3xl font-bold text-gray-900">Choose a sales methodology template</h2>
         <p className="text-gray-600">
-          Deploy AI-led outbound that adapts to your ICP, industry, and deal type. Select a methodology and we will wire the agent messaging, sequencing, assets, and guardrails to the play.
+          Deploy AI-led outbound that adapts to your ICP, industry, and deal type. Select a
+          methodology and we will wire the agent messaging, sequencing, assets, and guardrails to
+          the play.
         </p>
       </div>
 
@@ -325,7 +385,7 @@ const TemplateChooser = ({ onTemplateSelect }) => {
         <div className="space-y-2">
           <p className="text-sm font-semibold text-gray-700">ICP</p>
           <div className="flex gap-2 flex-wrap">
-            {icps.map((icp) => (
+            {icps.map(icp => (
               <Button
                 key={icp}
                 variant={filterIcp === icp ? 'primary' : 'outline'}
@@ -341,7 +401,7 @@ const TemplateChooser = ({ onTemplateSelect }) => {
         <div className="space-y-2">
           <p className="text-sm font-semibold text-gray-700">Industry</p>
           <div className="flex gap-2 flex-wrap">
-            {industries.map((industry) => (
+            {industries.map(industry => (
               <Button
                 key={industry}
                 variant={filterIndustry === industry ? 'primary' : 'outline'}
@@ -357,7 +417,7 @@ const TemplateChooser = ({ onTemplateSelect }) => {
         <div className="space-y-2">
           <p className="text-sm font-semibold text-gray-700">Methodology</p>
           <div className="flex gap-2 flex-wrap">
-            {methodologies.map((method) => (
+            {methodologies.map(method => (
               <Button
                 key={method}
                 variant={filterMethodology === method ? 'primary' : 'outline'}
@@ -374,7 +434,7 @@ const TemplateChooser = ({ onTemplateSelect }) => {
 
       {/* Templates Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredTemplates.map((template) => {
+        {filteredTemplates.map(template => {
           const Icon = template.icon;
           const isSelected = selectedTemplate === template.id;
 
@@ -396,7 +456,9 @@ const TemplateChooser = ({ onTemplateSelect }) => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg text-gray-900">{template.name}</h3>
-                        <p className="text-sm text-gray-500">{template.methodology} · {template.icp}</p>
+                        <p className="text-sm text-gray-500">
+                          {template.methodology} · {template.icp}
+                        </p>
                       </div>
                     </div>
                     {isSelected && (
@@ -411,17 +473,30 @@ const TemplateChooser = ({ onTemplateSelect }) => {
 
                   {/* Details */}
                   <div className="text-sm text-gray-700 space-y-1">
-                    <p><span className="font-semibold text-gray-800">ICP:</span> {template.icp} ({template.dealSize})</p>
-                    <p><span className="font-semibold text-gray-800">Industries:</span> {template.industries.join(', ')}</p>
-                    <p><span className="font-semibold text-gray-800">Personas:</span> {template.persona}</p>
-                    <p><span className="font-semibold text-gray-800">Motion:</span> {template.motion}</p>
+                    <p>
+                      <span className="font-semibold text-gray-800">ICP:</span> {template.icp} (
+                      {template.dealSize})
+                    </p>
+                    <p>
+                      <span className="font-semibold text-gray-800">Industries:</span>{' '}
+                      {template.industries.join(', ')}
+                    </p>
+                    <p>
+                      <span className="font-semibold text-gray-800">Personas:</span>{' '}
+                      {template.persona}
+                    </p>
+                    <p>
+                      <span className="font-semibold text-gray-800">Motion:</span> {template.motion}
+                    </p>
                   </div>
 
                   {/* Plays */}
                   <div className="space-y-2 pt-2">
-                    <p className="text-xs font-semibold text-gray-800 uppercase tracking-wide">AI plays</p>
+                    <p className="text-xs font-semibold text-gray-800 uppercase tracking-wide">
+                      AI plays
+                    </p>
                     <ul className="space-y-1 text-sm text-gray-700 list-disc list-inside">
-                      {template.plays.map((play) => (
+                      {template.plays.map(play => (
                         <li key={play}>{play}</li>
                       ))}
                     </ul>
@@ -429,9 +504,11 @@ const TemplateChooser = ({ onTemplateSelect }) => {
 
                   {/* AI Actions */}
                   <div className="space-y-2 pt-1">
-                    <p className="text-xs font-semibold text-gray-900 uppercase tracking-wide flex items-center gap-2"><Sparkle className="w-4 h-4" /> AI actions</p>
+                    <p className="text-xs font-semibold text-gray-900 uppercase tracking-wide flex items-center gap-2">
+                      <Sparkle className="w-4 h-4" /> AI actions
+                    </p>
                     <ul className="space-y-1 text-sm text-gray-800 list-disc list-inside">
-                      {template.aiActions.map((action) => (
+                      {template.aiActions.map(action => (
                         <li key={action}>{action}</li>
                       ))}
                     </ul>
@@ -440,25 +517,31 @@ const TemplateChooser = ({ onTemplateSelect }) => {
                   {/* Signals and assets */}
                   <div className="grid grid-cols-1 gap-3 pt-2">
                     <div className="p-3 rounded-xl bg-white/95 border border-gray-200 shadow-sm">
-                      <p className="text-xs font-semibold text-gray-900 uppercase tracking-wide flex items-center gap-2"><Gauge className="w-4 h-4" /> Activation signals</p>
+                      <p className="text-xs font-semibold text-gray-900 uppercase tracking-wide flex items-center gap-2">
+                        <Gauge className="w-4 h-4" /> Activation signals
+                      </p>
                       <ul className="mt-1 space-y-1 text-sm text-gray-700 list-disc list-inside">
-                        {template.activationSignals.map((signal) => (
+                        {template.activationSignals.map(signal => (
                           <li key={signal}>{signal}</li>
                         ))}
                       </ul>
                     </div>
                     <div className="p-3 rounded-xl bg-white/95 border border-gray-200 shadow-sm">
-                      <p className="text-xs font-semibold text-gray-900 uppercase tracking-wide flex items-center gap-2"><Cable className="w-4 h-4" /> Proof assets</p>
+                      <p className="text-xs font-semibold text-gray-900 uppercase tracking-wide flex items-center gap-2">
+                        <Cable className="w-4 h-4" /> Proof assets
+                      </p>
                       <ul className="mt-1 space-y-1 text-sm text-gray-700 list-disc list-inside">
-                        {template.proofAssets.map((asset) => (
+                        {template.proofAssets.map(asset => (
                           <li key={asset}>{asset}</li>
                         ))}
                       </ul>
                     </div>
                     <div className="p-3 rounded-xl bg-white/95 border border-gray-200 shadow-sm">
-                      <p className="text-xs font-semibold text-gray-900 uppercase tracking-wide flex items-center gap-2"><Landmark className="w-4 h-4" /> Risk guardrails</p>
+                      <p className="text-xs font-semibold text-gray-900 uppercase tracking-wide flex items-center gap-2">
+                        <Landmark className="w-4 h-4" /> Risk guardrails
+                      </p>
                       <ul className="mt-1 space-y-1 text-sm text-gray-700 list-disc list-inside">
-                        {template.risks.map((risk) => (
+                        {template.risks.map(risk => (
                           <li key={risk}>{risk}</li>
                         ))}
                       </ul>
@@ -466,10 +549,16 @@ const TemplateChooser = ({ onTemplateSelect }) => {
                   </div>
 
                   <div className="pt-2 flex gap-2 flex-wrap">
-                    <Badge variant="secondary" className="text-xs">{template.methodology}</Badge>
-                    <Badge variant="secondary" className="text-xs">{template.icp}</Badge>
-                    {template.industries.map((industry) => (
-                      <Badge key={industry} variant="secondary" className="text-xs">{industry}</Badge>
+                    <Badge variant="secondary" className="text-xs">
+                      {template.methodology}
+                    </Badge>
+                    <Badge variant="secondary" className="text-xs">
+                      {template.icp}
+                    </Badge>
+                    {template.industries.map(industry => (
+                      <Badge key={industry} variant="secondary" className="text-xs">
+                        {industry}
+                      </Badge>
                     ))}
                   </div>
                 </div>
@@ -486,17 +575,30 @@ const TemplateChooser = ({ onTemplateSelect }) => {
             <CardContent className="p-5 text-gray-900 space-y-3">
               <div className="flex flex-wrap items-center gap-2 justify-between">
                 <div className="space-y-1">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-gray-600">Configuration summary</p>
-                  <h4 className="text-lg font-semibold">Configuring AI outbound with {selectedTemplateObj.name}</h4>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-gray-600">
+                    Configuration summary
+                  </p>
+                  <h4 className="text-lg font-semibold">
+                    Configuring AI outbound with {selectedTemplateObj.name}
+                  </h4>
                 </div>
                 <div className="flex gap-2 flex-wrap">
-                  <Badge variant="secondary" className="text-xs">{selectedTemplateObj.methodology}</Badge>
-                  <Badge variant="secondary" className="text-xs">{selectedTemplateObj.icp}</Badge>
+                  <Badge variant="secondary" className="text-xs">
+                    {selectedTemplateObj.methodology}
+                  </Badge>
+                  <Badge variant="secondary" className="text-xs">
+                    {selectedTemplateObj.icp}
+                  </Badge>
                 </div>
               </div>
               <ul className="text-sm text-gray-800 list-disc list-inside space-y-1">
-                <li>Drafts messaging bundles (openers, follow-ups, SMS) tuned to ICP, industry, and persona.</li>
-                <li>Builds compliant sequences with guardrails, send windows, and approval flows.</li>
+                <li>
+                  Drafts messaging bundles (openers, follow-ups, SMS) tuned to ICP, industry, and
+                  persona.
+                </li>
+                <li>
+                  Builds compliant sequences with guardrails, send windows, and approval flows.
+                </li>
                 <li>Generates proof assets and exec briefs from the play’s activation signals.</li>
                 <li>Surfaces risks and inserts mitigation steps into the mutual action plan.</li>
                 <li>Preps handoff notes for reps with AI-suggested next best actions.</li>
@@ -509,7 +611,10 @@ const TemplateChooser = ({ onTemplateSelect }) => {
               size="lg"
               onClick={() => {
                 if (onTemplateSelect) onTemplateSelect(selectedTemplateObj);
-                navigate(`/ai-assistant?play=${selectedTemplateObj.id}&icp=${selectedTemplateObj.icp}` , { state: { template: selectedTemplateObj, role: 'rep' } });
+                navigate(
+                  `/ai-assistant?play=${selectedTemplateObj.id}&icp=${selectedTemplateObj.icp}`,
+                  { state: { template: selectedTemplateObj, role: 'rep' } }
+                );
               }}
             >
               Open in AI Assistant (Rep)
@@ -519,7 +624,10 @@ const TemplateChooser = ({ onTemplateSelect }) => {
               variant="outline"
               onClick={() => {
                 if (onTemplateSelect) onTemplateSelect(selectedTemplateObj);
-                navigate(`/dashboard?play=${selectedTemplateObj.id}&icp=${selectedTemplateObj.icp}`, { state: { template: selectedTemplateObj, role: 'leader' } });
+                navigate(
+                  `/dashboard?play=${selectedTemplateObj.id}&icp=${selectedTemplateObj.icp}`,
+                  { state: { template: selectedTemplateObj, role: 'leader' } }
+                );
               }}
             >
               Review in Dashboard (Leader)
@@ -532,7 +640,7 @@ const TemplateChooser = ({ onTemplateSelect }) => {
 };
 
 TemplateChooser.propTypes = {
-  onTemplateSelect: PropTypes.func
+  onTemplateSelect: PropTypes.func,
 };
 
 export default TemplateChooser;

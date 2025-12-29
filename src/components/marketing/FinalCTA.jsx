@@ -14,28 +14,33 @@ const FinalCTA = ({ content }) => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.2, triggerOnce: true });
 
   return (
-    <section 
+    <section
       ref={ref}
       className="relative py-24 md:py-32 bg-gradient-to-br from-primary via-primary-600 to-accent dark:from-primary-900 dark:via-gray-900 dark:to-accent-900 overflow-hidden"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+        <div
+          className="absolute bottom-0 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-float"
+          style={{ animationDelay: '2s' }}
+        />
       </div>
 
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)`,
-          backgroundSize: '50px 50px'
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px',
+          }}
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        
         {/* Main Content */}
-        <div 
+        <div
           className={`text-center space-y-8 mb-16 transition-all duration-700 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}
@@ -59,7 +64,7 @@ const FinalCTA = ({ content }) => {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button 
+            <Button
               size="lg"
               className="text-lg px-8 py-6 bg-white text-primary hover:bg-gray-100 shadow-2xl hover:shadow-3xl transition-all duration-200 group"
               asChild
@@ -69,22 +74,20 @@ const FinalCTA = ({ content }) => {
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button 
+            <Button
               size="lg"
               variant="outline"
               className="text-lg px-8 py-6 border-2 border-white text-white hover:bg-white/10 transition-all duration-200"
               asChild
             >
-              <Link to="/dashboard">
-                {content.cta.secondary}
-              </Link>
+              <Link to="/dashboard">{content.cta.secondary}</Link>
             </Button>
           </div>
 
           {/* Feature List */}
           <div className="flex flex-wrap justify-center gap-6 pt-8">
             {content.features.map((feature, index) => (
-              <div 
+              <div
                 key={index}
                 className={`flex items-center gap-2 text-white/90 transition-all duration-500 ${
                   isVisible ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
@@ -99,48 +102,28 @@ const FinalCTA = ({ content }) => {
         </div>
 
         {/* Trust Indicators */}
-        <div 
+        <div
           className={`grid md:grid-cols-2 gap-8 max-w-4xl mx-auto transition-all duration-700 delay-300 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}
         >
           {/* Security */}
-          <TrustCard
-            icon={Shield}
-            title="Enterprise Security"
-            items={content.trust.security}
-          />
+          <TrustCard icon={Shield} title="Enterprise Security" items={content.trust.security} />
 
           {/* Support */}
-          <TrustCard
-            icon={Users}
-            title="World-Class Support"
-            items={content.trust.support}
-          />
+          <TrustCard icon={Users} title="World-Class Support" items={content.trust.support} />
         </div>
 
         {/* Social Proof */}
-        <div 
+        <div
           className={`text-center mt-16 pt-16 border-t border-white/20 transition-all duration-700 delay-500 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}
         >
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
-            <SocialProofMetric 
-              icon={Users}
-              value="10,000+"
-              label="Active Users"
-            />
-            <SocialProofMetric 
-              icon={Clock}
-              value="99.95%"
-              label="Uptime SLA"
-            />
-            <SocialProofMetric 
-              icon={Shield}
-              value="SOC 2"
-              label="Type II Certified"
-            />
+            <SocialProofMetric icon={Users} value="10,000+" label="Active Users" />
+            <SocialProofMetric icon={Clock} value="99.95%" label="Uptime SLA" />
+            <SocialProofMetric icon={Shield} value="SOC 2" label="Type II Certified" />
           </div>
         </div>
       </div>

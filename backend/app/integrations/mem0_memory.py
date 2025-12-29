@@ -16,24 +16,10 @@ Features:
 import json
 import logging
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import Any, Dict, List, Optional
 
 from mem0 import Memory, MemoryClient
-
-from .memory_models import (
-    RETENTION_CONFIG,
-    BaseMemory,
-    CampaignResultMemory,
-    ChatConversationMemory,
-    EmailThreadMemory,
-    LeadInteractionMemory,
-    MeetingSummaryMemory,
-    MemoryNamespace,
-    MemoryType,
-    PIIRedactor,
-    RetentionPolicy,
-)
 
 logger = logging.getLogger(__name__)
 

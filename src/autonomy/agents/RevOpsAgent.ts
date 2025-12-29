@@ -1,6 +1,6 @@
 /**
  * RevOps Agent
- * 
+ *
  * Optimizes sequences, pacing, and routing. The orchestration brain
  * that ensures the GTM engine runs at peak efficiency.
  */
@@ -65,7 +65,7 @@ export class RevOpsAgent extends BaseAgent {
       creativityBias: 0.5,
       speedVsQuality: 0.2, // Quality-focused
     });
-    
+
     this.initializeRoutingRules();
   }
 
@@ -142,15 +142,15 @@ export class RevOpsAgent extends BaseAgent {
 
     // Get baseline for comparison
     const baseline = this.performanceBaselines.get(input.sequenceId) || input.metrics;
-    
+
     // Analyze gaps
     const gaps = this.identifyPerformanceGaps(input.metrics, baseline);
-    
+
     // Generate recommendations
     const recommendations = await this.generateRecommendations(gaps, input.metrics);
-    
+
     // Filter by constraints
-    const filtered = input.constraints?.maxChanges 
+    const filtered = input.constraints?.maxChanges
       ? recommendations.slice(0, input.constraints.maxChanges)
       : recommendations;
 
@@ -229,16 +229,16 @@ export class RevOpsAgent extends BaseAgent {
 
     // Analyze current distribution
     this.analyzePipelineDistribution(input.pipeline);
-    
+
     // Identify bottlenecks
     const bottlenecks = this.identifyBottlenecks(input.pipeline);
-    
+
     // Generate moves
     const moves = this.generatePipelineMoves(input.pipeline, bottlenecks);
-    
+
     // Project impact
     const projectedImpact = this.projectPipelineImpact(moves, input.pipeline);
-    
+
     // Identify risks
     const risks = this.assessRebalanceRisks(moves);
 
@@ -264,15 +264,21 @@ export class RevOpsAgent extends BaseAgent {
 
   private identifyPerformanceGaps(_current: SequenceMetrics, baseline: SequenceMetrics): string[] {
     const gaps: string[] = [];
-    
+
     if (_current.openRate < baseline.openRate * 0.9) {
-      gaps.push(`Open rate down ${((1 - _current.openRate / baseline.openRate) * 100).toFixed(1)}%`);
+      gaps.push(
+        `Open rate down ${((1 - _current.openRate / baseline.openRate) * 100).toFixed(1)}%`
+      );
     }
     if (_current.replyRate < baseline.replyRate * 0.9) {
-      gaps.push(`Reply rate down ${((1 - _current.replyRate / baseline.replyRate) * 100).toFixed(1)}%`);
+      gaps.push(
+        `Reply rate down ${((1 - _current.replyRate / baseline.replyRate) * 100).toFixed(1)}%`
+      );
     }
     if (_current.bounceRate > baseline.bounceRate * 1.1) {
-      gaps.push(`Bounce rate up ${((_current.bounceRate / baseline.bounceRate - 1) * 100).toFixed(1)}%`);
+      gaps.push(
+        `Bounce rate up ${((_current.bounceRate / baseline.bounceRate - 1) * 100).toFixed(1)}%`
+      );
     }
     if (_current.unsubscribeRate > 0.02) {
       gaps.push('Unsubscribe rate exceeds threshold');
@@ -280,13 +286,16 @@ export class RevOpsAgent extends BaseAgent {
     if (_current.velocity < baseline.velocity * 0.8) {
       gaps.push('Pipeline velocity declining');
     }
-    
+
     return gaps;
   }
 
-  private async generateRecommendations(_gaps: string[], metrics: SequenceMetrics): Promise<Recommendation[]> {
+  private async generateRecommendations(
+    _gaps: string[],
+    metrics: SequenceMetrics
+  ): Promise<Recommendation[]> {
     await this.simulateLatency(500);
-    
+
     const recommendations: Recommendation[] = [];
 
     // Open rate recommendations
@@ -314,7 +323,7 @@ export class RevOpsAgent extends BaseAgent {
       recommendations.push({
         type: 'content',
         action: 'Increase personalization depth',
-        impact: 0.20,
+        impact: 0.2,
         effort: 'medium',
         reasoning: 'Generic messaging yields low engagement',
         implementation: 'Add signal-based personalization to first two touches',
@@ -322,7 +331,7 @@ export class RevOpsAgent extends BaseAgent {
       recommendations.push({
         type: 'pacing',
         action: 'Adjust follow-up cadence',
-        impact: 0.10,
+        impact: 0.1,
         effort: 'low',
         reasoning: 'Current pacing may be too aggressive or too slow',
         implementation: 'Test 3-day vs 5-day follow-up intervals',
@@ -356,7 +365,7 @@ export class RevOpsAgent extends BaseAgent {
     // Sort by impact/effort ratio
     recommendations.sort((a, b) => {
       const effortWeight = { low: 1, medium: 2, high: 3 };
-      return (b.impact / effortWeight[b.effort]) - (a.impact / effortWeight[a.effort]);
+      return b.impact / effortWeight[b.effort] - a.impact / effortWeight[a.effort];
     });
 
     return recommendations;
@@ -366,12 +375,12 @@ export class RevOpsAgent extends BaseAgent {
     // Calculate combined improvement (with diminishing returns)
     let totalImprovement = 0;
     let diminishingFactor = 1;
-    
+
     for (const rec of recommendations) {
       totalImprovement += rec.impact * diminishingFactor;
       diminishingFactor *= 0.8; // Each subsequent improvement is less impactful
     }
-    
+
     return Math.min(totalImprovement, 0.5); // Cap at 50% improvement
   }
 
@@ -381,13 +390,13 @@ export class RevOpsAgent extends BaseAgent {
   ): 'critical' | 'high' | 'medium' | 'low' {
     // Critical: Very poor performance
     if (metrics.replyRate < 0.01 || metrics.bounceRate > 0.1) return 'critical';
-    
+
     // High: Significant improvement potential
     if (projectedImprovement > 0.25) return 'high';
-    
+
     // Medium: Moderate improvement potential
     if (projectedImprovement > 0.1) return 'medium';
-    
+
     return 'low';
   }
 
@@ -402,12 +411,14 @@ export class RevOpsAgent extends BaseAgent {
     };
   }
 
-  private analyzeTrends(_granularity: string): Array<{ period: string; metric: string; value: number; trend: number }> {
+  private analyzeTrends(
+    _granularity: string
+  ): Array<{ period: string; metric: string; value: number; trend: number }> {
     return [
       { period: 'current', metric: 'reply_rate', value: 0.045, trend: 0.12 },
       { period: 'current', metric: 'meeting_rate', value: 0.018, trend: -0.05 },
       { period: 'current', metric: 'velocity', value: 15.3, trend: 0.08 },
-      { period: 'previous', metric: 'reply_rate', value: 0.040, trend: 0.05 },
+      { period: 'previous', metric: 'reply_rate', value: 0.04, trend: 0.05 },
     ];
   }
 
@@ -456,17 +467,19 @@ export class RevOpsAgent extends BaseAgent {
     return distribution;
   }
 
-  private identifyBottlenecks(pipeline: Pipeline): Array<{ stageId: string; severity: number; cause: string }> {
+  private identifyBottlenecks(
+    pipeline: Pipeline
+  ): Array<{ stageId: string; severity: number; cause: string }> {
     const bottlenecks: Array<{ stageId: string; severity: number; cause: string }> = [];
-    
+
     for (const stage of pipeline.stages) {
       const accountsInStage = pipeline.accounts.filter(a => a.stageId === stage.id).length;
       const nextStage = pipeline.stages[stage.position + 1];
-      
+
       if (nextStage) {
         const accountsInNext = pipeline.accounts.filter(a => a.stageId === nextStage.id).length;
         const ratio = accountsInStage / Math.max(accountsInNext, 1);
-        
+
         if (ratio > 3) {
           bottlenecks.push({
             stageId: stage.id,
@@ -476,7 +489,7 @@ export class RevOpsAgent extends BaseAgent {
         }
       }
     }
-    
+
     return bottlenecks;
   }
 
@@ -485,13 +498,13 @@ export class RevOpsAgent extends BaseAgent {
     bottlenecks: Array<{ stageId: string; severity: number }>
   ): PipelineMove[] {
     const moves: PipelineMove[] = [];
-    
+
     for (const bottleneck of bottlenecks) {
       const stuckAccounts = pipeline.accounts
         .filter(a => a.stageId === bottleneck.stageId)
         .sort((a, b) => a.lastTouch.getTime() - b.lastTouch.getTime())
         .slice(0, 5);
-      
+
       for (const account of stuckAccounts) {
         if (account.score < 30) {
           moves.push({
@@ -512,18 +525,21 @@ export class RevOpsAgent extends BaseAgent {
         }
       }
     }
-    
+
     return moves;
   }
 
-  private projectPipelineImpact(moves: PipelineMove[], _pipeline: Pipeline): {
+  private projectPipelineImpact(
+    moves: PipelineMove[],
+    _pipeline: Pipeline
+  ): {
     velocityChange: number;
     conversionChange: number;
     revenueImpact: number;
   } {
     const disqualifiedMoves = moves.filter(m => m.toStage === 'disqualified').length;
     const escalatedMoves = moves.filter(m => m.toStage === 'competitive').length;
-    
+
     return {
       velocityChange: 0.15 + disqualifiedMoves * 0.02,
       conversionChange: escalatedMoves * 0.03 - disqualifiedMoves * 0.01,
@@ -533,16 +549,16 @@ export class RevOpsAgent extends BaseAgent {
 
   private assessRebalanceRisks(moves: PipelineMove[]): string[] {
     const risks: string[] = [];
-    
+
     const disqualifiedCount = moves.filter(m => m.toStage === 'disqualified').length;
     if (disqualifiedCount > 10) {
       risks.push('Large number of disqualifications may indicate targeting issues');
     }
-    
+
     if (moves.length > 20) {
       risks.push('Many simultaneous moves may disrupt rep workflows');
     }
-    
+
     return risks;
   }
 

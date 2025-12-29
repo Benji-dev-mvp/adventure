@@ -1,22 +1,18 @@
 import PropTypes from 'prop-types';
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils';
 
-function Skeleton({
-  className,
-  variant,
-  ...props
-}) {
+function Skeleton({ className, variant, ...props }) {
   const variantClasses = {
-    default: "",
-    text: "h-4 w-3/4",
-    title: "h-8 w-1/2",
-    avatar: "h-12 w-12 rounded-full",
+    default: '',
+    text: 'h-4 w-3/4',
+    title: 'h-8 w-1/2',
+    avatar: 'h-12 w-12 rounded-full',
   };
 
   return (
     <div
       className={cn(
-        "animate-pulse rounded-md bg-gray-200 dark:bg-gray-700",
+        'animate-pulse rounded-md bg-gray-200 dark:bg-gray-700',
         variantClasses[variant] || variantClasses.default,
         className
       )}
@@ -27,10 +23,14 @@ function Skeleton({
 
 function SkeletonGroup({ count = 1, className, children, ...props }) {
   if (count === 1 && children) {
-    return <div className={cn("space-y-2", className)} {...props}>{children}</div>;
+    return (
+      <div className={cn('space-y-2', className)} {...props}>
+        {children}
+      </div>
+    );
   }
   return (
-    <div className={cn("space-y-2", className)} {...props}>
+    <div className={cn('space-y-2', className)} {...props}>
       {Array.from({ length: count }).map((_, i) => (
         <Skeleton key={i} className="h-4 w-full" />
       ))}
@@ -40,7 +40,7 @@ function SkeletonGroup({ count = 1, className, children, ...props }) {
 
 function SkeletonCard({ className, ...props }) {
   return (
-    <div className={cn("p-4 border rounded-lg space-y-4", className)} {...props}>
+    <div className={cn('p-4 border rounded-lg space-y-4', className)} {...props}>
       <Skeleton variant="title" />
       <Skeleton variant="text" />
       <Skeleton variant="text" className="w-1/2" />
@@ -51,7 +51,7 @@ function SkeletonCard({ className, ...props }) {
 
 function SkeletonTable({ rows = 5, columns = 4, className, ...props }) {
   return (
-    <div className={cn("space-y-3", className)} {...props}>
+    <div className={cn('space-y-3', className)} {...props}>
       {/* Header row */}
       <div className="flex gap-4">
         {Array.from({ length: columns }).map((_, i) => (
@@ -72,7 +72,7 @@ function SkeletonTable({ rows = 5, columns = 4, className, ...props }) {
 
 function SkeletonList({ items = 5, className, ...props }) {
   return (
-    <div className={cn("space-y-4", className)} {...props}>
+    <div className={cn('space-y-4', className)} {...props}>
       {Array.from({ length: items }).map((_, i) => (
         <div key={i} className="flex items-center gap-4">
           <Skeleton variant="avatar" />
@@ -88,7 +88,7 @@ function SkeletonList({ items = 5, className, ...props }) {
 
 function SkeletonDashboard({ className, ...props }) {
   return (
-    <div className={cn("space-y-6", className)} {...props}>
+    <div className={cn('space-y-6', className)} {...props}>
       {/* Stats cards grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {Array.from({ length: 4 }).map((_, i) => (
@@ -133,4 +133,4 @@ SkeletonDashboard.propTypes = {
   className: PropTypes.string,
 };
 
-export { Skeleton, SkeletonGroup, SkeletonCard, SkeletonTable, SkeletonList, SkeletonDashboard }
+export { Skeleton, SkeletonGroup, SkeletonCard, SkeletonTable, SkeletonList, SkeletonDashboard };

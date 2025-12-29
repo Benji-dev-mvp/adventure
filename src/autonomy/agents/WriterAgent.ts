@@ -1,6 +1,6 @@
 /**
  * Writer Agent
- * 
+ *
  * Crafts messaging personalizations. Generates hyper-personalized
  * copy that adapts to persona, signal, and context.
  */
@@ -58,7 +58,7 @@ export class WriterAgent extends BaseAgent {
       creativityBias: 0.9,
       speedVsQuality: 0.3, // Quality-focused
     });
-    
+
     this.initializeTonePatterns();
     this.initializePersonaTemplates();
   }
@@ -124,25 +124,26 @@ export class WriterAgent extends BaseAgent {
    */
   private async craftMessage(task: Task): Promise<ExecutionResult> {
     const request = task.input.data as MessageRequest;
-    
+
     // Get persona template
     const templates = this.personaTemplates.get(request.persona) || [];
     const baseTemplate = this.selectBestTemplate(templates, request);
-    
+
     // Generate personalized content
     const personalized = await this.generatePersonalizedContent(baseTemplate, request);
-    
+
     // Apply tone
     const toned = this.applyTone(personalized, request.constraints.tone);
-    
+
     // Generate subject line if email
-    const subject = request.constraints.channel === 'email' 
-      ? await this.generateSubject(toned, request)
-      : undefined;
-    
+    const subject =
+      request.constraints.channel === 'email'
+        ? await this.generateSubject(toned, request)
+        : undefined;
+
     // Generate alternates for A/B testing
     const alternates = await this.generateAlternates(toned, request);
-    
+
     // Calculate optimal send time
     const suggestedSendTime = this.calculateSendTime(request);
 
@@ -183,18 +184,18 @@ export class WriterAgent extends BaseAgent {
     };
 
     let personalized = input.template;
-    
+
     // Replace standard variables
     personalized = personalized.replace(/\{\{name\}\}/g, input.contact.name);
     personalized = personalized.replace(/\{\{firstName\}\}/g, input.contact.name.split(' ')[0]);
     personalized = personalized.replace(/\{\{title\}\}/g, input.contact.title);
     personalized = personalized.replace(/\{\{company\}\}/g, input.contact.company);
-    
+
     // Replace custom fields
     for (const [key, value] of Object.entries(input.customFields)) {
       personalized = personalized.replace(new RegExp(`\\{\\{${key}\\}\\}`, 'g'), value);
     }
-    
+
     // Add signal-based personalization
     if (input.signals.length > 0) {
       personalized = this.addSignalContext(personalized, input.signals);
@@ -204,35 +205,40 @@ export class WriterAgent extends BaseAgent {
       success: true,
       output: { personalized, original: input.template },
       artifacts: [{ type: 'message', content: personalized }],
-      learnings: [`Personalized message with ${Object.keys(input.customFields).length} custom fields`],
+      learnings: [
+        `Personalized message with ${Object.keys(input.customFields).length} custom fields`,
+      ],
     };
   }
 
   // === Generation Methods ===
 
-  private async generatePersonalizedContent(template: MessageTemplate, request: MessageRequest): Promise<string> {
+  private async generatePersonalizedContent(
+    template: MessageTemplate,
+    request: MessageRequest
+  ): Promise<string> {
     await this.simulateLatency(500);
-    
+
     let content = template.body;
-    
+
     // Insert signal references
     if (request.context.signals.length > 0) {
       const signalPhrase = this.buildSignalPhrase(request.context.signals[0]);
       content = content.replace('{{signal_hook}}', signalPhrase);
     }
-    
+
     // Insert pain point reference
     if (request.context.painPoints.length > 0) {
       const painPhrase = this.buildPainPhrase(request.context.painPoints[0]);
       content = content.replace('{{pain_hook}}', painPhrase);
     }
-    
+
     // Adjust for sequence position
     content = this.adjustForSequencePosition(content, request.constraints.sequencePosition);
-    
+
     // Apply length constraint
     content = this.enforceLength(content, request.constraints.maxLength);
-    
+
     return content;
   }
 
@@ -256,69 +262,63 @@ export class WriterAgent extends BaseAgent {
         content = content.replace(/Let me know/g, 'Would love to explore');
         break;
     }
-    
+
     return content;
   }
 
   private async generateSubject(_body: string, request: MessageRequest): Promise<string> {
     await this.simulateLatency(200);
-    
+
     const subjectPatterns = {
       'analytical-skeptic': [
         'Data: {{metric}} improvement for {{company}}',
-        'Quick question about {{company}}\'s {{pain}}',
+        "Quick question about {{company}}'s {{pain}}",
       ],
       'visionary-champion': [
         'The future of {{industry}} at {{company}}',
         'Bold idea for {{company}}',
       ],
-      'time-pressed-executive': [
-        '{{firstName}}, 2 min read',
-        'Re: {{company}} efficiency',
-      ],
-      'pragmatic-evaluator': [
-        '{{company}}: ROI analysis',
-        'Benchmarks for {{industry}}',
-      ],
+      'time-pressed-executive': ['{{firstName}}, 2 min read', 'Re: {{company}} efficiency'],
+      'pragmatic-evaluator': ['{{company}}: ROI analysis', 'Benchmarks for {{industry}}'],
     };
-    
+
     const patterns = subjectPatterns[request.persona as keyof typeof subjectPatterns] || [
-      'Thoughts on {{company}}\'s {{pain}}',
+      "Thoughts on {{company}}'s {{pain}}",
     ];
-    
+
     let subject = patterns[Math.floor(Math.random() * patterns.length)];
-    
+
     // Fill in variables
     subject = subject.replace('{{company}}', '{{company}}'); // Keep for later resolution
     subject = subject.replace('{{industry}}', request.context.industry);
     subject = subject.replace('{{pain}}', request.context.painPoints[0] || 'growth');
     subject = subject.replace('{{metric}}', Math.floor(Math.random() * 30 + 20) + '%');
-    
+
     return subject;
   }
 
   private async generateAlternates(primary: string, request: MessageRequest): Promise<string[]> {
     await this.simulateLatency(400);
-    
+
     const alternates: string[] = [];
-    
+
     // Variation 1: Different opening
     const openingVariation = primary.replace(
       /^[^.!?]+[.!?]/,
       this.generateAlternateOpening(request)
     );
     alternates.push(openingVariation);
-    
+
     // Variation 2: Different CTA
     const ctaVariation = this.replaceCallToAction(primary, request);
     alternates.push(ctaVariation);
-    
+
     return alternates;
   }
 
   private calculateSendTime(request: MessageRequest): Date {
     const now = new Date();
-    
+
     // Persona-based timing
     const timingPrefs: Record<string, { hour: number; day: number }> = {
       'time-pressed-executive': { hour: 7, day: 2 }, // Early Tuesday
@@ -326,18 +326,18 @@ export class WriterAgent extends BaseAgent {
       'visionary-champion': { hour: 14, day: 4 }, // Afternoon Thursday
       'relationship-builder': { hour: 11, day: 1 }, // Late morning Monday
     };
-    
+
     const pref = timingPrefs[request.persona] || { hour: 9, day: 2 };
-    
+
     // Calculate next occurrence
     const sendTime = new Date(now);
     sendTime.setHours(pref.hour, 0, 0, 0);
-    
+
     // Move to preferred day
     const currentDay = now.getDay();
     const daysUntil = (pref.day - currentDay + 7) % 7 || 7;
     sendTime.setDate(sendTime.getDate() + daysUntil);
-    
+
     return sendTime;
   }
 
@@ -345,48 +345,67 @@ export class WriterAgent extends BaseAgent {
 
   private initializeTonePatterns(): void {
     this.tonePatterns.set('authoritative', ['research shows', 'data indicates', 'proven to']);
-    this.tonePatterns.set('empathetic', ['I understand', 'you might feel', 'it can be challenging']);
+    this.tonePatterns.set('empathetic', [
+      'I understand',
+      'you might feel',
+      'it can be challenging',
+    ]);
     this.tonePatterns.set('urgent', ['time-sensitive', 'this week', 'limited window']);
     this.tonePatterns.set('curious', ['I wonder', 'how do you', 'what if']);
-    this.tonePatterns.set('collaborative', ['together', 'partnership', 'let\'s explore']);
+    this.tonePatterns.set('collaborative', ['together', 'partnership', "let's explore"]);
   }
 
   private initializePersonaTemplates(): void {
     const templates: [PersonaType, MessageTemplate[]][] = [
-      ['analytical-skeptic', [
-        {
-          id: 't1',
-          body: 'I noticed {{signal_hook}}. Companies in {{industry}} typically see challenges around {{pain_hook}}. Would a 15-minute data review be valuable?',
-          successRate: 0.15,
-        },
-      ]],
-      ['visionary-champion', [
-        {
-          id: 't2',
-          body: '{{signal_hook}} caught my attention. I see an opportunity to transform how {{company}} approaches {{pain_hook}}. Open to a quick brainstorm?',
-          successRate: 0.18,
-        },
-      ]],
-      ['time-pressed-executive', [
-        {
-          id: 't3',
-          body: '{{signal_hook}}. 2 ideas for {{company}}:\n1. {{pain_hook}} optimization\n2. Revenue acceleration\n\n15 mins this week?',
-          successRate: 0.12,
-        },
-      ]],
-      ['pragmatic-evaluator', [
-        {
-          id: 't4',
-          body: 'Given {{signal_hook}}, I wanted to share how similar {{industry}} companies addressed {{pain_hook}}. Happy to share the analysis if useful.',
-          successRate: 0.14,
-        },
-      ]],
+      [
+        'analytical-skeptic',
+        [
+          {
+            id: 't1',
+            body: 'I noticed {{signal_hook}}. Companies in {{industry}} typically see challenges around {{pain_hook}}. Would a 15-minute data review be valuable?',
+            successRate: 0.15,
+          },
+        ],
+      ],
+      [
+        'visionary-champion',
+        [
+          {
+            id: 't2',
+            body: '{{signal_hook}} caught my attention. I see an opportunity to transform how {{company}} approaches {{pain_hook}}. Open to a quick brainstorm?',
+            successRate: 0.18,
+          },
+        ],
+      ],
+      [
+        'time-pressed-executive',
+        [
+          {
+            id: 't3',
+            body: '{{signal_hook}}. 2 ideas for {{company}}:\n1. {{pain_hook}} optimization\n2. Revenue acceleration\n\n15 mins this week?',
+            successRate: 0.12,
+          },
+        ],
+      ],
+      [
+        'pragmatic-evaluator',
+        [
+          {
+            id: 't4',
+            body: 'Given {{signal_hook}}, I wanted to share how similar {{industry}} companies addressed {{pain_hook}}. Happy to share the analysis if useful.',
+            successRate: 0.14,
+          },
+        ],
+      ],
     ];
-    
+
     templates.forEach(([persona, temps]) => this.personaTemplates.set(persona, temps));
   }
 
-  private selectBestTemplate(templates: MessageTemplate[], _request: MessageRequest): MessageTemplate {
+  private selectBestTemplate(
+    templates: MessageTemplate[],
+    _request: MessageRequest
+  ): MessageTemplate {
     if (templates.length === 0) {
       return {
         id: 'default',
@@ -394,10 +413,10 @@ export class WriterAgent extends BaseAgent {
         successRate: 0.1,
       };
     }
-    
+
     // Weight by success rate and context match
-    return templates.reduce((best, current) => 
-      current.successRate > best.successRate ? current : best,
+    return templates.reduce(
+      (best, current) => (current.successRate > best.successRate ? current : best),
       templates[0]
     );
   }
@@ -409,7 +428,7 @@ export class WriterAgent extends BaseAgent {
       'tech-adoption': 'the technology transformation',
       'leadership-change': 'the new leadership direction',
       'expansion-indicator': 'the market expansion',
-      'pain-signal': 'the challenges you\'re navigating',
+      'pain-signal': "the challenges you're navigating",
     };
     return phrases[signal] || 'the recent developments';
   }
@@ -433,16 +452,16 @@ export class WriterAgent extends BaseAgent {
 
   private enforceLength(content: string, maxLength: number): string {
     if (content.length <= maxLength) return content;
-    
+
     // Truncate at sentence boundary
     const sentences = content.split(/[.!?]+/);
     let result = '';
-    
+
     for (const sentence of sentences) {
       if ((result + sentence).length > maxLength - 20) break;
       result += sentence + '. ';
     }
-    
+
     return result.trim();
   }
 
@@ -473,11 +492,11 @@ export class WriterAgent extends BaseAgent {
       'Would a demo be useful?',
       'Let me know your thoughts.',
     ];
-    
+
     // Replace last sentence with new CTA
     const sentences = content.split(/[.!?]+/).filter(s => s.trim());
     sentences[sentences.length - 1] = ' ' + ctas[Math.floor(Math.random() * ctas.length)];
-    
+
     return sentences.join('.').trim();
   }
 
@@ -485,7 +504,7 @@ export class WriterAgent extends BaseAgent {
     const variables: MessageVariable[] = [];
     const regex = /\{\{(\w+)\}\}/g;
     let match;
-    
+
     while ((match = regex.exec(content)) !== null) {
       variables.push({
         name: match[1],
@@ -493,20 +512,20 @@ export class WriterAgent extends BaseAgent {
         type: 'personalization',
       });
     }
-    
+
     return variables;
   }
 
   private calculateConfidence(request: MessageRequest): number {
     let confidence = 0.7;
-    
+
     // Boost for more context
     confidence += request.context.signals.length * 0.05;
     confidence += request.context.painPoints.length * 0.05;
-    
+
     // Reduce for later sequence positions (harder to convert)
     confidence -= request.constraints.sequencePosition * 0.02;
-    
+
     return Math.min(Math.max(confidence, 0.3), 0.95);
   }
 

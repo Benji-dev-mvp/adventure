@@ -26,7 +26,7 @@ const KeyboardShortcuts = ({ commandPaletteOpen, setCommandPaletteOpen }) => {
     let sequenceBuffer = '';
     let sequenceTimeout;
 
-    const handleKeyDown = (e) => {
+    const handleKeyDown = e => {
       // Check for Cmd/Ctrl + K (Command Palette)
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
@@ -52,7 +52,7 @@ const KeyboardShortcuts = ({ commandPaletteOpen, setCommandPaletteOpen }) => {
       if (!isInputFocused() && !e.metaKey && !e.ctrlKey) {
         sequenceBuffer += e.key.toLowerCase();
         clearTimeout(sequenceTimeout);
-        
+
         // Reset sequence after 1 second
         sequenceTimeout = setTimeout(() => {
           sequenceBuffer = '';
@@ -101,10 +101,11 @@ const KeyboardShortcuts = ({ commandPaletteOpen, setCommandPaletteOpen }) => {
   // Check if an input element is focused
   const isInputFocused = () => {
     const activeElement = document.activeElement;
-    return activeElement && (
-      activeElement.tagName === 'INPUT' ||
-      activeElement.tagName === 'TEXTAREA' ||
-      activeElement.contentEditable === 'true'
+    return (
+      activeElement &&
+      (activeElement.tagName === 'INPUT' ||
+        activeElement.tagName === 'TEXTAREA' ||
+        activeElement.contentEditable === 'true')
     );
   };
 
@@ -121,13 +122,18 @@ const KeyboardShortcuts = ({ commandPaletteOpen, setCommandPaletteOpen }) => {
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
       {/* Backdrop */}
       <button
-        type="button" 
+        type="button"
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={() => setShowHelp(false)}
-        onKeyDown={(e) => { if (e.key === 'Escape') { e.preventDefault(); setShowHelp(false); } }}
+        onKeyDown={e => {
+          if (e.key === 'Escape') {
+            e.preventDefault();
+            setShowHelp(false);
+          }
+        }}
         aria-label="Close keyboard shortcuts"
       />
-      
+
       {/* Shortcuts Panel */}
       <div className="relative w-full max-w-2xl bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
         {/* Header */}
@@ -162,7 +168,7 @@ const KeyboardShortcuts = ({ commandPaletteOpen, setCommandPaletteOpen }) => {
               </h3>
               <div className="space-y-2">
                 {items.map((shortcut, index) => (
-                  <div 
+                  <div
                     key={index}
                     className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                   >
@@ -182,7 +188,9 @@ const KeyboardShortcuts = ({ commandPaletteOpen, setCommandPaletteOpen }) => {
         {/* Footer */}
         <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
           <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-            Press <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-700 rounded mx-1">⌘/</kbd> or <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-700 rounded mx-1">?</kbd> to toggle this panel
+            Press <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-700 rounded mx-1">⌘/</kbd> or{' '}
+            <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-700 rounded mx-1">?</kbd> to toggle
+            this panel
           </p>
         </div>
       </div>
@@ -192,7 +200,7 @@ const KeyboardShortcuts = ({ commandPaletteOpen, setCommandPaletteOpen }) => {
 
 KeyboardShortcuts.propTypes = {
   commandPaletteOpen: PropTypes.bool,
-  setCommandPaletteOpen: PropTypes.func
+  setCommandPaletteOpen: PropTypes.func,
 };
 
 export default KeyboardShortcuts;

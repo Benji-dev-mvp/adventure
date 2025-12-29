@@ -1,7 +1,7 @@
 /**
  * Comprehensive Responsive Dashboard UI Kit
  * 100% responsive across all devices (mobile, tablet, desktop)
- * 
+ *
  * @exports Layout System - GridSystem, FlexContainer, ResponsiveStack, Section
  * @exports Dashboard Widgets - KPICard, StatsWidget, ProgressRing, Gauge, MetricCard
  * @exports Navigation - ResponsiveSidebar, Breadcrumbs, TopBar, MegaMenu, CollapsibleMenu
@@ -22,7 +22,7 @@ export {
   Section,
   ShowAt,
   HideAt,
-  Spacer
+  Spacer,
 } from './GridSystem';
 
 // Dashboard Widgets
@@ -32,7 +32,7 @@ export {
   ProgressRing,
   Gauge,
   MetricCard,
-  ActivityTimeline
+  ActivityTimeline,
 } from './DashboardWidgets';
 
 // Navigation Components
@@ -41,14 +41,11 @@ export {
   Breadcrumbs,
   TopBar,
   MegaMenu,
-  CollapsibleMenu
+  CollapsibleMenu,
 } from './NavigationComponents';
 
 // Data Display
-export {
-  DataTable,
-  TableActions
-} from './DataTableResponsive';
+export { DataTable, TableActions } from './DataTableResponsive';
 
 // Interactive Components
 export {
@@ -56,25 +53,14 @@ export {
   Drawer,
   NotificationToast,
   AlertBanner,
-  NotificationCenter
+  NotificationCenter,
 } from './InteractiveComponents';
 
 // Project Management Widgets
-export {
-  TaskList,
-  ProjectCard,
-  CalendarWidget,
-  ActivityLog,
-  StatusBadge
-} from './ProjectWidgets';
+export { TaskList, ProjectCard, CalendarWidget, ActivityLog, StatusBadge } from './ProjectWidgets';
 
 // Media Components
-export {
-  ImageGallery,
-  Carousel,
-  VideoEmbed,
-  VideoIframe
-} from './MediaComponents';
+export { ImageGallery, Carousel, VideoEmbed, VideoIframe } from './MediaComponents';
 
 // Re-export existing UI components for convenience
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './Card';
@@ -99,14 +85,14 @@ export { Pagination } from './Pagination';
 
 /**
  * Usage Examples:
- * 
+ *
  * // Layout
  * <GridContainer>
  *   <GridRow gap="md">
  *     <GridCol xs={12} md={6} lg={4}>Content</GridCol>
  *   </GridRow>
  * </GridContainer>
- * 
+ *
  * // KPI Dashboard
  * <KPICard
  *   title="Revenue"
@@ -116,7 +102,7 @@ export { Pagination } from './Pagination';
  *   format="currency"
  *   icon={DollarSign}
  * />
- * 
+ *
  * // Data Table with Mobile View
  * <DataTable
  *   columns={columns}
@@ -125,7 +111,7 @@ export { Pagination } from './Pagination';
  *   pagination
  *   mobileCardView
  * />
- * 
+ *
  * // Responsive Modal
  * <ResponsiveModal
  *   isOpen={isOpen}
@@ -135,7 +121,7 @@ export { Pagination } from './Pagination';
  * >
  *   <Form />
  * </ResponsiveModal>
- * 
+ *
  * // Project Cards Grid
  * <ResponsiveGrid cols={{ xs: 1, sm: 2, lg: 3 }}>
  *   {projects.map(project => (

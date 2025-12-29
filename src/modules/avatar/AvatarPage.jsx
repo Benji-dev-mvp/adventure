@@ -41,23 +41,28 @@ export function AvatarPage() {
               <h1 className="text-2xl font-bold">
                 <GradientText gradient="purple">AI Sales Avatar</GradientText>
               </h1>
-              <p className="text-slate-400 mt-1">
-                Live Agent - Autonomous sales conversations
-              </p>
+              <p className="text-slate-400 mt-1">Live Agent - Autonomous sales conversations</p>
             </div>
           </div>
 
           {/* Status indicator */}
           <div className="flex items-center gap-4">
-            <div className={`
+            <div
+              className={`
               flex items-center gap-2 px-4 py-2 rounded-xl border
-              ${status === 'in-call' 
-                ? 'bg-emerald-500/10 border-emerald-500/30' 
-                : 'bg-slate-800/50 border-white/5'
+              ${
+                status === 'in-call'
+                  ? 'bg-emerald-500/10 border-emerald-500/30'
+                  : 'bg-slate-800/50 border-white/5'
               }
-            `}>
-              <Phone className={`w-4 h-4 ${status === 'in-call' ? 'text-emerald-400' : 'text-slate-400'}`} />
-              <span className={`text-sm font-medium ${status === 'in-call' ? 'text-emerald-400' : 'text-slate-400'}`}>
+            `}
+            >
+              <Phone
+                className={`w-4 h-4 ${status === 'in-call' ? 'text-emerald-400' : 'text-slate-400'}`}
+              />
+              <span
+                className={`text-sm font-medium ${status === 'in-call' ? 'text-emerald-400' : 'text-slate-400'}`}
+              >
                 {statusLabel}
               </span>
               {status === 'in-call' && (

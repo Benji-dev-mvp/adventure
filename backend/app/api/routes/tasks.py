@@ -3,8 +3,8 @@ Task management API routes for viewing and managing Celery tasks.
 """
 
 import logging
-from datetime import datetime, timedelta
-from typing import Any, Dict, List, Optional
+from datetime import datetime
+from typing import Any, List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
@@ -143,7 +143,7 @@ async def list_queues(user: User = Depends(get_current_user)):
 
         if active_queues and stats:
             for worker, queue_list in active_queues.items():
-                worker_stats = stats.get(worker, {})
+                stats.get(worker, {})
                 for queue in queue_list:
                     queues.append(
                         QueueInfo(

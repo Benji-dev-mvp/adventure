@@ -1,6 +1,6 @@
 /**
  * Monte Carlo Simulation Engine
- * 
+ *
  * Runs thousands of simulations to predict pipeline outcomes
  * with confidence intervals and risk metrics.
  */
@@ -54,7 +54,7 @@ class SeededRandom {
 
   // Poisson distribution (for count data)
   poisson(lambda: number): number {
-    let L = Math.exp(-lambda);
+    const L = Math.exp(-lambda);
     let k = 0;
     let p = 1;
     do {
@@ -92,10 +92,10 @@ export class MonteCarloEngine {
    */
   async simulate(scenario: SimulationScenario): Promise<SimulationResult> {
     const startTime = performance.now();
-    
+
     // Run iterations
     const outcomes: SimulationOutcome[] = [];
-    
+
     for (let i = 0; i < this.config.iterations; i++) {
       const outcome = this.runIteration(i, scenario);
       outcomes.push(outcome);
@@ -103,7 +103,7 @@ export class MonteCarloEngine {
 
     // Calculate statistics
     const statistics = this.calculateStatistics(outcomes);
-    
+
     // Generate insights
     const insights = this.generateInsights(outcomes, statistics, scenario);
 
@@ -126,52 +126,52 @@ export class MonteCarloEngine {
    */
   private runIteration(iteration: number, scenario: SimulationScenario): SimulationOutcome {
     const { pipeline, sequences, market } = scenario.parameters;
-    
+
     let revenue = 0;
     let deals = 0;
     let meetings = 0;
     let replies = 0;
     let cost = 0;
-    
+
     const timeline: TimelinePoint[] = [];
     const events: SimulationEvent[] = [];
-    
+
     // Simulate each account through the pipeline
     for (let a = 0; a < pipeline.accounts; a++) {
       const accountId = `acc_${a}`;
-      
+
       // Generate deal size with log-normal distribution
       const dealSize = this.rng.logNormal(
         pipeline.averageDealSize,
         pipeline.averageDealSize * pipeline.variancePercent
       );
-      
+
       // Simulate through stages
       let currentStage = 0;
       let day = 0;
       let engaged = false;
-      
+
       // Select a sequence for this account
       const sequence = sequences[Math.floor(this.rng.next() * sequences.length)];
-      
+
       // Apply market conditions
       const marketMultiplier = this.getMarketMultiplier(market, day);
-      
+
       // Simulate sequence execution
       for (let step = 0; step < sequence.steps && day < this.config.timeHorizon; step++) {
         day += sequence.cadenceDays + this.rng.poisson(sequence.variance);
         cost += scenario.parameters.agents[0]?.costPerTask || 5;
-        
+
         // Check for reply
         const replyProb = sequence.expectedReplyRate * marketMultiplier * (1 - step * 0.1);
         if (this.rng.bernoulli(replyProb)) {
           replies++;
           engaged = true;
-          
+
           // Check for meeting
           if (this.rng.bernoulli(sequence.expectedMeetingRate)) {
             meetings++;
-            
+
             events.push({
               day,
               type: 'conversion',
@@ -179,14 +179,16 @@ export class MonteCarloEngine {
               details: 'Meeting booked',
               impact: dealSize * 0.1,
             });
-            
+
             // Progress through pipeline stages
             for (let s = 0; s < pipeline.stageConversionRates.length; s++) {
               const stageRate = pipeline.stageConversionRates[s] * marketMultiplier;
-              
+
               if (this.rng.bernoulli(stageRate)) {
                 currentStage = s + 1;
-                day += this.rng.poisson(pipeline.averageCycleDays / pipeline.stageConversionRates.length);
+                day += this.rng.poisson(
+                  pipeline.averageCycleDays / pipeline.stageConversionRates.length
+                );
               } else {
                 events.push({
                   day,
@@ -198,12 +200,12 @@ export class MonteCarloEngine {
                 break;
               }
             }
-            
+
             // Check if won
             if (currentStage >= pipeline.stageConversionRates.length) {
               deals++;
               revenue += dealSize;
-              
+
               events.push({
                 day,
                 type: 'conversion',
@@ -216,7 +218,7 @@ export class MonteCarloEngine {
           break; // Exit sequence after reply
         }
       }
-      
+
       // Handle non-engaged accounts
       if (!engaged && this.rng.bernoulli(0.1)) {
         events.push({
@@ -232,7 +234,7 @@ export class MonteCarloEngine {
     // Generate timeline points
     const dailyRevenue = revenue / this.config.timeHorizon;
     let cumulative = 0;
-    
+
     for (let d = 0; d <= this.config.timeHorizon; d += 7) {
       cumulative += dailyRevenue * 7;
       timeline.push({
@@ -262,9 +264,12 @@ export class MonteCarloEngine {
   /**
    * Get market condition multiplier
    */
-  private getMarketMultiplier(market: SimulationScenario['parameters']['market'], day: number): number {
+  private getMarketMultiplier(
+    market: SimulationScenario['parameters']['market'],
+    day: number
+  ): number {
     let multiplier = 1;
-    
+
     // Economic condition
     switch (market.economicCondition) {
       case 'growth':
@@ -274,24 +279,24 @@ export class MonteCarloEngine {
         multiplier *= 0.8;
         break;
     }
-    
+
     // Seasonality
     const month = new Date().getMonth() + Math.floor(day / 30);
     const seasonality = market.seasonality.find(s => s.month === month % 12);
     if (seasonality) {
       multiplier *= seasonality.multiplier;
     }
-    
+
     // Competitor activity
     multiplier *= 1 - market.competitorActivity * 0.3;
-    
+
     // Industry trends
     for (const trend of market.industryTrends) {
       if (this.rng.bernoulli(trend.probability)) {
         multiplier *= 1 + trend.impact;
       }
     }
-    
+
     return multiplier;
   }
 
@@ -321,15 +326,15 @@ export class MonteCarloEngine {
   private calculateDistribution(values: number[]): DistributionStats {
     const sorted = [...values].sort((a, b) => a - b);
     const n = values.length;
-    
+
     const sum = values.reduce((a, b) => a + b, 0);
     const mean = sum / n;
-    
+
     const variance = values.reduce((acc, v) => acc + (v - mean) ** 2, 0) / n;
     const stdDev = Math.sqrt(variance);
-    
+
     const percentile = (p: number) => sorted[Math.floor(p * n)];
-    
+
     const percentiles: Record<number, number> = {
       5: percentile(0.05),
       25: percentile(0.25),
@@ -337,20 +342,20 @@ export class MonteCarloEngine {
       75: percentile(0.75),
       95: percentile(0.95),
     };
-    
+
     // Calculate confidence interval
     const alpha = 1 - this.config.confidenceLevel;
     const confidenceInterval = {
       lower: percentile(alpha / 2),
       upper: percentile(1 - alpha / 2),
     };
-    
+
     // Build histogram
     const binCount = 20;
     const min = sorted[0];
     const max = sorted[n - 1];
     const binWidth = (max - min) / binCount || 1;
-    
+
     const distribution: HistogramBin[] = [];
     for (let i = 0; i < binCount; i++) {
       const binMin = min + i * binWidth;
@@ -383,17 +388,16 @@ export class MonteCarloEngine {
     const profits = revenues.map((r, i) => r - costs[i]);
     const sorted = [...profits].sort((a, b) => a - b);
     const n = profits.length;
-    
+
     // Value at Risk (5th percentile)
     const varIndex = Math.floor(0.05 * n);
     const valueAtRisk = -sorted[varIndex];
-    
+
     // Conditional VaR (expected shortfall below VaR)
     const shortfall = sorted.slice(0, varIndex);
-    const conditionalVaR = shortfall.length > 0 
-      ? -shortfall.reduce((a, b) => a + b, 0) / shortfall.length 
-      : 0;
-    
+    const conditionalVaR =
+      shortfall.length > 0 ? -shortfall.reduce((a, b) => a + b, 0) / shortfall.length : 0;
+
     // Max drawdown
     let peak = profits[0];
     let maxDrawdown = 0;
@@ -402,16 +406,17 @@ export class MonteCarloEngine {
       const drawdown = (peak - profit) / peak;
       if (drawdown > maxDrawdown) maxDrawdown = drawdown;
     }
-    
+
     // Probability of loss
     const losses = profits.filter(p => p < 0).length;
     const probabilityOfLoss = losses / n;
-    
+
     // Downside deviation
     const negativeProfits = profits.filter(p => p < 0);
-    const downsideDeviation = negativeProfits.length > 0
-      ? Math.sqrt(negativeProfits.reduce((a, p) => a + p ** 2, 0) / negativeProfits.length)
-      : 0;
+    const downsideDeviation =
+      negativeProfits.length > 0
+        ? Math.sqrt(negativeProfits.reduce((a, p) => a + p ** 2, 0) / negativeProfits.length)
+        : 0;
 
     return {
       valueAtRisk,
@@ -427,7 +432,7 @@ export class MonteCarloEngine {
    */
   private runSensitivityAnalysis(outcomes: SimulationOutcome[]): SensitivityResult[] {
     const baseRevenue = outcomes.reduce((a, o) => a + o.revenue, 0) / outcomes.length;
-    
+
     // Analyze sensitivity to key parameters
     const parameters = [
       { name: 'replyRate', baseValue: 0.05, elasticity: 2.5 },
@@ -455,7 +460,7 @@ export class MonteCarloEngine {
     scenario: SimulationScenario
   ): SimulationInsight[] {
     const insights: SimulationInsight[] = [];
-    
+
     // High variance insight
     if (stats.revenue.stdDev / stats.revenue.mean > 0.5) {
       insights.push({
@@ -463,12 +468,13 @@ export class MonteCarloEngine {
         severity: 'high',
         title: 'High Revenue Variance',
         description: `Revenue outcomes vary significantly (CV: ${((stats.revenue.stdDev / stats.revenue.mean) * 100).toFixed(0)}%)`,
-        recommendation: 'Consider more consistent messaging and targeting to reduce outcome volatility',
+        recommendation:
+          'Consider more consistent messaging and targeting to reduce outcome volatility',
         quantifiedImpact: stats.revenue.stdDev,
         confidence: 0.9,
       });
     }
-    
+
     // Risk insight
     if (stats.riskMetrics.probabilityOfLoss > 0.1) {
       insights.push({
@@ -481,7 +487,7 @@ export class MonteCarloEngine {
         confidence: 0.85,
       });
     }
-    
+
     // Optimization insight based on sensitivity
     const mostSensitive = stats.sensitivityAnalysis.sort((a, b) => b.elasticity - a.elasticity)[0];
     if (mostSensitive) {
@@ -495,7 +501,7 @@ export class MonteCarloEngine {
         confidence: 0.75,
       });
     }
-    
+
     // Opportunity insight
     if (stats.revenue.percentiles[95] > stats.revenue.mean * 1.5) {
       insights.push({
@@ -508,7 +514,7 @@ export class MonteCarloEngine {
         confidence: 0.8,
       });
     }
-    
+
     // Velocity insight
     if (stats.velocity.mean < 5) {
       insights.push({
@@ -540,28 +546,28 @@ export class MonteCarloEngine {
     };
   }> {
     const results = new Map<string, SimulationResult>();
-    
+
     for (const scenario of scenarios) {
       const result = await this.simulate(scenario);
       results.set(scenario.id, result);
     }
-    
+
     // Score scenarios
     const scores: Array<{ scenarioId: string; score: number }> = [];
-    
+
     for (const [id, result] of results) {
       // Composite score: revenue (40%) + ROI (30%) + risk-adjusted (30%)
       const revenueScore = result.statistics.revenue.mean / 100000; // Normalize
       const roiScore = result.statistics.roi.mean;
       const riskScore = 1 - result.statistics.riskMetrics.probabilityOfLoss;
-      
+
       const score = revenueScore * 0.4 + roiScore * 0.3 + riskScore * 0.3;
       scores.push({ scenarioId: id, score });
     }
-    
+
     scores.sort((a, b) => b.score - a.score);
     const winner = scores[0].scenarioId;
-    
+
     return {
       results,
       comparison: {

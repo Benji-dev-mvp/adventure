@@ -5,9 +5,21 @@ import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { Input } from '../components/ui/Input';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs';
-import { 
-  Plug, CheckCircle, XCircle, AlertCircle, RefreshCw, Calendar, 
-  Activity, TrendingUp, Clock, Users, Mail, Phone, Video, Settings
+import {
+  Plug,
+  CheckCircle,
+  XCircle,
+  AlertCircle,
+  RefreshCw,
+  Calendar,
+  Activity,
+  TrendingUp,
+  Clock,
+  Users,
+  Mail,
+  Phone,
+  Video,
+  Settings,
 } from 'lucide-react';
 
 const CRMIntegrations = () => {
@@ -28,8 +40,8 @@ const CRMIntegrations = () => {
         syncDirection: 'bidirectional',
         autoCreateContacts: true,
         syncActivities: true,
-        defaultOwner: 'Auto-assign'
-      }
+        defaultOwner: 'Auto-assign',
+      },
     },
     {
       id: 'hubspot',
@@ -46,8 +58,8 @@ const CRMIntegrations = () => {
       config: {
         syncDirection: 'bidirectional',
         syncDeals: true,
-        trackEmails: true
-      }
+        trackEmails: true,
+      },
     },
     {
       id: 'pipedrive',
@@ -64,8 +76,8 @@ const CRMIntegrations = () => {
       config: {
         syncDirection: 'to_crm',
         defaultStage: 'Lead',
-        syncNotes: true
-      }
+        syncNotes: true,
+      },
     },
     {
       id: 'google-calendar',
@@ -82,8 +94,8 @@ const CRMIntegrations = () => {
       config: {
         defaultDuration: '30 min',
         bufferTime: '15 min',
-        workingHours: '9 AM - 5 PM'
-      }
+        workingHours: '9 AM - 5 PM',
+      },
     },
     {
       id: 'outlook',
@@ -100,8 +112,8 @@ const CRMIntegrations = () => {
       config: {
         syncEmail: true,
         trackOpens: true,
-        syncCalendar: true
-      }
+        syncCalendar: true,
+      },
     },
     {
       id: 'slack',
@@ -116,9 +128,9 @@ const CRMIntegrations = () => {
       features: ['Meeting Alerts', 'Lead Notifications', 'Team Updates', 'Reply Alerts'],
       config: {
         channel: '#sales',
-        notifications: ['new_lead', 'meeting_booked', 'positive_reply']
-      }
-    }
+        notifications: ['new_lead', 'meeting_booked', 'positive_reply'],
+      },
+    },
   ]);
 
   const availableIntegrations = [
@@ -127,7 +139,7 @@ const CRMIntegrations = () => {
     { id: 'zendesk', name: 'Zendesk Sell', logo: '🟡', type: 'CRM', popular: false },
     { id: 'zoom', name: 'Zoom', logo: '📹', type: 'Video', popular: true },
     { id: 'teams', name: 'Microsoft Teams', logo: '👥', type: 'Communication', popular: true },
-    { id: 'zapier', name: 'Zapier', logo: '⚡', type: 'Automation', popular: true }
+    { id: 'zapier', name: 'Zapier', logo: '⚡', type: 'Automation', popular: true },
   ];
 
   const syncActivity = [
@@ -135,39 +147,39 @@ const CRMIntegrations = () => {
       integration: 'Salesforce',
       action: 'Created 12 new leads',
       timestamp: '2 minutes ago',
-      status: 'success'
+      status: 'success',
     },
     {
       integration: 'HubSpot',
       action: 'Updated 34 contacts',
       timestamp: '15 minutes ago',
-      status: 'success'
+      status: 'success',
     },
     {
       integration: 'Google Calendar',
       action: 'Booked 3 meetings',
       timestamp: '1 hour ago',
-      status: 'success'
+      status: 'success',
     },
     {
       integration: 'Pipedrive',
       action: 'Sync failed - API rate limit',
       timestamp: '2 hours ago',
-      status: 'error'
+      status: 'error',
     },
     {
       integration: 'Salesforce',
       action: 'Updated 8 opportunities',
       timestamp: '3 hours ago',
-      status: 'success'
-    }
+      status: 'success',
+    },
   ];
 
   const syncStats = {
     totalIntegrations: integrations.filter(i => i.status === 'connected').length,
     totalSynced: integrations.reduce((sum, i) => sum + i.recordsSynced, 0),
     lastSync: '2 minutes ago',
-    syncErrors: 3
+    syncErrors: 3,
   };
 
   return (
@@ -239,7 +251,7 @@ const CRMIntegrations = () => {
           {/* Connected Integrations */}
           <TabsContent value="connected">
             <div className="grid gap-4">
-              {integrations.map((integration) => (
+              {integrations.map(integration => (
                 <Card key={integration.id}>
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
@@ -279,7 +291,9 @@ const CRMIntegrations = () => {
                     <div className="grid grid-cols-4 gap-4 mb-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                       <div>
                         <p className="text-xs text-gray-600 mb-1">Records Synced</p>
-                        <p className="text-lg font-bold">{integration.recordsSynced.toLocaleString()}</p>
+                        <p className="text-lg font-bold">
+                          {integration.recordsSynced.toLocaleString()}
+                        </p>
                       </div>
                       <div>
                         <p className="text-xs text-gray-600 mb-1">Last Sync</p>
@@ -299,7 +313,7 @@ const CRMIntegrations = () => {
                     <div className="mb-4">
                       <p className="text-sm font-semibold mb-2">Features</p>
                       <div className="flex flex-wrap gap-2">
-                        {integration.features.map((feature) => (
+                        {integration.features.map(feature => (
                           <Badge key={feature} variant="outline" className="text-xs">
                             <CheckCircle size={10} className="mr-1" />
                             {feature}
@@ -314,10 +328,20 @@ const CRMIntegrations = () => {
                       <div className="grid grid-cols-2 gap-3 text-sm">
                         {Object.entries(integration.config).map(([key, value]) => (
                           <div key={key} className="flex items-center justify-between">
-                            <span className="text-gray-600">{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</span>
+                            <span className="text-gray-600">
+                              {key
+                                .replace(/([A-Z])/g, ' $1')
+                                .replace(/^./, str => str.toUpperCase())}
+                              :
+                            </span>
                             <span className="font-semibold">
-                              {typeof value === 'boolean' ? (value ? 'Enabled' : 'Disabled') : 
-                               Array.isArray(value) ? value.join(', ') : value}
+                              {typeof value === 'boolean'
+                                ? value
+                                  ? 'Enabled'
+                                  : 'Disabled'
+                                : Array.isArray(value)
+                                  ? value.join(', ')
+                                  : value}
                             </span>
                           </div>
                         ))}
@@ -332,7 +356,7 @@ const CRMIntegrations = () => {
           {/* Available Integrations */}
           <TabsContent value="available">
             <div className="grid grid-cols-3 gap-4">
-              {availableIntegrations.map((integration) => (
+              {availableIntegrations.map(integration => (
                 <Card key={integration.id}>
                   <CardContent className="p-6 text-center">
                     <div className="w-20 h-20 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-xl flex items-center justify-center text-4xl mx-auto mb-4">
@@ -340,9 +364,13 @@ const CRMIntegrations = () => {
                     </div>
                     <h3 className="text-lg font-semibold mb-1">{integration.name}</h3>
                     <div className="flex items-center justify-center gap-2 mb-4">
-                      <Badge variant="outline" className="text-xs">{integration.type}</Badge>
+                      <Badge variant="outline" className="text-xs">
+                        {integration.type}
+                      </Badge>
                       {integration.popular && (
-                        <Badge variant="success" className="text-xs">Popular</Badge>
+                        <Badge variant="success" className="text-xs">
+                          Popular
+                        </Badge>
                       )}
                     </div>
                     <Button className="w-full">
@@ -380,11 +408,12 @@ const CRMIntegrations = () => {
               <CardContent>
                 <div className="space-y-3">
                   {syncActivity.map((activity, index) => (
-                    <div 
-                      key={index} 
+                    <div
+                      key={index}
                       className={`p-4 border rounded-lg ${
-                        activity.status === 'success' ? 'bg-green-50 dark:bg-green-900/20 border-green-200' : 
-                        'bg-red-50 dark:bg-red-900/20 border-red-200'
+                        activity.status === 'success'
+                          ? 'bg-green-50 dark:bg-green-900/20 border-green-200'
+                          : 'bg-red-50 dark:bg-red-900/20 border-red-200'
                       }`}
                     >
                       <div className="flex items-center justify-between">

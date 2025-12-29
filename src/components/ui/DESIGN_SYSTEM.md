@@ -1,9 +1,11 @@
 # Artisan Design System
 
 ## Overview
+
 Artisan's design system is built on **Tailwind CSS**, **Radix UI primitives**, and **DaisyUI** components, creating a cohesive, accessible, and performant component library.
 
 ## Design Principles
+
 1. **Consistency**: Unified visual language across all components
 2. **Accessibility**: WCAG 2.1 AA compliant, keyboard navigable
 3. **Performance**: Optimized for speed with lazy loading and code splitting
@@ -13,6 +15,7 @@ Artisan's design system is built on **Tailwind CSS**, **Radix UI primitives**, a
 ## Color System
 
 ### Brand Colors
+
 ```javascript
 primary: {
   DEFAULT: '#0F2540',  // Navy blue - Primary brand
@@ -33,32 +36,36 @@ artisan: {
 ```
 
 ### Semantic Colors
+
 - **Success**: Green (#10B981)
 - **Warning**: Yellow/Amber (#F59E0B)
 - **Error**: Red (#EF4444)
 - **Info**: Blue (#3B82F6)
 
 ### Usage
+
 ```jsx
 // Background
-className="bg-primary-500 dark:bg-primary-700"
+className = 'bg-primary-500 dark:bg-primary-700';
 
 // Text
-className="text-accent-600 dark:text-accent-400"
+className = 'text-accent-600 dark:text-accent-400';
 
 // Border
-className="border-primary-200 dark:border-primary-800"
+className = 'border-primary-200 dark:border-primary-800';
 
 // Gradient
-className="bg-gradient-purple-coral"
+className = 'bg-gradient-purple-coral';
 ```
 
 ## Typography
 
 ### Font Family
+
 - **Sans**: Inter (primary), system-ui, -apple-system
 
 ### Scale
+
 ```javascript
 text-xs:   0.75rem  (12px)
 text-sm:   0.875rem (14px)
@@ -71,12 +78,14 @@ text-4xl:  2.25rem  (36px)
 ```
 
 ### Weights
+
 - **Regular**: 400
 - **Medium**: 500
 - **Semibold**: 600
 - **Bold**: 700
 
 ### Usage Guidelines
+
 - **Headings**: Use semibold/bold with appropriate size
 - **Body**: Regular weight, text-base or text-sm
 - **Labels**: Medium weight, text-sm
@@ -85,6 +94,7 @@ text-4xl:  2.25rem  (36px)
 ## Spacing System
 
 ### Scale
+
 ```javascript
 0:   0px
 px:  1px
@@ -102,6 +112,7 @@ px:  1px
 ```
 
 ### Component Spacing Guidelines
+
 - **Button padding**: px-4 py-2 (16px × 8px)
 - **Card padding**: p-6 (24px)
 - **Section spacing**: space-y-6 or gap-6
@@ -122,6 +133,7 @@ rounded-full: 9999px
 ```
 
 ### Component Defaults
+
 - **Buttons**: rounded-lg
 - **Cards**: rounded-xl
 - **Inputs**: rounded-md
@@ -140,6 +152,7 @@ shadow-2xl:  0 25px 50px rgba(0,0,0,0.25)
 ```
 
 ### Usage
+
 - **Cards**: shadow-md hover:shadow-lg
 - **Modals**: shadow-xl
 - **Dropdowns**: shadow-lg
@@ -148,6 +161,7 @@ shadow-2xl:  0 25px 50px rgba(0,0,0,0.25)
 ## Component Anatomy
 
 ### Button Variants
+
 ```jsx
 // Primary
 <Button variant="primary">Action</Button>
@@ -166,6 +180,7 @@ shadow-2xl:  0 25px 50px rgba(0,0,0,0.25)
 ```
 
 ### Button Sizes
+
 ```jsx
 <Button size="sm">Small</Button>
 <Button size="md">Medium</Button>  // Default
@@ -174,6 +189,7 @@ shadow-2xl:  0 25px 50px rgba(0,0,0,0.25)
 ```
 
 ### Card Layouts
+
 ```jsx
 // Basic Card
 <Card>
@@ -181,18 +197,15 @@ shadow-2xl:  0 25px 50px rgba(0,0,0,0.25)
     <Card.Title>Title</Card.Title>
     <Card.Description>Description</Card.Description>
   </Card.Header>
-  <Card.Content>
-    {/* Content */}
-  </Card.Content>
-  <Card.Footer>
-    {/* Actions */}
-  </Card.Footer>
+  <Card.Content>{/* Content */}</Card.Content>
+  <Card.Footer>{/* Actions */}</Card.Footer>
 </Card>
 ```
 
 ## Accessibility
 
 ### Keyboard Navigation
+
 - **Tab**: Move focus forward
 - **Shift+Tab**: Move focus backward
 - **Enter/Space**: Activate button/toggle
@@ -200,7 +213,9 @@ shadow-2xl:  0 25px 50px rgba(0,0,0,0.25)
 - **Arrow Keys**: Navigate lists/menus
 
 ### ARIA Attributes
+
 Always include:
+
 - `aria-label` for icon-only buttons
 - `aria-describedby` for form errors
 - `aria-expanded` for collapsible content
@@ -208,14 +223,16 @@ Always include:
 - `role` attributes where semantic HTML isn't sufficient
 
 ### Focus Management
+
 ```jsx
 // Focus visible only on keyboard navigation
-className="focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
+className = 'focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500';
 ```
 
 ## Animation & Transitions
 
 ### Duration
+
 ```javascript
 transition-none:   0ms
 transition-all:    150ms
@@ -225,25 +242,28 @@ transition-transform: 150ms
 ```
 
 ### Easing
+
 - **Default**: ease-in-out
 - **Enter**: ease-out
 - **Exit**: ease-in
 
 ### Usage
+
 ```jsx
 // Hover effects
-className="transition-all hover:scale-105"
+className = 'transition-all hover:scale-105';
 
 // Color changes
-className="transition-colors hover:bg-accent-600"
+className = 'transition-colors hover:bg-accent-600';
 
 // Fade in/out
-className="transition-opacity duration-300"
+className = 'transition-opacity duration-300';
 ```
 
 ## Responsive Design
 
 ### Breakpoints
+
 ```javascript
 sm:  640px   // Mobile landscape
 md:  768px   // Tablet
@@ -253,6 +273,7 @@ xl:  1280px  // Large desktop
 ```
 
 ### Mobile-First Approach
+
 ```jsx
 // Stack on mobile, row on desktop
 <div className="flex flex-col md:flex-row gap-4">
@@ -268,16 +289,16 @@ xl:  1280px  // Large desktop
 ## Dark Mode
 
 ### Implementation
+
 Dark mode uses the `class` strategy. Toggle by adding/removing `dark` class on root element.
 
 ```jsx
 // Component example
-<div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
-  Content
-</div>
+<div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">Content</div>
 ```
 
 ### Best Practices
+
 - Always define both light and dark variants
 - Test contrast ratios in both modes
 - Use semantic color names (background, foreground, muted)
@@ -286,6 +307,7 @@ Dark mode uses the `class` strategy. Toggle by adding/removing `dark` class on r
 ## Component Checklist
 
 When creating new components, ensure:
+
 - [ ] TypeScript props interface
 - [ ] Forwarded refs where applicable
 - [ ] Accessible markup (semantic HTML)
@@ -328,6 +350,7 @@ src/components/ui/
 ## Usage Examples
 
 ### Form with Validation
+
 ```jsx
 import { Input, Button, Alert } from '@/components/ui';
 
@@ -341,15 +364,13 @@ function ContactForm() {
         label="Email"
         type="email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={e => setEmail(e.target.value)}
         error={error}
         required
       />
-      
-      {error && (
-        <Alert variant="error">{error}</Alert>
-      )}
-      
+
+      {error && <Alert variant="error">{error}</Alert>}
+
       <Button type="submit" fullWidth>
         Submit
       </Button>
@@ -359,6 +380,7 @@ function ContactForm() {
 ```
 
 ### Data Dashboard Card
+
 ```jsx
 import { Card, Badge, Button } from '@/components/ui';
 
@@ -373,9 +395,7 @@ function MetricCard({ title, value, change, trend }) {
       <Card.Content>
         <div className="text-3xl font-bold">{value}</div>
         <div className="flex items-center gap-2 mt-2">
-          <Badge variant={trend === 'up' ? 'success' : 'danger'}>
-            {change}
-          </Badge>
+          <Badge variant={trend === 'up' ? 'success' : 'danger'}>{change}</Badge>
           <span className="text-sm text-gray-500">vs last month</span>
         </div>
       </Card.Content>
@@ -385,6 +405,7 @@ function MetricCard({ title, value, change, trend }) {
 ```
 
 ## Resources
+
 - [Tailwind CSS Docs](https://tailwindcss.com/docs)
 - [Radix UI Primitives](https://www.radix-ui.com/)
 - [DaisyUI Components](https://daisyui.com/)

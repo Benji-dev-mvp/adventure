@@ -5,9 +5,21 @@ import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { Input } from '../components/ui/Input';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs';
-import { 
-  BookOpen, Target, TrendingUp, AlertCircle, CheckCircle, MessageSquare,
-  Phone, Mail, Clock, Award, Zap, FileText, Play, Users
+import {
+  BookOpen,
+  Target,
+  TrendingUp,
+  AlertCircle,
+  CheckCircle,
+  MessageSquare,
+  Phone,
+  Mail,
+  Clock,
+  Award,
+  Zap,
+  FileText,
+  Play,
+  Users,
 } from 'lucide-react';
 
 const SalesPlaybooks = () => {
@@ -22,7 +34,7 @@ const SalesPlaybooks = () => {
       avgDealSize: '$125K',
       activeDeals: 23,
       steps: 8,
-      color: 'blue'
+      color: 'blue',
     },
     {
       id: 2,
@@ -34,7 +46,7 @@ const SalesPlaybooks = () => {
       avgDealSize: '$15K',
       activeDeals: 67,
       steps: 5,
-      color: 'green'
+      color: 'green',
     },
     {
       id: 3,
@@ -46,8 +58,8 @@ const SalesPlaybooks = () => {
       avgDealSize: '$28K',
       activeDeals: 41,
       steps: 6,
-      color: 'purple'
-    }
+      color: 'purple',
+    },
   ]);
 
   const [currentPlaybook] = useState({
@@ -61,11 +73,11 @@ const SalesPlaybooks = () => {
         actions: [
           'Send personalized email highlighting pain point',
           'Connect on LinkedIn with custom note',
-          'Research company tech stack and recent news'
+          'Research company tech stack and recent news',
         ],
         successCriteria: 'Positive reply or connection accepted',
         templates: 3,
-        scripts: 2
+        scripts: 2,
       },
       {
         step: 2,
@@ -76,11 +88,11 @@ const SalesPlaybooks = () => {
           'Qualify budget and authority',
           'Understand current workflow and pain points',
           'Demo tailored use case',
-          'Identify decision makers and timeline'
+          'Identify decision makers and timeline',
         ],
         successCriteria: 'Next meeting scheduled',
         templates: 1,
-        scripts: 4
+        scripts: 4,
       },
       {
         step: 3,
@@ -91,11 +103,11 @@ const SalesPlaybooks = () => {
           'Demonstrate key features matching their needs',
           'Show ROI calculator',
           'Answer technical questions',
-          'Involve technical champion'
+          'Involve technical champion',
         ],
         successCriteria: 'Positive feedback from technical team',
         templates: 2,
-        scripts: 3
+        scripts: 3,
       },
       {
         step: 4,
@@ -106,11 +118,11 @@ const SalesPlaybooks = () => {
           'Send custom proposal with pricing tiers',
           'Schedule pricing call',
           'Handle objections',
-          'Negotiate terms'
+          'Negotiate terms',
         ],
         successCriteria: 'Budget approved',
         templates: 4,
-        scripts: 5
+        scripts: 5,
       },
       {
         step: 5,
@@ -121,13 +133,13 @@ const SalesPlaybooks = () => {
           'Send contract for signature',
           'Answer final questions',
           'Coordinate with legal/procurement',
-          'Schedule kickoff call'
+          'Schedule kickoff call',
         ],
         successCriteria: 'Contract signed',
         templates: 3,
-        scripts: 2
-      }
-    ]
+        scripts: 2,
+      },
+    ],
   });
 
   const [objectionHandlers] = useState([
@@ -135,35 +147,35 @@ const SalesPlaybooks = () => {
       objection: '"We\'re happy with our current solution"',
       type: 'Status Quo',
       responses: [
-        'That\'s great to hear! What specifically do you like about it?',
+        "That's great to hear! What specifically do you like about it?",
         'Many of our customers said the same thing before switching. What would make you consider a change?',
-        'I understand. Can I show you one capability that our current customers say sets us apart?'
+        'I understand. Can I show you one capability that our current customers say sets us apart?',
       ],
       successRate: 67,
-      avgResponseTime: '2 hours'
+      avgResponseTime: '2 hours',
     },
     {
       objection: '"It\'s too expensive"',
       type: 'Price',
       responses: [
         'I appreciate that concern. Can you help me understand what budget range you were expecting?',
-        'Let\'s look at the ROI. Our customers typically see 3x return within 6 months. Would that change the equation?',
-        'We have different pricing tiers. Let me understand your specific needs so we can find the right fit.'
+        "Let's look at the ROI. Our customers typically see 3x return within 6 months. Would that change the equation?",
+        'We have different pricing tiers. Let me understand your specific needs so we can find the right fit.',
       ],
       successRate: 54,
-      avgResponseTime: '1 hour'
+      avgResponseTime: '1 hour',
     },
     {
       objection: '"We need to think about it"',
       type: 'Stall',
       responses: [
         'Absolutely. What specific aspects do you need to think through?',
-        'I understand. To help you think it through, what are the top 2-3 factors you\'re considering?',
-        'That makes sense. When would be a good time to reconnect after you\'ve had time to discuss?'
+        "I understand. To help you think it through, what are the top 2-3 factors you're considering?",
+        "That makes sense. When would be a good time to reconnect after you've had time to discuss?",
       ],
       successRate: 72,
-      avgResponseTime: '30 minutes'
-    }
+      avgResponseTime: '30 minutes',
+    },
   ]);
 
   const [valueProps] = useState([
@@ -171,20 +183,20 @@ const SalesPlaybooks = () => {
       category: 'Time Savings',
       headline: 'Save 20+ hours per week',
       stats: ['247 prospects researched/day', '89% email open rate', '12x faster than manual'],
-      useCase: 'SDR teams spending too much time on research'
+      useCase: 'SDR teams spending too much time on research',
     },
     {
       category: 'Revenue Impact',
       headline: '3.5x increase in pipeline',
       stats: ['$2.4M average pipeline increase', '34% higher win rate', '2.3x more meetings'],
-      useCase: 'Sales teams missing quota'
+      useCase: 'Sales teams missing quota',
     },
     {
       category: 'Cost Reduction',
       headline: 'Replace 3 tools with 1',
       stats: ['Save $40K/year on tools', 'Reduce tech stack complexity', '90% less manual work'],
-      useCase: 'Companies with fragmented sales tech'
-    }
+      useCase: 'Companies with fragmented sales tech',
+    },
   ]);
 
   return (
@@ -201,11 +213,13 @@ const SalesPlaybooks = () => {
 
         {/* Playbooks Overview */}
         <div className="grid grid-cols-3 gap-4 mb-6">
-          {playbooks.map((playbook) => (
+          {playbooks.map(playbook => (
             <Card key={playbook.id}>
               <CardContent className="p-6">
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`w-12 h-12 bg-gradient-to-br from-${playbook.color}-500 to-${playbook.color}-600 rounded-xl flex items-center justify-center text-white`}>
+                  <div
+                    className={`w-12 h-12 bg-gradient-to-br from-${playbook.color}-500 to-${playbook.color}-600 rounded-xl flex items-center justify-center text-white`}
+                  >
                     <BookOpen size={24} />
                   </div>
                   <Badge variant="outline">{playbook.steps} steps</Badge>
@@ -265,7 +279,9 @@ const SalesPlaybooks = () => {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle>{currentPlaybook.name}</CardTitle>
-                    <Button variant="outline" size="sm">Edit Playbook</Button>
+                    <Button variant="outline" size="sm">
+                      Edit Playbook
+                    </Button>
                   </div>
                 </CardHeader>
               </Card>
@@ -286,7 +302,7 @@ const SalesPlaybooks = () => {
                                 <Clock size={10} className="mr-1" />
                                 {step.duration}
                               </Badge>
-                              {step.channels.map((channel) => (
+                              {step.channels.map(channel => (
                                 <Badge key={channel} variant="secondary" className="text-xs">
                                   {channel}
                                 </Badge>
@@ -300,7 +316,10 @@ const SalesPlaybooks = () => {
                           <ul className="space-y-1">
                             {step.actions.map((action, i) => (
                               <li key={i} className="flex items-start gap-2 text-sm">
-                                <CheckCircle size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
+                                <CheckCircle
+                                  size={16}
+                                  className="text-green-500 mt-0.5 flex-shrink-0"
+                                />
                                 <span>{action}</span>
                               </li>
                             ))}
@@ -339,7 +358,9 @@ const SalesPlaybooks = () => {
                         <div className="flex items-center gap-2 mb-2">
                           <Badge variant="warning">{handler.type}</Badge>
                           <Badge variant="success">{handler.successRate}% success rate</Badge>
-                          <span className="text-sm text-gray-600">Avg response: {handler.avgResponseTime}</span>
+                          <span className="text-sm text-gray-600">
+                            Avg response: {handler.avgResponseTime}
+                          </span>
                         </div>
                         <h3 className="text-lg font-semibold mb-4">{handler.objection}</h3>
 
@@ -347,7 +368,10 @@ const SalesPlaybooks = () => {
                           <p className="text-sm font-semibold mb-2">Suggested Responses:</p>
                           <div className="space-y-2">
                             {handler.responses.map((response, i) => (
-                              <div key={i} className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border-l-4 border-blue-500">
+                              <div
+                                key={i}
+                                className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border-l-4 border-blue-500"
+                              >
                                 <p className="text-sm">{response}</p>
                               </div>
                             ))}
@@ -372,12 +396,17 @@ const SalesPlaybooks = () => {
                         <Award size={24} />
                       </div>
                       <div className="flex-1">
-                        <Badge variant="outline" className="mb-2">{prop.category}</Badge>
+                        <Badge variant="outline" className="mb-2">
+                          {prop.category}
+                        </Badge>
                         <h3 className="text-2xl font-bold mb-3">{prop.headline}</h3>
 
                         <div className="grid grid-cols-3 gap-4 mb-4">
                           {prop.stats.map((stat, i) => (
-                            <div key={i} className="p-3 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg text-center">
+                            <div
+                              key={i}
+                              className="p-3 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg text-center"
+                            >
                               <p className="font-semibold text-sm">{stat}</p>
                             </div>
                           ))}
@@ -402,9 +431,7 @@ const SalesPlaybooks = () => {
               <CardContent className="p-8 text-center">
                 <FileText className="mx-auto mb-3 text-gray-400" size={48} />
                 <h3 className="text-xl font-semibold mb-2">Competitor Battle Cards</h3>
-                <p className="text-gray-600 mb-4">
-                  Head-to-head comparisons with key competitors
-                </p>
+                <p className="text-gray-600 mb-4">Head-to-head comparisons with key competitors</p>
                 <Button>View Battle Cards</Button>
               </CardContent>
             </Card>

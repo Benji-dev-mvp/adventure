@@ -3,33 +3,108 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/Select';
-import { Shield, CheckCircle, XCircle, AlertTriangle, Download, FileText, Clock, User } from 'lucide-react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/Select';
+import {
+  Shield,
+  CheckCircle,
+  XCircle,
+  AlertTriangle,
+  Download,
+  FileText,
+  Clock,
+  User,
+} from 'lucide-react';
 
 const ComplianceCenter = () => {
   const [auditFilter, setAuditFilter] = useState('all');
 
   const consentLogs = [
-    { lead: 'Sarah Chen', email: 's.chen@techcorp.com', date: '2024-01-15', type: 'Email Marketing', status: 'Active', ip: '192.168.1.1' },
-    { lead: 'Michael Rodriguez', email: 'm.rodriguez@growth.com', date: '2024-01-14', type: 'Email Marketing', status: 'Active', ip: '192.168.1.2' },
-    { lead: 'Emily Watson', email: 'e.watson@enterprise.com', date: '2024-01-12', type: 'Email + SMS', status: 'Active', ip: '192.168.1.3' },
+    {
+      lead: 'Sarah Chen',
+      email: 's.chen@techcorp.com',
+      date: '2024-01-15',
+      type: 'Email Marketing',
+      status: 'Active',
+      ip: '192.168.1.1',
+    },
+    {
+      lead: 'Michael Rodriguez',
+      email: 'm.rodriguez@growth.com',
+      date: '2024-01-14',
+      type: 'Email Marketing',
+      status: 'Active',
+      ip: '192.168.1.2',
+    },
+    {
+      lead: 'Emily Watson',
+      email: 'e.watson@enterprise.com',
+      date: '2024-01-12',
+      type: 'Email + SMS',
+      status: 'Active',
+      ip: '192.168.1.3',
+    },
   ];
 
   const unsubscribes = [
-    { email: 'john.doe@example.com', date: '2024-01-16', reason: 'Too frequent emails', campaign: 'Q1 Outreach' },
-    { email: 'jane.smith@example.com', date: '2024-01-15', reason: 'Not relevant', campaign: 'Product Launch' },
-    { email: 'bob.johnson@example.com', date: '2024-01-14', reason: 'No longer interested', campaign: 'Re-engagement' },
+    {
+      email: 'john.doe@example.com',
+      date: '2024-01-16',
+      reason: 'Too frequent emails',
+      campaign: 'Q1 Outreach',
+    },
+    {
+      email: 'jane.smith@example.com',
+      date: '2024-01-15',
+      reason: 'Not relevant',
+      campaign: 'Product Launch',
+    },
+    {
+      email: 'bob.johnson@example.com',
+      date: '2024-01-14',
+      reason: 'No longer interested',
+      campaign: 'Re-engagement',
+    },
   ];
 
   const auditLog = [
-    { user: 'admin@artisan.com', action: 'Exported lead data', target: '1,234 leads', date: '2024-01-16 10:30', status: 'success' },
-    { user: 'sales@artisan.com', action: 'Updated campaign', target: 'Q1 Campaign', date: '2024-01-16 09:15', status: 'success' },
-    { user: 'admin@artisan.com', action: 'Deleted leads', target: '45 leads', date: '2024-01-15 14:20', status: 'warning' },
-    { user: 'sales@artisan.com', action: 'Failed login attempt', target: 'Account locked', date: '2024-01-15 11:05', status: 'error' },
+    {
+      user: 'admin@artisan.com',
+      action: 'Exported lead data',
+      target: '1,234 leads',
+      date: '2024-01-16 10:30',
+      status: 'success',
+    },
+    {
+      user: 'sales@artisan.com',
+      action: 'Updated campaign',
+      target: 'Q1 Campaign',
+      date: '2024-01-16 09:15',
+      status: 'success',
+    },
+    {
+      user: 'admin@artisan.com',
+      action: 'Deleted leads',
+      target: '45 leads',
+      date: '2024-01-15 14:20',
+      status: 'warning',
+    },
+    {
+      user: 'sales@artisan.com',
+      action: 'Failed login attempt',
+      target: 'Account locked',
+      date: '2024-01-15 11:05',
+      status: 'error',
+    },
   ];
 
-  const getStatusBadge = (status) => {
-    switch(status) {
+  const getStatusBadge = status => {
+    switch (status) {
       case 'Active':
         return <Badge variant="success">Active</Badge>;
       case 'success':
@@ -44,7 +119,10 @@ const ComplianceCenter = () => {
   };
 
   return (
-    <DashboardLayout title="Compliance Center" subtitle="GDPR, data retention, and audit management">
+    <DashboardLayout
+      title="Compliance Center"
+      subtitle="GDPR, data retention, and audit management"
+    >
       <div className="space-y-6">
         {/* Overview Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -117,7 +195,10 @@ const ComplianceCenter = () => {
             <CardContent>
               <div className="space-y-2">
                 {consentLogs.map((log, i) => (
-                  <div key={i} className="p-3 border border-gray-200 dark:border-white/10 rounded-lg">
+                  <div
+                    key={i}
+                    className="p-3 border border-gray-200 dark:border-white/10 rounded-lg"
+                  >
                     <div className="flex justify-between items-start mb-2">
                       <div>
                         <p className="font-semibold text-sm">{log.lead}</p>
@@ -143,10 +224,15 @@ const ComplianceCenter = () => {
             <CardContent>
               <div className="space-y-2">
                 {unsubscribes.map((unsub, i) => (
-                  <div key={i} className="p-3 border border-gray-200 dark:border-white/10 rounded-lg">
+                  <div
+                    key={i}
+                    className="p-3 border border-gray-200 dark:border-white/10 rounded-lg"
+                  >
                     <div className="flex justify-between items-start mb-2">
                       <p className="font-semibold text-sm">{unsub.email}</p>
-                      <Badge variant="secondary" size="sm">{unsub.date}</Badge>
+                      <Badge variant="secondary" size="sm">
+                        {unsub.date}
+                      </Badge>
                     </div>
                     <p className="text-xs text-gray-600 mb-1">Campaign: {unsub.campaign}</p>
                     <p className="text-xs text-gray-500 italic">Reason: {unsub.reason}</p>
@@ -169,16 +255,24 @@ const ComplianceCenter = () => {
                   <Clock className="w-5 h-5 text-blue-600" />
                   <p className="font-semibold">Email Data</p>
                 </div>
-                <p className="text-sm text-gray-600 mb-2">Retain for 2 years after last interaction</p>
-                <Button variant="outline" size="sm" className="w-full">Configure</Button>
+                <p className="text-sm text-gray-600 mb-2">
+                  Retain for 2 years after last interaction
+                </p>
+                <Button variant="outline" size="sm" className="w-full">
+                  Configure
+                </Button>
               </div>
               <div className="p-4 border border-gray-200 dark:border-white/10 rounded-lg">
                 <div className="flex items-center gap-2 mb-3">
                   <User className="w-5 h-5 text-green-600" />
                   <p className="font-semibold">Lead Data</p>
                 </div>
-                <p className="text-sm text-gray-600 mb-2">Retain for 3 years or until consent withdrawn</p>
-                <Button variant="outline" size="sm" className="w-full">Configure</Button>
+                <p className="text-sm text-gray-600 mb-2">
+                  Retain for 3 years or until consent withdrawn
+                </p>
+                <Button variant="outline" size="sm" className="w-full">
+                  Configure
+                </Button>
               </div>
               <div className="p-4 border border-gray-200 dark:border-white/10 rounded-lg">
                 <div className="flex items-center gap-2 mb-3">
@@ -186,7 +280,9 @@ const ComplianceCenter = () => {
                   <p className="font-semibold">Campaign Data</p>
                 </div>
                 <p className="text-sm text-gray-600 mb-2">Retain indefinitely for analysis</p>
-                <Button variant="outline" size="sm" className="w-full">Configure</Button>
+                <Button variant="outline" size="sm" className="w-full">
+                  Configure
+                </Button>
               </div>
             </div>
           </CardContent>
@@ -220,7 +316,9 @@ const ComplianceCenter = () => {
                         <p className="font-semibold text-sm">{log.action}</p>
                         {getStatusBadge(log.status)}
                       </div>
-                      <p className="text-xs text-gray-600">{log.user} • {log.target}</p>
+                      <p className="text-xs text-gray-600">
+                        {log.user} • {log.target}
+                      </p>
                     </div>
                     <p className="text-xs text-gray-500">{log.date}</p>
                   </div>

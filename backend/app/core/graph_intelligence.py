@@ -4,12 +4,10 @@ Relationship analysis, centrality scoring, community detection, and influence pr
 """
 
 import logging
-from collections import defaultdict
 from datetime import datetime
-from typing import Any, Dict, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import networkx as nx
-import numpy as np
 
 logger = logging.getLogger(__name__)
 

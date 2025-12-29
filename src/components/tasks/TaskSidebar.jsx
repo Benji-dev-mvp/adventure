@@ -133,30 +133,29 @@ const TaskItem = ({ task, onToggle, onDelete }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, x: -20 }}
       className={cn(
-        "group flex items-start gap-3 p-3 rounded-xl transition-colors cursor-pointer",
-        "hover:bg-gray-50 dark:hover:bg-white/5",
-        task.completed && "opacity-60"
+        'group flex items-start gap-3 p-3 rounded-xl transition-colors cursor-pointer',
+        'hover:bg-gray-50 dark:hover:bg-white/5',
+        task.completed && 'opacity-60'
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <button
-        onClick={() => onToggle(task.id)}
-        className="mt-0.5 flex-shrink-0"
-      >
+      <button onClick={() => onToggle(task.id)} className="mt-0.5 flex-shrink-0">
         {task.completed ? (
           <CheckCircle2 className="h-5 w-5 text-green-500" />
         ) : (
-          <Circle className={cn("h-5 w-5", priorityColors[task.priority].split(' ')[0])} />
+          <Circle className={cn('h-5 w-5', priorityColors[task.priority].split(' ')[0])} />
         )}
       </button>
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <p className={cn(
-            "text-sm font-medium text-gray-900 dark:text-white truncate",
-            task.completed && "line-through"
-          )}>
+          <p
+            className={cn(
+              'text-sm font-medium text-gray-900 dark:text-white truncate',
+              task.completed && 'line-through'
+            )}
+          >
             {task.title}
           </p>
           {task.aiSuggested && (
@@ -198,7 +197,7 @@ const TaskItem = ({ task, onToggle, onDelete }) => {
                 <ChannelIcon className="h-4 w-4 text-gray-400" />
               </button>
             )}
-            <button 
+            <button
               onClick={() => onDelete(task.id)}
               className="p-1.5 hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg"
             >
@@ -222,10 +221,9 @@ const TaskGroup = ({ title, tasks, icon: Icon, onToggle, onDelete, defaultExpand
         className="flex items-center justify-between w-full px-2 py-2 text-left"
       >
         <div className="flex items-center gap-2">
-          <ChevronRight className={cn(
-            "h-4 w-4 text-gray-400 transition-transform",
-            isExpanded && "rotate-90"
-          )} />
+          <ChevronRight
+            className={cn('h-4 w-4 text-gray-400 transition-transform', isExpanded && 'rotate-90')}
+          />
           <Icon className="h-4 w-4 text-gray-500" />
           <span className="text-sm font-semibold text-gray-900 dark:text-white">{title}</span>
           <Badge variant="secondary" size="sm">
@@ -244,13 +242,8 @@ const TaskGroup = ({ title, tasks, icon: Icon, onToggle, onDelete, defaultExpand
           >
             <div className="pl-2">
               <AnimatePresence mode="popLayout">
-                {tasks.map((task) => (
-                  <TaskItem
-                    key={task.id}
-                    task={task}
-                    onToggle={onToggle}
-                    onDelete={onDelete}
-                  />
+                {tasks.map(task => (
+                  <TaskItem key={task.id} task={task} onToggle={onToggle} onDelete={onDelete} />
                 ))}
               </AnimatePresence>
             </div>
@@ -265,13 +258,11 @@ export const TaskSidebar = ({ isOpen, onClose }) => {
   const [tasks, setTasks] = useState(MOCK_TASKS);
   const [filter, setFilter] = useState('all'); // all, ai-suggested, high-priority
 
-  const toggleTask = (taskId) => {
-    setTasks(prev => prev.map(t =>
-      t.id === taskId ? { ...t, completed: !t.completed } : t
-    ));
+  const toggleTask = taskId => {
+    setTasks(prev => prev.map(t => (t.id === taskId ? { ...t, completed: !t.completed } : t)));
   };
 
-  const deleteTask = (taskId) => {
+  const deleteTask = taskId => {
     setTasks(prev => prev.filter(t => t.id !== taskId));
   };
 
@@ -313,7 +304,9 @@ export const TaskSidebar = ({ isOpen, onClose }) => {
             <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-white/10">
               <div>
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Tasks</h2>
-                <p className="text-sm text-gray-500">{totalCompleted}/{totalTasks} completed</p>
+                <p className="text-sm text-gray-500">
+                  {totalCompleted}/{totalTasks} completed
+                </p>
               </div>
               <div className="flex items-center gap-2">
                 <Button variant="ghost" size="sm">
@@ -343,15 +336,15 @@ export const TaskSidebar = ({ isOpen, onClose }) => {
                 { id: 'all', label: 'All' },
                 { id: 'ai-suggested', label: 'AI Suggested', icon: Bot },
                 { id: 'high-priority', label: 'High Priority', icon: Flag },
-              ].map((f) => (
+              ].map(f => (
                 <button
                   key={f.id}
                   onClick={() => setFilter(f.id)}
                   className={cn(
-                    "flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-lg transition-colors",
+                    'flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-lg transition-colors',
                     filter === f.id
-                      ? "bg-accent-500 text-white"
-                      : "bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200"
+                      ? 'bg-accent-500 text-white'
+                      : 'bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                   )}
                 >
                   {f.icon && <f.icon className="h-3 w-3" />}

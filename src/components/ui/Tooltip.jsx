@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { cn } from '@/lib/utils';
 
-const Tooltip = ({ 
-  children, 
-  content, 
-  position = 'top',
-  delay = 200,
-  className 
-}) => {
+const Tooltip = ({ children, content, position = 'top', delay = 200, className }) => {
   const [isVisible, setIsVisible] = useState(false);
   let timeoutId;
 
@@ -38,7 +32,7 @@ const Tooltip = ({
   };
 
   return (
-    <div 
+    <div
       className="relative inline-block"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -47,20 +41,17 @@ const Tooltip = ({
       {isVisible && content && (
         <div
           className={cn(
-            "absolute z-50 px-3 py-2 text-sm text-white rounded-md shadow-lg",
-            "bg-gray-900 dark:bg-gray-700",
-            "whitespace-nowrap pointer-events-none",
-            "animate-in fade-in-0 zoom-in-95",
+            'absolute z-50 px-3 py-2 text-sm text-white rounded-md shadow-lg',
+            'bg-gray-900 dark:bg-gray-700',
+            'whitespace-nowrap pointer-events-none',
+            'animate-in fade-in-0 zoom-in-95',
             positionClasses[position],
             className
           )}
         >
           {content}
           <div
-            className={cn(
-              "absolute w-0 h-0 border-4 border-transparent",
-              arrowClasses[position]
-            )}
+            className={cn('absolute w-0 h-0 border-4 border-transparent', arrowClasses[position])}
           />
         </div>
       )}

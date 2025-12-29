@@ -4,8 +4,33 @@ import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card'
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { Input } from '../components/ui/Input';
-import { ThumbsUp, ThumbsDown, Calendar, AlertCircle, CheckCircle, Clock, Mail, TrendingUp, Target, Zap } from 'lucide-react';
-import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import {
+  ThumbsUp,
+  ThumbsDown,
+  Calendar,
+  AlertCircle,
+  CheckCircle,
+  Clock,
+  Mail,
+  TrendingUp,
+  Target,
+  Zap,
+} from 'lucide-react';
+import {
+  AreaChart,
+  Area,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+} from 'recharts';
 
 const ReplyIntelligence = () => {
   const [replies] = useState([
@@ -22,10 +47,10 @@ const ReplyIntelligence = () => {
       extractedInfo: {
         meetingRequested: true,
         proposedTimes: ['next week'],
-        urgency: 'medium'
+        urgency: 'medium',
       },
       received: '2 hours ago',
-      handled: false
+      handled: false,
     },
     {
       id: 2,
@@ -33,16 +58,16 @@ const ReplyIntelligence = () => {
       fromName: 'Sarah Chen',
       company: 'Tech Co',
       subject: 'Re: Partnership opportunity',
-      preview: 'Thanks but we\'re all set with our current provider.',
+      preview: "Thanks but we're all set with our current provider.",
       sentiment: 'negative',
       sentimentScore: 12,
       category: 'not_interested',
       extractedInfo: {
         objection: 'status_quo',
-        tone: 'polite'
+        tone: 'polite',
       },
       received: '5 hours ago',
-      handled: true
+      handled: true,
     },
     {
       id: 3,
@@ -50,17 +75,18 @@ const ReplyIntelligence = () => {
       fromName: 'Mike Johnson',
       company: 'Startup Inc',
       subject: 'Re: Scaling your outbound',
-      preview: 'Interesting timing. We just raised Series A and are looking to scale SDR team. What pricing do you offer?',
+      preview:
+        'Interesting timing. We just raised Series A and are looking to scale SDR team. What pricing do you offer?',
       sentiment: 'very_positive',
       sentimentScore: 96,
       category: 'qualified_lead',
       extractedInfo: {
         buyingSignals: ['raised funding', 'scaling team'],
         questions: ['pricing'],
-        urgency: 'high'
+        urgency: 'high',
       },
       received: '30 minutes ago',
-      handled: false
+      handled: false,
     },
     {
       id: 4,
@@ -74,11 +100,11 @@ const ReplyIntelligence = () => {
       category: 'out_of_office',
       extractedInfo: {
         returnDate: '2024-01-15',
-        autoReply: true
+        autoReply: true,
       },
       received: '1 day ago',
-      handled: true
-    }
+      handled: true,
+    },
   ]);
 
   const sentimentData = [
@@ -86,7 +112,7 @@ const ReplyIntelligence = () => {
     { name: 'Positive', value: 38, color: '#6ee7b7' },
     { name: 'Neutral', value: 18, color: '#9ca3af' },
     { name: 'Negative', value: 15, color: '#fca5a5' },
-    { name: 'Very Negative', value: 5, color: '#ef4444' }
+    { name: 'Very Negative', value: 5, color: '#ef4444' },
   ];
 
   const categoryStats = [
@@ -94,14 +120,14 @@ const ReplyIntelligence = () => {
     { category: 'Qualified Leads', count: 89, percentage: 44, trend: '+28%' },
     { category: 'Objections', count: 34, percentage: 17, trend: '-5%' },
     { category: 'Out of Office', count: 23, percentage: 11, trend: '+3%' },
-    { category: 'Not Interested', count: 10, percentage: 5, trend: '-15%' }
+    { category: 'Not Interested', count: 10, percentage: 5, trend: '-15%' },
   ];
 
   const weeklyTrend = [
     { week: 'Week 1', positive: 45, negative: 12, neutral: 8 },
     { week: 'Week 2', positive: 52, negative: 10, neutral: 12 },
     { week: 'Week 3', positive: 61, negative: 8, neutral: 10 },
-    { week: 'Week 4', positive: 74, negative: 7, neutral: 11 }
+    { week: 'Week 4', positive: 74, negative: 7, neutral: 11 },
   ];
 
   return (
@@ -187,37 +213,55 @@ const ReplyIntelligence = () => {
                 <div className="flex items-center justify-between">
                   <CardTitle>Recent Replies</CardTitle>
                   <div className="flex gap-2">
-                    <Button size="sm" variant="outline">All</Button>
-                    <Button size="sm" variant="outline">Unhandled</Button>
-                    <Button size="sm" variant="outline">Positive</Button>
+                    <Button size="sm" variant="outline">
+                      All
+                    </Button>
+                    <Button size="sm" variant="outline">
+                      Unhandled
+                    </Button>
+                    <Button size="sm" variant="outline">
+                      Positive
+                    </Button>
                   </div>
                 </div>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  {replies.map((reply) => (
-                    <div key={reply.id} className={`p-4 border rounded-lg ${
-                      reply.sentiment === 'very_positive' || reply.sentiment === 'positive' ? 'bg-green-50 dark:bg-green-900/20 border-green-200' :
-                      reply.sentiment === 'negative' || reply.sentiment === 'very_negative' ? 'bg-red-50 dark:bg-red-900/20 border-red-200' :
-                      'bg-gray-50 dark:bg-gray-800'
-                    }`}>
+                  {replies.map(reply => (
+                    <div
+                      key={reply.id}
+                      className={`p-4 border rounded-lg ${
+                        reply.sentiment === 'very_positive' || reply.sentiment === 'positive'
+                          ? 'bg-green-50 dark:bg-green-900/20 border-green-200'
+                          : reply.sentiment === 'negative' || reply.sentiment === 'very_negative'
+                            ? 'bg-red-50 dark:bg-red-900/20 border-red-200'
+                            : 'bg-gray-50 dark:bg-gray-800'
+                      }`}
+                    >
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
                             <p className="font-semibold">{reply.fromName}</p>
                             <span className="text-xs text-gray-600">• {reply.company}</span>
                             {!reply.handled && (
-                              <Badge variant="warning" className="text-xs">Needs Action</Badge>
+                              <Badge variant="warning" className="text-xs">
+                                Needs Action
+                              </Badge>
                             )}
                           </div>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">{reply.subject}</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                            {reply.subject}
+                          </p>
                           <p className="text-xs text-gray-500 mt-1">{reply.received}</p>
                         </div>
                         <div className="flex flex-col items-end gap-1">
-                          <Badge 
+                          <Badge
                             variant={
-                              reply.sentiment.includes('positive') ? 'success' :
-                              reply.sentiment.includes('negative') ? 'danger' : 'secondary'
+                              reply.sentiment.includes('positive')
+                                ? 'success'
+                                : reply.sentiment.includes('negative')
+                                  ? 'danger'
+                                  : 'secondary'
                             }
                             className="text-xs"
                           >
@@ -243,13 +287,18 @@ const ReplyIntelligence = () => {
                             {reply.extractedInfo.meetingRequested && (
                               <div className="flex items-center gap-2">
                                 <CheckCircle size={12} className="text-green-500" />
-                                <span>Meeting requested - Proposed times: {reply.extractedInfo.proposedTimes.join(', ')}</span>
+                                <span>
+                                  Meeting requested - Proposed times:{' '}
+                                  {reply.extractedInfo.proposedTimes.join(', ')}
+                                </span>
                               </div>
                             )}
                             {reply.extractedInfo.buyingSignals && (
                               <div className="flex items-center gap-2">
                                 <Target size={12} className="text-purple-500" />
-                                <span>Buying signals: {reply.extractedInfo.buyingSignals.join(', ')}</span>
+                                <span>
+                                  Buying signals: {reply.extractedInfo.buyingSignals.join(', ')}
+                                </span>
                               </div>
                             )}
                             {reply.extractedInfo.objection && (
@@ -272,20 +321,32 @@ const ReplyIntelligence = () => {
                       <div className="flex gap-2">
                         {reply.category === 'meeting_request' && !reply.handled && (
                           <>
-                            <Button size="sm" variant="success">Book Meeting</Button>
-                            <Button size="sm" variant="outline">Propose Times</Button>
+                            <Button size="sm" variant="success">
+                              Book Meeting
+                            </Button>
+                            <Button size="sm" variant="outline">
+                              Propose Times
+                            </Button>
                           </>
                         )}
                         {reply.category === 'qualified_lead' && !reply.handled && (
                           <>
-                            <Button size="sm" variant="success">Assign to AE</Button>
-                            <Button size="sm" variant="outline">Send Pricing</Button>
+                            <Button size="sm" variant="success">
+                              Assign to AE
+                            </Button>
+                            <Button size="sm" variant="outline">
+                              Send Pricing
+                            </Button>
                           </>
                         )}
                         {reply.category === 'not_interested' && !reply.handled && (
                           <>
-                            <Button size="sm" variant="outline">Send Objection Response</Button>
-                            <Button size="sm" variant="outline">Archive</Button>
+                            <Button size="sm" variant="outline">
+                              Send Objection Response
+                            </Button>
+                            <Button size="sm" variant="outline">
+                              Archive
+                            </Button>
                           </>
                         )}
                         {reply.handled && (
@@ -329,10 +390,13 @@ const ReplyIntelligence = () => {
                   </PieChart>
                 </ResponsiveContainer>
                 <div className="space-y-2 mt-4">
-                  {sentimentData.map((item) => (
+                  {sentimentData.map(item => (
                     <div key={item.name} className="flex items-center justify-between text-xs">
                       <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }}></div>
+                        <div
+                          className="w-3 h-3 rounded-full"
+                          style={{ backgroundColor: item.color }}
+                        ></div>
                         <span>{item.name}</span>
                       </div>
                       <span className="font-semibold">{item.value}%</span>
@@ -349,7 +413,7 @@ const ReplyIntelligence = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  {categoryStats.map((stat) => (
+                  {categoryStats.map(stat => (
                     <div key={stat.category} className="border-b pb-3 last:border-b-0">
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-sm font-semibold">{stat.category}</span>
@@ -357,7 +421,9 @@ const ReplyIntelligence = () => {
                       </div>
                       <div className="flex items-center justify-between text-xs text-gray-600">
                         <span>{stat.percentage}% of total</span>
-                        <span className={stat.trend.startsWith('+') ? 'text-green-600' : 'text-red-600'}>
+                        <span
+                          className={stat.trend.startsWith('+') ? 'text-green-600' : 'text-red-600'}
+                        >
                           {stat.trend}
                         </span>
                       </div>
@@ -379,9 +445,30 @@ const ReplyIntelligence = () => {
                     <XAxis dataKey="week" tick={{ fontSize: 10 }} />
                     <YAxis tick={{ fontSize: 10 }} />
                     <Tooltip />
-                    <Area type="monotone" dataKey="positive" stackId="1" stroke="#10b981" fill="#10b981" fillOpacity={0.6} />
-                    <Area type="monotone" dataKey="neutral" stackId="1" stroke="#9ca3af" fill="#9ca3af" fillOpacity={0.6} />
-                    <Area type="monotone" dataKey="negative" stackId="1" stroke="#ef4444" fill="#ef4444" fillOpacity={0.6} />
+                    <Area
+                      type="monotone"
+                      dataKey="positive"
+                      stackId="1"
+                      stroke="#10b981"
+                      fill="#10b981"
+                      fillOpacity={0.6}
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="neutral"
+                      stackId="1"
+                      stroke="#9ca3af"
+                      fill="#9ca3af"
+                      fillOpacity={0.6}
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="negative"
+                      stackId="1"
+                      stroke="#ef4444"
+                      fill="#ef4444"
+                      fillOpacity={0.6}
+                    />
                   </AreaChart>
                 </ResponsiveContainer>
               </CardContent>

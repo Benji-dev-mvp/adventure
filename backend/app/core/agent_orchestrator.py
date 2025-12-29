@@ -3,11 +3,10 @@ AI Agent Orchestration Framework.
 Multi-step tool execution, context memory, prompt versioning, and cost tracking.
 """
 
-import json
 import logging
 from datetime import datetime
 from enum import Enum
-from typing import Any, Callable, Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Handle, Position } from 'reactflow';
-import { 
-  Mail, 
-  Linkedin, 
-  Phone, 
-  MessageSquare, 
-  Clock, 
-  GitBranch, 
-  Play, 
-  Shuffle 
+import {
+  Mail,
+  Linkedin,
+  Phone,
+  MessageSquare,
+  Clock,
+  GitBranch,
+  Play,
+  Shuffle,
 } from 'lucide-react';
 
 // Re-export all nodes

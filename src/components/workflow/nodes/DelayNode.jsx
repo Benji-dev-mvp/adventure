@@ -68,7 +68,7 @@ export const DelayNode = ({ data, selected }) => {
                 min="0"
                 max="30"
                 value={days}
-                onChange={(e) => {
+                onChange={e => {
                   const val = parseInt(e.target.value) || 0;
                   setDays(val);
                   data.onChange?.({ days: val });
@@ -87,7 +87,7 @@ export const DelayNode = ({ data, selected }) => {
                 min="0"
                 max="23"
                 value={hours}
-                onChange={(e) => {
+                onChange={e => {
                   const val = parseInt(e.target.value) || 0;
                   setHours(val);
                   data.onChange?.({ hours: val });

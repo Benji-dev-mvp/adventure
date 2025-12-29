@@ -1,10 +1,8 @@
 """WebSocket routes for real-time updates."""
 
-from fastapi import APIRouter, Depends, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
-from app.core.security import get_current_user_ws
 from app.core.websocket import manager
-from app.models.user import User
 
 router = APIRouter(prefix="/ws", tags=["websocket"])
 
@@ -21,7 +19,7 @@ async def websocket_endpoint(websocket: WebSocket, token: str = None):
     try:
         while True:
             # Receive messages from client
-            data = await websocket.receive_json()
+            await websocket.receive_json()
 
             # Echo back or process
             await websocket.send_json({"type": "ack", "message": "Message received"})

@@ -7,7 +7,7 @@ import { dataService } from '../../lib/dataService';
 
 /**
  * AI Chat Component - Demonstrates LLM integration
- * 
+ *
  * Features:
  * - Real-time chat with AI assistant
  * - Conversation history
@@ -49,14 +49,14 @@ export function AIChat() {
         method: 'POST',
         body: JSON.stringify({
           prompt: input,
-          history: messages
-        })
+          history: messages,
+        }),
       });
 
       const assistantMessage = {
         role: response.role,
         content: response.content,
-        suggestions: response.suggestions
+        suggestions: response.suggestions,
       };
 
       setMessages(prev => [...prev, assistantMessage]);
@@ -82,8 +82,8 @@ export function AIChat() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           prompt: input,
-          history: messages
-        })
+          history: messages,
+        }),
       });
 
       const reader = response.body.getReader();
@@ -104,24 +104,16 @@ export function AIChat() {
           if (line.startsWith('data: ')) {
             const data = line.slice(6);
             if (data === '[DONE]') {
-              setMessages(prev => 
-                prev.map((msg, i) => 
-                  i === prev.length - 1 
-                    ? { ...msg, streaming: false } 
-                    : msg
-                )
+              setMessages(prev =>
+                prev.map((msg, i) => (i === prev.length - 1 ? { ...msg, streaming: false } : msg))
               );
               setIsLoading(false);
               return;
             }
             fullContent += data;
             // Update last message with accumulated content
-            setMessages(prev => 
-              prev.map((msg, i) => 
-                i === prev.length - 1 
-                  ? { ...msg, content: fullContent } 
-                  : msg
-              )
+            setMessages(prev =>
+              prev.map((msg, i) => (i === prev.length - 1 ? { ...msg, content: fullContent } : msg))
             );
           }
         }
@@ -138,7 +130,7 @@ export function AIChat() {
     toast.info('Chat cleared');
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = e => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
@@ -152,19 +144,17 @@ export function AIChat() {
         <Card className="p-4 bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className={`w-2 h-2 rounded-full ${aiStatus.available ? 'bg-green-500' : 'bg-yellow-500'}`} />
+              <div
+                className={`w-2 h-2 rounded-full ${aiStatus.available ? 'bg-green-500' : 'bg-yellow-500'}`}
+              />
               <div>
                 <p className="font-medium text-sm">
                   AI Provider: <span className="capitalize">{aiStatus.provider}</span>
                 </p>
-                <p className="text-xs text-gray-600 dark:text-gray-400">
-                  Model: {aiStatus.model}
-                </p>
+                <p className="text-xs text-gray-600 dark:text-gray-400">Model: {aiStatus.model}</p>
               </div>
             </div>
-            <div className="text-xs text-gray-500">
-              {aiStatus.capabilities.length} capabilities
-            </div>
+            <div className="text-xs text-gray-500">{aiStatus.capabilities.length} capabilities</div>
           </div>
         </Card>
       )}
@@ -228,7 +218,7 @@ export function AIChat() {
         <div className="flex gap-2">
           <textarea
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={e => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Ask me anything..."
             className="flex-1 resize-none rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -255,15 +245,10 @@ export function AIChat() {
             )}
           </div>
         </div>
-        
+
         {messages.length > 0 && (
           <div className="flex justify-end mt-2">
-            <Button
-              onClick={clearChat}
-              variant="ghost"
-              size="sm"
-              disabled={isLoading}
-            >
+            <Button onClick={clearChat} variant="ghost" size="sm" disabled={isLoading}>
               Clear Chat
             </Button>
           </div>

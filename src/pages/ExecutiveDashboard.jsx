@@ -4,16 +4,16 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
-import { 
-  TrendingUp, 
-  TrendingDown, 
-  Target, 
-  DollarSign, 
-  Users, 
-  Calendar, 
-  Mail, 
-  Award, 
-  ArrowUp, 
+import {
+  TrendingUp,
+  TrendingDown,
+  Target,
+  DollarSign,
+  Users,
+  Calendar,
+  Mail,
+  Award,
+  ArrowUp,
   ArrowDown,
   Brain,
   Sparkles,
@@ -21,9 +21,25 @@ import {
   CheckCircle2,
   Clock,
   Activity,
-  Zap
+  Zap,
 } from 'lucide-react';
-import { LineChart, Line, BarChart, Bar, AreaChart, Area, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  AreaChart,
+  Area,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from 'recharts';
 
 /**
  * Boardroom-style Executive Dashboard
@@ -34,40 +50,81 @@ const ExecutiveDashboard = () => {
   const [timeRange, setTimeRange] = useState('month');
 
   // AI Insights for executive awareness
-  const aiInsights = useMemo(() => [
-    { 
-      id: 1, 
-      type: 'success', 
-      icon: TrendingUp,
-      title: 'Pipeline Velocity Up 23%',
-      description: 'Deals are moving 23% faster through stages compared to last quarter. AI attribution: improved lead scoring.',
-      time: '2h ago'
-    },
-    { 
-      id: 2, 
-      type: 'warning', 
-      icon: AlertTriangle,
-      title: 'Q1 Target at Risk',
-      description: 'Current trajectory shows 87% target completion. Recommend increasing outbound by 15%.',
-      time: '4h ago'
-    },
-    { 
-      id: 3, 
-      type: 'info', 
-      icon: Brain,
-      title: 'Model Retrained',
-      description: 'Lead scoring model updated with latest conversion data. Precision improved by 12%.',
-      time: '6h ago'
-    },
-  ], []);
+  const aiInsights = useMemo(
+    () => [
+      {
+        id: 1,
+        type: 'success',
+        icon: TrendingUp,
+        title: 'Pipeline Velocity Up 23%',
+        description:
+          'Deals are moving 23% faster through stages compared to last quarter. AI attribution: improved lead scoring.',
+        time: '2h ago',
+      },
+      {
+        id: 2,
+        type: 'warning',
+        icon: AlertTriangle,
+        title: 'Q1 Target at Risk',
+        description:
+          'Current trajectory shows 87% target completion. Recommend increasing outbound by 15%.',
+        time: '4h ago',
+      },
+      {
+        id: 3,
+        type: 'info',
+        icon: Brain,
+        title: 'Model Retrained',
+        description:
+          'Lead scoring model updated with latest conversion data. Precision improved by 12%.',
+        time: '6h ago',
+      },
+    ],
+    []
+  );
 
   // Key Events/Milestones
-  const keyEvents = useMemo(() => [
-    { id: 1, event: 'Enterprise deal closed', company: 'TechCorp Inc', value: '$145K', time: '1h ago', icon: CheckCircle2, color: 'text-emerald-400' },
-    { id: 2, event: 'New prospect meeting', company: 'Global Finance Ltd', value: '$80K potential', time: '3h ago', icon: Calendar, color: 'text-violet-400' },
-    { id: 3, event: 'Campaign milestone', company: 'Q1 Outbound', value: '10K emails sent', time: '5h ago', icon: Zap, color: 'text-cyan-400' },
-    { id: 4, event: 'Demo scheduled', company: 'InnovateTech', value: '$60K potential', time: '8h ago', icon: Clock, color: 'text-amber-400' },
-  ], []);
+  const keyEvents = useMemo(
+    () => [
+      {
+        id: 1,
+        event: 'Enterprise deal closed',
+        company: 'TechCorp Inc',
+        value: '$145K',
+        time: '1h ago',
+        icon: CheckCircle2,
+        color: 'text-emerald-400',
+      },
+      {
+        id: 2,
+        event: 'New prospect meeting',
+        company: 'Global Finance Ltd',
+        value: '$80K potential',
+        time: '3h ago',
+        icon: Calendar,
+        color: 'text-violet-400',
+      },
+      {
+        id: 3,
+        event: 'Campaign milestone',
+        company: 'Q1 Outbound',
+        value: '10K emails sent',
+        time: '5h ago',
+        icon: Zap,
+        color: 'text-cyan-400',
+      },
+      {
+        id: 4,
+        event: 'Demo scheduled',
+        company: 'InnovateTech',
+        value: '$60K potential',
+        time: '8h ago',
+        icon: Clock,
+        color: 'text-amber-400',
+      },
+    ],
+    []
+  );
 
   // KPI Data - Condensed for hero strip
   const heroKpis = [
@@ -112,19 +169,25 @@ const ExecutiveDashboard = () => {
     { day: 'Fri', emails: 490, calls: 125, meetings: 40 },
   ];
 
-  const getInsightColor = (type) => {
+  const getInsightColor = type => {
     switch (type) {
-      case 'success': return 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400';
-      case 'warning': return 'bg-amber-500/10 border-amber-500/20 text-amber-400';
-      case 'info': return 'bg-violet-500/10 border-violet-500/20 text-violet-400';
-      default: return 'bg-slate-500/10 border-slate-500/20 text-slate-400';
+      case 'success':
+        return 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400';
+      case 'warning':
+        return 'bg-amber-500/10 border-amber-500/20 text-amber-400';
+      case 'info':
+        return 'bg-violet-500/10 border-violet-500/20 text-violet-400';
+      default:
+        return 'bg-slate-500/10 border-slate-500/20 text-slate-400';
     }
   };
 
   return (
-    <DashboardLayout title="Executive Dashboard" subtitle="Boardroom view • Real-time KPIs and AI insights">
+    <DashboardLayout
+      title="Executive Dashboard"
+      subtitle="Boardroom view • Real-time KPIs and AI insights"
+    >
       <div className="space-y-6">
-        
         {/* ========== HERO SECTION: Key Metrics Strip ========== */}
         <div className="bg-gradient-to-r from-slate-800 via-violet-900/20 to-slate-800 rounded-xl border border-slate-700 p-6">
           <div className="flex items-center justify-between mb-4">
@@ -151,7 +214,7 @@ const ExecutiveDashboard = () => {
               ))}
             </div>
           </div>
-          
+
           {/* Hero KPI Cards */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {heroKpis.map((kpi, i) => (
@@ -164,7 +227,9 @@ const ExecutiveDashboard = () => {
               >
                 <div className="flex items-center justify-between mb-2">
                   <kpi.icon className="w-5 h-5 text-slate-500" />
-                  <span className={`text-xs font-medium flex items-center gap-1 ${kpi.trend === 'up' ? 'text-emerald-400' : 'text-red-400'}`}>
+                  <span
+                    className={`text-xs font-medium flex items-center gap-1 ${kpi.trend === 'up' ? 'text-emerald-400' : 'text-red-400'}`}
+                  >
                     {kpi.trend === 'up' ? <ArrowUp size={12} /> : <ArrowDown size={12} />}
                     {kpi.change}
                   </span>
@@ -182,22 +247,50 @@ const ExecutiveDashboard = () => {
           <div className="lg:col-span-2 bg-slate-800/50 rounded-xl border border-slate-700 p-6">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h3 className="text-sm font-medium text-white uppercase tracking-wider">Revenue vs Target</h3>
+                <h3 className="text-sm font-medium text-white uppercase tracking-wider">
+                  Revenue vs Target
+                </h3>
                 <p className="text-xs text-slate-500">6-month trend</p>
               </div>
-              <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20">On Track</Badge>
+              <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20">
+                On Track
+              </Badge>
             </div>
             <ResponsiveContainer width="100%" height={280}>
               <AreaChart data={revenueTrend}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                 <XAxis dataKey="month" stroke="#64748b" fontSize={12} />
-                <YAxis stroke="#64748b" fontSize={12} tickFormatter={(value) => `$${(value/1000).toFixed(0)}k`} />
-                <Tooltip 
-                  formatter={(value) => `$${value.toLocaleString()}`}
-                  contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px', color: '#f8fafc' }}
+                <YAxis
+                  stroke="#64748b"
+                  fontSize={12}
+                  tickFormatter={value => `$${(value / 1000).toFixed(0)}k`}
                 />
-                <Area type="monotone" dataKey="revenue" stroke="#10b981" fill="#10b981" fillOpacity={0.2} name="Actual" />
-                <Area type="monotone" dataKey="target" stroke="#6366f1" fill="#6366f1" fillOpacity={0.1} name="Target" strokeDasharray="5 5" />
+                <Tooltip
+                  formatter={value => `$${value.toLocaleString()}`}
+                  contentStyle={{
+                    backgroundColor: '#1e293b',
+                    border: '1px solid #334155',
+                    borderRadius: '8px',
+                    color: '#f8fafc',
+                  }}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="revenue"
+                  stroke="#10b981"
+                  fill="#10b981"
+                  fillOpacity={0.2}
+                  name="Actual"
+                />
+                <Area
+                  type="monotone"
+                  dataKey="target"
+                  stroke="#6366f1"
+                  fill="#6366f1"
+                  fillOpacity={0.1}
+                  name="Target"
+                  strokeDasharray="5 5"
+                />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -205,7 +298,9 @@ const ExecutiveDashboard = () => {
           {/* Pipeline Distribution */}
           <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-6">
             <div className="mb-4">
-              <h3 className="text-sm font-medium text-white uppercase tracking-wider">Pipeline Mix</h3>
+              <h3 className="text-sm font-medium text-white uppercase tracking-wider">
+                Pipeline Mix
+              </h3>
               <p className="text-xs text-slate-500">By stage</p>
             </div>
             <ResponsiveContainer width="100%" height={280}>
@@ -223,8 +318,13 @@ const ExecutiveDashboard = () => {
                     <Cell key={`cell-${index}`} fill={entry.fill} />
                   ))}
                 </Pie>
-                <Tooltip 
-                  contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px', color: '#f8fafc' }}
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#1e293b',
+                    border: '1px solid #334155',
+                    borderRadius: '8px',
+                    color: '#f8fafc',
+                  }}
                 />
               </PieChart>
             </ResponsiveContainer>
@@ -241,7 +341,6 @@ const ExecutiveDashboard = () => {
 
         {/* ========== BOTTOM SECTION: AI Insights + Key Events ========== */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          
           {/* AI Insights Panel */}
           <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-6">
             <div className="flex items-center gap-3 mb-4">
@@ -249,7 +348,9 @@ const ExecutiveDashboard = () => {
                 <Sparkles className="w-4 h-4 text-violet-400" />
               </div>
               <div>
-                <h3 className="text-sm font-medium text-white uppercase tracking-wider">AI Insights</h3>
+                <h3 className="text-sm font-medium text-white uppercase tracking-wider">
+                  AI Insights
+                </h3>
                 <p className="text-xs text-slate-500">Autonomous analysis & recommendations</p>
               </div>
             </div>
@@ -284,7 +385,9 @@ const ExecutiveDashboard = () => {
                 <Clock className="w-4 h-4 text-cyan-400" />
               </div>
               <div>
-                <h3 className="text-sm font-medium text-white uppercase tracking-wider">Key Events</h3>
+                <h3 className="text-sm font-medium text-white uppercase tracking-wider">
+                  Key Events
+                </h3>
                 <p className="text-xs text-slate-500">Today's notable activities</p>
               </div>
             </div>
@@ -316,20 +419,32 @@ const ExecutiveDashboard = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Top Performers - Compact */}
           <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-6">
-            <h3 className="text-sm font-medium text-white uppercase tracking-wider mb-4">Top Performers</h3>
+            <h3 className="text-sm font-medium text-white uppercase tracking-wider mb-4">
+              Top Performers
+            </h3>
             <div className="space-y-3">
               {teamPerformance.map((member, i) => (
-                <div key={i} className="flex items-center justify-between p-3 bg-slate-900/50 rounded-lg border border-slate-700">
+                <div
+                  key={i}
+                  className="flex items-center justify-between p-3 bg-slate-900/50 rounded-lg border border-slate-700"
+                >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center text-white font-bold text-xs">
-                      {member.name.split(' ').map(n => n[0]).join('')}
+                      {member.name
+                        .split(' ')
+                        .map(n => n[0])
+                        .join('')}
                     </div>
                     <div>
                       <p className="font-medium text-sm text-white">{member.name}</p>
-                      <p className="text-xs text-slate-500">{member.deals} deals • {member.meetings} meetings</p>
+                      <p className="text-xs text-slate-500">
+                        {member.deals} deals • {member.meetings} meetings
+                      </p>
                     </div>
                   </div>
-                  <p className="text-lg font-bold text-emerald-400">${(member.revenue / 1000).toFixed(0)}k</p>
+                  <p className="text-lg font-bold text-emerald-400">
+                    ${(member.revenue / 1000).toFixed(0)}k
+                  </p>
                 </div>
               ))}
             </div>
@@ -337,13 +452,22 @@ const ExecutiveDashboard = () => {
 
           {/* Activity Volume */}
           <div className="bg-slate-800/50 rounded-xl border border-slate-700 p-6">
-            <h3 className="text-sm font-medium text-white uppercase tracking-wider mb-4">Weekly Activity</h3>
+            <h3 className="text-sm font-medium text-white uppercase tracking-wider mb-4">
+              Weekly Activity
+            </h3>
             <ResponsiveContainer width="100%" height={200}>
               <BarChart data={activityData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                 <XAxis dataKey="day" stroke="#64748b" fontSize={12} />
                 <YAxis stroke="#64748b" fontSize={12} />
-                <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px', color: '#f8fafc' }} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#1e293b',
+                    border: '1px solid #334155',
+                    borderRadius: '8px',
+                    color: '#f8fafc',
+                  }}
+                />
                 <Bar dataKey="emails" fill="#06b6d4" name="Emails" radius={[2, 2, 0, 0]} />
                 <Bar dataKey="meetings" fill="#10b981" name="Meetings" radius={[2, 2, 0, 0]} />
               </BarChart>

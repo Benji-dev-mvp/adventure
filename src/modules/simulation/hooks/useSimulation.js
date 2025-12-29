@@ -45,9 +45,21 @@ const STRATEGIES = [
 
 // Risk categories
 const RISK_CATEGORIES = [
-  { id: 'market-fit', label: 'Market Fit', description: 'Risk of messaging not resonating with target market' },
-  { id: 'message-fit', label: 'Message Fit', description: 'Risk of value proposition misalignment' },
-  { id: 'channel-saturation', label: 'Channel Saturation', description: 'Risk of diminishing returns from channel overuse' },
+  {
+    id: 'market-fit',
+    label: 'Market Fit',
+    description: 'Risk of messaging not resonating with target market',
+  },
+  {
+    id: 'message-fit',
+    label: 'Message Fit',
+    description: 'Risk of value proposition misalignment',
+  },
+  {
+    id: 'channel-saturation',
+    label: 'Channel Saturation',
+    description: 'Risk of diminishing returns from channel overuse',
+  },
   { id: 'capacity', label: 'Capacity', description: 'Risk of team capacity constraints' },
 ];
 
@@ -56,27 +68,27 @@ const generateProjectionData = (strategy, params) => {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
   const { acv, monthlyVolume, seats } = params;
   const { volumeMultiplier, replyRateBase, conversionRates } = strategy.config;
-  
+
   let cumulative = 0;
   const data = months.map((month, index) => {
     // Ramp up effect
     const rampFactor = Math.min(1, (index + 1) / 2);
-    
+
     // Calculate funnel
     const contacts = monthlyVolume * volumeMultiplier * rampFactor;
     const replies = contacts * (replyRateBase / 100);
     const demos = replies * conversionRates.demo;
     const proposals = demos * conversionRates.proposal;
     const closed = proposals * conversionRates.close;
-    
+
     // Pipeline value
     const monthlyPipeline = closed * acv;
     cumulative += monthlyPipeline;
-    
+
     // Confidence bands (narrower as model is more conservative)
-    const confidenceWidth = strategy.model === 'aggressive' ? 0.4 : 
-                           strategy.model === 'balanced' ? 0.25 : 0.15;
-    
+    const confidenceWidth =
+      strategy.model === 'aggressive' ? 0.4 : strategy.model === 'balanced' ? 0.25 : 0.15;
+
     return {
       month,
       pipeline: Math.round(cumulative),
@@ -85,22 +97,27 @@ const generateProjectionData = (strategy, params) => {
       meetings: Math.round(demos * (index + 1)),
     };
   });
-  
+
   return data;
 };
 
 // Calculate risk scores for a strategy
 const calculateRisks = (strategy, params) => {
   const { model, config } = strategy;
-  
+
   const risks = {
     'market-fit': model === 'aggressive' ? 65 : model === 'balanced' ? 35 : 20,
     'message-fit': model === 'aggressive' ? 55 : model === 'balanced' ? 30 : 15,
-    'channel-saturation': config.channelMix.email > 50 ? 70 : config.channelMix.email > 40 ? 45 : 25,
-    'capacity': params.seats < 3 && config.volumeMultiplier > 1.5 ? 75 : 
-                params.seats < 5 && config.volumeMultiplier > 2 ? 60 : 30,
+    'channel-saturation':
+      config.channelMix.email > 50 ? 70 : config.channelMix.email > 40 ? 45 : 25,
+    capacity:
+      params.seats < 3 && config.volumeMultiplier > 1.5
+        ? 75
+        : params.seats < 5 && config.volumeMultiplier > 2
+          ? 60
+          : 30,
   };
-  
+
   return RISK_CATEGORIES.map(cat => ({
     ...cat,
     score: risks[cat.id],
@@ -110,9 +127,13 @@ const calculateRisks = (strategy, params) => {
 
 export function useSimulation() {
   const [loading, setLoading] = useState(true);
-  const [selectedStrategies, setSelectedStrategies] = useState(['strategy-a', 'strategy-b', 'strategy-c']);
+  const [selectedStrategies, setSelectedStrategies] = useState([
+    'strategy-a',
+    'strategy-b',
+    'strategy-c',
+  ]);
   const [activeStrategy, setActiveStrategy] = useState('strategy-b');
-  
+
   // Simulation parameters
   const [params, setParams] = useState({
     acv: 50000,
@@ -141,16 +162,16 @@ export function useSimulation() {
   const activeStrategyData = useMemo(() => {
     const strategy = STRATEGIES.find(s => s.id === activeStrategy);
     if (!strategy) return null;
-    
+
     const projection = projections[activeStrategy];
     const risks = calculateRisks(strategy, params);
     const finalPipeline = projection[projection.length - 1]?.pipeline || 0;
     const totalMeetings = projection[projection.length - 1]?.meetings || 0;
-    
+
     // Calculate overall confidence
     const avgRisk = risks.reduce((sum, r) => sum + r.score, 0) / risks.length;
     const confidence = Math.round(100 - avgRisk);
-    
+
     return {
       ...strategy,
       projection,
@@ -170,13 +191,15 @@ export function useSimulation() {
     if (params.seats >= 5 && params.acv >= 75000) {
       return {
         strategyId: 'strategy-c',
-        reason: 'With your team size and high ACV, a conservative ABM approach will maximize deal quality.',
+        reason:
+          'With your team size and high ACV, a conservative ABM approach will maximize deal quality.',
       };
     }
     if (params.seats >= 3 && params.acv >= 30000) {
       return {
         strategyId: 'strategy-b',
-        reason: 'A balanced approach optimizes for both volume and conversion with your current resources.',
+        reason:
+          'A balanced approach optimizes for both volume and conversion with your current resources.',
       };
     }
     return {

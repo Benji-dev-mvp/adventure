@@ -1,20 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  DollarSign, Users, Mail, BarChart3,
-  Percent, Target
-} from 'lucide-react';
+import { DollarSign, Users, Mail, BarChart3, Percent, Target } from 'lucide-react';
 import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 
-const ControlSlider = ({ 
-  label, 
-  icon: Icon, 
-  value, 
-  min, 
-  max, 
+const ControlSlider = ({
+  label,
+  icon: Icon,
+  value,
+  min,
+  max,
   step = 1,
-  format = (v) => v,
-  onChange 
+  format = v => v,
+  onChange,
 }) => {
   const percentage = ((value - min) / (max - min)) * 100;
 
@@ -27,7 +24,7 @@ const ControlSlider = ({
         </div>
         <span className="text-sm font-medium text-slate-100">{format(value)}</span>
       </div>
-      
+
       <div className="relative">
         <input
           type="range"
@@ -35,7 +32,7 @@ const ControlSlider = ({
           max={max}
           step={step}
           value={value}
-          onChange={(e) => onChange(parseFloat(e.target.value))}
+          onChange={e => onChange(parseFloat(e.target.value))}
           className="w-full h-2 bg-slate-800 rounded-full appearance-none cursor-pointer
             [&::-webkit-slider-thumb]:appearance-none
             [&::-webkit-slider-thumb]:w-4
@@ -52,11 +49,11 @@ const ControlSlider = ({
             [&::-moz-range-thumb]:cursor-pointer
             [&::-moz-range-thumb]:border-0"
           style={{
-            background: `linear-gradient(to right, #06b6d4 ${percentage}%, #1e293b ${percentage}%)`
+            background: `linear-gradient(to right, #06b6d4 ${percentage}%, #1e293b ${percentage}%)`,
           }}
         />
       </div>
-      
+
       <div className="flex justify-between mt-1 text-xs text-slate-600">
         <span>{format(min)}</span>
         <span>{format(max)}</span>
@@ -78,8 +75,8 @@ export function SimulationControls({ params, updateParam }) {
           min={10000}
           max={200000}
           step={5000}
-          format={(v) => `$${(v / 1000).toFixed(0)}K`}
-          onChange={(v) => updateParam('acv', v)}
+          format={v => `$${(v / 1000).toFixed(0)}K`}
+          onChange={v => updateParam('acv', v)}
         />
 
         <ControlSlider
@@ -89,8 +86,8 @@ export function SimulationControls({ params, updateParam }) {
           min={500}
           max={10000}
           step={500}
-          format={(v) => v.toLocaleString()}
-          onChange={(v) => updateParam('monthlyVolume', v)}
+          format={v => v.toLocaleString()}
+          onChange={v => updateParam('monthlyVolume', v)}
         />
 
         <ControlSlider
@@ -100,8 +97,8 @@ export function SimulationControls({ params, updateParam }) {
           min={1}
           max={20}
           step={1}
-          format={(v) => v}
-          onChange={(v) => updateParam('seats', v)}
+          format={v => v}
+          onChange={v => updateParam('seats', v)}
         />
 
         <div className="pt-4 border-t border-white/5">
@@ -114,8 +111,8 @@ export function SimulationControls({ params, updateParam }) {
             min={1}
             max={15}
             step={0.5}
-            format={(v) => `${v}%`}
-            onChange={(v) => updateParam('replyRateAssumption', v)}
+            format={v => `${v}%`}
+            onChange={v => updateParam('replyRateAssumption', v)}
           />
 
           <ControlSlider
@@ -125,8 +122,8 @@ export function SimulationControls({ params, updateParam }) {
             min={10}
             max={60}
             step={5}
-            format={(v) => `${v}%`}
-            onChange={(v) => updateParam('demoConversion', v)}
+            format={v => `${v}%`}
+            onChange={v => updateParam('demoConversion', v)}
           />
 
           <ControlSlider
@@ -136,8 +133,8 @@ export function SimulationControls({ params, updateParam }) {
             min={10}
             max={60}
             step={5}
-            format={(v) => `${v}%`}
-            onChange={(v) => updateParam('closeRate', v)}
+            format={v => `${v}%`}
+            onChange={v => updateParam('closeRate', v)}
           />
         </div>
       </GlassCardContent>

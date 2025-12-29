@@ -25,7 +25,10 @@ export const CardHeader = ({ className, children, ...props }) => {
 
 export const CardTitle = ({ className, children, ...props }) => {
   return (
-    <h3 className={cn('text-base font-semibold text-gray-900 dark:text-white', className)} {...props}>
+    <h3
+      className={cn('text-base font-semibold text-gray-900 dark:text-white', className)}
+      {...props}
+    >
       {children}
     </h3>
   );
@@ -49,7 +52,10 @@ export const CardContent = ({ className, children, ...props }) => {
 
 export const CardFooter = ({ className, children, ...props }) => {
   return (
-    <div className={cn('mt-4 pt-4 border-t border-gray-100 dark:border-white/20', className)} {...props}>
+    <div
+      className={cn('mt-4 pt-4 border-t border-gray-100 dark:border-white/20', className)}
+      {...props}
+    >
       {children}
     </div>
   );

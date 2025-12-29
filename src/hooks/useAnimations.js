@@ -8,12 +8,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 // useIntersectionAnimation - Animate on scroll into view
 // ============================================
 export function useIntersectionAnimation(options = {}) {
-  const {
-    threshold = 0.1,
-    rootMargin = '0px',
-    triggerOnce = true,
-    delay = 0,
-  } = options;
+  const { threshold = 0.1, rootMargin = '0px', triggerOnce = true, delay = 0 } = options;
 
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -102,7 +97,7 @@ export function useMousePosition(elementRef = null) {
   const [relativePosition, setRelativePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = e => {
       setPosition({ x: e.clientX, y: e.clientY });
 
       if (elementRef?.current) {
@@ -132,7 +127,7 @@ export function useTilt(options = {}) {
   const [glarePosition, setGlarePosition] = useState({ x: 50, y: 50 });
 
   const handleMouseMove = useCallback(
-    (e) => {
+    e => {
       if (!ref.current) return;
 
       const rect = ref.current.getBoundingClientRect();
@@ -257,17 +252,17 @@ export function useCountUp(end, options = {}) {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const easingFunctions = {
-    linear: (t) => t,
-    easeIn: (t) => t * t,
-    easeOut: (t) => t * (2 - t),
-    easeInOut: (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
+    linear: t => t,
+    easeIn: t => t * t,
+    easeOut: t => t * (2 - t),
+    easeInOut: t => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
   };
 
   useEffect(() => {
     let animationFrame;
     let startTime;
 
-    const animate = (timestamp) => {
+    const animate = timestamp => {
       if (!startTime) startTime = timestamp;
       const elapsed = timestamp - startTime;
       const progress = Math.min(elapsed / duration, 1);
@@ -308,19 +303,22 @@ export function useStaggeredAnimation(itemCount, options = {}) {
     const timeouts = [];
 
     for (let i = 0; i < itemCount; i++) {
-      const timeout = setTimeout(() => {
-        setVisibleItems((prev) => [...prev, i]);
-      }, initialDelay + i * staggerDelay);
+      const timeout = setTimeout(
+        () => {
+          setVisibleItems(prev => [...prev, i]);
+        },
+        initialDelay + i * staggerDelay
+      );
       timeouts.push(timeout);
     }
 
     return () => timeouts.forEach(clearTimeout);
   }, [itemCount, staggerDelay, initialDelay]);
 
-  const isVisible = useCallback((index) => visibleItems.includes(index), [visibleItems]);
+  const isVisible = useCallback(index => visibleItems.includes(index), [visibleItems]);
 
   const getDelay = useCallback(
-    (index) => initialDelay + index * staggerDelay,
+    index => initialDelay + index * staggerDelay,
     [initialDelay, staggerDelay]
   );
 
@@ -421,7 +419,7 @@ export function usePrefersReducedMotion() {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
 
-    const handler = (e) => setPrefersReducedMotion(e.matches);
+    const handler = e => setPrefersReducedMotion(e.matches);
     mediaQuery.addEventListener('change', handler);
     return () => mediaQuery.removeEventListener('change', handler);
   }, []);

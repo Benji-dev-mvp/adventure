@@ -7,7 +7,7 @@
 // Zero-Trust Access Control Types
 // ============================================
 
-export type ResourceType = 
+export type ResourceType =
   | 'campaign'
   | 'lead'
   | 'template'
@@ -21,7 +21,14 @@ export type ResourceType =
   | 'audit_log'
   | 'ai_agent';
 
-export type PermissionAction = 'create' | 'read' | 'update' | 'delete' | 'execute' | 'approve' | 'export';
+export type PermissionAction =
+  | 'create'
+  | 'read'
+  | 'update'
+  | 'delete'
+  | 'execute'
+  | 'approve'
+  | 'export';
 export type PermissionScope = 'own' | 'team' | 'organization' | 'global';
 
 export interface Permission {
@@ -135,7 +142,7 @@ export interface ScopeMember {
 // Audit Replay Types
 // ============================================
 
-export type AuditEventType = 
+export type AuditEventType =
   | 'create'
   | 'update'
   | 'delete'

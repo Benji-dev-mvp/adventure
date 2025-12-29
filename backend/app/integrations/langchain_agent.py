@@ -33,14 +33,13 @@ LLMChain = None
 SequentialChain = None
 
 try:
-    from langchain.agents import create_openai_functions_agent, create_react_agent
+    from langchain.agents import create_openai_functions_agent
     from langchain.chains import LLMChain, SequentialChain
-    from langchain.memory import CombinedMemory, ConversationBufferMemory
+    from langchain.memory import ConversationBufferMemory
     from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
-    from langchain.schema import HumanMessage, SystemMessage
+    from langchain.schema import SystemMessage
     from langchain.tools import StructuredTool, Tool
     from langchain_anthropic import ChatAnthropic
-    from langchain_community.chat_message_histories import ChatMessageHistory
     from langchain_openai import ChatOpenAI
     from langgraph.prebuilt import create_react_agent as AgentExecutor
 

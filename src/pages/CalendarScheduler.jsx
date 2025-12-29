@@ -3,8 +3,26 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '../components/ui/Dialog';
-import { Calendar, Clock, Video, MapPin, Link as LinkIcon, Copy, ExternalLink, Plus, CheckCircle } from 'lucide-react';
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '../components/ui/Dialog';
+import {
+  Calendar,
+  Clock,
+  Video,
+  MapPin,
+  Link as LinkIcon,
+  Copy,
+  ExternalLink,
+  Plus,
+  CheckCircle,
+} from 'lucide-react';
 
 const CalendarScheduler = () => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -13,51 +31,77 @@ const CalendarScheduler = () => {
   const [showSuccess, setShowSuccess] = useState(false);
 
   const upcomingMeetings = [
-    { 
-      id: 1, 
-      lead: 'Sarah Chen', 
-      company: 'TechCorp', 
-      type: 'Demo', 
-      date: 'Jan 15, 2024', 
+    {
+      id: 1,
+      lead: 'Sarah Chen',
+      company: 'TechCorp',
+      type: 'Demo',
+      date: 'Jan 15, 2024',
       time: '2:00 PM',
       duration: '30 min',
       status: 'confirmed',
-      meetingLink: 'https://meet.artisan.co/demo-sarah-chen'
+      meetingLink: 'https://meet.artisan.co/demo-sarah-chen',
     },
-    { 
-      id: 2, 
-      lead: 'Michael Rodriguez', 
-      company: 'Growth Inc', 
-      type: 'Discovery', 
-      date: 'Jan 16, 2024', 
+    {
+      id: 2,
+      lead: 'Michael Rodriguez',
+      company: 'Growth Inc',
+      type: 'Discovery',
+      date: 'Jan 16, 2024',
       time: '10:00 AM',
       duration: '45 min',
       status: 'confirmed',
-      meetingLink: 'https://meet.artisan.co/discovery-michael'
+      meetingLink: 'https://meet.artisan.co/discovery-michael',
     },
-    { 
-      id: 3, 
-      lead: 'Emily Watson', 
-      company: 'Enterprise Systems', 
-      type: 'Follow-up', 
-      date: 'Jan 17, 2024', 
+    {
+      id: 3,
+      lead: 'Emily Watson',
+      company: 'Enterprise Systems',
+      type: 'Follow-up',
+      date: 'Jan 17, 2024',
       time: '3:30 PM',
       duration: '15 min',
       status: 'pending',
-      meetingLink: 'https://meet.artisan.co/followup-emily'
+      meetingLink: 'https://meet.artisan.co/followup-emily',
     },
   ];
 
   const availableSlots = [
-    '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
-    '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM', '4:00 PM'
+    '9:00 AM',
+    '9:30 AM',
+    '10:00 AM',
+    '10:30 AM',
+    '11:00 AM',
+    '11:30 AM',
+    '1:00 PM',
+    '1:30 PM',
+    '2:00 PM',
+    '2:30 PM',
+    '3:00 PM',
+    '3:30 PM',
+    '4:00 PM',
   ];
 
   const meetingTypes = [
-    { id: 'demo', name: 'Product Demo', duration: '30 min', description: 'Live walkthrough of platform features' },
-    { id: 'discovery', name: 'Discovery Call', duration: '45 min', description: 'Understanding your needs and goals' },
+    {
+      id: 'demo',
+      name: 'Product Demo',
+      duration: '30 min',
+      description: 'Live walkthrough of platform features',
+    },
+    {
+      id: 'discovery',
+      name: 'Discovery Call',
+      duration: '45 min',
+      description: 'Understanding your needs and goals',
+    },
     { id: 'followup', name: 'Follow-up', duration: '15 min', description: 'Quick check-in or Q&A' },
-    { id: 'onboarding', name: 'Onboarding', duration: '60 min', description: 'Getting started with Artisan' }
+    {
+      id: 'onboarding',
+      name: 'Onboarding',
+      duration: '60 min',
+      description: 'Getting started with Artisan',
+    },
   ];
 
   const handleBookMeeting = () => {
@@ -65,13 +109,16 @@ const CalendarScheduler = () => {
     setTimeout(() => setShowSuccess(false), 3000);
   };
 
-  const copyMeetingLink = (link) => {
+  const copyMeetingLink = link => {
     navigator.clipboard.writeText(link);
     alert('Meeting link copied!');
   };
 
   return (
-    <DashboardLayout title="Calendar & Scheduler" subtitle="Manage meetings and generate booking links">
+    <DashboardLayout
+      title="Calendar & Scheduler"
+      subtitle="Manage meetings and generate booking links"
+    >
       <div className="space-y-6">
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -83,14 +130,18 @@ const CalendarScheduler = () => {
                     <Plus className="w-6 h-6 text-blue-600" />
                   </div>
                   <p className="font-semibold">Create Meeting Link</p>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Generate shareable booking link</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                    Generate shareable booking link
+                  </p>
                 </CardContent>
               </Card>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
                 <DialogTitle>Create Meeting Link</DialogTitle>
-                <DialogDescription>Choose meeting type and generate shareable link</DialogDescription>
+                <DialogDescription>
+                  Choose meeting type and generate shareable link
+                </DialogDescription>
               </DialogHeader>
               <div className="space-y-4 py-4">
                 <div className="grid grid-cols-2 gap-3">
@@ -169,7 +220,7 @@ const CalendarScheduler = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {upcomingMeetings.map((meeting) => (
+                {upcomingMeetings.map(meeting => (
                   <div
                     key={meeting.id}
                     className="p-4 border border-gray-200 dark:border-white/10 rounded-lg hover:shadow-md transition-shadow"
@@ -177,7 +228,9 @@ const CalendarScheduler = () => {
                     <div className="flex justify-between items-start mb-3">
                       <div>
                         <h4 className="font-semibold text-lg">{meeting.lead}</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">{meeting.company}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          {meeting.company}
+                        </p>
                       </div>
                       <Badge variant={meeting.status === 'confirmed' ? 'success' : 'warning'}>
                         {meeting.status}
@@ -229,7 +282,9 @@ const CalendarScheduler = () => {
                   <label className="block text-sm font-medium mb-2">Meeting Type</label>
                   <select className="w-full px-3 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-white dark:bg-gray-800">
                     {meetingTypes.map(type => (
-                      <option key={type.id} value={type.id}>{type.name} ({type.duration})</option>
+                      <option key={type.id} value={type.id}>
+                        {type.name} ({type.duration})
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -249,7 +304,9 @@ const CalendarScheduler = () => {
                               : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
                           }`}
                         >
-                          <div>{date.toLocaleDateString('en', { weekday: 'short' }).slice(0, 1)}</div>
+                          <div>
+                            {date.toLocaleDateString('en', { weekday: 'short' }).slice(0, 1)}
+                          </div>
                           <div className="font-bold">{date.getDate()}</div>
                         </button>
                       );
@@ -285,7 +342,9 @@ const CalendarScheduler = () => {
                 {showSuccess && (
                   <div className="p-3 bg-green-50 dark:bg-green-500/10 rounded-lg flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-600" />
-                    <span className="text-sm text-green-700 dark:text-green-300">Meeting booked successfully!</span>
+                    <span className="text-sm text-green-700 dark:text-green-300">
+                      Meeting booked successfully!
+                    </span>
                   </div>
                 )}
               </div>

@@ -4,7 +4,37 @@
  */
 
 // Core hooks from advancedHooks (consolidated - removed duplicate from src/lib/hooks.js)
-export { useDebounce, useLocalStorage, useAsync, useClickOutside, useMediaQuery, useIntersectionObserver, usePrevious, useEventListener, useOnlineStatus, useWindowSize, useCopyToClipboard, useToggle, useInterval, useTimeout, useMount, useUnmount, useUpdateEffect, useDeepCompareEffect, useThrottle, useLockBodyScroll, useHover, useFocus, useScrollPosition, useDocumentTitle, useKeyPress, useNetworkState, useGeolocation, useBattery, useIdle } from './advancedHooks';
+export {
+  useDebounce,
+  useLocalStorage,
+  useAsync,
+  useClickOutside,
+  useMediaQuery,
+  useIntersectionObserver,
+  usePrevious,
+  useEventListener,
+  useOnlineStatus,
+  useWindowSize,
+  useCopyToClipboard,
+  useToggle,
+  useInterval,
+  useTimeout,
+  useMount,
+  useUnmount,
+  useUpdateEffect,
+  useDeepCompareEffect,
+  useThrottle,
+  useLockBodyScroll,
+  useHover,
+  useFocus,
+  useScrollPosition,
+  useDocumentTitle,
+  useKeyPress,
+  useNetworkState,
+  useGeolocation,
+  useBattery,
+  useIdle,
+} from './advancedHooks';
 
 // NOTE: useToast is exported from src/components/Toast.jsx
 // Import it as: import { useToast } from '../components/Toast';

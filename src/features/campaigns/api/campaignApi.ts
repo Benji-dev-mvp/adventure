@@ -78,13 +78,14 @@ export const campaignApi = {
    * Get a single campaign by ID
    */
   get: (id: string): Promise<Campaign> =>
-    api.get<CampaignDetailResponse>(`campaigns/${id}`).then((res: CampaignDetailResponse) => res.campaign),
+    api
+      .get<CampaignDetailResponse>(`campaigns/${id}`)
+      .then((res: CampaignDetailResponse) => res.campaign),
 
   /**
    * Create a new campaign
    */
-  create: (data: CreateCampaignDTO): Promise<Campaign> =>
-    api.post<Campaign>('campaigns', data),
+  create: (data: CreateCampaignDTO): Promise<Campaign> => api.post<Campaign>('campaigns', data),
 
   /**
    * Update an existing campaign
@@ -95,8 +96,7 @@ export const campaignApi = {
   /**
    * Delete a campaign
    */
-  delete: (id: string): Promise<void> =>
-    api.delete<void>(`campaigns/${id}`),
+  delete: (id: string): Promise<void> => api.delete<void>(`campaigns/${id}`),
 
   /**
    * Duplicate a campaign
@@ -107,26 +107,22 @@ export const campaignApi = {
   /**
    * Launch a campaign (change status to active)
    */
-  launch: (id: string): Promise<Campaign> =>
-    api.post<Campaign>(`campaigns/${id}/launch`),
+  launch: (id: string): Promise<Campaign> => api.post<Campaign>(`campaigns/${id}/launch`),
 
   /**
    * Pause a campaign
    */
-  pause: (id: string): Promise<Campaign> =>
-    api.post<Campaign>(`campaigns/${id}/pause`),
+  pause: (id: string): Promise<Campaign> => api.post<Campaign>(`campaigns/${id}/pause`),
 
   /**
    * Resume a paused campaign
    */
-  resume: (id: string): Promise<Campaign> =>
-    api.post<Campaign>(`campaigns/${id}/resume`),
+  resume: (id: string): Promise<Campaign> => api.post<Campaign>(`campaigns/${id}/resume`),
 
   /**
    * Archive a campaign
    */
-  archive: (id: string): Promise<Campaign> =>
-    api.post<Campaign>(`campaigns/${id}/archive`),
+  archive: (id: string): Promise<Campaign> => api.post<Campaign>(`campaigns/${id}/archive`),
 
   /**
    * Get campaign analytics
@@ -185,10 +181,9 @@ export const campaignApi = {
     stepId: string,
     leadId: string
   ): Promise<{ subject: string; body: string }> =>
-    api.get<{ subject: string; body: string }>(
-      `campaigns/${campaignId}/steps/${stepId}/preview`,
-      { searchParams: { leadId } }
-    ),
+    api.get<{ subject: string; body: string }>(`campaigns/${campaignId}/steps/${stepId}/preview`, {
+      searchParams: { leadId },
+    }),
 
   /**
    * Get campaign leads

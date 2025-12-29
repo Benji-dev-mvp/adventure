@@ -4,11 +4,11 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../co
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import { 
-  Activity, 
-  TrendingUp, 
-  Users, 
-  Mail, 
+import {
+  Activity,
+  TrendingUp,
+  Users,
+  Mail,
   Calendar,
   Sparkles,
   Brain,
@@ -25,7 +25,7 @@ import {
   Shield,
   Cpu,
   Play,
-  Lock
+  Lock,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../components/Toast';
@@ -38,7 +38,7 @@ import {
   AdvancedPerformanceChart,
   ConversionFunnel,
   AIInsightsCard,
-  RevenuePipelineChart
+  RevenuePipelineChart,
 } from '../components/dashboard/AdvancedVisualizations';
 import CampaignsTab from '../components/dashboard/CampaignsTab';
 import AnalyticsTab from '../components/dashboard/AnalyticsTab';
@@ -51,18 +51,20 @@ const SegmentBadge = ({ plan }) => {
     midmarket: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
     enterprise: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
   };
-  
+
   const labels = {
     startup: 'Startup',
     midmarket: 'Midmarket',
     enterprise: 'Enterprise',
   };
-  
+
   return (
-    <span className={cn(
-      "px-2 py-0.5 rounded-full text-xs font-medium border",
-      styles[plan] || styles.startup
-    )}>
+    <span
+      className={cn(
+        'px-2 py-0.5 rounded-full text-xs font-medium border',
+        styles[plan] || styles.startup
+      )}
+    >
       {labels[plan] || 'Startup'}
     </span>
   );
@@ -84,12 +86,12 @@ const EnhancedDashboardPage = () => {
   const toast = useToast();
   const [activeTab, setActiveTab] = useState('overview');
   const [isRefreshing, setIsRefreshing] = useState(false);
-  
+
   // Segment-aware configuration
   const { plan, isDemo, isAdmin, tenant } = useTenant();
   const segmentExperience = useSegmentExperience();
   const segmentKpis = useSegmentKpis();
-  
+
   // Live metrics with real-time updates
   const [liveMetrics, setLiveMetrics] = useState({
     emailsSent: 12453,
@@ -97,7 +99,7 @@ const EnhancedDashboardPage = () => {
     meetings: 47,
     activeLeads: 1284,
     revenue: 284500,
-    conversionRate: 3.2
+    conversionRate: 3.2,
   });
 
   // Simulate live updates
@@ -109,7 +111,7 @@ const EnhancedDashboardPage = () => {
         meetings: prev.meetings + (Math.random() > 0.85 ? 1 : 0),
         activeLeads: prev.activeLeads + Math.floor(Math.random() * 8) - 3,
         revenue: prev.revenue + Math.floor(Math.random() * 5000),
-        conversionRate: Math.max(2, Math.min(5, prev.conversionRate + (Math.random() - 0.5) * 0.2))
+        conversionRate: Math.max(2, Math.min(5, prev.conversionRate + (Math.random() - 0.5) * 0.2)),
       }));
     }, 4000);
 
@@ -118,33 +120,63 @@ const EnhancedDashboardPage = () => {
 
   // Sparkline data for metric cards
   const emailSparkline = [
-    { value: 320 }, { value: 380 }, { value: 450 }, { value: 510 }, 
-    { value: 490 }, { value: 520 }, { value: 580 }
+    { value: 320 },
+    { value: 380 },
+    { value: 450 },
+    { value: 510 },
+    { value: 490 },
+    { value: 520 },
+    { value: 580 },
   ];
 
   const replySparkline = [
-    { value: 7.2 }, { value: 7.8 }, { value: 8.1 }, { value: 8.4 }, 
-    { value: 8.2 }, { value: 8.6 }, { value: 8.9 }
+    { value: 7.2 },
+    { value: 7.8 },
+    { value: 8.1 },
+    { value: 8.4 },
+    { value: 8.2 },
+    { value: 8.6 },
+    { value: 8.9 },
   ];
 
   const meetingSparkline = [
-    { value: 8 }, { value: 12 }, { value: 15 }, { value: 18 }, 
-    { value: 16 }, { value: 19 }, { value: 22 }
+    { value: 8 },
+    { value: 12 },
+    { value: 15 },
+    { value: 18 },
+    { value: 16 },
+    { value: 19 },
+    { value: 22 },
   ];
 
   const leadSparkline = [
-    { value: 1100 }, { value: 1150 }, { value: 1180 }, { value: 1220 }, 
-    { value: 1240 }, { value: 1260 }, { value: 1284 }
+    { value: 1100 },
+    { value: 1150 },
+    { value: 1180 },
+    { value: 1220 },
+    { value: 1240 },
+    { value: 1260 },
+    { value: 1284 },
   ];
 
   const revenueSparkline = [
-    { value: 220000 }, { value: 235000 }, { value: 248000 }, { value: 256000 }, 
-    { value: 265000 }, { value: 275000 }, { value: 284500 }
+    { value: 220000 },
+    { value: 235000 },
+    { value: 248000 },
+    { value: 256000 },
+    { value: 265000 },
+    { value: 275000 },
+    { value: 284500 },
   ];
 
   const conversionSparkline = [
-    { value: 2.8 }, { value: 2.9 }, { value: 3.0 }, { value: 3.1 }, 
-    { value: 3.0 }, { value: 3.2 }, { value: 3.4 }
+    { value: 2.8 },
+    { value: 2.9 },
+    { value: 3.0 },
+    { value: 3.1 },
+    { value: 3.0 },
+    { value: 3.2 },
+    { value: 3.4 },
   ];
 
   // Performance data for charts
@@ -155,7 +187,7 @@ const EnhancedDashboardPage = () => {
     { name: 'Thu', emails: 510, replies: 42, meetings: 18, revenue: 28000 },
     { name: 'Fri', emails: 490, replies: 40, meetings: 16, revenue: 24000 },
     { name: 'Sat', emails: 120, replies: 10, meetings: 3, revenue: 6000 },
-    { name: 'Sun', emails: 80, replies: 7, meetings: 2, revenue: 4000 }
+    { name: 'Sun', emails: 80, replies: 7, meetings: 2, revenue: 4000 },
   ];
 
   // Conversion funnel data
@@ -165,7 +197,7 @@ const EnhancedDashboardPage = () => {
     { stage: 'Replied', count: 892, percentage: 16.5 },
     { stage: 'Meeting Booked', count: 247, percentage: 4.6 },
     { stage: 'Qualified', count: 156, percentage: 2.9 },
-    { stage: 'Closed Won', count: 47, percentage: 0.9 }
+    { stage: 'Closed Won', count: 47, percentage: 0.9 },
   ];
 
   // Revenue pipeline data
@@ -174,57 +206,110 @@ const EnhancedDashboardPage = () => {
     { name: 'Qualification', value: 98000 },
     { name: 'Proposal', value: 156000 },
     { name: 'Negotiation', value: 84500 },
-    { name: 'Closed Won', value: 235000 }
+    { name: 'Closed Won', value: 235000 },
   ];
 
   // Recent activity stream
   const recentActivities = [
-    { lead: 'Sarah Chen', company: 'TechCorp', action: 'replied to email', time: '2 min ago', type: 'reply', isHot: true },
-    { lead: 'Michael Torres', company: 'InnovateCo', action: 'opened email', time: '8 min ago', type: 'email' },
-    { lead: 'Emily Watson', company: 'GrowthLabs', action: 'booked a meeting', time: '15 min ago', type: 'meeting', isHot: true },
-    { lead: 'David Kim', company: 'StartupXYZ', action: 'replied to email', time: '32 min ago', type: 'reply' },
-    { lead: 'Jessica Lee', company: 'DataFlow Inc', action: 'clicked link', time: '45 min ago', type: 'email' },
-    { lead: 'Robert Martinez', company: 'CloudScale', action: 'scheduled call', time: '1 hour ago', type: 'call', isHot: true },
-    { lead: 'Amanda Foster', company: 'AI Solutions', action: 'viewed proposal', time: '1 hour ago', type: 'linkedin' },
-    { lead: 'James Wilson', company: 'FinTech Pro', action: 'replied to LinkedIn', time: '2 hours ago', type: 'linkedin' }
+    {
+      lead: 'Sarah Chen',
+      company: 'TechCorp',
+      action: 'replied to email',
+      time: '2 min ago',
+      type: 'reply',
+      isHot: true,
+    },
+    {
+      lead: 'Michael Torres',
+      company: 'InnovateCo',
+      action: 'opened email',
+      time: '8 min ago',
+      type: 'email',
+    },
+    {
+      lead: 'Emily Watson',
+      company: 'GrowthLabs',
+      action: 'booked a meeting',
+      time: '15 min ago',
+      type: 'meeting',
+      isHot: true,
+    },
+    {
+      lead: 'David Kim',
+      company: 'StartupXYZ',
+      action: 'replied to email',
+      time: '32 min ago',
+      type: 'reply',
+    },
+    {
+      lead: 'Jessica Lee',
+      company: 'DataFlow Inc',
+      action: 'clicked link',
+      time: '45 min ago',
+      type: 'email',
+    },
+    {
+      lead: 'Robert Martinez',
+      company: 'CloudScale',
+      action: 'scheduled call',
+      time: '1 hour ago',
+      type: 'call',
+      isHot: true,
+    },
+    {
+      lead: 'Amanda Foster',
+      company: 'AI Solutions',
+      action: 'viewed proposal',
+      time: '1 hour ago',
+      type: 'linkedin',
+    },
+    {
+      lead: 'James Wilson',
+      company: 'FinTech Pro',
+      action: 'replied to LinkedIn',
+      time: '2 hours ago',
+      type: 'linkedin',
+    },
   ];
 
   // AI insights
   const aiInsights = [
     {
       title: 'Optimize Send Times',
-      description: 'Send emails on Tuesdays at 10 AM for 3x higher reply rates based on your audience behavior',
+      description:
+        'Send emails on Tuesdays at 10 AM for 3x higher reply rates based on your audience behavior',
       impact: 'High Impact',
       confidence: 0.94,
-      action: 'Apply Now'
+      action: 'Apply Now',
     },
     {
       title: 'Personalize Subject Lines',
       description: 'Add {company_name} variable to increase open rates by 27% across all campaigns',
       impact: 'High Impact',
       confidence: 0.89,
-      action: 'Review'
+      action: 'Review',
     },
     {
       title: 'Follow Up Hot Leads',
-      description: '8 leads with high reply probability need immediate follow-up within next 24 hours',
+      description:
+        '8 leads with high reply probability need immediate follow-up within next 24 hours',
       impact: 'High Impact',
       confidence: 0.91,
-      action: 'View Leads'
+      action: 'View Leads',
     },
     {
       title: 'A/B Test Email Templates',
       description: 'Template B shows 15% better performance - consider switching for Campaign X',
       impact: 'Medium Impact',
       confidence: 0.82,
-      action: 'View Details'
-    }
+      action: 'View Details',
+    },
   ];
 
   const handleRefresh = async () => {
     setIsRefreshing(true);
     toast.info('Refreshing dashboard data...');
-    
+
     // Simulate API call
     setTimeout(() => {
       setIsRefreshing(false);
@@ -237,7 +322,7 @@ const EnhancedDashboardPage = () => {
     { id: 'campaigns', label: 'Campaigns', icon: Rocket },
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'ai-insights', label: 'AI Insights', icon: Brain },
-    { id: 'actions', label: 'Quick Actions', icon: Zap }
+    { id: 'actions', label: 'Quick Actions', icon: Zap },
   ];
 
   return (
@@ -247,14 +332,16 @@ const EnhancedDashboardPage = () => {
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <h1 className={cn(
-                "text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent",
-                plan === 'enterprise' 
-                  ? 'from-amber-500 to-orange-500'
-                  : plan === 'midmarket'
-                    ? 'from-purple-500 to-pink-500'
-                    : 'from-cyan-600 to-purple-600'
-              )}>
+              <h1
+                className={cn(
+                  'text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent',
+                  plan === 'enterprise'
+                    ? 'from-amber-500 to-orange-500'
+                    : plan === 'midmarket'
+                      ? 'from-purple-500 to-pink-500'
+                      : 'from-cyan-600 to-purple-600'
+                )}
+              >
                 {segmentExperience.title}
               </h1>
               <SegmentBadge plan={plan} />
@@ -264,9 +351,7 @@ const EnhancedDashboardPage = () => {
                 </span>
               )}
             </div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              {segmentExperience.subtitle}
-            </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{segmentExperience.subtitle}</p>
           </div>
           <div className="flex items-center gap-3">
             <Button
@@ -305,7 +390,7 @@ const EnhancedDashboardPage = () => {
             </div>
           </div>
         )}
-        
+
         {plan === 'startup' && (
           <div className="rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 p-4">
             <div className="flex items-center gap-3">
@@ -316,7 +401,12 @@ const EnhancedDashboardPage = () => {
                 <p className="text-sm font-medium text-cyan-400">Automation Active</p>
                 <p className="text-xs text-slate-400">{segmentExperience.heroMessage}</p>
               </div>
-              <Button variant="outline" size="sm" onClick={() => navigate('/ava')} className="gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => navigate('/ava')}
+                className="gap-2"
+              >
                 <Brain size={14} />
                 Open Ava BDR
               </Button>
@@ -338,7 +428,7 @@ const EnhancedDashboardPage = () => {
             target={15000}
             targetLabel="Weekly Goal"
           />
-          
+
           <AdvancedMetricCard
             title="Reply Rate"
             value={`${liveMetrics.replyRate.toFixed(1)}%`}
@@ -349,7 +439,7 @@ const EnhancedDashboardPage = () => {
             sparklineData={replySparkline}
             subtitle="Industry avg: 6.2%"
           />
-          
+
           <AdvancedMetricCard
             title="Meetings Booked"
             value={liveMetrics.meetings}
@@ -362,7 +452,7 @@ const EnhancedDashboardPage = () => {
             target={60}
             targetLabel="Monthly Goal"
           />
-          
+
           <AdvancedMetricCard
             title="Active Leads"
             value={liveMetrics.activeLeads.toLocaleString()}
@@ -373,7 +463,7 @@ const EnhancedDashboardPage = () => {
             sparklineData={leadSparkline}
             subtitle="Engaged in last 7 days"
           />
-          
+
           <AdvancedMetricCard
             title="Pipeline Revenue"
             value={`$${(liveMetrics.revenue / 1000).toFixed(1)}K`}
@@ -386,7 +476,7 @@ const EnhancedDashboardPage = () => {
             target={500000}
             targetLabel="Quarterly Target"
           />
-          
+
           <AdvancedMetricCard
             title="Conversion Rate"
             value={`${liveMetrics.conversionRate.toFixed(1)}%`}
@@ -414,7 +504,7 @@ const EnhancedDashboardPage = () => {
           <TabsContent value="overview" className="space-y-6">
             <div className="grid lg:grid-cols-2 gap-6">
               {/* Advanced Performance Chart */}
-              <AdvancedPerformanceChart 
+              <AdvancedPerformanceChart
                 data={performanceData}
                 title="Performance Overview - Last 7 Days"
               />
@@ -480,7 +570,7 @@ const EnhancedDashboardPage = () => {
 
           {/* Other tabs - now functional */}
           <TabsContent value="campaigns" className="space-y-4">
-            <CampaignsTab onNavigateToCampaign={(id) => navigate(`/campaigns/${id}`)} />
+            <CampaignsTab onNavigateToCampaign={id => navigate(`/campaigns/${id}`)} />
           </TabsContent>
 
           <TabsContent value="analytics" className="space-y-4">

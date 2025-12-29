@@ -6,10 +6,10 @@ Provides company and contact enrichment via multiple data sources
 import logging
 import os
 from datetime import datetime
-from typing import Any, Dict, Optional
+from typing import Dict, Optional
 
 import httpx
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
 

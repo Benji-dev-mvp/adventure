@@ -3,17 +3,55 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '../components/ui/Dialog';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/Select';
-import { Target, TrendingUp, Users, Zap, AlertCircle, Settings, Download, RefreshCw, Sparkles } from 'lucide-react';
-import { AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '../components/ui/Dialog';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/Select';
+import {
+  Target,
+  TrendingUp,
+  Users,
+  Zap,
+  AlertCircle,
+  Settings,
+  Download,
+  RefreshCw,
+  Sparkles,
+} from 'lucide-react';
+import {
+  AreaChart,
+  Area,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from 'recharts';
 
 const LeadScoring = () => {
   // Scoring weights (totals 100%)
   const [weights, setWeights] = useState({
     demographic: 40,
     intent: 35,
-    engagement: 25
+    engagement: 25,
   });
 
   const [selectedModel, setSelectedModel] = useState('default');
@@ -22,12 +60,72 @@ const LeadScoring = () => {
 
   // Sample leads with scores
   const [leads, setLeads] = useState([
-    { id: 1, name: 'Sarah Chen', company: 'TechCorp', title: 'VP Sales', score: 94, demographic: 95, intent: 92, engagement: 95, status: 'hot' },
-    { id: 2, name: 'Michael Rodriguez', company: 'Growth Industries', title: 'Director Marketing', score: 87, demographic: 85, intent: 88, engagement: 89, status: 'hot' },
-    { id: 3, name: 'Emily Watson', company: 'Enterprise Systems', title: 'CRO', score: 82, demographic: 90, intent: 75, engagement: 82, status: 'warm' },
-    { id: 4, name: 'James Park', company: 'StartupXYZ', title: 'CEO', score: 78, demographic: 70, intent: 85, engagement: 80, status: 'warm' },
-    { id: 5, name: 'Lisa Anderson', company: 'SmallCo', title: 'Sales Manager', score: 65, demographic: 60, intent: 70, engagement: 65, status: 'warm' },
-    { id: 6, name: 'Robert Kim', company: 'LocalBiz', title: 'Owner', score: 45, demographic: 40, intent: 50, engagement: 45, status: 'cold' },
+    {
+      id: 1,
+      name: 'Sarah Chen',
+      company: 'TechCorp',
+      title: 'VP Sales',
+      score: 94,
+      demographic: 95,
+      intent: 92,
+      engagement: 95,
+      status: 'hot',
+    },
+    {
+      id: 2,
+      name: 'Michael Rodriguez',
+      company: 'Growth Industries',
+      title: 'Director Marketing',
+      score: 87,
+      demographic: 85,
+      intent: 88,
+      engagement: 89,
+      status: 'hot',
+    },
+    {
+      id: 3,
+      name: 'Emily Watson',
+      company: 'Enterprise Systems',
+      title: 'CRO',
+      score: 82,
+      demographic: 90,
+      intent: 75,
+      engagement: 82,
+      status: 'warm',
+    },
+    {
+      id: 4,
+      name: 'James Park',
+      company: 'StartupXYZ',
+      title: 'CEO',
+      score: 78,
+      demographic: 70,
+      intent: 85,
+      engagement: 80,
+      status: 'warm',
+    },
+    {
+      id: 5,
+      name: 'Lisa Anderson',
+      company: 'SmallCo',
+      title: 'Sales Manager',
+      score: 65,
+      demographic: 60,
+      intent: 70,
+      engagement: 65,
+      status: 'warm',
+    },
+    {
+      id: 6,
+      name: 'Robert Kim',
+      company: 'LocalBiz',
+      title: 'Owner',
+      score: 45,
+      demographic: 40,
+      intent: 50,
+      engagement: 45,
+      status: 'cold',
+    },
   ]);
 
   // Score distribution data
@@ -40,39 +138,41 @@ const LeadScoring = () => {
   ]);
 
   // Calculate weighted score
-  const calculateScore = (lead) => {
+  const calculateScore = lead => {
     return Math.round(
-      (lead.demographic * weights.demographic / 100) +
-      (lead.intent * weights.intent / 100) +
-      (lead.engagement * weights.engagement / 100)
+      (lead.demographic * weights.demographic) / 100 +
+        (lead.intent * weights.intent) / 100 +
+        (lead.engagement * weights.engagement) / 100
     );
   };
 
   // Update lead scores when weights change
   useEffect(() => {
-    setLeads(prevLeads => prevLeads.map(lead => ({
-      ...lead,
-      score: calculateScore(lead),
-      status: calculateScore(lead) >= 80 ? 'hot' : calculateScore(lead) >= 60 ? 'warm' : 'cold'
-    })));
+    setLeads(prevLeads =>
+      prevLeads.map(lead => ({
+        ...lead,
+        score: calculateScore(lead),
+        status: calculateScore(lead) >= 80 ? 'hot' : calculateScore(lead) >= 60 ? 'warm' : 'cold',
+      }))
+    );
   }, [weights]);
 
   const handleWeightChange = (category, value) => {
     const newValue = parseInt(value);
     const currentTotal = Object.values(weights).reduce((a, b) => a + b, 0);
     const difference = newValue - weights[category];
-    
+
     // Adjust other weights proportionally
     if (currentTotal - weights[category] > 0) {
       const factor = (100 - newValue) / (currentTotal - weights[category]);
       const newWeights = { ...weights, [category]: newValue };
-      
+
       Object.keys(newWeights).forEach(key => {
         if (key !== category) {
           newWeights[key] = Math.round(newWeights[key] * factor);
         }
       });
-      
+
       // Ensure total is exactly 100
       const total = Object.values(newWeights).reduce((a, b) => a + b, 0);
       if (total !== 100) {
@@ -80,7 +180,7 @@ const LeadScoring = () => {
         const keys = Object.keys(newWeights).filter(k => k !== category);
         newWeights[keys[0]] += adjustment;
       }
-      
+
       setWeights(newWeights);
     }
   };
@@ -93,12 +193,16 @@ const LeadScoring = () => {
     }, 2000);
   };
 
-  const getStatusBadgeVariant = (status) => {
-    switch(status) {
-      case 'hot': return 'success';
-      case 'warm': return 'warning';
-      case 'cold': return 'secondary';
-      default: return 'default';
+  const getStatusBadgeVariant = status => {
+    switch (status) {
+      case 'hot':
+        return 'success';
+      case 'warm':
+        return 'warning';
+      case 'cold':
+        return 'secondary';
+      default:
+        return 'default';
     }
   };
 
@@ -182,7 +286,9 @@ const LeadScoring = () => {
                       <Settings className="w-5 h-5 text-accent-500" />
                       Scoring Model Configuration
                     </CardTitle>
-                    <CardDescription>Adjust weights to customize lead scoring (total must equal 100%)</CardDescription>
+                    <CardDescription>
+                      Adjust weights to customize lead scoring (total must equal 100%)
+                    </CardDescription>
                   </div>
                   <Select value={selectedModel} onValueChange={setSelectedModel}>
                     <SelectTrigger className="w-[180px]">
@@ -205,7 +311,9 @@ const LeadScoring = () => {
                       Demographic Fit
                     </label>
                     <div className="flex items-center gap-2">
-                      <span className="text-2xl font-bold text-accent-600">{weights.demographic}%</span>
+                      <span className="text-2xl font-bold text-accent-600">
+                        {weights.demographic}%
+                      </span>
                     </div>
                   </div>
                   <input
@@ -213,7 +321,7 @@ const LeadScoring = () => {
                     min="0"
                     max="100"
                     value={weights.demographic}
-                    onChange={(e) => handleWeightChange('demographic', e.target.value)}
+                    onChange={e => handleWeightChange('demographic', e.target.value)}
                     className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 accent-accent-500"
                   />
                   <p className="text-xs text-gray-600 dark:text-gray-400">
@@ -236,7 +344,7 @@ const LeadScoring = () => {
                     min="0"
                     max="100"
                     value={weights.intent}
-                    onChange={(e) => handleWeightChange('intent', e.target.value)}
+                    onChange={e => handleWeightChange('intent', e.target.value)}
                     className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 accent-purple-500"
                   />
                   <p className="text-xs text-gray-600 dark:text-gray-400">
@@ -251,7 +359,9 @@ const LeadScoring = () => {
                       Engagement Level
                     </label>
                     <div className="flex items-center gap-2">
-                      <span className="text-2xl font-bold text-green-600">{weights.engagement}%</span>
+                      <span className="text-2xl font-bold text-green-600">
+                        {weights.engagement}%
+                      </span>
                     </div>
                   </div>
                   <input
@@ -259,7 +369,7 @@ const LeadScoring = () => {
                     min="0"
                     max="100"
                     value={weights.engagement}
-                    onChange={(e) => handleWeightChange('engagement', e.target.value)}
+                    onChange={e => handleWeightChange('engagement', e.target.value)}
                     className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 accent-green-500"
                   />
                   <p className="text-xs text-gray-600 dark:text-gray-400">
@@ -271,11 +381,14 @@ const LeadScoring = () => {
                 <div className="pt-4 border-t border-gray-200 dark:border-white/10">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-semibold">Total Weight:</span>
-                    <Badge variant={
-                      (weights.demographic + weights.intent + weights.engagement) === 100 
-                        ? 'success' 
-                        : 'danger'
-                    } className="text-lg px-4 py-1">
+                    <Badge
+                      variant={
+                        weights.demographic + weights.intent + weights.engagement === 100
+                          ? 'success'
+                          : 'danger'
+                      }
+                      className="text-lg px-4 py-1"
+                    >
                       {weights.demographic + weights.intent + weights.engagement}%
                     </Badge>
                   </div>
@@ -294,7 +407,8 @@ const LeadScoring = () => {
                       <DialogHeader>
                         <DialogTitle>Bulk Re-score All Leads</DialogTitle>
                         <DialogDescription>
-                          This will recalculate scores for all 1,050 leads using your new weights. This may take a few moments.
+                          This will recalculate scores for all 1,050 leads using your new weights.
+                          This may take a few moments.
                         </DialogDescription>
                       </DialogHeader>
                       <div className="py-4">
@@ -316,8 +430,8 @@ const LeadScoring = () => {
                         <Button variant="outline" onClick={() => setDialogOpen(false)}>
                           Cancel
                         </Button>
-                        <Button 
-                          variant="gradient" 
+                        <Button
+                          variant="gradient"
                           onClick={handleBulkRescore}
                           disabled={isRescoring}
                         >
@@ -353,11 +467,11 @@ const LeadScoring = () => {
                     <CartesianGrid strokeDasharray="3 3" stroke="#374151" opacity={0.1} />
                     <XAxis dataKey="range" stroke="#9CA3AF" />
                     <YAxis stroke="#9CA3AF" />
-                    <Tooltip 
-                      contentStyle={{ 
-                        backgroundColor: '#1F2937', 
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: '#1F2937',
                         border: '1px solid #374151',
-                        borderRadius: '8px'
+                        borderRadius: '8px',
                       }}
                     />
                     <Bar dataKey="count" fill="#3B82F6" radius={[8, 8, 0, 0]}>
@@ -381,7 +495,7 @@ const LeadScoring = () => {
               <CardContent>
                 <div className="space-y-3">
                   {leads.slice(0, 6).map(lead => (
-                    <div 
+                    <div
                       key={lead.id}
                       className="p-3 border border-gray-200 dark:border-white/10 rounded-lg hover:border-accent-500 dark:hover:border-accent-500 transition-all"
                     >
@@ -399,12 +513,15 @@ const LeadScoring = () => {
                           <div className="text-2xl font-bold text-gray-900 dark:text-white">
                             {lead.score}
                           </div>
-                          <Badge variant={getStatusBadgeVariant(lead.status)} className="text-xs mt-1">
+                          <Badge
+                            variant={getStatusBadgeVariant(lead.status)}
+                            className="text-xs mt-1"
+                          >
                             {lead.status}
                           </Badge>
                         </div>
                       </div>
-                      
+
                       {/* Score Breakdown */}
                       <div className="mt-3 space-y-1">
                         <div className="flex items-center justify-between text-xs">
@@ -450,7 +567,8 @@ const LeadScoring = () => {
                 <div className="flex gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-accent-500 mt-2 shrink-0" />
                   <p className="text-gray-700 dark:text-gray-300">
-                    <strong>Intent matters:</strong> Recent behavior is often the strongest predictor
+                    <strong>Intent matters:</strong> Recent behavior is often the strongest
+                    predictor
                   </p>
                 </div>
               </CardContent>

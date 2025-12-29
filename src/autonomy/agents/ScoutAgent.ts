@@ -1,6 +1,6 @@
 /**
  * Scout Agent
- * 
+ *
  * Researches signals and intent. Deep-dives into accounts
  * to uncover timing, triggers, and competitive intelligence.
  */
@@ -112,12 +112,13 @@ export class ScoutAgent extends BaseAgent {
    */
   private async deepResearch(task: Task): Promise<ExecutionResult> {
     const input = task.input.data as { accountId: string; accountName?: string; domain?: string };
-    
+
     // Check cache first
     if (this.researchCache.has(input.accountId)) {
       const cached = this.researchCache.get(input.accountId)!;
       const age = Date.now() - cached.signals[0]?.discoveredAt.getTime() || 0;
-      if (age < 24 * 60 * 60 * 1000) { // 24 hour cache
+      if (age < 24 * 60 * 60 * 1000) {
+        // 24 hour cache
         return {
           success: true,
           output: cached,
@@ -167,7 +168,7 @@ export class ScoutAgent extends BaseAgent {
 
   private async discoverSignals(_accountId: string): Promise<DiscoveredSignal[]> {
     await this.simulateLatency(800);
-    
+
     const signalTypes = [
       { type: 'hiring-surge', sources: ['linkedin', 'glassdoor'] },
       { type: 'funding-round', sources: ['crunchbase', 'news'] },
@@ -206,16 +207,22 @@ export class ScoutAgent extends BaseAgent {
     const intel: CompetitorIntel[] = [];
     const count = Math.floor(Math.random() * 3);
 
-    const relationships: CompetitorIntel['relationship'][] = ['active-customer', 'evaluating', 'churned', 'unknown'];
+    const relationships: CompetitorIntel['relationship'][] = [
+      'active-customer',
+      'evaluating',
+      'churned',
+      'unknown',
+    ];
 
     for (let i = 0; i < count; i++) {
       const relationship = relationships[Math.floor(Math.random() * relationships.length)];
       intel.push({
         competitor: competitors[Math.floor(Math.random() * competitors.length)],
         relationship,
-        contractEnd: relationship === 'active-customer' 
-          ? new Date(Date.now() + Math.random() * 365 * 24 * 60 * 60 * 1000)
-          : undefined,
+        contractEnd:
+          relationship === 'active-customer'
+            ? new Date(Date.now() + Math.random() * 365 * 24 * 60 * 60 * 1000)
+            : undefined,
         satisfactionSignals: this.generateSatisfactionSignals(relationship),
       });
     }
@@ -226,9 +233,20 @@ export class ScoutAgent extends BaseAgent {
   private async mapBuyingCommittee(accountId: string): Promise<BuyingCommitteeMember[]> {
     await this.simulateLatency(700);
 
-    const roles: BuyingCommitteeMember['role'][] = ['champion', 'decision-maker', 'influencer', 'blocker', 'user'];
-    const sentiments: BuyingCommitteeMember['sentiment'][] = ['positive', 'neutral', 'negative', 'unknown'];
-    
+    const roles: BuyingCommitteeMember['role'][] = [
+      'champion',
+      'decision-maker',
+      'influencer',
+      'blocker',
+      'user',
+    ];
+    const sentiments: BuyingCommitteeMember['sentiment'][] = [
+      'positive',
+      'neutral',
+      'negative',
+      'unknown',
+    ];
+
     const committee: BuyingCommitteeMember[] = [];
     const count = Math.floor(Math.random() * 5) + 2;
 
@@ -248,7 +266,7 @@ export class ScoutAgent extends BaseAgent {
     }
 
     return committee.sort((a, b) => {
-      const roleOrder = { 'decision-maker': 0, 'champion': 1, 'influencer': 2, 'user': 3, 'blocker': 4 };
+      const roleOrder = { 'decision-maker': 0, champion: 1, influencer: 2, user: 3, blocker: 4 };
       return (roleOrder[a.role] || 5) - (roleOrder[b.role] || 5);
     });
   }
@@ -256,9 +274,15 @@ export class ScoutAgent extends BaseAgent {
   private async analyzeTimingWindows(_accountId: string): Promise<TimingIndicator[]> {
     await this.simulateLatency(500);
 
-    const types: TimingIndicator['type'][] = ['budget-cycle', 'contract-renewal', 'initiative', 'pain-event', 'growth-trigger'];
+    const types: TimingIndicator['type'][] = [
+      'budget-cycle',
+      'contract-renewal',
+      'initiative',
+      'pain-event',
+      'growth-trigger',
+    ];
     const timings: TimingIndicator['timing'][] = ['now', 'soon', 'future', 'passed'];
-    
+
     const indicators: TimingIndicator[] = [];
     const count = Math.floor(Math.random() * 3) + 1;
 
@@ -273,7 +297,7 @@ export class ScoutAgent extends BaseAgent {
     }
 
     return indicators.sort((a, b) => {
-      const timingOrder = { 'now': 0, 'soon': 1, 'future': 2, 'passed': 3 };
+      const timingOrder = { now: 0, soon: 1, future: 2, passed: 3 };
       return (timingOrder[a.timing] || 4) - (timingOrder[b.timing] || 4);
     });
   }
@@ -285,7 +309,8 @@ export class ScoutAgent extends BaseAgent {
     let factors = 0;
 
     // Signal strength
-    const avgSignalConfidence = signals.reduce((a, b) => a + b.confidence, 0) / Math.max(signals.length, 1);
+    const avgSignalConfidence =
+      signals.reduce((a, b) => a + b.confidence, 0) / Math.max(signals.length, 1);
     score += avgSignalConfidence * 0.4;
     factors++;
 
@@ -354,8 +379,8 @@ export class ScoutAgent extends BaseAgent {
       approaches.push('Execute immediately - window is open');
     }
 
-    return approaches.length > 0 
-      ? approaches.join('. ') 
+    return approaches.length > 0
+      ? approaches.join('. ')
       : 'Standard multi-touch sequence with personalization';
   }
 
@@ -402,8 +427,8 @@ export class ScoutAgent extends BaseAgent {
       return ['Left negative review', 'Mentioned limitations on LinkedIn'];
     }
     if (relationship === 'active-customer') {
-      return Math.random() > 0.5 
-        ? ['Appears satisfied', 'Renewed last year'] 
+      return Math.random() > 0.5
+        ? ['Appears satisfied', 'Renewed last year']
         : ['Mixed reviews', 'Exploring alternatives'];
     }
     return [];
@@ -425,7 +450,7 @@ export class ScoutAgent extends BaseAgent {
     const details: Record<string, string[]> = {
       'budget-cycle': ['Q1 budget planning', 'Fiscal year starts in March'],
       'contract-renewal': ['Current vendor contract ends Q2', 'Annual renewal coming up'],
-      'initiative': ['Digital transformation project', 'GTM optimization initiative'],
+      initiative: ['Digital transformation project', 'GTM optimization initiative'],
       'pain-event': ['Recent outage with current tool', 'Missed targets last quarter'],
       'growth-trigger': ['Just raised funding', 'Expanding sales team'],
     };

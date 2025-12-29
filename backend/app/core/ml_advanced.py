@@ -4,14 +4,8 @@ Churn prediction, next-best-action recommendation, sentiment analysis, and looka
 """
 
 import logging
-from datetime import datetime, timedelta
-from typing import Any, Dict, List, Optional
-
-import joblib
-import numpy as np
-from pydantic import BaseModel
-from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
-from sklearn.preprocessing import StandardScaler
+from datetime import datetime
+from typing import Any, Dict, List
 
 logger = logging.getLogger(__name__)
 

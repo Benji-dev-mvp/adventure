@@ -5,10 +5,24 @@ import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { Input } from '../components/ui/Input';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs';
-import { 
-  Database, Sparkles, CheckCircle, XCircle, Clock, TrendingUp, 
-  Users, Building2, DollarSign, Target, Phone, Mail, Linkedin, Globe,
-  Zap, AlertCircle, Info
+import {
+  Database,
+  Sparkles,
+  CheckCircle,
+  XCircle,
+  Clock,
+  TrendingUp,
+  Users,
+  Building2,
+  DollarSign,
+  Target,
+  Phone,
+  Mail,
+  Linkedin,
+  Globe,
+  Zap,
+  AlertCircle,
+  Info,
 } from 'lucide-react';
 
 const DataEnrichment = () => {
@@ -23,7 +37,7 @@ const DataEnrichment = () => {
       successRate: 95.1,
       dataPoints: ['email', 'phone', 'job_title', 'company', 'linkedin', 'tech_stack', 'funding'],
       startedAt: '2024-01-10 09:00',
-      completedAt: '2024-01-10 09:47'
+      completedAt: '2024-01-10 09:47',
     },
     {
       id: 2,
@@ -36,7 +50,7 @@ const DataEnrichment = () => {
       progress: 75,
       dataPoints: ['email', 'phone', 'company', 'funding', 'employee_count', 'revenue'],
       startedAt: '2024-01-11 14:20',
-      estimatedCompletion: '10 minutes'
+      estimatedCompletion: '10 minutes',
     },
     {
       id: 3,
@@ -44,8 +58,8 @@ const DataEnrichment = () => {
       status: 'queued',
       totalLeads: 2100,
       dataPoints: ['email', 'phone', 'job_title', 'company'],
-      queuePosition: 2
-    }
+      queuePosition: 2,
+    },
   ]);
 
   const enrichmentStats = {
@@ -54,7 +68,7 @@ const DataEnrichment = () => {
     successRate: 96.4,
     avgTimePerLead: '2.3s',
     dataPoints: 18,
-    providers: 6
+    providers: 6,
   };
 
   const dataProviders = [
@@ -63,18 +77,18 @@ const DataEnrichment = () => {
     { name: 'Apollo.io', status: 'active', coverage: 92, latency: '150ms', cost: '$$' },
     { name: 'Hunter.io', status: 'active', coverage: 78, latency: '60ms', cost: '$' },
     { name: 'LinkedIn', status: 'active', coverage: 98, latency: '200ms', cost: '$$$' },
-    { name: 'Crunchbase', status: 'active', coverage: 85, latency: '100ms', cost: '$$' }
+    { name: 'Crunchbase', status: 'active', coverage: 85, latency: '100ms', cost: '$$' },
   ];
 
   const enrichmentFields = [
-    { 
+    {
       category: 'Contact Information',
       fields: [
         { name: 'Work Email', coverage: 94, icon: Mail, verified: true },
         { name: 'Direct Phone', coverage: 67, icon: Phone, verified: true },
         { name: 'Mobile Phone', coverage: 34, icon: Phone, verified: false },
-        { name: 'LinkedIn URL', coverage: 89, icon: Linkedin, verified: true }
-      ]
+        { name: 'LinkedIn URL', coverage: 89, icon: Linkedin, verified: true },
+      ],
     },
     {
       category: 'Professional Details',
@@ -82,8 +96,8 @@ const DataEnrichment = () => {
         { name: 'Job Title', coverage: 98, icon: Users, verified: true },
         { name: 'Job Function', coverage: 95, icon: Target, verified: true },
         { name: 'Seniority Level', coverage: 93, icon: TrendingUp, verified: true },
-        { name: 'Department', coverage: 91, icon: Building2, verified: true }
-      ]
+        { name: 'Department', coverage: 91, icon: Building2, verified: true },
+      ],
     },
     {
       category: 'Company Information',
@@ -93,16 +107,16 @@ const DataEnrichment = () => {
         { name: 'Revenue Range', coverage: 72, icon: DollarSign, verified: false },
         { name: 'Industry', coverage: 94, icon: Building2, verified: true },
         { name: 'Founded Year', coverage: 81, icon: Clock, verified: true },
-        { name: 'Location/HQ', coverage: 96, icon: Globe, verified: true }
-      ]
+        { name: 'Location/HQ', coverage: 96, icon: Globe, verified: true },
+      ],
     },
     {
       category: 'Technographics',
       fields: [
         { name: 'Tech Stack', coverage: 76, icon: Database, verified: true },
         { name: 'CRM Used', coverage: 68, icon: Database, verified: false },
-        { name: 'Marketing Tools', coverage: 54, icon: Zap, verified: false }
-      ]
+        { name: 'Marketing Tools', coverage: 54, icon: Zap, verified: false },
+      ],
     },
     {
       category: 'Intent Signals',
@@ -110,9 +124,9 @@ const DataEnrichment = () => {
         { name: 'Job Postings', coverage: 82, icon: TrendingUp, verified: true },
         { name: 'Funding Events', coverage: 65, icon: DollarSign, verified: true },
         { name: 'Web Activity', coverage: 43, icon: Globe, verified: false },
-        { name: 'Content Downloads', coverage: 38, icon: Target, verified: false }
-      ]
-    }
+        { name: 'Content Downloads', coverage: 38, icon: Target, verified: false },
+      ],
+    },
   ];
 
   const recentEnrichments = [
@@ -120,16 +134,16 @@ const DataEnrichment = () => {
       name: 'Sarah Johnson',
       company: 'TechCorp Inc',
       before: { email: null, phone: null, title: 'Manager' },
-      after: { 
-        email: 'sarah.johnson@techcorp.com', 
+      after: {
+        email: 'sarah.johnson@techcorp.com',
         phone: '+1 (555) 123-4567',
         title: 'VP of Sales',
         linkedin: 'linkedin.com/in/sarahjohnson',
         companySize: '500-1000',
-        revenue: '$50M-$100M'
+        revenue: '$50M-$100M',
       },
       enrichedAt: '2 minutes ago',
-      dataPoints: 12
+      dataPoints: 12,
     },
     {
       name: 'Michael Chen',
@@ -141,11 +155,11 @@ const DataEnrichment = () => {
         title: 'Founder & CEO',
         linkedin: 'linkedin.com/in/michaelchen',
         companySize: '10-50',
-        funding: 'Series A - $5M'
+        funding: 'Series A - $5M',
       },
       enrichedAt: '5 minutes ago',
-      dataPoints: 15
-    }
+      dataPoints: 15,
+    },
   ];
 
   return (
@@ -177,7 +191,9 @@ const DataEnrichment = () => {
             <CardContent className="p-4">
               <div className="flex items-center justify-between mb-2">
                 <Sparkles size={20} className="text-purple-500" />
-                <Badge variant="success" className="text-xs">+24%</Badge>
+                <Badge variant="success" className="text-xs">
+                  +24%
+                </Badge>
               </div>
               <p className="text-2xl font-bold">{enrichmentStats.thisMonth.toLocaleString()}</p>
               <p className="text-xs text-gray-600 dark:text-gray-400">This Month</p>
@@ -236,7 +252,7 @@ const DataEnrichment = () => {
           {/* Enrichment Jobs */}
           <TabsContent value="jobs">
             <div className="grid gap-4">
-              {enrichmentJobs.map((job) => (
+              {enrichmentJobs.map(job => (
                 <Card key={job.id}>
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
@@ -256,9 +272,7 @@ const DataEnrichment = () => {
                             </Badge>
                           )}
                           {job.status === 'queued' && (
-                            <Badge variant="secondary">
-                              Queued (#{job.queuePosition})
-                            </Badge>
+                            <Badge variant="secondary">Queued (#{job.queuePosition})</Badge>
                           )}
                           <span className="text-sm text-gray-600">
                             {job.totalLeads.toLocaleString()} leads
@@ -266,7 +280,9 @@ const DataEnrichment = () => {
                         </div>
                       </div>
                       {job.status === 'running' && (
-                        <Button variant="outline" size="sm">Pause</Button>
+                        <Button variant="outline" size="sm">
+                          Pause
+                        </Button>
                       )}
                     </div>
 
@@ -278,7 +294,7 @@ const DataEnrichment = () => {
                           <span className="font-semibold">{job.progress}%</span>
                         </div>
                         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                          <div 
+                          <div
                             className="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full transition-all"
                             style={{ width: `${job.progress}%` }}
                           ></div>
@@ -305,7 +321,9 @@ const DataEnrichment = () => {
                           <p className="text-xs text-gray-600">Success Rate</p>
                         </div>
                         <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded">
-                          <p className="text-2xl font-bold text-purple-600">{job.dataPoints.length}</p>
+                          <p className="text-2xl font-bold text-purple-600">
+                            {job.dataPoints.length}
+                          </p>
                           <p className="text-xs text-gray-600">Data Points</p>
                         </div>
                       </div>
@@ -315,7 +333,7 @@ const DataEnrichment = () => {
                     <div className="mb-4">
                       <p className="text-sm font-semibold mb-2">Enrichment Fields:</p>
                       <div className="flex flex-wrap gap-2">
-                        {job.dataPoints.map((point) => (
+                        {job.dataPoints.map(point => (
                           <Badge key={point} variant="outline" className="text-xs">
                             {point.replace('_', ' ')}
                           </Badge>
@@ -351,15 +369,18 @@ const DataEnrichment = () => {
           {/* Available Fields */}
           <TabsContent value="fields">
             <div className="grid gap-6">
-              {enrichmentFields.map((category) => (
+              {enrichmentFields.map(category => (
                 <Card key={category.category}>
                   <CardHeader>
                     <CardTitle>{category.category}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-2 gap-4">
-                      {category.fields.map((field) => (
-                        <div key={field.name} className="flex items-center justify-between p-3 border rounded-lg">
+                      {category.fields.map(field => (
+                        <div
+                          key={field.name}
+                          className="flex items-center justify-between p-3 border rounded-lg"
+                        >
                           <div className="flex items-center gap-3">
                             <field.icon size={20} className="text-blue-500" />
                             <div>
@@ -393,7 +414,7 @@ const DataEnrichment = () => {
           {/* Data Providers */}
           <TabsContent value="providers">
             <div className="grid grid-cols-2 gap-4">
-              {dataProviders.map((provider) => (
+              {dataProviders.map(provider => (
                 <Card key={provider.name}>
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
@@ -413,7 +434,7 @@ const DataEnrichment = () => {
                           <span className="font-semibold">{provider.coverage}%</span>
                         </div>
                         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                          <div 
+                          <div
                             className="bg-green-500 h-2 rounded-full"
                             style={{ width: `${provider.coverage}%` }}
                           ></div>
@@ -454,21 +475,29 @@ const DataEnrichment = () => {
                         <div className="space-y-2 text-sm">
                           <div className="flex items-center gap-2">
                             <Mail size={14} className="text-gray-400" />
-                            <span className="text-gray-400">{item.before.email || 'Not available'}</span>
+                            <span className="text-gray-400">
+                              {item.before.email || 'Not available'}
+                            </span>
                           </div>
                           <div className="flex items-center gap-2">
                             <Phone size={14} className="text-gray-400" />
-                            <span className="text-gray-400">{item.before.phone || 'Not available'}</span>
+                            <span className="text-gray-400">
+                              {item.before.phone || 'Not available'}
+                            </span>
                           </div>
                           <div className="flex items-center gap-2">
                             <Users size={14} className="text-gray-400" />
-                            <span className="text-gray-400">{item.before.title || 'Not available'}</span>
+                            <span className="text-gray-400">
+                              {item.before.title || 'Not available'}
+                            </span>
                           </div>
                         </div>
                       </div>
 
                       <div>
-                        <p className="text-sm font-semibold mb-3 text-green-600">After Enrichment</p>
+                        <p className="text-sm font-semibold mb-3 text-green-600">
+                          After Enrichment
+                        </p>
                         <div className="space-y-2 text-sm">
                           <div className="flex items-center gap-2">
                             <Mail size={14} className="text-green-500" />
@@ -491,7 +520,9 @@ const DataEnrichment = () => {
                           {item.after.companySize && (
                             <div className="flex items-center gap-2">
                               <Building2 size={14} className="text-green-500" />
-                              <span className="font-medium">{item.after.companySize} employees</span>
+                              <span className="font-medium">
+                                {item.after.companySize} employees
+                              </span>
                             </div>
                           )}
                           {item.after.revenue && (

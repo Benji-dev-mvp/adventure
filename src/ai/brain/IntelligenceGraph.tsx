@@ -64,23 +64,144 @@ interface GraphEdge {
 const generateMockGraphData = (): { nodes: GraphNode[]; edges: GraphEdge[] } => {
   const nodes: GraphNode[] = [
     // Accounts
-    { id: 'acc-1', type: 'account', label: 'Acme Corp', data: { industry: 'Technology', employees: 2500, revenue: '$50M', engagementScore: 85 }, intentLevel: 'hot', fitScore: 'excellent', stage: 'opportunity', score: 92, x: 400, y: 300 },
-    { id: 'acc-2', type: 'account', label: 'TechStart Inc', data: { industry: 'SaaS', employees: 150, revenue: '$8M', engagementScore: 72 }, intentLevel: 'warm', fitScore: 'good', stage: 'qualified', score: 78, x: 600, y: 200 },
-    { id: 'acc-3', type: 'account', label: 'Enterprise Solutions', data: { industry: 'Enterprise', employees: 5000, revenue: '$200M', engagementScore: 45 }, intentLevel: 'cold', fitScore: 'excellent', stage: 'prospect', score: 65, x: 200, y: 400 },
-    
+    {
+      id: 'acc-1',
+      type: 'account',
+      label: 'Acme Corp',
+      data: { industry: 'Technology', employees: 2500, revenue: '$50M', engagementScore: 85 },
+      intentLevel: 'hot',
+      fitScore: 'excellent',
+      stage: 'opportunity',
+      score: 92,
+      x: 400,
+      y: 300,
+    },
+    {
+      id: 'acc-2',
+      type: 'account',
+      label: 'TechStart Inc',
+      data: { industry: 'SaaS', employees: 150, revenue: '$8M', engagementScore: 72 },
+      intentLevel: 'warm',
+      fitScore: 'good',
+      stage: 'qualified',
+      score: 78,
+      x: 600,
+      y: 200,
+    },
+    {
+      id: 'acc-3',
+      type: 'account',
+      label: 'Enterprise Solutions',
+      data: { industry: 'Enterprise', employees: 5000, revenue: '$200M', engagementScore: 45 },
+      intentLevel: 'cold',
+      fitScore: 'excellent',
+      stage: 'prospect',
+      score: 65,
+      x: 200,
+      y: 400,
+    },
+
     // Contacts
-    { id: 'con-1', type: 'contact', label: 'Sarah Chen', data: { title: 'VP Sales', email: 'sarah@acme.com', accountId: 'acc-1' }, intentLevel: 'hot', fitScore: 'excellent', stage: 'engaged', score: 88, x: 450, y: 250 },
-    { id: 'con-2', type: 'contact', label: 'Mike Johnson', data: { title: 'CRO', email: 'mike@acme.com', accountId: 'acc-1' }, intentLevel: 'warm', fitScore: 'excellent', stage: 'qualified', score: 82, x: 350, y: 350 },
-    { id: 'con-3', type: 'contact', label: 'Lisa Wang', data: { title: 'Director of Sales', email: 'lisa@techstart.com', accountId: 'acc-2' }, intentLevel: 'warm', fitScore: 'good', stage: 'engaged', score: 75, x: 650, y: 150 },
-    { id: 'con-4', type: 'contact', label: 'James Miller', data: { title: 'CEO', email: 'james@enterprise.com', accountId: 'acc-3' }, intentLevel: 'cold', fitScore: 'excellent', stage: 'prospect', score: 60, x: 150, y: 350 },
-    
+    {
+      id: 'con-1',
+      type: 'contact',
+      label: 'Sarah Chen',
+      data: { title: 'VP Sales', email: 'sarah@acme.com', accountId: 'acc-1' },
+      intentLevel: 'hot',
+      fitScore: 'excellent',
+      stage: 'engaged',
+      score: 88,
+      x: 450,
+      y: 250,
+    },
+    {
+      id: 'con-2',
+      type: 'contact',
+      label: 'Mike Johnson',
+      data: { title: 'CRO', email: 'mike@acme.com', accountId: 'acc-1' },
+      intentLevel: 'warm',
+      fitScore: 'excellent',
+      stage: 'qualified',
+      score: 82,
+      x: 350,
+      y: 350,
+    },
+    {
+      id: 'con-3',
+      type: 'contact',
+      label: 'Lisa Wang',
+      data: { title: 'Director of Sales', email: 'lisa@techstart.com', accountId: 'acc-2' },
+      intentLevel: 'warm',
+      fitScore: 'good',
+      stage: 'engaged',
+      score: 75,
+      x: 650,
+      y: 150,
+    },
+    {
+      id: 'con-4',
+      type: 'contact',
+      label: 'James Miller',
+      data: { title: 'CEO', email: 'james@enterprise.com', accountId: 'acc-3' },
+      intentLevel: 'cold',
+      fitScore: 'excellent',
+      stage: 'prospect',
+      score: 60,
+      x: 150,
+      y: 350,
+    },
+
     // Technologies
-    { id: 'tech-1', type: 'technology', label: 'Salesforce', data: { category: 'CRM', marketShare: 23 }, intentLevel: 'unknown', fitScore: 'good', stage: 'prospect', score: 70, x: 500, y: 400 },
-    { id: 'tech-2', type: 'technology', label: 'HubSpot', data: { category: 'Marketing', marketShare: 15 }, intentLevel: 'unknown', fitScore: 'good', stage: 'prospect', score: 65, x: 300, y: 200 },
-    
+    {
+      id: 'tech-1',
+      type: 'technology',
+      label: 'Salesforce',
+      data: { category: 'CRM', marketShare: 23 },
+      intentLevel: 'unknown',
+      fitScore: 'good',
+      stage: 'prospect',
+      score: 70,
+      x: 500,
+      y: 400,
+    },
+    {
+      id: 'tech-2',
+      type: 'technology',
+      label: 'HubSpot',
+      data: { category: 'Marketing', marketShare: 15 },
+      intentLevel: 'unknown',
+      fitScore: 'good',
+      stage: 'prospect',
+      score: 65,
+      x: 300,
+      y: 200,
+    },
+
     // Signals
-    { id: 'sig-1', type: 'signal', label: 'Funding Round', data: { signalType: 'funding', strength: 90 }, intentLevel: 'hot', fitScore: 'excellent', stage: 'engaged', score: 95, x: 550, y: 300 },
-    { id: 'sig-2', type: 'signal', label: 'Hiring VP Sales', data: { signalType: 'hiring', strength: 75 }, intentLevel: 'warm', fitScore: 'good', stage: 'qualified', score: 80, x: 250, y: 300 },
+    {
+      id: 'sig-1',
+      type: 'signal',
+      label: 'Funding Round',
+      data: { signalType: 'funding', strength: 90 },
+      intentLevel: 'hot',
+      fitScore: 'excellent',
+      stage: 'engaged',
+      score: 95,
+      x: 550,
+      y: 300,
+    },
+    {
+      id: 'sig-2',
+      type: 'signal',
+      label: 'Hiring VP Sales',
+      data: { signalType: 'hiring', strength: 75 },
+      intentLevel: 'warm',
+      fitScore: 'good',
+      stage: 'qualified',
+      score: 80,
+      x: 250,
+      y: 300,
+    },
   ];
 
   const edges = [
@@ -117,7 +238,8 @@ const IntelligenceGraph = () => {
       if (!filters.nodeTypes.includes(node.type)) return false;
       if (!filters.intentLevels.includes(node.intentLevel)) return false;
       if (!filters.stages.includes(node.stage)) return false;
-      if (searchQuery && !node.label.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+      if (searchQuery && !node.label.toLowerCase().includes(searchQuery.toLowerCase()))
+        return false;
       return true;
     });
   }, [graphData.nodes, filters, searchQuery]);
@@ -140,16 +262,21 @@ const IntelligenceGraph = () => {
   const getNodeSize = (node: GraphNode): number => {
     const baseSize = 20;
     const scoreMultiplier = node.score / 100;
-    return baseSize + (scoreMultiplier * 20);
+    return baseSize + scoreMultiplier * 20;
   };
 
   const getNodeIcon = (type: string): LucideIcon => {
     switch (type) {
-      case 'account': return Building2;
-      case 'contact': return User;
-      case 'technology': return Cpu;
-      case 'signal': return Zap;
-      default: return Network;
+      case 'account':
+        return Building2;
+      case 'contact':
+        return User;
+      case 'technology':
+        return Cpu;
+      case 'signal':
+        return Zap;
+      default:
+        return Network;
     }
   };
 
@@ -170,14 +297,16 @@ const IntelligenceGraph = () => {
                 type="text"
                 placeholder="Search nodes..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={e => setSearchQuery(e.target.value)}
                 className="pl-9 pr-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:border-violet-500 w-64"
               />
             </div>
             <button
               onClick={() => setShowFilters(!showFilters)}
               className={`p-2 rounded-lg border transition-colors ${
-                showFilters ? 'bg-violet-500/20 border-violet-500 text-violet-400' : 'bg-gray-900 border-gray-700 text-gray-400 hover:text-white'
+                showFilters
+                  ? 'bg-violet-500/20 border-violet-500 text-violet-400'
+                  : 'bg-gray-900 border-gray-700 text-gray-400 hover:text-white'
               }`}
             >
               <Filter className="w-4 h-4" />
@@ -191,7 +320,9 @@ const IntelligenceGraph = () => {
             >
               <ZoomIn className="w-4 h-4" />
             </button>
-            <span className="text-sm text-gray-500 w-12 text-center">{Math.round(zoom * 100)}%</span>
+            <span className="text-sm text-gray-500 w-12 text-center">
+              {Math.round(zoom * 100)}%
+            </span>
             <button
               onClick={() => setZoom(z => Math.max(z - 0.2, 0.5))}
               className="p-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-400 hover:text-white transition-colors"
@@ -199,7 +330,10 @@ const IntelligenceGraph = () => {
               <ZoomOut className="w-4 h-4" />
             </button>
             <button
-              onClick={() => { setZoom(1); setPan({ x: 0, y: 0 }); }}
+              onClick={() => {
+                setZoom(1);
+                setPan({ x: 0, y: 0 });
+              }}
               className="p-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-400 hover:text-white transition-colors"
             >
               <Maximize2 className="w-4 h-4" />
@@ -217,20 +351,27 @@ const IntelligenceGraph = () => {
               className="absolute top-16 left-4 z-10 bg-gray-900 border border-gray-700 rounded-lg p-4 w-72 shadow-xl"
             >
               <h4 className="text-sm font-medium text-white mb-3">Filter Nodes</h4>
-              
+
               <div className="space-y-4">
                 <div>
-                  <label htmlFor="node-type-filter" className="text-xs text-gray-400 uppercase tracking-wider mb-2 block">Node Type</label>
+                  <label
+                    htmlFor="node-type-filter"
+                    className="text-xs text-gray-400 uppercase tracking-wider mb-2 block"
+                  >
+                    Node Type
+                  </label>
                   <div id="node-type-filter" className="flex flex-wrap gap-2">
                     {['account', 'contact', 'technology', 'signal'].map(type => (
                       <button
                         key={type}
-                        onClick={() => setFilters(f => ({
-                          ...f,
-                          nodeTypes: f.nodeTypes.includes(type)
-                            ? f.nodeTypes.filter(t => t !== type)
-                            : [...f.nodeTypes, type]
-                        }))}
+                        onClick={() =>
+                          setFilters(f => ({
+                            ...f,
+                            nodeTypes: f.nodeTypes.includes(type)
+                              ? f.nodeTypes.filter(t => t !== type)
+                              : [...f.nodeTypes, type],
+                          }))
+                        }
                         className={`px-2 py-1 rounded text-xs capitalize transition-colors ${
                           filters.nodeTypes.includes(type)
                             ? 'bg-violet-500/20 text-violet-400 border border-violet-500/50'
@@ -244,7 +385,12 @@ const IntelligenceGraph = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="intent-level-filter" className="text-xs text-gray-400 uppercase tracking-wider mb-2 block">Intent Level</label>
+                  <label
+                    htmlFor="intent-level-filter"
+                    className="text-xs text-gray-400 uppercase tracking-wider mb-2 block"
+                  >
+                    Intent Level
+                  </label>
                   <div id="intent-level-filter" className="flex flex-wrap gap-2">
                     {[
                       { id: 'hot', color: 'bg-red-500' },
@@ -254,12 +400,14 @@ const IntelligenceGraph = () => {
                     ].map(intent => (
                       <button
                         key={intent.id}
-                        onClick={() => setFilters(f => ({
-                          ...f,
-                          intentLevels: f.intentLevels.includes(intent.id)
-                            ? f.intentLevels.filter(i => i !== intent.id)
-                            : [...f.intentLevels, intent.id]
-                        }))}
+                        onClick={() =>
+                          setFilters(f => ({
+                            ...f,
+                            intentLevels: f.intentLevels.includes(intent.id)
+                              ? f.intentLevels.filter(i => i !== intent.id)
+                              : [...f.intentLevels, intent.id],
+                          }))
+                        }
                         className={`px-2 py-1 rounded text-xs capitalize flex items-center gap-1.5 transition-colors ${
                           filters.intentLevels.includes(intent.id)
                             ? 'bg-gray-700 text-white border border-gray-600'
@@ -286,7 +434,12 @@ const IntelligenceGraph = () => {
           {/* Grid pattern */}
           <defs>
             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+              <path
+                d="M 40 0 L 0 0 0 40"
+                fill="none"
+                stroke="rgba(255,255,255,0.03)"
+                strokeWidth="1"
+              />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#grid)" />
@@ -340,7 +493,7 @@ const IntelligenceGraph = () => {
                     strokeDasharray={node.stage === 'opportunity' ? '0' : '4 2'}
                     opacity={0.5}
                   />
-                  
+
                   {/* Node circle */}
                   <circle
                     cx={node.x}
@@ -352,12 +505,7 @@ const IntelligenceGraph = () => {
                   />
 
                   {/* Icon */}
-                  <foreignObject
-                    x={node.x - 8}
-                    y={node.y - 8}
-                    width={16}
-                    height={16}
-                  >
+                  <foreignObject x={node.x - 8} y={node.y - 8} width={16} height={16}>
                     <NodeIcon className="w-4 h-4" style={{ color }} />
                   </foreignObject>
 
@@ -445,7 +593,7 @@ const IntelligenceGraph = () => {
               <div className="flex items-center gap-3">
                 {React.createElement(getNodeIcon(selectedNode.type), {
                   className: 'w-5 h-5',
-                  style: { color: getNodeColor(selectedNode) }
+                  style: { color: getNodeColor(selectedNode) },
                 })}
                 <div>
                   <h3 className="font-semibold text-white">{selectedNode.label}</h3>
@@ -477,19 +625,29 @@ const IntelligenceGraph = () => {
                 </div>
                 <div className="grid grid-cols-3 gap-2 mt-3">
                   <div className="text-center">
-                    <div className={`text-xs font-medium capitalize ${
-                      selectedNode.intentLevel === 'hot' ? 'text-red-400' :
-                      selectedNode.intentLevel === 'warm' ? 'text-amber-400' :
-                      'text-blue-400'
-                    }`}>{selectedNode.intentLevel}</div>
+                    <div
+                      className={`text-xs font-medium capitalize ${
+                        selectedNode.intentLevel === 'hot'
+                          ? 'text-red-400'
+                          : selectedNode.intentLevel === 'warm'
+                            ? 'text-amber-400'
+                            : 'text-blue-400'
+                      }`}
+                    >
+                      {selectedNode.intentLevel}
+                    </div>
                     <div className="text-[10px] text-gray-500">Intent</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs font-medium text-green-400 capitalize">{selectedNode.fitScore}</div>
+                    <div className="text-xs font-medium text-green-400 capitalize">
+                      {selectedNode.fitScore}
+                    </div>
                     <div className="text-[10px] text-gray-500">Fit</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs font-medium text-violet-400 capitalize">{selectedNode.stage}</div>
+                    <div className="text-xs font-medium text-violet-400 capitalize">
+                      {selectedNode.stage}
+                    </div>
                     <div className="text-[10px] text-gray-500">Stage</div>
                   </div>
                 </div>
@@ -559,9 +717,21 @@ const IntelligenceGraph = () => {
                 </h4>
                 <div className="space-y-2">
                   {[
-                    { action: 'Send personalized email', priority: 'high', reason: 'High intent signal detected' },
-                    { action: 'Research recent funding', priority: 'medium', reason: 'New funding announcement' },
-                    { action: 'Connect on LinkedIn', priority: 'low', reason: 'Build rapport before outreach' },
+                    {
+                      action: 'Send personalized email',
+                      priority: 'high',
+                      reason: 'High intent signal detected',
+                    },
+                    {
+                      action: 'Research recent funding',
+                      priority: 'medium',
+                      reason: 'New funding announcement',
+                    },
+                    {
+                      action: 'Connect on LinkedIn',
+                      priority: 'low',
+                      reason: 'Build rapport before outreach',
+                    },
                   ].map((rec, idx) => (
                     <motion.div
                       key={idx}
@@ -570,11 +740,15 @@ const IntelligenceGraph = () => {
                       transition={{ delay: idx * 0.1 }}
                       className="bg-gray-800/50 rounded-lg p-3 flex items-center gap-3 cursor-pointer hover:bg-gray-800 transition-colors group"
                     >
-                      <div className={`w-2 h-2 rounded-full ${
-                        rec.priority === 'high' ? 'bg-green-400' :
-                        rec.priority === 'medium' ? 'bg-amber-400' :
-                        'bg-gray-400'
-                      }`} />
+                      <div
+                        className={`w-2 h-2 rounded-full ${
+                          rec.priority === 'high'
+                            ? 'bg-green-400'
+                            : rec.priority === 'medium'
+                              ? 'bg-amber-400'
+                              : 'bg-gray-400'
+                        }`}
+                      />
                       <div className="flex-1">
                         <div className="text-sm text-white">{rec.action}</div>
                         <div className="text-xs text-gray-500">{rec.reason}</div>

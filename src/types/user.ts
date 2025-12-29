@@ -13,27 +13,27 @@ export interface User {
   lastName: string;
   name: string; // Full name (derived)
   avatar?: string;
-  
+
   // Role & Permissions
   role: UserRole;
   permissions: string[];
-  
+
   // Organization
   organizationId: string;
   organizationName?: string;
   teamId?: string;
   teamName?: string;
-  
+
   // Status
   status: UserStatus;
   emailVerified: boolean;
-  
+
   // Preferences
   preferences: UserPreferences;
-  
+
   // Usage Stats
   stats?: UserStats;
-  
+
   // Metadata
   createdAt: string;
   updatedAt: string;
@@ -46,25 +46,25 @@ export interface UserPreferences {
   theme: 'light' | 'dark' | 'system';
   compactMode: boolean;
   sidebarCollapsed: boolean;
-  
+
   // Notifications
   emailNotifications: boolean;
   browserNotifications: boolean;
   digestFrequency: 'daily' | 'weekly' | 'never';
-  
+
   // Email Settings
   emailSignature?: string;
   defaultFromName?: string;
-  
+
   // Calendar & Scheduling
   timezone: string;
   workingHoursStart: string;
   workingHoursEnd: string;
   workingDays: number[]; // 0 = Sunday, 1 = Monday, etc.
-  
+
   // Keyboard Shortcuts
   keyboardShortcutsEnabled: boolean;
-  
+
   // Dashboard Customization
   dashboardLayout?: DashboardWidgetConfig[];
 }
@@ -107,22 +107,22 @@ export const PERMISSIONS = {
   LEADS_DELETE: 'leads:delete',
   LEADS_EXPORT: 'leads:export',
   LEADS_IMPORT: 'leads:import',
-  
+
   // Campaign permissions
   CAMPAIGNS_VIEW: 'campaigns:view',
   CAMPAIGNS_CREATE: 'campaigns:create',
   CAMPAIGNS_EDIT: 'campaigns:edit',
   CAMPAIGNS_DELETE: 'campaigns:delete',
   CAMPAIGNS_LAUNCH: 'campaigns:launch',
-  
+
   // Analytics permissions
   ANALYTICS_VIEW: 'analytics:view',
   ANALYTICS_EXPORT: 'analytics:export',
-  
+
   // Integration permissions
   INTEGRATIONS_VIEW: 'integrations:view',
   INTEGRATIONS_MANAGE: 'integrations:manage',
-  
+
   // Admin permissions
   ADMIN_USERS: 'admin:users',
   ADMIN_BILLING: 'admin:billing',
@@ -147,7 +147,7 @@ export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
   ],
   admin: [
     ...Object.values(PERMISSIONS).filter(
-      (p) => !p.startsWith('admin:') || p === PERMISSIONS.ADMIN_USERS
+      p => !p.startsWith('admin:') || p === PERMISSIONS.ADMIN_USERS
     ),
   ],
   super_admin: Object.values(PERMISSIONS),
@@ -195,24 +195,24 @@ export interface Organization {
   name: string;
   slug: string;
   logo?: string;
-  
+
   // Plan & Billing
   plan: 'free' | 'starter' | 'professional' | 'enterprise';
   billingEmail?: string;
-  
+
   // Limits
   maxUsers: number;
   maxLeads: number;
   maxEmailsPerMonth: number;
-  
+
   // Usage
   currentUsers: number;
   currentLeads: number;
   emailsSentThisMonth: number;
-  
+
   // Settings
   settings: OrganizationSettings;
-  
+
   // Metadata
   createdAt: string;
   updatedAt: string;
@@ -224,16 +224,16 @@ export interface OrganizationSettings {
   trackingDomain?: string;
   defaultFromEmail?: string;
   defaultFromName?: string;
-  
+
   // Compliance
   gdprCompliant: boolean;
   dataRetentionDays: number;
-  
+
   // Security
   mfaRequired: boolean;
   ssoEnabled: boolean;
   ssoProvider?: 'google' | 'okta' | 'azure';
-  
+
   // Integrations
   crmIntegration?: 'salesforce' | 'hubspot' | 'pipedrive';
   slackEnabled: boolean;

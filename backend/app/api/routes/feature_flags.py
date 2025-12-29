@@ -4,7 +4,7 @@ from typing import Any, Dict
 
 from fastapi import APIRouter, Depends, HTTPException
 
-from app.core.feature_flags import FeatureFlag, feature_flags
+from app.core.feature_flags import feature_flags
 from app.core.security import get_current_user, require_role
 from app.models.user import User, UserRole
 

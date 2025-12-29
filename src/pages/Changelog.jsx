@@ -39,13 +39,15 @@ const CHANGELOG_ENTRIES = [
       {
         type: 'feature',
         title: 'AI Lead Scoring 2.0',
-        description: 'Completely redesigned lead scoring algorithm using machine learning. Now factors in engagement patterns, company signals, and buying intent.',
+        description:
+          'Completely redesigned lead scoring algorithm using machine learning. Now factors in engagement patterns, company signals, and buying intent.',
         icon: Bot,
       },
       {
         type: 'feature',
         title: 'Revenue Attribution Dashboard',
-        description: 'New analytics view showing full-funnel revenue attribution from first touch to closed deal.',
+        description:
+          'New analytics view showing full-funnel revenue attribution from first touch to closed deal.',
         icon: BarChart3,
       },
       {
@@ -57,7 +59,8 @@ const CHANGELOG_ENTRIES = [
       {
         type: 'fix',
         title: 'Campaign Scheduling Fix',
-        description: 'Fixed an issue where scheduled campaigns would sometimes send at incorrect times in certain timezones.',
+        description:
+          'Fixed an issue where scheduled campaigns would sometimes send at incorrect times in certain timezones.',
         icon: Bug,
       },
     ],
@@ -99,25 +102,29 @@ const CHANGELOG_ENTRIES = [
       {
         type: 'feature',
         title: 'Shared Playbooks',
-        description: 'Create and share email playbooks with your team. Set permissions for view, edit, or admin access.',
+        description:
+          'Create and share email playbooks with your team. Set permissions for view, edit, or admin access.',
         icon: Users,
       },
       {
         type: 'feature',
         title: 'Team Performance Dashboard',
-        description: 'Compare team member performance with side-by-side analytics and leaderboards.',
+        description:
+          'Compare team member performance with side-by-side analytics and leaderboards.',
         icon: BarChart3,
       },
       {
         type: 'feature',
         title: 'Salesforce Enhanced Sync',
-        description: 'Bi-directional sync now includes custom fields and supports more object types.',
+        description:
+          'Bi-directional sync now includes custom fields and supports more object types.',
         icon: Link,
       },
       {
         type: 'improvement',
         title: 'Notification Preferences',
-        description: 'More granular control over which notifications you receive and through which channels.',
+        description:
+          'More granular control over which notifications you receive and through which channels.',
         icon: Settings,
       },
     ],
@@ -132,19 +139,22 @@ const CHANGELOG_ENTRIES = [
       {
         type: 'feature',
         title: '50+ New Email Templates',
-        description: 'Professional email templates for every use case, including holiday-themed options.',
+        description:
+          'Professional email templates for every use case, including holiday-themed options.',
         icon: Mail,
       },
       {
         type: 'improvement',
         title: 'Smart Send Time Optimization',
-        description: 'AI now predicts the best time to send emails based on recipient engagement history.',
+        description:
+          'AI now predicts the best time to send emails based on recipient engagement history.',
         icon: Sparkles,
       },
       {
         type: 'improvement',
         title: 'Mobile App Updates',
-        description: 'Push notifications for important events and quick actions from the mobile app.',
+        description:
+          'Push notifications for important events and quick actions from the mobile app.',
         icon: Zap,
       },
     ],
@@ -185,25 +195,31 @@ const ChangeItem = ({ change, index }) => {
       transition={{ delay: index * 0.1 }}
       className="flex gap-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
     >
-      <div className={cn(
-        "p-3 rounded-xl h-fit",
-        change.type === 'feature' && "bg-green-500/10",
-        change.type === 'improvement' && "bg-blue-500/10",
-        change.type === 'fix' && "bg-amber-500/10",
-        change.type === 'security' && "bg-red-500/10",
-      )}>
-        <Icon className={cn(
-          "h-5 w-5",
-          change.type === 'feature' && "text-green-500",
-          change.type === 'improvement' && "text-blue-500",
-          change.type === 'fix' && "text-amber-500",
-          change.type === 'security' && "text-red-500",
-        )} />
+      <div
+        className={cn(
+          'p-3 rounded-xl h-fit',
+          change.type === 'feature' && 'bg-green-500/10',
+          change.type === 'improvement' && 'bg-blue-500/10',
+          change.type === 'fix' && 'bg-amber-500/10',
+          change.type === 'security' && 'bg-red-500/10'
+        )}
+      >
+        <Icon
+          className={cn(
+            'h-5 w-5',
+            change.type === 'feature' && 'text-green-500',
+            change.type === 'improvement' && 'text-blue-500',
+            change.type === 'fix' && 'text-amber-500',
+            change.type === 'security' && 'text-red-500'
+          )}
+        />
       </div>
       <div className="flex-1">
         <div className="flex items-center gap-2 mb-1">
           <h4 className="font-semibold text-gray-900 dark:text-white">{change.title}</h4>
-          <Badge className={config.color} size="sm">{config.label}</Badge>
+          <Badge className={config.color} size="sm">
+            {config.label}
+          </Badge>
         </div>
         <p className="text-sm text-gray-600 dark:text-gray-400">{change.description}</p>
       </div>
@@ -223,14 +239,15 @@ const ChangelogEntry = ({ entry }) => {
         <div className="flex items-start justify-between">
           <div className="flex items-start gap-4">
             <div className="relative">
-              <div className={cn(
-                "p-3 rounded-xl",
-                entry.isNew ? "bg-accent-500/10" : "bg-gray-100 dark:bg-white/10"
-              )}>
-                <Rocket className={cn(
-                  "h-6 w-6",
-                  entry.isNew ? "text-accent-500" : "text-gray-500"
-                )} />
+              <div
+                className={cn(
+                  'p-3 rounded-xl',
+                  entry.isNew ? 'bg-accent-500/10' : 'bg-gray-100 dark:bg-white/10'
+                )}
+              >
+                <Rocket
+                  className={cn('h-6 w-6', entry.isNew ? 'text-accent-500' : 'text-gray-500')}
+                />
               </div>
               {entry.isNew && (
                 <span className="absolute -top-1 -right-1 h-4 w-4 flex items-center justify-center">
@@ -245,7 +262,9 @@ const ChangelogEntry = ({ entry }) => {
                   Version {entry.version}
                 </h3>
                 {entry.isNew && (
-                  <Badge variant="primary" size="sm">Latest</Badge>
+                  <Badge variant="primary" size="sm">
+                    Latest
+                  </Badge>
                 )}
               </div>
               <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -253,18 +272,17 @@ const ChangelogEntry = ({ entry }) => {
               </p>
               <p className="text-sm text-gray-500 flex items-center gap-2">
                 <Calendar className="h-3 w-3" />
-                {new Date(entry.date).toLocaleDateString('en-US', { 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
+                {new Date(entry.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
                 })}
               </p>
             </div>
           </div>
-          <ChevronRight className={cn(
-            "h-5 w-5 text-gray-400 transition-transform",
-            isExpanded && "rotate-90"
-          )} />
+          <ChevronRight
+            className={cn('h-5 w-5 text-gray-400 transition-transform', isExpanded && 'rotate-90')}
+          />
         </div>
       </button>
 
@@ -333,7 +351,7 @@ const Changelog = () => {
             transition={{ delay: 0.2 }}
             className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
           >
-            We're constantly improving Artisan with new features, improvements, and bug fixes. 
+            We're constantly improving Artisan with new features, improvements, and bug fixes.
             Here's what we've been working on.
           </motion.p>
         </div>
@@ -369,24 +387,27 @@ const Changelog = () => {
             { id: 'improvement', label: 'Improvements', color: 'text-blue-500' },
             { id: 'fix', label: 'Bug Fixes', color: 'text-amber-500' },
             { id: 'security', label: 'Security', color: 'text-red-500' },
-          ].map((f) => (
+          ].map(f => (
             <button
               key={f.id}
               onClick={() => setFilter(f.id)}
               className={cn(
-                "px-3 py-1.5 text-sm font-medium rounded-lg transition-colors",
+                'px-3 py-1.5 text-sm font-medium rounded-lg transition-colors',
                 filter === f.id
-                  ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900"
-                  : "bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200"
+                  ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900'
+                  : 'bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
               )}
             >
               {f.id !== 'all' && (
-                <span className={cn("inline-block w-2 h-2 rounded-full mr-2", 
-                  f.id === 'feature' && "bg-green-500",
-                  f.id === 'improvement' && "bg-blue-500",
-                  f.id === 'fix' && "bg-amber-500",
-                  f.id === 'security' && "bg-red-500",
-                )} />
+                <span
+                  className={cn(
+                    'inline-block w-2 h-2 rounded-full mr-2',
+                    f.id === 'feature' && 'bg-green-500',
+                    f.id === 'improvement' && 'bg-blue-500',
+                    f.id === 'fix' && 'bg-amber-500',
+                    f.id === 'security' && 'bg-red-500'
+                  )}
+                />
               )}
               {f.label}
             </button>
@@ -397,9 +418,9 @@ const Changelog = () => {
         <div className="relative">
           {/* Timeline line */}
           <div className="absolute left-8 top-0 bottom-0 w-px bg-gray-200 dark:bg-white/10" />
-          
+
           <div className="space-y-6">
-            {filteredEntries.map((entry) => (
+            {filteredEntries.map(entry => (
               <ChangelogEntry key={entry.id} entry={entry} />
             ))}
           </div>
@@ -407,9 +428,7 @@ const Changelog = () => {
 
         {/* Load More */}
         <div className="text-center mt-8">
-          <Button variant="outline">
-            Load Earlier Updates
-          </Button>
+          <Button variant="outline">Load Earlier Updates</Button>
         </div>
       </div>
     </DashboardLayout>

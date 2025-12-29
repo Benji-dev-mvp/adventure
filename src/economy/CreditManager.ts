@@ -1,6 +1,6 @@
 /**
  * Credit System
- * 
+ *
  * Manages tokenized credits for task execution,
  * with tiered accounts and transaction tracking.
  */
@@ -15,11 +15,14 @@ import type {
 
 // === Tier Configurations ===
 
-const TIER_CONFIGS: Record<CreditTier, {
-  limits: RateLimit;
-  discountPercent: number;
-  bonusMultiplier: number;
-}> = {
+const TIER_CONFIGS: Record<
+  CreditTier,
+  {
+    limits: RateLimit;
+    discountPercent: number;
+    bonusMultiplier: number;
+  }
+> = {
   starter: {
     limits: {
       maxTasksPerHour: 10,
@@ -200,7 +203,7 @@ export class CreditManager {
     };
 
     this.accounts.set(id, account);
-    
+
     if (initialBalance > 0) {
       this.recordTransaction(id, 'purchase', initialBalance, 'Initial balance');
     }
@@ -219,9 +222,7 @@ export class CreditManager {
    * Get account by organization
    */
   getAccountByOrg(organizationId: string): CreditAccount | undefined {
-    return Array.from(this.accounts.values()).find(
-      a => a.organizationId === organizationId
-    );
+    return Array.from(this.accounts.values()).find(a => a.organizationId === organizationId);
   }
 
   /**
@@ -432,9 +433,7 @@ export class CreditManager {
       since?: Date;
     } = {}
   ): CreditTransaction[] {
-    let txns = this.transactions.filter(t => 
-      t.accountId === accountId
-    );
+    let txns = this.transactions.filter(t => t.accountId === accountId);
 
     if (options.type) {
       txns = txns.filter(t => t.type === options.type);
@@ -467,14 +466,15 @@ export class CreditManager {
     topExpenses: Array<{ taskType: string; amount: number; count: number }>;
   } {
     const txns = this.transactions.filter(
-      t => t.accountId === accountId &&
-           t.type === 'spend' &&
-           t.timestamp >= period.start &&
-           t.timestamp <= period.end
+      t =>
+        t.accountId === accountId &&
+        t.type === 'spend' &&
+        t.timestamp >= period.start &&
+        t.timestamp <= period.end
     );
 
     const totalSpent = txns.reduce((sum, t) => sum + Math.abs(t.amount), 0);
-    
+
     const byTaskType: Record<string, number> = {};
     const taskCounts: Record<string, number> = {};
     const byDayMap: Record<string, number> = {};

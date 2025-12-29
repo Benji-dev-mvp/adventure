@@ -1,6 +1,6 @@
 /**
  * Predictive Analytics Engine
- * 
+ *
  * Real-time predictions for engagement, conversion,
  * and optimal timing across the GTM funnel.
  */
@@ -31,7 +31,13 @@ interface PredictionModel {
 const PREDICTION_MODELS: Record<PredictionType, PredictionModel> = {
   'reply-probability': {
     type: 'reply-probability',
-    features: ['personalizationScore', 'subjectLineScore', 'touchpointNumber', 'daysSinceLastTouch', 'industryMatch'],
+    features: [
+      'personalizationScore',
+      'subjectLineScore',
+      'touchpointNumber',
+      'daysSinceLastTouch',
+      'industryMatch',
+    ],
     coefficients: {
       personalizationScore: 0.8,
       subjectLineScore: 0.6,
@@ -44,7 +50,13 @@ const PREDICTION_MODELS: Record<PredictionType, PredictionModel> = {
   },
   'meeting-likelihood': {
     type: 'meeting-likelihood',
-    features: ['replyTone', 'engagementScore', 'buyerPersonaMatch', 'companySize', 'previousInteractions'],
+    features: [
+      'replyTone',
+      'engagementScore',
+      'buyerPersonaMatch',
+      'companySize',
+      'previousInteractions',
+    ],
     coefficients: {
       replyTone: 0.7,
       engagementScore: 0.9,
@@ -57,7 +69,13 @@ const PREDICTION_MODELS: Record<PredictionType, PredictionModel> = {
   },
   'deal-close-probability': {
     type: 'deal-close-probability',
-    features: ['pipelineStage', 'dealSize', 'stakeholderCount', 'competitorPresence', 'budgetConfirmed'],
+    features: [
+      'pipelineStage',
+      'dealSize',
+      'stakeholderCount',
+      'competitorPresence',
+      'budgetConfirmed',
+    ],
     coefficients: {
       pipelineStage: 0.8,
       dealSize: -0.1,
@@ -96,7 +114,13 @@ const PREDICTION_MODELS: Record<PredictionType, PredictionModel> = {
   },
   'revenue-forecast': {
     type: 'revenue-forecast',
-    features: ['pipelineValue', 'historicalCloseRate', 'seasonality', 'marketConditions', 'teamCapacity'],
+    features: [
+      'pipelineValue',
+      'historicalCloseRate',
+      'seasonality',
+      'marketConditions',
+      'teamCapacity',
+    ],
     coefficients: {
       pipelineValue: 0.3,
       historicalCloseRate: 0.8,
@@ -109,7 +133,13 @@ const PREDICTION_MODELS: Record<PredictionType, PredictionModel> = {
   },
   'churn-risk': {
     type: 'churn-risk',
-    features: ['engagementDecline', 'supportTickets', 'usageDropoff', 'contractEndDays', 'npsScore'],
+    features: [
+      'engagementDecline',
+      'supportTickets',
+      'usageDropoff',
+      'contractEndDays',
+      'npsScore',
+    ],
     coefficients: {
       engagementDecline: 0.9,
       supportTickets: 0.4,
@@ -122,7 +152,13 @@ const PREDICTION_MODELS: Record<PredictionType, PredictionModel> = {
   },
   'engagement-score': {
     type: 'engagement-score',
-    features: ['emailOpens', 'linkClicks', 'websiteVisits', 'contentDownloads', 'socialInteractions'],
+    features: [
+      'emailOpens',
+      'linkClicks',
+      'websiteVisits',
+      'contentDownloads',
+      'socialInteractions',
+    ],
     coefficients: {
       emailOpens: 0.3,
       linkClicks: 0.5,
@@ -159,7 +195,7 @@ export class PredictiveEngine {
 
     // Extract features from context
     const featureValues = this.extractFeatures(model.features, request.context);
-    
+
     // Calculate prediction
     let rawScore = model.intercept;
     const factors: PredictionFactor[] = [];
@@ -196,8 +232,9 @@ export class PredictiveEngine {
     }
 
     // Calculate confidence based on feature completeness
-    const featureCompleteness = Object.values(featureValues)
-      .filter(v => v !== undefined && v !== null).length / model.features.length;
+    const featureCompleteness =
+      Object.values(featureValues).filter(v => v !== undefined && v !== null).length /
+      model.features.length;
     const confidence = Math.min(0.95, 0.5 + featureCompleteness * 0.4);
 
     // Calculate prediction range
@@ -232,10 +269,7 @@ export class PredictiveEngine {
   /**
    * Extract feature values from context
    */
-  private extractFeatures(
-    features: string[],
-    context: PredictionContext
-  ): Record<string, number> {
+  private extractFeatures(features: string[], context: PredictionContext): Record<string, number> {
     const values: Record<string, number> = {};
     const historical = context.historicalData || {};
 
@@ -294,9 +328,7 @@ export class PredictiveEngine {
     values: Array<{ date: Date; value: number }>,
     forecastPeriods: number = 30
   ): TrendAnalysis {
-    const sortedValues = [...values].sort(
-      (a, b) => a.date.getTime() - b.date.getTime()
-    );
+    const sortedValues = [...values].sort((a, b) => a.date.getTime() - b.date.getTime());
 
     const numericValues = sortedValues.map(v => v.value);
 
@@ -309,9 +341,7 @@ export class PredictiveEngine {
     // Calculate change percentage
     const firstValue = numericValues[0] || 0;
     const lastValue = numericValues[numericValues.length - 1] || 0;
-    const changePercent = firstValue > 0 
-      ? ((lastValue - firstValue) / firstValue) * 100 
-      : 0;
+    const changePercent = firstValue > 0 ? ((lastValue - firstValue) / firstValue) * 100 : 0;
 
     // Detect anomalies
     const anomalies = this.detectAnomalies(sortedValues);
@@ -374,9 +404,7 @@ export class PredictiveEngine {
   /**
    * Detect anomalies in time series
    */
-  private detectAnomalies(
-    values: Array<{ date: Date; value: number }>
-  ): TrendAnomaly[] {
+  private detectAnomalies(values: Array<{ date: Date; value: number }>): TrendAnomaly[] {
     if (values.length < 10) return [];
 
     const numericValues = values.map(v => v.value);
@@ -390,7 +418,7 @@ export class PredictiveEngine {
 
     for (let i = 0; i < values.length; i++) {
       const deviation = (values[i].value - mean) / (stdDev || 1);
-      
+
       if (Math.abs(deviation) > threshold) {
         anomalies.push({
           date: values[i].date,
@@ -398,9 +426,8 @@ export class PredictiveEngine {
           expected: mean,
           deviation,
           type: deviation > 0 ? 'spike' : 'drop',
-          explanation: deviation > 0 
-            ? 'Unusually high value detected' 
-            : 'Unusually low value detected',
+          explanation:
+            deviation > 0 ? 'Unusually high value detected' : 'Unusually low value detected',
         });
       }
     }
@@ -411,35 +438,33 @@ export class PredictiveEngine {
   /**
    * Detect seasonality patterns
    */
-  private detectSeasonality(
-    values: Array<{ date: Date; value: number }>
-  ): SeasonalityPattern[] {
+  private detectSeasonality(values: Array<{ date: Date; value: number }>): SeasonalityPattern[] {
     if (values.length < 30) return [];
 
     const patterns: SeasonalityPattern[] = [];
 
     // Weekly seasonality
-    const weeklyBuckets: number[][] = Array(7).fill(null).map(() => []);
+    const weeklyBuckets: number[][] = Array(7)
+      .fill(null)
+      .map(() => []);
     for (const v of values) {
       const dow = v.date.getDay();
       weeklyBuckets[dow].push(v.value);
     }
 
-    const weeklyAvg = weeklyBuckets.map(
-      b => b.length > 0 ? b.reduce((a, c) => a + c, 0) / b.length : 0
+    const weeklyAvg = weeklyBuckets.map(b =>
+      b.length > 0 ? b.reduce((a, c) => a + c, 0) / b.length : 0
     );
     const globalAvg = values.reduce((a, v) => a + v.value, 0) / values.length;
 
-    const weeklyVariance = weeklyAvg.reduce(
-      (acc, avg) => acc + (avg - globalAvg) ** 2, 0
-    ) / 7;
+    const weeklyVariance = weeklyAvg.reduce((acc, avg) => acc + (avg - globalAvg) ** 2, 0) / 7;
 
     if (weeklyVariance / (globalAvg ** 2 || 1) > 0.01) {
       const peaks = weeklyAvg
         .map((v, i) => ({ dow: i, value: v }))
         .filter(d => d.value > globalAvg * 1.1)
         .map(d => d.dow);
-      
+
       const troughs = weeklyAvg
         .map((v, i) => ({ dow: i, value: v }))
         .filter(d => d.value < globalAvg * 0.9)
@@ -459,10 +484,7 @@ export class PredictiveEngine {
   /**
    * Generate forecast
    */
-  private generateForecast(
-    values: number[],
-    _periods: number
-  ): TrendForecast {
+  private generateForecast(values: number[], _periods: number): TrendForecast {
     if (values.length < 5) {
       const lastValue = values[values.length - 1] || 0;
       return {
@@ -477,15 +499,14 @@ export class PredictiveEngine {
     // Simple exponential smoothing
     const alpha = 0.3;
     let smoothed = values[0];
-    
+
     for (let i = 1; i < values.length; i++) {
       smoothed = alpha * values[i] + (1 - alpha) * smoothed;
     }
 
     // Calculate trend
-    const recentTrend = values.length >= 2 
-      ? values[values.length - 1] - values[values.length - 2]
-      : 0;
+    const recentTrend =
+      values.length >= 2 ? values[values.length - 1] - values[values.length - 2] : 0;
 
     return {
       nextPeriod: smoothed + recentTrend,
@@ -507,9 +528,9 @@ export class PredictiveEngine {
 
     // Analyze engagement patterns
     if (data.replyRates) {
-      const avgReplyRate = data.replyRates.reduce((a: number, b: number) => a + b, 0) / 
-        data.replyRates.length;
-      
+      const avgReplyRate =
+        data.replyRates.reduce((a: number, b: number) => a + b, 0) / data.replyRates.length;
+
       if (avgReplyRate < 0.03) {
         insights.push({
           id: `insight_${Date.now()}_1`,
@@ -520,7 +541,12 @@ export class PredictiveEngine {
           confidence: 0.85,
           dataPoints: data.replyRates.length,
           evidence: [
-            { source: 'email-analytics', metric: 'reply-rate', value: avgReplyRate, significance: 0.9 },
+            {
+              source: 'email-analytics',
+              metric: 'reply-rate',
+              value: avgReplyRate,
+              significance: 0.9,
+            },
           ],
           recommendations: [
             { action: 'Improve email personalization', impact: 0.3, effort: 'medium' },
@@ -543,7 +569,12 @@ export class PredictiveEngine {
         confidence: 0.75,
         dataPoints: data.sendTimes.length,
         evidence: [
-          { source: 'send-time-analysis', metric: 'open-rate-by-time', value: 0.42, significance: 0.7 },
+          {
+            source: 'send-time-analysis',
+            metric: 'open-rate-by-time',
+            value: 0.42,
+            significance: 0.7,
+          },
         ],
         recommendations: [
           { action: 'Shift sends to 9-11am local time', impact: 0.15, effort: 'low' },
@@ -564,7 +595,12 @@ export class PredictiveEngine {
         confidence: 0.8,
         dataPoints: 30,
         evidence: [
-          { source: 'pipeline-analytics', metric: 'conversion-rate', value: -0.15, significance: 0.95 },
+          {
+            source: 'pipeline-analytics',
+            metric: 'conversion-rate',
+            value: -0.15,
+            significance: 0.95,
+          },
         ],
         recommendations: [
           { action: 'Review lost deal analysis', impact: 0.4, effort: 'medium' },
@@ -591,7 +627,7 @@ export class PredictiveEngine {
     cacheHitRate: number;
   } {
     const predictions = Array.from(this.predictionCache.values());
-    
+
     const byType: Record<string, number> = {};
     let totalConfidence = 0;
 

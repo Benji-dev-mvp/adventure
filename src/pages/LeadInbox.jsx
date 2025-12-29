@@ -4,7 +4,19 @@ import { Card, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { Input } from '../components/ui/Input';
-import { Mail, Star, Archive, Trash2, Tag, Clock, Send, Search, Filter, CheckSquare, Square } from 'lucide-react';
+import {
+  Mail,
+  Star,
+  Archive,
+  Trash2,
+  Tag,
+  Clock,
+  Send,
+  Search,
+  Filter,
+  CheckSquare,
+  Square,
+} from 'lucide-react';
 
 const LeadInbox = () => {
   const [selectedLead, setSelectedLead] = useState(null);
@@ -13,27 +25,36 @@ const LeadInbox = () => {
   const [replyText, setReplyText] = useState('');
 
   const leads = [
-    { 
-      id: 1, 
-      name: 'Sarah Chen', 
-      company: 'TechCorp', 
+    {
+      id: 1,
+      name: 'Sarah Chen',
+      company: 'TechCorp',
       subject: 'Re: Partnership Opportunity',
-      preview: 'Thanks for reaching out! I\'d love to learn more about your solution...',
+      preview: "Thanks for reaching out! I'd love to learn more about your solution...",
       time: '2 hours ago',
       status: 'replied',
       starred: true,
       unread: true,
       tags: ['Hot', 'Enterprise'],
-      lastMessage: 'Thanks for reaching out! I\'d love to learn more about your solution. Can we schedule a call next week?',
+      lastMessage:
+        "Thanks for reaching out! I'd love to learn more about your solution. Can we schedule a call next week?",
       thread: [
-        { from: 'You', message: 'Hi Sarah, I noticed TechCorp is expanding...', time: '3 days ago' },
-        { from: 'Sarah Chen', message: 'Thanks for reaching out! I\'d love to learn more...', time: '2 hours ago' }
-      ]
+        {
+          from: 'You',
+          message: 'Hi Sarah, I noticed TechCorp is expanding...',
+          time: '3 days ago',
+        },
+        {
+          from: 'Sarah Chen',
+          message: "Thanks for reaching out! I'd love to learn more...",
+          time: '2 hours ago',
+        },
+      ],
     },
-    { 
-      id: 2, 
-      name: 'Michael Rodriguez', 
-      company: 'Growth Inc', 
+    {
+      id: 2,
+      name: 'Michael Rodriguez',
+      company: 'Growth Inc',
       subject: 'Demo Request',
       preview: 'Can we schedule a demo for next Tuesday? Our team is very interested...',
       time: '5 hours ago',
@@ -41,16 +62,25 @@ const LeadInbox = () => {
       starred: false,
       unread: true,
       tags: ['Demo'],
-      lastMessage: 'Can we schedule a demo for next Tuesday? Our team is very interested in your platform.',
+      lastMessage:
+        'Can we schedule a demo for next Tuesday? Our team is very interested in your platform.',
       thread: [
-        { from: 'You', message: 'Hi Michael, I saw you downloaded our whitepaper...', time: '2 days ago' },
-        { from: 'Michael Rodriguez', message: 'Can we schedule a demo for next Tuesday?', time: '5 hours ago' }
-      ]
+        {
+          from: 'You',
+          message: 'Hi Michael, I saw you downloaded our whitepaper...',
+          time: '2 days ago',
+        },
+        {
+          from: 'Michael Rodriguez',
+          message: 'Can we schedule a demo for next Tuesday?',
+          time: '5 hours ago',
+        },
+      ],
     },
-    { 
-      id: 3, 
-      name: 'Emily Watson', 
-      company: 'Enterprise Systems', 
+    {
+      id: 3,
+      name: 'Emily Watson',
+      company: 'Enterprise Systems',
       subject: 'Pricing Information',
       preview: 'What are your enterprise pricing tiers? We have a team of 50+...',
       time: '1 day ago',
@@ -60,26 +90,38 @@ const LeadInbox = () => {
       tags: ['Enterprise', 'Pricing'],
       lastMessage: 'What are your enterprise pricing tiers? We have a team of 50+ sales reps.',
       thread: [
-        { from: 'You', message: 'Hi Emily, thanks for your interest in Artisan...', time: '3 days ago' },
-        { from: 'Emily Watson', message: 'What are your enterprise pricing tiers?', time: '1 day ago' }
-      ]
+        {
+          from: 'You',
+          message: 'Hi Emily, thanks for your interest in Artisan...',
+          time: '3 days ago',
+        },
+        {
+          from: 'Emily Watson',
+          message: 'What are your enterprise pricing tiers?',
+          time: '1 day ago',
+        },
+      ],
     },
-    { 
-      id: 4, 
-      name: 'James Kim', 
-      company: 'Startup Hub', 
+    {
+      id: 4,
+      name: 'James Kim',
+      company: 'Startup Hub',
       subject: 'Not interested at this time',
-      preview: 'Thanks for reaching out but we\'re not looking for new tools right now...',
+      preview: "Thanks for reaching out but we're not looking for new tools right now...",
       time: '2 days ago',
       status: 'closed',
       starred: false,
       unread: false,
       tags: ['Closed'],
-      lastMessage: 'Thanks for reaching out but we\'re not looking for new tools right now.',
+      lastMessage: "Thanks for reaching out but we're not looking for new tools right now.",
       thread: [
         { from: 'You', message: 'Hi James, I wanted to reach out about...', time: '4 days ago' },
-        { from: 'James Kim', message: 'Thanks for reaching out but we\'re not interested.', time: '2 days ago' }
-      ]
+        {
+          from: 'James Kim',
+          message: "Thanks for reaching out but we're not interested.",
+          time: '2 days ago',
+        },
+      ],
     },
   ];
 
@@ -90,8 +132,8 @@ const LeadInbox = () => {
     return true;
   });
 
-  const toggleSelect = (leadId) => {
-    setSelectedLeads(prev => 
+  const toggleSelect = leadId => {
+    setSelectedLeads(prev =>
       prev.includes(leadId) ? prev.filter(id => id !== leadId) : [...prev, leadId]
     );
   };
@@ -155,19 +197,19 @@ const LeadInbox = () => {
             )}
           </div>
           <CardContent className="p-0 overflow-y-auto flex-1">
-            {filteredLeads.map((lead) => (
+            {filteredLeads.map(lead => (
               <div
                 key={lead.id}
                 onClick={() => setSelectedLead(lead)}
                 className={`p-4 border-b border-gray-200 dark:border-white/10 cursor-pointer transition-colors ${
-                  selectedLead?.id === lead.id 
-                    ? 'bg-accent-50 dark:bg-accent-500/10 border-l-4 border-l-accent-500' 
+                  selectedLead?.id === lead.id
+                    ? 'bg-accent-50 dark:bg-accent-500/10 border-l-4 border-l-accent-500'
                     : 'hover:bg-gray-50 dark:hover:bg-gray-800'
                 } ${lead.unread ? 'font-semibold' : ''}`}
               >
                 <div className="flex items-start gap-3">
                   <button
-                    onClick={(e) => {
+                    onClick={e => {
                       e.stopPropagation();
                       toggleSelect(lead.id);
                     }}
@@ -182,7 +224,9 @@ const LeadInbox = () => {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1">
                       <div className="flex items-center gap-2">
-                        {lead.starred && <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />}
+                        {lead.starred && (
+                          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        )}
                         <span className={`text-sm truncate ${lead.unread ? 'font-bold' : ''}`}>
                           {lead.name}
                         </span>
@@ -196,7 +240,9 @@ const LeadInbox = () => {
                     <p className="text-xs text-gray-500 truncate">{lead.preview}</p>
                     <div className="flex gap-1 mt-2">
                       {lead.tags.map((tag, i) => (
-                        <Badge key={i} variant="secondary" size="sm">{tag}</Badge>
+                        <Badge key={i} variant="secondary" size="sm">
+                          {tag}
+                        </Badge>
                       ))}
                     </div>
                   </div>
@@ -215,11 +261,15 @@ const LeadInbox = () => {
                 <div className="flex items-center justify-between mb-3">
                   <div>
                     <h3 className="text-lg font-semibold">{selectedLead.name}</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{selectedLead.company}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {selectedLead.company}
+                    </p>
                   </div>
                   <div className="flex gap-2">
                     <Button variant="ghost" size="sm">
-                      <Star className={`w-4 h-4 ${selectedLead.starred ? 'fill-yellow-400 text-yellow-400' : ''}`} />
+                      <Star
+                        className={`w-4 h-4 ${selectedLead.starred ? 'fill-yellow-400 text-yellow-400' : ''}`}
+                      />
                     </Button>
                     <Button variant="ghost" size="sm">
                       <Archive className="w-4 h-4" />
@@ -234,7 +284,9 @@ const LeadInbox = () => {
                 </div>
                 <div className="flex gap-2">
                   {selectedLead.tags.map((tag, i) => (
-                    <Badge key={i} variant="secondary">{tag}</Badge>
+                    <Badge key={i} variant="secondary">
+                      {tag}
+                    </Badge>
                   ))}
                 </div>
               </div>
@@ -246,7 +298,9 @@ const LeadInbox = () => {
                     key={i}
                     className={`flex ${msg.from === 'You' ? 'justify-end' : 'justify-start'}`}
                   >
-                    <div className={`max-w-[80%] ${msg.from === 'You' ? 'bg-accent-500 text-white' : 'bg-gray-100 dark:bg-gray-800'} rounded-lg p-4`}>
+                    <div
+                      className={`max-w-[80%] ${msg.from === 'You' ? 'bg-accent-500 text-white' : 'bg-gray-100 dark:bg-gray-800'} rounded-lg p-4`}
+                    >
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-xs font-semibold">{msg.from}</span>
                         <span className="text-xs opacity-70">{msg.time}</span>
@@ -262,7 +316,7 @@ const LeadInbox = () => {
                 <div className="mb-3">
                   <textarea
                     value={replyText}
-                    onChange={(e) => setReplyText(e.target.value)}
+                    onChange={e => setReplyText(e.target.value)}
                     placeholder="Type your reply..."
                     rows="4"
                     className="w-full px-3 py-2 border border-gray-300 dark:border-white/10 rounded-lg bg-white dark:bg-gray-800 resize-none focus:outline-none focus:ring-2 focus:ring-accent-500"
@@ -289,7 +343,9 @@ const LeadInbox = () => {
             <div className="flex items-center justify-center h-full">
               <div className="text-center">
                 <Mail className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 dark:text-gray-400">Select a lead to view conversation</p>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Select a lead to view conversation
+                </p>
               </div>
             </div>
           )}

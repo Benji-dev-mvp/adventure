@@ -2,7 +2,6 @@
 Email background tasks
 """
 
-import asyncio
 from datetime import datetime
 from typing import Any, Dict, List
 

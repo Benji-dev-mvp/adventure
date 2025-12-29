@@ -47,12 +47,18 @@ export const TriggerNode = ({ data, selected }) => {
                       : 'border-gray-200 dark:border-gray-600 hover:border-green-300'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 mb-1 ${
-                    triggerType === trigger.value ? 'text-green-600' : 'text-gray-400'
-                  }`} />
-                  <span className={`text-xs font-medium ${
-                    triggerType === trigger.value ? 'text-green-700 dark:text-green-300' : 'text-gray-600 dark:text-gray-400'
-                  }`}>
+                  <Icon
+                    className={`w-4 h-4 mb-1 ${
+                      triggerType === trigger.value ? 'text-green-600' : 'text-gray-400'
+                    }`}
+                  />
+                  <span
+                    className={`text-xs font-medium ${
+                      triggerType === trigger.value
+                        ? 'text-green-700 dark:text-green-300'
+                        : 'text-gray-600 dark:text-gray-400'
+                    }`}
+                  >
                     {trigger.label}
                   </span>
                 </button>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  ArrowRight, 
-  Server, 
+import {
+  ArrowRight,
+  Server,
   Sparkles,
   Mail,
   Phone,
@@ -20,7 +20,7 @@ import AppShell from '../components/layout/AppShell';
 import FeaturesShowcase from '../components/features/FeaturesShowcase';
 import IntegrationsShowcase from '../components/features/IntegrationsShowcase';
 import { ChannelMixChart } from '../components/analytics';
-import { 
+import {
   GlassCard,
   GlassCardContent,
   GradientText,
@@ -32,7 +32,11 @@ import {
 } from '../components/futuristic';
 
 const CHANNELS = [
-  { icon: Mail, name: 'Email', description: 'AI-personalized sequences with deliverability optimization' },
+  {
+    icon: Mail,
+    name: 'Email',
+    description: 'AI-personalized sequences with deliverability optimization',
+  },
   { icon: Linkedin, name: 'LinkedIn', description: 'Automated connection requests and messaging' },
   { icon: Phone, name: 'Phone', description: 'AI call scripts and voicemail drops' },
   { icon: MessageSquare, name: 'SMS', description: 'Text outreach with compliance guardrails' },
@@ -57,7 +61,8 @@ const ENTERPRISE_PILLARS = [
   {
     icon: Shield,
     title: 'Governed AI BDR',
-    description: 'Policy-driven sending, approvals, and human-in-the-loop safeguards out of the box.',
+    description:
+      'Policy-driven sending, approvals, and human-in-the-loop safeguards out of the box.',
     highlights: ['Policy-based sequences', 'DLP and PII scrubbing', 'Approvals before sends'],
   },
   {
@@ -69,7 +74,8 @@ const ENTERPRISE_PILLARS = [
   {
     icon: Server,
     title: 'Scale & Reliability',
-    description: 'Multi-region infrastructure, deliverability protection, and SLAs for enterprise workloads.',
+    description:
+      'Multi-region infrastructure, deliverability protection, and SLAs for enterprise workloads.',
     highlights: ['US/EU data residency', '99.95% uptime SLA', 'Adaptive sending guardrails'],
   },
   {
@@ -87,7 +93,7 @@ const PlatformPage = () => {
       <section className="py-20 px-6 relative overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/20 to-transparent" />
-        
+
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/20 border border-emerald-500/30 mb-6">
@@ -95,7 +101,7 @@ const PlatformPage = () => {
               <span className="text-sm text-emerald-300">Everything You Need</span>
             </div>
           </RevealText>
-          
+
           <RevealText delay={100}>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 font-space-grotesk">
               <GradientText gradient="aurora" animate>
@@ -103,14 +109,14 @@ const PlatformPage = () => {
               </GradientText>
             </h1>
           </RevealText>
-          
+
           <RevealText delay={200}>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              AI personalization, multi-channel sequences, enterprise security, 
-              and deep integrations — all in one unified platform.
+              AI personalization, multi-channel sequences, enterprise security, and deep
+              integrations — all in one unified platform.
             </p>
           </RevealText>
-          
+
           <RevealText delay={300}>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/pricing#start">
@@ -157,9 +163,7 @@ const PlatformPage = () => {
                       <h3 className="text-xl font-bold text-white mb-2 font-space-grotesk">
                         {channel.name}
                       </h3>
-                      <p className="text-gray-400 text-sm">
-                        {channel.description}
-                      </p>
+                      <p className="text-gray-400 text-sm">{channel.description}</p>
                     </GlassCardContent>
                   </GlassCard>
                 </RevealText>
@@ -211,7 +215,9 @@ const PlatformPage = () => {
                       <div className="text-3xl font-bold mb-1">
                         <GradientText gradient="cyber">Save $50k+/year</GradientText>
                       </div>
-                      <p className="text-gray-400 text-sm">Average savings when consolidating to Artisan</p>
+                      <p className="text-gray-400 text-sm">
+                        Average savings when consolidating to Artisan
+                      </p>
                     </div>
                     <Link to="/pricing#roi">
                       <GlowButton variant="primary" size="md" glow>
@@ -232,7 +238,7 @@ const PlatformPage = () => {
       {/* Enterprise Pillars */}
       <section className="py-20 px-6 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
-        
+
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
@@ -245,8 +251,8 @@ const PlatformPage = () => {
                 </GradientText>
               </h2>
               <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-                Replace fragmented tooling with governed automation, enterprise identity, 
-                and live controls your security and revenue leaders agree on.
+                Replace fragmented tooling with governed automation, enterprise identity, and live
+                controls your security and revenue leaders agree on.
               </p>
             </div>
           </RevealText>
@@ -264,7 +270,7 @@ const PlatformPage = () => {
                     className="h-full"
                   >
                     <ul className="space-y-2 text-sm text-gray-400 mt-4">
-                      {pillar.highlights.map((item) => (
+                      {pillar.highlights.map(item => (
                         <li key={item} className="flex items-center gap-2">
                           <span className="h-2 w-2 rounded-full bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.6)]" />
                           <span>{item}</span>
@@ -282,13 +288,11 @@ const PlatformPage = () => {
       {/* CTA */}
       <section className="py-20 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
-        
+
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 font-space-grotesk">
-              <GradientText gradient="aurora">
-                Ready to Consolidate Your Stack?
-              </GradientText>
+              <GradientText gradient="aurora">Ready to Consolidate Your Stack?</GradientText>
             </h2>
             <p className="text-xl text-gray-300 mb-8">
               See how Artisan replaces 10+ tools with one AI-powered platform

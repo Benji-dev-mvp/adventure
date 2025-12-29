@@ -8,8 +8,22 @@
 // ============================================
 
 export type EditorMode = 'compose' | 'edit' | 'review' | 'collaborate';
-export type SuggestionType = 'rewrite' | 'expand' | 'shorten' | 'personalize' | 'tone_adjust' | 'cta' | 'subject_line';
-export type ToneType = 'professional' | 'casual' | 'friendly' | 'urgent' | 'empathetic' | 'confident' | 'curious';
+export type SuggestionType =
+  | 'rewrite'
+  | 'expand'
+  | 'shorten'
+  | 'personalize'
+  | 'tone_adjust'
+  | 'cta'
+  | 'subject_line';
+export type ToneType =
+  | 'professional'
+  | 'casual'
+  | 'friendly'
+  | 'urgent'
+  | 'empathetic'
+  | 'confident'
+  | 'curious';
 
 export interface EditorState {
   mode: EditorMode;

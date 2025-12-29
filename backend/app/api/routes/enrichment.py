@@ -3,14 +3,12 @@ Lead Enrichment API Routes
 Enrich leads with company and contact data
 """
 
-from typing import List, Optional
+from typing import List
 
 from fastapi import APIRouter, HTTPException, Query
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 
 from app.services.enrichment_service import (
-    EnrichedCompany,
-    EnrichedContact,
     EnrichmentResult,
     enrichment_service,
 )

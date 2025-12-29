@@ -7,13 +7,13 @@ import { Badge } from '../components/ui/Badge';
 import { useTenant } from '../contexts/TenantContext';
 import { useWorkspaceMetrics } from '../hooks/useWorkspaceMetrics';
 import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
-import { 
-  KpiFunnelChart, 
-  ChannelMixChart, 
-  RoiProjectionChart, 
-  CustomerImpactSparklines 
+import {
+  KpiFunnelChart,
+  ChannelMixChart,
+  RoiProjectionChart,
+  CustomerImpactSparklines,
 } from '../components/analytics';
-import { 
+import {
   TrendingUp,
   Download,
   Calendar,
@@ -30,26 +30,26 @@ import {
   BarChart3,
   RefreshCw,
   Activity,
-  Layers
+  Layers,
 } from 'lucide-react';
-import { 
-  BarChart, 
-  Bar, 
-  LineChart, 
-  Line, 
-  PieChart, 
-  Pie, 
+import {
+  BarChart,
+  Bar,
+  LineChart,
+  Line,
+  PieChart,
+  Pie,
   Cell,
-  AreaChart, 
+  AreaChart,
   Area,
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
   ResponsiveContainer,
   Legend,
   FunnelChart,
-  Funnel
+  Funnel,
 } from 'recharts';
 
 /**
@@ -72,16 +72,8 @@ const SectionHeader = ({ icon: Icon, title, subtitle, action }) => (
 
 const Analytics = () => {
   const { plan, isEnterprise, isMidmarket, isStartup } = useTenant();
-  const { 
-    metrics, 
-    isLoading, 
-    kpiFunnel, 
-    channelMix, 
-    roiConfig, 
-    sparklines,
-    summary,
-    refresh 
-  } = useWorkspaceMetrics();
+  const { metrics, isLoading, kpiFunnel, channelMix, roiConfig, sparklines, summary, refresh } =
+    useWorkspaceMetrics();
   const prefersReducedMotion = useReducedMotion();
 
   // Transform sparklines to include icons
@@ -97,7 +89,7 @@ const Analytics = () => {
     return sparklines.map(s => ({
       ...s,
       icon: iconMap[s.id] || TrendingUp,
-      chartType: 'area'
+      chartType: 'area',
     }));
   }, [sparklines]);
   const performanceData = [
@@ -155,31 +147,53 @@ const Analytics = () => {
   ];
 
   return (
-    <DashboardLayout 
-      title="Analytics & Insights" 
-      subtitle={isEnterprise ? "Enterprise analytics and compliance reporting" : "Track performance and get AI-powered recommendations"}
+    <DashboardLayout
+      title="Analytics & Insights"
+      subtitle={
+        isEnterprise
+          ? 'Enterprise analytics and compliance reporting'
+          : 'Track performance and get AI-powered recommendations'
+      }
     >
       {/* Actions Bar - Ops-grade styling */}
       <div className="flex items-center justify-between mb-6 p-3 bg-slate-800/50 rounded-lg border border-slate-700">
         <div className="flex items-center gap-3">
-          <Button variant="outline" size="sm" className="gap-2 bg-slate-900 border-slate-600 text-slate-300 hover:bg-slate-800">
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-2 bg-slate-900 border-slate-600 text-slate-300 hover:bg-slate-800"
+          >
             <Calendar size={16} />
             Last 30 Days
           </Button>
-          <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white">Compare Period</Button>
+          <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white">
+            Compare Period
+          </Button>
           {isEnterprise && (
-            <Badge variant="secondary" className="bg-amber-500/10 text-amber-400 border-amber-500/20">
+            <Badge
+              variant="secondary"
+              className="bg-amber-500/10 text-amber-400 border-amber-500/20"
+            >
               <Shield size={14} className="mr-1" />
               SOC 2 Compliant
             </Badge>
           )}
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" onClick={refresh} className="gap-2 text-slate-400 hover:text-white">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={refresh}
+            className="gap-2 text-slate-400 hover:text-white"
+          >
             <RefreshCw size={16} />
             Refresh
           </Button>
-          <Button variant="outline" size="sm" className="gap-2 bg-slate-900 border-slate-600 text-slate-300 hover:bg-slate-800">
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-2 bg-slate-900 border-slate-600 text-slate-300 hover:bg-slate-800"
+          >
             <Download size={16} />
             Export
           </Button>
@@ -193,9 +207,9 @@ const Analytics = () => {
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <SectionHeader 
-            icon={Activity} 
-            title="Real-Time Metrics" 
+          <SectionHeader
+            icon={Activity}
+            title="Real-Time Metrics"
             subtitle="Live performance indicators"
           />
           <CustomerImpactSparklines metrics={enhancedSparklines} />
@@ -203,58 +217,58 @@ const Analytics = () => {
       )}
 
       {/* Key Metrics - Ops-grade layout */}
-      <SectionHeader 
-        icon={BarChart3} 
-        title="Core KPIs" 
+      <SectionHeader
+        icon={BarChart3}
+        title="Core KPIs"
         subtitle="Key performance indicators for the selected period"
       />
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {[
-          { 
-            label: 'Total Sent', 
-            value: '12,453', 
-            change: '+12.5%', 
-            trend: 'up', 
-            icon: Mail, 
+          {
+            label: 'Total Sent',
+            value: '12,453',
+            change: '+12.5%',
+            trend: 'up',
+            icon: Mail,
             color: 'text-cyan-400',
             bgColor: 'bg-cyan-500/10',
-            borderColor: 'border-cyan-500/20'
+            borderColor: 'border-cyan-500/20',
           },
-          { 
-            label: 'Open Rate', 
-            value: '43.5%', 
-            change: '+5.2%', 
-            trend: 'up', 
-            icon: MousePointerClick, 
+          {
+            label: 'Open Rate',
+            value: '43.5%',
+            change: '+5.2%',
+            trend: 'up',
+            icon: MousePointerClick,
             color: 'text-emerald-400',
             bgColor: 'bg-emerald-500/10',
-            borderColor: 'border-emerald-500/20'
+            borderColor: 'border-emerald-500/20',
           },
-          { 
-            label: 'Reply Rate', 
-            value: '8.4%', 
-            change: '+2.3%', 
-            trend: 'up', 
-            icon: Target, 
+          {
+            label: 'Reply Rate',
+            value: '8.4%',
+            change: '+2.3%',
+            trend: 'up',
+            icon: Target,
             color: 'text-violet-400',
             bgColor: 'bg-violet-500/10',
-            borderColor: 'border-violet-500/20'
+            borderColor: 'border-violet-500/20',
           },
-          { 
-            label: 'Meetings', 
-            value: '247', 
-            change: '+18.0%', 
-            trend: 'up', 
-            icon: UserCheck, 
+          {
+            label: 'Meetings',
+            value: '247',
+            change: '+18.0%',
+            trend: 'up',
+            icon: UserCheck,
             color: 'text-amber-400',
             bgColor: 'bg-amber-500/10',
-            borderColor: 'border-amber-500/20'
+            borderColor: 'border-amber-500/20',
           },
         ].map((metric, index) => {
           const Icon = metric.icon;
           const TrendIcon = metric.trend === 'up' ? ArrowUpRight : ArrowDownRight;
           return (
-            <motion.div 
+            <motion.div
               key={index}
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
               animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
@@ -263,9 +277,13 @@ const Analytics = () => {
             >
               <div className="flex items-start justify-between">
                 <div>
-                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">{metric.label}</p>
+                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">
+                    {metric.label}
+                  </p>
                   <p className="text-2xl font-bold text-white mb-1">{metric.value}</p>
-                  <div className={`flex items-center gap-1 text-xs ${metric.trend === 'up' ? 'text-emerald-400' : 'text-red-400'}`}>
+                  <div
+                    className={`flex items-center gap-1 text-xs ${metric.trend === 'up' ? 'text-emerald-400' : 'text-red-400'}`}
+                  >
                     <TrendIcon size={14} />
                     <span className="font-medium">{metric.change}</span>
                   </div>
@@ -280,15 +298,17 @@ const Analytics = () => {
       </div>
 
       {/* AI Optimization Cards - Enhanced */}
-      <SectionHeader 
-        icon={Sparkles} 
-        title="AI Recommendations" 
+      <SectionHeader
+        icon={Sparkles}
+        title="AI Recommendations"
         subtitle="Data-driven optimization insights"
-        action={<Badge className="bg-violet-500/10 text-violet-400 border-violet-500/20">3 New</Badge>}
+        action={
+          <Badge className="bg-violet-500/10 text-violet-400 border-violet-500/20">3 New</Badge>
+        }
       />
       <div className="grid md:grid-cols-3 gap-4 mb-8">
         {aiOptimizations.map((opt, index) => (
-          <motion.div 
+          <motion.div
             key={index}
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
             animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
@@ -300,7 +320,11 @@ const Analytics = () => {
               <span className="text-lg font-bold text-emerald-400">{opt.impact}</span>
             </div>
             <p className="text-xs text-slate-400 mb-3">{opt.description}</p>
-            <Button variant="ghost" size="sm" className="gap-2 text-violet-400 hover:text-violet-300 p-0">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-2 text-violet-400 hover:text-violet-300 p-0"
+            >
               Apply Now
               <ArrowUpRight size={14} />
             </Button>
@@ -309,9 +333,9 @@ const Analytics = () => {
       </div>
 
       {/* Charts Section - Consistent sizing */}
-      <SectionHeader 
-        icon={Layers} 
-        title="Pipeline Analysis" 
+      <SectionHeader
+        icon={Layers}
+        title="Pipeline Analysis"
         subtitle="Funnel performance and channel distribution"
       />
       <div className="grid lg:grid-cols-2 gap-6 mb-8">
@@ -322,9 +346,9 @@ const Analytics = () => {
           transition={{ delay: 0.1 }}
           className="min-h-[350px]"
         >
-          <KpiFunnelChart 
-            data={kpiFunnel} 
-            title={isEnterprise ? "Enterprise Pipeline Funnel" : "Conversion Funnel"}
+          <KpiFunnelChart
+            data={kpiFunnel}
+            title={isEnterprise ? 'Enterprise Pipeline Funnel' : 'Conversion Funnel'}
           />
         </motion.div>
 
@@ -335,11 +359,7 @@ const Analytics = () => {
           transition={{ delay: 0.2 }}
           className="min-h-[350px]"
         >
-          <ChannelMixChart 
-            data={channelMix} 
-            title="Channel Distribution"
-            showLegend={true}
-          />
+          <ChannelMixChart data={channelMix} title="Channel Distribution" showLegend={true} />
         </motion.div>
       </div>
 
@@ -351,22 +371,19 @@ const Analytics = () => {
           transition={{ delay: 0.3 }}
           className="mb-8"
         >
-          <SectionHeader 
-            icon={TrendingUp} 
-            title="ROI Projection" 
+          <SectionHeader
+            icon={TrendingUp}
+            title="ROI Projection"
             subtitle="Projected return on investment with Ava"
           />
-          <RoiProjectionChart 
-            {...roiConfig}
-            title="Your Projected ROI with Ava"
-          />
+          <RoiProjectionChart {...roiConfig} title="Your Projected ROI with Ava" />
         </motion.div>
       )}
 
       {/* Performance Over Time - Ops-grade styling */}
-      <SectionHeader 
-        icon={TrendingUp} 
-        title="Performance Trends" 
+      <SectionHeader
+        icon={TrendingUp}
+        title="Performance Trends"
         subtitle="Weekly activity over the last 6 weeks"
       />
       <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6 mb-8">
@@ -376,32 +393,53 @@ const Analytics = () => {
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
               <XAxis dataKey="week" stroke="#64748b" fontSize={12} />
               <YAxis stroke="#64748b" fontSize={12} />
-              <Tooltip 
-                contentStyle={{ 
-                  backgroundColor: '#1e293b', 
-                  border: '1px solid #334155', 
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: '#1e293b',
+                  border: '1px solid #334155',
                   borderRadius: '8px',
-                  color: '#f8fafc'
+                  color: '#f8fafc',
                 }}
               />
               <Legend />
-              <Line type="monotone" dataKey="sent" stroke="#06b6d4" strokeWidth={2} name="Sent" dot={false} />
-              <Line type="monotone" dataKey="opened" stroke="#10b981" strokeWidth={2} name="Opened" dot={false} />
-              <Line type="monotone" dataKey="replied" stroke="#8b5cf6" strokeWidth={2} name="Replied" dot={false} />
+              <Line
+                type="monotone"
+                dataKey="sent"
+                stroke="#06b6d4"
+                strokeWidth={2}
+                name="Sent"
+                dot={false}
+              />
+              <Line
+                type="monotone"
+                dataKey="opened"
+                stroke="#10b981"
+                strokeWidth={2}
+                name="Opened"
+                dot={false}
+              />
+              <Line
+                type="monotone"
+                dataKey="replied"
+                stroke="#8b5cf6"
+                strokeWidth={2}
+                name="Replied"
+                dot={false}
+              />
             </LineChart>
           </ResponsiveContainer>
         </div>
       </div>
 
       {/* Best Performers - Ops-grade styling */}
-      <SectionHeader 
-        icon={Target} 
-        title="Top Performers" 
+      <SectionHeader
+        icon={Target}
+        title="Top Performers"
         subtitle="Highest performing subject lines by engagement"
       />
       <div className="space-y-3">
         {bestPerformers.map((performer, index) => (
-          <motion.div 
+          <motion.div
             key={index}
             initial={prefersReducedMotion ? {} : { opacity: 0, x: -20 }}
             animate={prefersReducedMotion ? {} : { opacity: 1, x: 0 }}
@@ -416,14 +454,22 @@ const Analytics = () => {
                 <p className="font-medium text-white">{performer.subject}</p>
               </div>
               <div className="flex items-center gap-6 text-xs text-slate-400 ml-9">
-                <span>Sent: <span className="text-white">{performer.sent}</span></span>
-                <span>Open: <span className="text-emerald-400">{performer.openRate}%</span></span>
-                <span>Reply: <span className="text-cyan-400">{performer.replyRate}%</span></span>
+                <span>
+                  Sent: <span className="text-white">{performer.sent}</span>
+                </span>
+                <span>
+                  Open: <span className="text-emerald-400">{performer.openRate}%</span>
+                </span>
+                <span>
+                  Reply: <span className="text-cyan-400">{performer.replyRate}%</span>
+                </span>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <TrendingUp className="text-emerald-400" size={18} />
-              <Button variant="ghost" size="sm" className="text-violet-400 hover:text-violet-300">Use Template</Button>
+              <Button variant="ghost" size="sm" className="text-violet-400 hover:text-violet-300">
+                Use Template
+              </Button>
             </div>
           </motion.div>
         ))}

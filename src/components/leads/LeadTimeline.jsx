@@ -1,16 +1,16 @@
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Badge } from '../ui/Badge';
-import { 
-  Mail, 
-  Phone, 
-  MessageSquare, 
-  Calendar, 
+import {
+  Mail,
+  Phone,
+  MessageSquare,
+  Calendar,
   Star,
   Eye,
   MousePointerClick,
   UserPlus,
-  Clock
+  Clock,
 } from 'lucide-react';
 
 export const LeadTimeline = ({ leadId }) => {
@@ -88,7 +88,7 @@ export const LeadTimeline = ({ leadId }) => {
     },
   ].reverse(); // Show most recent first
 
-  const getRelativeTime = (timestamp) => {
+  const getRelativeTime = timestamp => {
     // Simple relative time calculation
     return timestamp;
   };
@@ -115,16 +115,20 @@ export const LeadTimeline = ({ leadId }) => {
               return (
                 <div key={event.id} className="relative pl-14">
                   {/* Timeline dot */}
-                  <div className={`absolute left-0 w-12 h-12 rounded-full ${event.bgColor} flex items-center justify-center`}>
+                  <div
+                    className={`absolute left-0 w-12 h-12 rounded-full ${event.bgColor} flex items-center justify-center`}
+                  >
                     <Icon className={event.color} size={20} />
                   </div>
 
                   {/* Event content */}
-                  <div className={`p-4 rounded-lg border transition-all ${
-                    event.important
-                      ? 'border-yellow-200 dark:border-yellow-800 bg-yellow-50 dark:bg-yellow-900/10'
-                      : 'border-gray-200 dark:border-white/10 bg-white dark:bg-white/5'
-                  }`}>
+                  <div
+                    className={`p-4 rounded-lg border transition-all ${
+                      event.important
+                        ? 'border-yellow-200 dark:border-yellow-800 bg-yellow-50 dark:bg-yellow-900/10'
+                        : 'border-gray-200 dark:border-white/10 bg-white dark:bg-white/5'
+                    }`}
+                  >
                     <div className="flex items-start justify-between mb-1">
                       <h4 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
                         {event.title}
@@ -137,9 +141,7 @@ export const LeadTimeline = ({ leadId }) => {
                       </span>
                     </div>
                     {event.details && (
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {event.details}
-                      </p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{event.details}</p>
                     )}
                   </div>
                 </div>

@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Play, Pause, AlertTriangle, ChevronRight, 
-  Target, Clock, TrendingUp, MoreVertical 
+import {
+  Play,
+  Pause,
+  AlertTriangle,
+  ChevronRight,
+  Target,
+  Clock,
+  TrendingUp,
+  MoreVertical,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent, GradientText } from '../../../components/futuristic';
 import { Badge } from '../../../components/ui/Badge';
@@ -53,10 +59,15 @@ const ProgramRow = ({ program, isSelected, onSelect }) => {
     >
       <td className="py-4 px-4">
         <div className="flex items-center gap-3">
-          <div className={`w-2 h-2 rounded-full ${statusConfig.pulse ? 'animate-pulse' : ''} ${
-            program.status === 'running' ? 'bg-emerald-400' :
-            program.status === 'at-risk' ? 'bg-amber-400' : 'bg-slate-400'
-          }`} />
+          <div
+            className={`w-2 h-2 rounded-full ${statusConfig.pulse ? 'animate-pulse' : ''} ${
+              program.status === 'running'
+                ? 'bg-emerald-400'
+                : program.status === 'at-risk'
+                  ? 'bg-amber-400'
+                  : 'bg-slate-400'
+            }`}
+          />
           <div>
             <p className="font-medium text-slate-100">{program.name}</p>
             <p className="text-xs text-slate-400">{program.segment}</p>
@@ -70,10 +81,12 @@ const ProgramRow = ({ program, isSelected, onSelect }) => {
         </div>
       </td>
       <td className="py-4 px-4">
-        <span className={`
+        <span
+          className={`
           inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium
           border ${statusConfig.color}
-        `}>
+        `}
+        >
           <StatusIcon className="w-3 h-3" />
           {statusConfig.label}
         </span>
@@ -85,17 +98,19 @@ const ProgramRow = ({ program, isSelected, onSelect }) => {
         </div>
       </td>
       <td className="py-4 px-4">
-        <span className={`
+        <span
+          className={`
           inline-flex items-center px-2 py-0.5 rounded text-xs font-medium
           ${riskConfig.bg} ${riskConfig.color}
-        `}>
+        `}
+        >
           {program.currentRisk.charAt(0).toUpperCase() + program.currentRisk.slice(1)}
         </span>
       </td>
       <td className="py-4 px-4">
         <div className="flex items-center gap-2">
           <div className="w-24 h-2 bg-slate-800 rounded-full overflow-hidden">
-            <div 
+            <div
               className="h-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full"
               style={{ width: `${program.progress}%` }}
             />
@@ -104,7 +119,9 @@ const ProgramRow = ({ program, isSelected, onSelect }) => {
         </div>
       </td>
       <td className="py-4 px-4">
-        <ChevronRight className={`w-4 h-4 transition-colors ${isSelected ? 'text-cyan-400' : 'text-slate-500'}`} />
+        <ChevronRight
+          className={`w-4 h-4 transition-colors ${isSelected ? 'text-cyan-400' : 'text-slate-500'}`}
+        />
       </td>
     </motion.tr>
   );
@@ -148,7 +165,7 @@ export function ProgramTable({ programs, loading, selectedProgram, onSelectProgr
           <div>
             <h3 className="text-lg font-semibold text-slate-100">Autonomous Programs</h3>
             <p className="text-sm text-slate-400 mt-1">
-              {programs.filter(p => p.status === 'running').length} running • 
+              {programs.filter(p => p.status === 'running').length} running •
               {programs.filter(p => p.status === 'at-risk').length} at risk
             </p>
           </div>

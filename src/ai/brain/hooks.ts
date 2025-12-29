@@ -23,7 +23,7 @@ export function useIntelligenceGraph(filters?: IntelligenceFilters) {
         setIsLoading(true);
         // Simulated API call
         await new Promise(resolve => setTimeout(resolve, 500));
-        
+
         // Mock data would be set here
         setGraph({
           nodes: [],
@@ -49,7 +49,7 @@ export function useIntelligenceGraph(filters?: IntelligenceFilters) {
 
   const filteredNodes = useMemo(() => {
     if (!graph || !filters) return graph?.nodes || [];
-    
+
     return graph.nodes.filter(node => {
       if (filters.nodeTypes && !filters.nodeTypes.includes(node.type)) return false;
       if (filters.intentLevels && !filters.intentLevels.includes(node.intentLevel)) return false;
@@ -97,7 +97,7 @@ export function useInfluenceMap(accountId: string) {
     const fetchMap = async () => {
       setIsLoading(true);
       await new Promise(resolve => setTimeout(resolve, 300));
-      
+
       // Mock data would be set here
       setMap({
         accountId,
@@ -111,7 +111,7 @@ export function useInfluenceMap(accountId: string) {
         recommendations: [],
         lastUpdated: new Date(),
       });
-      
+
       setIsLoading(false);
     };
 
@@ -163,7 +163,7 @@ export function useProactiveInsights() {
     const fetchInsights = async () => {
       setIsLoading(true);
       await new Promise(resolve => setTimeout(resolve, 300));
-      
+
       // Mock insights
       setInsights([
         {
@@ -187,15 +187,13 @@ export function useProactiveInsights() {
   }, []);
 
   const markAsActioned = useCallback((insightId: string) => {
-    setInsights(prev =>
-      prev.map(i => i.id === insightId ? { ...i, isActioned: true } : i)
-    );
+    setInsights(prev => prev.map(i => (i.id === insightId ? { ...i, isActioned: true } : i)));
     setUnreadCount(prev => Math.max(0, prev - 1));
   }, []);
 
   const dismissInsight = useCallback((insightId: string) => {
     setInsights(prev =>
-      prev.map(i => i.id === insightId ? { ...i, dismissedAt: new Date() } : i)
+      prev.map(i => (i.id === insightId ? { ...i, dismissedAt: new Date() } : i))
     );
   }, []);
 
@@ -225,7 +223,7 @@ export function useIntelligenceSearch() {
 
     setIsSearching(true);
     await new Promise(resolve => setTimeout(resolve, 200));
-    
+
     // Mock search results
     setResults([]);
     setIsSearching(false);

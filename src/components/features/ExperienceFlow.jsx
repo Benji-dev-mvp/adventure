@@ -1,5 +1,12 @@
 import React from 'react';
-import { ArrowRight, ShieldCheck, DoorOpen, LayoutDashboard, Sparkles, Fingerprint } from 'lucide-react';
+import {
+  ArrowRight,
+  ShieldCheck,
+  DoorOpen,
+  LayoutDashboard,
+  Sparkles,
+  Fingerprint,
+} from 'lucide-react';
 
 const ExperienceFlow = () => {
   const flowSteps = [
@@ -30,7 +37,10 @@ const ExperienceFlow = () => {
   ];
 
   return (
-    <section id="flow" className="py-20 px-6 bg-gradient-to-br from-slate-900 via-slate-950 to-purple-950 text-white relative overflow-hidden">
+    <section
+      id="flow"
+      className="py-20 px-6 bg-gradient-to-br from-slate-900 via-slate-950 to-purple-950 text-white relative overflow-hidden"
+    >
       <div className="absolute inset-0 grid-background opacity-10" />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-10">
@@ -40,7 +50,8 @@ const ExperienceFlow = () => {
               The end-to-end experience your buyers will tour
             </h2>
             <p className="text-lg text-gray-300 max-w-3xl">
-              Show the full flow in one pass: adaptive landing, secure authentication, AI handoff, and the live workspace that proves value in seconds.
+              Show the full flow in one pass: adaptive landing, secure authentication, AI handoff,
+              and the live workspace that proves value in seconds.
             </p>
             <div className="flex flex-wrap gap-3 text-sm text-gray-300">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-dark border border-white/20">
@@ -66,7 +77,10 @@ const ExperienceFlow = () => {
           {flowSteps.map((step, idx) => {
             const Icon = step.icon;
             return (
-              <div key={step.title} className="relative rounded-2xl futuristic-card border border-white/20 p-6 overflow-hidden hover-lift">
+              <div
+                key={step.title}
+                className="relative rounded-2xl futuristic-card border border-white/20 p-6 overflow-hidden hover-lift"
+              >
                 <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600" />
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-11 h-11 rounded-xl gradient-mesh grid place-items-center glow">
@@ -74,7 +88,9 @@ const ExperienceFlow = () => {
                   </div>
                   <span className="text-xs font-semibold text-gray-300">0{idx + 1}</span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2 font-space-grotesk">{step.title}</h3>
+                <h3 className="text-xl font-bold text-white mb-2 font-space-grotesk">
+                  {step.title}
+                </h3>
                 <p className="text-gray-300 text-sm mb-3">{step.description}</p>
                 <p className="text-sm text-gray-400">{step.detail}</p>
               </div>

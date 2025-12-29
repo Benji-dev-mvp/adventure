@@ -7,7 +7,8 @@ const TestimonialsSection = () => {
       name: 'Sarah Chen',
       role: 'VP of Sales at TechCorp',
       avatar: '👩‍💼',
-      quote: 'Artisan helped us scale from 50 to 500 qualified leads per month without adding headcount. The AI personalization is mind-blowing.',
+      quote:
+        'Artisan helped us scale from 50 to 500 qualified leads per month without adding headcount. The AI personalization is mind-blowing.',
       rating: 5,
       company: 'TechCorp',
       metric: '10x lead growth',
@@ -16,7 +17,8 @@ const TestimonialsSection = () => {
       name: 'Michael Rodriguez',
       role: 'Founder at GrowthLabs',
       avatar: '👨‍💼',
-      quote: 'The AI personalization is incredible. Our reply rates went from 2% to 8% in the first month. ROI was immediate.',
+      quote:
+        'The AI personalization is incredible. Our reply rates went from 2% to 8% in the first month. ROI was immediate.',
       rating: 5,
       company: 'GrowthLabs',
       metric: '4x reply rate',
@@ -25,7 +27,8 @@ const TestimonialsSection = () => {
       name: 'Emily Watson',
       role: 'SDR Manager at CloudScale',
       avatar: '👩',
-      quote: 'Finally, one platform that does it all. No more juggling 10 different tools for outbound. Our team is so much more productive.',
+      quote:
+        'Finally, one platform that does it all. No more juggling 10 different tools for outbound. Our team is so much more productive.',
       rating: 5,
       company: 'CloudScale',
       metric: '80% time saved',
@@ -53,15 +56,11 @@ const TestimonialsSection = () => {
             >
               {/* Gradient glow on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10 blur-xl" />
-              
+
               {/* Rating */}
               <div className="flex gap-1 mb-4">
                 {[...new Array(testimonial.rating)].map((_, i) => (
-                  <Star 
-                    key={i} 
-                    size={18} 
-                    className="fill-yellow-400 text-yellow-400" 
-                  />
+                  <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
 
@@ -69,15 +68,11 @@ const TestimonialsSection = () => {
               <Quote className="text-white/80 mb-4" size={32} />
 
               {/* Testimonial Text */}
-              <p className="text-white mb-6 leading-relaxed font-medium">
-                "{testimonial.quote}"
-              </p>
+              <p className="text-white mb-6 leading-relaxed font-medium">"{testimonial.quote}"</p>
 
               {/* Metric Badge */}
               <div className="inline-block bg-gradient-to-r from-purple-600/30 to-pink-500/30 rounded-full px-4 py-1 mb-6">
-                <span className="text-sm font-bold text-white">
-                  {testimonial.metric}
-                </span>
+                <span className="text-sm font-bold text-white">{testimonial.metric}</span>
               </div>
 
               {/* Author Info */}
@@ -96,11 +91,9 @@ const TestimonialsSection = () => {
 
         {/* Trust Badges */}
         <div className="mt-16 text-center">
-          <p className="text-sm font-semibold text-gray-200 mb-6">
-            TRUSTED BY 10,000+ COMPANIES
-          </p>
+          <p className="text-sm font-semibold text-gray-200 mb-6">TRUSTED BY 10,000+ COMPANIES</p>
           <div className="flex flex-wrap justify-center items-center gap-12">
-            {['Salesforce', 'HubSpot', 'Zendesk', 'Stripe', 'Shopify', 'Slack'].map((company) => (
+            {['Salesforce', 'HubSpot', 'Zendesk', 'Stripe', 'Shopify', 'Slack'].map(company => (
               <div key={company} className="text-2xl font-bold text-white opacity-90">
                 {company}
               </div>

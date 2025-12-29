@@ -58,7 +58,7 @@ export const GoalTracking = () => {
     return Math.min((current / target) * 100, 100);
   };
 
-  const getStatus = (progress) => {
+  const getStatus = progress => {
     if (progress >= 90) return { label: 'On Track', variant: 'success' };
     if (progress >= 70) return { label: 'Good', variant: 'warning' };
     return { label: 'Behind', variant: 'danger' };
@@ -79,24 +79,23 @@ export const GoalTracking = () => {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {goals.map((goal) => {
+          {goals.map(goal => {
             const progress = getProgress(goal.current, goal.target);
             const status = getStatus(progress);
-            
+
             return (
               <div key={goal.id} className="space-y-2">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white">
-                      {goal.name}
-                    </h4>
+                    <h4 className="font-semibold text-gray-900 dark:text-white">{goal.name}</h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {formatValue(goal.current, goal.unit)} of {formatValue(goal.target, goal.unit)}
+                      {formatValue(goal.current, goal.unit)} of{' '}
+                      {formatValue(goal.target, goal.unit)}
                     </p>
                   </div>
                   <Badge variant={status.variant}>{status.label}</Badge>
                 </div>
-                
+
                 <div className="relative">
                   <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
                     <div
@@ -112,7 +111,7 @@ export const GoalTracking = () => {
                     </span>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
                   <span className="flex items-center gap-1">
                     <Calendar size={12} />

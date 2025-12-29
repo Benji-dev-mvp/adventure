@@ -1,11 +1,9 @@
 """OAuth2 and SSO provider integrations."""
 
-from datetime import datetime, timedelta
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 import httpx
 from authlib.integrations.starlette_client import OAuth
-from authlib.jose import jwt
 from fastapi import HTTPException, status
 
 from app.core.config import settings

@@ -59,30 +59,30 @@ export interface Campaign {
   status: CampaignStatus;
   type: CampaignType;
   objective: string;
-  
+
   // Steps & Content
   steps: CampaignStep[];
-  
+
   // Targeting
   leadListId?: string;
   leadListName?: string;
   leadCount?: number;
-  
+
   // Scheduling
   schedule?: CampaignSchedule;
   startDate?: string;
   endDate?: string;
-  
+
   // Metrics
   metrics: CampaignMetrics;
-  
+
   // Metadata
   createdBy: string;
   createdAt: string;
   updatedAt: string;
   launchedAt?: string;
   completedAt?: string;
-  
+
   // Tags & Organization
   tags?: string[];
   folderId?: string;
@@ -126,20 +126,20 @@ export interface UpdateCampaignDTO {
 export interface CampaignAnalytics {
   campaignId: string;
   period: 'day' | 'week' | 'month' | 'all';
-  
+
   // Aggregate metrics
   totalSent: number;
   totalOpened: number;
   totalClicked: number;
   totalReplied: number;
   totalMeetings: number;
-  
+
   // Time series data
   timeline: CampaignTimelinePoint[];
-  
+
   // Step performance
   stepPerformance: CampaignStepPerformance[];
-  
+
   // Top performing content
   topSubjectLines: { subject: string; openRate: number }[];
   topContentVariants: { variantId: string; replyRate: number }[];

@@ -2,7 +2,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs';
-import { Zap, Activity, Brain, Trophy, BookOpen, BarChart3, Link, Sparkles, Rocket, Star, TrendingUp, Users, Target } from 'lucide-react';
+import {
+  Zap,
+  Activity,
+  Brain,
+  Trophy,
+  BookOpen,
+  BarChart3,
+  Link,
+  Sparkles,
+  Rocket,
+  Star,
+  TrendingUp,
+  Users,
+  Target,
+} from 'lucide-react';
 import { Badge } from '../components/ui/Badge';
 
 // Animated Counter Component
@@ -21,7 +35,7 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = '', prefix = '' }) => 
       const progress = Math.min((now - startTime) / duration, 1);
       const easeOutQuad = progress * (2 - progress); // Easing function
       const currentCount = Math.floor(easeOutQuad * end);
-      
+
       setCount(currentCount);
       countRef.current = currentCount;
 
@@ -35,7 +49,13 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = '', prefix = '' }) => 
     requestAnimationFrame(animate);
   }, [end, duration]);
 
-  return <span>{prefix}{count}{suffix}</span>;
+  return (
+    <span>
+      {prefix}
+      {count}
+      {suffix}
+    </span>
+  );
 };
 
 // Live Status Indicator
@@ -60,12 +80,14 @@ const AnimatedProgress = ({ value, color = 'cyan', label }) => {
 
   return (
     <div className="space-y-1">
-      {label && <div className="text-xs text-slate-600 dark:text-slate-400 flex justify-between">
-        <span>{label}</span>
-        <span className="font-bold">{value}%</span>
-      </div>}
+      {label && (
+        <div className="text-xs text-slate-600 dark:text-slate-400 flex justify-between">
+          <span>{label}</span>
+          <span className="font-bold">{value}%</span>
+        </div>
+      )}
       <div className="h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-        <div 
+        <div
           className={`h-full bg-gradient-to-r from-${color}-400 to-${color}-600 transition-all duration-1000 ease-out rounded-full relative`}
           style={{ width: `${progress}%` }}
         >
@@ -77,40 +99,40 @@ const AnimatedProgress = ({ value, color = 'cyan', label }) => {
 };
 
 // Import all exceptional components
-import { 
-  RealTimeActivityFeed, 
-  AdvancedSequenceBuilder, 
-  AvaResearchAssistant, 
-  PredictiveAnalytics, 
-  SmartMeetingScheduler 
+import {
+  RealTimeActivityFeed,
+  AdvancedSequenceBuilder,
+  AvaResearchAssistant,
+  PredictiveAnalytics,
+  SmartMeetingScheduler,
 } from '../components/exceptional/ExceptionalComponents';
 
-import { 
-  TeamLeaderboard, 
-  AchievementBadges, 
-  TeamCompetitions, 
-  PointsRewardsSystem 
+import {
+  TeamLeaderboard,
+  AchievementBadges,
+  TeamCompetitions,
+  PointsRewardsSystem,
 } from '../components/gamification/GamificationComponents';
 
-import { 
-  SalesPlaybooks, 
-  BattleCards, 
-  ObjectionHandlers, 
-  ROICalculator 
+import {
+  SalesPlaybooks,
+  BattleCards,
+  ObjectionHandlers,
+  ROICalculator,
 } from '../components/playbooks/PlaybookComponents';
 
-import { 
-  CEOExecutiveDashboard, 
-  PipelineHealthScore, 
-  ForecastAccuracyTracker, 
-  WhatIfScenarioPlanner 
+import {
+  CEOExecutiveDashboard,
+  PipelineHealthScore,
+  ForecastAccuracyTracker,
+  WhatIfScenarioPlanner,
 } from '../components/executive/ExecutiveComponents';
 
-import { 
-  TwoWaySalesforceSync, 
-  SlackTeamsDeepIntegration, 
-  CalendarAutoScheduler, 
-  ZapierActionBuilder 
+import {
+  TwoWaySalesforceSync,
+  SlackTeamsDeepIntegration,
+  CalendarAutoScheduler,
+  ZapierActionBuilder,
 } from '../components/integrations/IntegrationComponents';
 
 const ExceptionalHub = () => {
@@ -119,7 +141,7 @@ const ExceptionalHub = () => {
   const [liveStats, setLiveStats] = useState({
     activeUsers: 847,
     campaignsRunning: 23,
-    leadsProcessed: 15420
+    leadsProcessed: 15420,
   });
 
   // Simulate live updates
@@ -128,7 +150,7 @@ const ExceptionalHub = () => {
       setLiveStats(prev => ({
         activeUsers: prev.activeUsers + Math.floor(Math.random() * 5) - 2,
         campaignsRunning: Math.max(15, prev.campaignsRunning + Math.floor(Math.random() * 3) - 1),
-        leadsProcessed: prev.leadsProcessed + Math.floor(Math.random() * 10)
+        leadsProcessed: prev.leadsProcessed + Math.floor(Math.random() * 10),
       }));
     }, 3000);
 
@@ -136,46 +158,46 @@ const ExceptionalHub = () => {
   }, []);
 
   const features = [
-    { 
-      id: 'real-time', 
-      label: 'Real-Time', 
-      icon: Activity, 
+    {
+      id: 'real-time',
+      label: 'Real-Time',
+      icon: Activity,
       count: 5,
       gradient: 'from-cyan-500 to-blue-600',
-      color: 'cyan'
+      color: 'cyan',
     },
-    { 
-      id: 'gamification', 
-      label: 'Gamification', 
-      icon: Trophy, 
+    {
+      id: 'gamification',
+      label: 'Gamification',
+      icon: Trophy,
       count: 4,
       gradient: 'from-amber-500 to-orange-600',
-      color: 'amber'
+      color: 'amber',
     },
-    { 
-      id: 'playbooks', 
-      label: 'Playbooks', 
-      icon: BookOpen, 
+    {
+      id: 'playbooks',
+      label: 'Playbooks',
+      icon: BookOpen,
       count: 4,
       gradient: 'from-purple-500 to-pink-600',
-      color: 'purple'
+      color: 'purple',
     },
-    { 
-      id: 'executive', 
-      label: 'Executive', 
-      icon: BarChart3, 
+    {
+      id: 'executive',
+      label: 'Executive',
+      icon: BarChart3,
       count: 4,
       gradient: 'from-emerald-500 to-teal-600',
-      color: 'emerald'
+      color: 'emerald',
     },
-    { 
-      id: 'integrations', 
-      label: 'Integrations', 
-      icon: Link, 
+    {
+      id: 'integrations',
+      label: 'Integrations',
+      icon: Link,
       count: 4,
       gradient: 'from-indigo-500 to-purple-600',
-      color: 'indigo'
-    }
+      color: 'indigo',
+    },
   ];
 
   return (
@@ -183,15 +205,21 @@ const ExceptionalHub = () => {
       {/* Animated Background */}
       <div className="fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20 dark:from-slate-950 dark:via-blue-950/30 dark:to-purple-950/20" />
-        
+
         {/* Animated Orbs */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 dark:from-cyan-500/10 dark:to-blue-600/10 rounded-full blur-3xl animate-pulse" 
-             style={{ animationDuration: '8s' }} />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-br from-purple-400/20 to-pink-500/20 dark:from-purple-500/10 dark:to-pink-600/10 rounded-full blur-3xl animate-pulse" 
-             style={{ animationDuration: '10s', animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-gradient-to-br from-amber-400/10 to-orange-500/10 dark:from-amber-500/5 dark:to-orange-600/5 rounded-full blur-3xl animate-pulse" 
-             style={{ animationDuration: '12s', animationDelay: '4s' }} />
-        
+        <div
+          className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 dark:from-cyan-500/10 dark:to-blue-600/10 rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: '8s' }}
+        />
+        <div
+          className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-br from-purple-400/20 to-pink-500/20 dark:from-purple-500/10 dark:to-pink-600/10 rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: '10s', animationDelay: '2s' }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 w-96 h-96 bg-gradient-to-br from-amber-400/10 to-orange-500/10 dark:from-amber-500/5 dark:to-orange-600/5 rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: '12s', animationDelay: '4s' }}
+        />
+
         {/* Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:64px_64px]" />
       </div>
@@ -206,7 +234,7 @@ const ExceptionalHub = () => {
             </span>
             <LiveIndicator label="LIVE" />
           </div>
-          
+
           <h1 className="text-6xl md:text-7xl font-black mb-6 leading-tight">
             <span className="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 dark:from-white dark:via-purple-200 dark:to-white bg-clip-text text-transparent">
               Exceptional
@@ -216,11 +244,15 @@ const ExceptionalHub = () => {
               Features
             </span>
           </h1>
-          
+
           <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto mb-6 leading-relaxed">
-            Industry-leading AI-powered sales automation tools designed to <span className="font-semibold text-purple-600 dark:text-purple-400">revolutionize</span> your workflow
+            Industry-leading AI-powered sales automation tools designed to{' '}
+            <span className="font-semibold text-purple-600 dark:text-purple-400">
+              revolutionize
+            </span>{' '}
+            your workflow
           </p>
-          
+
           {/* Live Stats Bar */}
           <div className="flex flex-wrap justify-center gap-3 mb-6">
             <div className="group relative px-6 py-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg backdrop-blur-sm hover:shadow-xl transition-all hover:scale-105">
@@ -244,7 +276,9 @@ const ExceptionalHub = () => {
                   <div className="font-black text-2xl bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent">
                     <AnimatedCounter end={liveStats.campaignsRunning} />
                   </div>
-                  <div className="text-xs text-slate-600 dark:text-slate-400">Campaigns Running</div>
+                  <div className="text-xs text-slate-600 dark:text-slate-400">
+                    Campaigns Running
+                  </div>
                 </div>
               </div>
             </div>
@@ -257,37 +291,45 @@ const ExceptionalHub = () => {
                   <div className="font-black text-2xl bg-gradient-to-r from-emerald-500 to-teal-600 bg-clip-text text-transparent">
                     <AnimatedCounter end={liveStats.leadsProcessed} />
                   </div>
-                  <div className="text-xs text-slate-600 dark:text-slate-400">Leads Processed Today</div>
+                  <div className="text-xs text-slate-600 dark:text-slate-400">
+                    Leads Processed Today
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <div className="flex flex-wrap justify-center gap-3">
             <div className="px-6 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg backdrop-blur-sm">
               <span className="font-bold text-2xl bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
                 <AnimatedCounter end={21} duration={1500} />
               </span>
-              <span className="text-sm text-slate-600 dark:text-slate-400 ml-2">Advanced Features</span>
+              <span className="text-sm text-slate-600 dark:text-slate-400 ml-2">
+                Advanced Features
+              </span>
             </div>
             <div className="px-6 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 backdrop-blur-sm">
               <Zap className="inline w-4 h-4 text-cyan-500 mr-2 animate-pulse" />
-              <span className="text-sm font-medium text-cyan-700 dark:text-cyan-300">Real-time Updates</span>
+              <span className="text-sm font-medium text-cyan-700 dark:text-cyan-300">
+                Real-time Updates
+              </span>
             </div>
             <div className="px-6 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 backdrop-blur-sm">
               <Brain className="inline w-4 h-4 text-purple-500 mr-2" />
-              <span className="text-sm font-medium text-purple-700 dark:text-purple-300">AI-Powered Intelligence</span>
+              <span className="text-sm font-medium text-purple-700 dark:text-purple-300">
+                AI-Powered Intelligence
+              </span>
             </div>
           </div>
         </div>
 
         {/* Feature Navigation Cards */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
-          {features.map((feature) => {
+          {features.map(feature => {
             const Icon = feature.icon;
             const isActive = activeTab === feature.id;
             const isHovered = hoveredFeature === feature.id;
-            
+
             return (
               <div
                 key={feature.id}
@@ -296,9 +338,10 @@ const ExceptionalHub = () => {
                 onMouseLeave={() => setHoveredFeature(null)}
                 className={`
                   group relative p-4 rounded-2xl cursor-pointer transition-all duration-500 
-                  ${isActive 
-                    ? 'bg-white dark:bg-slate-800 shadow-2xl shadow-purple-500/20 scale-105 -translate-y-2' 
-                    : 'bg-white/60 dark:bg-slate-800/60 hover:bg-white dark:hover:bg-slate-800 shadow-lg hover:shadow-xl'
+                  ${
+                    isActive
+                      ? 'bg-white dark:bg-slate-800 shadow-2xl shadow-purple-500/20 scale-105 -translate-y-2'
+                      : 'bg-white/60 dark:bg-slate-800/60 hover:bg-white dark:hover:bg-slate-800 shadow-lg hover:shadow-xl'
                   }
                   border border-slate-200 dark:border-slate-700 backdrop-blur-sm
                   hover:scale-105 hover:-translate-y-1
@@ -307,68 +350,86 @@ const ExceptionalHub = () => {
                 {/* Gradient Border on Active */}
                 {isActive && (
                   <>
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${feature.gradient} opacity-20 blur-sm -z-10`} />
+                    <div
+                      className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${feature.gradient} opacity-20 blur-sm -z-10`}
+                    />
                     <div className={`absolute -top-1 -right-1`}>
                       <LiveIndicator label="ACTIVE" />
                     </div>
                   </>
                 )}
-                
+
                 {/* Icon with Gradient Background */}
-                <div className={`
+                <div
+                  className={`
                   relative w-12 h-12 rounded-xl mb-4 flex items-center justify-center
                   transition-all duration-500
-                  ${isActive 
-                    ? `bg-gradient-to-br ${feature.gradient} shadow-lg` 
-                    : 'bg-slate-100 dark:bg-slate-700 group-hover:bg-gradient-to-br group-hover:' + feature.gradient
+                  ${
+                    isActive
+                      ? `bg-gradient-to-br ${feature.gradient} shadow-lg`
+                      : 'bg-slate-100 dark:bg-slate-700 group-hover:bg-gradient-to-br group-hover:' +
+                        feature.gradient
                   }
-                `}>
-                  <Icon 
+                `}
+                >
+                  <Icon
                     className={`transition-all duration-300 ${
-                      isActive 
-                        ? 'text-white animate-pulse' 
+                      isActive
+                        ? 'text-white animate-pulse'
                         : 'text-slate-600 dark:text-slate-400 group-hover:text-white'
-                    }`} 
-                    size={24} 
+                    }`}
+                    size={24}
                   />
-                  
+
                   {/* Animated Ring */}
                   {(isActive || isHovered) && (
-                    <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${feature.gradient} opacity-30 animate-ping`} />
+                    <div
+                      className={`absolute inset-0 rounded-xl bg-gradient-to-br ${feature.gradient} opacity-30 animate-ping`}
+                    />
                   )}
                 </div>
-                
+
                 {/* Label */}
-                <h3 className={`font-bold text-base mb-1 transition-all ${
-                  isActive 
-                    ? `bg-gradient-to-r ${feature.gradient} bg-clip-text text-transparent` 
-                    : 'text-slate-900 dark:text-white'
-                }`}>
+                <h3
+                  className={`font-bold text-base mb-1 transition-all ${
+                    isActive
+                      ? `bg-gradient-to-r ${feature.gradient} bg-clip-text text-transparent`
+                      : 'text-slate-900 dark:text-white'
+                  }`}
+                >
                   {feature.label}
                 </h3>
-                
+
                 {/* Count Badge with Animation */}
                 <div className="flex items-center gap-2">
-                  <span className={`text-2xl font-black transition-all ${
-                    isActive 
-                      ? 'text-slate-900 dark:text-white' 
-                      : 'text-slate-300 dark:text-slate-700'
-                  }`}>
-                    {isActive ? <AnimatedCounter end={feature.count} duration={800} /> : feature.count}
+                  <span
+                    className={`text-2xl font-black transition-all ${
+                      isActive
+                        ? 'text-slate-900 dark:text-white'
+                        : 'text-slate-300 dark:text-slate-700'
+                    }`}
+                  >
+                    {isActive ? (
+                      <AnimatedCounter end={feature.count} duration={800} />
+                    ) : (
+                      feature.count
+                    )}
                   </span>
                   <span className="text-xs text-slate-500 dark:text-slate-400">tools</span>
                 </div>
-                
+
                 {/* Progress Bar */}
                 {isActive && (
                   <div className="mt-3">
                     <AnimatedProgress value={feature.count * 20} color={feature.color} />
                   </div>
                 )}
-                
+
                 {/* Hover Indicator */}
                 {isActive && (
-                  <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-gradient-to-r ${feature.gradient} animate-pulse`} />
+                  <div
+                    className={`absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-gradient-to-r ${feature.gradient} animate-pulse`}
+                  />
                 )}
               </div>
             );
@@ -377,167 +438,184 @@ const ExceptionalHub = () => {
 
         {/* Tabs Content with Glassmorphism */}
         <div className="relative">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          {/* Hidden TabsList - Navigation handled by cards above */}
-          <TabsList className="hidden">
-            <TabsTrigger value="real-time">Real-Time</TabsTrigger>
-            <TabsTrigger value="gamification">Gamification</TabsTrigger>
-            <TabsTrigger value="playbooks">Playbooks</TabsTrigger>
-            <TabsTrigger value="executive">Executive</TabsTrigger>
-            <TabsTrigger value="integrations">Integrations</TabsTrigger>
-          </TabsList>
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+            {/* Hidden TabsList - Navigation handled by cards above */}
+            <TabsList className="hidden">
+              <TabsTrigger value="real-time">Real-Time</TabsTrigger>
+              <TabsTrigger value="gamification">Gamification</TabsTrigger>
+              <TabsTrigger value="playbooks">Playbooks</TabsTrigger>
+              <TabsTrigger value="executive">Executive</TabsTrigger>
+              <TabsTrigger value="integrations">Integrations</TabsTrigger>
+            </TabsList>
 
-          {/* Real-Time Tab */}
-          <TabsContent value="real-time" className="space-y-6 animate-in fade-in-50 slide-in-from-bottom-4 duration-500">
-            {/* Section Header with Gradient */}
-            <div className="relative p-6 rounded-3xl bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/5 border border-cyan-500/20 backdrop-blur-sm overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 rounded-full blur-3xl -z-10" />
-              <div className="flex items-center gap-4 mb-3">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg">
-                  <Activity className="text-white" size={24} />
+            {/* Real-Time Tab */}
+            <TabsContent
+              value="real-time"
+              className="space-y-6 animate-in fade-in-50 slide-in-from-bottom-4 duration-500"
+            >
+              {/* Section Header with Gradient */}
+              <div className="relative p-6 rounded-3xl bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/5 border border-cyan-500/20 backdrop-blur-sm overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 rounded-full blur-3xl -z-10" />
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg">
+                    <Activity className="text-white" size={24} />
+                  </div>
+                  <h2 className="text-3xl font-black bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
+                    Real-Time Sales Experience
+                  </h2>
                 </div>
-                <h2 className="text-3xl font-black bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
-                  Real-Time Sales Experience
-                </h2>
+                <p className="text-slate-600 dark:text-slate-400 text-lg ml-16">
+                  Live activity feeds, intelligent automation, and predictive insights at your
+                  fingertips
+                </p>
               </div>
-              <p className="text-slate-600 dark:text-slate-400 text-lg ml-16">
-                Live activity feeds, intelligent automation, and predictive insights at your fingertips
-              </p>
-            </div>
-            
-            <div className="space-y-6">
-              <RealTimeActivityFeed />
-              
-              <div className="grid lg:grid-cols-2 gap-6">
-                <AvaResearchAssistant />
-                <PredictiveAnalytics />
-              </div>
-              
-              <div className="grid lg:grid-cols-2 gap-6">
-                <SmartMeetingScheduler />
-                <AdvancedSequenceBuilder />
-              </div>
-            </div>
-          </TabsContent>
 
-          {/* Gamification Tab */}
-          <TabsContent value="gamification" className="space-y-6 animate-in fade-in-50 slide-in-from-bottom-4 duration-500">
-            <div className="relative p-6 rounded-3xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-red-500/5 border border-amber-500/20 backdrop-blur-sm overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-amber-400/20 to-orange-500/20 rounded-full blur-3xl -z-10" />
-              <div className="flex items-center gap-4 mb-3">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg">
-                  <Trophy className="text-white" size={24} />
-                </div>
-                <h2 className="text-3xl font-black bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
-                  Sales Gamification
-                </h2>
-              </div>
-              <p className="text-slate-600 dark:text-slate-400 text-lg ml-16">
-                Drive performance through competition, achievements, and reward systems
-              </p>
-            </div>
-            
-            <div className="space-y-6">
-              <TeamLeaderboard />
-              
-              <div className="grid lg:grid-cols-2 gap-6">
-                <AchievementBadges />
-                <PointsRewardsSystem />
-              </div>
-              
-              <TeamCompetitions />
-            </div>
-          </TabsContent>
+              <div className="space-y-6">
+                <RealTimeActivityFeed />
 
-          {/* Playbooks Tab */}
-          <TabsContent value="playbooks" className="space-y-6 animate-in fade-in-50 slide-in-from-bottom-4 duration-500">
-            <div className="relative p-8 rounded-3xl bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-rose-500/5 border border-purple-500/20 backdrop-blur-sm overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-400/20 to-pink-500/20 rounded-full blur-3xl -z-10" />
-              <div className="flex items-center gap-4 mb-3">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
-                  <BookOpen className="text-white" size={24} />
+                <div className="grid lg:grid-cols-2 gap-6">
+                  <AvaResearchAssistant />
+                  <PredictiveAnalytics />
                 </div>
-                <h2 className="text-3xl font-black bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
-                  Sales Enablement Playbooks
-                </h2>
-              </div>
-              <p className="text-slate-600 dark:text-slate-400 text-lg ml-16">
-                Battle-tested strategies, objection handling frameworks, and ROI calculators
-              </p>
-            </div>
-            
-            <div className="space-y-6">
-              <div className="grid lg:grid-cols-2 gap-6">
-                <SalesPlaybooks />
-                <BattleCards />
-              </div>
-              
-              <div className="grid lg:grid-cols-2 gap-6">
-                <ObjectionHandlers />
-                <ROICalculator />
-              </div>
-            </div>
-          </TabsContent>
 
-          {/* Executive Tab */}
-          <TabsContent value="executive" className="space-y-6 animate-in fade-in-50 slide-in-from-bottom-4 duration-500">
-            <div className="relative p-8 rounded-3xl bg-gradient-to-br from-emerald-500/10 via-teal-500/10 to-cyan-500/5 border border-emerald-500/20 backdrop-blur-sm overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-emerald-400/20 to-teal-500/20 rounded-full blur-3xl -z-10" />
-              <div className="flex items-center gap-4 mb-3">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg">
-                  <BarChart3 className="text-white" size={24} />
+                <div className="grid lg:grid-cols-2 gap-6">
+                  <SmartMeetingScheduler />
+                  <AdvancedSequenceBuilder />
                 </div>
-                <h2 className="text-3xl font-black bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
-                  Executive Command Center
-                </h2>
               </div>
-              <p className="text-slate-600 dark:text-slate-400 text-lg ml-16">
-                Real-time KPIs, pipeline health monitoring, forecasting, and scenario planning
-              </p>
-            </div>
-            
-            <div className="space-y-6">
-              <CEOExecutiveDashboard />
-              
-              <div className="grid lg:grid-cols-2 gap-6">
-                <PipelineHealthScore />
-                <ForecastAccuracyTracker />
-              </div>
-              
-              <WhatIfScenarioPlanner />
-            </div>
-          </TabsContent>
+            </TabsContent>
 
-          {/* Integrations Tab */}
-          <TabsContent value="integrations" className="space-y-8 animate-in fade-in-50 slide-in-from-bottom-4 duration-500">
-            <div className="relative p-8 rounded-3xl bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/5 border border-indigo-500/20 backdrop-blur-sm overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-indigo-400/20 to-purple-500/20 rounded-full blur-3xl -z-10" />
-              <div className="flex items-center gap-4 mb-3">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
-                  <Link className="text-white" size={24} />
+            {/* Gamification Tab */}
+            <TabsContent
+              value="gamification"
+              className="space-y-6 animate-in fade-in-50 slide-in-from-bottom-4 duration-500"
+            >
+              <div className="relative p-6 rounded-3xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-red-500/5 border border-amber-500/20 backdrop-blur-sm overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-amber-400/20 to-orange-500/20 rounded-full blur-3xl -z-10" />
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg">
+                    <Trophy className="text-white" size={24} />
+                  </div>
+                  <h2 className="text-3xl font-black bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
+                    Sales Gamification
+                  </h2>
                 </div>
-                <h2 className="text-3xl font-black bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
-                  Deep Integrations
-                </h2>
+                <p className="text-slate-600 dark:text-slate-400 text-lg ml-16">
+                  Drive performance through competition, achievements, and reward systems
+                </p>
               </div>
-              <p className="text-slate-600 dark:text-slate-400 text-lg ml-16">
-                2-way sync with Salesforce, Slack control, calendar automation, and Zapier workflows
-              </p>
-            </div>
-            
-            <div className="space-y-6">
-              <div className="grid lg:grid-cols-2 gap-6">
-                <TwoWaySalesforceSync />
-                <SlackTeamsDeepIntegration />
+
+              <div className="space-y-6">
+                <TeamLeaderboard />
+
+                <div className="grid lg:grid-cols-2 gap-6">
+                  <AchievementBadges />
+                  <PointsRewardsSystem />
+                </div>
+
+                <TeamCompetitions />
               </div>
-              
-              <div className="grid lg:grid-cols-2 gap-6">
-                <CalendarAutoScheduler />
-                <ZapierActionBuilder />
+            </TabsContent>
+
+            {/* Playbooks Tab */}
+            <TabsContent
+              value="playbooks"
+              className="space-y-6 animate-in fade-in-50 slide-in-from-bottom-4 duration-500"
+            >
+              <div className="relative p-8 rounded-3xl bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-rose-500/5 border border-purple-500/20 backdrop-blur-sm overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-400/20 to-pink-500/20 rounded-full blur-3xl -z-10" />
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
+                    <BookOpen className="text-white" size={24} />
+                  </div>
+                  <h2 className="text-3xl font-black bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
+                    Sales Enablement Playbooks
+                  </h2>
+                </div>
+                <p className="text-slate-600 dark:text-slate-400 text-lg ml-16">
+                  Battle-tested strategies, objection handling frameworks, and ROI calculators
+                </p>
               </div>
-            </div>
-          </TabsContent>
-        </Tabs>
+
+              <div className="space-y-6">
+                <div className="grid lg:grid-cols-2 gap-6">
+                  <SalesPlaybooks />
+                  <BattleCards />
+                </div>
+
+                <div className="grid lg:grid-cols-2 gap-6">
+                  <ObjectionHandlers />
+                  <ROICalculator />
+                </div>
+              </div>
+            </TabsContent>
+
+            {/* Executive Tab */}
+            <TabsContent
+              value="executive"
+              className="space-y-6 animate-in fade-in-50 slide-in-from-bottom-4 duration-500"
+            >
+              <div className="relative p-8 rounded-3xl bg-gradient-to-br from-emerald-500/10 via-teal-500/10 to-cyan-500/5 border border-emerald-500/20 backdrop-blur-sm overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-emerald-400/20 to-teal-500/20 rounded-full blur-3xl -z-10" />
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg">
+                    <BarChart3 className="text-white" size={24} />
+                  </div>
+                  <h2 className="text-3xl font-black bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
+                    Executive Command Center
+                  </h2>
+                </div>
+                <p className="text-slate-600 dark:text-slate-400 text-lg ml-16">
+                  Real-time KPIs, pipeline health monitoring, forecasting, and scenario planning
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <CEOExecutiveDashboard />
+
+                <div className="grid lg:grid-cols-2 gap-6">
+                  <PipelineHealthScore />
+                  <ForecastAccuracyTracker />
+                </div>
+
+                <WhatIfScenarioPlanner />
+              </div>
+            </TabsContent>
+
+            {/* Integrations Tab */}
+            <TabsContent
+              value="integrations"
+              className="space-y-8 animate-in fade-in-50 slide-in-from-bottom-4 duration-500"
+            >
+              <div className="relative p-8 rounded-3xl bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/5 border border-indigo-500/20 backdrop-blur-sm overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-indigo-400/20 to-purple-500/20 rounded-full blur-3xl -z-10" />
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
+                    <Link className="text-white" size={24} />
+                  </div>
+                  <h2 className="text-3xl font-black bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+                    Deep Integrations
+                  </h2>
+                </div>
+                <p className="text-slate-600 dark:text-slate-400 text-lg ml-16">
+                  2-way sync with Salesforce, Slack control, calendar automation, and Zapier
+                  workflows
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <div className="grid lg:grid-cols-2 gap-6">
+                  <TwoWaySalesforceSync />
+                  <SlackTeamsDeepIntegration />
+                </div>
+
+                <div className="grid lg:grid-cols-2 gap-6">
+                  <CalendarAutoScheduler />
+                  <ZapierActionBuilder />
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </div>

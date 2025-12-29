@@ -3,7 +3,6 @@ Production ML Lead Scoring Model with 85%+ Accuracy
 Trains XGBoost model on real features and provides prediction API
 """
 
-import json
 import logging
 import pickle
 from datetime import datetime, timedelta
@@ -18,7 +17,7 @@ from sklearn.metrics import (
     roc_auc_score,
 )
 from sklearn.model_selection import cross_val_score, train_test_split
-from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.preprocessing import StandardScaler
 
 logger = logging.getLogger(__name__)
 

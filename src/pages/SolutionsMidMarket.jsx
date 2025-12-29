@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  ArrowRight, 
-  Users, 
-  Target, 
+import {
+  ArrowRight,
+  Users,
+  Target,
   Zap,
   TrendingUp,
   Clock,
@@ -27,8 +27,12 @@ import {
 import AppShell from '../components/layout/AppShell';
 import MidMarketFlowOrchestration from '../components/solutions/MidMarketFlowOrchestration';
 import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
-import { ChannelMixChart, RoiProjectionChart, CustomerImpactSparklines } from '../components/analytics';
-import { 
+import {
+  ChannelMixChart,
+  RoiProjectionChart,
+  CustomerImpactSparklines,
+} from '../components/analytics';
+import {
   GlassCard,
   GlassCardContent,
   GradientText,
@@ -42,67 +46,77 @@ import {
 const FEATURES = [
   {
     icon: RefreshCcw,
-    title: "Automate 80% of Repetitive Tasks",
-    description: "Free your reps from manual data entry, follow-up scheduling, and CRM updates. Ava handles the busywork so your team can focus on closing.",
-    gradient: "from-purple-500 to-pink-500"
+    title: 'Automate 80% of Repetitive Tasks',
+    description:
+      'Free your reps from manual data entry, follow-up scheduling, and CRM updates. Ava handles the busywork so your team can focus on closing.',
+    gradient: 'from-purple-500 to-pink-500',
   },
   {
     icon: Layers,
-    title: "Unified Multichannel Orchestration",
-    description: "Coordinate email, LinkedIn, phone, and SMS sequences from a single platform. No more juggling multiple tools or losing context.",
-    gradient: "from-cyan-500 to-blue-500"
+    title: 'Unified Multichannel Orchestration',
+    description:
+      'Coordinate email, LinkedIn, phone, and SMS sequences from a single platform. No more juggling multiple tools or losing context.',
+    gradient: 'from-cyan-500 to-blue-500',
   },
   {
     icon: LineChart,
-    title: "Analytics That Drive Action",
-    description: "Get real-time insights into campaign performance, rep productivity, and pipeline health. Make data-driven decisions that move the needle.",
-    gradient: "from-orange-500 to-red-500"
+    title: 'Analytics That Drive Action',
+    description:
+      'Get real-time insights into campaign performance, rep productivity, and pipeline health. Make data-driven decisions that move the needle.',
+    gradient: 'from-orange-500 to-red-500',
   },
   {
     icon: Database,
-    title: "300M+ Enriched B2B Contacts",
-    description: "Access comprehensive firmographic, technographic, and intent data. Find the right prospects at the right moment with precision targeting.",
-    gradient: "from-green-500 to-teal-500"
-  }
+    title: '300M+ Enriched B2B Contacts',
+    description:
+      'Access comprehensive firmographic, technographic, and intent data. Find the right prospects at the right moment with precision targeting.',
+    gradient: 'from-green-500 to-teal-500',
+  },
 ];
 
 const BENEFITS = [
   {
     icon: Zap,
-    title: "3x Rep Efficiency",
-    description: "Your existing team becomes 3x more productive when freed from manual tasks. Do more with the team you have.",
-    gradient: "from-yellow-400 to-orange-500",
+    title: '3x Rep Efficiency',
+    description:
+      'Your existing team becomes 3x more productive when freed from manual tasks. Do more with the team you have.',
+    gradient: 'from-yellow-400 to-orange-500',
   },
   {
     icon: Clock,
-    title: "80% Time Savings",
-    description: "Eliminate hours of daily busywork. Ava handles prospecting, research, personalization, and follow-ups automatically.",
-    gradient: "from-purple-400 to-pink-500",
+    title: '80% Time Savings',
+    description:
+      'Eliminate hours of daily busywork. Ava handles prospecting, research, personalization, and follow-ups automatically.',
+    gradient: 'from-purple-400 to-pink-500',
   },
   {
     icon: Target,
-    title: "Precision Targeting",
-    description: "Reach the right buyers at the right time with intent-driven outbound. No more spray and pray.",
-    gradient: "from-cyan-400 to-blue-500",
+    title: 'Precision Targeting',
+    description:
+      'Reach the right buyers at the right time with intent-driven outbound. No more spray and pray.',
+    gradient: 'from-cyan-400 to-blue-500',
   },
   {
     icon: Settings,
-    title: "CRM Integration",
-    description: "Seamless two-way sync with Salesforce, HubSpot, and all major CRMs. Keep your data clean and up-to-date.",
-    gradient: "from-emerald-400 to-green-500",
+    title: 'CRM Integration',
+    description:
+      'Seamless two-way sync with Salesforce, HubSpot, and all major CRMs. Keep your data clean and up-to-date.',
+    gradient: 'from-emerald-400 to-green-500',
   },
   {
     icon: Brain,
-    title: "AI That Learns",
-    description: "Ava continuously optimizes based on results. The more she works, the better she gets at engaging your ICP.",
-    gradient: "from-pink-400 to-rose-500",
+    title: 'AI That Learns',
+    description:
+      'Ava continuously optimizes based on results. The more she works, the better she gets at engaging your ICP.',
+    gradient: 'from-pink-400 to-rose-500',
   },
   {
     icon: TrendingUp,
-    title: "Predictable Pipeline",
-    description: "Turn outbound from a guessing game into a predictable revenue engine with consistent meeting flow.",
-    gradient: "from-indigo-400 to-purple-500",
-  }
+    title: 'Predictable Pipeline',
+    description:
+      'Turn outbound from a guessing game into a predictable revenue engine with consistent meeting flow.',
+    gradient: 'from-indigo-400 to-purple-500',
+  },
 ];
 
 const MIDMARKET_STATS = [
@@ -124,7 +138,7 @@ const SolutionsMidMarket = () => {
       <section className="relative pt-20 pb-24 px-6 overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-transparent" />
-        
+
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div {...fadeIn} className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300 text-sm font-semibold mb-6">
@@ -132,20 +146,19 @@ const SolutionsMidMarket = () => {
               For Midmarket
             </div>
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-space-grotesk">
-              <GradientText gradient="aurora">
-                Scale Without Chaos
-              </GradientText>
+              <GradientText gradient="aurora">Scale Without Chaos</GradientText>
             </h1>
             <p className="text-2xl text-gray-300 mb-4 font-space-grotesk">
               Automate 80% of Manual Tasks
             </p>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
-              Streamline your existing outbound workflow while keeping your team in control. 
-              Boost rep efficiency 3x, eliminate data entry, and orchestrate multichannel sequences from one platform.
+              Streamline your existing outbound workflow while keeping your team in control. Boost
+              rep efficiency 3x, eliminate data entry, and orchestrate multichannel sequences from
+              one platform.
             </p>
 
             {/* Quick Stats */}
-            <motion.div 
+            <motion.div
               {...staggerContainer}
               className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-10"
             >
@@ -190,16 +203,15 @@ const SolutionsMidMarket = () => {
                 Multichannel Orchestration
               </p>
               <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
-                <GradientText gradient="cyber">
-                  One Platform, Every Channel
-                </GradientText>
+                <GradientText gradient="cyber">One Platform, Every Channel</GradientText>
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
-                See how your outreach performs across email, LinkedIn, phone, and SMS — all coordinated by Ava
+                See how your outreach performs across email, LinkedIn, phone, and SMS — all
+                coordinated by Ava
               </p>
             </div>
           </RevealText>
-          
+
           <ChannelMixChart />
         </div>
       </section>
@@ -217,9 +229,7 @@ const SolutionsMidMarket = () => {
                 Built for Growing Teams
               </p>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 font-space-grotesk">
-                <GradientText gradient="aurora">
-                  Everything You Need to Scale
-                </GradientText>
+                <GradientText gradient="aurora">Everything You Need to Scale</GradientText>
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Replace your fragmented sales stack with a unified platform that grows with you
@@ -227,25 +237,22 @@ const SolutionsMidMarket = () => {
             </div>
           </RevealText>
 
-          <motion.div 
-            {...staggerContainer}
-            className="grid md:grid-cols-2 gap-8"
-          >
+          <motion.div {...staggerContainer} className="grid md:grid-cols-2 gap-8">
             {FEATURES.map((feature, index) => {
               const Icon = feature.icon;
               return (
                 <motion.div key={index} {...staggerItem}>
                   <GlassCard variant="gradient" hover className="h-full">
                     <GlassCardContent className="p-8">
-                      <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6`}>
+                      <div
+                        className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6`}
+                      >
                         <Icon size={28} className="text-white" />
                       </div>
                       <h3 className="text-2xl font-bold text-white mb-4 font-space-grotesk">
                         {feature.title}
                       </h3>
-                      <p className="text-gray-300 leading-relaxed">
-                        {feature.description}
-                      </p>
+                      <p className="text-gray-300 leading-relaxed">{feature.description}</p>
                     </GlassCardContent>
                   </GlassCard>
                 </motion.div>
@@ -261,19 +268,17 @@ const SolutionsMidMarket = () => {
           <RevealText>
             <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
-                <GradientText gradient="cyber">
-                  Calculate Your Pipeline Growth
-                </GradientText>
+                <GradientText gradient="cyber">Calculate Your Pipeline Growth</GradientText>
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
                 See how Ava accelerates your pipeline compared to manual outbound
               </p>
             </div>
           </RevealText>
-          
-          <RoiProjectionChart 
-            defaultSeats={10} 
-            defaultAcv={35000} 
+
+          <RoiProjectionChart
+            defaultSeats={10}
+            defaultAcv={35000}
             defaultMeetings={25}
             showControls
           />
@@ -287,16 +292,14 @@ const SolutionsMidMarket = () => {
           <RevealText>
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
-                <GradientText gradient="aurora">
-                  Real Results from Real Teams
-                </GradientText>
+                <GradientText gradient="aurora">Real Results from Real Teams</GradientText>
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
                 See how midmarket companies are transforming their outbound with Ava
               </p>
             </div>
           </RevealText>
-          
+
           <CustomerImpactSparklines />
         </div>
       </section>
@@ -311,35 +314,31 @@ const SolutionsMidMarket = () => {
                 Scale Efficiently
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 font-space-grotesk">
-                <GradientText gradient="aurora">
-                  Why Midmarket Teams Choose Artisan
-                </GradientText>
+                <GradientText gradient="aurora">Why Midmarket Teams Choose Artisan</GradientText>
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Boost productivity without adding headcount. Get enterprise-grade capabilities at midmarket pricing.
+                Boost productivity without adding headcount. Get enterprise-grade capabilities at
+                midmarket pricing.
               </p>
             </div>
           </RevealText>
 
-          <motion.div 
-            {...staggerContainer}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
+          <motion.div {...staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {BENEFITS.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
                 <motion.div key={index} {...staggerItem}>
                   <GlassCard variant="default" hover glow className="h-full">
                     <GlassCardContent className="p-6">
-                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center mb-4`}>
+                      <div
+                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center mb-4`}
+                      >
                         <Icon size={24} className="text-white" />
                       </div>
                       <h3 className="text-xl font-bold text-white mb-3 font-space-grotesk">
                         {benefit.title}
                       </h3>
-                      <p className="text-gray-400 leading-relaxed">
-                        {benefit.description}
-                      </p>
+                      <p className="text-gray-400 leading-relaxed">{benefit.description}</p>
                     </GlassCardContent>
                   </GlassCard>
                 </motion.div>
@@ -353,7 +352,7 @@ const SolutionsMidMarket = () => {
       <section className="py-20 px-6 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
-        
+
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 font-space-grotesk">

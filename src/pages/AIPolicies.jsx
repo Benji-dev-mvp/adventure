@@ -36,13 +36,17 @@ const MOCK_POLICIES = [
   {
     id: 'pol-001',
     name: 'Professional Tone',
-    description: 'Ensure all AI-generated content maintains a professional, business-appropriate tone',
+    description:
+      'Ensure all AI-generated content maintains a professional, business-appropriate tone',
     category: 'tone',
     status: 'active',
     priority: 'high',
     rules: [
       { type: 'require', value: 'Use formal language in all communications' },
-      { type: 'require', value: 'Address recipients by title and last name unless instructed otherwise' },
+      {
+        type: 'require',
+        value: 'Address recipients by title and last name unless instructed otherwise',
+      },
       { type: 'avoid', value: 'Slang, colloquialisms, or overly casual language' },
     ],
     appliesTo: ['email', 'linkedin', 'chat'],
@@ -203,7 +207,7 @@ const PolicyCard = ({ policy, onEdit, onDelete }) => {
       <div className="p-4">
         <div className="flex items-start justify-between">
           <div className="flex items-start gap-4">
-            <div className={cn("p-3 rounded-xl", categoryColors[policy.category])}>
+            <div className={cn('p-3 rounded-xl', categoryColors[policy.category])}>
               <CategoryIcon className="h-5 w-5" />
             </div>
             <div>
@@ -214,13 +218,17 @@ const PolicyCard = ({ policy, onEdit, onDelete }) => {
                 </Badge>
               </div>
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{policy.description}</p>
-              
+
               <div className="flex items-center gap-3 mt-3">
                 <div className="flex items-center gap-1">
-                  {policy.appliesTo.map((channel) => {
+                  {policy.appliesTo.map(channel => {
                     const ChannelIcon = channelIcons[channel] || Mail;
                     return (
-                      <div key={channel} className="p-1 bg-gray-100 dark:bg-white/10 rounded" title={channel}>
+                      <div
+                        key={channel}
+                        className="p-1 bg-gray-100 dark:bg-white/10 rounded"
+                        title={channel}
+                      >
                         <ChannelIcon className="h-3 w-3 text-gray-500" />
                       </div>
                     );
@@ -258,14 +266,16 @@ const PolicyCard = ({ policy, onEdit, onDelete }) => {
 
         {isExpanded && (
           <div className="mt-4 pt-4 border-t border-gray-200 dark:border-white/10">
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Rules</p>
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+              Rules
+            </p>
             <div className="space-y-2">
               {policy.rules.map((rule, index) => {
                 const ruleStyle = ruleTypeStyles[rule.type];
                 const RuleIcon = ruleStyle.icon;
                 return (
                   <div key={index} className="flex items-start gap-3">
-                    <div className={cn("p-1 rounded", ruleStyle.color)}>
+                    <div className={cn('p-1 rounded', ruleStyle.color)}>
                       <RuleIcon className="h-3 w-3" />
                     </div>
                     <span className="text-sm text-gray-600 dark:text-gray-400">{rule.value}</span>
@@ -283,13 +293,13 @@ const PolicyCard = ({ policy, onEdit, onDelete }) => {
 const PreviewPanel = () => {
   const [originalText] = useState(
     "Hey! Just wanted to reach out about our AMAZING product that's guaranteed to 10x your revenue. " +
-    "Act now - this is a limited time offer! We're way better than [competitor] and risk-free to try!!!"
+      "Act now - this is a limited time offer! We're way better than [competitor] and risk-free to try!!!"
   );
-  
+
   const [correctedText] = useState(
-    "Hello, I wanted to reach out regarding our sales engagement platform that has helped similar companies " +
-    "significantly improve their outreach results. I'd be happy to share some relevant case studies and discuss " +
-    "how we might be able to support your team's goals."
+    'Hello, I wanted to reach out regarding our sales engagement platform that has helped similar companies ' +
+      "significantly improve their outreach results. I'd be happy to share some relevant case studies and discuss " +
+      "how we might be able to support your team's goals."
   );
 
   return (
@@ -302,9 +312,13 @@ const PreviewPanel = () => {
       </CardHeader>
       <CardContent className="space-y-6">
         <div>
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Original (Would be blocked)</p>
+          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+            Original (Would be blocked)
+          </p>
           <div className="p-4 bg-red-50 dark:bg-red-500/10 rounded-xl border border-red-200 dark:border-red-500/20">
-            <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{originalText}</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+              {originalText}
+            </p>
             <div className="flex flex-wrap gap-2 mt-3">
               <Badge variant="danger" size="sm">
                 <AlertTriangle className="h-3 w-3 mr-1" />
@@ -327,9 +341,13 @@ const PreviewPanel = () => {
         </div>
 
         <div>
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Corrected (Policy-compliant)</p>
+          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+            Corrected (Policy-compliant)
+          </p>
           <div className="p-4 bg-green-50 dark:bg-green-500/10 rounded-xl border border-green-200 dark:border-green-500/20">
-            <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{correctedText}</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+              {correctedText}
+            </p>
             <div className="flex items-center gap-2 mt-3">
               <Badge variant="success" size="sm">
                 <Check className="h-3 w-3 mr-1" />
@@ -364,7 +382,9 @@ const CodeEditor = ({ value, onChange }) => {
       <div className="absolute top-0 left-0 right-0 flex items-center justify-between p-2 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-white/10 rounded-t-xl">
         <div className="flex items-center gap-2">
           <Code className="h-4 w-4 text-gray-500" />
-          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">policies.json</span>
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            policies.json
+          </span>
         </div>
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="sm">
@@ -377,7 +397,7 @@ const CodeEditor = ({ value, onChange }) => {
       </div>
       <textarea
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)}
         className="w-full h-full pt-14 p-4 font-mono text-sm bg-gray-900 text-green-400 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-accent-500"
         spellCheck={false}
       />
@@ -391,9 +411,8 @@ const AIPolicies = () => {
   const [policyJson, setPolicyJson] = useState(POLICY_JSON);
   const [categoryFilter, setCategoryFilter] = useState('all');
 
-  const filteredPolicies = categoryFilter === 'all'
-    ? policies
-    : policies.filter(p => p.category === categoryFilter);
+  const filteredPolicies =
+    categoryFilter === 'all' ? policies : policies.filter(p => p.category === categoryFilter);
 
   return (
     <DashboardLayout>
@@ -427,10 +446,10 @@ const AIPolicies = () => {
             <button
               onClick={() => setActiveTab('visual')}
               className={cn(
-                "px-4 py-2 text-sm font-medium border-b-2 transition-colors",
+                'px-4 py-2 text-sm font-medium border-b-2 transition-colors',
                 activeTab === 'visual'
-                  ? "border-accent-500 text-accent-600 dark:text-accent-400"
-                  : "border-transparent text-gray-500 hover:text-gray-700"
+                  ? 'border-accent-500 text-accent-600 dark:text-accent-400'
+                  : 'border-transparent text-gray-500 hover:text-gray-700'
               )}
             >
               <Layers className="h-4 w-4 inline-block mr-2" />
@@ -439,10 +458,10 @@ const AIPolicies = () => {
             <button
               onClick={() => setActiveTab('code')}
               className={cn(
-                "px-4 py-2 text-sm font-medium border-b-2 transition-colors",
+                'px-4 py-2 text-sm font-medium border-b-2 transition-colors',
                 activeTab === 'code'
-                  ? "border-accent-500 text-accent-600 dark:text-accent-400"
-                  : "border-transparent text-gray-500 hover:text-gray-700"
+                  ? 'border-accent-500 text-accent-600 dark:text-accent-400'
+                  : 'border-transparent text-gray-500 hover:text-gray-700'
               )}
             >
               <Code className="h-4 w-4 inline-block mr-2" />
@@ -457,15 +476,15 @@ const AIPolicies = () => {
             <div className="col-span-2 space-y-4">
               {/* Filters */}
               <div className="flex items-center gap-2">
-                {['all', 'tone', 'content', 'escalation', 'compliance'].map((cat) => (
+                {['all', 'tone', 'content', 'escalation', 'compliance'].map(cat => (
                   <button
                     key={cat}
                     onClick={() => setCategoryFilter(cat)}
                     className={cn(
-                      "px-3 py-1.5 text-sm rounded-lg transition-colors capitalize",
+                      'px-3 py-1.5 text-sm rounded-lg transition-colors capitalize',
                       categoryFilter === cat
-                        ? "bg-accent-500 text-white"
-                        : "bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200"
+                        ? 'bg-accent-500 text-white'
+                        : 'bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                     )}
                   >
                     {cat}
@@ -475,12 +494,12 @@ const AIPolicies = () => {
 
               {/* Policy Cards */}
               <div className="space-y-4">
-                {filteredPolicies.map((policy) => (
+                {filteredPolicies.map(policy => (
                   <PolicyCard
                     key={policy.id}
                     policy={policy}
-                    onEdit={(p) => console.log('Edit policy:', p)}
-                    onDelete={(id) => setPolicies(prev => prev.filter(p => p.id !== id))}
+                    onEdit={p => console.log('Edit policy:', p)}
+                    onDelete={id => setPolicies(prev => prev.filter(p => p.id !== id))}
                   />
                 ))}
               </div>

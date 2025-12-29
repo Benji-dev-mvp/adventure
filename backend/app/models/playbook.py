@@ -11,10 +11,10 @@ Playbooks define automated outbound workflows:
 import json
 from datetime import datetime
 from enum import Enum
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import validator
-from sqlmodel import JSON, TEXT, Column, Field, SQLModel
+from sqlmodel import TEXT, Column, Field, SQLModel
 
 
 class PlaybookStatus(str, Enum):

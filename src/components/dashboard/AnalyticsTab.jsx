@@ -13,7 +13,7 @@ import {
   Target,
   DollarSign,
   ArrowUpRight,
-  Filter
+  Filter,
 } from 'lucide-react';
 import {
   BarChart,
@@ -28,7 +28,7 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Legend
+  Legend,
 } from 'recharts';
 
 export const AnalyticsTab = () => {
@@ -36,13 +36,69 @@ export const AnalyticsTab = () => {
 
   // Detailed performance data
   const performanceData = [
-    { date: 'Dec 20', emails: 520, opened: 416, clicked: 125, replied: 46, meetings: 8, revenue: 12000 },
-    { date: 'Dec 21', emails: 580, opened: 464, clicked: 139, replied: 52, meetings: 12, revenue: 18000 },
-    { date: 'Dec 22', emails: 650, opened: 520, clicked: 156, replied: 58, meetings: 15, revenue: 22000 },
-    { date: 'Dec 23', emails: 710, opened: 568, clicked: 170, replied: 64, meetings: 18, revenue: 28000 },
-    { date: 'Dec 24', emails: 690, opened: 552, clicked: 166, replied: 62, meetings: 16, revenue: 24000 },
-    { date: 'Dec 25', emails: 320, opened: 256, clicked: 77, replied: 29, meetings: 6, revenue: 9000 },
-    { date: 'Dec 26', emails: 280, opened: 224, clicked: 67, replied: 25, meetings: 5, revenue: 8000 }
+    {
+      date: 'Dec 20',
+      emails: 520,
+      opened: 416,
+      clicked: 125,
+      replied: 46,
+      meetings: 8,
+      revenue: 12000,
+    },
+    {
+      date: 'Dec 21',
+      emails: 580,
+      opened: 464,
+      clicked: 139,
+      replied: 52,
+      meetings: 12,
+      revenue: 18000,
+    },
+    {
+      date: 'Dec 22',
+      emails: 650,
+      opened: 520,
+      clicked: 156,
+      replied: 58,
+      meetings: 15,
+      revenue: 22000,
+    },
+    {
+      date: 'Dec 23',
+      emails: 710,
+      opened: 568,
+      clicked: 170,
+      replied: 64,
+      meetings: 18,
+      revenue: 28000,
+    },
+    {
+      date: 'Dec 24',
+      emails: 690,
+      opened: 552,
+      clicked: 166,
+      replied: 62,
+      meetings: 16,
+      revenue: 24000,
+    },
+    {
+      date: 'Dec 25',
+      emails: 320,
+      opened: 256,
+      clicked: 77,
+      replied: 29,
+      meetings: 6,
+      revenue: 9000,
+    },
+    {
+      date: 'Dec 26',
+      emails: 280,
+      opened: 224,
+      clicked: 67,
+      replied: 25,
+      meetings: 5,
+      revenue: 8000,
+    },
   ];
 
   // Engagement breakdown
@@ -50,7 +106,7 @@ export const AnalyticsTab = () => {
     { channel: 'Email', sent: 12453, opened: 9962, clicked: 2989, replied: 1046 },
     { channel: 'LinkedIn', sent: 3420, opened: 2736, clicked: 821, replied: 287 },
     { channel: 'SMS', sent: 1580, opened: 1422, clicked: 427, replied: 149 },
-    { channel: 'Calls', sent: 456, opened: 365, clicked: 0, replied: 127 }
+    { channel: 'Calls', sent: 456, opened: 365, clicked: 0, replied: 127 },
   ];
 
   // Time analysis
@@ -64,7 +120,7 @@ export const AnalyticsTab = () => {
     { hour: '2 PM', opens: 78, replies: 14 },
     { hour: '3 PM', opens: 92, replies: 18 },
     { hour: '4 PM', opens: 86, replies: 16 },
-    { hour: '5 PM', opens: 62, replies: 11 }
+    { hour: '5 PM', opens: 62, replies: 11 },
   ];
 
   // Key metrics
@@ -75,7 +131,7 @@ export const AnalyticsTab = () => {
       change: '+12.5%',
       trend: 'up',
       icon: Mail,
-      color: 'blue'
+      color: 'blue',
     },
     {
       label: 'Open Rate',
@@ -83,7 +139,7 @@ export const AnalyticsTab = () => {
       change: '+3.2%',
       trend: 'up',
       icon: MousePointerClick,
-      color: 'green'
+      color: 'green',
     },
     {
       label: 'Reply Rate',
@@ -91,7 +147,7 @@ export const AnalyticsTab = () => {
       change: '+1.8%',
       trend: 'up',
       icon: UserCheck,
-      color: 'purple'
+      color: 'purple',
     },
     {
       label: 'Conversion Rate',
@@ -99,16 +155,16 @@ export const AnalyticsTab = () => {
       change: '+0.4%',
       trend: 'up',
       icon: Target,
-      color: 'orange'
-    }
+      color: 'orange',
+    },
   ];
 
-  const getColorByName = (color) => {
+  const getColorByName = color => {
     const colors = {
       blue: 'text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/30',
       green: 'text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30',
       purple: 'text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30',
-      orange: 'text-orange-600 dark:text-orange-400 bg-orange-100 dark:bg-orange-900/30'
+      orange: 'text-orange-600 dark:text-orange-400 bg-orange-100 dark:bg-orange-900/30',
     };
     return colors[color] || colors.blue;
   };
@@ -118,12 +174,16 @@ export const AnalyticsTab = () => {
       {/* Header with Actions */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Analytics Overview</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">Deep dive into your performance metrics</p>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            Analytics Overview
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Deep dive into your performance metrics
+          </p>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 bg-gray-100 dark:bg-slate-800 rounded-lg p-1">
-            {['7d', '30d', '90d'].map((range) => (
+            {['7d', '30d', '90d'].map(range => (
               <button
                 key={range}
                 onClick={() => setTimeRange(range)}
@@ -153,14 +213,20 @@ export const AnalyticsTab = () => {
                 <div className={`p-2 rounded-lg ${getColorByName(metric.color)}`}>
                   <metric.icon size={20} />
                 </div>
-                <div className={`flex items-center gap-1 text-sm font-semibold ${
-                  metric.trend === 'up' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
-                }`}>
+                <div
+                  className={`flex items-center gap-1 text-sm font-semibold ${
+                    metric.trend === 'up'
+                      ? 'text-green-600 dark:text-green-400'
+                      : 'text-red-600 dark:text-red-400'
+                  }`}
+                >
                   {metric.trend === 'up' ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
                   {metric.change}
                 </div>
               </div>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{metric.value}</div>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+                {metric.value}
+              </div>
               <div className="text-xs text-gray-600 dark:text-gray-400">{metric.label}</div>
             </CardContent>
           </Card>
@@ -189,23 +255,14 @@ export const AnalyticsTab = () => {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#374151" opacity={0.1} />
-              <XAxis
-                dataKey="date"
-                stroke="#9ca3af"
-                fontSize={12}
-                tick={{ fill: '#9ca3af' }}
-              />
-              <YAxis
-                stroke="#9ca3af"
-                fontSize={12}
-                tick={{ fill: '#9ca3af' }}
-              />
+              <XAxis dataKey="date" stroke="#9ca3af" fontSize={12} tick={{ fill: '#9ca3af' }} />
+              <YAxis stroke="#9ca3af" fontSize={12} tick={{ fill: '#9ca3af' }} />
               <Tooltip
                 contentStyle={{
                   backgroundColor: '#1e293b',
                   border: '1px solid #334155',
                   borderRadius: '8px',
-                  color: '#fff'
+                  color: '#fff',
                 }}
               />
               <Legend />
@@ -243,13 +300,19 @@ export const AnalyticsTab = () => {
               <BarChart data={engagementData} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" opacity={0.1} />
                 <XAxis type="number" stroke="#9ca3af" fontSize={12} />
-                <YAxis dataKey="channel" type="category" stroke="#9ca3af" fontSize={12} width={80} />
+                <YAxis
+                  dataKey="channel"
+                  type="category"
+                  stroke="#9ca3af"
+                  fontSize={12}
+                  width={80}
+                />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: '#1e293b',
                     border: '1px solid #334155',
                     borderRadius: '8px',
-                    color: '#fff'
+                    color: '#fff',
                   }}
                 />
                 <Legend />
@@ -270,19 +333,14 @@ export const AnalyticsTab = () => {
             <ResponsiveContainer width="100%" height={280}>
               <LineChart data={timeAnalysisData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" opacity={0.1} />
-                <XAxis
-                  dataKey="hour"
-                  stroke="#9ca3af"
-                  fontSize={12}
-                  tick={{ fill: '#9ca3af' }}
-                />
+                <XAxis dataKey="hour" stroke="#9ca3af" fontSize={12} tick={{ fill: '#9ca3af' }} />
                 <YAxis stroke="#9ca3af" fontSize={12} tick={{ fill: '#9ca3af' }} />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: '#1e293b',
                     border: '1px solid #334155',
                     borderRadius: '8px',
-                    color: '#fff'
+                    color: '#fff',
                   }}
                 />
                 <Legend />
@@ -320,15 +378,23 @@ export const AnalyticsTab = () => {
               <ul className="space-y-2">
                 <li className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
                   <ArrowUpRight size={16} className="text-green-600 dark:text-green-400 mt-0.5" />
-                  <span><strong>Peak Performance:</strong> Tuesday at 10 AM shows 3x higher reply rates</span>
+                  <span>
+                    <strong>Peak Performance:</strong> Tuesday at 10 AM shows 3x higher reply rates
+                  </span>
                 </li>
                 <li className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
                   <ArrowUpRight size={16} className="text-green-600 dark:text-green-400 mt-0.5" />
-                  <span><strong>Best Channel:</strong> Email maintains 80% open rate, outperforming other channels</span>
+                  <span>
+                    <strong>Best Channel:</strong> Email maintains 80% open rate, outperforming
+                    other channels
+                  </span>
                 </li>
                 <li className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
                   <ArrowUpRight size={16} className="text-green-600 dark:text-green-400 mt-0.5" />
-                  <span><strong>Conversion Trend:</strong> Reply-to-meeting conversion improved by 15% this week</span>
+                  <span>
+                    <strong>Conversion Trend:</strong> Reply-to-meeting conversion improved by 15%
+                    this week
+                  </span>
                 </li>
               </ul>
             </div>

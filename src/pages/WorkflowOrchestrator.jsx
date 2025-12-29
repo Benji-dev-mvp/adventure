@@ -16,27 +16,36 @@ const WorkflowOrchestrator = () => {
   const workflows = [
     { name: 'Hot Lead Fast Track', triggers: 2, actions: 4, active: true },
     { name: 'Re-engagement Drip', triggers: 1, actions: 6, active: true },
-    { name: 'Enterprise Nurture', triggers: 3, actions: 5, active: false }
+    { name: 'Enterprise Nurture', triggers: 3, actions: 5, active: false },
   ];
 
-  const getNodeIcon = (type) => {
-    switch(type) {
-      case 'trigger': return <Zap className="w-4 h-4" />;
-      case 'condition': return <GitBranch className="w-4 h-4" />;
-      case 'action': return <Play className="w-4 h-4" />;
+  const getNodeIcon = type => {
+    switch (type) {
+      case 'trigger':
+        return <Zap className="w-4 h-4" />;
+      case 'condition':
+        return <GitBranch className="w-4 h-4" />;
+      case 'action':
+        return <Play className="w-4 h-4" />;
     }
   };
 
-  const getNodeColor = (type) => {
-    switch(type) {
-      case 'trigger': return 'bg-purple-100 border-purple-500 text-purple-700';
-      case 'condition': return 'bg-blue-100 border-blue-500 text-blue-700';
-      case 'action': return 'bg-green-100 border-green-500 text-green-700';
+  const getNodeColor = type => {
+    switch (type) {
+      case 'trigger':
+        return 'bg-purple-100 border-purple-500 text-purple-700';
+      case 'condition':
+        return 'bg-blue-100 border-blue-500 text-blue-700';
+      case 'action':
+        return 'bg-green-100 border-green-500 text-green-700';
     }
   };
 
   return (
-    <DashboardLayout title="Workflow Orchestrator" subtitle="Automate multi-step campaigns with visual workflows">
+    <DashboardLayout
+      title="Workflow Orchestrator"
+      subtitle="Automate multi-step campaigns with visual workflows"
+    >
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Canvas */}
         <Card className="lg:col-span-2">
@@ -58,7 +67,7 @@ const WorkflowOrchestrator = () => {
           <CardContent>
             <div className="relative bg-gray-50 dark:bg-gray-900 rounded-lg p-8 min-h-[500px]">
               {/* Simple visual representation */}
-              {nodes.map((node) => (
+              {nodes.map(node => (
                 <div
                   key={node.id}
                   className={`absolute border-2 rounded-lg p-3 shadow-sm ${getNodeColor(node.type)} cursor-move`}
@@ -72,10 +81,37 @@ const WorkflowOrchestrator = () => {
               ))}
 
               {/* Connection lines */}
-              <svg className="absolute inset-0 pointer-events-none" style={{ width: '100%', height: '100%' }}>
-                <line x1="50%" y1="90" x2="50%" y2="150" stroke="#9CA3AF" strokeWidth="2" strokeDasharray="5,5" />
-                <line x1="50%" y1="190" x2="35%" y2="250" stroke="#9CA3AF" strokeWidth="2" strokeDasharray="5,5" />
-                <line x1="50%" y1="190" x2="70%" y2="250" stroke="#9CA3AF" strokeWidth="2" strokeDasharray="5,5" />
+              <svg
+                className="absolute inset-0 pointer-events-none"
+                style={{ width: '100%', height: '100%' }}
+              >
+                <line
+                  x1="50%"
+                  y1="90"
+                  x2="50%"
+                  y2="150"
+                  stroke="#9CA3AF"
+                  strokeWidth="2"
+                  strokeDasharray="5,5"
+                />
+                <line
+                  x1="50%"
+                  y1="190"
+                  x2="35%"
+                  y2="250"
+                  stroke="#9CA3AF"
+                  strokeWidth="2"
+                  strokeDasharray="5,5"
+                />
+                <line
+                  x1="50%"
+                  y1="190"
+                  x2="70%"
+                  y2="250"
+                  stroke="#9CA3AF"
+                  strokeWidth="2"
+                  strokeDasharray="5,5"
+                />
               </svg>
             </div>
 
@@ -139,7 +175,10 @@ const WorkflowOrchestrator = () => {
             <CardContent>
               <div className="space-y-2">
                 {workflows.map((wf, i) => (
-                  <div key={i} className="p-3 border border-gray-200 dark:border-white/10 rounded-lg">
+                  <div
+                    key={i}
+                    className="p-3 border border-gray-200 dark:border-white/10 rounded-lg"
+                  >
                     <div className="flex justify-between items-start mb-2">
                       <p className="text-sm font-semibold">{wf.name}</p>
                       <Badge variant={wf.active ? 'success' : 'secondary'} size="sm">

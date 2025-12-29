@@ -5,11 +5,11 @@ Handles autonomous prospect research, objection handling, meeting booking, and f
 
 import random
 from datetime import datetime, timedelta
-from typing import Any, Dict, List, Optional
+from typing import List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel
-from sqlmodel import Session, select
+from sqlmodel import Session
 
 from app.core.db import get_session
 from app.core.security import get_current_user

@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
-import { Clock, Filter, Download, Search, Shield, User, Settings, Key, FileText, AlertCircle } from 'lucide-react';
+import {
+  Clock,
+  Filter,
+  Download,
+  Search,
+  Shield,
+  User,
+  Settings,
+  Key,
+  FileText,
+  AlertCircle,
+} from 'lucide-react';
 import DashboardLayout from '../components/layout/DashboardLayout';
 
 const AdminAuditLog = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('all');
-  
+
   const auditLogs = [
     {
       id: '1',
@@ -15,7 +26,7 @@ const AdminAuditLog = () => {
       resource: 'Production API Key',
       ip: '192.168.1.1',
       severity: 'info',
-      details: 'Created new API key with read/write permissions'
+      details: 'Created new API key with read/write permissions',
     },
     {
       id: '2',
@@ -25,7 +36,7 @@ const AdminAuditLog = () => {
       resource: 'sarah@company.com',
       ip: '192.168.1.5',
       severity: 'warning',
-      details: 'Changed user role from Member to Admin'
+      details: 'Changed user role from Member to Admin',
     },
     {
       id: '3',
@@ -35,7 +46,7 @@ const AdminAuditLog = () => {
       resource: 'Old Campaign Q3',
       ip: '192.168.1.1',
       severity: 'warning',
-      details: 'Permanently deleted campaign with 1,245 leads'
+      details: 'Permanently deleted campaign with 1,245 leads',
     },
     {
       id: '4',
@@ -45,7 +56,7 @@ const AdminAuditLog = () => {
       resource: 'Daily Backup',
       ip: 'internal',
       severity: 'info',
-      details: 'Automated daily backup completed successfully'
+      details: 'Automated daily backup completed successfully',
     },
     {
       id: '5',
@@ -55,7 +66,7 @@ const AdminAuditLog = () => {
       resource: 'Salesforce CRM',
       ip: '192.168.1.3',
       severity: 'info',
-      details: 'Connected Salesforce integration with OAuth 2.0'
+      details: 'Connected Salesforce integration with OAuth 2.0',
     },
     {
       id: '6',
@@ -65,20 +76,24 @@ const AdminAuditLog = () => {
       resource: 'admin@company.com',
       ip: '45.123.67.89',
       severity: 'critical',
-      details: 'Failed login attempt - invalid password (3rd attempt)'
-    }
+      details: 'Failed login attempt - invalid password (3rd attempt)',
+    },
   ];
 
-  const getSeverityColor = (severity) => {
+  const getSeverityColor = severity => {
     switch (severity) {
-      case 'critical': return 'text-red-600 bg-red-50 dark:bg-red-900/20';
-      case 'warning': return 'text-orange-600 bg-orange-50 dark:bg-orange-900/20';
-      case 'info': return 'text-blue-600 bg-blue-50 dark:bg-blue-900/20';
-      default: return 'text-gray-600 bg-gray-50 dark:bg-gray-900/20';
+      case 'critical':
+        return 'text-red-600 bg-red-50 dark:bg-red-900/20';
+      case 'warning':
+        return 'text-orange-600 bg-orange-50 dark:bg-orange-900/20';
+      case 'info':
+        return 'text-blue-600 bg-blue-50 dark:bg-blue-900/20';
+      default:
+        return 'text-gray-600 bg-gray-50 dark:bg-gray-900/20';
     }
   };
 
-  const getActionIcon = (action) => {
+  const getActionIcon = action => {
     if (action.includes('api_key')) return Key;
     if (action.includes('user')) return User;
     if (action.includes('campaign') || action.includes('backup')) return FileText;
@@ -89,7 +104,8 @@ const AdminAuditLog = () => {
 
   const filteredLogs = auditLogs.filter(log => {
     if (selectedFilter !== 'all' && log.severity !== selectedFilter) return false;
-    if (searchQuery && !JSON.stringify(log).toLowerCase().includes(searchQuery.toLowerCase())) return false;
+    if (searchQuery && !JSON.stringify(log).toLowerCase().includes(searchQuery.toLowerCase()))
+      return false;
     return true;
   });
 
@@ -104,9 +120,11 @@ const AdminAuditLog = () => {
         log.resource,
         log.ip,
         log.severity,
-        log.details
-      ])
-    ].map(row => row.join(',')).join('\n');
+        log.details,
+      ]),
+    ]
+      .map(row => row.join(','))
+      .join('\n');
 
     // Download
     const blob = new Blob([csv], { type: 'text/csv' });
@@ -138,7 +156,7 @@ const AdminAuditLog = () => {
                 <input
                   type="text"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={e => setSearchQuery(e.target.value)}
                   placeholder="Search logs..."
                   className="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
                 />
@@ -148,7 +166,7 @@ const AdminAuditLog = () => {
             {/* Severity Filter */}
             <select
               value={selectedFilter}
-              onChange={(e) => setSelectedFilter(e.target.value)}
+              onChange={e => setSelectedFilter(e.target.value)}
               className="px-4 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
             >
               <option value="all">All Severity</option>
@@ -195,10 +213,13 @@ const AdminAuditLog = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                {filteredLogs.map((log) => {
+                {filteredLogs.map(log => {
                   const ActionIcon = getActionIcon(log.action);
                   return (
-                    <tr key={log.id} className="hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors">
+                    <tr
+                      key={log.id}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+                    >
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center gap-2">
                           <Clock className="w-4 h-4 text-gray-400" />
@@ -229,12 +250,12 @@ const AdminAuditLog = () => {
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <code className="text-sm text-gray-600 dark:text-gray-400">
-                          {log.ip}
-                        </code>
+                        <code className="text-sm text-gray-600 dark:text-gray-400">{log.ip}</code>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${getSeverityColor(log.severity)}`}>
+                        <span
+                          className={`px-2 py-1 text-xs font-medium rounded-full ${getSeverityColor(log.severity)}`}
+                        >
                           {log.severity}
                         </span>
                       </td>
@@ -265,7 +286,8 @@ const AdminAuditLog = () => {
                 Audit Log Retention
               </p>
               <p className="text-xs text-blue-700 dark:text-blue-400">
-                Audit logs are retained for 90 days. For longer retention periods or compliance requirements, export logs regularly or contact support about our Enterprise plan.
+                Audit logs are retained for 90 days. For longer retention periods or compliance
+                requirements, export logs regularly or contact support about our Enterprise plan.
               </p>
             </div>
           </div>

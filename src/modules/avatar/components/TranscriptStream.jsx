@@ -16,15 +16,18 @@ const PhaseTimeline = ({ phases, currentPhase }) => {
         return (
           <React.Fragment key={phase.id}>
             <div className="flex flex-col items-center">
-              <div className={`
+              <div
+                className={`
                 w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium transition-colors
-                ${isActive 
-                  ? 'bg-cyan-500 text-white' 
-                  : isPast 
-                    ? 'bg-emerald-500/20 text-emerald-400' 
-                    : 'bg-slate-700 text-slate-400'
+                ${
+                  isActive
+                    ? 'bg-cyan-500 text-white'
+                    : isPast
+                      ? 'bg-emerald-500/20 text-emerald-400'
+                      : 'bg-slate-700 text-slate-400'
                 }
-              `}>
+              `}
+              >
                 {isPast ? '✓' : index + 1}
               </div>
               <span className={`text-xs mt-1 ${isActive ? 'text-cyan-400' : 'text-slate-500'}`}>
@@ -51,10 +54,12 @@ const TranscriptMessage = ({ message, isLatest }) => {
       animate={{ opacity: 1, y: 0 }}
       className={`flex gap-3 ${isAva ? '' : 'flex-row-reverse'}`}
     >
-      <div className={`
+      <div
+        className={`
         w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0
         ${isAva ? 'bg-cyan-500/20' : 'bg-purple-500/20'}
-      `}>
+      `}
+      >
         {isAva ? (
           <Bot className="w-4 h-4 text-cyan-400" />
         ) : (
@@ -63,19 +68,16 @@ const TranscriptMessage = ({ message, isLatest }) => {
       </div>
 
       <div className={`flex-1 max-w-[80%] ${isAva ? '' : 'text-right'}`}>
-        <div className={`
+        <div
+          className={`
           inline-block p-3 rounded-2xl
-          ${isAva 
-            ? 'bg-slate-800 rounded-tl-sm' 
-            : 'bg-purple-500/20 rounded-tr-sm'
-          }
+          ${isAva ? 'bg-slate-800 rounded-tl-sm' : 'bg-purple-500/20 rounded-tr-sm'}
           ${isLatest ? 'ring-2 ring-cyan-500/30' : ''}
-        `}>
+        `}
+        >
           <p className="text-sm text-slate-200">{message.text}</p>
         </div>
-        <p className="text-xs text-slate-500 mt-1 px-2">
-          {message.timestamp}
-        </p>
+        <p className="text-xs text-slate-500 mt-1 px-2">{message.timestamp}</p>
       </div>
     </motion.div>
   );
@@ -108,10 +110,7 @@ export function TranscriptStream({ transcript, phases, currentPhase, status }) {
         <PhaseTimeline phases={phases} currentPhase={currentPhase} />
 
         {/* Transcript messages */}
-        <div 
-          ref={scrollRef}
-          className="flex-1 overflow-y-auto space-y-4 pr-2"
-        >
+        <div ref={scrollRef} className="flex-1 overflow-y-auto space-y-4 pr-2">
           {transcript.length === 0 ? (
             <div className="h-full flex items-center justify-center text-slate-500 text-center">
               <div>
@@ -122,8 +121,8 @@ export function TranscriptStream({ transcript, phases, currentPhase, status }) {
           ) : (
             <AnimatePresence>
               {transcript.map((message, index) => (
-                <TranscriptMessage 
-                  key={message.id} 
+                <TranscriptMessage
+                  key={message.id}
                   message={message}
                   isLatest={index === transcript.length - 1}
                 />
@@ -137,7 +136,7 @@ export function TranscriptStream({ transcript, phases, currentPhase, status }) {
           <div className="pt-4 border-t border-white/5 mt-4">
             <div className="flex items-center gap-2 text-slate-500">
               <div className="flex gap-1">
-                {[1, 2, 3].map((dot) => (
+                {[1, 2, 3].map(dot => (
                   <motion.div
                     key={dot}
                     className="w-2 h-2 rounded-full bg-slate-500"

@@ -95,19 +95,19 @@ export const useCampaignStore = create<CampaignState>()(
         isBuilderOpen: false,
 
         // Actions
-        setCampaigns: (campaigns) =>
-          set((state) => {
+        setCampaigns: campaigns =>
+          set(state => {
             state.campaigns = campaigns;
           }),
 
-        addCampaign: (campaign) =>
-          set((state) => {
+        addCampaign: campaign =>
+          set(state => {
             state.campaigns.push(campaign);
           }),
 
         updateCampaign: (id, updates) =>
-          set((state) => {
-            const index = state.campaigns.findIndex((c) => c.id === id);
+          set(state => {
+            const index = state.campaigns.findIndex(c => c.id === id);
             if (index !== -1) {
               state.campaigns[index] = { ...state.campaigns[index], ...updates };
               // Update active campaign if it's the one being updated
@@ -117,34 +117,32 @@ export const useCampaignStore = create<CampaignState>()(
             }
           }),
 
-        deleteCampaign: (id) =>
-          set((state) => {
-            state.campaigns = state.campaigns.filter((c) => c.id !== id);
+        deleteCampaign: id =>
+          set(state => {
+            state.campaigns = state.campaigns.filter(c => c.id !== id);
             if (state.activeCampaign?.id === id) {
               state.activeCampaign = null;
             }
           }),
 
-        selectCampaign: (id) =>
-          set((state) => {
-            state.activeCampaign = id
-              ? state.campaigns.find((c) => c.id === id) || null
-              : null;
+        selectCampaign: id =>
+          set(state => {
+            state.activeCampaign = id ? state.campaigns.find(c => c.id === id) || null : null;
           }),
 
-        setFilters: (filters) =>
-          set((state) => {
+        setFilters: filters =>
+          set(state => {
             state.filters = { ...state.filters, ...filters };
           }),
 
         clearFilters: () =>
-          set((state) => {
+          set(state => {
             state.filters = defaultFilters;
           }),
 
         // Draft management
-        saveDraft: (draft) =>
-          set((state) => {
+        saveDraft: draft =>
+          set(state => {
             state.draft = {
               name: draft.name || state.draft?.name || '',
               objective: draft.objective || state.draft?.objective || '',
@@ -155,20 +153,20 @@ export const useCampaignStore = create<CampaignState>()(
           }),
 
         clearDraft: () =>
-          set((state) => {
+          set(state => {
             state.draft = null;
           }),
 
         restoreDraft: () => get().draft,
 
-        setBuilderOpen: (open) =>
-          set((state) => {
+        setBuilderOpen: open =>
+          set(state => {
             state.isBuilderOpen = open;
           }),
       })),
       {
         name: 'campaign-storage',
-        partialize: (state) => ({
+        partialize: state => ({
           draft: state.draft,
           filters: state.filters,
         }),
@@ -187,7 +185,7 @@ export const selectDraft = (state: CampaignState) => state.draft;
 // Derived selectors
 export const selectFilteredCampaigns = (state: CampaignState) => {
   const { campaigns, filters } = state;
-  return campaigns.filter((campaign) => {
+  return campaigns.filter(campaign => {
     if (filters.status && campaign.status !== filters.status) return false;
     if (filters.type && campaign.type !== filters.type) return false;
     if (filters.search) {
@@ -202,9 +200,9 @@ export const selectCampaignStats = (state: CampaignState) => {
   const { campaigns } = state;
   return {
     total: campaigns.length,
-    active: campaigns.filter((c) => c.status === 'active').length,
-    draft: campaigns.filter((c) => c.status === 'draft').length,
-    paused: campaigns.filter((c) => c.status === 'paused').length,
-    completed: campaigns.filter((c) => c.status === 'completed').length,
+    active: campaigns.filter(c => c.status === 'active').length,
+    draft: campaigns.filter(c => c.status === 'draft').length,
+    paused: campaigns.filter(c => c.status === 'paused').length,
+    completed: campaigns.filter(c => c.status === 'completed').length,
   };
 };

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Card, CardContent } from '../ui/Card';
 import { Badge } from '../ui/Badge';
-import { 
-  MessageSquare, 
-  Sparkles, 
-  Database, 
-  LineChart, 
-  ShieldCheck, 
+import {
+  MessageSquare,
+  Sparkles,
+  Database,
+  LineChart,
+  ShieldCheck,
   Plug,
   ArrowRight,
-  Check
+  Check,
 } from 'lucide-react';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
@@ -22,7 +22,7 @@ const iconMap = {
   Database,
   LineChart,
   ShieldCheck,
-  Plug
+  Plug,
 };
 
 /**
@@ -35,7 +35,7 @@ const FeatureGrid = ({ content }) => {
   const [expandedFeature, setExpandedFeature] = useState(null);
 
   return (
-    <section 
+    <section
       ref={ref}
       className="relative py-24 md:py-32 bg-gray-50 dark:bg-gray-900 overflow-hidden"
     >
@@ -43,7 +43,6 @@ const FeatureGrid = ({ content }) => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/5 to-transparent pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        
         {/* Header */}
         <div className="text-center mb-16 space-y-4">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary dark:text-white">
@@ -62,7 +61,9 @@ const FeatureGrid = ({ content }) => {
               feature={feature}
               index={index}
               isExpanded={expandedFeature === feature.id}
-              onToggle={() => setExpandedFeature(expandedFeature === feature.id ? null : feature.id)}
+              onToggle={() =>
+                setExpandedFeature(expandedFeature === feature.id ? null : feature.id)
+              }
               isVisible={isVisible}
             />
           ))}
@@ -90,8 +91,8 @@ const FeatureTile = ({ feature, index, isExpanded, onToggle, isVisible }) => {
   return (
     <Card
       className={`group relative overflow-hidden cursor-pointer transition-all duration-500 border-2 ${
-        isHovered 
-          ? 'border-accent shadow-2xl shadow-accent/20 scale-105 -translate-y-2' 
+        isHovered
+          ? 'border-accent shadow-2xl shadow-accent/20 scale-105 -translate-y-2'
           : 'border-gray-200 dark:border-gray-700 hover:border-accent/50'
       } ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
       style={{ transitionDelay: `${index * 0.1}s` }}
@@ -100,13 +101,14 @@ const FeatureTile = ({ feature, index, isExpanded, onToggle, isVisible }) => {
       onClick={onToggle}
     >
       <CardContent className="p-8 space-y-4">
-        
         {/* Icon */}
-        <div className={`w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 ${
-          isHovered 
-            ? 'bg-accent text-white shadow-lg scale-110' 
-            : 'bg-accent-100 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400'
-        }`}>
+        <div
+          className={`w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 ${
+            isHovered
+              ? 'bg-accent text-white shadow-lg scale-110'
+              : 'bg-accent-100 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400'
+          }`}
+        >
           <Icon className="w-7 h-7" />
         </div>
 
@@ -116,14 +118,14 @@ const FeatureTile = ({ feature, index, isExpanded, onToggle, isVisible }) => {
         </h3>
 
         {/* Preview Text */}
-        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-          {feature.preview}
-        </p>
+        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{feature.preview}</p>
 
         {/* Hover State: Show "Learn More" */}
-        <div className={`flex items-center gap-2 text-accent font-medium transition-all duration-300 ${
-          isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'
-        }`}>
+        <div
+          className={`flex items-center gap-2 text-accent font-medium transition-all duration-300 ${
+            isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'
+          }`}
+        >
           <span className="text-sm">Learn more</span>
           <ArrowRight className="w-4 h-4" />
         </div>
@@ -139,14 +141,18 @@ const FeatureTile = ({ feature, index, isExpanded, onToggle, isVisible }) => {
       </CardContent>
 
       {/* Animated Background Gradient */}
-      <div className={`absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/5 to-accent/10 transition-opacity duration-500 pointer-events-none ${
-        isHovered ? 'opacity-100' : 'opacity-0'
-      }`} />
+      <div
+        className={`absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/5 to-accent/10 transition-opacity duration-500 pointer-events-none ${
+          isHovered ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
 
       {/* Corner Accent */}
-      <div className={`absolute -top-10 -right-10 w-32 h-32 bg-accent/10 rounded-full blur-2xl transition-opacity duration-500 ${
-        isHovered ? 'opacity-100' : 'opacity-0'
-      }`} />
+      <div
+        className={`absolute -top-10 -right-10 w-32 h-32 bg-accent/10 rounded-full blur-2xl transition-opacity duration-500 ${
+          isHovered ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
     </Card>
   );
 };
@@ -160,7 +166,7 @@ const ExpandedFeatureModal = ({ feature, onClose }) => {
   return (
     <>
       {/* Backdrop */}
-      <div 
+      <div
         className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 animate-fade-in"
         onClick={onClose}
       />
@@ -169,7 +175,6 @@ const ExpandedFeatureModal = ({ feature, onClose }) => {
       <div className="fixed inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-3xl md:w-full z-50 animate-scale-in">
         <Card className="bg-white dark:bg-gray-900 shadow-2xl border-2 border-accent overflow-hidden max-h-[90vh] overflow-y-auto">
           <CardContent className="p-8 md:p-12 space-y-8">
-            
             {/* Header */}
             <div className="flex items-start gap-6">
               <div className="w-16 h-16 rounded-xl bg-accent text-white flex items-center justify-center flex-shrink-0">
@@ -183,12 +188,17 @@ const ExpandedFeatureModal = ({ feature, onClose }) => {
                   {feature.expanded.description}
                 </p>
               </div>
-              <button 
+              <button
                 onClick={onClose}
                 className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
               >
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             </div>
@@ -220,9 +230,7 @@ const ExpandedFeatureModal = ({ feature, onClose }) => {
                   <h4 className="font-semibold text-green-900 dark:text-green-100 mb-2">
                     Key Benefit
                   </h4>
-                  <p className="text-green-700 dark:text-green-300">
-                    {feature.expanded.benefit}
-                  </p>
+                  <p className="text-green-700 dark:text-green-300">{feature.expanded.benefit}</p>
                 </div>
               </div>
             </div>

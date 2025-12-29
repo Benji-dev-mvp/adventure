@@ -15,13 +15,13 @@ export const queryClient = new QueryClient({
       // Retry failed requests up to 3 times
       retry: 3,
       // Exponential backoff for retries
-      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+      retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
       // Refetch on window focus for real-time feel
       refetchOnWindowFocus: true,
       // Don't refetch on mount if data is fresh
       refetchOnMount: true,
       // Keep previous data while fetching new data
-      placeholderData: (previousData) => previousData,
+      placeholderData: previousData => previousData,
     },
     mutations: {
       // Retry mutations once
@@ -35,40 +35,40 @@ export const queryKeys = {
   // Leads
   leads: {
     all: ['leads'],
-    list: (filters) => ['leads', 'list', filters],
-    detail: (id) => ['leads', 'detail', id],
+    list: filters => ['leads', 'list', filters],
+    detail: id => ['leads', 'detail', id],
     stats: () => ['leads', 'stats'],
   },
-  
+
   // Campaigns
   campaigns: {
     all: ['campaigns'],
-    list: (filters) => ['campaigns', 'list', filters],
-    detail: (id) => ['campaigns', 'detail', id],
+    list: filters => ['campaigns', 'list', filters],
+    detail: id => ['campaigns', 'detail', id],
     stats: () => ['campaigns', 'stats'],
-    analytics: (id) => ['campaigns', 'analytics', id],
+    analytics: id => ['campaigns', 'analytics', id],
   },
-  
+
   // Dashboard
   dashboard: {
     stats: () => ['dashboard', 'stats'],
     activities: () => ['dashboard', 'activities'],
-    metrics: (period) => ['dashboard', 'metrics', period],
+    metrics: period => ['dashboard', 'metrics', period],
   },
-  
+
   // Templates
   templates: {
     all: ['templates'],
-    list: (type) => ['templates', 'list', type],
-    detail: (id) => ['templates', 'detail', id],
+    list: type => ['templates', 'list', type],
+    detail: id => ['templates', 'detail', id],
   },
-  
+
   // Integrations
   integrations: {
     all: ['integrations'],
     status: () => ['integrations', 'status'],
   },
-  
+
   // User
   user: {
     current: () => ['user', 'current'],
@@ -91,7 +91,7 @@ export const prefetchOnHover = (queryKey, queryFn) => {
 // Optimistic update helper
 export const createOptimisticUpdate = (queryKey, updateFn) => {
   return {
-    onMutate: async (newData) => {
+    onMutate: async newData => {
       // Cancel outgoing refetches
       await queryClient.cancelQueries({ queryKey });
 
@@ -99,7 +99,7 @@ export const createOptimisticUpdate = (queryKey, updateFn) => {
       const previousData = queryClient.getQueryData(queryKey);
 
       // Optimistically update
-      queryClient.setQueryData(queryKey, (old) => updateFn(old, newData));
+      queryClient.setQueryData(queryKey, old => updateFn(old, newData));
 
       // Return context with snapshot
       return { previousData };
@@ -119,7 +119,7 @@ export const createOptimisticUpdate = (queryKey, updateFn) => {
 
 // Invalidate related queries helper
 export const invalidateRelated = (...queryKeys) => {
-  queryKeys.forEach((key) => {
+  queryKeys.forEach(key => {
     queryClient.invalidateQueries({ queryKey: key });
   });
 };

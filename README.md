@@ -13,6 +13,7 @@ This repository automatically commits changes to `main` every minute! No manual 
 **Monitored Folders:** `src/`, `backend/`, `.github/`, `public/`, `docs/`
 
 **Features:**
+
 - ✅ **Auto-stages ALL changes** - New, modified, and deleted files
 - ✅ **Auto-resolves conflicts** - Keeps your changes automatically
 - ✅ **Auto-approves "keep"** - No manual intervention needed
@@ -263,112 +264,64 @@ All documentation has been organized for easy access:
 - **[Production Checklist](docs/deployment/PRODUCTION_CHECKLIST.md)** - Pre-launch checklist
 
 ## 🚀 CI/CD Pipeline
+This repository ships with automated CI/CD tailored for a deterministic, two-tier stack.
 
-This repository implements comprehensive continuous integration and deployment workflows.
+### CI (`.github/workflows/ci.yml`)
 
-### CI Workflow (`.github/workflows/ci.yml`)
+- Triggers: pull requests targeting `main` and pushes to `main`.
+- Frontend: `npm ci` → `npm run lint` → `npm run typecheck` → `npm run test:ci` → `npm run build` (artifact uploaded).
+- Backend: `pip install -r backend/requirements.txt` → `black --check` → `isort --check-only` → `flake8` → `pytest -v --cov=app`.
+- Vercel preview on PRs (optional): if `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` secrets exist, a preview deploy runs and comments the URL.
+- Required checks to protect `main`: `frontend`, `backend`, `ci-success` (the optional `vercel-preview` job is non-blocking).
 
-Runs on every pull request and push to `main`/`develop`:
+### CD (`.github/workflows/cd.yml`)
 
-**Frontend Checks:**
-
-- ✅ ESLint (zero warnings enforced)
-- ✅ TypeScript type checking
-- ✅ Vitest unit tests with coverage
-- ✅ Production build validation
-
-**Backend Checks:**
-
-- ✅ Flake8 linting (strict error mode)
-- ✅ Black formatting validation
-- ✅ isort import order checking
-- ✅ Pytest with 80% coverage requirement
-- ✅ Import smoke test
-
-**E2E Tests:**
-
-- ✅ Playwright browser tests against built artifacts
-
-**Kubernetes:**
-
-- ⚠️ Helm chart validation (informational)
-- ⚠️ K8s manifest validation with kubeval
-
-### CD Workflow (`.github/workflows/cd.yml`)
-
-Triggers on push to `main` or version tags (`v*.*.*`):
-
-**Docker Image Build & Push:**
-
-- 🐳 Backend image → `ghcr.io/<repo>/backend`
-- 🐳 Frontend image → `ghcr.io/<repo>/frontend`
-- 📦 Multi-arch support (linux/amd64)
-- ⚡ GitHub Actions cache for layer reuse
-- 🏷️ Semantic versioning tags
+- Triggers: push to `main` (and semver tags).
+- Builds and pushes GHCR images: `ghcr.io/<owner>/<repo>/backend` and `ghcr.io/<owner>/<repo>/frontend` (linux/amd64 with cache reuse).
+- Optional deploy hooks: add `VERCEL_DEPLOY_HOOK` or `RENDER_DEPLOY_HOOK` secrets to fan-out after images publish.
+- Step summary lists published tags plus commit/ref.
 
 ### Running CI Checks Locally
 
-Before pushing, verify your changes pass all CI checks:
-
 ```bash
-# Frontend checks
+# Frontend
+npm ci
 npm run lint
 npm run typecheck
 npm run test:ci
 npm run build
 
-# Backend checks
+# Backend
 cd backend
-flake8 app --count --select=E9,F63,F7,F82 --show-source --statistics
+python -m pip install --upgrade pip
+pip install -r requirements.txt
 black --check app
 isort --check-only app
+flake8 app --count --select=E9,F63,F7,F82 --show-source --statistics
 pytest -v --cov=app
 
-# E2E tests (after building)
-npm run build
+# (Optional) E2E smoke, after building frontend
+cd ..
 npm run preview &
 npm run test:e2e:ci
 ```
 
 ### Branch Protection
 
-Recommended GitHub branch protection rules for `main`:
+Recommended rules for `main`:
 
-- ✅ Require status checks: `CI Success`
-- ✅ Require branches to be up to date
-- ✅ Require pull request reviews (1+ approvers)
-- ✅ Dismiss stale reviews on new commits
-- ✅ Require linear history
+- Require status checks: `frontend`, `backend`, `ci-success`.
+- Require branches to be up to date before merging.
+- Require ≥1 approving review; dismiss stale reviews on new commits.
+- Enforce linear history.
 
-### Concurrency & Performance
+### Preview Deployments on PRs (Vercel)
 
-- **Parallel job execution**: Frontend, backend, and K8s checks run concurrently
-- **Concurrency groups**: Auto-cancel stale workflow runs on new commits
-- **Caching**: npm and pip dependencies cached per branch
-- **Docker layer caching**: GitHub Actions cache for faster image builds
-- **Timeouts**: All jobs have 10-20 minute timeouts to prevent runaway builds
+Set repository secrets `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID`. On pull requests, the `vercel-preview` job will run `vercel build`/`vercel deploy --prebuilt` and comment a preview URL. Provide `VERCEL_DEPLOY_HOOK` if you also want CD to ping Vercel after main merges.
 
-### Troubleshooting CI Failures
+### Codespaces Auto-Sync
 
-**Frontend lint fails:**
-
-```bash
-npm run lint:fix  # Auto-fix ESLint issues
-```
-
-**Backend formatting fails:**
-
-```bash
-cd backend
-black app        # Auto-format with black
-isort app        # Auto-sort imports
-```
-
-**Tests fail:**
-
-- Check that you're using the correct Node/Python versions
-- Clear caches: `npm ci` (frontend) or `pip install --force-reinstall -r requirements.txt` (backend)
-- Run tests locally with same environment variables as CI
+The devcontainer `postStartCommand` now auto-pulls `main` (when on `main` with a clean tree) and installs frontend plus backend dependencies to keep Codespaces aligned with the default branch.
 
 ## Project Structure
 

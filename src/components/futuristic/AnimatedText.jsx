@@ -64,7 +64,7 @@ TypewriterText.propTypes = {
   cursor: PropTypes.bool,
   cursorChar: PropTypes.string,
   className: PropTypes.string,
-  as: PropTypes.elementType
+  as: PropTypes.elementType,
 };
 
 /**
@@ -111,7 +111,7 @@ GradientText.propTypes = {
   gradient: PropTypes.oneOf(['cyber', 'aurora', 'sunset', 'ocean', 'gold', 'neon']),
   animate: PropTypes.bool,
   className: PropTypes.string,
-  as: PropTypes.elementType
+  as: PropTypes.elementType,
 };
 
 /**
@@ -173,7 +173,7 @@ GlowText.propTypes = {
   intensity: PropTypes.number,
   pulse: PropTypes.bool,
   className: PropTypes.string,
-  as: PropTypes.elementType
+  as: PropTypes.elementType,
 };
 
 /**
@@ -248,7 +248,7 @@ RevealText.propTypes = {
   delay: PropTypes.number,
   duration: PropTypes.number,
   className: PropTypes.string,
-  as: PropTypes.elementType
+  as: PropTypes.elementType,
 };
 
 /**
@@ -308,7 +308,7 @@ SplitText.propTypes = {
   delay: PropTypes.number,
   className: PropTypes.string,
   wordClassName: PropTypes.string,
-  as: PropTypes.elementType
+  as: PropTypes.elementType,
 };
 
 /**
@@ -357,7 +357,7 @@ CountUpText.propTypes = {
   prefix: PropTypes.string,
   suffix: PropTypes.string,
   className: PropTypes.string,
-  as: PropTypes.elementType
+  as: PropTypes.elementType,
 };
 
 /**
@@ -410,7 +410,7 @@ HighlightText.propTypes = {
   color: PropTypes.oneOf(['cyan', 'purple', 'pink', 'yellow']),
   active: PropTypes.bool,
   className: PropTypes.string,
-  as: PropTypes.elementType
+  as: PropTypes.elementType,
 };
 
 /**
@@ -458,7 +458,7 @@ HeadingWithLine.propTypes = {
   children: PropTypes.node.isRequired,
   lineColor: PropTypes.oneOf(['gradient', 'cyan', 'purple', 'white']),
   className: PropTypes.string,
-  as: PropTypes.elementType
+  as: PropTypes.elementType,
 };
 
 export default {

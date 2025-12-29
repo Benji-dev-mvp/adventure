@@ -8,7 +8,7 @@ import logging
 import time
 from collections import defaultdict, deque
 from contextlib import asynccontextmanager
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import Any, Callable, Dict, List, Optional
 
 import psutil
@@ -262,7 +262,7 @@ class PerformanceMiddleware(BaseHTTPMiddleware):
 
             return response
 
-        except Exception as e:
+        except Exception:
             duration = time.time() - start_time
             self.monitor.record_request(
                 endpoint=request.url.path,

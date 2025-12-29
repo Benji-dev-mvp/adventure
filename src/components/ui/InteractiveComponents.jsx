@@ -7,23 +7,23 @@ import { X, Bell, Check, AlertCircle, Info, AlertTriangle, CheckCircle } from 'l
  */
 
 // Responsive Modal/Dialog
-export const ResponsiveModal = ({ 
-  isOpen, 
-  onClose, 
-  title, 
+export const ResponsiveModal = ({
+  isOpen,
+  onClose,
+  title,
   description,
   size = 'md',
   children,
   footer,
   closeOnOverlay = true,
-  className 
+  className,
 }) => {
   const sizes = {
     sm: 'max-w-sm',
     md: 'max-w-md',
     lg: 'max-w-2xl',
     xl: 'max-w-4xl',
-    full: 'max-w-7xl'
+    full: 'max-w-7xl',
   };
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export const ResponsiveModal = ({
             'transform transition-all',
             className
           )}
-          onClick={(e) => e.stopPropagation()}
+          onClick={e => e.stopPropagation()}
         >
           {/* Header */}
           <div className="flex items-start justify-between p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
@@ -67,9 +67,7 @@ export const ResponsiveModal = ({
                 {title}
               </h2>
               {description && (
-                <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                  {description}
-                </p>
+                <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{description}</p>
               )}
             </div>
             <button
@@ -81,9 +79,7 @@ export const ResponsiveModal = ({
           </div>
 
           {/* Content */}
-          <div className="p-4 sm:p-6 max-h-[60vh] overflow-y-auto">
-            {children}
-          </div>
+          <div className="p-4 sm:p-6 max-h-[60vh] overflow-y-auto">{children}</div>
 
           {/* Footer */}
           {footer && (
@@ -98,35 +94,36 @@ export const ResponsiveModal = ({
 };
 
 // Drawer / Side Panel
-export const Drawer = ({ 
-  isOpen, 
-  onClose, 
-  position = 'right', 
+export const Drawer = ({
+  isOpen,
+  onClose,
+  position = 'right',
   size = 'md',
   title,
   children,
   footer,
-  className 
+  className,
 }) => {
   const positions = {
     left: 'left-0 top-0 bottom-0',
     right: 'right-0 top-0 bottom-0',
     top: 'top-0 left-0 right-0',
-    bottom: 'bottom-0 left-0 right-0'
+    bottom: 'bottom-0 left-0 right-0',
   };
 
   const transforms = {
     left: isOpen ? 'translate-x-0' : '-translate-x-full',
     right: isOpen ? 'translate-x-0' : 'translate-x-full',
     top: isOpen ? 'translate-y-0' : '-translate-y-full',
-    bottom: isOpen ? 'translate-y-0' : 'translate-y-full'
+    bottom: isOpen ? 'translate-y-0' : 'translate-y-full',
   };
 
   const sizes = {
     sm: position === 'left' || position === 'right' ? 'w-80' : 'h-80',
     md: position === 'left' || position === 'right' ? 'w-96' : 'h-96',
     lg: position === 'left' || position === 'right' ? 'w-[32rem]' : 'h-[32rem]',
-    full: position === 'left' || position === 'right' ? 'w-full sm:w-[600px]' : 'h-full sm:h-[600px]'
+    full:
+      position === 'left' || position === 'right' ? 'w-full sm:w-[600px]' : 'h-full sm:h-[600px]',
   };
 
   useEffect(() => {
@@ -177,9 +174,7 @@ export const Drawer = ({
         </div>
 
         {/* Content */}
-        <div className="p-4 sm:p-6 overflow-y-auto h-[calc(100%-140px)]">
-          {children}
-        </div>
+        <div className="p-4 sm:p-6 overflow-y-auto h-[calc(100%-140px)]">{children}</div>
 
         {/* Footer */}
         {footer && (
@@ -193,14 +188,14 @@ export const Drawer = ({
 };
 
 // Notification Toast
-export const NotificationToast = ({ 
-  type = 'info', 
-  title, 
-  message, 
+export const NotificationToast = ({
+  type = 'info',
+  title,
+  message,
   duration = 5000,
   onClose,
   action,
-  position = 'top-right'
+  position = 'top-right',
 }) => {
   const [isVisible, setIsVisible] = useState(true);
 
@@ -219,23 +214,23 @@ export const NotificationToast = ({
     info: {
       icon: Info,
       color: 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
-      iconColor: 'text-blue-600 dark:text-blue-400'
+      iconColor: 'text-blue-600 dark:text-blue-400',
     },
     success: {
       icon: CheckCircle,
       color: 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800',
-      iconColor: 'text-green-600 dark:text-green-400'
+      iconColor: 'text-green-600 dark:text-green-400',
     },
     warning: {
       icon: AlertTriangle,
       color: 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800',
-      iconColor: 'text-yellow-600 dark:text-yellow-400'
+      iconColor: 'text-yellow-600 dark:text-yellow-400',
     },
     error: {
       icon: AlertCircle,
       color: 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800',
-      iconColor: 'text-red-600 dark:text-red-400'
-    }
+      iconColor: 'text-red-600 dark:text-red-400',
+    },
   };
 
   const positions = {
@@ -244,7 +239,7 @@ export const NotificationToast = ({
     'top-center': 'top-4 left-1/2 -translate-x-1/2',
     'bottom-left': 'bottom-4 left-4',
     'bottom-right': 'bottom-4 right-4',
-    'bottom-center': 'bottom-4 left-1/2 -translate-x-1/2'
+    'bottom-center': 'bottom-4 left-1/2 -translate-x-1/2',
   };
 
   const Icon = types[type].icon;
@@ -258,25 +253,14 @@ export const NotificationToast = ({
         isVisible ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
       )}
     >
-      <div
-        className={cn(
-          'flex gap-3 p-4 rounded-xl border shadow-lg',
-          types[type].color
-        )}
-      >
+      <div className={cn('flex gap-3 p-4 rounded-xl border shadow-lg', types[type].color)}>
         <div className="flex-shrink-0">
           <Icon size={20} className={types[type].iconColor} />
         </div>
-        
+
         <div className="flex-1 min-w-0">
-          <h4 className="text-sm font-semibold text-gray-900 dark:text-white">
-            {title}
-          </h4>
-          {message && (
-            <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
-              {message}
-            </p>
-          )}
+          <h4 className="text-sm font-semibold text-gray-900 dark:text-white">{title}</h4>
+          {message && <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{message}</p>}
           {action && (
             <button
               onClick={action.onClick}
@@ -302,14 +286,14 @@ export const NotificationToast = ({
 };
 
 // Alert Banner
-export const AlertBanner = ({ 
-  type = 'info', 
-  title, 
-  message, 
+export const AlertBanner = ({
+  type = 'info',
+  title,
+  message,
   dismissible = true,
   onDismiss,
   action,
-  className 
+  className,
 }) => {
   const [isVisible, setIsVisible] = useState(true);
 
@@ -318,20 +302,24 @@ export const AlertBanner = ({
   const types = {
     info: {
       icon: Info,
-      color: 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-900 dark:text-blue-100'
+      color:
+        'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-900 dark:text-blue-100',
     },
     success: {
       icon: CheckCircle,
-      color: 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-900 dark:text-green-100'
+      color:
+        'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-900 dark:text-green-100',
     },
     warning: {
       icon: AlertTriangle,
-      color: 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800 text-yellow-900 dark:text-yellow-100'
+      color:
+        'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800 text-yellow-900 dark:text-yellow-100',
     },
     error: {
       icon: AlertCircle,
-      color: 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-900 dark:text-red-100'
-    }
+      color:
+        'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-900 dark:text-red-100',
+    },
   };
 
   const Icon = types[type].icon;
@@ -343,25 +331,15 @@ export const AlertBanner = ({
 
   return (
     <div
-      className={cn(
-        'flex items-start gap-3 p-4 rounded-lg border',
-        types[type].color,
-        className
-      )}
+      className={cn('flex items-start gap-3 p-4 rounded-lg border', types[type].color, className)}
     >
       <div className="flex-shrink-0 mt-0.5">
         <Icon size={20} />
       </div>
-      
+
       <div className="flex-1 min-w-0">
-        <h4 className="text-sm font-semibold">
-          {title}
-        </h4>
-        {message && (
-          <p className="mt-1 text-sm opacity-90">
-            {message}
-          </p>
-        )}
+        <h4 className="text-sm font-semibold">{title}</h4>
+        {message && <p className="mt-1 text-sm opacity-90">{message}</p>}
         {action && (
           <button
             onClick={action.onClick}
@@ -407,16 +385,11 @@ export const NotificationCenter = ({ notifications = [], onMarkAsRead, onClear }
       {/* Dropdown */}
       {isOpen && (
         <>
-          <div
-            className="fixed inset-0 z-10"
-            onClick={() => setIsOpen(false)}
-          />
+          <div className="fixed inset-0 z-10" onClick={() => setIsOpen(false)} />
           <div className="absolute right-0 mt-2 w-80 sm:w-96 max-h-[80vh] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl z-20 overflow-hidden">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                Notifications
-              </h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Notifications</h3>
               {notifications.length > 0 && (
                 <button
                   onClick={onClear}

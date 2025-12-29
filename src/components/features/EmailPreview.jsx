@@ -5,9 +5,9 @@ import { Badge } from '../ui/Badge';
 import { Mail, Eye } from 'lucide-react';
 
 export const EmailPreview = ({ subject, content, variables = [] }) => {
-  const renderContentWithVariables = (text) => {
+  const renderContentWithVariables = text => {
     if (!text) return '';
-    
+
     return text.split(/(\{\{.*?\}\})/g).map((part, index) => {
       if (part.startsWith('{{') && part.endsWith('}}')) {
         return (
@@ -42,7 +42,7 @@ export const EmailPreview = ({ subject, content, variables = [] }) => {
             </div>
             <div className="text-sm text-gray-600 mb-2">
               <span className="font-medium">To:</span>
-              <span className="ml-2 text-accent-600">{{email}}</span>
+              <span className="ml-2 text-accent-600">{{ email }}</span>
             </div>
             <div className="text-sm">
               <span className="font-medium text-gray-600">Subject:</span>
@@ -63,9 +63,7 @@ export const EmailPreview = ({ subject, content, variables = [] }) => {
         {/* Variables Guide */}
         {variables.length > 0 && (
           <div className="mt-4 p-4 bg-accent-50 rounded-lg">
-            <h4 className="text-sm font-semibold text-gray-900 mb-2">
-              Available Variables:
-            </h4>
+            <h4 className="text-sm font-semibold text-gray-900 mb-2">Available Variables:</h4>
             <div className="flex flex-wrap gap-2">
               {variables.map((variable, index) => (
                 <Badge key={index} variant="outline" className="text-xs">

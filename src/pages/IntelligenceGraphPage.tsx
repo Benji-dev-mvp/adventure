@@ -7,7 +7,9 @@ import { Loader2 } from 'lucide-react';
  * Account and contact relationship visualization
  */
 
-const IntelligenceGraph = lazy(() => import('@/ai/brain/IntelligenceGraph').then(m => ({ default: m.IntelligenceGraph })));
+const IntelligenceGraph = lazy(() =>
+  import('@/ai/brain/IntelligenceGraph').then(m => ({ default: m.IntelligenceGraph }))
+);
 
 const PageLoader = () => (
   <div className="h-screen w-full flex items-center justify-center bg-gray-950">

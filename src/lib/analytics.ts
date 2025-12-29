@@ -45,7 +45,7 @@ export interface AnalyticsEventData {
   timestamp?: number;
   sessionId?: string;
   userId?: string;
-  
+
   // Event-specific properties
   [key: string]: unknown;
 }
@@ -98,13 +98,13 @@ function getSessionId(): string {
  */
 export function initializeAnalytics(options: Partial<AnalyticsConfig> = {}): void {
   config = { ...config, ...options };
-  
+
   if (config.debug) {
     console.log('[Analytics] Initialized with config:', config);
   }
 
   // Initialize all providers
-  config.providers.forEach((provider) => {
+  config.providers.forEach(provider => {
     try {
       provider.initialize({});
     } catch (error) {
@@ -118,14 +118,14 @@ export function initializeAnalytics(options: Partial<AnalyticsConfig> = {}): voi
  */
 export function identify(userId: string, traits?: Record<string, unknown>): void {
   if (!config.enabled) return;
-  
+
   currentUserId = userId;
 
   if (config.debug) {
     console.log('[Analytics] Identify:', userId, traits);
   }
 
-  config.providers.forEach((provider) => {
+  config.providers.forEach(provider => {
     try {
       provider.identify(userId, traits);
     } catch (error) {
@@ -151,7 +151,7 @@ export function track(event: AnalyticsEvent | string, properties?: AnalyticsEven
     console.log('[Analytics] Track:', event, enrichedProperties);
   }
 
-  config.providers.forEach((provider) => {
+  config.providers.forEach(provider => {
     try {
       provider.track(event, enrichedProperties);
     } catch (error) {
@@ -180,7 +180,7 @@ export function page(name?: string, properties?: Record<string, unknown>): void 
     console.log('[Analytics] Page:', name || window.location.pathname, enrichedProperties);
   }
 
-  config.providers.forEach((provider) => {
+  config.providers.forEach(provider => {
     try {
       provider.page(name, enrichedProperties);
     } catch (error) {
@@ -200,7 +200,7 @@ export function reset(): void {
     console.log('[Analytics] Reset');
   }
 
-  config.providers.forEach((provider) => {
+  config.providers.forEach(provider => {
     try {
       provider.reset();
     } catch (error) {
@@ -283,23 +283,16 @@ export function useAnalytics() {
 export const trackCampaign = {
   created: (campaignId: string, name: string, type: string) =>
     track('campaign_created', { campaignId, name, type }),
-  launched: (campaignId: string) =>
-    track('campaign_launched', { campaignId }),
-  paused: (campaignId: string) =>
-    track('campaign_paused', { campaignId }),
-  completed: (campaignId: string) =>
-    track('campaign_completed', { campaignId }),
+  launched: (campaignId: string) => track('campaign_launched', { campaignId }),
+  paused: (campaignId: string) => track('campaign_paused', { campaignId }),
+  completed: (campaignId: string) => track('campaign_completed', { campaignId }),
 };
 
 export const trackLead = {
-  created: (leadId: string, source: string) =>
-    track('lead_created', { leadId, source }),
-  updated: (leadId: string, fields: string[]) =>
-    track('lead_updated', { leadId, fields }),
-  enriched: (leadId: string, provider: string) =>
-    track('lead_enriched', { leadId, provider }),
-  scored: (leadId: string, score: number) =>
-    track('lead_scored', { leadId, score }),
+  created: (leadId: string, source: string) => track('lead_created', { leadId, source }),
+  updated: (leadId: string, fields: string[]) => track('lead_updated', { leadId, fields }),
+  enriched: (leadId: string, provider: string) => track('lead_enriched', { leadId, provider }),
+  scored: (leadId: string, score: number) => track('lead_scored', { leadId, score }),
 };
 
 export const trackAI = {

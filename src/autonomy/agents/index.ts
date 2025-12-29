@@ -20,12 +20,4 @@ export { RevOpsAgent } from './RevOpsAgent';
 export { Orchestrator, orchestrator } from './Orchestrator';
 
 // Convenience re-exports
-export type {
-  Agent,
-  AgentRole,
-  Task,
-  TaskType,
-  TaskBid,
-  AgentMessage,
-  Pipeline,
-} from './types';
+export type { Agent, AgentRole, Task, TaskType, TaskBid, AgentMessage, Pipeline } from './types';

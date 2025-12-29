@@ -1,11 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Users, Download, TrendingUp, Clock, Target, BarChart3, CheckCircle2 } from 'lucide-react';
+import {
+  ArrowRight,
+  Users,
+  Download,
+  TrendingUp,
+  Clock,
+  Target,
+  BarChart3,
+  CheckCircle2,
+} from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import ResultsShowcase from '../components/features/ResultsShowcase';
 import CustomerShowcase from '../components/features/CustomerShowcase';
 import TestimonialsSection from '../components/features/TestimonialsSection';
-import { 
+import {
   GlassCard,
   GlassCardContent,
   GradientText,
@@ -41,7 +50,8 @@ const CASE_STUDIES = [
       { metric: 'Cost per Meeting', value: '-65%', icon: BarChart3 },
       { metric: 'Rep Productivity', value: '+4x', icon: TrendingUp },
     ],
-    quote: 'We replaced 5 tools with Artisan and our SDRs now focus on closing instead of prospecting.',
+    quote:
+      'We replaced 5 tools with Artisan and our SDRs now focus on closing instead of prospecting.',
     author: 'Michael Roberts',
     role: 'Head of Revenue',
   },
@@ -55,7 +65,8 @@ const CASE_STUDIES = [
       { metric: 'Win Rate', value: '+34%', icon: Target },
       { metric: 'Annual Savings', value: '$2.4M', icon: BarChart3 },
     ],
-    quote: 'The enterprise security features and audit trails made approval from our CISO straightforward.',
+    quote:
+      'The enterprise security features and audit trails made approval from our CISO straightforward.',
     author: 'Jennifer Walsh',
     role: 'CRO',
   },
@@ -75,7 +86,7 @@ const CustomersPage = () => {
       <section className="py-20 px-6 relative overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-violet-900/20 to-transparent" />
-        
+
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/20 border border-violet-500/30 mb-6">
@@ -83,7 +94,7 @@ const CustomersPage = () => {
               <span className="text-sm text-violet-300">Customer Success Stories</span>
             </div>
           </RevealText>
-          
+
           <RevealText delay={100}>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 font-space-grotesk">
               <GradientText gradient="aurora" animate>
@@ -91,14 +102,14 @@ const CustomersPage = () => {
               </GradientText>
             </h1>
           </RevealText>
-          
+
           <RevealText delay={200}>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              See how sales teams like yours are using Ava to 
-              3x their pipeline and book more meetings.
+              See how sales teams like yours are using Ava to 3x their pipeline and book more
+              meetings.
             </p>
           </RevealText>
-          
+
           <RevealText delay={300}>
             <div className="flex flex-wrap justify-center gap-4">
               <a href="#case-studies">
@@ -127,7 +138,9 @@ const CustomersPage = () => {
                 <GlassCard variant="default" hover glow glowColor="purple" className="text-center">
                   <GlassCardContent className="p-6">
                     <div className="text-4xl font-bold mb-2 font-space-grotesk">
-                      <GradientText gradient="aurora" animate>{stat.value}</GradientText>
+                      <GradientText gradient="aurora" animate>
+                        {stat.value}
+                      </GradientText>
                     </div>
                     <div className="text-gray-400">{stat.label}</div>
                   </GlassCardContent>
@@ -144,7 +157,7 @@ const CustomersPage = () => {
       {/* Case Studies */}
       <section id="case-studies" className="py-20 px-6 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
-        
+
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
@@ -173,7 +186,9 @@ const CustomersPage = () => {
                             <h3 className="text-2xl font-bold text-white font-space-grotesk">
                               {study.company}
                             </h3>
-                            <p className="text-gray-400 text-sm">{study.industry} • {study.size}</p>
+                            <p className="text-gray-400 text-sm">
+                              {study.industry} • {study.size}
+                            </p>
                           </div>
                         </div>
                         <blockquote className="text-gray-300 italic mb-4">
@@ -196,7 +211,7 @@ const CustomersPage = () => {
                           Key Results
                         </h4>
                         <div className="grid md:grid-cols-3 gap-6">
-                          {study.results.map((result) => {
+                          {study.results.map(result => {
                             const Icon = result.icon;
                             return (
                               <div key={result.metric} className="text-center">
@@ -238,13 +253,11 @@ const CustomersPage = () => {
       {/* CTA */}
       <section className="py-20 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
-        
+
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 font-space-grotesk">
-              <GradientText gradient="aurora">
-                Ready to Join These Success Stories?
-              </GradientText>
+              <GradientText gradient="aurora">Ready to Join These Success Stories?</GradientText>
             </h2>
             <p className="text-xl text-gray-300 mb-8">
               Start your free trial and see results within the first week

@@ -45,15 +45,105 @@ interface MockRelationship {
  */
 
 const mockStakeholders = [
-  { id: 'sh-1', name: 'Sarah Chen', title: 'CEO', role: 'decision_maker', influence: 95, sentiment: 'neutral', x: 400, y: 100, level: 1 },
-  { id: 'sh-2', name: 'Mike Johnson', title: 'CRO', role: 'champion', influence: 88, sentiment: 'positive', x: 250, y: 200, level: 2 },
-  { id: 'sh-3', name: 'Lisa Wang', title: 'CFO', role: 'blocker', influence: 82, sentiment: 'negative', x: 550, y: 200, level: 2 },
-  { id: 'sh-4', name: 'James Miller', title: 'VP Sales', role: 'influencer', influence: 75, sentiment: 'positive', x: 150, y: 320, level: 3 },
-  { id: 'sh-5', name: 'Emily Davis', title: 'VP Marketing', role: 'influencer', influence: 70, sentiment: 'neutral', x: 350, y: 320, level: 3 },
-  { id: 'sh-6', name: 'Robert Wilson', title: 'VP Ops', role: 'end_user', influence: 65, sentiment: 'neutral', x: 500, y: 320, level: 3 },
-  { id: 'sh-7', name: 'Amanda Brown', title: 'Director BDR', role: 'end_user', influence: 55, sentiment: 'positive', x: 100, y: 440, level: 4 },
-  { id: 'sh-8', name: 'David Lee', title: 'Sales Manager', role: 'end_user', influence: 50, sentiment: 'positive', x: 250, y: 440, level: 4 },
-  { id: 'sh-9', name: 'Jennifer Taylor', title: 'Marketing Manager', role: 'evaluator', influence: 45, sentiment: 'neutral', x: 400, y: 440, level: 4 },
+  {
+    id: 'sh-1',
+    name: 'Sarah Chen',
+    title: 'CEO',
+    role: 'decision_maker',
+    influence: 95,
+    sentiment: 'neutral',
+    x: 400,
+    y: 100,
+    level: 1,
+  },
+  {
+    id: 'sh-2',
+    name: 'Mike Johnson',
+    title: 'CRO',
+    role: 'champion',
+    influence: 88,
+    sentiment: 'positive',
+    x: 250,
+    y: 200,
+    level: 2,
+  },
+  {
+    id: 'sh-3',
+    name: 'Lisa Wang',
+    title: 'CFO',
+    role: 'blocker',
+    influence: 82,
+    sentiment: 'negative',
+    x: 550,
+    y: 200,
+    level: 2,
+  },
+  {
+    id: 'sh-4',
+    name: 'James Miller',
+    title: 'VP Sales',
+    role: 'influencer',
+    influence: 75,
+    sentiment: 'positive',
+    x: 150,
+    y: 320,
+    level: 3,
+  },
+  {
+    id: 'sh-5',
+    name: 'Emily Davis',
+    title: 'VP Marketing',
+    role: 'influencer',
+    influence: 70,
+    sentiment: 'neutral',
+    x: 350,
+    y: 320,
+    level: 3,
+  },
+  {
+    id: 'sh-6',
+    name: 'Robert Wilson',
+    title: 'VP Ops',
+    role: 'end_user',
+    influence: 65,
+    sentiment: 'neutral',
+    x: 500,
+    y: 320,
+    level: 3,
+  },
+  {
+    id: 'sh-7',
+    name: 'Amanda Brown',
+    title: 'Director BDR',
+    role: 'end_user',
+    influence: 55,
+    sentiment: 'positive',
+    x: 100,
+    y: 440,
+    level: 4,
+  },
+  {
+    id: 'sh-8',
+    name: 'David Lee',
+    title: 'Sales Manager',
+    role: 'end_user',
+    influence: 50,
+    sentiment: 'positive',
+    x: 250,
+    y: 440,
+    level: 4,
+  },
+  {
+    id: 'sh-9',
+    name: 'Jennifer Taylor',
+    title: 'Marketing Manager',
+    role: 'evaluator',
+    influence: 45,
+    sentiment: 'neutral',
+    x: 400,
+    y: 440,
+    level: 4,
+  },
 ];
 
 interface MockRelationship {
@@ -97,37 +187,56 @@ const InfluenceMap = () => {
 
   const getRoleIcon = (role: string): LucideIcon => {
     switch (role) {
-      case 'decision_maker': return Crown;
-      case 'champion': return UserCheck;
-      case 'blocker': return UserX;
-      case 'influencer': return TrendingUp;
-      case 'end_user': return Users;
-      case 'evaluator': return Target;
-      default: return Users;
+      case 'decision_maker':
+        return Crown;
+      case 'champion':
+        return UserCheck;
+      case 'blocker':
+        return UserX;
+      case 'influencer':
+        return TrendingUp;
+      case 'end_user':
+        return Users;
+      case 'evaluator':
+        return Target;
+      default:
+        return Users;
     }
   };
 
   const getRoleColor = (role: string): { bg: string; border: string; text: string } => {
     switch (role) {
-      case 'decision_maker': return { bg: 'bg-amber-500/20', border: 'border-amber-500', text: 'text-amber-400' };
-      case 'champion': return { bg: 'bg-green-500/20', border: 'border-green-500', text: 'text-green-400' };
-      case 'blocker': return { bg: 'bg-red-500/20', border: 'border-red-500', text: 'text-red-400' };
-      case 'influencer': return { bg: 'bg-blue-500/20', border: 'border-blue-500', text: 'text-blue-400' };
-      case 'end_user': return { bg: 'bg-violet-500/20', border: 'border-violet-500', text: 'text-violet-400' };
-      case 'evaluator': return { bg: 'bg-cyan-500/20', border: 'border-cyan-500', text: 'text-cyan-400' };
-      default: return { bg: 'bg-gray-500/20', border: 'border-gray-500', text: 'text-gray-400' };
+      case 'decision_maker':
+        return { bg: 'bg-amber-500/20', border: 'border-amber-500', text: 'text-amber-400' };
+      case 'champion':
+        return { bg: 'bg-green-500/20', border: 'border-green-500', text: 'text-green-400' };
+      case 'blocker':
+        return { bg: 'bg-red-500/20', border: 'border-red-500', text: 'text-red-400' };
+      case 'influencer':
+        return { bg: 'bg-blue-500/20', border: 'border-blue-500', text: 'text-blue-400' };
+      case 'end_user':
+        return { bg: 'bg-violet-500/20', border: 'border-violet-500', text: 'text-violet-400' };
+      case 'evaluator':
+        return { bg: 'bg-cyan-500/20', border: 'border-cyan-500', text: 'text-cyan-400' };
+      default:
+        return { bg: 'bg-gray-500/20', border: 'border-gray-500', text: 'text-gray-400' };
     }
   };
 
   const getSentimentIcon = (sentiment: string): { icon: LucideIcon; color: string } => {
     switch (sentiment) {
-      case 'positive': return { icon: UserCheck, color: 'text-green-400' };
-      case 'negative': return { icon: AlertTriangle, color: 'text-red-400' };
-      default: return { icon: Minus, color: 'text-gray-400' };
+      case 'positive':
+        return { icon: UserCheck, color: 'text-green-400' };
+      case 'negative':
+        return { icon: AlertTriangle, color: 'text-red-400' };
+      default:
+        return { icon: Minus, color: 'text-gray-400' };
     }
   };
 
-  const getRelationshipStyle = (rel: MockRelationship): { strokeWidth: number; dash: string; color: string } => {
+  const getRelationshipStyle = (
+    rel: MockRelationship
+  ): { strokeWidth: number; dash: string; color: string } => {
     const strengthWidth: Record<string, number> = {
       strong: 3,
       moderate: 2,
@@ -200,7 +309,12 @@ const InfluenceMap = () => {
           {/* Grid */}
           <defs>
             <pattern id="influence-grid" width="50" height="50" patternUnits="userSpaceOnUse">
-              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.02)" strokeWidth="1" />
+              <path
+                d="M 50 0 L 0 0 0 50"
+                fill="none"
+                stroke="rgba(255,255,255,0.02)"
+                strokeWidth="1"
+              />
             </pattern>
             <marker
               id="arrowhead"
@@ -227,11 +341,7 @@ const InfluenceMap = () => {
                 strokeWidth="1"
                 strokeDasharray="5,5"
               />
-              <text
-                x="30"
-                y={level * 120}
-                className="text-[10px] fill-gray-600"
-              >
+              <text x="30" y={level * 120} className="text-[10px] fill-gray-600">
                 L{level}
               </text>
             </g>
@@ -244,8 +354,8 @@ const InfluenceMap = () => {
             if (!from || !to) return null;
 
             const style = getRelationshipStyle(rel);
-            const isHighlighted = !highlightedRole || 
-              (from.role === highlightedRole || to.role === highlightedRole);
+            const isHighlighted =
+              !highlightedRole || from.role === highlightedRole || to.role === highlightedRole;
 
             // Calculate control point for curved lines
             const midX = (from.x + to.x) / 2;
@@ -256,7 +366,11 @@ const InfluenceMap = () => {
             const ctrlY = midY;
 
             return (
-              <motion.g key={rel.id} initial={{ opacity: 0 }} animate={{ opacity: isHighlighted ? 1 : 0.2 }}>
+              <motion.g
+                key={rel.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isHighlighted ? 1 : 0.2 }}
+              >
                 <path
                   d={`M ${from.x} ${from.y} Q ${ctrlX} ${ctrlY} ${to.x} ${to.y}`}
                   fill="none"
@@ -299,14 +413,14 @@ const InfluenceMap = () => {
             const sentiment = getSentimentIcon(stakeholder.sentiment);
             const isHighlighted = !highlightedRole || stakeholder.role === highlightedRole;
             const isSelected = selectedStakeholder?.id === stakeholder.id;
-            const nodeSize = 30 + (stakeholder.influence / 10);
+            const nodeSize = 30 + stakeholder.influence / 10;
 
             return (
               <motion.g
                 key={stakeholder.id}
                 initial={{ scale: 0, opacity: 0 }}
-                animate={{ 
-                  scale: 1, 
+                animate={{
+                  scale: 1,
                   opacity: isHighlighted ? 1 : 0.3,
                 }}
                 whileHover={{ scale: 1.1 }}
@@ -336,34 +450,42 @@ const InfluenceMap = () => {
                   className={colors.bg}
                   stroke={colors.border.replace('border-', '')}
                   strokeWidth="2"
-                  style={{ fill: colors.bg.includes('amber') ? 'rgba(245, 158, 11, 0.2)' : 
-                                colors.bg.includes('green') ? 'rgba(34, 197, 94, 0.2)' :
-                                colors.bg.includes('red') ? 'rgba(239, 68, 68, 0.2)' :
-                                colors.bg.includes('blue') ? 'rgba(59, 130, 246, 0.2)' :
-                                colors.bg.includes('violet') ? 'rgba(139, 92, 246, 0.2)' :
-                                'rgba(6, 182, 212, 0.2)' }}
+                  style={{
+                    fill: colors.bg.includes('amber')
+                      ? 'rgba(245, 158, 11, 0.2)'
+                      : colors.bg.includes('green')
+                        ? 'rgba(34, 197, 94, 0.2)'
+                        : colors.bg.includes('red')
+                          ? 'rgba(239, 68, 68, 0.2)'
+                          : colors.bg.includes('blue')
+                            ? 'rgba(59, 130, 246, 0.2)'
+                            : colors.bg.includes('violet')
+                              ? 'rgba(139, 92, 246, 0.2)'
+                              : 'rgba(6, 182, 212, 0.2)',
+                  }}
                 />
 
                 {/* Role icon */}
-                <foreignObject
-                  x={stakeholder.x - 10}
-                  y={stakeholder.y - 10}
-                  width={20}
-                  height={20}
-                >
+                <foreignObject x={stakeholder.x - 10} y={stakeholder.y - 10} width={20} height={20}>
                   <RoleIcon className={`w-5 h-5 ${colors.text}`} />
                 </foreignObject>
 
                 {/* Sentiment indicator */}
-                <g transform={`translate(${stakeholder.x + nodeSize - 8}, ${stakeholder.y - nodeSize + 8})`}>
+                <g
+                  transform={`translate(${stakeholder.x + nodeSize - 8}, ${stakeholder.y - nodeSize + 8})`}
+                >
                   <circle r="8" fill="#1f2937" />
                   <foreignObject x="-6" y="-6" width={12} height={12}>
-                    {React.createElement(sentiment.icon, { className: `w-3 h-3 ${sentiment.color}` })}
+                    {React.createElement(sentiment.icon, {
+                      className: `w-3 h-3 ${sentiment.color}`,
+                    })}
                   </foreignObject>
                 </g>
 
                 {/* Influence score */}
-                <g transform={`translate(${stakeholder.x - nodeSize + 8}, ${stakeholder.y - nodeSize + 8})`}>
+                <g
+                  transform={`translate(${stakeholder.x - nodeSize + 8}, ${stakeholder.y - nodeSize + 8})`}
+                >
                   <circle r="10" fill="#1f2937" stroke="rgba(255,255,255,0.1)" />
                   <text
                     textAnchor="middle"
@@ -405,7 +527,10 @@ const InfluenceMap = () => {
               <span className="text-gray-300">Reports to</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-0.5 bg-green-500/50" style={{ borderTop: '2px dashed rgba(34, 197, 94, 0.5)' }} />
+              <div
+                className="w-8 h-0.5 bg-green-500/50"
+                style={{ borderTop: '2px dashed rgba(34, 197, 94, 0.5)' }}
+              />
               <span className="text-gray-300">Influences</span>
             </div>
           </div>
@@ -427,7 +552,7 @@ const InfluenceMap = () => {
                 <div className="p-4 border-b border-gray-800 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     {React.createElement(getRoleIcon(selectedStakeholder.role), {
-                      className: `w-5 h-5 ${getRoleColor(selectedStakeholder.role).text}`
+                      className: `w-5 h-5 ${getRoleColor(selectedStakeholder.role).text}`,
                     })}
                     <div>
                       <h3 className="font-semibold text-white">{selectedStakeholder.name}</h3>
@@ -447,13 +572,17 @@ const InfluenceMap = () => {
                   <div className="grid grid-cols-2 gap-3">
                     <div className={`rounded-lg p-3 ${getRoleColor(selectedStakeholder.role).bg}`}>
                       <div className="text-xs text-gray-400">Role</div>
-                      <div className={`text-sm font-medium capitalize ${getRoleColor(selectedStakeholder.role).text}`}>
+                      <div
+                        className={`text-sm font-medium capitalize ${getRoleColor(selectedStakeholder.role).text}`}
+                      >
                         {selectedStakeholder.role.replace('_', ' ')}
                       </div>
                     </div>
                     <div className="bg-gray-800/50 rounded-lg p-3">
                       <div className="text-xs text-gray-400">Influence</div>
-                      <div className="text-sm font-medium text-white">{selectedStakeholder.influence}/100</div>
+                      <div className="text-sm font-medium text-white">
+                        {selectedStakeholder.influence}/100
+                      </div>
                     </div>
                   </div>
 
@@ -461,8 +590,12 @@ const InfluenceMap = () => {
                   <div className="bg-gray-800/50 rounded-lg p-3">
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-400">Sentiment</span>
-                      <div className={`flex items-center gap-1 ${getSentimentIcon(selectedStakeholder.sentiment).color}`}>
-                        {React.createElement(getSentimentIcon(selectedStakeholder.sentiment).icon, { className: 'w-4 h-4' })}
+                      <div
+                        className={`flex items-center gap-1 ${getSentimentIcon(selectedStakeholder.sentiment).color}`}
+                      >
+                        {React.createElement(getSentimentIcon(selectedStakeholder.sentiment).icon, {
+                          className: 'w-4 h-4',
+                        })}
                         <span className="text-sm capitalize">{selectedStakeholder.sentiment}</span>
                       </div>
                     </div>
@@ -487,13 +620,13 @@ const InfluenceMap = () => {
                       AI Engagement Strategy
                     </h4>
                     <p className="text-sm text-gray-300 mb-3">
-                      {selectedStakeholder.role === 'champion' 
+                      {selectedStakeholder.role === 'champion'
                         ? 'Leverage this champion to introduce you to decision makers. Focus on providing value and enabling their internal advocacy.'
                         : selectedStakeholder.role === 'blocker'
-                        ? 'Address concerns directly. Understand their objections and provide evidence to neutralize resistance.'
-                        : selectedStakeholder.role === 'decision_maker'
-                        ? 'Build executive relationship. Focus on business outcomes and ROI. Keep communication concise and strategic.'
-                        : 'Build rapport through value-add content. Position as a trusted advisor for their specific challenges.'}
+                          ? 'Address concerns directly. Understand their objections and provide evidence to neutralize resistance.'
+                          : selectedStakeholder.role === 'decision_maker'
+                            ? 'Build executive relationship. Focus on business outcomes and ROI. Keep communication concise and strategic.'
+                            : 'Build rapport through value-add content. Position as a trusted advisor for their specific challenges.'}
                     </p>
                     <button className="w-full py-2 bg-violet-600/20 hover:bg-violet-600/30 text-violet-400 text-sm font-medium rounded-lg transition-colors">
                       Generate Outreach Sequence
@@ -517,7 +650,9 @@ const InfluenceMap = () => {
                         <div className="flex items-center justify-between bg-amber-500/10 rounded-lg p-2">
                           <div className="flex items-center gap-2">
                             <Crown className="w-4 h-4 text-amber-400" />
-                            <span className="text-sm text-white">{buyingCenter.economicBuyer.name}</span>
+                            <span className="text-sm text-white">
+                              {buyingCenter.economicBuyer.name}
+                            </span>
                           </div>
                           <span className="text-xs text-amber-400">Economic Buyer</span>
                         </div>
@@ -535,10 +670,14 @@ const InfluenceMap = () => {
                         <div className="bg-red-500/10 rounded-lg p-2">
                           <div className="flex items-center gap-2 mb-1">
                             <AlertTriangle className="w-4 h-4 text-red-400" />
-                            <span className="text-xs text-red-400">Blockers ({buyingCenter.blockers.length})</span>
+                            <span className="text-xs text-red-400">
+                              Blockers ({buyingCenter.blockers.length})
+                            </span>
                           </div>
                           {buyingCenter.blockers.map(b => (
-                            <div key={b.id} className="text-sm text-white ml-6">{b.name}</div>
+                            <div key={b.id} className="text-sm text-white ml-6">
+                              {b.name}
+                            </div>
                           ))}
                         </div>
                       )}
@@ -567,7 +706,11 @@ const InfluenceMap = () => {
                     </h4>
                     <div className="space-y-2">
                       {[
-                        { step: 1, action: 'Strengthen champion relationship', target: 'Mike Johnson' },
+                        {
+                          step: 1,
+                          action: 'Strengthen champion relationship',
+                          target: 'Mike Johnson',
+                        },
                         { step: 2, action: 'Address CFO concerns directly', target: 'Lisa Wang' },
                         { step: 3, action: 'Build coalition with end users', target: 'Multiple' },
                         { step: 4, action: 'Request executive introduction', target: 'Sarah Chen' },

@@ -4,14 +4,23 @@ import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { Input } from '../ui/Input';
-import { GitBranch, Users, Zap, Webhook, Calendar, Repeat, CheckSquare, Database } from 'lucide-react';
+import {
+  GitBranch,
+  Users,
+  Zap,
+  Webhook,
+  Calendar,
+  Repeat,
+  CheckSquare,
+  Database,
+} from 'lucide-react';
 
 export const VisualWorkflowBuilder = () => {
   const [nodes, setNodes] = useState([
     { id: 1, type: 'trigger', label: 'Lead Created', x: 50, y: 50 },
     { id: 2, type: 'condition', label: 'Score > 70?', x: 50, y: 150 },
     { id: 3, type: 'action', label: 'Assign to Sales', x: 150, y: 250 },
-    { id: 4, type: 'action', label: 'Add to Nurture', x: -50, y: 250 }
+    { id: 4, type: 'action', label: 'Add to Nurture', x: -50, y: 250 },
   ]);
 
   return (
@@ -26,12 +35,14 @@ export const VisualWorkflowBuilder = () => {
         <div className="border-2 border-dashed rounded-lg p-4 min-h-[300px] bg-gray-50 dark:bg-white/5 relative">
           {/* Canvas */}
           {nodes.map(node => (
-            <div 
+            <div
               key={node.id}
               className={`absolute p-3 rounded-lg border-2 cursor-move ${
-                node.type === 'trigger' ? 'bg-green-100 border-green-500' :
-                node.type === 'condition' ? 'bg-yellow-100 border-yellow-500' :
-                'bg-blue-100 border-blue-500'
+                node.type === 'trigger'
+                  ? 'bg-green-100 border-green-500'
+                  : node.type === 'condition'
+                    ? 'bg-yellow-100 border-yellow-500'
+                    : 'bg-blue-100 border-blue-500'
               }`}
               style={{ left: `${node.x}%`, top: `${node.y}px` }}
             >
@@ -39,12 +50,20 @@ export const VisualWorkflowBuilder = () => {
             </div>
           ))}
         </div>
-        
+
         <div className="flex gap-2 mt-4 flex-wrap">
-          <Button size="sm" variant="outline">+ Trigger</Button>
-          <Button size="sm" variant="outline">+ Condition</Button>
-          <Button size="sm" variant="outline">+ Action</Button>
-          <Button size="sm" variant="outline">+ Delay</Button>
+          <Button size="sm" variant="outline">
+            + Trigger
+          </Button>
+          <Button size="sm" variant="outline">
+            + Condition
+          </Button>
+          <Button size="sm" variant="outline">
+            + Action
+          </Button>
+          <Button size="sm" variant="outline">
+            + Delay
+          </Button>
         </div>
 
         <div className="flex gap-2 mt-4">
@@ -58,9 +77,27 @@ export const VisualWorkflowBuilder = () => {
 
 export const LeadRoutingEngine = () => {
   const [rules, setRules] = useState([
-    { id: 1, name: 'Enterprise Accounts', condition: 'Company Size > 1000', assignTo: 'Enterprise Team', active: true },
-    { id: 2, name: 'West Coast Leads', condition: 'Location: CA, OR, WA', assignTo: 'Sarah Johnson', active: true },
-    { id: 3, name: 'Tech Industry', condition: 'Industry: Technology', assignTo: 'Mike Chen', active: false }
+    {
+      id: 1,
+      name: 'Enterprise Accounts',
+      condition: 'Company Size > 1000',
+      assignTo: 'Enterprise Team',
+      active: true,
+    },
+    {
+      id: 2,
+      name: 'West Coast Leads',
+      condition: 'Location: CA, OR, WA',
+      assignTo: 'Sarah Johnson',
+      active: true,
+    },
+    {
+      id: 3,
+      name: 'Tech Industry',
+      condition: 'Industry: Technology',
+      assignTo: 'Mike Chen',
+      active: false,
+    },
   ]);
 
   return (
@@ -102,7 +139,7 @@ export const TriggerBasedActions = () => {
     { name: 'Lead Score Changes', actions: 3, lastTriggered: '2 min ago', status: 'active' },
     { name: 'No Reply After 3 Days', actions: 2, lastTriggered: '15 min ago', status: 'active' },
     { name: 'Email Opened 3+ Times', actions: 1, lastTriggered: '1 hour ago', status: 'active' },
-    { name: 'Meeting Booked', actions: 4, lastTriggered: 'Never', status: 'inactive' }
+    { name: 'Meeting Booked', actions: 4, lastTriggered: 'Never', status: 'inactive' },
   ];
 
   return (
@@ -138,9 +175,24 @@ export const TriggerBasedActions = () => {
 
 export const WebhookAutomationStudio = () => {
   const [webhooks, setWebhooks] = useState([
-    { name: 'Slack Notification', endpoint: 'https://hooks.slack.com/...', events: ['lead_created', 'deal_won'], status: 'healthy' },
-    { name: 'CRM Sync', endpoint: 'https://api.crm.com/webhook', events: ['lead_updated'], status: 'healthy' },
-    { name: 'Analytics Tracker', endpoint: 'https://analytics.com/track', events: ['email_opened'], status: 'error' }
+    {
+      name: 'Slack Notification',
+      endpoint: 'https://hooks.slack.com/...',
+      events: ['lead_created', 'deal_won'],
+      status: 'healthy',
+    },
+    {
+      name: 'CRM Sync',
+      endpoint: 'https://api.crm.com/webhook',
+      events: ['lead_updated'],
+      status: 'healthy',
+    },
+    {
+      name: 'Analytics Tracker',
+      endpoint: 'https://analytics.com/track',
+      events: ['email_opened'],
+      status: 'error',
+    },
   ]);
 
   return (
@@ -157,14 +209,14 @@ export const WebhookAutomationStudio = () => {
             <div key={idx} className="p-3 border rounded-lg">
               <div className="flex justify-between items-center mb-2">
                 <h4 className="font-semibold text-sm">{wh.name}</h4>
-                <Badge variant={wh.status === 'healthy' ? 'success' : 'error'}>
-                  {wh.status}
-                </Badge>
+                <Badge variant={wh.status === 'healthy' ? 'success' : 'error'}>{wh.status}</Badge>
               </div>
               <p className="text-xs text-gray-600 font-mono mb-2 truncate">{wh.endpoint}</p>
               <div className="flex gap-1 flex-wrap">
                 {wh.events.map(evt => (
-                  <Badge key={evt} variant="secondary" className="text-xs">{evt}</Badge>
+                  <Badge key={evt} variant="secondary" className="text-xs">
+                    {evt}
+                  </Badge>
                 ))}
               </div>
             </div>
@@ -178,9 +230,24 @@ export const WebhookAutomationStudio = () => {
 
 export const ScheduledReports = () => {
   const reports = [
-    { name: 'Weekly Performance', recipients: 'team@company.com', schedule: 'Mon 9:00 AM', nextRun: 'in 2 days' },
-    { name: 'Monthly Executive Summary', recipients: 'exec@company.com', schedule: '1st of month', nextRun: 'in 5 days' },
-    { name: 'Daily Lead Report', recipients: 'sales@company.com', schedule: 'Daily 8:00 AM', nextRun: 'in 14 hours' }
+    {
+      name: 'Weekly Performance',
+      recipients: 'team@company.com',
+      schedule: 'Mon 9:00 AM',
+      nextRun: 'in 2 days',
+    },
+    {
+      name: 'Monthly Executive Summary',
+      recipients: 'exec@company.com',
+      schedule: '1st of month',
+      nextRun: 'in 5 days',
+    },
+    {
+      name: 'Daily Lead Report',
+      recipients: 'sales@company.com',
+      schedule: 'Daily 8:00 AM',
+      nextRun: 'in 14 hours',
+    },
   ];
 
   return (
@@ -202,7 +269,9 @@ export const ScheduledReports = () => {
                 </div>
                 <div className="flex justify-between">
                   <span>Schedule: {report.schedule}</span>
-                  <Badge variant="secondary" className="text-xs">{report.nextRun}</Badge>
+                  <Badge variant="secondary" className="text-xs">
+                    {report.nextRun}
+                  </Badge>
                 </div>
               </div>
             </div>
@@ -216,9 +285,21 @@ export const ScheduledReports = () => {
 
 export const AutoFollowUpSequences = () => {
   const sequences = [
-    { name: 'Cold Outreach Sequence', steps: 5, active: 124, completed: 45, avgResponseTime: '2.3 days' },
+    {
+      name: 'Cold Outreach Sequence',
+      steps: 5,
+      active: 124,
+      completed: 45,
+      avgResponseTime: '2.3 days',
+    },
     { name: 'Demo Follow-up', steps: 3, active: 34, completed: 78, avgResponseTime: '1.1 days' },
-    { name: 'Re-engagement Campaign', steps: 4, active: 67, completed: 23, avgResponseTime: '4.2 days' }
+    {
+      name: 'Re-engagement Campaign',
+      steps: 4,
+      active: 67,
+      completed: 23,
+      avgResponseTime: '4.2 days',
+    },
   ];
 
   return (
@@ -265,7 +346,7 @@ export const TaskAutomation = () => {
   const automations = [
     { trigger: 'Lead reaches SQL stage', action: 'Create task: Schedule demo', enabled: true },
     { trigger: 'No activity in 7 days', action: 'Create task: Follow up call', enabled: true },
-    { trigger: 'Contract sent', action: 'Create task: Check-in after 48h', enabled: false }
+    { trigger: 'Contract sent', action: 'Create task: Check-in after 48h', enabled: false },
   ];
 
   return (
@@ -300,9 +381,27 @@ export const TaskAutomation = () => {
 
 export const DataSyncScheduler = () => {
   const syncs = [
-    { source: 'Salesforce', direction: 'Bi-directional', schedule: 'Every 15 min', lastSync: '3 min ago', status: 'success' },
-    { source: 'HubSpot', direction: 'Pull only', schedule: 'Hourly', lastSync: '42 min ago', status: 'success' },
-    { source: 'Google Sheets', direction: 'Push only', schedule: 'Daily 2 AM', lastSync: '18 hours ago', status: 'warning' }
+    {
+      source: 'Salesforce',
+      direction: 'Bi-directional',
+      schedule: 'Every 15 min',
+      lastSync: '3 min ago',
+      status: 'success',
+    },
+    {
+      source: 'HubSpot',
+      direction: 'Pull only',
+      schedule: 'Hourly',
+      lastSync: '42 min ago',
+      status: 'success',
+    },
+    {
+      source: 'Google Sheets',
+      direction: 'Push only',
+      schedule: 'Daily 2 AM',
+      lastSync: '18 hours ago',
+      status: 'warning',
+    },
   ];
 
   return (

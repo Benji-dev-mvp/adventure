@@ -1,18 +1,27 @@
 import React, { useState, useMemo } from 'react';
 import { cn } from '../../lib/utils';
-import { 
-  ChevronDown, ChevronUp, ChevronLeft, ChevronRight, 
-  Search, Filter, Download, MoreVertical, ArrowUpDown,
-  Eye, Edit, Trash2
+import {
+  ChevronDown,
+  ChevronUp,
+  ChevronLeft,
+  ChevronRight,
+  Search,
+  Filter,
+  Download,
+  MoreVertical,
+  ArrowUpDown,
+  Eye,
+  Edit,
+  Trash2,
 } from 'lucide-react';
 
 /**
  * Responsive Data Table with mobile card view
  */
 
-export const DataTable = ({ 
-  columns = [], 
-  data = [], 
+export const DataTable = ({
+  columns = [],
+  data = [],
   searchable = true,
   filterable = false,
   exportable = false,
@@ -21,7 +30,7 @@ export const DataTable = ({
   mobileCardView = true,
   onRowClick,
   actions,
-  className 
+  className,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
@@ -33,9 +42,7 @@ export const DataTable = ({
     if (!searchTerm) return data;
     return data.filter(row =>
       columns.some(col =>
-        String(row[col.accessor])
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase())
+        String(row[col.accessor]).toLowerCase().includes(searchTerm.toLowerCase())
       )
     );
   }, [data, searchTerm, columns]);
@@ -43,11 +50,11 @@ export const DataTable = ({
   // Sort data
   const sortedData = useMemo(() => {
     if (!sortConfig.key) return filteredData;
-    
+
     return [...filteredData].sort((a, b) => {
       const aVal = a[sortConfig.key];
       const bVal = b[sortConfig.key];
-      
+
       if (aVal < bVal) return sortConfig.direction === 'asc' ? -1 : 1;
       if (aVal > bVal) return sortConfig.direction === 'asc' ? 1 : -1;
       return 0;
@@ -60,19 +67,17 @@ export const DataTable = ({
     ? sortedData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
     : sortedData;
 
-  const handleSort = (key) => {
+  const handleSort = key => {
     setSortConfig(prev => ({
       key,
-      direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc'
+      direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc',
     }));
   };
 
   const handleExport = () => {
     const csv = [
       columns.map(col => col.label).join(','),
-      ...sortedData.map(row =>
-        columns.map(col => row[col.accessor]).join(',')
-      )
+      ...sortedData.map(row => columns.map(col => row[col.accessor]).join(',')),
     ].join('\n');
 
     const blob = new Blob([csv], { type: 'text/csv' });
@@ -95,7 +100,7 @@ export const DataTable = ({
               type="text"
               placeholder="Search..."
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={e => setSearchTerm(e.target.value)}
               className={cn(
                 'w-full pl-10 pr-4 py-2',
                 'border border-gray-300 dark:border-gray-600',
@@ -146,9 +151,10 @@ export const DataTable = ({
                   <div className="flex items-center gap-2">
                     {column.label}
                     {column.sortable && (
-                      <ArrowUpDown size={14} className={cn(
-                        sortConfig.key === column.accessor && 'text-blue-500'
-                      )} />
+                      <ArrowUpDown
+                        size={14}
+                        className={cn(sortConfig.key === column.accessor && 'text-blue-500')}
+                      />
                     )}
                   </div>
                 </th>
@@ -171,14 +177,14 @@ export const DataTable = ({
                     key={colIndex}
                     className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100"
                   >
-                    {column.render ? column.render(row[column.accessor], row) : row[column.accessor]}
+                    {column.render
+                      ? column.render(row[column.accessor], row)
+                      : row[column.accessor]}
                   </td>
                 ))}
                 {actions && (
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm">
-                    <div className="flex items-center justify-end gap-2">
-                      {actions(row)}
-                    </div>
+                    <div className="flex items-center justify-end gap-2">{actions(row)}</div>
                   </td>
                 )}
               </tr>
@@ -208,7 +214,9 @@ export const DataTable = ({
                     {column.label}
                   </span>
                   <span className="text-sm text-gray-900 dark:text-white text-right">
-                    {column.render ? column.render(row[column.accessor], row) : row[column.accessor]}
+                    {column.render
+                      ? column.render(row[column.accessor], row)
+                      : row[column.accessor]}
                   </span>
                 </div>
               ))}
@@ -226,9 +234,10 @@ export const DataTable = ({
       {pagination && totalPages > 1 && (
         <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-sm text-gray-600 dark:text-gray-400">
-            Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, sortedData.length)} of {sortedData.length} results
+            Showing {(currentPage - 1) * pageSize + 1} to{' '}
+            {Math.min(currentPage * pageSize, sortedData.length)} of {sortedData.length} results
           </div>
-          
+
           <div className="flex items-center gap-2">
             <button
               onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
@@ -302,7 +311,7 @@ export const TableActions = ({ onView, onEdit, onDelete }) => {
     <div className="flex items-center gap-1">
       {onView && (
         <button
-          onClick={(e) => {
+          onClick={e => {
             e.stopPropagation();
             onView();
           }}
@@ -314,7 +323,7 @@ export const TableActions = ({ onView, onEdit, onDelete }) => {
       )}
       {onEdit && (
         <button
-          onClick={(e) => {
+          onClick={e => {
             e.stopPropagation();
             onEdit();
           }}
@@ -326,7 +335,7 @@ export const TableActions = ({ onView, onEdit, onDelete }) => {
       )}
       {onDelete && (
         <button
-          onClick={(e) => {
+          onClick={e => {
             e.stopPropagation();
             onDelete();
           }}

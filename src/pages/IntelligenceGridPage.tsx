@@ -1,6 +1,6 @@
 /**
  * Intelligence Grid Page
- * 
+ *
  * Federated learning dashboard, industry benchmarks,
  * and predictive analytics visualization.
  */
@@ -37,19 +37,81 @@ interface Prediction {
 // === Mock Data ===
 
 const BENCHMARK_METRICS: BenchmarkMetric[] = [
-  { name: 'Cold Email Reply Rate', yourValue: 0.052, benchmarkMedian: 0.045, percentile: 68, trend: 'up' },
-  { name: 'Sequence Reply Rate', yourValue: 0.11, benchmarkMedian: 0.12, percentile: 45, trend: 'stable' },
-  { name: 'Reply to Meeting Rate', yourValue: 0.28, benchmarkMedian: 0.25, percentile: 62, trend: 'up' },
-  { name: 'Meeting Show Rate', yourValue: 0.75, benchmarkMedian: 0.80, percentile: 35, trend: 'down' },
+  {
+    name: 'Cold Email Reply Rate',
+    yourValue: 0.052,
+    benchmarkMedian: 0.045,
+    percentile: 68,
+    trend: 'up',
+  },
+  {
+    name: 'Sequence Reply Rate',
+    yourValue: 0.11,
+    benchmarkMedian: 0.12,
+    percentile: 45,
+    trend: 'stable',
+  },
+  {
+    name: 'Reply to Meeting Rate',
+    yourValue: 0.28,
+    benchmarkMedian: 0.25,
+    percentile: 62,
+    trend: 'up',
+  },
+  {
+    name: 'Meeting Show Rate',
+    yourValue: 0.75,
+    benchmarkMedian: 0.8,
+    percentile: 35,
+    trend: 'down',
+  },
   { name: 'Sales Cycle (days)', yourValue: 48, benchmarkMedian: 55, percentile: 72, trend: 'up' },
-  { name: 'Deals per Rep/Month', yourValue: 4.5, benchmarkMedian: 5, percentile: 42, trend: 'stable' },
+  {
+    name: 'Deals per Rep/Month',
+    yourValue: 4.5,
+    benchmarkMedian: 5,
+    percentile: 42,
+    trend: 'stable',
+  },
 ];
 
 const MODELS: ModelInfo[] = [
-  { id: '1', name: 'Reply Predictor', type: 'reply-prediction', accuracy: 0.78, contributors: 234, lastUpdated: '2h ago', status: 'ready' },
-  { id: '2', name: 'Meeting Converter', type: 'meeting-conversion', accuracy: 0.72, contributors: 189, lastUpdated: '4h ago', status: 'ready' },
-  { id: '3', name: 'Persona Classifier', type: 'persona-classification', accuracy: 0.85, contributors: 312, lastUpdated: '1h ago', status: 'training' },
-  { id: '4', name: 'Timing Optimizer', type: 'timing-prediction', accuracy: 0.68, contributors: 156, lastUpdated: '12h ago', status: 'outdated' },
+  {
+    id: '1',
+    name: 'Reply Predictor',
+    type: 'reply-prediction',
+    accuracy: 0.78,
+    contributors: 234,
+    lastUpdated: '2h ago',
+    status: 'ready',
+  },
+  {
+    id: '2',
+    name: 'Meeting Converter',
+    type: 'meeting-conversion',
+    accuracy: 0.72,
+    contributors: 189,
+    lastUpdated: '4h ago',
+    status: 'ready',
+  },
+  {
+    id: '3',
+    name: 'Persona Classifier',
+    type: 'persona-classification',
+    accuracy: 0.85,
+    contributors: 312,
+    lastUpdated: '1h ago',
+    status: 'training',
+  },
+  {
+    id: '4',
+    name: 'Timing Optimizer',
+    type: 'timing-prediction',
+    accuracy: 0.68,
+    contributors: 156,
+    lastUpdated: '12h ago',
+    status: 'outdated',
+  },
 ];
 
 const PREDICTIONS: Prediction[] = [
@@ -89,9 +151,14 @@ const PREDICTIONS: Prediction[] = [
 
 const BenchmarkCard: React.FC<{ metric: BenchmarkMetric }> = ({ metric }) => {
   const isPercentage = metric.name.includes('Rate');
-  const formatValue = (v: number) => isPercentage ? `${(v * 100).toFixed(1)}%` : v.toString();
-  
-  const status = metric.percentile >= 60 ? 'outperforming' : metric.percentile >= 40 ? 'average' : 'underperforming';
+  const formatValue = (v: number) => (isPercentage ? `${(v * 100).toFixed(1)}%` : v.toString());
+
+  const status =
+    metric.percentile >= 60
+      ? 'outperforming'
+      : metric.percentile >= 40
+        ? 'average'
+        : 'underperforming';
   const statusColors = {
     outperforming: 'text-green-400 bg-green-500/10',
     average: 'text-yellow-400 bg-yellow-500/10',
@@ -108,7 +175,9 @@ const BenchmarkCard: React.FC<{ metric: BenchmarkMetric }> = ({ metric }) => {
       </div>
       <div className="flex items-baseline gap-3">
         <span className="text-2xl font-bold text-white">{formatValue(metric.yourValue)}</span>
-        <span className="text-gray-500 text-sm">vs {formatValue(metric.benchmarkMedian)} median</span>
+        <span className="text-gray-500 text-sm">
+          vs {formatValue(metric.benchmarkMedian)} median
+        </span>
       </div>
       <div className="mt-2 flex items-center gap-1">
         {metric.trend === 'up' && <span className="text-green-400">↑</span>}
@@ -152,8 +221,12 @@ const ModelCard: React.FC<{ model: ModelInfo }> = ({ model }) => {
 };
 
 const PredictionCard: React.FC<{ prediction: Prediction }> = ({ prediction }) => {
-  const probColor = prediction.probability >= 0.7 ? 'text-green-400' : 
-                    prediction.probability >= 0.4 ? 'text-yellow-400' : 'text-red-400';
+  const probColor =
+    prediction.probability >= 0.7
+      ? 'text-green-400'
+      : prediction.probability >= 0.4
+        ? 'text-yellow-400'
+        : 'text-red-400';
 
   return (
     <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
@@ -163,10 +236,10 @@ const PredictionCard: React.FC<{ prediction: Prediction }> = ({ prediction }) =>
           {(prediction.probability * 100).toFixed(0)}%
         </div>
       </div>
-      
+
       {/* Probability Bar */}
       <div className="h-2 bg-gray-700 rounded-full mb-3 overflow-hidden">
-        <div 
+        <div
           className={`h-full ${probColor.replace('text-', 'bg-')}`}
           style={{ width: `${prediction.probability * 100}%` }}
         />
@@ -178,7 +251,8 @@ const PredictionCard: React.FC<{ prediction: Prediction }> = ({ prediction }) =>
           <div key={i} className="flex items-center justify-between text-sm">
             <span className="text-gray-400">{factor.name}</span>
             <span className={factor.impact >= 0 ? 'text-green-400' : 'text-red-400'}>
-              {factor.impact >= 0 ? '+' : ''}{(factor.impact * 100).toFixed(0)}%
+              {factor.impact >= 0 ? '+' : ''}
+              {(factor.impact * 100).toFixed(0)}%
             </span>
           </div>
         ))}
@@ -195,8 +269,8 @@ const RadarChart: React.FC<{ data: BenchmarkMetric[] }> = ({ data }) => {
   // Simplified radar chart using SVG
   const size = 200;
   const center = size / 2;
-  const maxRadius = (size / 2) - 20;
-  
+  const maxRadius = size / 2 - 20;
+
   const points = data.map((m, i) => {
     const angle = (i / data.length) * Math.PI * 2 - Math.PI / 2;
     const radius = (m.percentile / 100) * maxRadius;
@@ -224,7 +298,7 @@ const RadarChart: React.FC<{ data: BenchmarkMetric[] }> = ({ data }) => {
           strokeWidth="1"
         />
       ))}
-      
+
       {/* Grid lines */}
       {data.map((_, i) => {
         const angle = (i / data.length) * Math.PI * 2 - Math.PI / 2;
@@ -240,10 +314,10 @@ const RadarChart: React.FC<{ data: BenchmarkMetric[] }> = ({ data }) => {
           />
         );
       })}
-      
+
       {/* Data polygon */}
       <path d={pathD} fill="rgba(59, 130, 246, 0.3)" stroke="#3B82F6" strokeWidth="2" />
-      
+
       {/* Data points */}
       {points.map((p, i) => (
         <circle key={i} cx={p.x} cy={p.y} r="4" fill="#3B82F6" />
@@ -267,9 +341,9 @@ export const IntelligenceGridPage: React.FC = () => {
           <p className="text-gray-400">Federated learning & collective intelligence</p>
         </div>
         <div className="flex items-center gap-4">
-          <select 
+          <select
             value={industry}
-            onChange={(e) => setIndustry(e.target.value)}
+            onChange={e => setIndustry(e.target.value)}
             className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white"
           >
             <option value="all">All Industries</option>
@@ -286,7 +360,7 @@ export const IntelligenceGridPage: React.FC = () => {
 
       {/* Tabs */}
       <div className="flex gap-2 mb-6">
-        {['benchmarks', 'models', 'predictions'].map((tab) => (
+        {['benchmarks', 'models', 'predictions'].map(tab => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab as any)}
@@ -310,7 +384,7 @@ export const IntelligenceGridPage: React.FC = () => {
                 <BenchmarkCard key={i} metric={metric} />
               ))}
             </div>
-            
+
             {/* Recommendations */}
             <div className="mt-6 bg-gray-800 rounded-xl p-6 border border-gray-700">
               <h3 className="text-lg font-semibold mb-4">Benchmark Insights</h3>
@@ -384,9 +458,17 @@ export const IntelligenceGridPage: React.FC = () => {
             <h3 className="text-lg font-semibold mb-4">How Federated Learning Works</h3>
             <div className="grid grid-cols-4 gap-4">
               {[
-                { icon: '🔒', title: 'Data Stays Local', desc: 'Your data never leaves your environment' },
+                {
+                  icon: '🔒',
+                  title: 'Data Stays Local',
+                  desc: 'Your data never leaves your environment',
+                },
                 { icon: '🧠', title: 'Train Locally', desc: 'Models train on your private data' },
-                { icon: '📤', title: 'Share Gradients', desc: 'Only encrypted gradients are shared' },
+                {
+                  icon: '📤',
+                  title: 'Share Gradients',
+                  desc: 'Only encrypted gradients are shared',
+                },
                 { icon: '🌐', title: 'Global Model', desc: 'Aggregated model benefits everyone' },
               ].map((step, i) => (
                 <div key={i} className="text-center p-4">

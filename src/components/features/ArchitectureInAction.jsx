@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { 
-  Users, 
-  Brain, 
-  Mail, 
-  MessageSquare, 
-  Phone, 
-  Linkedin, 
-  Calendar, 
+import {
+  Users,
+  Brain,
+  Mail,
+  MessageSquare,
+  Phone,
+  Linkedin,
+  Calendar,
   TrendingUp,
   Zap,
   Target,
@@ -37,11 +37,11 @@ import {
 // Animated connection line between nodes
 const AnimatedPath = ({ isActive, delay = 0 }) => {
   return (
-    <div 
+    <div
       className={`absolute h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full transition-all duration-1000 ${
         isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
       }`}
-      style={{ 
+      style={{
         transitionDelay: `${delay}ms`,
         transformOrigin: 'left',
       }}
@@ -62,13 +62,13 @@ const DataPacket = ({ isActive, delay = 0, color = 'cyan' }) => {
     pink: 'bg-pink-400 shadow-pink-400/50',
     green: 'bg-emerald-400 shadow-emerald-400/50',
   };
-  
+
   return (
-    <div 
+    <div
       className={`absolute w-3 h-3 rounded-full ${colors[color]} shadow-lg transition-all duration-500 ${
         isActive ? 'opacity-100 animate-pulse' : 'opacity-0'
       }`}
-      style={{ 
+      style={{
         transitionDelay: `${delay}ms`,
         animation: isActive ? 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' : 'none',
       }}
@@ -83,17 +83,17 @@ DataPacket.propTypes = {
 };
 
 // Workflow step node
-const WorkflowNode = ({ 
-  icon: Icon, 
-  title, 
-  description, 
-  isActive, 
-  isComplete, 
+const WorkflowNode = ({
+  icon: Icon,
+  title,
+  description,
+  isActive,
+  isComplete,
   stats,
-  delay = 0 
+  delay = 0,
 }) => {
   return (
-    <div 
+    <div
       className={`relative transition-all duration-700 ${
         isActive ? 'scale-105' : isComplete ? 'scale-100 opacity-80' : 'scale-95 opacity-40'
       }`}
@@ -103,8 +103,8 @@ const WorkflowNode = ({
       {isActive && (
         <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl animate-pulse" />
       )}
-      
-      <GlassCard 
+
+      <GlassCard
         variant={isActive ? 'neon' : 'default'}
         glow={isActive}
         glowColor="cyan"
@@ -116,16 +116,18 @@ const WorkflowNode = ({
             <CheckCircle2 size={20} className="text-white" />
           </div>
         )}
-        
+
         {/* Icon */}
-        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 transition-all duration-500 ${
-          isActive 
-            ? 'bg-gradient-to-br from-cyan-500 to-purple-600 shadow-lg shadow-cyan-500/30' 
-            : 'bg-white/5 border border-white/10'
-        }`}>
+        <div
+          className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 transition-all duration-500 ${
+            isActive
+              ? 'bg-gradient-to-br from-cyan-500 to-purple-600 shadow-lg shadow-cyan-500/30'
+              : 'bg-white/5 border border-white/10'
+          }`}
+        >
           <Icon size={28} className={isActive ? 'text-white' : 'text-gray-400'} />
         </div>
-        
+
         {/* Title */}
         <h3 className="text-xl font-bold mb-2 font-space-grotesk">
           {isActive ? (
@@ -134,10 +136,10 @@ const WorkflowNode = ({
             <span className="text-white">{title}</span>
           )}
         </h3>
-        
+
         {/* Description */}
         <p className="text-sm text-gray-400 mb-4">{description}</p>
-        
+
         {/* Live stats when active */}
         {isActive && stats && (
           <div className="mt-4 pt-4 border-t border-white/10 space-y-2 animate-fadeIn">
@@ -162,10 +164,12 @@ WorkflowNode.propTypes = {
   description: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
   isComplete: PropTypes.bool.isRequired,
-  stats: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  })),
+  stats: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    })
+  ),
   delay: PropTypes.number,
 };
 
@@ -254,14 +258,14 @@ const ArchitectureInAction = () => {
     if (!isVisible || !isAutoPlaying) return;
 
     const interval = setInterval(() => {
-      setActiveStep((prev) => {
+      setActiveStep(prev => {
         const next = prev + 1;
         if (next >= workflowSteps.length) {
           // Reset after completing all steps
           setCompletedSteps([]);
           return 0;
         }
-        setCompletedSteps((prevCompleted) => [...prevCompleted, prev]);
+        setCompletedSteps(prevCompleted => [...prevCompleted, prev]);
         return next;
       });
     }, 3000);
@@ -278,16 +282,16 @@ const ArchitectureInAction = () => {
   ];
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      id="architecture-in-action" 
+      id="architecture-in-action"
       className="py-24 px-6 relative overflow-hidden bg-[#030712]"
     >
       {/* Background effects */}
       <ParticleBackground variant="aurora" className="absolute inset-0 opacity-30" />
       <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-gradient-radial from-purple-900/20 to-transparent blur-3xl" />
       <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-gradient-radial from-cyan-900/20 to-transparent blur-3xl" />
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <RevealText>
@@ -296,15 +300,16 @@ const ArchitectureInAction = () => {
               <Zap size={16} className="text-cyan-400" />
               <span className="text-sm text-cyan-400 font-medium">See it in action</span>
             </div>
-            
+
             <h2 className="text-4xl md:text-6xl font-bold mb-6 font-space-grotesk">
               <GradientText gradient="aurora" animate>
                 Architecture in Action
               </GradientText>
             </h2>
-            
+
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Watch how Ava orchestrates your entire outbound pipeline—from prospect discovery to booked meetings—in real-time.
+              Watch how Ava orchestrates your entire outbound pipeline—from prospect discovery to
+              booked meetings—in real-time.
             </p>
           </div>
         </RevealText>
@@ -312,12 +317,12 @@ const ArchitectureInAction = () => {
         {/* Progress bar */}
         <div className="relative mb-16">
           <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-            <div 
+            <div
               className="h-full bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full transition-all duration-1000 ease-out"
               style={{ width: `${((activeStep + 1) / workflowSteps.length) * 100}%` }}
             />
           </div>
-          
+
           {/* Step indicators */}
           <div className="absolute inset-0 flex justify-between items-center px-0">
             {workflowSteps.map((step, index) => (
@@ -329,11 +334,11 @@ const ArchitectureInAction = () => {
                   setCompletedSteps(Array.from({ length: index }, (_, i) => i));
                 }}
                 className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 ${
-                  index === activeStep 
-                    ? 'bg-gradient-to-r from-cyan-500 to-purple-500 scale-125 shadow-lg shadow-cyan-500/30' 
+                  index === activeStep
+                    ? 'bg-gradient-to-r from-cyan-500 to-purple-500 scale-125 shadow-lg shadow-cyan-500/30'
                     : completedSteps.includes(index)
-                    ? 'bg-emerald-500 shadow-emerald-500/30'
-                    : 'bg-white/10 hover:bg-white/20'
+                      ? 'bg-emerald-500 shadow-emerald-500/30'
+                      : 'bg-white/10 hover:bg-white/20'
                 }`}
               >
                 {completedSteps.includes(index) ? (
@@ -361,24 +366,19 @@ const ArchitectureInAction = () => {
 
         {/* Live activity feed */}
         <RevealText delay={300}>
-          <GlassCard 
-            variant="gradient" 
-            className="p-8 mt-8"
-            glow
-            glowColor="purple"
-          >
+          <GlassCard variant="gradient" className="p-8 mt-8" glow glowColor="purple">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
               {/* Left: Live stats */}
               <div className="flex-1">
                 <h3 className="text-2xl font-bold mb-6 font-space-grotesk">
                   <GradientText gradient="cyber">Live Activity Feed</GradientText>
                 </h3>
-                
+
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {channels.map((channel, index) => {
                     const Icon = channel.icon;
                     return (
-                      <div 
+                      <div
                         key={index}
                         className={`relative p-4 rounded-xl bg-white/5 border border-white/10 transition-all duration-500 ${
                           activeStep === 3 ? 'animate-pulse border-cyan-500/50' : ''
@@ -386,14 +386,14 @@ const ArchitectureInAction = () => {
                       >
                         <Icon size={24} className={`text-${channel.color}-400 mb-2`} />
                         <div className="text-2xl font-bold text-white">
-                          <CountUpText 
-                            end={activeStep >= 3 ? channel.count : 0} 
+                          <CountUpText
+                            end={activeStep >= 3 ? channel.count : 0}
                             duration={1500}
                             delay={index * 200}
                           />
                         </div>
                         <div className="text-sm text-gray-400">{channel.label}/day</div>
-                        
+
                         {/* Activity indicator */}
                         {activeStep === 3 && (
                           <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
@@ -419,7 +419,7 @@ const ArchitectureInAction = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center justify-between">
                       <span className="text-gray-400">Processing</span>
@@ -436,7 +436,7 @@ const ArchitectureInAction = () => {
                       <span className="text-cyan-400 font-medium">127 hrs/week</span>
                     </div>
                   </div>
-                  
+
                   {/* Progress animation */}
                   <div className="mt-4 pt-4 border-t border-white/10">
                     <div className="flex items-center gap-2 text-sm text-gray-400">
@@ -444,7 +444,7 @@ const ArchitectureInAction = () => {
                       <span>Next action in 2.4s</span>
                     </div>
                     <div className="mt-2 h-1 bg-white/10 rounded-full overflow-hidden">
-                      <div 
+                      <div
                         className="h-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full animate-progress"
                         style={{ animationDuration: '3s' }}
                       />
@@ -465,7 +465,7 @@ const ArchitectureInAction = () => {
           >
             {isAutoPlaying ? 'Pause Demo' : 'Resume Demo'}
           </GlowButtonOutline>
-          
+
           <GlowButton
             variant="primary"
             size="md"

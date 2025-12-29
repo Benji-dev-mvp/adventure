@@ -54,7 +54,7 @@ export function initializeOfflineStorage(): Promise<IDBDatabase> {
       resolve(db);
     };
 
-    request.onupgradeneeded = (event) => {
+    request.onupgradeneeded = event => {
       const database = (event.target as IDBOpenDBRequest).result;
       console.log('[OfflineStorage] Upgrading database schema');
 
@@ -112,7 +112,7 @@ async function getDB(): Promise<IDBDatabase> {
  */
 export async function get<T>(store: StoreName, key: string): Promise<T | undefined> {
   const database = await getDB();
-  
+
   return new Promise((resolve, reject) => {
     const transaction = database.transaction(store, 'readonly');
     const objectStore = transaction.objectStore(store);
@@ -128,7 +128,7 @@ export async function get<T>(store: StoreName, key: string): Promise<T | undefin
  */
 export async function getAll<T>(store: StoreName): Promise<T[]> {
   const database = await getDB();
-  
+
   return new Promise((resolve, reject) => {
     const transaction = database.transaction(store, 'readonly');
     const objectStore = transaction.objectStore(store);
@@ -144,7 +144,7 @@ export async function getAll<T>(store: StoreName): Promise<T[]> {
  */
 export async function put<T>(store: StoreName, data: T): Promise<void> {
   const database = await getDB();
-  
+
   return new Promise((resolve, reject) => {
     const transaction = database.transaction(store, 'readwrite');
     const objectStore = transaction.objectStore(store);
@@ -160,7 +160,7 @@ export async function put<T>(store: StoreName, data: T): Promise<void> {
  */
 export async function remove(store: StoreName, key: string): Promise<void> {
   const database = await getDB();
-  
+
   return new Promise((resolve, reject) => {
     const transaction = database.transaction(store, 'readwrite');
     const objectStore = transaction.objectStore(store);
@@ -176,7 +176,7 @@ export async function remove(store: StoreName, key: string): Promise<void> {
  */
 export async function clear(store: StoreName): Promise<void> {
   const database = await getDB();
-  
+
   return new Promise((resolve, reject) => {
     const transaction = database.transaction(store, 'readwrite');
     const objectStore = transaction.objectStore(store);
@@ -264,15 +264,15 @@ export async function setCache<T>(
  */
 export async function getCache<T>(key: string): Promise<T | undefined> {
   const item = await get<CacheItem<T>>(STORES.CACHE, key);
-  
+
   if (!item) return undefined;
-  
+
   if (Date.now() > item.expiresAt) {
     // Expired, remove it
     await remove(STORES.CACHE, key);
     return undefined;
   }
-  
+
   return item.data;
 }
 
@@ -282,7 +282,7 @@ export async function getCache<T>(key: string): Promise<T | undefined> {
 export async function clearExpiredCache(): Promise<void> {
   const database = await getDB();
   const now = Date.now();
-  
+
   return new Promise((resolve, reject) => {
     const transaction = database.transaction(STORES.CACHE, 'readwrite');
     const objectStore = transaction.objectStore(STORES.CACHE);
@@ -290,7 +290,7 @@ export async function clearExpiredCache(): Promise<void> {
     const range = IDBKeyRange.upperBound(now);
     const request = index.openCursor(range);
 
-    request.onsuccess = (event) => {
+    request.onsuccess = event => {
       const cursor = (event.target as IDBRequest<IDBCursorWithValue>).result;
       if (cursor) {
         cursor.delete();
@@ -299,7 +299,8 @@ export async function clearExpiredCache(): Promise<void> {
     };
 
     transaction.oncomplete = () => resolve();
-    transaction.onerror = () => reject(new Error(transaction.error?.message || 'Transaction failed'));
+    transaction.onerror = () =>
+      reject(new Error(transaction.error?.message || 'Transaction failed'));
   });
 }
 
@@ -348,7 +349,7 @@ export function usePendingSyncCount(): number {
     };
 
     checkPending();
-    
+
     // Check periodically
     const interval = setInterval(checkPending, 30000);
     return () => clearInterval(interval);

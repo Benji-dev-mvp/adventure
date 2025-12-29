@@ -8,8 +8,8 @@ from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, Query
 
 from app.core.audit import create_audit_log, get_audit_logs
-from app.core.security import get_current_user, require_permission, require_role
-from app.models.audit import AuditAction, AuditLog, AuditLogFilter
+from app.core.security import get_current_user
+from app.models.audit import AuditAction, AuditLogFilter
 from app.models.user import Permission, User, UserCreate, UserRole, UserUpdate
 
 router = APIRouter()

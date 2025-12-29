@@ -4,43 +4,57 @@ import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { Input, Textarea } from '../ui/Input';
-import { Bot, Brain, Zap, Calendar, CheckCircle, Clock, Mail, Phone, MessageSquare, AlertCircle, TrendingUp, Target, Sparkles } from 'lucide-react';
+import {
+  Bot,
+  Brain,
+  Zap,
+  Calendar,
+  CheckCircle,
+  Clock,
+  Mail,
+  Phone,
+  MessageSquare,
+  AlertCircle,
+  TrendingUp,
+  Target,
+  Sparkles,
+} from 'lucide-react';
 
 // AUTONOMOUS PROSPECT RESEARCHER
 export const AutonomousProspectResearcher = () => {
   const [researching] = useState(true);
   const [researchQueue] = useState([
-    { 
-      company: 'Acme Corp', 
+    {
+      company: 'Acme Corp',
       prospect: 'John Doe, VP Sales',
       status: 'researching',
       progress: 75,
       dataPoints: 12,
-      intent: 'high'
+      intent: 'high',
     },
-    { 
-      company: 'Tech Innovations', 
+    {
+      company: 'Tech Innovations',
       prospect: 'Sarah Chen, CRO',
       status: 'completed',
       progress: 100,
       dataPoints: 18,
-      intent: 'very-high'
+      intent: 'very-high',
     },
-    { 
-      company: 'StartupXYZ', 
+    {
+      company: 'StartupXYZ',
       prospect: 'Mike Johnson, CEO',
       status: 'queued',
       progress: 0,
       dataPoints: 0,
-      intent: 'unknown'
-    }
+      intent: 'unknown',
+    },
   ]);
 
   const [insights] = useState({
     totalResearched: 247,
     avgDataPoints: 15,
     highIntentFound: 89,
-    autoEmailsGenerated: 247
+    autoEmailsGenerated: 247,
   });
 
   return (
@@ -56,7 +70,9 @@ export const AutonomousProspectResearcher = () => {
             {researching ? 'Researching' : 'Idle'}
           </Badge>
         </div>
-        <p className="text-sm text-gray-600 dark:text-gray-400">Ava researches prospects 24/7 without human input</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          Ava researches prospects 24/7 without human input
+        </p>
       </CardHeader>
       <CardContent>
         {/* Stats Grid */}
@@ -81,24 +97,36 @@ export const AutonomousProspectResearcher = () => {
 
         {/* Research Queue */}
         <div className="space-y-3">
-          <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Active Research Queue</h4>
+          <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+            Active Research Queue
+          </h4>
           {researchQueue.map((item, idx) => (
-            <div key={idx} className="p-4 border rounded-lg bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-800/50">
+            <div
+              key={idx}
+              className="p-4 border rounded-lg bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-800/50"
+            >
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <p className="font-semibold text-sm">{item.prospect}</p>
                   <p className="text-xs text-gray-600">{item.company}</p>
                 </div>
-                <Badge 
+                <Badge
                   variant={
-                    item.status === 'completed' ? 'success' :
-                    item.status === 'researching' ? 'warning' : 'secondary'
+                    item.status === 'completed'
+                      ? 'success'
+                      : item.status === 'researching'
+                        ? 'warning'
+                        : 'secondary'
                   }
                   className="text-xs"
                 >
-                  {item.status === 'completed' ? <CheckCircle size={12} className="mr-1" /> : 
-                   item.status === 'researching' ? <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse mr-1" /> : 
-                   <Clock size={12} className="mr-1" />}
+                  {item.status === 'completed' ? (
+                    <CheckCircle size={12} className="mr-1" />
+                  ) : item.status === 'researching' ? (
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse mr-1" />
+                  ) : (
+                    <Clock size={12} className="mr-1" />
+                  )}
                   {item.status}
                 </Badge>
               </div>
@@ -111,7 +139,7 @@ export const AutonomousProspectResearcher = () => {
                     <span className="font-semibold">{item.progress}%</span>
                   </div>
                   <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
-                    <div 
+                    <div
                       className="bg-gradient-to-r from-purple-500 to-pink-500 h-1.5 rounded-full transition-all"
                       style={{ width: `${item.progress}%` }}
                     />
@@ -123,8 +151,10 @@ export const AutonomousProspectResearcher = () => {
               <div className="flex items-center justify-between text-xs">
                 <span className="text-gray-600">📊 {item.dataPoints} data points collected</span>
                 {item.intent !== 'unknown' && (
-                  <Badge 
-                    variant={item.intent === 'very-high' || item.intent === 'high' ? 'danger' : 'secondary'}
+                  <Badge
+                    variant={
+                      item.intent === 'very-high' || item.intent === 'high' ? 'danger' : 'secondary'
+                    }
                     className="text-xs"
                   >
                     🔥 {item.intent} intent
@@ -180,29 +210,32 @@ export const ObjectionHandler = () => {
       from: 'john@acme.com',
       objection: "We're happy with our current solution",
       category: 'status-quo',
-      avaResponse: "I completely understand - many of our best customers felt the same way before seeing how we complement existing tools. Would you be open to a 10-minute call to discuss how we integrate with [current solution]?",
+      avaResponse:
+        'I completely understand - many of our best customers felt the same way before seeing how we complement existing tools. Would you be open to a 10-minute call to discuss how we integrate with [current solution]?',
       status: 'auto-sent',
       confidence: 92,
-      result: 'positive-reply'
+      result: 'positive-reply',
     },
     {
       from: 'sarah@tech.co',
-      objection: "Too expensive for us right now",
+      objection: 'Too expensive for us right now',
       category: 'pricing',
-      avaResponse: "I hear you on budget concerns. Many teams start with our Starter plan at $49/user to prove ROI first. Would it help to see a breakdown of typical payback periods for teams your size?",
+      avaResponse:
+        'I hear you on budget concerns. Many teams start with our Starter plan at $49/user to prove ROI first. Would it help to see a breakdown of typical payback periods for teams your size?',
       status: 'auto-sent',
       confidence: 88,
-      result: 'pending'
+      result: 'pending',
     },
     {
       from: 'mike@startup.io',
-      objection: "Send me more information",
+      objection: 'Send me more information',
       category: 'stalling',
-      avaResponse: "Absolutely! Rather than overwhelming your inbox, I can walk you through the 3 features most relevant to [specific pain point] in a quick 15-min demo. Does Tuesday or Wednesday work better?",
+      avaResponse:
+        'Absolutely! Rather than overwhelming your inbox, I can walk you through the 3 features most relevant to [specific pain point] in a quick 15-min demo. Does Tuesday or Wednesday work better?',
       status: 'awaiting-approval',
       confidence: 76,
-      result: 'pending'
-    }
+      result: 'pending',
+    },
   ]);
 
   return (
@@ -212,7 +245,9 @@ export const ObjectionHandler = () => {
           <MessageSquare className="text-blue-500" size={20} />
           <CardTitle>Autonomous Objection Handling</CardTitle>
         </div>
-        <p className="text-sm text-gray-600 dark:text-gray-400">Ava automatically responds to common objections</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          Ava automatically responds to common objections
+        </p>
       </CardHeader>
       <CardContent>
         {/* Stats */}
@@ -238,12 +273,17 @@ export const ObjectionHandler = () => {
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <p className="font-semibold text-sm">{obj.from}</p>
-                  <Badge variant="secondary" className="text-xs mt-1">{obj.category}</Badge>
+                  <Badge variant="secondary" className="text-xs mt-1">
+                    {obj.category}
+                  </Badge>
                 </div>
-                <Badge 
+                <Badge
                   variant={
-                    obj.status === 'auto-sent' ? 'success' :
-                    obj.status === 'awaiting-approval' ? 'warning' : 'secondary'
+                    obj.status === 'auto-sent'
+                      ? 'success'
+                      : obj.status === 'awaiting-approval'
+                        ? 'warning'
+                        : 'secondary'
                   }
                   className="text-xs"
                 >
@@ -253,14 +293,18 @@ export const ObjectionHandler = () => {
 
               {/* Original Objection */}
               <div className="mb-3 p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
-                <p className="text-xs font-semibold text-red-700 dark:text-red-300 mb-1">❌ Objection:</p>
+                <p className="text-xs font-semibold text-red-700 dark:text-red-300 mb-1">
+                  ❌ Objection:
+                </p>
                 <p className="text-sm">"{obj.objection}"</p>
               </div>
 
               {/* Ava's Response */}
               <div className="mb-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
                 <div className="flex items-center justify-between mb-1">
-                  <p className="text-xs font-semibold text-green-700 dark:text-green-300">✅ Ava's Response:</p>
+                  <p className="text-xs font-semibold text-green-700 dark:text-green-300">
+                    ✅ Ava's Response:
+                  </p>
                   <Badge variant="outline" className="text-xs">
                     {obj.confidence}% confidence
                   </Badge>
@@ -271,8 +315,12 @@ export const ObjectionHandler = () => {
               {/* Actions */}
               {obj.status === 'awaiting-approval' ? (
                 <div className="flex gap-2">
-                  <Button size="sm" variant="success" className="flex-1">Approve & Send</Button>
-                  <Button size="sm" variant="outline">Edit</Button>
+                  <Button size="sm" variant="success" className="flex-1">
+                    Approve & Send
+                  </Button>
+                  <Button size="sm" variant="outline">
+                    Edit
+                  </Button>
                 </div>
               ) : obj.result === 'positive-reply' ? (
                 <Badge variant="success" className="w-full justify-center">
@@ -295,7 +343,8 @@ export const ObjectionHandler = () => {
             🧠 Ava learns from your feedback
           </p>
           <p className="text-xs text-gray-600">
-            Every approved/rejected response trains Ava to handle objections better. Current success rate: 74%
+            Every approved/rejected response trains Ava to handle objections better. Current success
+            rate: 74%
           </p>
         </div>
       </CardContent>
@@ -313,7 +362,7 @@ export const AutonomousMeetingBooker = () => {
       status: 'meeting-booked',
       scheduledFor: '2024-01-20 at 2:00 PM EST',
       conversationSteps: 5,
-      avaHandled: true
+      avaHandled: true,
     },
     {
       prospect: 'Sarah Chen',
@@ -321,7 +370,7 @@ export const AutonomousMeetingBooker = () => {
       email: 'sarah@tech.co',
       status: 'proposing-times',
       conversationSteps: 3,
-      avaHandled: true
+      avaHandled: true,
     },
     {
       prospect: 'Mike Johnson',
@@ -331,8 +380,8 @@ export const AutonomousMeetingBooker = () => {
       scheduledFor: '2024-01-22 at 10:00 AM EST',
       conversationSteps: 4,
       avaHandled: true,
-      handedOff: true
-    }
+      handedOff: true,
+    },
   ]);
 
   return (
@@ -342,7 +391,9 @@ export const AutonomousMeetingBooker = () => {
           <Calendar className="text-green-500" size={20} />
           <CardTitle>Autonomous Meeting Booking</CardTitle>
         </div>
-        <p className="text-sm text-gray-600 dark:text-gray-400">Ava handles scheduling back-and-forth automatically</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          Ava handles scheduling back-and-forth automatically
+        </p>
       </CardHeader>
       <CardContent>
         {/* Stats */}
@@ -364,22 +415,34 @@ export const AutonomousMeetingBooker = () => {
         {/* Meetings List */}
         <div className="space-y-3">
           {meetings.map((meeting, idx) => (
-            <div key={idx} className="border rounded-lg p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20">
+            <div
+              key={idx}
+              className="border rounded-lg p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20"
+            >
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <p className="font-semibold text-sm">{meeting.prospect}</p>
-                  <p className="text-xs text-gray-600">{meeting.company} • {meeting.email}</p>
+                  <p className="text-xs text-gray-600">
+                    {meeting.company} • {meeting.email}
+                  </p>
                 </div>
-                <Badge 
+                <Badge
                   variant={
-                    meeting.status === 'meeting-booked' || meeting.status === 'confirmed' ? 'success' :
-                    meeting.status === 'proposing-times' ? 'warning' : 'secondary'
+                    meeting.status === 'meeting-booked' || meeting.status === 'confirmed'
+                      ? 'success'
+                      : meeting.status === 'proposing-times'
+                        ? 'warning'
+                        : 'secondary'
                   }
                   className="text-xs"
                 >
-                  {meeting.status === 'meeting-booked' ? <Calendar size={12} className="mr-1" /> : 
-                   meeting.status === 'confirmed' ? <CheckCircle size={12} className="mr-1" /> : 
-                   <Clock size={12} className="mr-1" />}
+                  {meeting.status === 'meeting-booked' ? (
+                    <Calendar size={12} className="mr-1" />
+                  ) : meeting.status === 'confirmed' ? (
+                    <CheckCircle size={12} className="mr-1" />
+                  ) : (
+                    <Clock size={12} className="mr-1" />
+                  )}
                   {meeting.status.replace('-', ' ')}
                 </Badge>
               </div>
@@ -456,7 +519,7 @@ export const AutonomousFollowUpEngine = () => {
       nextAction: 'Send follow-up #2',
       scheduledFor: 'Tomorrow at 9:00 AM',
       reason: 'No reply to first email',
-      avaStrategy: 'Different angle: mention recent funding'
+      avaStrategy: 'Different angle: mention recent funding',
     },
     {
       prospect: 'Sarah Chen',
@@ -465,7 +528,7 @@ export const AutonomousFollowUpEngine = () => {
       nextAction: 'LinkedIn connection + InMail',
       scheduledFor: 'Today at 2:00 PM',
       reason: 'Email opened but no reply',
-      avaStrategy: 'Multi-channel: try LinkedIn'
+      avaStrategy: 'Multi-channel: try LinkedIn',
     },
     {
       prospect: 'Mike Johnson',
@@ -474,8 +537,8 @@ export const AutonomousFollowUpEngine = () => {
       nextAction: 'Value-add touchpoint',
       scheduledFor: 'Tomorrow at 11:00 AM',
       reason: 'Positive reply, nurturing',
-      avaStrategy: 'Share relevant case study'
-    }
+      avaStrategy: 'Share relevant case study',
+    },
   ]);
 
   return (
@@ -542,7 +605,9 @@ export const AutonomousFollowUpEngine = () => {
                   <Bot size={10} />
                   Auto-sending
                 </Badge>
-                <Button size="sm" variant="outline">Review Draft</Button>
+                <Button size="sm" variant="outline">
+                  Review Draft
+                </Button>
               </div>
             </div>
           ))}
@@ -570,5 +635,5 @@ export default {
   AutonomousProspectResearcher,
   ObjectionHandler,
   AutonomousMeetingBooker,
-  AutonomousFollowUpEngine
+  AutonomousFollowUpEngine,
 };

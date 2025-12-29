@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '../../components/layout/DashboardLayout';
 import { GlassCard, GlassCardContent, GradientText } from '../../components/futuristic';
-import { 
-  Zap, Power, Settings, RefreshCw, 
-  TrendingUp, AlertTriangle, Play 
-} from 'lucide-react';
+import { Zap, Power, Settings, RefreshCw, TrendingUp, AlertTriangle, Play } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 import { useToast } from '../../components/Toast';
 
@@ -19,20 +16,17 @@ import { useAutopilotDecisions } from './hooks/useAutopilotDecisions';
 export function AutopilotPage() {
   const { showToast } = useToast();
   const [autopilotEnabled, setAutopilotEnabled] = useState(true);
-  
-  const { 
-    programs, 
-    commitments, 
+
+  const {
+    programs,
+    commitments,
     loading: loadingPrograms,
     selectedProgram,
     setSelectedProgram,
-    summary 
+    summary,
   } = useAutopilotPrograms();
-  
-  const { 
-    decisions, 
-    loading: loadingDecisions 
-  } = useAutopilotDecisions();
+
+  const { decisions, loading: loadingDecisions } = useAutopilotDecisions();
 
   const handleToggleAutopilot = () => {
     setAutopilotEnabled(!autopilotEnabled);
@@ -67,21 +61,26 @@ export function AutopilotPage() {
               <div className="flex items-center gap-2">
                 <Play className="w-4 h-4 text-emerald-400" />
                 <span className="text-sm text-slate-300">
-                  <span className="font-semibold text-emerald-400">{summary.runningPrograms}</span> running
+                  <span className="font-semibold text-emerald-400">{summary.runningPrograms}</span>{' '}
+                  running
                 </span>
               </div>
               <div className="w-px h-4 bg-white/10" />
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-amber-400" />
                 <span className="text-sm text-slate-300">
-                  <span className="font-semibold text-amber-400">{summary.atRiskPrograms}</span> at risk
+                  <span className="font-semibold text-amber-400">{summary.atRiskPrograms}</span> at
+                  risk
                 </span>
               </div>
               <div className="w-px h-4 bg-white/10" />
               <div className="flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-cyan-400" />
                 <span className="text-sm text-slate-300">
-                  <span className="font-semibold text-cyan-400">{Math.round(summary.averageProgress)}%</span> avg
+                  <span className="font-semibold text-cyan-400">
+                    {Math.round(summary.averageProgress)}%
+                  </span>{' '}
+                  avg
                 </span>
               </div>
             </div>
@@ -91,9 +90,10 @@ export function AutopilotPage() {
               onClick={handleToggleAutopilot}
               className={`
                 relative flex items-center gap-3 px-5 py-2.5 rounded-xl font-medium transition-all
-                ${autopilotEnabled 
-                  ? 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white shadow-lg shadow-cyan-500/20' 
-                  : 'bg-slate-800 text-slate-400 border border-white/10 hover:border-white/20'
+                ${
+                  autopilotEnabled
+                    ? 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white shadow-lg shadow-cyan-500/20'
+                    : 'bg-slate-800 text-slate-400 border border-white/10 hover:border-white/20'
                 }
               `}
             >
@@ -107,34 +107,25 @@ export function AutopilotPage() {
         </div>
 
         {/* Row 1: Commitments Strip */}
-        <CommitmentsStrip 
-          commitments={commitments} 
-          loading={loadingPrograms} 
-        />
+        <CommitmentsStrip commitments={commitments} loading={loadingPrograms} />
 
         {/* Row 2: Programs Table + Brain Panel */}
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 lg:col-span-7">
-            <ProgramTable 
-              programs={programs} 
+            <ProgramTable
+              programs={programs}
               loading={loadingPrograms}
               selectedProgram={selectedProgram}
               onSelectProgram={setSelectedProgram}
             />
           </div>
           <div className="col-span-12 lg:col-span-5">
-            <ProgramBrainPanel 
-              programs={programs}
-              selectedProgram={selectedProgram}
-            />
+            <ProgramBrainPanel programs={programs} selectedProgram={selectedProgram} />
           </div>
         </div>
 
         {/* Row 3: Decision Timeline */}
-        <DecisionTimeline 
-          decisions={decisions} 
-          loading={loadingDecisions} 
-        />
+        <DecisionTimeline decisions={decisions} loading={loadingDecisions} />
       </div>
     </DashboardLayout>
   );

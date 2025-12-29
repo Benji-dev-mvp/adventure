@@ -6,11 +6,9 @@ L1: In-memory (LRU), L2: Redis, L3: Database (with write-through/write-back).
 import asyncio
 import hashlib
 import logging
-import pickle
-import time
 from collections import OrderedDict
 from datetime import datetime, timedelta
-from functools import lru_cache, wraps
+from functools import wraps
 from typing import Any, Callable, Dict, List, Optional
 
 from app.core.cache import cache as redis_cache

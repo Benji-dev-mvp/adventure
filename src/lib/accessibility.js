@@ -24,12 +24,12 @@ export const KeyCodes = {
  */
 export function isFocusable(element) {
   if (!element) return false;
-  
+
   const focusableTags = ['A', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'];
   const isFocusableTag = focusableTags.includes(element.tagName);
   const hasTabIndex = element.hasAttribute('tabindex') && element.getAttribute('tabindex') !== '-1';
   const isDisabled = element.hasAttribute('disabled');
-  
+
   return (isFocusableTag || hasTabIndex) && !isDisabled;
 }
 
@@ -38,16 +38,16 @@ export function isFocusable(element) {
  */
 export function getFocusableElements(container) {
   if (!container) return [];
-  
+
   const selector = [
     'a[href]',
     'button:not([disabled])',
     'input:not([disabled])',
     'select:not([disabled])',
     'textarea:not([disabled])',
-    '[tabindex]:not([tabindex="-1"])'
+    '[tabindex]:not([tabindex="-1"])',
   ].join(', ');
-  
+
   return Array.from(container.querySelectorAll(selector));
 }
 
@@ -58,9 +58,9 @@ export function trapFocus(container, event) {
   const focusableElements = getFocusableElements(container);
   const firstElement = focusableElements[0];
   const lastElement = focusableElements[focusableElements.length - 1];
-  
+
   if (event.key !== 'Tab') return;
-  
+
   if (event.shiftKey) {
     // Shift + Tab
     if (document.activeElement === firstElement) {
@@ -95,9 +95,9 @@ export function announceToScreenReader(message, priority = 'polite') {
   announcement.setAttribute('aria-atomic', 'true');
   announcement.className = 'sr-only';
   announcement.textContent = message;
-  
+
   document.body.appendChild(announcement);
-  
+
   setTimeout(() => {
     document.body.removeChild(announcement);
   }, 1000);
@@ -109,23 +109,25 @@ export function announceToScreenReader(message, priority = 'polite') {
 export function getContrastRatio(color1, color2) {
   const rgb1 = hexToRgb(color1);
   const rgb2 = hexToRgb(color2);
-  
+
   const l1 = getRelativeLuminance(rgb1);
   const l2 = getRelativeLuminance(rgb2);
-  
+
   const lighter = Math.max(l1, l2);
   const darker = Math.min(l1, l2);
-  
+
   return (lighter + 0.05) / (darker + 0.05);
 }
 
 function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : null;
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
 }
 
 function getRelativeLuminance(rgb) {
@@ -139,7 +141,7 @@ function getRelativeLuminance(rgb) {
 
 export function meetsContrastRequirements(color1, color2, level = 'AA', size = 'normal') {
   const ratio = getContrastRatio(color1, color2);
-  
+
   if (level === 'AA') {
     return size === 'large' ? ratio >= 3 : ratio >= 4.5;
   }
@@ -159,11 +161,11 @@ export class LiveRegion {
     this.element.className = 'sr-only';
     document.body.appendChild(this.element);
   }
-  
+
   announce(message) {
     this.element.textContent = message;
   }
-  
+
   destroy() {
     if (this.element && this.element.parentNode) {
       this.element.parentNode.removeChild(this.element);
@@ -194,7 +196,7 @@ export const srOnlyStyles = `
  */
 export function buildAriaAttributes(config) {
   const attrs = {};
-  
+
   if (config.label) attrs['aria-label'] = config.label;
   if (config.labelledBy) attrs['aria-labelledby'] = config.labelledBy;
   if (config.describedBy) attrs['aria-describedby'] = config.describedBy;
@@ -206,7 +208,7 @@ export function buildAriaAttributes(config) {
   if (config.hidden !== undefined) attrs['aria-hidden'] = String(config.hidden);
   if (config.live) attrs['aria-live'] = config.live;
   if (config.role) attrs['role'] = config.role;
-  
+
   return attrs;
 }
 
@@ -217,22 +219,22 @@ export class FocusManager {
   constructor() {
     this.previousFocus = null;
   }
-  
+
   saveFocus() {
     this.previousFocus = document.activeElement;
   }
-  
+
   restoreFocus() {
     if (this.previousFocus && this.previousFocus.focus) {
       this.previousFocus.focus();
     }
   }
-  
+
   moveFocusToFirstElement(container) {
     const focusable = getFocusableElements(container);
     focusable[0]?.focus();
   }
-  
+
   moveFocusToLastElement(container) {
     const focusable = getFocusableElements(container);
     focusable[focusable.length - 1]?.focus();
@@ -244,7 +246,7 @@ export class FocusManager {
  */
 export function handleListNavigation(event, items, currentIndex, onSelect) {
   let newIndex = currentIndex;
-  
+
   switch (event.key) {
     case 'ArrowDown':
       event.preventDefault();
@@ -272,7 +274,7 @@ export function handleListNavigation(event, items, currentIndex, onSelect) {
     default:
       return currentIndex;
   }
-  
+
   return newIndex;
 }
 
@@ -284,7 +286,7 @@ export function createSkipLink(targetId, text = 'Skip to main content') {
   skipLink.href = `#${targetId}`;
   skipLink.className = 'skip-link';
   skipLink.textContent = text;
-  
+
   skipLink.style.cssText = `
     position: absolute;
     left: -10000px;
@@ -293,7 +295,7 @@ export function createSkipLink(targetId, text = 'Skip to main content') {
     height: 1px;
     overflow: hidden;
   `;
-  
+
   skipLink.addEventListener('focus', () => {
     skipLink.style.cssText = `
       position: static;
@@ -301,7 +303,7 @@ export function createSkipLink(targetId, text = 'Skip to main content') {
       height: auto;
     `;
   });
-  
+
   skipLink.addEventListener('blur', () => {
     skipLink.style.cssText = `
       position: absolute;
@@ -312,7 +314,7 @@ export function createSkipLink(targetId, text = 'Skip to main content') {
       overflow: hidden;
     `;
   });
-  
+
   return skipLink;
 }
 
@@ -321,21 +323,21 @@ export function createSkipLink(targetId, text = 'Skip to main content') {
  */
 export function validateAriaAttributes(element) {
   const warnings = [];
-  
+
   // Check for aria-label or aria-labelledby on interactive elements
   const role = element.getAttribute('role');
   const interactiveRoles = ['button', 'link', 'menuitem', 'tab', 'option'];
-  
+
   if (interactiveRoles.includes(role) || ['BUTTON', 'A'].includes(element.tagName)) {
     const hasLabel = element.hasAttribute('aria-label');
     const hasLabelledBy = element.hasAttribute('aria-labelledby');
     const hasTextContent = element.textContent.trim().length > 0;
-    
+
     if (!hasLabel && !hasLabelledBy && !hasTextContent) {
       warnings.push('Interactive element missing accessible label');
     }
   }
-  
+
   // Check for proper aria-expanded usage
   if (element.hasAttribute('aria-expanded')) {
     const value = element.getAttribute('aria-expanded');
@@ -343,6 +345,6 @@ export function validateAriaAttributes(element) {
       warnings.push('aria-expanded must be "true" or "false"');
     }
   }
-  
+
   return warnings;
 }

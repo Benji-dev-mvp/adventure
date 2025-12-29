@@ -7,12 +7,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
  */
 
 export const useScrollAnimation = (options = {}) => {
-  const {
-    threshold = 0.1,
-    rootMargin = '0px',
-    triggerOnce = false,
-    enableMotion = true
-  } = options;
+  const { threshold = 0.1, rootMargin = '0px', triggerOnce = false, enableMotion = true } = options;
 
   const [isVisible, setIsVisible] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -21,8 +16,8 @@ export const useScrollAnimation = (options = {}) => {
 
   // Check for reduced motion preference
   const prefersReducedMotion = useRef(
-    typeof window !== 'undefined' 
-      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
+    typeof window !== 'undefined'
+      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
       : false
   );
 
@@ -83,7 +78,7 @@ export const useScrollProgress = (options = {}) => {
       // Progress from 0 (element enters viewport) to 1 (element leaves viewport)
       const rawProgress = (viewportHeight - elementTop) / (viewportHeight + elementHeight);
       const clampedProgress = Math.max(start, Math.min(end, rawProgress));
-      
+
       setProgress(clampedProgress);
     };
 
@@ -121,12 +116,12 @@ export const useParallax = (speed = 0.5) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [speed]);
 
-  return { 
-    ref: elementRef, 
-    style: { 
+  return {
+    ref: elementRef,
+    style: {
       transform: `translate3d(0, ${offset}px, 0)`,
-      willChange: 'transform'
-    } 
+      willChange: 'transform',
+    },
   };
 };
 
@@ -155,7 +150,7 @@ export const useStepProgress = (steps = []) => {
         },
         {
           threshold: 0.5,
-          rootMargin: '-40% 0px -40% 0px'
+          rootMargin: '-40% 0px -40% 0px',
         }
       );
 
@@ -168,9 +163,12 @@ export const useStepProgress = (steps = []) => {
     };
   }, [steps.length]);
 
-  const setStepRef = useCallback((index) => (el) => {
-    stepRefs.current[index] = el;
-  }, []);
+  const setStepRef = useCallback(
+    index => el => {
+      stepRefs.current[index] = el;
+    },
+    []
+  );
 
   return { activeStep, setStepRef, stepRefs: stepRefs.current };
 };
@@ -182,31 +180,31 @@ export const useStepProgress = (steps = []) => {
 export const fadeInUp = (delay = 0) => ({
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] }
+  transition: { duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] },
 });
 
 export const fadeIn = (delay = 0) => ({
   initial: { opacity: 0 },
   animate: { opacity: 1 },
-  transition: { duration: 0.4, delay }
+  transition: { duration: 0.4, delay },
 });
 
 export const scaleIn = (delay = 0) => ({
   initial: { opacity: 0, scale: 0.95 },
   animate: { opacity: 1, scale: 1 },
-  transition: { duration: 0.5, delay, ease: [0.34, 1.56, 0.64, 1] }
+  transition: { duration: 0.5, delay, ease: [0.34, 1.56, 0.64, 1] },
 });
 
 export const slideInFromLeft = (delay = 0) => ({
   initial: { opacity: 0, x: -40 },
   animate: { opacity: 1, x: 0 },
-  transition: { duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] }
+  transition: { duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] },
 });
 
 export const slideInFromRight = (delay = 0) => ({
   initial: { opacity: 0, x: 40 },
   animate: { opacity: 1, x: 0 },
-  transition: { duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] }
+  transition: { duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] },
 });
 
 /**
@@ -231,7 +229,7 @@ export const useCountUp = (end, duration = 2000, options = {}) => {
     const startValue = start;
     const change = end - start;
 
-    const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
+    const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
 
     const updateCount = () => {
       const elapsed = Date.now() - startTime;
@@ -275,5 +273,5 @@ export default {
   scaleIn,
   slideInFromLeft,
   slideInFromRight,
-  buildTransform
+  buildTransform,
 };

@@ -3,16 +3,13 @@ Email A/B Testing Engine
 Auto-test subject lines, track winners, optimize campaigns
 """
 
-import random
 from datetime import datetime, timedelta
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException
 from pydantic import BaseModel
-from sqlmodel import Session
 
-from app.core.db import get_session
 from app.core.security import get_current_user
 from app.models.user import User
 

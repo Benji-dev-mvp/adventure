@@ -2,17 +2,12 @@
 // TODO: Complete implementation of pattern indexing
 /**
  * Pattern Index - Self-Improving Message Pattern Recognition
- * 
+ *
  * Stores, retrieves, and evolves successful messaging patterns
  * based on real-world outcomes and reinforcement signals.
  */
 
-import type {
-  MessagePattern,
-  EmotionalTone,
-  PersuasionTechnique,
-  VectorEntry,
-} from './types';
+import type { MessagePattern, EmotionalTone, PersuasionTechnique, VectorEntry } from './types';
 
 interface PatternMatch {
   pattern: MessagePattern;
@@ -92,10 +87,10 @@ class PatternIndex {
 
       // Compute cosine similarity
       const similarity = this.cosineSimilarity(queryEmbedding, embedding);
-      
+
       // Context relevance scoring
       const contextRelevance = this.scoreContextRelevance(pattern, context);
-      
+
       // Predicted success weighted by recency and confidence
       const predictedSuccess = this.predictSuccess(pattern, similarity, contextRelevance);
 
@@ -110,9 +105,7 @@ class PatternIndex {
     }
 
     // Sort by predicted success, return top N
-    return matches
-      .sort((a, b) => b.predictedSuccess - a.predictedSuccess)
-      .slice(0, limit);
+    return matches.sort((a, b) => b.predictedSuccess - a.predictedSuccess).slice(0, limit);
   }
 
   /**
@@ -132,12 +125,12 @@ class PatternIndex {
     // Bayesian update of success rate
     const priorSuccess = pattern.successRate;
     const priorWeight = Math.min(pattern.usageCount, 100);
-    
-    const outcomeValue = outcome.type === 'positive' ? 1 :
-                        outcome.type === 'negative' ? 0 : 0.5;
-    
-    const newSuccessRate = (priorSuccess * priorWeight + outcomeValue * outcome.strength) /
-                          (priorWeight + outcome.strength);
+
+    const outcomeValue = outcome.type === 'positive' ? 1 : outcome.type === 'negative' ? 0 : 0.5;
+
+    const newSuccessRate =
+      (priorSuccess * priorWeight + outcomeValue * outcome.strength) /
+      (priorWeight + outcome.strength);
 
     pattern.successRate = newSuccessRate;
     pattern.usageCount += 1;
@@ -182,11 +175,11 @@ class PatternIndex {
    */
   applyDecay(): void {
     const now = new Date();
-    
+
     for (const [id, pattern] of this.patterns) {
       const daysSinceUse = (now.getTime() - pattern.lastUsed.getTime()) / (1000 * 60 * 60 * 24);
       pattern.decayFactor *= Math.pow(this.DECAY_RATE, daysSinceUse);
-      
+
       // Remove patterns that have decayed below threshold
       if (pattern.decayFactor < 0.1 && pattern.usageCount < 5) {
         this.patterns.delete(id);
@@ -213,9 +206,7 @@ class PatternIndex {
         patterns = patterns.filter(p => p.usageCount >= filter.minUsage!);
       }
       if (filter.tags?.length) {
-        patterns = patterns.filter(p => 
-          filter.tags!.some(tag => p.contextTags.includes(tag))
-        );
+        patterns = patterns.filter(p => filter.tags!.some(tag => p.contextTags.includes(tag)));
       }
     }
 
@@ -225,28 +216,24 @@ class PatternIndex {
   /**
    * Import patterns from another index (federated learning)
    */
-  async importPatterns(
-    patterns: MessagePattern[],
-    trustWeight: number = 0.5
-  ): Promise<void> {
+  async importPatterns(patterns: MessagePattern[], trustWeight: number = 0.5): Promise<void> {
     for (const imported of patterns) {
       const existing = this.patterns.get(imported.id);
-      
+
       if (existing) {
         // Merge with existing - weighted average
-        existing.successRate = 
-          existing.successRate * (1 - trustWeight) + 
-          imported.successRate * trustWeight;
+        existing.successRate =
+          existing.successRate * (1 - trustWeight) + imported.successRate * trustWeight;
         existing.usageCount += Math.floor(imported.usageCount * trustWeight);
       } else {
         // Add new pattern with reduced initial confidence
-        const adapted = { 
-          ...imported, 
+        const adapted = {
+          ...imported,
           successRate: imported.successRate * trustWeight,
           usageCount: Math.floor(imported.usageCount * trustWeight),
         };
         this.patterns.set(imported.id, adapted);
-        
+
         // Compute embedding for imported pattern
         const embedding = await this.computeEmbedding(imported.tokens.join(' '));
         this.embeddings.set(imported.id, embedding);
@@ -278,8 +265,9 @@ class PatternIndex {
     // Placeholder - would use actual embedding model (OpenAI, Cohere, etc.)
     // Returns 384-dimensional mock embedding based on content hash
     const hash = this.simpleHash(content);
-    return Array.from({ length: 384 }, (_, i) => 
-      Math.sin(hash * (i + 1)) * 0.5 + Math.cos(hash * (i + 2)) * 0.5
+    return Array.from(
+      { length: 384 },
+      (_, i) => Math.sin(hash * (i + 1)) * 0.5 + Math.cos(hash * (i + 2)) * 0.5
     );
   }
 
@@ -287,7 +275,7 @@ class PatternIndex {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
       const char = str.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
+      hash = (hash << 5) - hash + char;
       hash = hash & hash;
     }
     return Math.abs(hash);
@@ -295,24 +283,21 @@ class PatternIndex {
 
   private cosineSimilarity(a: number[], b: number[]): number {
     if (a.length !== b.length) return 0;
-    
+
     let dotProduct = 0;
     let normA = 0;
     let normB = 0;
-    
+
     for (let i = 0; i < a.length; i++) {
       dotProduct += a[i] * b[i];
       normA += a[i] * a[i];
       normB += b[i] * b[i];
     }
-    
+
     return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
   }
 
-  private scoreContextRelevance(
-    pattern: MessagePattern,
-    context: Record<string, unknown>
-  ): number {
+  private scoreContextRelevance(pattern: MessagePattern, context: Record<string, unknown>): number {
     let score = 0;
     let factors = 0;
 
@@ -335,7 +320,7 @@ class PatternIndex {
         'pragmatic-evaluator': ['analytical', 'authoritative'],
         'time-pressed-executive': ['urgent', 'authoritative'],
       };
-      
+
       const preferredTones = personaToneMap[context.personaType as string] || [];
       if (preferredTones.includes(pattern.emotionalTone)) {
         score += 1;
@@ -354,13 +339,8 @@ class PatternIndex {
     // Weighted combination of factors
     const baseSuccess = pattern.successRate * pattern.decayFactor;
     const confidenceBoost = Math.min(pattern.usageCount / 50, 1) * 0.2;
-    
-    return (
-      baseSuccess * 0.4 +
-      similarity * 0.3 +
-      contextRelevance * 0.2 +
-      confidenceBoost * 0.1
-    );
+
+    return baseSuccess * 0.4 + similarity * 0.3 + contextRelevance * 0.2 + confidenceBoost * 0.1;
   }
 }
 

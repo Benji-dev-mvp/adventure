@@ -3,11 +3,13 @@
 ## Get Started in 3 Steps
 
 ### 1. Import Components
+
 ```jsx
 import { Button, Card, Input, Badge } from '@/components/ui';
 ```
 
 ### 2. Use in Your Code
+
 ```jsx
 function MyPage() {
   return (
@@ -28,14 +30,15 @@ function MyPage() {
 ```
 
 ### 3. Customize with Props
+
 ```jsx
 // Button variants and sizes
 <Button variant="primary" size="lg">Primary Large</Button>
 <Button variant="outline" size="sm">Outline Small</Button>
 
 // Input with validation
-<Input 
-  label="Email" 
+<Input
+  label="Email"
   type="email"
   error="Invalid email"
   required
@@ -50,6 +53,7 @@ function MyPage() {
 ## 📖 Essential Components
 
 ### Forms
+
 ```jsx
 // Text Input
 <Input label="Name" placeholder="John Doe" />
@@ -71,11 +75,12 @@ function MyPage() {
 ```
 
 ### Feedback
+
 ```jsx
 // Alert
 <Alert variant="success" title="Success!">
   Your changes have been saved.
-</Alert>
+</Alert>;
 
 // Toast (use the hook)
 import { useToast } from '@/components/Toast';
@@ -83,10 +88,11 @@ const toast = useToast();
 toast.success('Saved!');
 
 // Spinner
-<Spinner size="md" />
+<Spinner size="md" />;
 ```
 
 ### Layout
+
 ```jsx
 // Card
 <Card>
@@ -105,6 +111,7 @@ toast.success('Saved!');
 ```
 
 ### Navigation
+
 ```jsx
 // Breadcrumbs
 <Breadcrumb>
@@ -113,10 +120,10 @@ toast.success('Saved!');
 </Breadcrumb>
 
 // Pagination
-<Pagination 
-  currentPage={1} 
-  totalPages={10} 
-  onPageChange={setPage} 
+<Pagination
+  currentPage={1}
+  totalPages={10}
+  onPageChange={setPage}
 />
 
 // Tabs
@@ -131,6 +138,7 @@ toast.success('Saved!');
 ```
 
 ### Overlays
+
 ```jsx
 // Drawer
 const [open, setOpen] = useState(false);
@@ -157,6 +165,7 @@ const [open, setOpen] = useState(false);
 ```
 
 ### Data Display
+
 ```jsx
 // Table
 <Table>
@@ -187,6 +196,7 @@ const [open, setOpen] = useState(false);
 ## 🎨 Common Patterns
 
 ### Login Form
+
 ```jsx
 import { Input, Button, Card } from '@/components/ui';
 import { useToast } from '@/components/Toast';
@@ -196,7 +206,7 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const toast = useToast();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     // Login logic
     toast.success('Logged in successfully!');
@@ -213,14 +223,14 @@ function LoginForm() {
             label="Email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
             required
           />
           <Input
             label="Password"
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
             required
           />
           <Button type="submit" variant="primary" fullWidth>
@@ -234,6 +244,7 @@ function LoginForm() {
 ```
 
 ### Dashboard Stats
+
 ```jsx
 import { StatGroup, Stat } from '@/components/ui';
 
@@ -247,32 +258,27 @@ function DashboardStats() {
         trend="up"
         icon={<DollarIcon />}
       />
-      <Stat
-        label="Active Users"
-        value="2,350"
-        change="+180"
-        trend="up"
-      />
-      <Stat
-        label="Conversion Rate"
-        value="3.65%"
-        change="-0.5%"
-        trend="down"
-      />
-      <Stat
-        label="Avg. Response Time"
-        value="1.2s"
-        change="+0.3s"
-        trend="down"
-      />
+      <Stat label="Active Users" value="2,350" change="+180" trend="up" />
+      <Stat label="Conversion Rate" value="3.65%" change="-0.5%" trend="down" />
+      <Stat label="Avg. Response Time" value="1.2s" change="+0.3s" trend="down" />
     </StatGroup>
   );
 }
 ```
 
 ### Data Table with Actions
+
 ```jsx
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, Badge, Button } from '@/components/ui';
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  Badge,
+  Button,
+} from '@/components/ui';
 
 function UserTable({ users }) {
   return (
@@ -298,7 +304,9 @@ function UserTable({ users }) {
               </Badge>
             </TableCell>
             <TableCell>
-              <Button size="sm" variant="ghost">Edit</Button>
+              <Button size="sm" variant="ghost">
+                Edit
+              </Button>
             </TableCell>
           </TableRow>
         ))}
@@ -309,8 +317,19 @@ function UserTable({ users }) {
 ```
 
 ### Settings Panel with Drawer
+
 ```jsx
-import { Drawer, DrawerHeader, DrawerTitle, DrawerClose, DrawerContent, DrawerFooter, Input, Switch, Button } from '@/components/ui';
+import {
+  Drawer,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerClose,
+  DrawerContent,
+  DrawerFooter,
+  Input,
+  Switch,
+  Button,
+} from '@/components/ui';
 
 function SettingsPanel() {
   const [open, setOpen] = useState(false);
@@ -319,7 +338,7 @@ function SettingsPanel() {
   return (
     <>
       <Button onClick={() => setOpen(true)}>Settings</Button>
-      
+
       <Drawer open={open} onClose={() => setOpen(false)}>
         <DrawerHeader>
           <DrawerTitle>Settings</DrawerTitle>
@@ -358,11 +377,9 @@ import { useTheme } from '@/contexts/ThemeContext';
 
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
-  
+
   return (
-    <Button onClick={toggleTheme}>
-      {theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode'}
-    </Button>
+    <Button onClick={toggleTheme}>{theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode'}</Button>
   );
 }
 ```
@@ -394,29 +411,26 @@ Use Tailwind breakpoints for responsive layouts:
 ## 🔥 Pro Tips
 
 1. **Use the `cn()` utility for conditional classes**
+
    ```jsx
    import { cn } from '@/lib/utils';
-   
-   <Button className={cn(
-     "base-class",
-     isActive && "active-class",
-     isError && "error-class"
-   )}>
+
+   <Button className={cn('base-class', isActive && 'active-class', isError && 'error-class')}>
      Click me
-   </Button>
+   </Button>;
    ```
 
 2. **Combine with Tailwind utilities**
+
    ```jsx
-   <Button className="w-full sm:w-auto mt-4">
-     Responsive Button
-   </Button>
+   <Button className="w-full sm:w-auto mt-4">Responsive Button</Button>
    ```
 
 3. **Use toast for quick feedback**
+
    ```jsx
    const toast = useToast();
-   
+
    const handleSave = async () => {
      try {
        await save();
@@ -437,9 +451,7 @@ Use Tailwind breakpoints for responsive layouts:
        </div>
      </Card.Header>
      <Card.Content>
-       <Table>
-         {/* Table content */}
-       </Table>
+       <Table>{/* Table content */}</Table>
      </Card.Content>
      <Card.Footer>
        <Pagination {...paginationProps} />

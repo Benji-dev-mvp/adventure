@@ -4,7 +4,15 @@ import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card'
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { DollarSign, TrendingUp, Users, Calculator, Download } from 'lucide-react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
 
 const RevenueForecasting = () => {
   const [dealSize, setDealSize] = useState(45000);
@@ -19,17 +27,38 @@ const RevenueForecasting = () => {
   const scenarios = {
     best: { dealMultiplier: 1.2, rateMultiplier: 1.3 },
     realistic: { dealMultiplier: 1, rateMultiplier: 1 },
-    worst: { dealMultiplier: 0.8, rateMultiplier: 0.7 }
+    worst: { dealMultiplier: 0.8, rateMultiplier: 0.7 },
   };
 
   const forecastData = Array.from({ length: 12 }, (_, i) => {
-    const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][i];
-    const growth = 1 + (i * 0.05);
+    const month = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ][i];
+    const growth = 1 + i * 0.05;
     return {
       month,
-      best: calculateRevenue(pipeline * growth * scenarios.best.dealMultiplier, dealSize, closeRate * scenarios.best.rateMultiplier),
+      best: calculateRevenue(
+        pipeline * growth * scenarios.best.dealMultiplier,
+        dealSize,
+        closeRate * scenarios.best.rateMultiplier
+      ),
       realistic: calculateRevenue(pipeline * growth, dealSize, closeRate),
-      worst: calculateRevenue(pipeline * growth * scenarios.worst.dealMultiplier, dealSize, closeRate * scenarios.worst.rateMultiplier)
+      worst: calculateRevenue(
+        pipeline * growth * scenarios.worst.dealMultiplier,
+        dealSize,
+        closeRate * scenarios.worst.rateMultiplier
+      ),
     };
   });
 
@@ -98,35 +127,31 @@ const RevenueForecasting = () => {
                   max="100000"
                   step="5000"
                   value={dealSize}
-                  onChange={(e) => setDealSize(parseInt(e.target.value))}
+                  onChange={e => setDealSize(parseInt(e.target.value))}
                   className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-accent-500"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">
-                  Close Rate: {closeRate}%
-                </label>
+                <label className="block text-sm font-medium mb-2">Close Rate: {closeRate}%</label>
                 <input
                   type="range"
                   min="10"
                   max="50"
                   step="5"
                   value={closeRate}
-                  onChange={(e) => setCloseRate(parseInt(e.target.value))}
+                  onChange={e => setCloseRate(parseInt(e.target.value))}
                   className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-green-500"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">
-                  Pipeline Deals: {pipeline}
-                </label>
+                <label className="block text-sm font-medium mb-2">Pipeline Deals: {pipeline}</label>
                 <input
                   type="range"
                   min="50"
                   max="300"
                   step="10"
                   value={pipeline}
-                  onChange={(e) => setPipeline(parseInt(e.target.value))}
+                  onChange={e => setPipeline(parseInt(e.target.value))}
                   className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-500"
                 />
               </div>
@@ -163,14 +188,42 @@ const RevenueForecasting = () => {
                 <LineChart data={forecastData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#374151" opacity={0.1} />
                   <XAxis dataKey="month" stroke="#9CA3AF" />
-                  <YAxis stroke="#9CA3AF" tickFormatter={(value) => `$${(value/1000000).toFixed(1)}M`} />
-                  <Tooltip 
-                    formatter={(value) => `$${(value/1000000).toFixed(2)}M`}
-                    contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
+                  <YAxis
+                    stroke="#9CA3AF"
+                    tickFormatter={value => `$${(value / 1000000).toFixed(1)}M`}
                   />
-                  <Line type="monotone" dataKey="best" stroke="#10B981" strokeWidth={2} dot={false} name="Best Case" />
-                  <Line type="monotone" dataKey="realistic" stroke="#3B82F6" strokeWidth={3} dot={false} name="Realistic" />
-                  <Line type="monotone" dataKey="worst" stroke="#EF4444" strokeWidth={2} dot={false} name="Worst Case" />
+                  <Tooltip
+                    formatter={value => `$${(value / 1000000).toFixed(2)}M`}
+                    contentStyle={{
+                      backgroundColor: '#1F2937',
+                      border: '1px solid #374151',
+                      borderRadius: '8px',
+                    }}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="best"
+                    stroke="#10B981"
+                    strokeWidth={2}
+                    dot={false}
+                    name="Best Case"
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="realistic"
+                    stroke="#3B82F6"
+                    strokeWidth={3}
+                    dot={false}
+                    name="Realistic"
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="worst"
+                    stroke="#EF4444"
+                    strokeWidth={2}
+                    dot={false}
+                    name="Worst Case"
+                  />
                 </LineChart>
               </ResponsiveContainer>
             </CardContent>

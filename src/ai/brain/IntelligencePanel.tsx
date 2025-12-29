@@ -71,10 +71,7 @@ const IntelligencePanel = ({ entity, type, onClose, onAction }: IntelligencePane
             </p>
           </div>
         </div>
-        <button
-          onClick={onClose}
-          className="p-1 text-gray-500 hover:text-white transition-colors"
-        >
+        <button onClick={onClose} className="p-1 text-gray-500 hover:text-white transition-colors">
           <X className="w-5 h-5" />
         </button>
       </div>
@@ -95,11 +92,15 @@ const IntelligencePanel = ({ entity, type, onClose, onAction }: IntelligencePane
           </div>
           <div className="grid grid-cols-3 gap-2 mt-3">
             <div className="text-center">
-              <div className={`text-xs font-medium capitalize ${
-                entity.intentLevel === 'hot' ? 'text-red-400' :
-                entity.intentLevel === 'warm' ? 'text-amber-400' :
-                'text-blue-400'
-              }`}>
+              <div
+                className={`text-xs font-medium capitalize ${
+                  entity.intentLevel === 'hot'
+                    ? 'text-red-400'
+                    : entity.intentLevel === 'warm'
+                      ? 'text-amber-400'
+                      : 'text-blue-400'
+                }`}
+              >
                 {entity.intentLevel}
               </div>
               <div className="text-[10px] text-gray-500">Intent</div>
@@ -170,14 +171,14 @@ const IntelligencePanel = ({ entity, type, onClose, onAction }: IntelligencePane
 
             {/* Quick Actions */}
             <div className="flex gap-2">
-              <button 
+              <button
                 onClick={() => onAction?.('email', entity)}
                 className="flex-1 py-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium rounded-lg flex items-center justify-center gap-2 transition-colors"
               >
                 <Mail className="w-4 h-4" />
                 Email
               </button>
-              <button 
+              <button
                 onClick={() => onAction?.('linkedin', entity)}
                 className="flex-1 py-2 bg-gray-800 hover:bg-gray-700 text-white text-sm font-medium rounded-lg flex items-center justify-center gap-2 transition-colors"
               >
@@ -219,8 +220,16 @@ const IntelligencePanel = ({ entity, type, onClose, onAction }: IntelligencePane
           </h4>
           <div className="space-y-2">
             {[
-              { action: 'Send personalized follow-up', priority: 'high', reason: 'High engagement detected' },
-              { action: 'Schedule discovery call', priority: 'medium', reason: 'Qualified lead signals' },
+              {
+                action: 'Send personalized follow-up',
+                priority: 'high',
+                reason: 'High engagement detected',
+              },
+              {
+                action: 'Schedule discovery call',
+                priority: 'medium',
+                reason: 'Qualified lead signals',
+              },
             ].map((rec, idx) => (
               <motion.div
                 key={idx}
@@ -230,10 +239,15 @@ const IntelligencePanel = ({ entity, type, onClose, onAction }: IntelligencePane
                 onClick={() => onAction?.('recommendation', rec)}
                 className="bg-gray-800/50 rounded-lg p-3 flex items-center gap-3 cursor-pointer hover:bg-gray-800 transition-colors group"
               >
-                <div className={`w-2 h-2 rounded-full ${
-                  rec.priority === 'high' ? 'bg-green-400' :
-                  rec.priority === 'medium' ? 'bg-amber-400' : 'bg-gray-400'
-                }`} />
+                <div
+                  className={`w-2 h-2 rounded-full ${
+                    rec.priority === 'high'
+                      ? 'bg-green-400'
+                      : rec.priority === 'medium'
+                        ? 'bg-amber-400'
+                        : 'bg-gray-400'
+                  }`}
+                />
                 <div className="flex-1">
                   <div className="text-sm text-white">{rec.action}</div>
                   <div className="text-xs text-gray-500">{rec.reason}</div>

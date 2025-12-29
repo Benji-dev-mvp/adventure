@@ -1,6 +1,6 @@
 /**
  * Task Marketplace
- * 
+ *
  * Decentralized marketplace for task listing, bidding,
  * assignment, and fulfillment between agents.
  */
@@ -85,7 +85,7 @@ export class TaskMarketplace {
     approach: string;
   }): TaskBid | null {
     const listing = this.listings.get(params.taskId);
-    if (!listing || listing.status !== 'open' && listing.status !== 'bidding') {
+    if (!listing || (listing.status !== 'open' && listing.status !== 'bidding')) {
       return null;
     }
 
@@ -119,27 +119,27 @@ export class TaskMarketplace {
   /**
    * Automatically select winning bid
    */
-  selectWinner(taskId: string, strategy: 'lowest' | 'highest-confidence' | 'balanced' = 'balanced'): TaskBid | null {
+  selectWinner(
+    taskId: string,
+    strategy: 'lowest' | 'highest-confidence' | 'balanced' = 'balanced'
+  ): TaskBid | null {
     const listing = this.listings.get(taskId);
     const bids = this.bids.get(taskId);
-    
+
     if (!listing || !bids || bids.length === 0) return null;
 
     let winner: TaskBid;
 
     switch (strategy) {
       case 'lowest':
-        winner = bids.reduce((min, b) => 
-          b.proposedCredits < min.proposedCredits ? b : min,
+        winner = bids.reduce(
+          (min, b) => (b.proposedCredits < min.proposedCredits ? b : min),
           bids[0]
         );
         break;
 
       case 'highest-confidence':
-        winner = bids.reduce((max, b) => 
-          b.confidence > max.confidence ? b : max,
-          bids[0]
-        );
+        winner = bids.reduce((max, b) => (b.confidence > max.confidence ? b : max), bids[0]);
         break;
 
       case 'balanced':
@@ -152,11 +152,11 @@ export class TaskMarketplace {
           const costScore = 1 - b.proposedCredits / (maxCost || 1);
           const speedScore = 1 - b.estimatedDuration / (maxDuration || 1);
           const score = b.confidence * 0.5 + costScore * 0.3 + speedScore * 0.2;
-          
+
           const bestCostScore = 1 - best.proposedCredits / (maxCost || 1);
           const bestSpeedScore = 1 - best.estimatedDuration / (maxDuration || 1);
           const bestScore = best.confidence * 0.5 + bestCostScore * 0.3 + bestSpeedScore * 0.2;
-          
+
           return score > bestScore ? b : best;
         });
     }
@@ -287,9 +287,7 @@ export class TaskMarketplace {
     }
 
     if (filters.skills && filters.skills.length > 0) {
-      results = results.filter(t => 
-        filters.skills!.some(s => t.requirements.skills.includes(s))
-      );
+      results = results.filter(t => filters.skills!.some(s => t.requirements.skills.includes(s)));
     }
 
     if (filters.createdBy) {
@@ -315,7 +313,7 @@ export class TaskMarketplace {
         // Check skill match
         const requiredSkills = task.requirements.skills;
         const hasRequiredSkills = requiredSkills.some(s => agentSkills.includes(s));
-        
+
         return hasRequiredSkills;
       })
       .sort((a, b) => {
@@ -346,10 +344,7 @@ export class TaskMarketplace {
     const completed = all.filter(t => t.status === 'completed');
     const cancelled = all.filter(t => t.status === 'cancelled' || t.status === 'disputed');
 
-    const totalBids = Array.from(this.bids.values()).reduce(
-      (sum, bids) => sum + bids.length,
-      0
-    );
+    const totalBids = Array.from(this.bids.values()).reduce((sum, bids) => sum + bids.length, 0);
 
     const tasksWithBids = Array.from(this.bids.values()).filter(b => b.length > 0).length;
 
@@ -363,9 +358,7 @@ export class TaskMarketplace {
       totalBids,
       averageBidsPerTask: tasksWithBids > 0 ? totalBids / tasksWithBids : 0,
       averageReward: all.length > 0 ? totalReward / all.length : 0,
-      completionRate: all.length > 0 
-        ? completed.length / (completed.length + cancelled.length) 
-        : 1,
+      completionRate: all.length > 0 ? completed.length / (completed.length + cancelled.length) : 1,
     };
   }
 
@@ -400,28 +393,24 @@ export class TaskMarketplace {
     averageRating: number;
   } {
     const all = Array.from(this.listings.values());
-    
+
     const assigned = all.filter(
-      t => t.winnerId === agentId && 
-           (t.status === 'assigned' || t.status === 'in-progress')
+      t => t.winnerId === agentId && (t.status === 'assigned' || t.status === 'in-progress')
     );
-    
-    const completed = all.filter(
-      t => t.winnerId === agentId && t.status === 'completed'
-    );
-    
+
+    const completed = all.filter(t => t.winnerId === agentId && t.status === 'completed');
+
     const totalEarned = completed.reduce((sum, t) => {
       const bid = t.bids.find(b => b.agentId === agentId);
       return sum + (bid?.proposedCredits || t.reward.credits);
     }, 0);
-    
+
     const ratings = completed
       .map(t => t.result?.feedback?.rating)
       .filter((r): r is 1 | 2 | 3 | 4 | 5 => r !== undefined);
-    
-    const averageRating = ratings.length > 0
-      ? ratings.reduce((a: number, b: number) => a + b, 0) / ratings.length
-      : 0;
+
+    const averageRating =
+      ratings.length > 0 ? ratings.reduce((a: number, b: number) => a + b, 0) / ratings.length : 0;
 
     return {
       assigned,
@@ -439,8 +428,7 @@ export class TaskMarketplace {
     let cleaned = 0;
 
     for (const [id, task] of this.listings) {
-      if (task.deadline < now && 
-          (task.status === 'open' || task.status === 'bidding')) {
+      if (task.deadline < now && (task.status === 'open' || task.status === 'bidding')) {
         task.status = 'cancelled';
         this.emit({ type: 'task-cancelled', taskId: id });
         cleaned++;

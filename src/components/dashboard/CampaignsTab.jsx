@@ -18,10 +18,18 @@ import {
   Edit,
   Copy,
   Trash2,
-  BarChart3
+  BarChart3,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
 
 export const CampaignsTab = ({ onNavigateToCampaign }) => {
   const navigate = useNavigate();
@@ -45,8 +53,8 @@ export const CampaignsTab = ({ onNavigateToCampaign }) => {
         { day: 'Thu', sent: 55, replies: 6 },
         { day: 'Fri', sent: 50, replies: 5 },
         { day: 'Sat', sent: 35, replies: 2 },
-        { day: 'Sun', sent: 35, replies: 2 }
-      ]
+        { day: 'Sun', sent: 35, replies: 2 },
+      ],
     },
     {
       id: 2,
@@ -67,8 +75,8 @@ export const CampaignsTab = ({ onNavigateToCampaign }) => {
         { day: 'Thu', sent: 26, replies: 3 },
         { day: 'Fri', sent: 24, replies: 2 },
         { day: 'Sat', sent: 18, replies: 2 },
-        { day: 'Sun', sent: 18, replies: 1 }
-      ]
+        { day: 'Sun', sent: 18, replies: 1 },
+      ],
     },
     {
       id: 3,
@@ -89,8 +97,8 @@ export const CampaignsTab = ({ onNavigateToCampaign }) => {
         { day: 'Thu', sent: 0, replies: 0 },
         { day: 'Fri', sent: 0, replies: 0 },
         { day: 'Sat', sent: 0, replies: 0 },
-        { day: 'Sun', sent: 0, replies: 0 }
-      ]
+        { day: 'Sun', sent: 0, replies: 0 },
+      ],
     },
     {
       id: 4,
@@ -104,11 +112,11 @@ export const CampaignsTab = ({ onNavigateToCampaign }) => {
       replyRate: 0,
       openRate: 0,
       startDate: null,
-      performance: []
-    }
+      performance: [],
+    },
   ]);
 
-  const getStatusColor = (status) => {
+  const getStatusColor = status => {
     switch (status) {
       case 'active':
         return 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400';
@@ -121,14 +129,16 @@ export const CampaignsTab = ({ onNavigateToCampaign }) => {
     }
   };
 
-  const handleToggleStatus = (id) => {
-    setCampaigns(campaigns.map(c => {
-      if (c.id === id) {
-        const newStatus = c.status === 'active' ? 'paused' : 'active';
-        return { ...c, status: newStatus };
-      }
-      return c;
-    }));
+  const handleToggleStatus = id => {
+    setCampaigns(
+      campaigns.map(c => {
+        if (c.id === id) {
+          const newStatus = c.status === 'active' ? 'paused' : 'active';
+          return { ...c, status: newStatus };
+        }
+        return c;
+      })
+    );
   };
 
   return (
@@ -137,7 +147,9 @@ export const CampaignsTab = ({ onNavigateToCampaign }) => {
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Active Campaigns</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">Manage and monitor your outreach campaigns</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Manage and monitor your outreach campaigns
+          </p>
         </div>
         <Button
           onClick={() => navigate('/campaigns')}
@@ -150,16 +162,19 @@ export const CampaignsTab = ({ onNavigateToCampaign }) => {
 
       {/* Campaign Cards */}
       <div className="grid gap-4">
-        {campaigns.map((campaign) => (
-          <Card key={campaign.id} className="dark:bg-slate-900/50 dark:backdrop-blur-xl hover:shadow-lg transition-shadow">
+        {campaigns.map(campaign => (
+          <Card
+            key={campaign.id}
+            className="dark:bg-slate-900/50 dark:backdrop-blur-xl hover:shadow-lg transition-shadow"
+          >
             <CardContent className="p-6">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white">{campaign.name}</h4>
-                    <Badge className={getStatusColor(campaign.status)}>
-                      {campaign.status}
-                    </Badge>
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      {campaign.name}
+                    </h4>
+                    <Badge className={getStatusColor(campaign.status)}>{campaign.status}</Badge>
                   </div>
                   {campaign.startDate && (
                     <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
@@ -200,23 +215,33 @@ export const CampaignsTab = ({ onNavigateToCampaign }) => {
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-4">
                 <div className="space-y-1">
                   <p className="text-xs text-gray-600 dark:text-gray-400">Leads</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">{campaign.leads}</p>
+                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                    {campaign.leads}
+                  </p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs text-gray-600 dark:text-gray-400">Sent</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">{campaign.sent}</p>
+                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                    {campaign.sent}
+                  </p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs text-gray-600 dark:text-gray-400">Open Rate</p>
-                  <p className="text-2xl font-bold text-green-600 dark:text-green-400">{campaign.openRate.toFixed(1)}%</p>
+                  <p className="text-2xl font-bold text-green-600 dark:text-green-400">
+                    {campaign.openRate.toFixed(1)}%
+                  </p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs text-gray-600 dark:text-gray-400">Reply Rate</p>
-                  <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">{campaign.replyRate.toFixed(1)}%</p>
+                  <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                    {campaign.replyRate.toFixed(1)}%
+                  </p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs text-gray-600 dark:text-gray-400">Meetings</p>
-                  <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">{campaign.meetings}</p>
+                  <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                    {campaign.meetings}
+                  </p>
                 </div>
               </div>
 
@@ -251,7 +276,7 @@ export const CampaignsTab = ({ onNavigateToCampaign }) => {
 };
 
 CampaignsTab.propTypes = {
-  onNavigateToCampaign: PropTypes.func
+  onNavigateToCampaign: PropTypes.func,
 };
 
 export default CampaignsTab;

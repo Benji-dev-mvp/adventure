@@ -9,12 +9,14 @@ const MiniSparkline = ({ data, color = '#06b6d4', height = 32 }) => {
   const max = Math.max(...data);
   const min = Math.min(...data);
   const range = max - min || 1;
-  
-  const points = data.map((value, index) => {
-    const x = (index / (data.length - 1)) * 100;
-    const y = 100 - ((value - min) / range) * 100;
-    return `${x},${y}`;
-  }).join(' ');
+
+  const points = data
+    .map((value, index) => {
+      const x = (index / (data.length - 1)) * 100;
+      const y = 100 - ((value - min) / range) * 100;
+      return `${x},${y}`;
+    })
+    .join(' ');
 
   return (
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full" style={{ height }}>
@@ -24,10 +26,7 @@ const MiniSparkline = ({ data, color = '#06b6d4', height = 32 }) => {
           <stop offset="100%" stopColor={color} stopOpacity="0" />
         </linearGradient>
       </defs>
-      <polygon
-        points={`0,100 ${points} 100,100`}
-        fill={`url(#sparkline-${color})`}
-      />
+      <polygon points={`0,100 ${points} 100,100`} fill={`url(#sparkline-${color})`} />
       <polyline
         points={points}
         fill="none"
@@ -47,17 +46,17 @@ const ProgressBar = ({ projected, actual, max }) => {
   return (
     <div className="relative h-3 bg-slate-800 rounded-full overflow-hidden">
       {/* Projected (lighter background) */}
-      <div 
+      <div
         className="absolute inset-y-0 left-0 bg-cyan-900/50 rounded-full"
         style={{ width: `${projectedPercent}%` }}
       />
       {/* Actual */}
-      <div 
+      <div
         className="absolute inset-y-0 left-0 bg-gradient-to-r from-cyan-500 to-cyan-400 rounded-full"
         style={{ width: `${actualPercent}%` }}
       />
       {/* Target marker */}
-      <div 
+      <div
         className="absolute inset-y-0 w-0.5 bg-white/60"
         style={{ left: '100%', transform: 'translateX(-100%)' }}
       />
@@ -69,7 +68,7 @@ const CommitmentCard = ({ commitment, index }) => {
   const icons = [Target, Briefcase, Users];
   const Icon = icons[index % icons.length];
   const isPositive = commitment.forecastMeetings >= commitment.targetMeetings * 0.8;
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -90,18 +89,21 @@ const CommitmentCard = ({ commitment, index }) => {
                 </p>
               </div>
             </div>
-            <div className={`flex items-center gap-1 text-sm ${isPositive ? 'text-emerald-400' : 'text-amber-400'}`}>
-              {isPositive ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
+            <div
+              className={`flex items-center gap-1 text-sm ${isPositive ? 'text-emerald-400' : 'text-amber-400'}`}
+            >
+              {isPositive ? (
+                <TrendingUp className="w-4 h-4" />
+              ) : (
+                <TrendingDown className="w-4 h-4" />
+              )}
               <span>{commitment.confidence}%</span>
             </div>
           </div>
 
           {/* Sparkline */}
           <div className="mb-4">
-            <MiniSparkline 
-              data={commitment.trend} 
-              color={isPositive ? '#10b981' : '#f59e0b'} 
-            />
+            <MiniSparkline data={commitment.trend} color={isPositive ? '#10b981' : '#f59e0b'} />
           </div>
 
           {/* Progress */}
@@ -113,9 +115,11 @@ const CommitmentCard = ({ commitment, index }) => {
                 <span className="text-slate-500"> / {commitment.targetMeetings}</span>
               </span>
             </div>
-            <ProgressBar 
-              projected={commitment.forecastMeetings} 
-              actual={commitment.actualValue / (commitment.projectedValue / commitment.forecastMeetings)}
+            <ProgressBar
+              projected={commitment.forecastMeetings}
+              actual={
+                commitment.actualValue / (commitment.projectedValue / commitment.forecastMeetings)
+              }
               max={commitment.targetMeetings}
             />
           </div>
@@ -126,7 +130,10 @@ const CommitmentCard = ({ commitment, index }) => {
               <span className="text-slate-500">Pipeline</span>
               <p className="text-slate-200 font-medium">
                 ${(commitment.actualValue / 1000000).toFixed(1)}M
-                <span className="text-slate-500"> / ${(commitment.projectedValue / 1000000).toFixed(1)}M</span>
+                <span className="text-slate-500">
+                  {' '}
+                  / ${(commitment.projectedValue / 1000000).toFixed(1)}M
+                </span>
               </p>
             </div>
             {commitment.highIntentAccounts && (
@@ -174,11 +181,7 @@ export function CommitmentsStrip({ commitments, loading }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       {commitments.map((commitment, index) => (
-        <CommitmentCard 
-          key={commitment.id} 
-          commitment={commitment} 
-          index={index}
-        />
+        <CommitmentCard key={commitment.id} commitment={commitment} index={index} />
       ))}
     </div>
   );

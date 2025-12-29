@@ -11,9 +11,30 @@ const MOCK_CLUSTERS = [
     avgIntentScore: 87,
     recommendedStrategy: 'Direct outreach with case study attachment',
     topAccounts: [
-      { id: 'acc-1', name: 'TechFlow Inc', role: 'VP Sales', intent: 92, predictedOpenDate: '2 days', recommended: 'LinkedIn + Email' },
-      { id: 'acc-2', name: 'DataPulse', role: 'CRO', intent: 89, predictedOpenDate: '3 days', recommended: 'Phone call' },
-      { id: 'acc-3', name: 'CloudSync Pro', role: 'Head of Growth', intent: 85, predictedOpenDate: '1 day', recommended: 'Email sequence' },
+      {
+        id: 'acc-1',
+        name: 'TechFlow Inc',
+        role: 'VP Sales',
+        intent: 92,
+        predictedOpenDate: '2 days',
+        recommended: 'LinkedIn + Email',
+      },
+      {
+        id: 'acc-2',
+        name: 'DataPulse',
+        role: 'CRO',
+        intent: 89,
+        predictedOpenDate: '3 days',
+        recommended: 'Phone call',
+      },
+      {
+        id: 'acc-3',
+        name: 'CloudSync Pro',
+        role: 'Head of Growth',
+        intent: 85,
+        predictedOpenDate: '1 day',
+        recommended: 'Email sequence',
+      },
     ],
     color: '#06b6d4',
     position: { x: 25, y: 30 },
@@ -28,8 +49,22 @@ const MOCK_CLUSTERS = [
     avgIntentScore: 78,
     recommendedStrategy: 'Multi-threading with executive sponsorship',
     topAccounts: [
-      { id: 'acc-4', name: 'GlobalCorp', role: 'CTO', intent: 82, predictedOpenDate: '5 days', recommended: 'Executive email' },
-      { id: 'acc-5', name: 'Mega Industries', role: 'VP Engineering', intent: 76, predictedOpenDate: '4 days', recommended: 'LinkedIn InMail' },
+      {
+        id: 'acc-4',
+        name: 'GlobalCorp',
+        role: 'CTO',
+        intent: 82,
+        predictedOpenDate: '5 days',
+        recommended: 'Executive email',
+      },
+      {
+        id: 'acc-5',
+        name: 'Mega Industries',
+        role: 'VP Engineering',
+        intent: 76,
+        predictedOpenDate: '4 days',
+        recommended: 'LinkedIn InMail',
+      },
     ],
     color: '#8b5cf6',
     position: { x: 65, y: 45 },
@@ -44,9 +79,30 @@ const MOCK_CLUSTERS = [
     avgIntentScore: 72,
     recommendedStrategy: 'High-velocity email with quick demo offer',
     topAccounts: [
-      { id: 'acc-6', name: 'LaunchPad AI', role: 'Founder', intent: 79, predictedOpenDate: '1 day', recommended: 'Direct email' },
-      { id: 'acc-7', name: 'RocketScale', role: 'CEO', intent: 74, predictedOpenDate: '2 days', recommended: 'LinkedIn' },
-      { id: 'acc-8', name: 'NimbleOps', role: 'Head of Sales', intent: 71, predictedOpenDate: '3 days', recommended: 'Email' },
+      {
+        id: 'acc-6',
+        name: 'LaunchPad AI',
+        role: 'Founder',
+        intent: 79,
+        predictedOpenDate: '1 day',
+        recommended: 'Direct email',
+      },
+      {
+        id: 'acc-7',
+        name: 'RocketScale',
+        role: 'CEO',
+        intent: 74,
+        predictedOpenDate: '2 days',
+        recommended: 'LinkedIn',
+      },
+      {
+        id: 'acc-8',
+        name: 'NimbleOps',
+        role: 'Head of Sales',
+        intent: 71,
+        predictedOpenDate: '3 days',
+        recommended: 'Email',
+      },
     ],
     color: '#10b981',
     position: { x: 40, y: 70 },
@@ -61,8 +117,22 @@ const MOCK_CLUSTERS = [
     avgIntentScore: 45,
     recommendedStrategy: 'Nurture sequence with educational content',
     topAccounts: [
-      { id: 'acc-9', name: 'MidScale Solutions', role: 'Director Sales', intent: 52, predictedOpenDate: '14 days', recommended: 'Content nurture' },
-      { id: 'acc-10', name: 'GrowthFirst', role: 'VP Marketing', intent: 48, predictedOpenDate: '10 days', recommended: 'Newsletter' },
+      {
+        id: 'acc-9',
+        name: 'MidScale Solutions',
+        role: 'Director Sales',
+        intent: 52,
+        predictedOpenDate: '14 days',
+        recommended: 'Content nurture',
+      },
+      {
+        id: 'acc-10',
+        name: 'GrowthFirst',
+        role: 'VP Marketing',
+        intent: 48,
+        predictedOpenDate: '10 days',
+        recommended: 'Newsletter',
+      },
     ],
     color: '#f97316',
     position: { x: 75, y: 25 },
@@ -77,7 +147,14 @@ const MOCK_CLUSTERS = [
     avgIntentScore: 28,
     recommendedStrategy: 'Long-term ABM with account research',
     topAccounts: [
-      { id: 'acc-11', name: 'Enterprise Systems', role: 'IT Director', intent: 35, predictedOpenDate: '30 days', recommended: 'ABM campaign' },
+      {
+        id: 'acc-11',
+        name: 'Enterprise Systems',
+        role: 'IT Director',
+        intent: 35,
+        predictedOpenDate: '30 days',
+        recommended: 'ABM campaign',
+      },
     ],
     color: '#6366f1',
     position: { x: 20, y: 60 },
@@ -86,9 +163,9 @@ const MOCK_CLUSTERS = [
 ];
 
 // Generate individual lead points for visualization
-const generateLeadPoints = (clusters) => {
+const generateLeadPoints = clusters => {
   const points = [];
-  
+
   clusters.forEach(cluster => {
     const numPoints = Math.min(cluster.accounts, 50); // Cap at 50 for performance
     for (let i = 0; i < numPoints; i++) {
@@ -96,7 +173,7 @@ const generateLeadPoints = (clusters) => {
       const radius = (Math.random() * 0.4 + 0.1) * cluster.size;
       const x = cluster.position.x + Math.cos(angle) * radius * 0.5;
       const y = cluster.position.y + Math.sin(angle) * radius * 0.3;
-      
+
       points.push({
         id: `point-${cluster.id}-${i}`,
         clusterId: cluster.id,
@@ -108,7 +185,7 @@ const generateLeadPoints = (clusters) => {
       });
     }
   });
-  
+
   return points;
 };
 
@@ -118,7 +195,7 @@ export function useLeadHive() {
   const [loading, setLoading] = useState(true);
   const [selectedCluster, setSelectedCluster] = useState(null);
   const [hoveredPoint, setHoveredPoint] = useState(null);
-  
+
   const [filters, setFilters] = useState({
     segment: 'all',
     timeHorizon: 14,
@@ -153,18 +230,20 @@ export function useLeadHive() {
     return {
       totalAccounts: filteredClusters.reduce((acc, c) => acc + c.accounts, 0),
       totalPotentialMeetings: filteredClusters.reduce((acc, c) => acc + c.potentialMeetings, 0),
-      avgIntent: filteredClusters.length > 0 
-        ? Math.round(filteredClusters.reduce((acc, c) => acc + c.avgIntentScore, 0) / filteredClusters.length)
-        : 0,
+      avgIntent:
+        filteredClusters.length > 0
+          ? Math.round(
+              filteredClusters.reduce((acc, c) => acc + c.avgIntentScore, 0) /
+                filteredClusters.length
+            )
+          : 0,
       highIntentClusters: filteredClusters.filter(c => c.avgIntentScore >= 70).length,
     };
   }, [filteredClusters]);
 
   // Top 3 active clusters
   const topClusters = useMemo(() => {
-    return [...filteredClusters]
-      .sort((a, b) => b.avgIntentScore - a.avgIntentScore)
-      .slice(0, 3);
+    return [...filteredClusters].sort((a, b) => b.avgIntentScore - a.avgIntentScore).slice(0, 3);
   }, [filteredClusters]);
 
   return {

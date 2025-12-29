@@ -75,29 +75,34 @@ export const useWorkspaces = () => {
   }, [activeWorkspaceId]);
 
   // Switch workspace
-  const switchWorkspace = useCallback(async (workspaceId) => {
-    if (workspaceId === activeWorkspaceId) return;
-    
-    setIsSwitching(true);
-    // Simulate API call to switch workspace context
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
-    setWorkspaces(prev => prev.map(w => ({
-      ...w,
-      isActive: w.id === workspaceId,
-    })));
-    setActiveWorkspaceId(workspaceId);
-    setIsSwitching(false);
-    
-    // In a real app, this would trigger a context refresh
-    return workspaceId;
-  }, [activeWorkspaceId]);
+  const switchWorkspace = useCallback(
+    async workspaceId => {
+      if (workspaceId === activeWorkspaceId) return;
+
+      setIsSwitching(true);
+      // Simulate API call to switch workspace context
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      setWorkspaces(prev =>
+        prev.map(w => ({
+          ...w,
+          isActive: w.id === workspaceId,
+        }))
+      );
+      setActiveWorkspaceId(workspaceId);
+      setIsSwitching(false);
+
+      // In a real app, this would trigger a context refresh
+      return workspaceId;
+    },
+    [activeWorkspaceId]
+  );
 
   // Create workspace (mock)
-  const createWorkspace = useCallback(async (data) => {
+  const createWorkspace = useCallback(async data => {
     setIsLoading(true);
     await new Promise(resolve => setTimeout(resolve, 500));
-    
+
     const newWorkspace = {
       id: `ws-${Date.now()}`,
       name: data.name,
@@ -113,16 +118,19 @@ export const useWorkspaces = () => {
         teamSize: data.teamSize || '1-10',
       },
     };
-    
+
     setWorkspaces(prev => [...prev, newWorkspace]);
     setIsLoading(false);
     return newWorkspace;
   }, []);
 
   // Get workspace by ID
-  const getWorkspace = useCallback((id) => {
-    return workspaces.find(w => w.id === id);
-  }, [workspaces]);
+  const getWorkspace = useCallback(
+    id => {
+      return workspaces.find(w => w.id === id);
+    },
+    [workspaces]
+  );
 
   return {
     workspaces,

@@ -18,7 +18,7 @@ import {
   TrendingUp,
   Clock,
   CheckCircle,
-  Play
+  Play,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../Toast';
@@ -30,18 +30,18 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
 
   const handleAction = async (actionId, path, message) => {
     setIsExecuting(actionId);
-    
+
     // Simulate action execution
     await new Promise(resolve => setTimeout(resolve, 800));
-    
+
     if (path) {
       navigate(path);
     }
-    
+
     if (message) {
       toast.success(message);
     }
-    
+
     setIsExecuting(null);
   };
 
@@ -54,7 +54,7 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
       icon: Rocket,
       gradient: 'from-cyan-500 to-blue-600',
       path: '/campaigns',
-      enabled: true
+      enabled: true,
     },
     {
       id: 'find-leads',
@@ -63,7 +63,7 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
       icon: Users,
       gradient: 'from-purple-500 to-pink-600',
       path: '/lead-database',
-      enabled: true
+      enabled: true,
     },
     {
       id: 'ask-ava',
@@ -72,7 +72,7 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
       icon: Brain,
       gradient: 'from-green-500 to-emerald-600',
       path: '/ai-assistant',
-      enabled: true
+      enabled: true,
     },
     {
       id: 'view-analytics',
@@ -81,8 +81,8 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
       icon: BarChart3,
       gradient: 'from-orange-500 to-amber-600',
       path: '/analytics',
-      enabled: true
-    }
+      enabled: true,
+    },
   ];
 
   // Quick workflows
@@ -92,29 +92,29 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
       title: 'Import Leads from CSV',
       icon: Upload,
       action: () => handleAction('import-leads', '/leads', 'Opening import tool...'),
-      time: '< 1 min'
+      time: '< 1 min',
     },
     {
       id: 'export-data',
       title: 'Export Campaign Data',
       icon: Download,
       action: () => handleAction('export-data', null, 'Preparing export...'),
-      time: '< 1 min'
+      time: '< 1 min',
     },
     {
       id: 'create-template',
       title: 'Create Email Template',
       icon: FileText,
       action: () => handleAction('create-template', '/templates', 'Opening template builder...'),
-      time: '2-3 min'
+      time: '2-3 min',
     },
     {
       id: 'schedule-meeting',
       title: 'Schedule Team Meeting',
       icon: Clock,
       action: () => handleAction('schedule-meeting', null, 'Opening calendar...'),
-      time: '< 1 min'
-    }
+      time: '< 1 min',
+    },
   ];
 
   // AI-recommended actions based on insights
@@ -124,7 +124,7 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
     description: insight.description,
     impact: insight.impact,
     confidence: insight.confidence,
-    action: insight.action
+    action: insight.action,
   }));
 
   return (
@@ -132,21 +132,25 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
       {/* Header */}
       <div>
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Quick Actions</h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400">Accelerate your workflow with one-click actions</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          Accelerate your workflow with one-click actions
+        </p>
       </div>
 
       {/* Primary Actions Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {primaryActions.map((action) => (
+        {primaryActions.map(action => (
           <Card
             key={action.id}
             className="cursor-pointer hover:shadow-lg transition-all duration-300 bg-gradient-to-br group overflow-hidden relative"
             style={{
-              background: `linear-gradient(135deg, var(--tw-gradient-stops))`
+              background: `linear-gradient(135deg, var(--tw-gradient-stops))`,
             }}
             onClick={() => handleAction(action.id, action.path)}
           >
-            <div className={`absolute inset-0 bg-gradient-to-br ${action.gradient} opacity-90`}></div>
+            <div
+              className={`absolute inset-0 bg-gradient-to-br ${action.gradient} opacity-90`}
+            ></div>
             <CardContent className="relative p-6 text-white">
               <div className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -188,7 +192,7 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
         </CardHeader>
         <CardContent>
           <div className="grid md:grid-cols-2 gap-3">
-            {workflows.map((workflow) => (
+            {workflows.map(workflow => (
               <button
                 key={workflow.id}
                 onClick={workflow.action}
@@ -199,7 +203,9 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
                   <workflow.icon size={20} className="text-cyan-600 dark:text-cyan-400" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-semibold text-sm text-gray-900 dark:text-white">{workflow.title}</h4>
+                  <h4 className="font-semibold text-sm text-gray-900 dark:text-white">
+                    {workflow.title}
+                  </h4>
                   <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-1 mt-1">
                     <Clock size={12} />
                     {workflow.time}
@@ -228,7 +234,7 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {aiRecommendedActions.map((action) => (
+              {aiRecommendedActions.map(action => (
                 <div
                   key={action.id}
                   className="p-4 rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/10 dark:to-pink-900/10 border border-purple-200 dark:border-purple-500/20"
@@ -236,18 +242,27 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <h4 className="font-semibold text-gray-900 dark:text-white">{action.title}</h4>
+                        <h4 className="font-semibold text-gray-900 dark:text-white">
+                          {action.title}
+                        </h4>
                         <Badge className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 text-xs">
                           {action.impact}
                         </Badge>
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">{action.description}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {action.description}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center justify-between mt-3">
                     <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
                       <Target size={12} />
-                      <span>Confidence: <strong className="text-purple-600 dark:text-purple-400">{Math.round(action.confidence * 100)}%</strong></span>
+                      <span>
+                        Confidence:{' '}
+                        <strong className="text-purple-600 dark:text-purple-400">
+                          {Math.round(action.confidence * 100)}%
+                        </strong>
+                      </span>
                     </div>
                     <Button
                       variant="outline"
@@ -318,7 +333,7 @@ export const QuickActionsTab = ({ aiInsights = [] }) => {
 };
 
 QuickActionsTab.propTypes = {
-  aiInsights: PropTypes.array
+  aiInsights: PropTypes.array,
 };
 
 export default QuickActionsTab;

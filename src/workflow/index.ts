@@ -6,9 +6,4 @@
 export { OrchestratorCanvas } from './OrchestratorCanvas';
 export { ExecutionTimeline } from './ExecutionTimeline';
 export { WorkflowBlockPalette } from './WorkflowBlockPalette';
-export {
-  useWorkflow,
-  useWorkflowExecution,
-  useWorkflowTemplates,
-  useBlockLibrary,
-} from './hooks';
+export { useWorkflow, useWorkflowExecution, useWorkflowTemplates, useBlockLibrary } from './hooks';

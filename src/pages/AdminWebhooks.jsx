@@ -14,7 +14,7 @@ const AdminWebhooks = () => {
       created: '2024-12-01',
       lastTriggered: '2 hours ago',
       deliveries: 1547,
-      failures: 3
+      failures: 3,
     },
     {
       id: '2',
@@ -24,23 +24,47 @@ const AdminWebhooks = () => {
       created: '2024-11-20',
       lastTriggered: '1 day ago',
       deliveries: 892,
-      failures: 0
-    }
+      failures: 0,
+    },
   ]);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [newWebhook, setNewWebhook] = useState({
     url: '',
     events: [],
-    secret: ''
+    secret: '',
   });
 
   const availableEvents = [
-    { id: 'campaign.sent', label: 'Campaign Sent', description: 'Triggered when a campaign is sent' },
-    { id: 'campaign.completed', label: 'Campaign Completed', description: 'Triggered when a campaign completes' },
-    { id: 'lead.created', label: 'Lead Created', description: 'Triggered when a new lead is added' },
-    { id: 'lead.replied', label: 'Lead Replied', description: 'Triggered when a lead replies to an email' },
-    { id: 'meeting.booked', label: 'Meeting Booked', description: 'Triggered when a meeting is scheduled' },
-    { id: 'lead.unsubscribed', label: 'Lead Unsubscribed', description: 'Triggered when a lead opts out' }
+    {
+      id: 'campaign.sent',
+      label: 'Campaign Sent',
+      description: 'Triggered when a campaign is sent',
+    },
+    {
+      id: 'campaign.completed',
+      label: 'Campaign Completed',
+      description: 'Triggered when a campaign completes',
+    },
+    {
+      id: 'lead.created',
+      label: 'Lead Created',
+      description: 'Triggered when a new lead is added',
+    },
+    {
+      id: 'lead.replied',
+      label: 'Lead Replied',
+      description: 'Triggered when a lead replies to an email',
+    },
+    {
+      id: 'meeting.booked',
+      label: 'Meeting Booked',
+      description: 'Triggered when a meeting is scheduled',
+    },
+    {
+      id: 'lead.unsubscribed',
+      label: 'Lead Unsubscribed',
+      description: 'Triggered when a lead opts out',
+    },
   ];
 
   const createWebhook = () => {
@@ -65,7 +89,7 @@ const AdminWebhooks = () => {
       created: new Date().toISOString().split('T')[0],
       lastTriggered: 'Never',
       deliveries: 0,
-      failures: 0
+      failures: 0,
     };
 
     setWebhooks([...webhooks, webhook]);
@@ -74,23 +98,23 @@ const AdminWebhooks = () => {
     toast.success('Webhook created successfully');
   };
 
-  const deleteWebhook = (id) => {
+  const deleteWebhook = id => {
     if (confirm('Are you sure you want to delete this webhook?')) {
       setWebhooks(webhooks.filter(w => w.id !== id));
       toast.success('Webhook deleted');
     }
   };
 
-  const toggleEvent = (eventId) => {
+  const toggleEvent = eventId => {
     setNewWebhook(prev => ({
       ...prev,
       events: prev.events.includes(eventId)
         ? prev.events.filter(e => e !== eventId)
-        : [...prev.events, eventId]
+        : [...prev.events, eventId],
     }));
   };
 
-  const testWebhook = (webhook) => {
+  const testWebhook = webhook => {
     toast.info(`Sending test payload to ${webhook.url}...`);
     // Simulate test
     setTimeout(() => {
@@ -122,7 +146,7 @@ const AdminWebhooks = () => {
 
         {/* Webhooks List */}
         <div className="space-y-4">
-          {webhooks.map((webhook) => (
+          {webhooks.map(webhook => (
             <div
               key={webhook.id}
               className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6"
@@ -145,11 +169,13 @@ const AdminWebhooks = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className={`px-3 py-1 text-xs font-medium rounded-full ${
-                    webhook.status === 'active' 
-                      ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-                      : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
-                  }`}>
+                  <span
+                    className={`px-3 py-1 text-xs font-medium rounded-full ${
+                      webhook.status === 'active'
+                        ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                        : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
+                    }`}
+                  >
                     {webhook.status}
                   </span>
                 </div>
@@ -172,7 +198,10 @@ const AdminWebhooks = () => {
                 <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3">
                   <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Success Rate</p>
                   <p className="text-lg font-semibold text-gray-900 dark:text-white">
-                    {((webhook.deliveries - webhook.failures) / webhook.deliveries * 100).toFixed(1)}%
+                    {(((webhook.deliveries - webhook.failures) / webhook.deliveries) * 100).toFixed(
+                      1
+                    )}
+                    %
                   </p>
                 </div>
               </div>
@@ -183,7 +212,7 @@ const AdminWebhooks = () => {
                   Subscribed Events:
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {webhook.events.map((event) => (
+                  {webhook.events.map(event => (
                     <span
                       key={event}
                       className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-xs font-medium rounded-full"
@@ -204,7 +233,9 @@ const AdminWebhooks = () => {
                   Test Webhook
                 </button>
                 <button
-                  onClick={() => {/* View delivery logs */}}
+                  onClick={() => {
+                    /* View delivery logs */
+                  }}
                   className="px-3 py-1.5 text-sm border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                 >
                   <Activity className="w-4 h-4 inline mr-1" />
@@ -238,7 +269,7 @@ const AdminWebhooks = () => {
                   <input
                     type="url"
                     value={newWebhook.url}
-                    onChange={(e) => setNewWebhook({...newWebhook, url: e.target.value})}
+                    onChange={e => setNewWebhook({ ...newWebhook, url: e.target.value })}
                     placeholder="https://your-app.com/webhooks/artisan"
                     className="w-full px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
                   />
@@ -252,7 +283,7 @@ const AdminWebhooks = () => {
                     Subscribe to Events
                   </label>
                   <div className="space-y-2 max-h-60 overflow-y-auto">
-                    {availableEvents.map((event) => (
+                    {availableEvents.map(event => (
                       <label
                         key={event.id}
                         className="flex items-start gap-3 p-3 border border-gray-200 dark:border-gray-700 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
@@ -284,7 +315,8 @@ const AdminWebhooks = () => {
                         Webhook Security
                       </p>
                       <p className="text-xs text-blue-700 dark:text-blue-400">
-                        Each webhook request includes a signature in the `X-Artisan-Signature` header that you should verify. See documentation for details.
+                        Each webhook request includes a signature in the `X-Artisan-Signature`
+                        header that you should verify. See documentation for details.
                       </p>
                     </div>
                   </div>
@@ -319,7 +351,7 @@ const AdminWebhooks = () => {
           </p>
           <div className="bg-blue-100 dark:bg-blue-900/40 rounded-lg p-4 font-mono text-xs overflow-x-auto">
             <pre className="text-blue-900 dark:text-blue-300">
-{`{
+              {`{
   "event": "lead.replied",
   "timestamp": "2024-12-27T20:45:00Z",
   "data": {

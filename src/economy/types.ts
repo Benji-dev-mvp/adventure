@@ -1,6 +1,6 @@
 /**
  * Economic System Types
- * 
+ *
  * Tokenized task marketplace with credits, bidding,
  * and ROI-driven resource allocation.
  */
@@ -79,7 +79,7 @@ export interface TaskListing {
   result?: TaskResult;
 }
 
-export type TaskType = 
+export type TaskType =
   | 'prospect-research'
   | 'email-generation'
   | 'sequence-creation'
@@ -90,7 +90,7 @@ export type TaskType =
   | 'optimization'
   | 'custom';
 
-export type TaskMarketStatus = 
+export type TaskMarketStatus =
   | 'open'
   | 'bidding'
   | 'assigned'
@@ -395,7 +395,7 @@ export interface EconomicMetrics {
 
 export interface EconomicEvent {
   id: string;
-  type: 
+  type:
     | 'credit-purchase'
     | 'task-complete'
     | 'auction-end'

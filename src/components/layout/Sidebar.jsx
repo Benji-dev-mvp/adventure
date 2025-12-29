@@ -5,20 +5,14 @@ import { getFilteredSections, getEmphasizedSections } from '@/config/navConfig';
 import { useTenant } from '@/contexts/TenantContext';
 import { useNavAnalytics } from '@/hooks/useNavAnalytics';
 import { useReducedMotion } from '@/hooks/useMotion';
-import { 
-  Sparkles,
-  Brain,
-  Activity,
-  ArrowRight,
-  MessageSquare
-} from 'lucide-react';
+import { Sparkles, Brain, Activity, ArrowRight, MessageSquare } from 'lucide-react';
 
 /**
  * Sidebar Component - Unified Navigation from navConfig
- * 
+ *
  * Renders grouped sections (Overview, AI Operator, Revenue Engine, Ops & Control)
  * with a compact, "futuristic" workspace design including badges and subtle glow.
- * 
+ *
  * Features:
  * - Plan-based filtering (startup/midmarket/enterprise)
  * - Section emphasis based on segment
@@ -28,21 +22,21 @@ import {
 const Sidebar = ({ isCollapsed = false }) => {
   const navigate = useNavigate();
   const { isAdmin, plan, tenant } = useTenant();
-  const { trackNavClick } = useNavAnalytics({ 
-    tenantId: tenant?.id, 
-    plan 
+  const { trackNavClick } = useNavAnalytics({
+    tenantId: tenant?.id,
+    plan,
   });
   const prefersReducedMotion = useReducedMotion();
-  
+
   // Get filtered sections based on plan and admin status
   const sections = getFilteredSections(isAdmin, plan);
   const emphasizedSections = getEmphasizedSections(plan);
-  
+
   const [aiMetrics, setAiMetrics] = useState({
     campaignsAnalyzed: 0,
     leadsProcessed: 0,
     insights: 0,
-    learningProgress: 0
+    learningProgress: 0,
   });
 
   // Simulate AI learning progress
@@ -52,7 +46,7 @@ const Sidebar = ({ isCollapsed = false }) => {
         campaignsAnalyzed: Math.min(prev.campaignsAnalyzed + 1, 12),
         leadsProcessed: Math.min(prev.leadsProcessed + Math.floor(Math.random() * 5), 847),
         insights: Math.min(prev.insights + (Math.random() > 0.7 ? 1 : 0), 23),
-        learningProgress: Math.min(prev.learningProgress + 0.5, 100)
+        learningProgress: Math.min(prev.learningProgress + 0.5, 100),
       }));
     }, 3000);
 
@@ -66,8 +60,8 @@ const Sidebar = ({ isCollapsed = false }) => {
   return (
     <aside
       className={cn(
-        "h-screen border-r border-slate-800 bg-slate-950/80 backdrop-blur-xl flex flex-col",
-        isCollapsed ? "w-16" : "w-64"
+        'h-screen border-r border-slate-800 bg-slate-950/80 backdrop-blur-xl flex flex-col',
+        isCollapsed ? 'w-16' : 'w-64'
       )}
     >
       {/* Brand Header */}
@@ -77,9 +71,7 @@ const Sidebar = ({ isCollapsed = false }) => {
         </div>
         {!isCollapsed && (
           <div className="flex flex-col min-w-0">
-            <span className="text-xs uppercase tracking-wide text-slate-400">
-              Ava Outbound OS
-            </span>
+            <span className="text-xs uppercase tracking-wide text-slate-400">Ava Outbound OS</span>
             <span className="text-sm font-semibold text-slate-50 truncate">
               {tenant?.name || 'Workspace'}
             </span>
@@ -89,20 +81,22 @@ const Sidebar = ({ isCollapsed = false }) => {
 
       {/* Navigation Sections */}
       <nav className="flex-1 overflow-y-auto px-2 py-4 space-y-6">
-        {sections.map((section) => {
+        {sections.map(section => {
           const isEmphasized = emphasizedSections.includes(section.id);
           return (
             <div key={section.id}>
               {!isCollapsed && (
-                <div className={cn(
-                  "px-3 mb-2 text-[10px] font-medium uppercase tracking-[0.16em]",
-                  isEmphasized ? "text-cyan-400" : "text-slate-500"
-                )}>
+                <div
+                  className={cn(
+                    'px-3 mb-2 text-[10px] font-medium uppercase tracking-[0.16em]',
+                    isEmphasized ? 'text-cyan-400' : 'text-slate-500'
+                  )}
+                >
                   {section.label}
                 </div>
               )}
               <div className="space-y-1">
-                {section.items.map((item) => (
+                {section.items.map(item => (
                   <SidebarItem
                     key={item.id}
                     item={item}
@@ -124,10 +118,7 @@ const Sidebar = ({ isCollapsed = false }) => {
         <div className="p-4 border-t border-slate-800">
           <div className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-xl p-3 text-white shadow-lg">
             {/* Animated Background Pattern */}
-            <div className={cn(
-              "absolute inset-0 opacity-10",
-              prefersReducedMotion && "hidden"
-            )}>
+            <div className={cn('absolute inset-0 opacity-10', prefersReducedMotion && 'hidden')}>
               <div className="absolute top-0 left-0 w-20 h-20 bg-white rounded-full blur-2xl animate-pulse"></div>
             </div>
 
@@ -173,7 +164,7 @@ const Sidebar = ({ isCollapsed = false }) => {
                   <span>{Math.round(aiMetrics.learningProgress)}%</span>
                 </div>
                 <div className="h-1.5 bg-white/20 rounded-full overflow-hidden">
-                  <div 
+                  <div
                     className="h-full bg-gradient-to-r from-green-400 to-emerald-400 rounded-full transition-all duration-1000 ease-out"
                     style={{ width: `${aiMetrics.learningProgress}%` }}
                   ></div>
@@ -181,17 +172,20 @@ const Sidebar = ({ isCollapsed = false }) => {
               </div>
 
               {/* Single Action Button */}
-              <button 
+              <button
                 onClick={() => navigate('/ai-assistant')}
                 className="w-full bg-white hover:bg-white/90 text-purple-700 text-xs font-semibold py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-2 group shadow-md"
               >
                 <MessageSquare size={14} />
                 <span>Chat with Ava</span>
-                <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                <ArrowRight
+                  size={12}
+                  className="group-hover:translate-x-0.5 transition-transform"
+                />
               </button>
             </div>
           </div>
-          
+
           {/* Help Center Link */}
           <button
             onClick={() => navigate('/help')}
@@ -210,7 +204,14 @@ const Sidebar = ({ isCollapsed = false }) => {
  * Individual Sidebar Item with NavLink for active state
  * Includes analytics tracking and motion support
  */
-function SidebarItem({ item, sectionId, isCollapsed, isEmphasized, onNavigate, prefersReducedMotion }) {
+function SidebarItem({
+  item,
+  sectionId,
+  isCollapsed,
+  isEmphasized,
+  onNavigate,
+  prefersReducedMotion,
+}) {
   const Icon = item.icon;
 
   const handleClick = () => {
@@ -225,41 +226,39 @@ function SidebarItem({ item, sectionId, isCollapsed, isEmphasized, onNavigate, p
       onClick={handleClick}
       className={({ isActive }) =>
         cn(
-          "group flex items-center rounded-lg px-3 py-2 text-sm",
-          "border border-transparent",
+          'group flex items-center rounded-lg px-3 py-2 text-sm',
+          'border border-transparent',
           // Use CSS transitions unless reduced motion is preferred
-          !prefersReducedMotion && "transition-all duration-200",
+          !prefersReducedMotion && 'transition-all duration-200',
           isActive
-            ? "bg-slate-900/80 border-cyan-500/60 shadow-[0_0_0_1px_rgba(34,211,238,0.35)]"
-            : "hover:bg-slate-900/60 hover:border-slate-700",
+            ? 'bg-slate-900/80 border-cyan-500/60 shadow-[0_0_0_1px_rgba(34,211,238,0.35)]'
+            : 'hover:bg-slate-900/60 hover:border-slate-700',
           // Emphasized sections get subtle highlight
-          isEmphasized && !isActive && "border-l-2 border-l-cyan-500/30"
+          isEmphasized && !isActive && 'border-l-2 border-l-cyan-500/30'
         )
       }
     >
-      <span className={cn(
-        "relative flex items-center justify-center h-8 w-8 rounded-md bg-slate-900/80 flex-shrink-0",
-        !prefersReducedMotion && "group-hover:bg-slate-800 transition-colors"
-      )}>
+      <span
+        className={cn(
+          'relative flex items-center justify-center h-8 w-8 rounded-md bg-slate-900/80 flex-shrink-0',
+          !prefersReducedMotion && 'group-hover:bg-slate-800 transition-colors'
+        )}
+      >
         <Icon className="h-4 w-4 text-slate-300" />
         {item.badge && (
-          <span className={cn(
-            "absolute -top-1 -right-1 rounded-full bg-cyan-500 text-[9px] px-1 py-[1px] text-slate-950 font-semibold",
-            item.badge === 'New' && !prefersReducedMotion && "animate-pulse"
-          )}>
+          <span
+            className={cn(
+              'absolute -top-1 -right-1 rounded-full bg-cyan-500 text-[9px] px-1 py-[1px] text-slate-950 font-semibold',
+              item.badge === 'New' && !prefersReducedMotion && 'animate-pulse'
+            )}
+          >
             {item.badge}
           </span>
         )}
       </span>
-      {!isCollapsed && (
-        <span className="ml-3 flex-1 truncate text-slate-100">
-          {item.label}
-        </span>
-      )}
+      {!isCollapsed && <span className="ml-3 flex-1 truncate text-slate-100">{item.label}</span>}
       {!isCollapsed && item.highlight && !item.badge && (
-        <span className="ml-2 text-[10px] uppercase tracking-wide text-cyan-400">
-          AI
-        </span>
+        <span className="ml-2 text-[10px] uppercase tracking-wide text-cyan-400">AI</span>
       )}
     </NavLink>
   );

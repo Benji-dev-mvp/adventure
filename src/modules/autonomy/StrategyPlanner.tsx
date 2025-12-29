@@ -1,20 +1,20 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Brain, 
-  Target, 
-  TrendingUp, 
-  Zap, 
-  Settings2, 
-  Play, 
-  Pause, 
+import {
+  Brain,
+  Target,
+  TrendingUp,
+  Zap,
+  Settings2,
+  Play,
+  Pause,
   RotateCcw,
   Lightbulb,
   Sparkles,
   AlertTriangle,
   CheckCircle2,
-  Clock
+  Clock,
 } from 'lucide-react';
 
 /**
@@ -79,7 +79,8 @@ const StrategyPlanner: React.FC<StrategyPlannerProps> = ({ onStrategyChange }) =
           companySize: { min: 500, max: 5000 },
           technologies: ['Salesforce', 'HubSpot'],
         },
-        reasoning: 'High intent signals detected in enterprise segment. Email + LinkedIn combo showing 3.2x better response rates.',
+        reasoning:
+          'High intent signals detected in enterprise segment. Email + LinkedIn combo showing 3.2x better response rates.',
       },
       {
         id: 'strat-2',
@@ -96,7 +97,8 @@ const StrategyPlanner: React.FC<StrategyPlannerProps> = ({ onStrategyChange }) =
           companySize: { min: 100, max: 500 },
           technologies: ['Workday', 'Oracle'],
         },
-        reasoning: 'Q4 budget cycles create opportunity window. Phone follow-ups increase conversion 2.1x.',
+        reasoning:
+          'Q4 budget cycles create opportunity window. Phone follow-ups increase conversion 2.1x.',
       },
     ];
 
@@ -139,18 +141,25 @@ const StrategyPlanner: React.FC<StrategyPlannerProps> = ({ onStrategyChange }) =
 
   const getStatusColor = (status: Strategy['status']) => {
     switch (status) {
-      case 'active': return 'text-green-400 bg-green-400/10';
-      case 'planning': return 'text-blue-400 bg-blue-400/10';
-      case 'paused': return 'text-amber-400 bg-amber-400/10';
-      default: return 'text-gray-400 bg-gray-400/10';
+      case 'active':
+        return 'text-green-400 bg-green-400/10';
+      case 'planning':
+        return 'text-blue-400 bg-blue-400/10';
+      case 'paused':
+        return 'text-amber-400 bg-amber-400/10';
+      default:
+        return 'text-gray-400 bg-gray-400/10';
     }
   };
 
   const getImpactColor = (impact: Recommendation['impact']) => {
     switch (impact) {
-      case 'high': return 'text-green-400';
-      case 'medium': return 'text-amber-400';
-      default: return 'text-gray-400';
+      case 'high':
+        return 'text-green-400';
+      case 'medium':
+        return 'text-amber-400';
+      default:
+        return 'text-gray-400';
     }
   };
 
@@ -199,7 +208,7 @@ const StrategyPlanner: React.FC<StrategyPlannerProps> = ({ onStrategyChange }) =
           <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-4">
             Active Strategies
           </h3>
-          {strategies.map((strategy) => (
+          {strategies.map(strategy => (
             <motion.button
               key={strategy.id}
               onClick={() => setActiveStrategy(strategy)}
@@ -213,7 +222,9 @@ const StrategyPlanner: React.FC<StrategyPlannerProps> = ({ onStrategyChange }) =
             >
               <div className="flex items-start justify-between mb-2">
                 <span className="font-medium text-white">{strategy.name}</span>
-                <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusColor(strategy.status)}`}>
+                <span
+                  className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusColor(strategy.status)}`}
+                >
                   {strategy.status}
                 </span>
               </div>
@@ -275,7 +286,9 @@ const StrategyPlanner: React.FC<StrategyPlannerProps> = ({ onStrategyChange }) =
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-400">Tech Stack</span>
-                      <span className="text-white">{activeStrategy.icp.technologies.join(', ')}</span>
+                      <span className="text-white">
+                        {activeStrategy.icp.technologies.join(', ')}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -287,7 +300,7 @@ const StrategyPlanner: React.FC<StrategyPlannerProps> = ({ onStrategyChange }) =
                     Channel Mix
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {activeStrategy.channelMix.map((channel) => (
+                    {activeStrategy.channelMix.map(channel => (
                       <span
                         key={channel}
                         className="px-3 py-1 bg-gray-700 rounded-full text-sm text-white capitalize"
@@ -347,12 +360,20 @@ const StrategyPlanner: React.FC<StrategyPlannerProps> = ({ onStrategyChange }) =
                 className="bg-gray-800/50 rounded-lg p-4 border border-gray-700 hover:border-gray-600 transition-colors cursor-pointer group"
               >
                 <div className="flex items-start gap-3">
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                    rec.impact === 'high' ? 'bg-green-500/10' : 'bg-amber-500/10'
-                  }`}>
-                    {rec.type === 'channel' && <Zap className={`w-4 h-4 ${getImpactColor(rec.impact)}`} />}
-                    {rec.type === 'timing' && <Clock className={`w-4 h-4 ${getImpactColor(rec.impact)}`} />}
-                    {rec.type === 'targeting' && <Target className={`w-4 h-4 ${getImpactColor(rec.impact)}`} />}
+                  <div
+                    className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                      rec.impact === 'high' ? 'bg-green-500/10' : 'bg-amber-500/10'
+                    }`}
+                  >
+                    {rec.type === 'channel' && (
+                      <Zap className={`w-4 h-4 ${getImpactColor(rec.impact)}`} />
+                    )}
+                    {rec.type === 'timing' && (
+                      <Clock className={`w-4 h-4 ${getImpactColor(rec.impact)}`} />
+                    )}
+                    {rec.type === 'targeting' && (
+                      <Target className={`w-4 h-4 ${getImpactColor(rec.impact)}`} />
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">

@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * Hunter Agent
- * 
+ *
  * Finds accounts & contacts dynamically based on ICP signals.
  * Continuously scans for new opportunities matching target profiles.
  */
@@ -109,23 +109,23 @@ export class HunterAgent extends BaseAgent {
   private async findAccounts(task: Task): Promise<ExecutionResult> {
     const criteria = task.input.data as HuntingCriteria;
     const accounts: AccountMatch[] = [];
-    
+
     // Simulate account discovery with intelligent matching
     const potentialAccounts = await this.scanSources(criteria);
-    
+
     for (const account of potentialAccounts) {
       const matchScore = this.calculateMatchScore(account, criteria);
-      
+
       if (matchScore >= criteria.minMatchScore && !this.discoveredAccounts.has(account.domain)) {
         // Find relevant contacts
         const contacts = await this.identifyContacts(account);
-        
+
         accounts.push({
           ...account,
           matchScore,
           contacts,
         });
-        
+
         this.discoveredAccounts.add(account.domain);
         this.updateHuntingPatterns(account, matchScore);
       }
@@ -155,10 +155,10 @@ export class HunterAgent extends BaseAgent {
    */
   private async enrichContact(task: Task): Promise<ExecutionResult> {
     const contactId = task.input.data as { contactId: string; accountId: string };
-    
+
     // Simulate enrichment process
     const enrichedData = await this.performEnrichment(contactId);
-    
+
     return {
       success: enrichedData.email !== undefined || enrichedData.linkedin !== undefined,
       output: enrichedData,
@@ -172,9 +172,9 @@ export class HunterAgent extends BaseAgent {
    */
   private async detectSignals(task: Task): Promise<ExecutionResult> {
     const accountId = task.input.data as { accountId: string };
-    
+
     const signals = await this.scanForSignals(accountId);
-    
+
     return {
       success: signals.length > 0,
       output: {
@@ -189,18 +189,22 @@ export class HunterAgent extends BaseAgent {
 
   // === Private Helper Methods ===
 
-  private async scanSources(criteria: HuntingCriteria): Promise<Omit<AccountMatch, 'matchScore' | 'contacts'>[]> {
+  private async scanSources(
+    criteria: HuntingCriteria
+  ): Promise<Omit<AccountMatch, 'matchScore' | 'contacts'>[]> {
     // Simulate scanning multiple data sources
     await this.simulateLatency(1000);
-    
+
     // Generate synthetic accounts based on criteria
     const accounts: Omit<AccountMatch, 'matchScore' | 'contacts'>[] = [];
     const count = Math.floor(Math.random() * 20) + 5;
-    
+
     for (let i = 0; i < count; i++) {
-      const industry = criteria.industries[Math.floor(Math.random() * criteria.industries.length)] || 'Technology';
-      const size = criteria.companySizes[Math.floor(Math.random() * criteria.companySizes.length)] || '50-200';
-      
+      const industry =
+        criteria.industries[Math.floor(Math.random() * criteria.industries.length)] || 'Technology';
+      const size =
+        criteria.companySizes[Math.floor(Math.random() * criteria.companySizes.length)] || '50-200';
+
       accounts.push({
         id: `acc_${Date.now()}_${i}`,
         name: this.generateCompanyName(),
@@ -210,7 +214,7 @@ export class HunterAgent extends BaseAgent {
         signals: this.generateSignals(criteria.signals),
       });
     }
-    
+
     return accounts;
   }
 
@@ -245,20 +249,27 @@ export class HunterAgent extends BaseAgent {
     return Math.min(score, 1);
   }
 
-  private async identifyContacts(account: Omit<AccountMatch, 'matchScore' | 'contacts'>): Promise<ContactMatch[]> {
+  private async identifyContacts(
+    account: Omit<AccountMatch, 'matchScore' | 'contacts'>
+  ): Promise<ContactMatch[]> {
     await this.simulateLatency(500);
-    
+
     const contacts: ContactMatch[] = [];
     const count = Math.floor(Math.random() * 5) + 1;
-    
+
     const titles = [
-      'VP of Sales', 'Head of Marketing', 'Director of Operations',
-      'CTO', 'CEO', 'VP of Engineering', 'Director of Business Development'
+      'VP of Sales',
+      'Head of Marketing',
+      'Director of Operations',
+      'CTO',
+      'CEO',
+      'VP of Engineering',
+      'Director of Business Development',
     ];
-    
+
     const departments = ['Sales', 'Marketing', 'Engineering', 'Operations', 'Executive'];
     const seniorities = ['VP', 'Director', 'Manager', 'C-Level'];
-    
+
     for (let i = 0; i < count; i++) {
       contacts.push({
         id: `contact_${Date.now()}_${i}`,
@@ -271,13 +282,16 @@ export class HunterAgent extends BaseAgent {
         relevanceScore: Math.random() * 0.5 + 0.5,
       });
     }
-    
+
     return contacts.sort((a, b) => b.relevanceScore - a.relevanceScore);
   }
 
-  private async performEnrichment(contactId: { contactId: string; accountId: string }): Promise<Record<string, unknown>> {
+  private async performEnrichment(contactId: {
+    contactId: string;
+    accountId: string;
+  }): Promise<Record<string, unknown>> {
     await this.simulateLatency(800);
-    
+
     return {
       contactId: contactId.contactId,
       email: Math.random() > 0.2 ? `enriched@example.com` : undefined,
@@ -288,17 +302,23 @@ export class HunterAgent extends BaseAgent {
     };
   }
 
-  private async scanForSignals(accountId: { accountId: string }): Promise<Array<{ type: string; strength: number; source: string }>> {
+  private async scanForSignals(accountId: {
+    accountId: string;
+  }): Promise<Array<{ type: string; strength: number; source: string }>> {
     await this.simulateLatency(600);
-    
+
     const signalTypes = [
-      'hiring-surge', 'funding-round', 'tech-adoption',
-      'leadership-change', 'expansion-indicator', 'competitor-mention'
+      'hiring-surge',
+      'funding-round',
+      'tech-adoption',
+      'leadership-change',
+      'expansion-indicator',
+      'competitor-mention',
     ];
-    
+
     const signals: Array<{ type: string; strength: number; source: string }> = [];
     const count = Math.floor(Math.random() * 4);
-    
+
     for (let i = 0; i < count; i++) {
       signals.push({
         type: signalTypes[Math.floor(Math.random() * signalTypes.length)],
@@ -306,11 +326,14 @@ export class HunterAgent extends BaseAgent {
         source: ['linkedin', 'news', 'job-boards', 'g2'][Math.floor(Math.random() * 4)],
       });
     }
-    
+
     return signals.sort((a, b) => b.strength - a.strength);
   }
 
-  private updateHuntingPatterns(account: Omit<AccountMatch, 'matchScore' | 'contacts'>, score: number): void {
+  private updateHuntingPatterns(
+    account: Omit<AccountMatch, 'matchScore' | 'contacts'>,
+    score: number
+  ): void {
     const key = `${account.industry}:${account.size}`;
     const currentWeight = this.huntingPatterns.get(key) || 0.5;
     this.huntingPatterns.set(key, currentWeight * 0.9 + score * 0.1);
@@ -323,23 +346,25 @@ export class HunterAgent extends BaseAgent {
 
   private extractLearnings(accounts: AccountMatch[], criteria: HuntingCriteria): string[] {
     const learnings: string[] = [];
-    
+
     if (accounts.length > 10) {
       learnings.push('High-yield criteria combination identified');
     }
-    
+
     const avgScore = accounts.reduce((a, b) => a + b.matchScore, 0) / accounts.length;
     if (avgScore > 0.8) {
       learnings.push(`Strong ICP alignment in ${criteria.industries.join(', ')}`);
     }
-    
+
     const signalCounts = new Map<string, number>();
-    accounts.forEach(a => a.signals.forEach(s => signalCounts.set(s, (signalCounts.get(s) || 0) + 1)));
+    accounts.forEach(a =>
+      a.signals.forEach(s => signalCounts.set(s, (signalCounts.get(s) || 0) + 1))
+    );
     const topSignal = Array.from(signalCounts.entries()).sort((a, b) => b[1] - a[1])[0];
     if (topSignal && topSignal[1] > accounts.length * 0.5) {
       learnings.push(`Signal "${topSignal[0]}" is strong indicator for this ICP`);
     }
-    
+
     return learnings;
   }
 
@@ -353,7 +378,9 @@ export class HunterAgent extends BaseAgent {
     return distribution;
   }
 
-  private calculateUrgency(signals: Array<{ type: string; strength: number }>): 'high' | 'medium' | 'low' {
+  private calculateUrgency(
+    signals: Array<{ type: string; strength: number }>
+  ): 'high' | 'medium' | 'low' {
     const urgentSignals = ['funding-round', 'hiring-surge', 'expansion-indicator'];
     const hasUrgent = signals.some(s => urgentSignals.includes(s.type) && s.strength > 0.7);
     if (hasUrgent) return 'high';
@@ -373,7 +400,16 @@ export class HunterAgent extends BaseAgent {
 
   private generatePersonName(): string {
     const firstNames = ['Alex', 'Jordan', 'Taylor', 'Morgan', 'Casey', 'Riley', 'Quinn', 'Avery'];
-    const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis'];
+    const lastNames = [
+      'Smith',
+      'Johnson',
+      'Williams',
+      'Brown',
+      'Jones',
+      'Garcia',
+      'Miller',
+      'Davis',
+    ];
     return `${firstNames[Math.floor(Math.random() * firstNames.length)]} ${lastNames[Math.floor(Math.random() * lastNames.length)]}`;
   }
 
@@ -384,7 +420,9 @@ export class HunterAgent extends BaseAgent {
       if (preferredSignals.length > 0 && Math.random() > 0.3) {
         signals.push(preferredSignals[Math.floor(Math.random() * preferredSignals.length)]);
       } else {
-        signals.push(['hiring-surge', 'funding-round', 'tech-adoption'][Math.floor(Math.random() * 3)]);
+        signals.push(
+          ['hiring-surge', 'funding-round', 'tech-adoption'][Math.floor(Math.random() * 3)]
+        );
       }
     }
     return [...new Set(signals)];

@@ -28,39 +28,22 @@ export const GridRow = ({ className, gap = 'md', children, ...props }) => {
     sm: 'gap-2 sm:gap-3',
     md: 'gap-4 md:gap-6',
     lg: 'gap-6 lg:gap-8',
-    xl: 'gap-8 xl:gap-12'
+    xl: 'gap-8 xl:gap-12',
   };
 
   return (
-    <div
-      className={cn(
-        'grid grid-cols-1',
-        'md:grid-cols-12',
-        gapSizes[gap],
-        className
-      )}
-      {...props}
-    >
+    <div className={cn('grid grid-cols-1', 'md:grid-cols-12', gapSizes[gap], className)} {...props}>
       {children}
     </div>
   );
 };
 
-export const GridCol = ({ 
-  xs = 12, 
-  sm, 
-  md, 
-  lg, 
-  xl, 
-  className, 
-  children, 
-  ...props 
-}) => {
+export const GridCol = ({ xs = 12, sm, md, lg, xl, className, children, ...props }) => {
   const colSpans = [];
-  
+
   // Base (xs)
   colSpans.push(`col-span-${xs}`);
-  
+
   // Responsive breakpoints
   if (sm !== undefined) colSpans.push(`sm:col-span-${sm}`);
   if (md !== undefined) colSpans.push(`md:col-span-${md}`);
@@ -68,33 +51,27 @@ export const GridCol = ({
   if (xl !== undefined) colSpans.push(`xl:col-span-${xl}`);
 
   return (
-    <div
-      className={cn(
-        ...colSpans,
-        className
-      )}
-      {...props}
-    >
+    <div className={cn(...colSpans, className)} {...props}>
       {children}
     </div>
   );
 };
 
-export const FlexContainer = ({ 
-  direction = 'row', 
-  justify = 'start', 
-  align = 'start', 
+export const FlexContainer = ({
+  direction = 'row',
+  justify = 'start',
+  align = 'start',
   wrap = false,
   gap = 'md',
-  className, 
-  children, 
-  ...props 
+  className,
+  children,
+  ...props
 }) => {
   const directions = {
     row: 'flex-row',
     'row-reverse': 'flex-row-reverse',
     col: 'flex-col',
-    'col-reverse': 'flex-col-reverse'
+    'col-reverse': 'flex-col-reverse',
   };
 
   const justifications = {
@@ -103,7 +80,7 @@ export const FlexContainer = ({
     center: 'justify-center',
     between: 'justify-between',
     around: 'justify-around',
-    evenly: 'justify-evenly'
+    evenly: 'justify-evenly',
   };
 
   const alignments = {
@@ -111,7 +88,7 @@ export const FlexContainer = ({
     end: 'items-end',
     center: 'items-center',
     baseline: 'items-baseline',
-    stretch: 'items-stretch'
+    stretch: 'items-stretch',
   };
 
   const gapSizes = {
@@ -120,7 +97,7 @@ export const FlexContainer = ({
     sm: 'gap-2',
     md: 'gap-4',
     lg: 'gap-6',
-    xl: 'gap-8'
+    xl: 'gap-8',
   };
 
   return (
@@ -141,12 +118,12 @@ export const FlexContainer = ({
   );
 };
 
-export const ResponsiveStack = ({ 
+export const ResponsiveStack = ({
   spacing = 'md',
   divider = false,
-  className, 
-  children, 
-  ...props 
+  className,
+  children,
+  ...props
 }) => {
   const spacings = {
     none: 'space-y-0',
@@ -154,7 +131,7 @@ export const ResponsiveStack = ({
     sm: 'space-y-2',
     md: 'space-y-4',
     lg: 'space-y-6',
-    xl: 'space-y-8'
+    xl: 'space-y-8',
   };
 
   return (
@@ -172,19 +149,19 @@ export const ResponsiveStack = ({
   );
 };
 
-export const ResponsiveGrid = ({ 
+export const ResponsiveGrid = ({
   cols = { xs: 1, sm: 2, md: 3, lg: 4 },
   gap = 'md',
-  className, 
-  children, 
-  ...props 
+  className,
+  children,
+  ...props
 }) => {
   const gapSizes = {
     none: 'gap-0',
     sm: 'gap-2',
     md: 'gap-4',
     lg: 'gap-6',
-    xl: 'gap-8'
+    xl: 'gap-8',
   };
 
   const gridCols = [
@@ -193,48 +170,28 @@ export const ResponsiveGrid = ({
     cols.md && `md:grid-cols-${cols.md}`,
     cols.lg && `lg:grid-cols-${cols.lg}`,
     cols.xl && `xl:grid-cols-${cols.xl}`,
-    cols['2xl'] && `2xl:grid-cols-${cols['2xl']}`
+    cols['2xl'] && `2xl:grid-cols-${cols['2xl']}`,
   ].filter(Boolean);
 
   return (
-    <div
-      className={cn(
-        'grid',
-        ...gridCols,
-        gapSizes[gap],
-        className
-      )}
-      {...props}
-    >
+    <div className={cn('grid', ...gridCols, gapSizes[gap], className)} {...props}>
       {children}
     </div>
   );
 };
 
 // Responsive Section Component
-export const Section = ({ 
-  className, 
-  padding = 'md',
-  children, 
-  ...props 
-}) => {
+export const Section = ({ className, padding = 'md', children, ...props }) => {
   const paddings = {
     none: 'py-0',
     sm: 'py-4 sm:py-6',
     md: 'py-6 sm:py-8 lg:py-12',
     lg: 'py-8 sm:py-12 lg:py-16',
-    xl: 'py-12 sm:py-16 lg:py-24'
+    xl: 'py-12 sm:py-16 lg:py-24',
   };
 
   return (
-    <section
-      className={cn(
-        'w-full',
-        paddings[padding],
-        className
-      )}
-      {...props}
-    >
+    <section className={cn('w-full', paddings[padding], className)} {...props}>
       {children}
     </section>
   );
@@ -246,7 +203,7 @@ export const ShowAt = ({ breakpoint = 'md', children }) => {
     sm: 'hidden sm:block',
     md: 'hidden md:block',
     lg: 'hidden lg:block',
-    xl: 'hidden xl:block'
+    xl: 'hidden xl:block',
   };
 
   return <div className={breakpoints[breakpoint]}>{children}</div>;
@@ -257,7 +214,7 @@ export const HideAt = ({ breakpoint = 'md', children }) => {
     sm: 'sm:hidden',
     md: 'md:hidden',
     lg: 'lg:hidden',
-    xl: 'xl:hidden'
+    xl: 'xl:hidden',
   };
 
   return <div className={breakpoints[breakpoint]}>{children}</div>;
@@ -270,7 +227,7 @@ export const Spacer = ({ size = 'md', responsive = true, className }) => {
       sm: 'h-4 sm:h-6',
       md: 'h-6 sm:h-8 lg:h-12',
       lg: 'h-8 sm:h-12 lg:h-16',
-      xl: 'h-12 sm:h-16 lg:h-24'
+      xl: 'h-12 sm:h-16 lg:h-24',
     };
     return <div className={cn(sizes[size], className)} />;
   }
@@ -279,8 +236,8 @@ export const Spacer = ({ size = 'md', responsive = true, className }) => {
     sm: 'h-4',
     md: 'h-8',
     lg: 'h-12',
-    xl: 'h-16'
+    xl: 'h-16',
   };
-  
+
   return <div className={cn(fixedSizes[size], className)} />;
 };

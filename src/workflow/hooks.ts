@@ -76,28 +76,31 @@ export function useWorkflow(workflowId?: string) {
   }, []);
 
   const updateBlock = useCallback((blockId: string, updates: Partial<WorkflowBlock>) => {
-    setBlocks(prev =>
-      prev.map(b => b.id === blockId ? { ...b, ...updates } : b)
-    );
+    setBlocks(prev => prev.map(b => (b.id === blockId ? { ...b, ...updates } : b)));
     setHasUnsavedChanges(true);
   }, []);
 
   const deleteBlock = useCallback((blockId: string) => {
     setBlocks(prev => prev.filter(b => b.id !== blockId));
-    setConnections(prev => prev.filter(c => c.from.blockId !== blockId && c.to.blockId !== blockId));
+    setConnections(prev =>
+      prev.filter(c => c.from.blockId !== blockId && c.to.blockId !== blockId)
+    );
     setHasUnsavedChanges(true);
   }, []);
 
-  const addConnection = useCallback((from: { blockId: string; portId: string }, to: { blockId: string; portId: string }) => {
-    const newConnection: WorkflowConnection = {
-      id: `conn-${Date.now()}`,
-      from,
-      to,
-    };
-    setConnections(prev => [...prev, newConnection]);
-    setHasUnsavedChanges(true);
-    return newConnection;
-  }, []);
+  const addConnection = useCallback(
+    (from: { blockId: string; portId: string }, to: { blockId: string; portId: string }) => {
+      const newConnection: WorkflowConnection = {
+        id: `conn-${Date.now()}`,
+        from,
+        to,
+      };
+      setConnections(prev => [...prev, newConnection]);
+      setHasUnsavedChanges(true);
+      return newConnection;
+    },
+    []
+  );
 
   const deleteConnection = useCallback((connectionId: string) => {
     setConnections(prev => prev.filter(c => c.id !== connectionId));
@@ -113,13 +116,13 @@ export function useWorkflow(workflowId?: string) {
 
   const validateWorkflow = useCallback(() => {
     const errors: string[] = [];
-    
+
     // Check for orphaned blocks
     const connectedBlocks = new Set([
       ...connections.map(c => c.from.blockId),
       ...connections.map(c => c.to.blockId),
     ]);
-    
+
     blocks.forEach(block => {
       if (!connectedBlocks.has(block.id) && blocks.length > 1) {
         errors.push(`Block "${block.name}" is not connected`);
@@ -207,8 +210,18 @@ export function useWorkflowTemplates() {
       setIsLoading(true);
       await new Promise(resolve => setTimeout(resolve, 300));
       setTemplates([
-        { id: 't1', name: 'Lead Qualification', description: 'Score and route incoming leads', blocks: 5 },
-        { id: 't2', name: 'Multi-channel Outreach', description: 'Email + LinkedIn sequence', blocks: 8 },
+        {
+          id: 't1',
+          name: 'Lead Qualification',
+          description: 'Score and route incoming leads',
+          blocks: 5,
+        },
+        {
+          id: 't2',
+          name: 'Multi-channel Outreach',
+          description: 'Email + LinkedIn sequence',
+          blocks: 8,
+        },
         { id: 't3', name: 'Nurture Campaign', description: 'Long-term nurture flow', blocks: 12 },
       ]);
       setIsLoading(false);
@@ -239,57 +252,66 @@ export function useWorkflowTemplates() {
  * Hook for block library
  */
 export function useBlockLibrary() {
-  const categories = useMemo(() => [
-    {
-      id: 'data',
-      label: 'Data',
-      blocks: [
-        { type: 'source', label: 'Source', description: 'Import data' },
-        { type: 'filter', label: 'Filter', description: 'Filter records' },
-        { type: 'enrich', label: 'Enrich', description: 'Enrich data' },
-      ],
-    },
-    {
-      id: 'intelligence',
-      label: 'Intelligence',
-      blocks: [
-        { type: 'score', label: 'Score', description: 'Score leads' },
-        { type: 'ai_action', label: 'AI Action', description: 'AI decision' },
-      ],
-    },
-    {
-      id: 'outreach',
-      label: 'Outreach',
-      blocks: [
-        { type: 'send_email', label: 'Email', description: 'Send email' },
-        { type: 'send_linkedin', label: 'LinkedIn', description: 'LinkedIn message' },
-        { type: 'send_call', label: 'Call', description: 'Schedule call' },
-      ],
-    },
-    {
-      id: 'flow',
-      label: 'Flow',
-      blocks: [
-        { type: 'condition', label: 'Condition', description: 'Branch logic' },
-        { type: 'wait', label: 'Wait', description: 'Time delay' },
-        { type: 'escalate', label: 'Escalate', description: 'Human handoff' },
-        { type: 'convert', label: 'Convert', description: 'Mark converted' },
-      ],
-    },
-  ], []);
+  const categories = useMemo(
+    () => [
+      {
+        id: 'data',
+        label: 'Data',
+        blocks: [
+          { type: 'source', label: 'Source', description: 'Import data' },
+          { type: 'filter', label: 'Filter', description: 'Filter records' },
+          { type: 'enrich', label: 'Enrich', description: 'Enrich data' },
+        ],
+      },
+      {
+        id: 'intelligence',
+        label: 'Intelligence',
+        blocks: [
+          { type: 'score', label: 'Score', description: 'Score leads' },
+          { type: 'ai_action', label: 'AI Action', description: 'AI decision' },
+        ],
+      },
+      {
+        id: 'outreach',
+        label: 'Outreach',
+        blocks: [
+          { type: 'send_email', label: 'Email', description: 'Send email' },
+          { type: 'send_linkedin', label: 'LinkedIn', description: 'LinkedIn message' },
+          { type: 'send_call', label: 'Call', description: 'Schedule call' },
+        ],
+      },
+      {
+        id: 'flow',
+        label: 'Flow',
+        blocks: [
+          { type: 'condition', label: 'Condition', description: 'Branch logic' },
+          { type: 'wait', label: 'Wait', description: 'Time delay' },
+          { type: 'escalate', label: 'Escalate', description: 'Human handoff' },
+          { type: 'convert', label: 'Convert', description: 'Mark converted' },
+        ],
+      },
+    ],
+    []
+  );
 
-  const searchBlocks = useCallback((query: string) => {
-    if (!query) return categories;
-    
-    const lowerQuery = query.toLowerCase();
-    return categories.map(cat => ({
-      ...cat,
-      blocks: cat.blocks.filter(b =>
-        b.label.toLowerCase().includes(lowerQuery) ||
-        b.description.toLowerCase().includes(lowerQuery)
-      ),
-    })).filter(cat => cat.blocks.length > 0);
-  }, [categories]);
+  const searchBlocks = useCallback(
+    (query: string) => {
+      if (!query) return categories;
+
+      const lowerQuery = query.toLowerCase();
+      return categories
+        .map(cat => ({
+          ...cat,
+          blocks: cat.blocks.filter(
+            b =>
+              b.label.toLowerCase().includes(lowerQuery) ||
+              b.description.toLowerCase().includes(lowerQuery)
+          ),
+        }))
+        .filter(cat => cat.blocks.length > 0);
+    },
+    [categories]
+  );
 
   return {
     categories,

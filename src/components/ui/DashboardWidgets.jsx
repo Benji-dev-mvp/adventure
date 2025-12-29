@@ -7,17 +7,17 @@ import { TrendingUp, TrendingDown, Minus, ArrowUpRight, ArrowDownRight } from 'l
  */
 
 // KPI Card - Key Performance Indicator
-export const KPICard = ({ 
-  title, 
-  value, 
-  change, 
-  trend = 'up', 
+export const KPICard = ({
+  title,
+  value,
+  change,
+  trend = 'up',
   icon: Icon,
   format = 'number',
   className,
-  ...props 
+  ...props
 }) => {
-  const formatValue = (val) => {
+  const formatValue = val => {
     if (format === 'currency') return `$${val.toLocaleString()}`;
     if (format === 'percentage') return `${val}%`;
     return val.toLocaleString();
@@ -26,7 +26,7 @@ export const KPICard = ({
   const trendColors = {
     up: 'text-green-600 dark:text-green-400',
     down: 'text-red-600 dark:text-red-400',
-    neutral: 'text-gray-600 dark:text-gray-400'
+    neutral: 'text-gray-600 dark:text-gray-400',
   };
 
   const TrendIcon = trend === 'up' ? TrendingUp : trend === 'down' ? TrendingDown : Minus;
@@ -46,15 +46,15 @@ export const KPICard = ({
     >
       <div className="flex items-start justify-between">
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-gray-600 dark:text-gray-400 truncate">
-            {title}
-          </p>
+          <p className="text-sm font-medium text-gray-600 dark:text-gray-400 truncate">{title}</p>
           <div className="mt-2 flex items-baseline gap-2 flex-wrap">
             <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
               {formatValue(value)}
             </p>
             {change !== undefined && (
-              <div className={cn('flex items-center gap-1 text-sm font-medium', trendColors[trend])}>
+              <div
+                className={cn('flex items-center gap-1 text-sm font-medium', trendColors[trend])}
+              >
                 <TrendIcon size={16} className="flex-shrink-0" />
                 <span>{Math.abs(change)}%</span>
               </div>
@@ -74,12 +74,7 @@ export const KPICard = ({
 };
 
 // Stats Widget with multiple metrics
-export const StatsWidget = ({ 
-  title, 
-  stats = [],
-  className,
-  ...props 
-}) => {
+export const StatsWidget = ({ title, stats = [], className, ...props }) => {
   return (
     <div
       className={cn(
@@ -92,23 +87,17 @@ export const StatsWidget = ({
       {...props}
     >
       {title && (
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-          {title}
-        </h3>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{title}</h3>
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {stats.map((stat, index) => (
           <div key={index} className="flex flex-col">
-            <span className="text-xs text-gray-600 dark:text-gray-400 mb-1">
-              {stat.label}
-            </span>
+            <span className="text-xs text-gray-600 dark:text-gray-400 mb-1">{stat.label}</span>
             <span className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
               {stat.value}
             </span>
             {stat.subtext && (
-              <span className="text-xs text-gray-500 dark:text-gray-500 mt-1">
-                {stat.subtext}
-              </span>
+              <span className="text-xs text-gray-500 dark:text-gray-500 mt-1">{stat.subtext}</span>
             )}
           </div>
         ))}
@@ -118,21 +107,21 @@ export const StatsWidget = ({
 };
 
 // Progress Ring / Circular Progress
-export const ProgressRing = ({ 
-  value, 
-  max = 100, 
+export const ProgressRing = ({
+  value,
+  max = 100,
   size = 'md',
   strokeWidth = 8,
   label,
   showValue = true,
   color = 'blue',
-  className 
+  className,
 }) => {
   const sizes = {
     sm: { diameter: 80, fontSize: 'text-lg' },
     md: { diameter: 120, fontSize: 'text-2xl' },
     lg: { diameter: 160, fontSize: 'text-3xl' },
-    xl: { diameter: 200, fontSize: 'text-4xl' }
+    xl: { diameter: 200, fontSize: 'text-4xl' },
   };
 
   const colors = {
@@ -140,7 +129,7 @@ export const ProgressRing = ({
     green: 'text-green-600',
     purple: 'text-purple-600',
     red: 'text-red-600',
-    yellow: 'text-yellow-600'
+    yellow: 'text-yellow-600',
   };
 
   const { diameter, fontSize } = sizes[size];
@@ -152,11 +141,7 @@ export const ProgressRing = ({
   return (
     <div className={cn('flex flex-col items-center', className)}>
       <div className="relative inline-flex items-center justify-center">
-        <svg
-          width={diameter}
-          height={diameter}
-          className="transform -rotate-90"
-        >
+        <svg width={diameter} height={diameter} className="transform -rotate-90">
           {/* Background circle */}
           <circle
             cx={diameter / 2}
@@ -190,29 +175,27 @@ export const ProgressRing = ({
         )}
       </div>
       {label && (
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 text-center">
-          {label}
-        </p>
+        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 text-center">{label}</p>
       )}
     </div>
   );
 };
 
 // Gauge / Speedometer
-export const Gauge = ({ 
-  value, 
-  min = 0, 
+export const Gauge = ({
+  value,
+  min = 0,
   max = 100,
   label,
   unit = '',
   thresholds = { low: 33, medium: 66 },
   size = 'md',
-  className 
+  className,
 }) => {
   const sizes = {
     sm: { width: 150, height: 100, fontSize: 'text-xl' },
     md: { width: 200, height: 120, fontSize: 'text-2xl' },
-    lg: { width: 250, height: 150, fontSize: 'text-3xl' }
+    lg: { width: 250, height: 150, fontSize: 'text-3xl' },
   };
 
   const { width, height, fontSize } = sizes[size];
@@ -257,7 +240,10 @@ export const Gauge = ({
             strokeWidth="3"
             strokeLinecap="round"
             className={cn('transition-all duration-700 origin-bottom', getColor())}
-            style={{ transform: `rotate(${angle}deg)`, transformOrigin: `${width / 2}px ${height * 0.9}px` }}
+            style={{
+              transform: `rotate(${angle}deg)`,
+              transformOrigin: `${width / 2}px ${height * 0.9}px`,
+            }}
           />
           {/* Center dot */}
           <circle
@@ -270,28 +256,18 @@ export const Gauge = ({
         </svg>
         <div className="absolute bottom-4 left-0 right-0 text-center">
           <div className={cn('font-bold', fontSize, getColor())}>
-            {value}{unit}
+            {value}
+            {unit}
           </div>
         </div>
       </div>
-      {label && (
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-          {label}
-        </p>
-      )}
+      {label && <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{label}</p>}
     </div>
   );
 };
 
 // Metric Card with Arrow
-export const MetricCard = ({ 
-  label, 
-  value, 
-  change, 
-  icon: Icon,
-  trend,
-  className 
-}) => {
+export const MetricCard = ({ label, value, change, icon: Icon, trend, className }) => {
   const TrendIcon = trend === 'up' ? ArrowUpRight : ArrowDownRight;
   const trendColor = trend === 'up' ? 'text-green-600' : 'text-red-600';
 
@@ -306,17 +282,11 @@ export const MetricCard = ({
       )}
     >
       <div className="flex items-center justify-between mb-3">
-        <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-          {label}
-        </span>
-        {Icon && (
-          <Icon className="text-gray-400 dark:text-gray-600" size={18} />
-        )}
+        <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">{label}</span>
+        {Icon && <Icon className="text-gray-400 dark:text-gray-600" size={18} />}
       </div>
       <div className="flex items-end justify-between">
-        <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
-          {value}
-        </div>
+        <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">{value}</div>
         {change && (
           <div className={cn('flex items-center gap-1 text-sm font-medium', trendColor)}>
             <TrendIcon size={16} />
@@ -339,19 +309,21 @@ export const ActivityTimeline = ({ activities = [], className }) => {
         className
       )}
     >
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-        Recent Activity
-      </h3>
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Recent Activity</h3>
       <div className="space-y-4">
         {activities.map((activity, index) => (
           <div key={index} className="flex gap-3 sm:gap-4">
             <div className="flex-shrink-0">
-              <div className={cn(
-                'w-8 h-8 sm:w-10 sm:h-10 rounded-full',
-                'flex items-center justify-center',
-                activity.color || 'bg-blue-100 dark:bg-blue-900'
-              )}>
-                {activity.icon && <activity.icon size={16} className="text-blue-600 dark:text-blue-400" />}
+              <div
+                className={cn(
+                  'w-8 h-8 sm:w-10 sm:h-10 rounded-full',
+                  'flex items-center justify-center',
+                  activity.color || 'bg-blue-100 dark:bg-blue-900'
+                )}
+              >
+                {activity.icon && (
+                  <activity.icon size={16} className="text-blue-600 dark:text-blue-400" />
+                )}
               </div>
             </div>
             <div className="flex-1 min-w-0">
@@ -361,9 +333,7 @@ export const ActivityTimeline = ({ activities = [], className }) => {
               <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">
                 {activity.description}
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
-                {activity.time}
-              </p>
+              <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">{activity.time}</p>
             </div>
           </div>
         ))}

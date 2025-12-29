@@ -5,7 +5,7 @@ API Gateway patterns: circuit breaker, request logging, and advanced error handl
 import json
 import logging
 import time
-from datetime import datetime, timedelta
+from datetime import datetime
 from enum import Enum
 from functools import wraps
 from typing import Any, Callable, Dict, Optional
@@ -52,7 +52,7 @@ class CircuitBreaker:
             result = func(*args, **kwargs)
             self._on_success()
             return result
-        except Exception as e:
+        except Exception:
             self._on_failure()
             raise
 

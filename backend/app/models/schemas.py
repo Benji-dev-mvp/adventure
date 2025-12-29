@@ -1,4 +1,5 @@
 from typing import Dict, List, Optional
+from app.models.user import Permission as Permission
 
 from pydantic import EmailStr
 from sqlmodel import Field, SQLModel

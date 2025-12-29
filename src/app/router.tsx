@@ -89,20 +89,52 @@ export const routeConfig = {
   // Protected app routes
   app: [
     { path: 'dashboard', element: <Dashboard />, meta: { title: 'Dashboard', icon: 'home' } },
-    { path: 'campaigns', element: <CampaignBuilder />, meta: { title: 'Campaigns', icon: 'megaphone' } },
+    {
+      path: 'campaigns',
+      element: <CampaignBuilder />,
+      meta: { title: 'Campaigns', icon: 'megaphone' },
+    },
     { path: 'leads', element: <Leads />, meta: { title: 'Leads', icon: 'users' } },
-    { path: 'lead-database', element: <LeadDatabase />, meta: { title: 'Lead Database', icon: 'database' } },
-    { path: 'ai-assistant', element: <AIAssistant />, meta: { title: 'AI Assistant', icon: 'bot' } },
+    {
+      path: 'lead-database',
+      element: <LeadDatabase />,
+      meta: { title: 'Lead Database', icon: 'database' },
+    },
+    {
+      path: 'ai-assistant',
+      element: <AIAssistant />,
+      meta: { title: 'AI Assistant', icon: 'bot' },
+    },
     { path: 'analytics', element: <Analytics />, meta: { title: 'Analytics', icon: 'chart' } },
-    { path: 'integrations', element: <Integrations />, meta: { title: 'Integrations', icon: 'plug' } },
+    {
+      path: 'integrations',
+      element: <Integrations />,
+      meta: { title: 'Integrations', icon: 'plug' },
+    },
     { path: 'templates', element: <Templates />, meta: { title: 'Templates', icon: 'file-text' } },
     { path: 'settings', element: <Settings />, meta: { title: 'Settings', icon: 'settings' } },
     // Advanced features
-    { path: 'lead-scoring', element: <LeadScoring />, meta: { title: 'Lead Scoring', icon: 'target' } },
+    {
+      path: 'lead-scoring',
+      element: <LeadScoring />,
+      meta: { title: 'Lead Scoring', icon: 'target' },
+    },
     { path: 'ab-testing', element: <ABTesting />, meta: { title: 'A/B Testing', icon: 'split' } },
-    { path: 'email-templates', element: <EmailTemplateBuilder />, meta: { title: 'Email Builder', icon: 'mail' } },
-    { path: 'lead-enrichment', element: <LeadEnrichment />, meta: { title: 'Enrichment', icon: 'sparkles' } },
-    { path: 'revenue-forecasting', element: <RevenueForecasting />, meta: { title: 'Revenue Forecast', icon: 'trending-up' } },
+    {
+      path: 'email-templates',
+      element: <EmailTemplateBuilder />,
+      meta: { title: 'Email Builder', icon: 'mail' },
+    },
+    {
+      path: 'lead-enrichment',
+      element: <LeadEnrichment />,
+      meta: { title: 'Enrichment', icon: 'sparkles' },
+    },
+    {
+      path: 'revenue-forecasting',
+      element: <RevenueForecasting />,
+      meta: { title: 'Revenue Forecast', icon: 'trending-up' },
+    },
   ],
 
   // Admin routes
@@ -160,14 +192,14 @@ export const router = createBrowserRouter([
 // ============================================
 
 export const navigationItems = routeConfig.app
-  .filter((route) => !(route.meta as { hideInNav?: boolean })?.hideInNav)
-  .map((route) => ({
+  .filter(route => !(route.meta as { hideInNav?: boolean })?.hideInNav)
+  .map(route => ({
     path: `/app/${route.path}`,
     title: route.meta.title,
     icon: route.meta.icon,
   }));
 
-export const adminNavigationItems = routeConfig.admin.map((route) => ({
+export const adminNavigationItems = routeConfig.admin.map(route => ({
   path: route.path ? `/admin/${route.path}` : '/admin',
   title: route.meta.title,
 }));

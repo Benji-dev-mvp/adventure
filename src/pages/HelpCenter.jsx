@@ -5,10 +5,22 @@ import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { Input } from '../components/ui/Input';
 import { Tabs } from '../components/ui/Tabs';
-import { 
-  Search, Book, Video, MessageCircle, FileText, 
-  Zap, Mail, Users, Settings, BarChart, Bot,
-  ChevronRight, ExternalLink, Play, CheckCircle
+import {
+  Search,
+  Book,
+  Video,
+  MessageCircle,
+  FileText,
+  Zap,
+  Mail,
+  Users,
+  Settings,
+  BarChart,
+  Bot,
+  ChevronRight,
+  ExternalLink,
+  Play,
+  CheckCircle,
 } from 'lucide-react';
 
 const HelpCenter = () => {
@@ -22,7 +34,7 @@ const HelpCenter = () => {
     { id: 'ava', label: 'Ava AI', icon: <Bot size={16} /> },
     { id: 'leads', label: 'Leads & Data', icon: <Users size={16} /> },
     { id: 'analytics', label: 'Analytics', icon: <BarChart size={16} /> },
-    { id: 'integrations', label: 'Integrations', icon: <Settings size={16} /> }
+    { id: 'integrations', label: 'Integrations', icon: <Settings size={16} /> },
   ];
 
   const articles = [
@@ -33,7 +45,7 @@ const HelpCenter = () => {
       views: 12543,
       readTime: '5 min',
       featured: true,
-      icon: <Zap />
+      icon: <Zap />,
     },
     {
       category: 'getting-started',
@@ -42,7 +54,7 @@ const HelpCenter = () => {
       views: 8921,
       readTime: '3 min',
       featured: true,
-      icon: <Mail />
+      icon: <Mail />,
     },
     {
       category: 'getting-started',
@@ -51,7 +63,7 @@ const HelpCenter = () => {
       views: 7654,
       readTime: '4 min',
       featured: true,
-      icon: <Users />
+      icon: <Users />,
     },
     {
       category: 'ava',
@@ -60,7 +72,7 @@ const HelpCenter = () => {
       views: 9876,
       readTime: '6 min',
       featured: true,
-      icon: <Bot />
+      icon: <Bot />,
     },
     {
       category: 'ava',
@@ -68,7 +80,7 @@ const HelpCenter = () => {
       description: 'Job changes, funding, social activity - how Ava prioritizes personalization',
       views: 6543,
       readTime: '5 min',
-      icon: <Bot />
+      icon: <Bot />,
     },
     {
       category: 'ava',
@@ -76,7 +88,7 @@ const HelpCenter = () => {
       description: 'Customize tone, style, and messaging to sound like your team',
       views: 5432,
       readTime: '4 min',
-      icon: <Bot />
+      icon: <Bot />,
     },
     {
       category: 'campaigns',
@@ -84,7 +96,7 @@ const HelpCenter = () => {
       description: 'Email, LinkedIn, SMS, calls - orchestrate across all channels',
       views: 11234,
       readTime: '7 min',
-      icon: <Mail />
+      icon: <Mail />,
     },
     {
       category: 'campaigns',
@@ -92,7 +104,7 @@ const HelpCenter = () => {
       description: "Ensure your emails land in inboxes, not spam. Ava's automatic warmup explained",
       views: 8765,
       readTime: '6 min',
-      icon: <Mail />
+      icon: <Mail />,
     },
     {
       category: 'campaigns',
@@ -100,7 +112,7 @@ const HelpCenter = () => {
       description: 'Let Ava automatically test variations and optimize for replies',
       views: 7234,
       readTime: '5 min',
-      icon: <BarChart />
+      icon: <BarChart />,
     },
     {
       category: 'campaigns',
@@ -108,7 +120,7 @@ const HelpCenter = () => {
       description: 'When and how often should you reach out? Data-driven recommendations',
       views: 6123,
       readTime: '4 min',
-      icon: <Settings />
+      icon: <Settings />,
     },
     {
       category: 'leads',
@@ -116,7 +128,7 @@ const HelpCenter = () => {
       description: 'Advanced filters: firmographics, technographics, intent signals',
       views: 9543,
       readTime: '6 min',
-      icon: <Users />
+      icon: <Users />,
     },
     {
       category: 'leads',
@@ -124,7 +136,7 @@ const HelpCenter = () => {
       description: 'How Ava identifies high-intent prospects ready to buy',
       views: 7876,
       readTime: '5 min',
-      icon: <Users />
+      icon: <Users />,
     },
     {
       category: 'leads',
@@ -132,7 +144,7 @@ const HelpCenter = () => {
       description: 'Upload CSVs and let Ava automatically enrich with fresh data',
       views: 6789,
       readTime: '4 min',
-      icon: <FileText />
+      icon: <FileText />,
     },
     {
       category: 'analytics',
@@ -140,7 +152,7 @@ const HelpCenter = () => {
       description: 'Open rates, reply rates, meetings booked - what metrics matter',
       views: 8234,
       readTime: '5 min',
-      icon: <BarChart />
+      icon: <BarChart />,
     },
     {
       category: 'analytics',
@@ -148,7 +160,7 @@ const HelpCenter = () => {
       description: 'Track which touchpoints drive meetings and deals',
       views: 5678,
       readTime: '6 min',
-      icon: <BarChart />
+      icon: <BarChart />,
     },
     {
       category: 'integrations',
@@ -156,7 +168,7 @@ const HelpCenter = () => {
       description: 'Two-way sync to keep your CRM and Artisan in perfect harmony',
       views: 10234,
       readTime: '7 min',
-      icon: <Settings />
+      icon: <Settings />,
     },
     {
       category: 'integrations',
@@ -164,7 +176,7 @@ const HelpCenter = () => {
       description: 'Let prospects book meetings directly from your emails',
       views: 7543,
       readTime: '4 min',
-      icon: <Settings />
+      icon: <Settings />,
     },
     {
       category: 'integrations',
@@ -172,8 +184,8 @@ const HelpCenter = () => {
       description: 'Enrich leads and trigger campaigns based on LinkedIn activity',
       views: 6432,
       readTime: '5 min',
-      icon: <Settings />
-    }
+      icon: <Settings />,
+    },
   ];
 
   const videoTutorials = [
@@ -182,63 +194,70 @@ const HelpCenter = () => {
       description: 'Complete walkthrough of Artisan and Ava capabilities',
       thumbnail: '🎥',
       duration: '3:24',
-      views: 15234
+      views: 15234,
     },
     {
       title: 'Setting Up Your First Campaign (5:12)',
       description: 'Watch how to create, personalize, and launch a campaign',
       thumbnail: '🎬',
       duration: '5:12',
-      views: 12876
+      views: 12876,
     },
     {
       title: "How Ava's AI Research Works (4:45)",
       description: 'Behind the scenes: data mining, personalization, intent signals',
       thumbnail: '🤖',
       duration: '4:45',
-      views: 11543
+      views: 11543,
     },
     {
       title: 'Advanced Features: Waterfall Personalization (6:32)',
-      description: 'Master Ava\'s multi-layer personalization engine',
+      description: "Master Ava's multi-layer personalization engine",
       thumbnail: '✨',
       duration: '6:32',
-      views: 8765
-    }
+      views: 8765,
+    },
   ];
 
   const commonQuestions = [
     {
       question: 'How does Ava automatically warm up mailboxes?',
-      answer: 'Ava gradually increases sending volume over 2-4 weeks while monitoring deliverability metrics. She adjusts daily limits based on mailbox health to ensure optimal inbox placement.'
+      answer:
+        'Ava gradually increases sending volume over 2-4 weeks while monitoring deliverability metrics. She adjusts daily limits based on mailbox health to ensure optimal inbox placement.',
     },
     {
       question: 'Can I use my own email copy or must I use AI-generated content?',
-      answer: 'Both! You can write your own emails or let Ava generate them. Most users blend: Ava researches prospects and suggests personalization, you control the core message.'
+      answer:
+        'Both! You can write your own emails or let Ava generate them. Most users blend: Ava researches prospects and suggests personalization, you control the core message.',
     },
     {
       question: 'What data sources does Ava use for personalization?',
-      answer: 'Ava monitors 300+ sources including LinkedIn, Twitter/X, Crunchbase, job postings, press releases, company news, funding databases, and tech stack data. She prioritizes the most relevant signals for each prospect.'
+      answer:
+        'Ava monitors 300+ sources including LinkedIn, Twitter/X, Crunchbase, job postings, press releases, company news, funding databases, and tech stack data. She prioritizes the most relevant signals for each prospect.',
     },
     {
       question: 'How does multi-channel orchestration work?',
-      answer: 'Ava coordinates email, LinkedIn, SMS, and calls in intelligent sequences. If a prospect doesn\'t respond via email, she can automatically try LinkedIn. You set the rules, Ava executes.'
+      answer:
+        "Ava coordinates email, LinkedIn, SMS, and calls in intelligent sequences. If a prospect doesn't respond via email, she can automatically try LinkedIn. You set the rules, Ava executes.",
     },
     {
       question: 'Is my data secure and GDPR compliant?',
-      answer: 'Yes. Artisan is SOC 2 Type II certified, GDPR and CCPA compliant. All data is encrypted at rest and in transit. You control data retention and can delete any contact information instantly.'
+      answer:
+        'Yes. Artisan is SOC 2 Type II certified, GDPR and CCPA compliant. All data is encrypted at rest and in transit. You control data retention and can delete any contact information instantly.',
     },
     {
-      question: 'What\'s the difference between Ava and other email automation tools?',
-      answer: 'Traditional tools require manual template writing and prospect research. Ava autonomously finds prospects, researches them, writes personalized emails, handles objections, and books meetings - like having an AI BDR on your team.'
-    }
+      question: "What's the difference between Ava and other email automation tools?",
+      answer:
+        'Traditional tools require manual template writing and prospect research. Ava autonomously finds prospects, researches them, writes personalized emails, handles objections, and books meetings - like having an AI BDR on your team.',
+    },
   ];
 
-  const filteredArticles = articles.filter(article => 
-    (activeCategory === 'all' || article.category === activeCategory) &&
-    (searchQuery === '' || 
-     article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-     article.description.toLowerCase().includes(searchQuery.toLowerCase()))
+  const filteredArticles = articles.filter(
+    article =>
+      (activeCategory === 'all' || article.category === activeCategory) &&
+      (searchQuery === '' ||
+        article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        article.description.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   return (
@@ -251,14 +270,17 @@ const HelpCenter = () => {
             <p className="text-lg opacity-90 mb-6">
               Search our help center or browse by topic to get started with Artisan and Ava
             </p>
-            
+
             {/* Search Bar */}
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+              <Search
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                size={20}
+              />
               <Input
                 placeholder="Search for articles, features, or how-tos..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={e => setSearchQuery(e.target.value)}
                 className="pl-12 pr-4 py-4 text-lg bg-white text-gray-900 border-0 shadow-xl"
               />
             </div>
@@ -323,12 +345,14 @@ const HelpCenter = () => {
               </CardHeader>
               <CardContent className="p-0">
                 <div className="space-y-1">
-                  {categories.map((cat) => (
+                  {categories.map(cat => (
                     <button
                       key={cat.id}
                       onClick={() => setActiveCategory(cat.id)}
                       className={`w-full flex items-center gap-2 px-4 py-3 text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors ${
-                        activeCategory === cat.id ? 'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 font-semibold' : ''
+                        activeCategory === cat.id
+                          ? 'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 font-semibold'
+                          : ''
                       }`}
                     >
                       {cat.icon}
@@ -344,9 +368,7 @@ const HelpCenter = () => {
               <CardContent className="p-6">
                 <MessageCircle className="text-primary-500 mb-2" size={32} />
                 <h3 className="font-bold mb-2">Need more help?</h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  Our team is here to help you succeed
-                </p>
+                <p className="text-sm text-gray-600 mb-4">Our team is here to help you succeed</p>
                 <Button variant="primary" size="sm" className="w-full">
                   Contact Support
                 </Button>
@@ -361,25 +383,33 @@ const HelpCenter = () => {
               <div className="mb-6">
                 <h2 className="text-xl font-bold mb-4">🔥 Featured Articles</h2>
                 <div className="grid grid-cols-2 gap-4">
-                  {articles.filter(a => a.featured).slice(0, 4).map((article, idx) => (
-                    <Card key={idx} className="hover:shadow-lg transition-shadow cursor-pointer">
-                      <CardContent className="p-6">
-                        <div className="flex items-start gap-3 mb-3">
-                          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                            {React.cloneElement(article.icon, { className: 'text-white', size: 20 })}
+                  {articles
+                    .filter(a => a.featured)
+                    .slice(0, 4)
+                    .map((article, idx) => (
+                      <Card key={idx} className="hover:shadow-lg transition-shadow cursor-pointer">
+                        <CardContent className="p-6">
+                          <div className="flex items-start gap-3 mb-3">
+                            <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                              {React.cloneElement(article.icon, {
+                                className: 'text-white',
+                                size: 20,
+                              })}
+                            </div>
+                            <div className="flex-1">
+                              <h3 className="font-bold mb-1">{article.title}</h3>
+                              <p className="text-sm text-gray-600 dark:text-gray-400">
+                                {article.description}
+                              </p>
+                            </div>
                           </div>
-                          <div className="flex-1">
-                            <h3 className="font-bold mb-1">{article.title}</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">{article.description}</p>
+                          <div className="flex items-center gap-4 text-xs text-gray-500">
+                            <span>👁️ {article.views.toLocaleString()} views</span>
+                            <span>📖 {article.readTime}</span>
                           </div>
-                        </div>
-                        <div className="flex items-center gap-4 text-xs text-gray-500">
-                          <span>👁️ {article.views.toLocaleString()} views</span>
-                          <span>📖 {article.readTime}</span>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                        </CardContent>
+                      </Card>
+                    ))}
                 </div>
               </div>
             )}
@@ -387,7 +417,9 @@ const HelpCenter = () => {
             {/* All Articles */}
             <div className="mb-6">
               <h2 className="text-xl font-bold mb-4">
-                {activeCategory === 'all' ? '📚 All Articles' : `📚 ${categories.find(c => c.id === activeCategory)?.label} Articles`}
+                {activeCategory === 'all'
+                  ? '📚 All Articles'
+                  : `📚 ${categories.find(c => c.id === activeCategory)?.label} Articles`}
               </h2>
               <div className="space-y-3">
                 {filteredArticles.map((article, idx) => (
@@ -398,7 +430,9 @@ const HelpCenter = () => {
                           <FileText className="text-gray-400" size={20} />
                           <div className="flex-1">
                             <h3 className="font-semibold text-sm mb-1">{article.title}</h3>
-                            <p className="text-xs text-gray-600 dark:text-gray-400">{article.description}</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">
+                              {article.description}
+                            </p>
                           </div>
                         </div>
                         <div className="flex items-center gap-4 text-xs text-gray-500 ml-4">
@@ -418,7 +452,10 @@ const HelpCenter = () => {
                 <h2 className="text-xl font-bold mb-4">🎥 Video Tutorials</h2>
                 <div className="grid grid-cols-2 gap-4">
                   {videoTutorials.map((video, idx) => (
-                    <Card key={idx} className="hover:shadow-lg transition-shadow cursor-pointer overflow-hidden">
+                    <Card
+                      key={idx}
+                      className="hover:shadow-lg transition-shadow cursor-pointer overflow-hidden"
+                    >
                       <div className="relative bg-gradient-to-br from-purple-500 to-pink-500 h-40 flex items-center justify-center">
                         <span className="text-6xl">{video.thumbnail}</span>
                         <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/40 transition-colors">
@@ -430,8 +467,12 @@ const HelpCenter = () => {
                       </div>
                       <CardContent className="p-4">
                         <h3 className="font-bold text-sm mb-1">{video.title}</h3>
-                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">{video.description}</p>
-                        <p className="text-xs text-gray-500">👁️ {video.views.toLocaleString()} views</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+                          {video.description}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          👁️ {video.views.toLocaleString()} views
+                        </p>
                       </CardContent>
                     </Card>
                   ))}
@@ -452,7 +493,9 @@ const HelpCenter = () => {
                             <CheckCircle className="text-green-500 flex-shrink-0 mt-1" size={20} />
                             <div>
                               <h3 className="font-bold mb-2">{qa.question}</h3>
-                              <p className="text-sm text-gray-600 dark:text-gray-400">{qa.answer}</p>
+                              <p className="text-sm text-gray-600 dark:text-gray-400">
+                                {qa.answer}
+                              </p>
                             </div>
                           </div>
                         </div>

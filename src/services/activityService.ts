@@ -39,10 +39,10 @@ const matchesTypeFilter = (activity: Activity, type: string): boolean => {
 
 const matchesDateRange = (activity: Activity, start?: Date, end?: Date): boolean => {
   const timestamp = new Date(activity.timestamp).getTime();
-  
+
   if (start && timestamp < start.getTime()) return false;
   if (end && timestamp > end.getTime()) return false;
-  
+
   return true;
 };
 
@@ -65,7 +65,7 @@ export const filterActivities = (
     if (!matchesTypeFilter(activity, type)) return false;
     if (!matchesDateRange(activity, startDate, endDate)) return false;
     if (!matchesReadStatus(activity, read)) return false;
-    
+
     return true;
   });
 };
@@ -88,7 +88,7 @@ export const groupActivitiesByTime = (activities: Activity[]): GroupedActivities
  * Mark activity as read
  */
 export const markActivityAsRead = (activities: Activity[], activityId: string): Activity[] => {
-  return activities.map(activity => 
+  return activities.map(activity =>
     activity.id === activityId ? { ...activity, read: true } : activity
   );
 };
@@ -111,8 +111,8 @@ export const getUnreadCount = (activities: Activity[]): number => {
  * Sort activities by timestamp (newest first)
  */
 export const sortActivitiesByDate = (activities: Activity[]): Activity[] => {
-  return [...activities].sort((a, b) => 
-    new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+  return [...activities].sort(
+    (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
   );
 };
 
@@ -134,7 +134,11 @@ const isFromToday = (timestamp: Date, todayMidnight: Date): boolean => {
   return new Date(timestamp).getTime() >= todayMidnight.getTime();
 };
 
-const isFromYesterday = (timestamp: Date, todayMidnight: Date, yesterdayMidnight: Date): boolean => {
+const isFromYesterday = (
+  timestamp: Date,
+  todayMidnight: Date,
+  yesterdayMidnight: Date
+): boolean => {
   const time = new Date(timestamp).getTime();
   return time >= yesterdayMidnight.getTime() && time < todayMidnight.getTime();
 };

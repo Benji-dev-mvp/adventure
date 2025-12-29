@@ -1,14 +1,11 @@
 """OAuth2 and MFA authentication routes."""
 
-from typing import Optional
-
 from fastapi import APIRouter, Depends, HTTPException, Request, status
-from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from app.core.db import get_session
-from app.core.mfa import MFASetup, mfa_service
+from app.core.mfa import mfa_service
 from app.core.oauth import get_oauth_provider
 from app.core.security import create_access_token, get_current_user
 from app.models.schemas import Token

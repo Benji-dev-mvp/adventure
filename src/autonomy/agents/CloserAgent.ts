@@ -1,6 +1,6 @@
 /**
  * Closer Agent
- * 
+ *
  * Handles back-and-forth email negotiation. Manages replies,
  * objection handling, and meeting scheduling autonomously.
  */
@@ -66,7 +66,7 @@ export class CloserAgent extends BaseAgent {
       creativityBias: 0.7,
       speedVsQuality: 0.4,
     });
-    
+
     this.initializeObjectionHandlers();
   }
 
@@ -133,21 +133,21 @@ export class CloserAgent extends BaseAgent {
    */
   private async handleReply(task: Task): Promise<ExecutionResult> {
     const context = task.input.data as ReplyContext;
-    
+
     // Analyze the incoming message
     const analysis = await this.analyzeIncomingMessage(context);
-    
+
     // Get or create negotiation state
     const state = this.getOrCreateNegotiationState(context.conversationId);
-    
+
     // Determine best action
     const decision = await this.decideAction(context, analysis, state);
-    
+
     // Execute decision - response is already prepared by decideAction
-    
+
     // Update negotiation state
     this.updateNegotiationState(context.conversationId, decision, analysis);
-    
+
     // Track patterns for learning
     this.trackClosingPattern(decision, context);
 
@@ -210,10 +210,10 @@ export class CloserAgent extends BaseAgent {
     };
 
     const state = this.getOrCreateNegotiationState(input.conversationId);
-    
+
     // Analyze negotiation position
     const analysis = this.analyzeNegotiationPosition(input, state);
-    
+
     // Generate negotiation response
     const response = this.generateNegotiationResponse(input, analysis, state);
 
@@ -243,21 +243,21 @@ export class CloserAgent extends BaseAgent {
     urgency: number;
   }> {
     await this.simulateLatency(200);
-    
+
     const message = context.incomingMessage.toLowerCase();
-    
+
     // Sentiment analysis
     const sentiment = this.calculateSentiment(message);
-    
+
     // Intent detection
     const intent = this.detectIntent(message);
-    
+
     // Objection extraction
     const objections = this.extractObjections(message);
-    
+
     // Buying signal detection
     const buyingSignals = this.extractBuyingSignals(message);
-    
+
     // Urgency assessment
     const urgency = this.assessUrgency(message);
 
@@ -272,28 +272,50 @@ export class CloserAgent extends BaseAgent {
 
   private calculateSentiment(message: string): number {
     let score = 0;
-    
+
     // Positive indicators
-    const positives = ['interested', 'love', 'great', 'yes', 'sure', 'sounds good', 'let\'s', 'excited'];
-    positives.forEach(p => { if (message.includes(p)) score += 0.2; });
-    
+    const positives = [
+      'interested',
+      'love',
+      'great',
+      'yes',
+      'sure',
+      'sounds good',
+      "let's",
+      'excited',
+    ];
+    positives.forEach(p => {
+      if (message.includes(p)) score += 0.2;
+    });
+
     // Negative indicators
     const negatives = ['no', 'not interested', 'unsubscribe', 'stop', 'busy', 'not now', 'remove'];
-    negatives.forEach(n => { if (message.includes(n)) score -= 0.3; });
-    
+    negatives.forEach(n => {
+      if (message.includes(n)) score -= 0.3;
+    });
+
     // Neutral/questioning
     const questions = ['?', 'how', 'what', 'when', 'why'];
-    questions.forEach(q => { if (message.includes(q)) score += 0.1; });
-    
+    questions.forEach(q => {
+      if (message.includes(q)) score += 0.1;
+    });
+
     return Math.max(-1, Math.min(1, score));
   }
 
   private detectIntent(message: string): string {
     if (message.includes('unsubscribe') || message.includes('remove')) return 'opt-out';
     if (message.includes('not interested') || message.includes('no thanks')) return 'rejection';
-    if (message.includes('call') || message.includes('meet') || message.includes('schedule')) return 'meeting';
-    if (message.includes('price') || message.includes('cost') || message.includes('budget')) return 'pricing';
-    if (message.includes('later') || message.includes('next quarter') || message.includes('reach out')) return 'timing';
+    if (message.includes('call') || message.includes('meet') || message.includes('schedule'))
+      return 'meeting';
+    if (message.includes('price') || message.includes('cost') || message.includes('budget'))
+      return 'pricing';
+    if (
+      message.includes('later') ||
+      message.includes('next quarter') ||
+      message.includes('reach out')
+    )
+      return 'timing';
     if (message.includes('?')) return 'question';
     if (message.includes('interested') || message.includes('tell me more')) return 'interest';
     return 'unclear';
@@ -301,7 +323,7 @@ export class CloserAgent extends BaseAgent {
 
   private extractObjections(message: string): string[] {
     const objections: string[] = [];
-    
+
     const objectionPatterns = [
       { pattern: /no budget|can't afford|too expensive/i, label: 'budget' },
       { pattern: /not the right time|busy|later/i, label: 'timing' },
@@ -310,17 +332,17 @@ export class CloserAgent extends BaseAgent {
       { pattern: /not sure|need more info/i, label: 'information' },
       { pattern: /too complex|complicated/i, label: 'complexity' },
     ];
-    
+
     objectionPatterns.forEach(({ pattern, label }) => {
       if (pattern.test(message)) objections.push(label);
     });
-    
+
     return objections;
   }
 
   private extractBuyingSignals(message: string): string[] {
     const signals: string[] = [];
-    
+
     const signalPatterns = [
       { pattern: /demo|show me/i, label: 'demo-request' },
       { pattern: /pricing|cost|quote/i, label: 'pricing-inquiry' },
@@ -328,22 +350,22 @@ export class CloserAgent extends BaseAgent {
       { pattern: /team|colleagues|share/i, label: 'internal-sharing' },
       { pattern: /compare|vs|versus/i, label: 'evaluation' },
     ];
-    
+
     signalPatterns.forEach(({ pattern, label }) => {
       if (pattern.test(message)) signals.push(label);
     });
-    
+
     return signals;
   }
 
   private assessUrgency(message: string): number {
     let urgency = 0.5;
-    
+
     if (/asap|urgent|immediately|today|this week/i.test(message)) urgency += 0.3;
     if (/soon|next week|shortly/i.test(message)) urgency += 0.15;
     if (/later|next month|eventually|someday/i.test(message)) urgency -= 0.2;
     if (/next quarter|next year|future/i.test(message)) urgency -= 0.3;
-    
+
     return Math.max(0, Math.min(1, urgency));
   }
 
@@ -351,7 +373,13 @@ export class CloserAgent extends BaseAgent {
 
   private async decideAction(
     context: ReplyContext,
-    analysis: { sentiment: number; intent: string; objections: string[]; buyingSignals: string[]; urgency: number },
+    analysis: {
+      sentiment: number;
+      intent: string;
+      objections: string[];
+      buyingSignals: string[];
+      urgency: number;
+    },
     state: NegotiationState
   ): Promise<ReplyDecision> {
     // Opt-out handling
@@ -432,10 +460,11 @@ export class CloserAgent extends BaseAgent {
     context: ReplyContext
   ): Promise<GeneratedReply> {
     await this.simulateLatency(400);
-    
+
     const primaryObjection = objections[0];
     const handlers = this.objectionHandlers.get(primaryObjection) || [];
-    const handlerText = handlers[Math.floor(Math.random() * handlers.length)] || 
+    const handlerText =
+      handlers[Math.floor(Math.random() * handlers.length)] ||
       'I completely understand. Let me address that...';
 
     return {
@@ -451,17 +480,18 @@ export class CloserAgent extends BaseAgent {
     _context: ReplyContext
   ): Promise<GeneratedReply> {
     await this.simulateLatency(300);
-    
+
     let body = 'Great to hear your interest! ';
-    
+
     if (analysis.buyingSignals.includes('pricing-inquiry')) {
-      body += 'I\'d be happy to walk through our pricing structure. It\'s typically based on your team size and usage patterns. ';
+      body +=
+        "I'd be happy to walk through our pricing structure. It's typically based on your team size and usage patterns. ";
     }
     if (analysis.buyingSignals.includes('demo-request')) {
       body += 'I can set up a personalized demo that focuses on your specific use cases. ';
     }
-    
-    body += 'What\'s the best time for a quick call this week?';
+
+    body += "What's the best time for a quick call this week?";
 
     return {
       body,
@@ -472,7 +502,7 @@ export class CloserAgent extends BaseAgent {
 
   private async generateQuestionResponse(_context: ReplyContext): Promise<GeneratedReply> {
     await this.simulateLatency(250);
-    
+
     return {
       body: 'Great question! Let me give you a clear answer...\n\n[Answer would be generated based on question analysis]\n\nDoes that help clarify things? Happy to dive deeper on any aspect.',
       tone: 'helpful',
@@ -485,16 +515,19 @@ export class CloserAgent extends BaseAgent {
     state: NegotiationState
   ): Promise<GeneratedReply> {
     await this.simulateLatency(200);
-    
+
     const momentum = state.momentum;
     let body: string;
-    
+
     if (momentum > 0.7) {
-      body = 'Thanks for your response! Given the momentum here, shall we lock in a time to discuss next steps?';
+      body =
+        'Thanks for your response! Given the momentum here, shall we lock in a time to discuss next steps?';
     } else if (momentum > 0.4) {
-      body = 'Appreciate you getting back to me. To make sure I\'m addressing what matters most to you - what\'s your top priority right now?';
+      body =
+        "Appreciate you getting back to me. To make sure I'm addressing what matters most to you - what's your top priority right now?";
     } else {
-      body = 'Thanks for the reply. I want to make sure I\'m being helpful - is there a specific challenge you\'re trying to solve that I could speak to?';
+      body =
+        "Thanks for the reply. I want to make sure I'm being helpful - is there a specific challenge you're trying to solve that I could speak to?";
     }
 
     return {
@@ -508,7 +541,7 @@ export class CloserAgent extends BaseAgent {
     const intros: Record<string, string> = {
       discovery: 'Excited to learn more about your goals.',
       demo: 'Looking forward to showing you how this works in practice.',
-      negotiation: 'Let\'s find a time to work through the details.',
+      negotiation: "Let's find a time to work through the details.",
     };
 
     return `${intros[type] || 'Great!'} Here are a few times that work on my end:\n\n${suggestedTimes.map(t => `• ${t}`).join('\n')}\n\nAlternatively, feel free to grab any open slot: [calendar link]`;
@@ -517,14 +550,16 @@ export class CloserAgent extends BaseAgent {
   private generateSuggestedTimes(duration: number): string[] {
     const times: string[] = [];
     const now = new Date();
-    
+
     for (let i = 1; i <= 3; i++) {
       const date = new Date(now);
       date.setDate(date.getDate() + i + (date.getDay() === 0 ? 1 : date.getDay() === 6 ? 2 : 0));
       date.setHours(10 + i, 0, 0, 0);
-      times.push(`${date.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })} at ${date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })} (${duration} min)`);
+      times.push(
+        `${date.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })} at ${date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })} (${duration} min)`
+      );
     }
-    
+
     return times;
   }
 
@@ -534,7 +569,7 @@ export class CloserAgent extends BaseAgent {
   ): { suggestedPosition: number; tactics: string[]; risks: string[] } {
     const { min, max: _max, ideal } = input.constraints;
     const momentum = _state.momentum;
-    
+
     // Position based on momentum
     let suggestedPosition: number;
     if (momentum > 0.7) {
@@ -598,8 +633,8 @@ export class CloserAgent extends BaseAgent {
     if (!state) return;
 
     // Update momentum
-    state.momentum = state.momentum * 0.7 + (analysis.sentiment + 1) / 2 * 0.3;
-    
+    state.momentum = state.momentum * 0.7 + ((analysis.sentiment + 1) / 2) * 0.3;
+
     // Update stage
     if (decision.action === 'schedule') {
       state.stage = 'scheduling';
@@ -625,11 +660,11 @@ export class CloserAgent extends BaseAgent {
     ]);
     this.objectionHandlers.set('existing-solution', [
       'Good to know you have something in place. Out of curiosity, how well is it working for [specific use case]?',
-      'That\'s fair. Many of our customers came from similar solutions. Would it be valuable to see how we compare?',
+      "That's fair. Many of our customers came from similar solutions. Would it be valuable to see how we compare?",
     ]);
     this.objectionHandlers.set('authority', [
       'Makes sense to loop in the team. Would it be helpful if I sent over some materials you could share?',
-      'Absolutely. Would it make sense to include them in a quick call so we can answer everyone\'s questions at once?',
+      "Absolutely. Would it make sense to include them in a quick call so we can answer everyone's questions at once?",
     ]);
   }
 

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Body, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.core.security import (
@@ -7,7 +7,7 @@ from app.core.security import (
     get_current_user,
     verify_refresh_token,
 )
-from app.models.schemas import AuthToken, LoginRequest
+from app.models.schemas import LoginRequest
 from app.models.user import User, UserRole
 
 router = APIRouter()

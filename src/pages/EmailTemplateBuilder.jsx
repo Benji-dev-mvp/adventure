@@ -4,16 +4,41 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../co
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { Input } from '../components/ui/Input';
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '../components/ui/Dialog';
-import { Type, Image, Link, Code, AlignLeft, AlignCenter, Save, Eye, Copy, Trash2, Plus, GripVertical } from 'lucide-react';
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '../components/ui/Dialog';
+import {
+  Type,
+  Image,
+  Link,
+  Code,
+  AlignLeft,
+  AlignCenter,
+  Save,
+  Eye,
+  Copy,
+  Trash2,
+  Plus,
+  GripVertical,
+} from 'lucide-react';
 
 const EmailTemplateBuilder = () => {
   const [templateName, setTemplateName] = useState('New Template');
   const [blocks, setBlocks] = useState([
     { id: 1, type: 'header', content: 'Welcome to {{company}}!' },
-    { id: 2, type: 'body', content: 'Hi {{firstName}},\n\nThanks for your interest in our services.' },
+    {
+      id: 2,
+      type: 'body',
+      content: 'Hi {{firstName}},\n\nThanks for your interest in our services.',
+    },
     { id: 3, type: 'cta', content: 'Book a Demo', link: 'https://example.com/demo' },
-    { id: 4, type: 'footer', content: '© 2025 Artisan AI. All rights reserved.' }
+    { id: 4, type: 'footer', content: '© 2025 Artisan AI. All rights reserved.' },
   ]);
 
   const [selectedBlock, setSelectedBlock] = useState(null);
@@ -24,32 +49,39 @@ const EmailTemplateBuilder = () => {
     { type: 'body', icon: AlignLeft, label: 'Body Text', color: 'bg-green-100 text-green-600' },
     { type: 'cta', icon: Link, label: 'Call-to-Action', color: 'bg-purple-100 text-purple-600' },
     { type: 'image', icon: Image, label: 'Image', color: 'bg-orange-100 text-orange-600' },
-    { type: 'footer', icon: AlignCenter, label: 'Footer', color: 'bg-gray-100 text-gray-600' }
+    { type: 'footer', icon: AlignCenter, label: 'Footer', color: 'bg-gray-100 text-gray-600' },
   ];
 
-  const variables = ['{{firstName}}', '{{lastName}}', '{{company}}', '{{title}}', '{{industry}}', '{{email}}'];
+  const variables = [
+    '{{firstName}}',
+    '{{lastName}}',
+    '{{company}}',
+    '{{title}}',
+    '{{industry}}',
+    '{{email}}',
+  ];
 
   const templates = [
     { id: 1, name: 'Cold Outreach', blocks: 4, lastEdited: '2 days ago' },
     { id: 2, name: 'Follow-up Email', blocks: 3, lastEdited: '1 week ago' },
-    { id: 3, name: 'Meeting Reminder', blocks: 3, lastEdited: '2 weeks ago' }
+    { id: 3, name: 'Meeting Reminder', blocks: 3, lastEdited: '2 weeks ago' },
   ];
 
-  const addBlock = (type) => {
+  const addBlock = type => {
     const newBlock = {
       id: Date.now(),
       type,
       content: type === 'cta' ? 'Click Here' : 'New content...',
-      link: type === 'cta' ? 'https://example.com' : ''
+      link: type === 'cta' ? 'https://example.com' : '',
     };
     setBlocks([...blocks, newBlock]);
   };
 
   const updateBlock = (id, field, value) => {
-    setBlocks(blocks.map(b => b.id === id ? { ...b, [field]: value } : b));
+    setBlocks(blocks.map(b => (b.id === id ? { ...b, [field]: value } : b)));
   };
 
-  const deleteBlock = (id) => {
+  const deleteBlock = id => {
     setBlocks(blocks.filter(b => b.id !== id));
   };
 
@@ -67,7 +99,7 @@ const EmailTemplateBuilder = () => {
     return (
       <div className="bg-white rounded-lg p-8 border border-gray-200 shadow-sm max-w-2xl mx-auto">
         {blocks.map(block => {
-          switch(block.type) {
+          switch (block.type) {
             case 'header':
               return (
                 <h1 key={block.id} className="text-3xl font-bold text-gray-900 mb-6">
@@ -83,14 +115,20 @@ const EmailTemplateBuilder = () => {
             case 'cta':
               return (
                 <div key={block.id} className="my-6">
-                  <a href={block.link} className="inline-block bg-accent-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-accent-600 transition-colors">
+                  <a
+                    href={block.link}
+                    className="inline-block bg-accent-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-accent-600 transition-colors"
+                  >
                     {block.content}
                   </a>
                 </div>
               );
             case 'footer':
               return (
-                <div key={block.id} className="text-center text-sm text-gray-500 mt-8 pt-4 border-t border-gray-200">
+                <div
+                  key={block.id}
+                  className="text-center text-sm text-gray-500 mt-8 pt-4 border-t border-gray-200"
+                >
                   {block.content}
                 </div>
               );
@@ -114,9 +152,9 @@ const EmailTemplateBuilder = () => {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
-                  <Input 
+                  <Input
                     value={templateName}
-                    onChange={(e) => setTemplateName(e.target.value)}
+                    onChange={e => setTemplateName(e.target.value)}
                     className="text-lg font-semibold border-none p-0 focus:ring-0"
                   />
                   <CardDescription>Drag blocks to reorder, click to edit</CardDescription>
@@ -132,11 +170,11 @@ const EmailTemplateBuilder = () => {
                     <DialogContent className="max-w-4xl">
                       <DialogHeader>
                         <DialogTitle>Email Preview</DialogTitle>
-                        <DialogDescription>How your email will appear to recipients</DialogDescription>
+                        <DialogDescription>
+                          How your email will appear to recipients
+                        </DialogDescription>
                       </DialogHeader>
-                      <div className="max-h-[600px] overflow-y-auto">
-                        {renderPreview()}
-                      </div>
+                      <div className="max-h-[600px] overflow-y-auto">{renderPreview()}</div>
                     </DialogContent>
                   </Dialog>
                   <Button variant="gradient">
@@ -148,11 +186,11 @@ const EmailTemplateBuilder = () => {
             </CardHeader>
             <CardContent className="space-y-3">
               {blocks.map((block, index) => (
-                <div 
+                <div
                   key={block.id}
                   className={`p-4 border rounded-lg transition-all ${
-                    selectedBlock === block.id 
-                      ? 'border-accent-500 bg-accent-50 dark:bg-accent-500/10' 
+                    selectedBlock === block.id
+                      ? 'border-accent-500 bg-accent-50 dark:bg-accent-500/10'
                       : 'border-gray-200 dark:border-white/10'
                   }`}
                   onClick={() => setSelectedBlock(block.id)}
@@ -160,7 +198,10 @@ const EmailTemplateBuilder = () => {
                   <div className="flex items-start gap-3">
                     <div className="flex flex-col gap-1">
                       <button
-                        onClick={(e) => { e.stopPropagation(); moveBlock(block.id, 'up'); }}
+                        onClick={e => {
+                          e.stopPropagation();
+                          moveBlock(block.id, 'up');
+                        }}
                         disabled={index === 0}
                         className="p-1 hover:bg-gray-100 dark:hover:bg-white/10 rounded disabled:opacity-30"
                       >
@@ -179,35 +220,35 @@ const EmailTemplateBuilder = () => {
                         <input
                           type="text"
                           value={block.content}
-                          onChange={(e) => updateBlock(block.id, 'content', e.target.value)}
+                          onChange={e => updateBlock(block.id, 'content', e.target.value)}
                           className="w-full text-xl font-bold bg-transparent border-none outline-none text-gray-900 dark:text-white"
-                          onClick={(e) => e.stopPropagation()}
+                          onClick={e => e.stopPropagation()}
                         />
                       )}
 
                       {block.type === 'body' && (
                         <textarea
                           value={block.content}
-                          onChange={(e) => updateBlock(block.id, 'content', e.target.value)}
+                          onChange={e => updateBlock(block.id, 'content', e.target.value)}
                           rows={3}
                           className="w-full bg-transparent border-none outline-none text-gray-700 dark:text-gray-300 resize-none"
-                          onClick={(e) => e.stopPropagation()}
+                          onClick={e => e.stopPropagation()}
                         />
                       )}
 
                       {block.type === 'cta' && (
-                        <div className="space-y-2" onClick={(e) => e.stopPropagation()}>
+                        <div className="space-y-2" onClick={e => e.stopPropagation()}>
                           <input
                             type="text"
                             value={block.content}
-                            onChange={(e) => updateBlock(block.id, 'content', e.target.value)}
+                            onChange={e => updateBlock(block.id, 'content', e.target.value)}
                             placeholder="Button text"
                             className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-white/10 rounded-lg"
                           />
                           <input
                             type="text"
                             value={block.link}
-                            onChange={(e) => updateBlock(block.id, 'link', e.target.value)}
+                            onChange={e => updateBlock(block.id, 'link', e.target.value)}
                             placeholder="Button link"
                             className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-white/10 rounded-lg"
                           />
@@ -218,15 +259,18 @@ const EmailTemplateBuilder = () => {
                         <input
                           type="text"
                           value={block.content}
-                          onChange={(e) => updateBlock(block.id, 'content', e.target.value)}
+                          onChange={e => updateBlock(block.id, 'content', e.target.value)}
                           className="w-full text-sm bg-transparent border-none outline-none text-gray-500"
-                          onClick={(e) => e.stopPropagation()}
+                          onClick={e => e.stopPropagation()}
                         />
                       )}
                     </div>
 
                     <button
-                      onClick={(e) => { e.stopPropagation(); deleteBlock(block.id); }}
+                      onClick={e => {
+                        e.stopPropagation();
+                        deleteBlock(block.id);
+                      }}
                       className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-colors"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -290,7 +334,7 @@ const EmailTemplateBuilder = () => {
             </CardHeader>
             <CardContent className="space-y-2">
               {templates.map(template => (
-                <div 
+                <div
                   key={template.id}
                   className="p-3 border border-gray-200 dark:border-white/10 rounded-lg hover:border-accent-500 dark:hover:border-accent-500 cursor-pointer transition-colors"
                 >

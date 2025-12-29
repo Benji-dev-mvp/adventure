@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 
 // Color interpolation for intent scores
-const getIntentColor = (intent) => {
+const getIntentColor = intent => {
   if (intent >= 80) return '#10b981'; // emerald - hot
   if (intent >= 60) return '#06b6d4'; // cyan - warm
   if (intent >= 40) return '#f97316'; // orange - warming
@@ -13,9 +13,9 @@ const getIntentColor = (intent) => {
 // Lead point tooltip
 const PointTooltip = ({ point, cluster, position }) => {
   if (!point || !cluster) return null;
-  
+
   const account = cluster.topAccounts?.[0];
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -32,7 +32,9 @@ const PointTooltip = ({ point, cluster, position }) => {
         <p className="font-semibold text-slate-100 text-sm">{cluster.name}</p>
         {account && (
           <>
-            <p className="text-xs text-slate-400 mt-1">{account.name} • {account.role}</p>
+            <p className="text-xs text-slate-400 mt-1">
+              {account.name} • {account.role}
+            </p>
             <div className="flex items-center gap-3 mt-2 text-xs">
               <span className="text-cyan-400">Intent: {Math.round(point.intent)}%</span>
               <span className="text-slate-500">|</span>
@@ -49,7 +51,7 @@ const PointTooltip = ({ point, cluster, position }) => {
 // Single lead point visualization
 const LeadPoint = ({ point, cluster, onHover, onLeave }) => {
   const color = getIntentColor(point.intent);
-  
+
   return (
     <motion.circle
       cx={`${point.x}%`}
@@ -58,7 +60,7 @@ const LeadPoint = ({ point, cluster, onHover, onLeave }) => {
       fill={color}
       opacity={0.7}
       initial={{ scale: 0 }}
-      animate={{ 
+      animate={{
         scale: 1,
         opacity: point.pulsing ? [0.5, 0.9, 0.5] : 0.7,
       }}
@@ -95,7 +97,7 @@ const ClusterBoundary = ({ cluster, isSelected, onClick }) => {
         strokeOpacity={isSelected ? 0.6 : 0.2}
         strokeDasharray={isSelected ? 'none' : '4 4'}
       />
-      
+
       {/* Cluster label */}
       <text
         x={`${cluster.position.x}%`}
@@ -122,15 +124,15 @@ const ClusterBoundary = ({ cluster, isSelected, onClick }) => {
   );
 };
 
-export function HiveCanvas({ 
-  clusters, 
-  leadPoints, 
-  selectedCluster, 
+export function HiveCanvas({
+  clusters,
+  leadPoints,
+  selectedCluster,
   onSelectCluster,
   hoveredPoint,
   onHoverPoint,
   onLeavePoint,
-  loading 
+  loading,
 }) {
   const containerRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -164,7 +166,7 @@ export function HiveCanvas({
     <GlassCard variant="subtle" className="h-full">
       <GlassCardContent className="p-0 h-full relative overflow-hidden" ref={containerRef}>
         {/* Background grid */}
-        <div 
+        <div
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `
@@ -199,11 +201,7 @@ export function HiveCanvas({
         </div>
 
         {/* SVG Canvas */}
-        <svg 
-          viewBox="0 0 100 100" 
-          preserveAspectRatio="xMidYMid meet"
-          className="w-full h-full"
-        >
+        <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" className="w-full h-full">
           {/* Cluster boundaries */}
           {clusters.map(cluster => (
             <ClusterBoundary

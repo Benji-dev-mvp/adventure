@@ -176,5 +176,3 @@ export const CampaignTemplatesLibrary = ({ onSelect }) => {
 CampaignTemplatesLibrary.propTypes = {
   onSelect: PropTypes.func
 };
-  );
-};

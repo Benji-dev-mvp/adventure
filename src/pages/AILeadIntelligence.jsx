@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
-import { Brain, TrendingUp, Target, Zap, Clock, Star, ArrowRight, AlertCircle, CheckCircle2, Loader2 } from 'lucide-react';
+import {
+  Brain,
+  TrendingUp,
+  Target,
+  Zap,
+  Clock,
+  Star,
+  ArrowRight,
+  AlertCircle,
+  CheckCircle2,
+  Loader2,
+} from 'lucide-react';
 import { dataService } from '../lib/dataService';
 import { useToast } from '../components/Toast';
 
@@ -23,7 +34,7 @@ export default function AILeadIntelligence() {
       email: 'john.smith@techcorp.com',
       engagement: 'high',
       size: 500,
-      notes: 'Interested in enterprise plan, wants Q1 2026 implementation'
+      notes: 'Interested in enterprise plan, wants Q1 2026 implementation',
     },
     {
       id: 2,
@@ -34,7 +45,7 @@ export default function AILeadIntelligence() {
       email: 'sarah@dataflow.com',
       engagement: 'medium',
       size: 250,
-      notes: 'Evaluating competitors, price sensitive, needs API integration'
+      notes: 'Evaluating competitors, price sensitive, needs API integration',
     },
     {
       id: 3,
@@ -45,7 +56,7 @@ export default function AILeadIntelligence() {
       email: 'mchen@cloudscale.io',
       engagement: 'high',
       size: 1000,
-      notes: 'Expanding globally, high budget, decision maker'
+      notes: 'Expanding globally, high budget, decision maker',
     },
     {
       id: 4,
@@ -56,18 +67,18 @@ export default function AILeadIntelligence() {
       email: 'emily.r@fintech-inn.com',
       engagement: 'low',
       size: 150,
-      notes: 'Referred by partner, exploring options'
-    }
+      notes: 'Referred by partner, exploring options',
+    },
   ];
 
-  const scoreSingleLead = async (lead) => {
+  const scoreSingleLead = async lead => {
     setLoading(true);
     setSelectedLead(lead);
     setScoreResult(null);
 
     try {
       const result = await dataService.post('/ai-advanced/lead/score', {
-        lead_data: lead
+        lead_data: lead,
       });
       setScoreResult(result);
       toast.success('Lead scored successfully!');
@@ -85,7 +96,7 @@ export default function AILeadIntelligence() {
 
     try {
       const result = await dataService.post('/ai-advanced/lead/batch-analyze', {
-        leads: batchLeads.length > 0 ? batchLeads : demoLeads
+        leads: batchLeads.length > 0 ? batchLeads : demoLeads,
       });
       setBatchResults(result.results);
       toast.success(`Analyzed ${result.analyzed_count} leads successfully!`);
@@ -97,14 +108,14 @@ export default function AILeadIntelligence() {
     }
   };
 
-  const getScoreColor = (score) => {
+  const getScoreColor = score => {
     if (score >= 86) return 'text-green-600 bg-green-50 border-green-200';
     if (score >= 61) return 'text-blue-600 bg-blue-50 border-blue-200';
     if (score >= 31) return 'text-yellow-600 bg-yellow-50 border-yellow-200';
     return 'text-gray-600 bg-gray-50 border-gray-200';
   };
 
-  const getScoreBadge = (score) => {
+  const getScoreBadge = score => {
     if (score >= 86) return 'Urgent Priority';
     if (score >= 61) return 'High Priority';
     if (score >= 31) return 'Medium Priority';
@@ -121,7 +132,9 @@ export default function AILeadIntelligence() {
           </div>
           <div>
             <h1 className="text-4xl font-bold text-gray-900">AI Lead Intelligence</h1>
-            <p className="text-gray-600 mt-1">Advanced lead scoring with memory, RAG, and predictive insights</p>
+            <p className="text-gray-600 mt-1">
+              Advanced lead scoring with memory, RAG, and predictive insights
+            </p>
           </div>
         </div>
 
@@ -182,7 +195,7 @@ export default function AILeadIntelligence() {
           <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
             <h2 className="text-xl font-bold text-gray-900 mb-4">Select Lead to Score</h2>
             <div className="space-y-3">
-              {demoLeads.map((lead) => (
+              {demoLeads.map(lead => (
                 <button
                   key={lead.id}
                   onClick={() => scoreSingleLead(lead)}
@@ -192,14 +205,22 @@ export default function AILeadIntelligence() {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="font-semibold text-gray-900">{lead.name}</div>
-                      <div className="text-sm text-gray-600">{lead.title} at {lead.company}</div>
-                      <div className="text-xs text-gray-500 mt-1">{lead.industry} • {lead.size} employees</div>
+                      <div className="text-sm text-gray-600">
+                        {lead.title} at {lead.company}
+                      </div>
+                      <div className="text-xs text-gray-500 mt-1">
+                        {lead.industry} • {lead.size} employees
+                      </div>
                     </div>
-                    <div className={`px-2 py-1 rounded-lg text-xs font-medium ${
-                      lead.engagement === 'high' ? 'bg-green-100 text-green-700' :
-                      lead.engagement === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                      'bg-gray-100 text-gray-700'
-                    }`}>
+                    <div
+                      className={`px-2 py-1 rounded-lg text-xs font-medium ${
+                        lead.engagement === 'high'
+                          ? 'bg-green-100 text-green-700'
+                          : lead.engagement === 'medium'
+                            ? 'bg-yellow-100 text-yellow-700'
+                            : 'bg-gray-100 text-gray-700'
+                      }`}
+                    >
                       {lead.engagement} engagement
                     </div>
                   </div>
@@ -211,17 +232,21 @@ export default function AILeadIntelligence() {
           {/* Score Results */}
           <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
             <h2 className="text-xl font-bold text-gray-900 mb-4">AI Score Results</h2>
-            
+
             {loading ? (
               <div className="flex flex-col items-center justify-center py-12">
                 <Loader2 className="w-12 h-12 text-purple-600 animate-spin mb-4" />
                 <p className="text-gray-600">Analyzing lead with AI...</p>
-                <p className="text-xs text-gray-500 mt-2">Using Mem0 memory + LlamaIndex RAG + Pydantic AI</p>
+                <p className="text-xs text-gray-500 mt-2">
+                  Using Mem0 memory + LlamaIndex RAG + Pydantic AI
+                </p>
               </div>
             ) : scoreResult ? (
               <div className="space-y-6">
                 {/* Score Display */}
-                <div className={`p-6 rounded-xl border-2 ${getScoreColor(scoreResult.lead_score.score)}`}>
+                <div
+                  className={`p-6 rounded-xl border-2 ${getScoreColor(scoreResult.lead_score.score)}`}
+                >
                   <div className="text-center">
                     <div className="text-5xl font-bold mb-2">{scoreResult.lead_score.score}</div>
                     <div className="text-sm font-medium mb-1">out of 100</div>
@@ -303,7 +328,9 @@ export default function AILeadIntelligence() {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">Batch Lead Analysis</h2>
-                <p className="text-sm text-gray-600 mt-1">Analyze multiple leads simultaneously with intelligent prioritization</p>
+                <p className="text-sm text-gray-600 mt-1">
+                  Analyze multiple leads simultaneously with intelligent prioritization
+                </p>
               </div>
               <button
                 onClick={scoreBatchLeads}
@@ -339,7 +366,9 @@ export default function AILeadIntelligence() {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4 flex-1">
-                        <div className={`w-16 h-16 rounded-xl flex items-center justify-center border-2 ${getScoreColor(result.score)}`}>
+                        <div
+                          className={`w-16 h-16 rounded-xl flex items-center justify-center border-2 ${getScoreColor(result.score)}`}
+                        >
                           <div className="text-center">
                             <div className="text-xl font-bold">{result.score}</div>
                             <div className="text-[10px]">score</div>
@@ -347,12 +376,16 @@ export default function AILeadIntelligence() {
                         </div>
                         <div className="flex-1">
                           <div className="font-semibold text-gray-900">{result.lead.name}</div>
-                          <div className="text-sm text-gray-600">{result.lead.title} at {result.lead.company}</div>
+                          <div className="text-sm text-gray-600">
+                            {result.lead.title} at {result.lead.company}
+                          </div>
                           <div className="text-xs text-gray-500 mt-1">{result.recommendation}</div>
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className={`inline-block px-3 py-1 rounded-lg text-xs font-medium ${getScoreColor(result.score)}`}>
+                        <div
+                          className={`inline-block px-3 py-1 rounded-lg text-xs font-medium ${getScoreColor(result.score)}`}
+                        >
                           {getScoreBadge(result.score)}
                         </div>
                         <div className="text-xs text-gray-500 mt-1">
@@ -380,7 +413,11 @@ export default function AILeadIntelligence() {
             <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl shadow-lg p-6 text-white">
               <TrendingUp className="w-8 h-8 mb-3 opacity-80" />
               <div className="text-3xl font-bold mb-1">
-                {batchResults.length > 0 ? Math.round(batchResults.reduce((acc, r) => acc + r.score, 0) / batchResults.length) : '--'}
+                {batchResults.length > 0
+                  ? Math.round(
+                      batchResults.reduce((acc, r) => acc + r.score, 0) / batchResults.length
+                    )
+                  : '--'}
               </div>
               <div className="text-sm opacity-90">Average Lead Score</div>
             </div>
@@ -411,7 +448,8 @@ export default function AILeadIntelligence() {
                   <div>
                     <div className="font-medium text-gray-900">Context-Aware Scoring</div>
                     <div className="text-sm text-gray-600 mt-1">
-                      Uses Mem0 to recall past interactions and LlamaIndex to find similar high-value leads, providing context-rich scoring.
+                      Uses Mem0 to recall past interactions and LlamaIndex to find similar
+                      high-value leads, providing context-rich scoring.
                     </div>
                   </div>
                 </div>
@@ -423,7 +461,8 @@ export default function AILeadIntelligence() {
                   <div>
                     <div className="font-medium text-gray-900">Predictive Intelligence</div>
                     <div className="text-sm text-gray-600 mt-1">
-                      Pydantic AI ensures type-safe, validated outputs while analyzing engagement patterns and decision-making authority.
+                      Pydantic AI ensures type-safe, validated outputs while analyzing engagement
+                      patterns and decision-making authority.
                     </div>
                   </div>
                 </div>
@@ -435,7 +474,8 @@ export default function AILeadIntelligence() {
                   <div>
                     <div className="font-medium text-gray-900">Actionable Recommendations</div>
                     <div className="text-sm text-gray-600 mt-1">
-                      Every score includes specific, actionable recommendations based on historical success patterns and best practices.
+                      Every score includes specific, actionable recommendations based on historical
+                      success patterns and best practices.
                     </div>
                   </div>
                 </div>

@@ -6,7 +6,7 @@ import { Input } from '../components/ui/Input';
 import { Badge } from '../components/ui/Badge';
 import { Avatar, AvatarFallback } from '../components/ui/Avatar';
 import { Modal, ModalHeader, ModalTitle, ModalContent, ModalFooter } from '../components/ui/Modal';
-import { 
+import {
   Users,
   UserPlus,
   Mail,
@@ -14,7 +14,7 @@ import {
   MoreVertical,
   CheckCircle2,
   Clock,
-  Crown
+  Crown,
 } from 'lucide-react';
 
 const Team = () => {
@@ -92,10 +92,7 @@ const Team = () => {
   ];
 
   return (
-    <DashboardLayout 
-      title="Team Management" 
-      subtitle="Manage your team members and permissions"
-    >
+    <DashboardLayout title="Team Management" subtitle="Manage your team members and permissions">
       {/* Team Stats */}
       <div className="grid md:grid-cols-4 gap-6 mb-8">
         <Card>
@@ -178,13 +175,14 @@ const Team = () => {
             <CardContent>
               <div className="space-y-4">
                 {teamMembers.map(member => (
-                  <div key={member.id} className="p-4 border border-gray-200 rounded-xl hover:border-accent-300 transition-colors">
+                  <div
+                    key={member.id}
+                    className="p-4 border border-gray-200 rounded-xl hover:border-accent-300 transition-colors"
+                  >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-3">
                         <Avatar className="w-12 h-12">
-                          <AvatarFallback className="text-base">
-                            {member.avatar}
-                          </AvatarFallback>
+                          <AvatarFallback className="text-base">{member.avatar}</AvatarFallback>
                         </Avatar>
                         <div>
                           <div className="flex items-center gap-2 mb-1">
@@ -197,7 +195,7 @@ const Team = () => {
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Badge 
+                        <Badge
                           variant={member.status === 'active' ? 'success' : 'warning'}
                           className="capitalize"
                         >
@@ -244,7 +242,9 @@ const Team = () => {
                   return (
                     <div key={index} className="p-4 border border-gray-200 rounded-xl">
                       <div className="flex items-start gap-3 mb-3">
-                        <div className={`w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center ${role.color}`}>
+                        <div
+                          className={`w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center ${role.color}`}
+                        >
                           <Icon size={20} />
                         </div>
                         <div className="flex-1">
@@ -254,7 +254,10 @@ const Team = () => {
                       </div>
                       <div className="space-y-1">
                         {role.permissions.map((permission, pIndex) => (
-                          <div key={pIndex} className="flex items-center gap-2 text-xs text-gray-600">
+                          <div
+                            key={pIndex}
+                            className="flex items-center gap-2 text-xs text-gray-600"
+                          >
                             <CheckCircle2 size={12} className="text-green-600" />
                             <span>{permission}</span>
                           </div>
@@ -277,15 +280,9 @@ const Team = () => {
           </ModalHeader>
           <ModalContent>
             <div className="space-y-4">
-              <Input 
-                label="Email Address" 
-                type="email" 
-                placeholder="colleague@company.com"
-              />
+              <Input label="Email Address" type="email" placeholder="colleague@company.com" />
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Role
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Role</label>
                 <select className="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-accent-500">
                   <option>Member</option>
                   <option>Admin</option>
@@ -293,7 +290,8 @@ const Team = () => {
               </div>
               <div className="p-4 bg-blue-50 rounded-lg">
                 <p className="text-sm text-gray-700">
-                  <strong>Note:</strong> The invited member will receive an email with instructions to join your workspace.
+                  <strong>Note:</strong> The invited member will receive an email with instructions
+                  to join your workspace.
                 </p>
               </div>
             </div>

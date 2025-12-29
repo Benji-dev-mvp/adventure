@@ -36,7 +36,7 @@ export const EmailNode = ({ data, selected }) => {
             <input
               type="text"
               value={subject}
-              onChange={(e) => {
+              onChange={e => {
                 setSubject(e.target.value);
                 data.onChange?.({ subject: e.target.value });
               }}
@@ -53,7 +53,7 @@ export const EmailNode = ({ data, selected }) => {
           </label>
           <select
             value={tone}
-            onChange={(e) => {
+            onChange={e => {
               setTone(e.target.value);
               data.onChange?.({ tone: e.target.value });
             }}

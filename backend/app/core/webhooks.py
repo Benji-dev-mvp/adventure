@@ -5,11 +5,11 @@ import hmac
 import json
 from datetime import datetime
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict
 
 import httpx
-from pydantic import BaseModel, HttpUrl
-from sqlalchemy import JSON, Boolean, Column, DateTime, Integer, String, Text
+from pydantic import BaseModel
+from sqlalchemy import JSON, Boolean, Column, DateTime, Integer, String
 
 from app.core.db import Base
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Play, Workflow, CheckCircle2 } from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import AITour from '../components/features/AITour';
-import { 
+import {
   GlassCard,
   GlassCardContent,
   GradientText,
@@ -20,7 +20,7 @@ const AiTourPage = () => {
       <section className="py-20 px-6 relative overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent" />
-        
+
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/20 border border-purple-500/30 mb-6">
@@ -28,7 +28,7 @@ const AiTourPage = () => {
               <span className="text-sm text-purple-300">Interactive AI Tour</span>
             </div>
           </RevealText>
-          
+
           <RevealText delay={100}>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 font-space-grotesk">
               <GradientText gradient="aurora" animate>
@@ -36,14 +36,14 @@ const AiTourPage = () => {
               </GradientText>
             </h1>
           </RevealText>
-          
+
           <RevealText delay={200}>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Experience a complete walkthrough of how Ava, your AI BDR, 
-              handles everything from lead discovery to booking meetings — all on autopilot.
+              Experience a complete walkthrough of how Ava, your AI BDR, handles everything from
+              lead discovery to booking meetings — all on autopilot.
             </p>
           </RevealText>
-          
+
           <RevealText delay={300}>
             <div className="flex flex-wrap justify-center gap-4">
               <a href="#video">
@@ -71,16 +71,14 @@ const AiTourPage = () => {
       {/* Tour Highlights */}
       <section className="py-20 px-6 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
-        
+
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">What You'll See in the Tour</GradientText>
               </h2>
-              <p className="text-gray-300 text-lg">
-                Every step of the autonomous outbound journey
-              </p>
+              <p className="text-gray-300 text-lg">Every step of the autonomous outbound journey</p>
             </div>
           </RevealText>
 
@@ -88,11 +86,13 @@ const AiTourPage = () => {
             {[
               {
                 title: 'Hero → Login Flow',
-                description: 'See how new users onboard and connect their first workspace in under 2 minutes.',
+                description:
+                  'See how new users onboard and connect their first workspace in under 2 minutes.',
               },
               {
                 title: 'ICP Definition',
-                description: 'Watch Ava learn your ideal customer profile with AI-assisted targeting.',
+                description:
+                  'Watch Ava learn your ideal customer profile with AI-assisted targeting.',
               },
               {
                 title: 'Lead Discovery',
@@ -100,7 +100,8 @@ const AiTourPage = () => {
               },
               {
                 title: 'Sequence Builder',
-                description: 'Multi-channel sequences that personalize every touchpoint automatically.',
+                description:
+                  'Multi-channel sequences that personalize every touchpoint automatically.',
               },
               {
                 title: 'AI Personalization',
@@ -122,9 +123,7 @@ const AiTourPage = () => {
                         <h3 className="text-lg font-bold text-white mb-2 font-space-grotesk">
                           {item.title}
                         </h3>
-                        <p className="text-gray-400 text-sm">
-                          {item.description}
-                        </p>
+                        <p className="text-gray-400 text-sm">{item.description}</p>
                       </div>
                     </div>
                   </GlassCardContent>
@@ -138,13 +137,11 @@ const AiTourPage = () => {
       {/* CTA */}
       <section className="py-20 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
-        
+
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 font-space-grotesk">
-              <GradientText gradient="aurora">
-                Ready to Experience Ava Yourself?
-              </GradientText>
+              <GradientText gradient="aurora">Ready to Experience Ava Yourself?</GradientText>
             </h2>
             <p className="text-xl text-gray-300 mb-8">
               Start your free trial and see the results within the first week

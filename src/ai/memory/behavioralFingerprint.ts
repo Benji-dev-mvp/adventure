@@ -2,16 +2,12 @@
 // TODO: Complete implementation of behavioral fingerprinting
 /**
  * Behavioral Fingerprinting Engine
- * 
+ *
  * Detects and adapts to buyer behavior types automatically.
  * Builds rich behavioral profiles from sparse observation signals.
  */
 
-import type {
-  BehavioralFingerprint,
-  PersonaType,
-  BehaviorObservation,
-} from './types';
+import type { BehavioralFingerprint, PersonaType, BehaviorObservation } from './types';
 
 interface FingerprintPrediction {
   fingerprint: BehavioralFingerprint;
@@ -39,7 +35,7 @@ class BehavioralFingerprinter {
   private fingerprints: Map<string, BehavioralFingerprint> = new Map();
   private observationBuffer: ObservationEvent[] = [];
   private personaModels: Map<PersonaType, number[]> = new Map();
-  
+
   // Minimum observations needed for confident fingerprinting
   private readonly MIN_OBSERVATIONS = 5;
   private readonly CONFIDENCE_THRESHOLD = 0.6;
@@ -69,7 +65,7 @@ class BehavioralFingerprinter {
    */
   observe(event: ObservationEvent): void {
     this.observationBuffer.push(event);
-    
+
     // Process observation into fingerprint update
     this.updateFingerprint(event);
   }
@@ -106,7 +102,7 @@ class BehavioralFingerprinter {
    */
   private updateFingerprint(event: ObservationEvent): void {
     let fingerprint = this.fingerprints.get(event.accountId);
-    
+
     if (!fingerprint) {
       fingerprint = this.createEmptyFingerprint(event.accountId);
     }
@@ -117,10 +113,10 @@ class BehavioralFingerprinter {
 
     // Re-compute fingerprint features
     fingerprint = this.recomputeFeatures(fingerprint);
-    
+
     // Classify persona type
     fingerprint.personaType = this.classifyPersona(fingerprint);
-    
+
     // Update confidence based on observation count and consistency
     fingerprint.confidence = this.computeConfidence(fingerprint);
     fingerprint.lastUpdated = new Date();
@@ -194,7 +190,7 @@ class BehavioralFingerprinter {
   private extractSentiment(event: ObservationEvent): number {
     const positiveSignals = ['opened', 'clicked', 'replied', 'scheduled', 'forwarded'];
     const negativeSignals = ['bounced', 'unsubscribed', 'complained', 'ignored'];
-    
+
     if (positiveSignals.includes(event.eventType)) {
       return 0.5 + Math.random() * 0.5; // 0.5 to 1.0
     }
@@ -218,7 +214,7 @@ class BehavioralFingerprinter {
       'email.bounced': 'unreachable',
       'email.unsubscribed': 'rejection',
     };
-    
+
     return intentMap[event.eventType] || 'unknown';
   }
 
@@ -232,13 +228,12 @@ class BehavioralFingerprinter {
     // Analyze response times
     const responseTimes = observations
       .filter(o => o.action === 'email.replied')
-      .map(o => o.context.responseTimeMinutes as number || 60);
-    
+      .map(o => (o.context.responseTimeMinutes as number) || 60);
+
     if (responseTimes.length > 0) {
       const avgResponseTime = responseTimes.reduce((a, b) => a + b, 0) / responseTimes.length;
-      fingerprint.communicationStyle.responseLatency = 
-        avgResponseTime < 60 ? 'fast' :
-        avgResponseTime < 240 ? 'moderate' : 'slow';
+      fingerprint.communicationStyle.responseLatency =
+        avgResponseTime < 60 ? 'fast' : avgResponseTime < 240 ? 'moderate' : 'slow';
     }
 
     // Analyze engagement timing
@@ -271,13 +266,13 @@ class BehavioralFingerprinter {
     // 8 dimensions corresponding to persuasion techniques
     // [social-proof, scarcity, authority, reciprocity, commitment, liking, unity, contrast]
     const vector = new Array(8).fill(0.5);
-    
+
     // Analyze which message types generated positive responses
     const positiveObs = observations.filter(o => o.sentiment > 0.3);
-    
+
     positiveObs.forEach(obs => {
-      const messageType = obs.context.messageType as string || '';
-      
+      const messageType = (obs.context.messageType as string) || '';
+
       if (messageType.includes('case-study') || messageType.includes('testimonial')) {
         vector[0] = Math.min(vector[0] + 0.1, 1); // Social proof
       }
@@ -301,10 +296,16 @@ class BehavioralFingerprinter {
       fingerprint.communicationStyle.dataOrientation,
       fingerprint.communicationStyle.emotionalResonance,
       fingerprint.decisionPattern.riskTolerance,
-      fingerprint.communicationStyle.responseLatency === 'fast' ? 0.8 :
-        fingerprint.communicationStyle.responseLatency === 'moderate' ? 0.5 : 0.2,
-      fingerprint.communicationStyle.preferredLength === 'detailed' ? 0.9 :
-        fingerprint.communicationStyle.preferredLength === 'moderate' ? 0.5 : 0.1,
+      fingerprint.communicationStyle.responseLatency === 'fast'
+        ? 0.8
+        : fingerprint.communicationStyle.responseLatency === 'moderate'
+          ? 0.5
+          : 0.2,
+      fingerprint.communicationStyle.preferredLength === 'detailed'
+        ? 0.9
+        : fingerprint.communicationStyle.preferredLength === 'moderate'
+          ? 0.5
+          : 0.1,
     ];
 
     let bestMatch: PersonaType = 'pragmatic-evaluator';
@@ -327,7 +328,7 @@ class BehavioralFingerprinter {
   private computeConfidence(fingerprint: BehavioralFingerprint): number {
     const obsCount = fingerprint.observations.length;
     if (obsCount < this.MIN_OBSERVATIONS) {
-      return obsCount / this.MIN_OBSERVATIONS * 0.5;
+      return (obsCount / this.MIN_OBSERVATIONS) * 0.5;
     }
 
     // Base confidence from observation count
@@ -419,7 +420,9 @@ class BehavioralFingerprinter {
   // === Utility Methods ===
 
   private cosineSimilarity(a: number[], b: number[]): number {
-    let dot = 0, normA = 0, normB = 0;
+    let dot = 0,
+      normA = 0,
+      normB = 0;
     for (let i = 0; i < a.length; i++) {
       dot += a[i] * b[i];
       normA += a[i] * a[i];

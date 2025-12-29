@@ -2,7 +2,6 @@
 
 import base64
 import io
-from datetime import datetime
 from typing import Optional, Tuple
 
 import pyotp

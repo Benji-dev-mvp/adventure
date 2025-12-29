@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  ArrowRight, 
-  Play, 
-  Workflow, 
-  Server, 
-  Shield, 
-  Users, 
+import {
+  ArrowRight,
+  Play,
+  Workflow,
+  Server,
+  Shield,
+  Users,
   Sparkles,
   Zap,
   Target,
@@ -21,7 +21,7 @@ import AppShell from '../components/layout/AppShell';
 import HeroSection from '../components/features/HeroSection';
 import CustomerShowcase from '../components/features/CustomerShowcase';
 import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
-import { 
+import {
   GlassCard,
   GlassCardContent,
   GradientText,
@@ -45,7 +45,8 @@ const PAGE_TEASERS = [
     path: '/ai-tour',
     icon: Play,
     title: 'Watch Ava in Action',
-    description: 'Experience a 60-second AI-led product tour showing how Ava automates your entire outbound workflow.',
+    description:
+      'Experience a 60-second AI-led product tour showing how Ava automates your entire outbound workflow.',
     cta: 'Start AI Tour',
     gradient: 'from-purple-500 to-pink-500',
   },
@@ -53,7 +54,8 @@ const PAGE_TEASERS = [
     path: '/flow',
     icon: Workflow,
     title: 'See the Complete Flow',
-    description: 'From lead discovery to booked meetings — visualize the 8-step pipeline that runs on autopilot.',
+    description:
+      'From lead discovery to booked meetings — visualize the 8-step pipeline that runs on autopilot.',
     cta: 'View Architecture',
     gradient: 'from-cyan-500 to-blue-500',
   },
@@ -61,7 +63,8 @@ const PAGE_TEASERS = [
     path: '/platform',
     icon: Server,
     title: 'Explore the Platform',
-    description: 'Everything you need for outbound success: AI personalization, multi-channel sequences, and deep integrations.',
+    description:
+      'Everything you need for outbound success: AI personalization, multi-channel sequences, and deep integrations.',
     cta: 'See Features',
     gradient: 'from-emerald-500 to-teal-500',
   },
@@ -69,7 +72,8 @@ const PAGE_TEASERS = [
     path: '/security',
     icon: Shield,
     title: 'Enterprise Security',
-    description: 'SOC 2 Type II, GDPR compliant, SSO/SAML, and full audit trails. Built for enterprise from day one.',
+    description:
+      'SOC 2 Type II, GDPR compliant, SSO/SAML, and full audit trails. Built for enterprise from day one.',
     cta: 'Security Details',
     gradient: 'from-orange-500 to-red-500',
   },
@@ -77,7 +81,8 @@ const PAGE_TEASERS = [
     path: '/customers',
     icon: Users,
     title: 'Customer Results',
-    description: 'See how companies like TechCorp 3x\'d their pipeline and reduced time-to-meeting by 73%.',
+    description:
+      "See how companies like TechCorp 3x'd their pipeline and reduced time-to-meeting by 73%.",
     cta: 'Read Case Studies',
     gradient: 'from-violet-500 to-purple-500',
   },
@@ -95,8 +100,13 @@ const SOLUTIONS_BY_SIZE = [
     icon: Rocket,
     title: 'For Startups',
     tagline: 'Stay Lean, Move Fast',
-    description: 'Hire Ava to manage your entire outbound operation, keeping your team lean and efficient while you scale.',
-    benefits: ['Skip hiring your first BDR', 'Pay for results, not headcount', 'Full outbound on autopilot'],
+    description:
+      'Hire Ava to manage your entire outbound operation, keeping your team lean and efficient while you scale.',
+    benefits: [
+      'Skip hiring your first BDR',
+      'Pay for results, not headcount',
+      'Full outbound on autopilot',
+    ],
     gradient: 'from-cyan-500 to-blue-500',
     stat: { value: '$450K', label: 'saved vs. hiring' },
   },
@@ -105,8 +115,13 @@ const SOLUTIONS_BY_SIZE = [
     icon: Building2,
     title: 'For Midmarket',
     tagline: 'Scale Without Chaos',
-    description: 'Streamline your existing outbound workflow by automating 80% of manual tasks while keeping your team in control.',
-    benefits: ['Boost rep efficiency 3x', 'Eliminate manual data entry', 'Unified multichannel orchestration'],
+    description:
+      'Streamline your existing outbound workflow by automating 80% of manual tasks while keeping your team in control.',
+    benefits: [
+      'Boost rep efficiency 3x',
+      'Eliminate manual data entry',
+      'Unified multichannel orchestration',
+    ],
     gradient: 'from-purple-500 to-pink-500',
     stat: { value: '80%', label: 'tasks automated' },
   },
@@ -115,7 +130,8 @@ const SOLUTIONS_BY_SIZE = [
     icon: Building,
     title: 'For Enterprise',
     tagline: 'Power Meets Governance',
-    description: 'Equip your team with top-tier tools for each stage of the outbound cycle, with an AI colleague keeping everything on track.',
+    description:
+      'Equip your team with top-tier tools for each stage of the outbound cycle, with an AI colleague keeping everything on track.',
     benefits: ['SOC 2 Type II compliant', 'SSO/SAML + SCIM', 'Custom SLAs & dedicated CSM'],
     gradient: 'from-orange-500 to-red-500',
     stat: { value: '99.95%', label: 'uptime SLA' },
@@ -144,7 +160,9 @@ const HomePage = () => {
               <RevealText key={index} delay={index * 100}>
                 <GlassCard variant="default" hover glow glowColor="cyan" className="text-center">
                   <div className="text-4xl font-bold mb-2 font-space-grotesk">
-                    <GradientText gradient="cyber" animate>{stat.value}</GradientText>
+                    <GradientText gradient="cyber" animate>
+                      {stat.value}
+                    </GradientText>
                   </div>
                   <div className="text-purple-200">{stat.label}</div>
                 </GlassCard>
@@ -169,8 +187,8 @@ const HomePage = () => {
                 </GradientText>
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Replace fragmented tooling with governed automation, enterprise identity, 
-                and live controls your security and revenue leaders agree on.
+                Replace fragmented tooling with governed automation, enterprise identity, and live
+                controls your security and revenue leaders agree on.
               </p>
             </div>
           </RevealText>
@@ -181,11 +199,19 @@ const HomePage = () => {
               const Icon = win.icon;
               return (
                 <RevealText key={index} delay={index * 100}>
-                  <GlassCard variant="gradient" hover glow glowColor="purple" className="text-center py-8">
+                  <GlassCard
+                    variant="gradient"
+                    hover
+                    glow
+                    glowColor="purple"
+                    className="text-center py-8"
+                  >
                     <GlassCardContent>
                       <Icon size={40} className="mx-auto mb-4 text-cyan-400" />
                       <div className="text-5xl font-bold mb-2 font-space-grotesk">
-                        <GradientText gradient="aurora" animate>{win.value}</GradientText>
+                        <GradientText gradient="aurora" animate>
+                          {win.value}
+                        </GradientText>
                       </div>
                       <div className="text-gray-300">{win.label}</div>
                     </GlassCardContent>
@@ -217,44 +243,38 @@ const HomePage = () => {
       <section className="py-20 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950 to-transparent" />
         <FloatingParticles count={15} color="mixed" />
-        
+
         <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div 
-            {...fadeIn}
-            className="text-center mb-16"
-          >
+          <motion.div {...fadeIn} className="text-center mb-16">
             <p className="text-sm font-semibold text-purple-400 uppercase tracking-wide mb-4">
               Solutions by team size
             </p>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 font-space-grotesk">
-              <GradientText gradient="aurora">
-                Built for teams at every stage
-              </GradientText>
+              <GradientText gradient="aurora">Built for teams at every stage</GradientText>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Whether you're a lean startup or a global enterprise, Ava adapts to your workflow
             </p>
           </motion.div>
 
-          <motion.div 
-            {...staggerContainer}
-            className="grid md:grid-cols-3 gap-8"
-          >
+          <motion.div {...staggerContainer} className="grid md:grid-cols-3 gap-8">
             {SOLUTIONS_BY_SIZE.map((solution, index) => {
               const Icon = solution.icon;
               return (
                 <motion.div key={solution.path} {...staggerItem}>
                   <Link to={solution.path} className="block group h-full">
-                    <GlassCard 
-                      variant="gradient" 
-                      hover 
+                    <GlassCard
+                      variant="gradient"
+                      hover
                       glow
                       glowColor={index === 0 ? 'cyan' : index === 1 ? 'purple' : 'orange'}
                       className="h-full transition-all duration-500 group-hover:border-white/30"
                     >
                       <GlassCardContent className="p-8">
                         {/* Icon */}
-                        <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${solution.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                        <div
+                          className={`w-14 h-14 rounded-xl bg-gradient-to-br ${solution.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+                        >
                           <Icon size={28} className="text-white" />
                         </div>
 
@@ -267,9 +287,7 @@ const HomePage = () => {
                         </p>
 
                         {/* Description */}
-                        <p className="text-gray-300 mb-6 leading-relaxed">
-                          {solution.description}
-                        </p>
+                        <p className="text-gray-300 mb-6 leading-relaxed">{solution.description}</p>
 
                         {/* Benefits */}
                         <ul className="space-y-2 mb-6">
@@ -292,7 +310,10 @@ const HomePage = () => {
                         {/* CTA */}
                         <div className="mt-6 flex items-center gap-2 text-cyan-400 text-sm font-medium group-hover:gap-3 transition-all">
                           Learn more
-                          <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                          <ArrowRight
+                            size={16}
+                            className="group-hover:translate-x-1 transition-transform"
+                          />
                         </div>
                       </GlassCardContent>
                     </GlassCard>
@@ -324,13 +345,15 @@ const HomePage = () => {
               return (
                 <RevealText key={teaser.path} delay={index * 100}>
                   <Link to={teaser.path} className="block group h-full">
-                    <GlassCard 
-                      variant="default" 
-                      hover 
+                    <GlassCard
+                      variant="default"
+                      hover
                       className="h-full transition-all duration-300 group-hover:border-cyan-500/50"
                     >
                       <GlassCardContent className="p-6">
-                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${teaser.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                        <div
+                          className={`w-12 h-12 rounded-xl bg-gradient-to-br ${teaser.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+                        >
                           <Icon size={24} className="text-white" />
                         </div>
                         <h3 className="text-xl font-bold text-white mb-2 font-space-grotesk group-hover:text-cyan-400 transition-colors">
@@ -341,7 +364,10 @@ const HomePage = () => {
                         </p>
                         <div className="flex items-center gap-2 text-cyan-400 text-sm font-medium group-hover:gap-3 transition-all">
                           {teaser.cta}
-                          <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                          <ArrowRight
+                            size={16}
+                            className="group-hover:translate-x-1 transition-transform"
+                          />
                         </div>
                       </GlassCardContent>
                     </GlassCard>
@@ -361,35 +387,47 @@ const HomePage = () => {
         <div className="max-w-6xl mx-auto">
           {/* Glow Effects */}
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 blur-3xl -z-10 rounded-3xl" />
-          
+
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 dark:from-slate-800 dark:via-purple-900 dark:to-slate-800 border border-purple-500/20">
             {/* Animated Grid Overlay */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px]" />
-            
+
             {/* Content */}
             <div className="relative p-12 text-center">
               {/* Floating Icons */}
               <div className="flex justify-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}>
+                <div
+                  className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center animate-bounce"
+                  style={{ animationDelay: '0s', animationDuration: '3s' }}
+                >
                   <Rocket className="text-white" size={20} />
                 </div>
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '3s' }}>
+                <div
+                  className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center animate-bounce"
+                  style={{ animationDelay: '0.5s', animationDuration: '3s' }}
+                >
                   <Sparkles className="text-white" size={20} />
                 </div>
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center animate-bounce" style={{ animationDelay: '1s', animationDuration: '3s' }}>
+                <div
+                  className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center animate-bounce"
+                  style={{ animationDelay: '1s', animationDuration: '3s' }}
+                >
                   <Zap className="text-white" size={20} />
                 </div>
               </div>
-              
+
               <RevealText>
                 <h2 className="text-4xl md:text-5xl font-black mb-4 text-white">
                   Industry-Leading AI Sales Platform
                 </h2>
                 <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
-                  21 exceptional features engineered to make your sales team <span className="text-transparent bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text font-bold">unstoppable</span>
+                  21 exceptional features engineered to make your sales team{' '}
+                  <span className="text-transparent bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text font-bold">
+                    unstoppable
+                  </span>
                 </p>
               </RevealText>
-              
+
               {/* Stats Grid */}
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto mb-10">
                 {[
@@ -407,11 +445,11 @@ const HomePage = () => {
                     transition={{ delay: index * 0.1 }}
                     className="group relative p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 cursor-pointer"
                   >
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                    <div
+                      className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                    />
                     <div className="relative">
-                      <p className="text-4xl font-black text-white mb-2">
-                        {feature.count}
-                      </p>
+                      <p className="text-4xl font-black text-white mb-2">{feature.count}</p>
                       <p className="text-sm text-slate-300 font-medium">{feature.label}</p>
                       <div className="mt-2 h-1 bg-white/10 rounded-full overflow-hidden">
                         <motion.div
@@ -424,11 +462,13 @@ const HomePage = () => {
                       </div>
                     </div>
                     {/* Hover glow effect */}
-                    <div className={`absolute -inset-1 bg-gradient-to-r ${feature.gradient} rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-300 -z-10`} />
+                    <div
+                      className={`absolute -inset-1 bg-gradient-to-r ${feature.gradient} rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-300 -z-10`}
+                    />
                   </motion.div>
                 ))}
               </div>
-              
+
               {/* CTA Button */}
               <div className="flex flex-wrap justify-center gap-4">
                 <Link to="/exceptional">
@@ -438,7 +478,7 @@ const HomePage = () => {
                     <Sparkles size={20} />
                   </GlowButton>
                 </Link>
-                
+
                 <Link to="/ai-tour">
                   <GlowButtonOutline variant="secondary" size="xl" className="gap-2">
                     <Play size={20} />
@@ -455,7 +495,7 @@ const HomePage = () => {
       <section className="py-20 px-6 relative overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
-        
+
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 font-space-grotesk">

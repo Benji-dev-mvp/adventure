@@ -8,7 +8,13 @@
 // ============================================
 
 export type NodeType = 'account' | 'contact' | 'technology' | 'signal' | 'campaign' | 'deal';
-export type EdgeType = 'works_at' | 'uses' | 'triggered' | 'engaged_with' | 'connected_to' | 'influenced_by';
+export type EdgeType =
+  | 'works_at'
+  | 'uses'
+  | 'triggered'
+  | 'engaged_with'
+  | 'connected_to'
+  | 'influenced_by';
 export type IntentLevel = 'hot' | 'warm' | 'cold' | 'unknown';
 export type FitScore = 'excellent' | 'good' | 'moderate' | 'poor';
 export type StageType = 'prospect' | 'engaged' | 'qualified' | 'opportunity' | 'customer';
@@ -62,7 +68,14 @@ export interface TechnologyNodeData {
 }
 
 export interface SignalData {
-  type: 'hiring' | 'funding' | 'product_launch' | 'leadership_change' | 'expansion' | 'tech_adoption' | 'content_engagement';
+  type:
+    | 'hiring'
+    | 'funding'
+    | 'product_launch'
+    | 'leadership_change'
+    | 'expansion'
+    | 'tech_adoption'
+    | 'content_engagement';
   title: string;
   description: string;
   strength: number;
@@ -110,7 +123,13 @@ export interface GraphMetadata {
 // Influence Map Types
 // ============================================
 
-export type StakeholderRole = 'decision_maker' | 'champion' | 'influencer' | 'blocker' | 'end_user' | 'evaluator';
+export type StakeholderRole =
+  | 'decision_maker'
+  | 'champion'
+  | 'influencer'
+  | 'blocker'
+  | 'end_user'
+  | 'evaluator';
 export type RelationshipStrength = 'strong' | 'moderate' | 'weak' | 'unknown';
 export type Sentiment = 'positive' | 'neutral' | 'negative' | 'unknown';
 

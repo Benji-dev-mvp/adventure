@@ -11,21 +11,27 @@ export const ABTestingModule = ({ onSave }) => {
     { id: 'A', name: 'Variant A (Control)', subject: '', content: '', allocation: 50 },
     { id: 'B', name: 'Variant B', subject: '', content: '', allocation: 50 },
   ]);
-  
+
   const [testDuration, setTestDuration] = useState('7');
   const [winMetric, setWinMetric] = useState('open_rate');
 
   const addVariant = () => {
     const nextLetter = String.fromCodePoint(65 + variants.length);
     const newAllocation = Math.floor(100 / (variants.length + 1));
-    
+
     setVariants([
       ...variants.map(v => ({ ...v, allocation: newAllocation })),
-      { id: nextLetter, name: `Variant ${nextLetter}`, subject: '', content: '', allocation: newAllocation }
+      {
+        id: nextLetter,
+        name: `Variant ${nextLetter}`,
+        subject: '',
+        content: '',
+        allocation: newAllocation,
+      },
     ]);
   };
 
-  const removeVariant = (id) => {
+  const removeVariant = id => {
     if (variants.length <= 2) return;
     const filtered = variants.filter(v => v.id !== id);
     const newAllocation = Math.floor(100 / filtered.length);
@@ -33,9 +39,7 @@ export const ABTestingModule = ({ onSave }) => {
   };
 
   const updateVariant = (id, field, value) => {
-    setVariants(variants.map(v => 
-      v.id === id ? { ...v, [field]: value } : v
-    ));
+    setVariants(variants.map(v => (v.id === id ? { ...v, [field]: value } : v)));
   };
 
   return (
@@ -62,7 +66,7 @@ export const ABTestingModule = ({ onSave }) => {
               </label>
               <select
                 value={testDuration}
-                onChange={(e) => setTestDuration(e.target.value)}
+                onChange={e => setTestDuration(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
               >
                 <option value="3">3 days</option>
@@ -71,14 +75,14 @@ export const ABTestingModule = ({ onSave }) => {
                 <option value="30">30 days</option>
               </select>
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Winning Metric
               </label>
               <select
                 value={winMetric}
-                onChange={(e) => setWinMetric(e.target.value)}
+                onChange={e => setWinMetric(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
               >
                 <option value="open_rate">Open Rate</option>
@@ -92,14 +96,17 @@ export const ABTestingModule = ({ onSave }) => {
           {/* Variants */}
           <div className="space-y-4">
             {variants.map((variant, index) => (
-              <div key={variant.id} className="p-4 border border-gray-200 dark:border-white/10 rounded-lg">
+              <div
+                key={variant.id}
+                className="p-4 border border-gray-200 dark:border-white/10 rounded-lg"
+              >
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <span className="font-bold text-lg text-primary-600">{variant.id}</span>
                     <input
                       type="text"
                       value={variant.name}
-                      onChange={(e) => updateVariant(variant.id, 'name', e.target.value)}
+                      onChange={e => updateVariant(variant.id, 'name', e.target.value)}
                       className="font-medium text-gray-900 dark:text-white bg-transparent border-none focus:outline-none"
                     />
                   </div>
@@ -117,19 +124,19 @@ export const ABTestingModule = ({ onSave }) => {
                     )}
                   </div>
                 </div>
-                
+
                 <div className="space-y-3">
                   <Input
                     label="Subject Line"
                     placeholder={`Subject line for variant ${variant.id}`}
                     value={variant.subject}
-                    onChange={(e) => updateVariant(variant.id, 'subject', e.target.value)}
+                    onChange={e => updateVariant(variant.id, 'subject', e.target.value)}
                   />
                   <Textarea
                     label="Email Content"
                     placeholder={`Email content for variant ${variant.id}`}
                     value={variant.content}
-                    onChange={(e) => updateVariant(variant.id, 'content', e.target.value)}
+                    onChange={e => updateVariant(variant.id, 'content', e.target.value)}
                     rows={4}
                   />
                 </div>
@@ -143,9 +150,11 @@ export const ABTestingModule = ({ onSave }) => {
               <Plus size={16} />
               Add Variant
             </Button>
-            
+
             <div className="flex items-center gap-2">
-              <Button variant="ghost" size="sm">Cancel</Button>
+              <Button variant="ghost" size="sm">
+                Cancel
+              </Button>
               <Button onClick={() => onSave?.(variants)} className="gap-2">
                 <BarChart3 size={16} />
                 Start A/B Test
@@ -159,5 +168,5 @@ export const ABTestingModule = ({ onSave }) => {
 };
 
 ABTestingModule.propTypes = {
-  onSave: PropTypes.func
+  onSave: PropTypes.func,
 };

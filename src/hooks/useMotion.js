@@ -11,7 +11,7 @@ export const useReducedMotion = () => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
 
-    const handleChange = (event) => {
+    const handleChange = event => {
       setPrefersReducedMotion(event.matches);
     };
 
@@ -25,7 +25,7 @@ export const useReducedMotion = () => {
 /**
  * Motion configuration that respects reduced motion preferences
  */
-export const getMotionConfig = (prefersReducedMotion) => ({
+export const getMotionConfig = prefersReducedMotion => ({
   // Fade in animation
   fadeIn: prefersReducedMotion
     ? { initial: {}, animate: {}, transition: {} }
@@ -158,7 +158,7 @@ export const easingPresets = {
 export const useMotion = () => {
   const prefersReducedMotion = useReducedMotion();
   const motionConfig = getMotionConfig(prefersReducedMotion);
-  
+
   return {
     prefersReducedMotion,
     motionConfig,

@@ -30,7 +30,7 @@ export const ABTestNode = ({ data, selected }) => {
             max="90"
             step="10"
             value={splitRatio}
-            onChange={(e) => {
+            onChange={e => {
               setSplitRatio(parseInt(e.target.value));
               data.onChange?.({ splitRatio: parseInt(e.target.value) });
             }}
@@ -51,7 +51,7 @@ export const ABTestNode = ({ data, selected }) => {
             <input
               type="text"
               value={variantAName}
-              onChange={(e) => {
+              onChange={e => {
                 setVariantAName(e.target.value);
                 data.onChange?.({ variantAName: e.target.value });
               }}
@@ -65,7 +65,7 @@ export const ABTestNode = ({ data, selected }) => {
             <input
               type="text"
               value={variantBName}
-              onChange={(e) => {
+              onChange={e => {
                 setVariantBName(e.target.value);
                 data.onChange?.({ variantBName: e.target.value });
               }}
@@ -76,14 +76,8 @@ export const ABTestNode = ({ data, selected }) => {
 
         {/* Visual Split */}
         <div className="flex h-3 rounded-full overflow-hidden">
-          <div 
-            className="bg-indigo-500 transition-all" 
-            style={{ width: `${splitRatio}%` }}
-          />
-          <div 
-            className="bg-purple-500 transition-all" 
-            style={{ width: `${100 - splitRatio}%` }}
-          />
+          <div className="bg-indigo-500 transition-all" style={{ width: `${splitRatio}%` }} />
+          <div className="bg-purple-500 transition-all" style={{ width: `${100 - splitRatio}%` }} />
         </div>
 
         {/* Branch labels */}

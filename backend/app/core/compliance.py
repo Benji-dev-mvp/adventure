@@ -1,12 +1,9 @@
 """GDPR compliance and data management tools."""
 
-import csv
 import json
 from datetime import datetime
 from io import BytesIO
-from typing import Any, Dict, List
-
-from app.core.db import get_session
+from typing import Any, Dict
 
 
 class ComplianceService:

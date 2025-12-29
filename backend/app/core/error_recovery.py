@@ -358,7 +358,7 @@ Provide:
 
         if strategy == "Use cached data":
             # Return cached result if available
-            cache_key = f"{func.__name__}_{args}_{kwargs}"
+            f"{func.__name__}_{args}_{kwargs}"
             # In production, check actual cache
             raise Exception("No cached data available")
 

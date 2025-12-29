@@ -6,7 +6,7 @@ import { Play, Pause, MoreVertical } from 'lucide-react';
 import { Button } from '../ui/Button';
 
 export const CampaignCard = ({ campaign }) => {
-  const getStatusColor = (status) => {
+  const getStatusColor = status => {
     switch (status) {
       case 'active':
         return 'success';
@@ -24,9 +24,7 @@ export const CampaignCard = ({ campaign }) => {
       <CardContent className="p-6">
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
-            <h3 className="text-lg font-semibold text-gray-900 mb-1">
-              {campaign.name}
-            </h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-1">{campaign.name}</h3>
             <Badge variant={getStatusColor(campaign.status)} className="capitalize">
               {campaign.status}
             </Badge>

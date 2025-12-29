@@ -18,14 +18,14 @@ export const SendTimeOptimizer = ({ leads = [], industry = null }) => {
 
   const fetchOptimalTimes = async () => {
     setLoading(true);
-    
+
     try {
       // Call Python backend for send time optimization
       const response = await dataService.post('/campaigns/optimize-send-time', {
         lead_count: leads.length,
-        lead_timezones: null,  // Would extract from leads in production
+        lead_timezones: null, // Would extract from leads in production
         industry: industry,
-        campaign_id: null
+        campaign_id: null,
       });
 
       setOptimalTimes(response.optimal_slots);
@@ -69,11 +69,16 @@ export const SendTimeOptimizer = ({ leads = [], industry = null }) => {
                     slot.recommended
                       ? 'border-green-300 dark:border-green-600 bg-green-50 dark:bg-green-900/20'
                       : selectedDay === slot.day
-                      ? 'border-primary-300 dark:border-primary-600 bg-primary-50 dark:bg-primary-900/20'
-                      : 'border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20'
+                        ? 'border-primary-300 dark:border-primary-600 bg-primary-50 dark:bg-primary-900/20'
+                        : 'border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20'
                   }`}
                   onClick={() => setSelectedDay(slot.day)}
-                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedDay(slot.day); } }}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setSelectedDay(slot.day);
+                    }
+                  }}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
@@ -98,9 +103,7 @@ export const SendTimeOptimizer = ({ leads = [], industry = null }) => {
                       <div className="text-2xl font-bold text-gray-900 dark:text-white">
                         {slot.reply_rate}%
                       </div>
-                      <div className="text-xs text-gray-600 dark:text-gray-400">
-                        reply rate
-                      </div>
+                      <div className="text-xs text-gray-600 dark:text-gray-400">reply rate</div>
                     </div>
                   </div>
 
@@ -138,7 +141,7 @@ export const SendTimeOptimizer = ({ leads = [], industry = null }) => {
                 Timezone Distribution
               </h4>
               <div className="space-y-2">
-                {timezoneDistribution.map((tz) => (
+                {timezoneDistribution.map(tz => (
                   <div key={tz.zone} className="flex items-center gap-3">
                     <span className="text-sm font-medium text-gray-700 dark:text-gray-300 w-12">
                       {tz.zone}
@@ -169,9 +172,7 @@ export const SendTimeOptimizer = ({ leads = [], industry = null }) => {
                   <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
                     AI Recommendation
                   </h5>
-                  <p className="text-sm text-gray-700 dark:text-gray-300">
-                    {recommendation}
-                  </p>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">{recommendation}</p>
                 </div>
               </div>
             </div>
@@ -184,5 +185,5 @@ export const SendTimeOptimizer = ({ leads = [], industry = null }) => {
 
 SendTimeOptimizer.propTypes = {
   leads: PropTypes.array,
-  industry: PropTypes.string
+  industry: PropTypes.string,
 };

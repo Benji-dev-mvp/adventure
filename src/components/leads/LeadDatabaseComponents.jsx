@@ -21,17 +21,23 @@ export const BooleanSearchBuilder = () => {
         <div className="space-y-4">
           <div>
             <label className="text-sm font-medium">Search Query</label>
-            <Input 
+            <Input
               placeholder='(title:"CEO" OR title:"CTO") AND company:"Tech" AND location:"San Francisco"'
               className="mt-1 font-mono text-sm"
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={e => setQuery(e.target.value)}
             />
           </div>
           <div className="flex gap-2 flex-wrap">
-            <Button size="sm" variant="outline" onClick={() => setQuery(query + ' AND ')}>AND</Button>
-            <Button size="sm" variant="outline" onClick={() => setQuery(query + ' OR ')}>OR</Button>
-            <Button size="sm" variant="outline" onClick={() => setQuery(query + ' NOT ')}>NOT</Button>
+            <Button size="sm" variant="outline" onClick={() => setQuery(query + ' AND ')}>
+              AND
+            </Button>
+            <Button size="sm" variant="outline" onClick={() => setQuery(query + ' OR ')}>
+              OR
+            </Button>
+            <Button size="sm" variant="outline" onClick={() => setQuery(query + ' NOT ')}>
+              NOT
+            </Button>
           </div>
           <Button className="w-full">Search 50M+ Leads</Button>
         </div>
@@ -55,7 +61,9 @@ export const LookalikeAudience = () => {
         <div className="space-y-4">
           <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
             <p className="text-sm font-medium mb-2">Selected Seed Leads: {selectedLeads}</p>
-            <p className="text-xs text-gray-600">We'll find similar leads based on company size, industry, tech stack, and job titles</p>
+            <p className="text-xs text-gray-600">
+              We'll find similar leads based on company size, industry, tech stack, and job titles
+            </p>
           </div>
           <div>
             <label className="text-sm font-medium">Similarity Threshold</label>
@@ -89,7 +97,7 @@ export const IntentSignals = () => {
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
-          {signals.map((signal) => (
+          {signals.map(signal => (
             <div key={signal.type} className="p-3 border rounded-lg">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="font-semibold">{signal.type}</h4>
@@ -149,21 +157,27 @@ export const ContactWaterfall = () => {
       <CardContent>
         <div className="space-y-3">
           <div className="flex items-center gap-3 p-3 border rounded-lg">
-            <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 font-bold">1</div>
+            <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 font-bold">
+              1
+            </div>
             <div>
               <p className="font-medium">CEO / C-Level</p>
               <p className="text-xs text-gray-600">Primary decision maker</p>
             </div>
           </div>
           <div className="flex items-center gap-3 p-3 border rounded-lg">
-            <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 font-bold">2</div>
+            <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 font-bold">
+              2
+            </div>
             <div>
               <p className="font-medium">VP / Director</p>
               <p className="text-xs text-gray-600">If no response after 3 days</p>
             </div>
           </div>
           <div className="flex items-center gap-3 p-3 border rounded-lg">
-            <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 font-bold">3</div>
+            <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 font-bold">
+              3
+            </div>
             <div>
               <p className="font-medium">Manager</p>
               <p className="text-xs text-gray-600">Fallback contact</p>

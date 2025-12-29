@@ -1,5 +1,5 @@
 // Analytics Components
-// Note: AttributionModel, CohortAnalysis, PredictiveAnalytics, CustomReportBuilder, ROICalculator 
+// Note: AttributionModel, CohortAnalysis, PredictiveAnalytics, CustomReportBuilder, ROICalculator
 // are defined in AdvancedAnalytics.jsx or AnalyticsComponents.jsx
 
 // Advanced analytics (combined file)

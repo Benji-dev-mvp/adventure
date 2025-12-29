@@ -4,16 +4,13 @@ Immutable event log with event replay capabilities and optimized read models.
 """
 
 import asyncio
-import json
 import logging
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
 from functools import wraps
-from typing import Any, Callable, Dict, List, Optional, Type
-
-from pydantic import BaseModel
+from typing import Any, Callable, Dict, List, Optional
 
 from app.core.cache import cache
 from app.core.db import get_session

@@ -58,7 +58,7 @@ export const TeamLeaderboard = () => {
     },
   ];
 
-  const getRankIcon = (rank) => {
+  const getRankIcon = rank => {
     switch (rank) {
       case 1:
         return <Trophy className="text-yellow-500" size={20} />;
@@ -78,13 +78,11 @@ export const TeamLeaderboard = () => {
           <Trophy className="text-yellow-500" size={20} />
           <CardTitle>Team Leaderboard</CardTitle>
         </div>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-          This month's performance
-        </p>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">This month's performance</p>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
-          {teamMembers.map((member) => (
+          {teamMembers.map(member => (
             <div
               key={member.id}
               className={`flex items-center gap-3 p-3 rounded-lg ${
@@ -93,16 +91,12 @@ export const TeamLeaderboard = () => {
                   : 'bg-gray-50 dark:bg-white/5'
               }`}
             >
-              <div className="flex items-center justify-center w-8">
-                {getRankIcon(member.rank)}
-              </div>
-              
+              <div className="flex items-center justify-center w-8">{getRankIcon(member.rank)}</div>
+
               <div className="flex items-center gap-3 flex-1">
                 <div className="text-3xl">{member.avatar}</div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-gray-900 dark:text-white">
-                    {member.name}
-                  </p>
+                  <p className="font-semibold text-gray-900 dark:text-white">{member.name}</p>
                   <div className="flex items-center gap-3 mt-1">
                     <span className="text-sm text-gray-600 dark:text-gray-400">
                       {member.meetingsBooked} meetings
@@ -114,10 +108,7 @@ export const TeamLeaderboard = () => {
                 </div>
               </div>
 
-              <Badge
-                variant={member.trend === 'up' ? 'success' : 'danger'}
-                className="gap-1"
-              >
+              <Badge variant={member.trend === 'up' ? 'success' : 'danger'} className="gap-1">
                 <TrendingUp size={12} className={member.trend === 'down' ? 'rotate-180' : ''} />
                 {member.change}
               </Badge>

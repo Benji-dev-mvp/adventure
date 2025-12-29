@@ -3,7 +3,7 @@ Campaign background tasks
 """
 
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import List
 
 from app.core.celery_app import celery_app
 
@@ -65,7 +65,7 @@ def schedule_campaign_emails(campaign_id: int, lead_ids: List[int], send_time: s
     Schedule campaign emails to be sent at optimal times
     """
     try:
-        from datetime import timedelta
+        pass
 
         from app.tasks.email_tasks import send_campaign_email
 

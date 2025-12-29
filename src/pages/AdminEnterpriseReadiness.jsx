@@ -1,6 +1,6 @@
 /**
  * Enterprise Readiness Dashboard
- * 
+ *
  * Self-diagnostic meta page showing enterprise deployment readiness:
  * - Security & Compliance readiness
  * - Data Governance status
@@ -17,10 +17,10 @@ import { Badge } from '../components/ui/Badge';
 import { EnterpriseReadinessMeter, SecurityStatusCard, UsageBar } from '../components/enterprise';
 import { useEnterpriseReadiness, useSecurityStatus } from '../hooks/useEnterprise';
 import { useReducedMotion } from '../hooks/useMotion';
-import { 
-  Shield, 
-  CheckCircle2, 
-  AlertTriangle, 
+import {
+  Shield,
+  CheckCircle2,
+  AlertTriangle,
   XCircle,
   ArrowRight,
   Lock,
@@ -36,7 +36,7 @@ import {
   Zap,
   RefreshCw,
   Download,
-  ExternalLink
+  ExternalLink,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent, GradientText, GlowButton } from '../components/futuristic';
 
@@ -53,8 +53,13 @@ const READINESS_CATEGORIES = [
       { id: 'scim', name: 'SCIM Provisioning', status: 'complete', link: '/settings/security' },
       { id: 'rbac', name: 'RBAC Configured', status: 'complete', link: '/admin/access-control' },
       { id: 'audit', name: 'Audit Logging', status: 'complete', link: '/admin/audit-log' },
-      { id: 'ip_allowlist', name: 'IP Allowlisting', status: 'incomplete', link: '/settings/security' },
-    ]
+      {
+        id: 'ip_allowlist',
+        name: 'IP Allowlisting',
+        status: 'incomplete',
+        link: '/settings/security',
+      },
+    ],
   },
   {
     id: 'data',
@@ -67,7 +72,7 @@ const READINESS_CATEGORIES = [
       { id: 'dlp', name: 'DLP Policies', status: 'incomplete', link: '/settings/data' },
       { id: 'retention', name: 'Retention Policies', status: 'complete', link: '/settings/data' },
       { id: 'export', name: 'Data Export', status: 'complete', link: '/settings/data' },
-    ]
+    ],
   },
   {
     id: 'reliability',
@@ -80,7 +85,7 @@ const READINESS_CATEGORIES = [
       { id: 'dr', name: 'Disaster Recovery', status: 'complete', link: '/admin/observability' },
       { id: 'failover', name: 'Auto-Failover', status: 'incomplete', link: '/admin/observability' },
       { id: 'status_page', name: 'Status Page', status: 'complete', link: '/admin/observability' },
-    ]
+    ],
   },
   {
     id: 'observability',
@@ -89,11 +94,21 @@ const READINESS_CATEGORIES = [
     color: 'from-purple-500 to-pink-500',
     items: [
       { id: 'metrics', name: 'System Metrics', status: 'complete', link: '/admin/observability' },
-      { id: 'ai_decisions', name: 'AI Decision Logs', status: 'complete', link: '/admin/ai-decisions' },
+      {
+        id: 'ai_decisions',
+        name: 'AI Decision Logs',
+        status: 'complete',
+        link: '/admin/ai-decisions',
+      },
       { id: 'slo', name: 'SLO Monitoring', status: 'complete', link: '/admin/observability' },
       { id: 'alerts', name: 'Alert Rules', status: 'incomplete', link: '/admin/observability' },
-      { id: 'tracing', name: 'Distributed Tracing', status: 'incomplete', link: '/admin/observability' },
-    ]
+      {
+        id: 'tracing',
+        name: 'Distributed Tracing',
+        status: 'incomplete',
+        link: '/admin/observability',
+      },
+    ],
   },
   {
     id: 'team',
@@ -106,8 +121,8 @@ const READINESS_CATEGORIES = [
       { id: 'training', name: 'Security Training', status: 'incomplete', link: '/help' },
       { id: 'incident', name: 'Incident Playbook', status: 'incomplete', link: '/help' },
       { id: 'review', name: 'Access Reviews', status: 'incomplete', link: '/admin/access-control' },
-    ]
-  }
+    ],
+  },
 ];
 
 const AdminEnterpriseReadiness = () => {
@@ -116,18 +131,20 @@ const AdminEnterpriseReadiness = () => {
   const [refreshing, setRefreshing] = useState(false);
 
   // Calculate scores
-  const calculateCategoryScore = (items) => {
+  const calculateCategoryScore = items => {
     const complete = items.filter(i => i.status === 'complete').length;
     return Math.round((complete / items.length) * 100);
   };
 
   const overallScore = Math.round(
-    READINESS_CATEGORIES.reduce((acc, cat) => acc + calculateCategoryScore(cat.items), 0) / READINESS_CATEGORIES.length
+    READINESS_CATEGORIES.reduce((acc, cat) => acc + calculateCategoryScore(cat.items), 0) /
+      READINESS_CATEGORIES.length
   );
 
   const totalItems = READINESS_CATEGORIES.reduce((acc, cat) => acc + cat.items.length, 0);
   const completeItems = READINESS_CATEGORIES.reduce(
-    (acc, cat) => acc + cat.items.filter(i => i.status === 'complete').length, 0
+    (acc, cat) => acc + cat.items.filter(i => i.status === 'complete').length,
+    0
   );
 
   const handleRefresh = async () => {
@@ -136,13 +153,13 @@ const AdminEnterpriseReadiness = () => {
     setRefreshing(false);
   };
 
-  const getScoreColor = (score) => {
+  const getScoreColor = score => {
     if (score >= 80) return 'text-green-400';
     if (score >= 60) return 'text-amber-400';
     return 'text-red-400';
   };
 
-  const getScoreLabel = (score) => {
+  const getScoreLabel = score => {
     if (score >= 90) return 'Excellent';
     if (score >= 80) return 'Good';
     if (score >= 60) return 'Needs Work';
@@ -167,11 +184,11 @@ const AdminEnterpriseReadiness = () => {
               Self-diagnostic checklist for enterprise deployment readiness
             </p>
           </div>
-          
+
           <div className="flex items-center gap-3">
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               className="gap-2"
               onClick={handleRefresh}
               disabled={refreshing}
@@ -237,9 +254,10 @@ const AdminEnterpriseReadiness = () => {
                 <div className="flex-1 text-center lg:text-left">
                   <h2 className="text-2xl font-bold text-white mb-2">Enterprise Readiness Score</h2>
                   <p className="text-slate-400 mb-4">
-                    {completeItems} of {totalItems} items configured across {READINESS_CATEGORIES.length} categories
+                    {completeItems} of {totalItems} items configured across{' '}
+                    {READINESS_CATEGORIES.length} categories
                   </p>
-                  
+
                   <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="h-5 w-5 text-green-400" />
@@ -279,7 +297,7 @@ const AdminEnterpriseReadiness = () => {
             const score = calculateCategoryScore(category.items);
             const Icon = category.icon;
             const complete = category.items.filter(item => item.status === 'complete').length;
-            
+
             return (
               <motion.div
                 key={category.id}
@@ -297,7 +315,9 @@ const AdminEnterpriseReadiness = () => {
                         </div>
                         <h3 className="font-semibold text-white">{category.name}</h3>
                       </div>
-                      <Badge variant={score >= 80 ? 'success' : score >= 60 ? 'warning' : 'destructive'}>
+                      <Badge
+                        variant={score >= 80 ? 'success' : score >= 60 ? 'warning' : 'destructive'}
+                      >
                         {score}%
                       </Badge>
                     </div>
@@ -331,7 +351,9 @@ const AdminEnterpriseReadiness = () => {
                             ) : (
                               <XCircle className="h-4 w-4 text-slate-500" />
                             )}
-                            <span className={`text-sm ${item.status === 'complete' ? 'text-slate-300' : 'text-slate-500'}`}>
+                            <span
+                              className={`text-sm ${item.status === 'complete' ? 'text-slate-300' : 'text-slate-500'}`}
+                            >
                               {item.name}
                             </span>
                           </div>
@@ -366,11 +388,12 @@ const AdminEnterpriseReadiness = () => {
             <div>
               <h4 className="font-semibold text-cyan-400 mb-1">Need Help?</h4>
               <p className="text-sm text-slate-300">
-                Our enterprise success team can help you achieve 100% readiness. 
-                Contact your dedicated CSM or{' '}
+                Our enterprise success team can help you achieve 100% readiness. Contact your
+                dedicated CSM or{' '}
                 <a href="/help" className="text-cyan-400 hover:text-cyan-300 underline">
                   schedule a readiness review
-                </a>.
+                </a>
+                .
               </p>
             </div>
           </div>

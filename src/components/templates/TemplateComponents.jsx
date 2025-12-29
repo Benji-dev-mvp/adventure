@@ -19,19 +19,29 @@ export const RichTemplateEditor = () => {
       <CardContent>
         <div className="space-y-4">
           <div className="flex gap-2 border-b pb-2">
-            <Button size="sm" variant="outline">Bold</Button>
-            <Button size="sm" variant="outline">Italic</Button>
-            <Button size="sm" variant="outline">Link</Button>
-            <Button size="sm" variant="outline">Variable</Button>
+            <Button size="sm" variant="outline">
+              Bold
+            </Button>
+            <Button size="sm" variant="outline">
+              Italic
+            </Button>
+            <Button size="sm" variant="outline">
+              Link
+            </Button>
+            <Button size="sm" variant="outline">
+              Variable
+            </Button>
           </div>
-          <textarea 
+          <textarea
             className="w-full p-3 border rounded-lg font-mono text-sm"
             rows={8}
             value={content}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={e => setContent(e.target.value)}
           />
           <div className="flex gap-2">
-            <Button size="sm" variant="outline">Preview</Button>
+            <Button size="sm" variant="outline">
+              Preview
+            </Button>
             <Button size="sm">Save Template</Button>
           </div>
         </div>
@@ -57,15 +67,22 @@ export const TemplateVersioning = () => {
       </CardHeader>
       <CardContent>
         <div className="space-y-2">
-          {versions.map((v) => (
-            <div key={v.version} className="flex items-center justify-between p-3 border rounded-lg">
+          {versions.map(v => (
+            <div
+              key={v.version}
+              className="flex items-center justify-between p-3 border rounded-lg"
+            >
               <div>
                 <p className="font-semibold">{v.version}</p>
                 <p className="text-xs text-gray-600">{v.date}</p>
               </div>
               <div className="text-right text-sm">
-                <p>Open: {v.openRate} • Reply: {v.replyRate}</p>
-                <Button size="sm" variant="outline" className="mt-1">Restore</Button>
+                <p>
+                  Open: {v.openRate} • Reply: {v.replyRate}
+                </p>
+                <Button size="sm" variant="outline" className="mt-1">
+                  Restore
+                </Button>
               </div>
             </div>
           ))}
@@ -129,7 +146,7 @@ export const TemplateMarketplace = () => {
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
-          {templates.map((t) => (
+          {templates.map(t => (
             <div key={t.name} className="p-3 border rounded-lg">
               <div className="flex justify-between items-start mb-2">
                 <div>

@@ -5,10 +5,10 @@ Handles mailbox health monitoring, warmup automation, and sender authentication
 
 import random
 from datetime import datetime, timedelta
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlmodel import Session, select
+from sqlmodel import Session
 
 from app.core.db import get_session
 from app.core.security import get_current_user

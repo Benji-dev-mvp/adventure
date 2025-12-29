@@ -28,7 +28,7 @@ export const CallNode = ({ data, selected }) => {
               min="1"
               max="30"
               value={duration}
-              onChange={(e) => {
+              onChange={e => {
                 setDuration(parseInt(e.target.value));
                 data.onChange?.({ duration: parseInt(e.target.value) });
               }}
@@ -47,7 +47,7 @@ export const CallNode = ({ data, selected }) => {
           </label>
           <textarea
             value={script}
-            onChange={(e) => {
+            onChange={e => {
               setScript(e.target.value);
               data.onChange?.({ script: e.target.value });
             }}
@@ -59,9 +59,15 @@ export const CallNode = ({ data, selected }) => {
 
         {/* Call outcomes */}
         <div className="flex gap-1 flex-wrap">
-          <span className="px-2 py-0.5 text-xs bg-green-100 text-green-700 rounded-full">Connected</span>
-          <span className="px-2 py-0.5 text-xs bg-yellow-100 text-yellow-700 rounded-full">Voicemail</span>
-          <span className="px-2 py-0.5 text-xs bg-red-100 text-red-700 rounded-full">No Answer</span>
+          <span className="px-2 py-0.5 text-xs bg-green-100 text-green-700 rounded-full">
+            Connected
+          </span>
+          <span className="px-2 py-0.5 text-xs bg-yellow-100 text-yellow-700 rounded-full">
+            Voicemail
+          </span>
+          <span className="px-2 py-0.5 text-xs bg-red-100 text-red-700 rounded-full">
+            No Answer
+          </span>
         </div>
 
         {/* Stats when executed */}

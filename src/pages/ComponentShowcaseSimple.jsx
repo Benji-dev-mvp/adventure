@@ -45,15 +45,17 @@ const ComponentShowcaseSimple = () => {
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-4">Form Components</h2>
             <div className="space-y-4 max-w-md">
-              <Input 
-                label="Email Address" 
-                type="email" 
+              <Input
+                label="Email Address"
+                type="email"
                 placeholder="you@example.com"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={e => setEmail(e.target.value)}
                 required
               />
-              <Button variant="primary" fullWidth>Submit</Button>
+              <Button variant="primary" fullWidth>
+                Submit
+              </Button>
             </div>
           </div>
         </Card>

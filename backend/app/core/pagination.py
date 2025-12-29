@@ -6,7 +6,7 @@ from math import ceil
 from typing import Any, Dict, Generic, List, Optional, TypeVar
 
 from pydantic import BaseModel, Field
-from sqlalchemy import and_, func, or_
+from sqlalchemy import func, or_
 from sqlmodel import Select, Session, select
 
 T = TypeVar("T")

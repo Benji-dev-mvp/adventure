@@ -28,7 +28,12 @@ const NotFound = () => {
                 Go Home
               </Button>
             </Link>
-            <Button variant="outline" size="lg" className="gap-2" onClick={() => window.history.back()}>
+            <Button
+              variant="outline"
+              size="lg"
+              className="gap-2"
+              onClick={() => window.history.back()}
+            >
               <ArrowLeft size={20} />
               Go Back
             </Button>
@@ -49,7 +54,10 @@ const NotFound = () => {
                 Leads
               </Link>
               <span className="text-gray-300">•</span>
-              <Link to="/ai-assistant" className="text-accent-600 hover:text-accent-700 font-medium">
+              <Link
+                to="/ai-assistant"
+                className="text-accent-600 hover:text-accent-700 font-medium"
+              >
                 AI Assistant
               </Link>
             </div>

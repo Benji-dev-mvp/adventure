@@ -293,7 +293,7 @@ async def launch_campaign_saga(campaign_id: int, lead_ids: List[int]) -> SagaExe
 
     async def compensate_credits(ctx: SagaContext) -> None:
         logger.info("Releasing reserved credits")
-        reservation_id = ctx.get("reservation_id")
+        ctx.get("reservation_id")
         # Call billing service to release
         await asyncio.sleep(0.1)
 
@@ -310,7 +310,7 @@ async def launch_campaign_saga(campaign_id: int, lead_ids: List[int]) -> SagaExe
 
     async def compensate_emails(ctx: SagaContext) -> None:
         logger.info("Cancelling queued emails")
-        task_ids = ctx.get("email_task_ids", [])
+        ctx.get("email_task_ids", [])
         # Call Celery to revoke tasks
         await asyncio.sleep(0.1)
 
@@ -327,7 +327,7 @@ async def launch_campaign_saga(campaign_id: int, lead_ids: List[int]) -> SagaExe
 
     async def compensate_campaign_status(ctx: SagaContext) -> None:
         logger.info(f"Reverting campaign {campaign_id} to DRAFT")
-        old_status = ctx.get("old_status", "DRAFT")
+        ctx.get("old_status", "DRAFT")
         # UPDATE campaigns SET status = old_status WHERE id = campaign_id
         await asyncio.sleep(0.1)
 
@@ -343,7 +343,7 @@ async def launch_campaign_saga(campaign_id: int, lead_ids: List[int]) -> SagaExe
 
     async def compensate_analytics(ctx: SagaContext) -> None:
         logger.info("Deleting analytics records")
-        analytics_ids = ctx.get("analytics_ids", [])
+        ctx.get("analytics_ids", [])
         # DELETE FROM analytics WHERE id IN analytics_ids
         await asyncio.sleep(0.1)
 
@@ -414,7 +414,7 @@ async def onboard_user_saga(user_data: Dict[str, Any]) -> SagaExecution:
         await asyncio.sleep(0.1)
 
     async def send_welcome_email(ctx: SagaContext) -> Dict[str, Any]:
-        user_id = ctx.get("user_id")
+        ctx.get("user_id")
         email = user_data["email"]
 
         logger.info(f"Sending welcome email to {email}")

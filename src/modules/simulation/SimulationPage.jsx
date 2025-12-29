@@ -2,9 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '../../components/layout/DashboardLayout';
 import { GlassCard, GlassCardContent, GradientText } from '../../components/futuristic';
-import { 
-  FlaskConical, Play, RefreshCw, Download
-} from 'lucide-react';
+import { FlaskConical, Play, RefreshCw, Download } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 
 import { StrategySelector } from './components/StrategySelector';
@@ -73,10 +71,7 @@ export function SimulationPage() {
         <div className="flex-1 grid grid-cols-12 gap-6 min-h-0">
           {/* Left: Controls */}
           <div className="col-span-12 lg:col-span-3">
-            <SimulationControls 
-              params={params} 
-              updateParam={updateParam} 
-            />
+            <SimulationControls params={params} updateParam={updateParam} />
           </div>
 
           {/* Center: Simulation Panels */}

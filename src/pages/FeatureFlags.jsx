@@ -39,9 +39,7 @@ const MOCK_FLAGS = [
     rolloutPercentage: 100,
     createdAt: '2024-01-15',
     updatedBy: 'Sarah Johnson',
-    overrides: [
-      { type: 'user', value: 'john@example.com', enabled: true },
-    ],
+    overrides: [{ type: 'user', value: 'john@example.com', enabled: true }],
   },
   {
     id: 'flag-002',
@@ -80,9 +78,7 @@ const MOCK_FLAGS = [
     rolloutPercentage: 50,
     createdAt: '2024-01-05',
     updatedBy: 'Sarah Johnson',
-    overrides: [
-      { type: 'workspace', value: 'enterprise-tier', enabled: true },
-    ],
+    overrides: [{ type: 'workspace', value: 'enterprise-tier', enabled: true }],
   },
   {
     id: 'flag-005',
@@ -130,13 +126,13 @@ const ENVIRONMENTS = ['All', 'production', 'staging', 'development'];
 
 const categoryIcons = {
   'AI Operator': Bot,
-  'Revenue': BarChart3,
+  Revenue: BarChart3,
   'Ops & Control': Shield,
 };
 
 const categoryColors = {
   'AI Operator': 'bg-purple-500/10 text-purple-500 border-purple-500/20',
-  'Revenue': 'bg-green-500/10 text-green-500 border-green-500/20',
+  Revenue: 'bg-green-500/10 text-green-500 border-green-500/20',
   'Ops & Control': 'bg-blue-500/10 text-blue-500 border-blue-500/20',
 };
 
@@ -153,15 +149,16 @@ const FeatureFlags = () => {
   const [envFilter, setEnvFilter] = useState('All');
   const [expandedFlag, setExpandedFlag] = useState(null);
 
-  const toggleFlag = (flagId) => {
-    setFlags(prev => prev.map(flag =>
-      flag.id === flagId ? { ...flag, enabled: !flag.enabled } : flag
-    ));
+  const toggleFlag = flagId => {
+    setFlags(prev =>
+      prev.map(flag => (flag.id === flagId ? { ...flag, enabled: !flag.enabled } : flag))
+    );
   };
 
   const filteredFlags = flags.filter(flag => {
-    const matchesSearch = flag.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          flag.key.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch =
+      flag.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      flag.key.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = categoryFilter === 'All' || flag.category === categoryFilter;
     const matchesEnv = envFilter === 'All' || flag.environment === envFilter;
     return matchesSearch && matchesCategory && matchesEnv;
@@ -195,7 +192,7 @@ const FeatureFlags = () => {
               type="text"
               placeholder="Search flags..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={e => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 text-gray-900 dark:text-white"
             />
           </div>
@@ -203,15 +200,15 @@ const FeatureFlags = () => {
           <div className="flex items-center gap-2">
             <span className="text-sm text-gray-500 dark:text-gray-400">Category:</span>
             <div className="flex gap-1">
-              {CATEGORIES.map((cat) => (
+              {CATEGORIES.map(cat => (
                 <button
                   key={cat}
                   onClick={() => setCategoryFilter(cat)}
                   className={cn(
-                    "px-3 py-1.5 text-sm rounded-lg transition-colors",
+                    'px-3 py-1.5 text-sm rounded-lg transition-colors',
                     categoryFilter === cat
-                      ? "bg-accent-500 text-white"
-                      : "bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/20"
+                      ? 'bg-accent-500 text-white'
+                      : 'bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/20'
                   )}
                 >
                   {cat}
@@ -224,11 +221,13 @@ const FeatureFlags = () => {
             <span className="text-sm text-gray-500 dark:text-gray-400">Environment:</span>
             <select
               value={envFilter}
-              onChange={(e) => setEnvFilter(e.target.value)}
+              onChange={e => setEnvFilter(e.target.value)}
               className="px-3 py-1.5 text-sm rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 text-gray-900 dark:text-white"
             >
-              {ENVIRONMENTS.map((env) => (
-                <option key={env} value={env}>{env}</option>
+              {ENVIRONMENTS.map(env => (
+                <option key={env} value={env}>
+                  {env}
+                </option>
               ))}
             </select>
           </div>
@@ -253,7 +252,9 @@ const FeatureFlags = () => {
                 <Check className="h-5 w-5 text-green-500" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">{flags.filter(f => f.enabled).length}</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {flags.filter(f => f.enabled).length}
+                </p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Enabled</p>
               </div>
             </div>
@@ -264,7 +265,9 @@ const FeatureFlags = () => {
                 <AlertCircle className="h-5 w-5 text-amber-500" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">{flags.filter(f => f.rolloutPercentage > 0 && f.rolloutPercentage < 100).length}</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {flags.filter(f => f.rolloutPercentage > 0 && f.rolloutPercentage < 100).length}
+                </p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Partial Rollout</p>
               </div>
             </div>
@@ -275,7 +278,9 @@ const FeatureFlags = () => {
                 <Users className="h-5 w-5 text-blue-500" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">{flags.reduce((acc, f) => acc + f.overrides.length, 0)}</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {flags.reduce((acc, f) => acc + f.overrides.length, 0)}
+                </p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Overrides</p>
               </div>
             </div>
@@ -291,7 +296,7 @@ const FeatureFlags = () => {
                 <p className="text-gray-500 dark:text-gray-400">No flags match your filters</p>
               </div>
             ) : (
-              filteredFlags.map((flag) => {
+              filteredFlags.map(flag => {
                 const CategoryIcon = categoryIcons[flag.category] || Flag;
                 const isExpanded = expandedFlag === flag.id;
 
@@ -302,8 +307,8 @@ const FeatureFlags = () => {
                       <button
                         onClick={() => toggleFlag(flag.id)}
                         className={cn(
-                          "shrink-0 transition-colors",
-                          flag.enabled ? "text-green-500" : "text-gray-400"
+                          'shrink-0 transition-colors',
+                          flag.enabled ? 'text-green-500' : 'text-gray-400'
                         )}
                       >
                         {flag.enabled ? (
@@ -334,18 +339,22 @@ const FeatureFlags = () => {
 
                       {/* Environment */}
                       <div className="flex items-center gap-2">
-                        <span className={cn("w-2 h-2 rounded-full", envColors[flag.environment])} />
-                        <span className="text-sm text-gray-600 dark:text-gray-400">{flag.environment}</span>
+                        <span className={cn('w-2 h-2 rounded-full', envColors[flag.environment])} />
+                        <span className="text-sm text-gray-600 dark:text-gray-400">
+                          {flag.environment}
+                        </span>
                       </div>
 
                       {/* Rollout */}
                       <div className="w-32">
                         <div className="flex items-center justify-between text-xs mb-1">
                           <span className="text-gray-500">Rollout</span>
-                          <span className="font-medium text-gray-900 dark:text-white">{flag.rolloutPercentage}%</span>
+                          <span className="font-medium text-gray-900 dark:text-white">
+                            {flag.rolloutPercentage}%
+                          </span>
                         </div>
                         <div className="h-1.5 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden">
-                          <div 
+                          <div
                             className="h-full bg-accent-500 rounded-full"
                             style={{ width: `${flag.rolloutPercentage}%` }}
                           />
@@ -358,7 +367,12 @@ const FeatureFlags = () => {
                           onClick={() => setExpandedFlag(isExpanded ? null : flag.id)}
                           className="p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg transition-colors"
                         >
-                          <ChevronDown className={cn("h-4 w-4 text-gray-400 transition-transform", isExpanded && "rotate-180")} />
+                          <ChevronDown
+                            className={cn(
+                              'h-4 w-4 text-gray-400 transition-transform',
+                              isExpanded && 'rotate-180'
+                            )}
+                          />
                         </button>
                         <button className="p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg transition-colors">
                           <Edit className="h-4 w-4 text-gray-400" />
@@ -375,15 +389,21 @@ const FeatureFlags = () => {
                         <div className="grid grid-cols-3 gap-6">
                           <div>
                             <p className="text-xs text-gray-500 mb-1">Created</p>
-                            <p className="text-sm text-gray-900 dark:text-white">{flag.createdAt}</p>
+                            <p className="text-sm text-gray-900 dark:text-white">
+                              {flag.createdAt}
+                            </p>
                           </div>
                           <div>
                             <p className="text-xs text-gray-500 mb-1">Updated By</p>
-                            <p className="text-sm text-gray-900 dark:text-white">{flag.updatedBy}</p>
+                            <p className="text-sm text-gray-900 dark:text-white">
+                              {flag.updatedBy}
+                            </p>
                           </div>
                           <div>
                             <p className="text-xs text-gray-500 mb-1">Overrides</p>
-                            <p className="text-sm text-gray-900 dark:text-white">{flag.overrides.length || 'None'}</p>
+                            <p className="text-sm text-gray-900 dark:text-white">
+                              {flag.overrides.length || 'None'}
+                            </p>
                           </div>
                         </div>
                         {flag.overrides.length > 0 && (
@@ -392,9 +412,18 @@ const FeatureFlags = () => {
                             <div className="space-y-1">
                               {flag.overrides.map((override, i) => (
                                 <div key={i} className="flex items-center gap-2 text-sm">
-                                  <Badge variant="secondary" size="sm">{override.type}</Badge>
-                                  <span className="text-gray-600 dark:text-gray-400">{override.value}</span>
-                                  <span className={cn("text-xs", override.enabled ? "text-green-500" : "text-red-500")}>
+                                  <Badge variant="secondary" size="sm">
+                                    {override.type}
+                                  </Badge>
+                                  <span className="text-gray-600 dark:text-gray-400">
+                                    {override.value}
+                                  </span>
+                                  <span
+                                    className={cn(
+                                      'text-xs',
+                                      override.enabled ? 'text-green-500' : 'text-red-500'
+                                    )}
+                                  >
                                     {override.enabled ? 'Enabled' : 'Disabled'}
                                   </span>
                                 </div>

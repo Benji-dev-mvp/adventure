@@ -83,8 +83,8 @@ import Button from '@/components/ui/Button';
 
 ```jsx
 // Checkbox
-<Checkbox 
-  label="Accept terms" 
+<Checkbox
+  label="Accept terms"
   checked={accepted}
   onChange={(e) => setAccepted(e.target.checked)}
 />
@@ -97,7 +97,7 @@ import Button from '@/components/ui/Button';
 </RadioGroup>
 
 // Switch
-<Switch 
+<Switch
   label="Enable notifications"
   checked={enabled}
   onCheckedChange={setEnabled}
@@ -335,9 +335,7 @@ const [open, setOpen] = useState(false);
   icon={<CustomIcon />}
   title="No results found"
   description="Try adjusting your search or filters"
-  action={
-    <Button onClick={handleReset}>Reset Filters</Button>
-  }
+  action={<Button onClick={handleReset}>Reset Filters</Button>}
 />
 ```
 
@@ -409,9 +407,9 @@ function Form() {
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    
+
     const newErrors = {};
     if (!validateRequired(email)) {
       newErrors.email = 'Email is required';
@@ -433,7 +431,7 @@ function Form() {
         label="Email"
         type="email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={e => setEmail(e.target.value)}
         error={errors.email}
         required
       />
@@ -449,31 +447,36 @@ function Form() {
 import { cn } from '@/lib/utils';
 
 // Combine classNames conditionally
-<div className={cn(
-  "base-classes",
-  isActive && "active-classes",
-  isError && "error-classes",
-  customClassName
-)}>
+<div
+  className={cn(
+    'base-classes',
+    isActive && 'active-classes',
+    isError && 'error-classes',
+    customClassName
+  )}
+>
   Content
-</div>
+</div>;
 ```
 
 ## Accessibility Guidelines
 
 ### Keyboard Navigation
+
 - All interactive elements are keyboard accessible
 - Use `Tab` to navigate between elements
 - Use `Enter` or `Space` to activate buttons
 - Use `Escape` to close modals/dropdowns
 
 ### Screen Readers
+
 - All form inputs have associated labels
 - Buttons have descriptive text or aria-labels
 - Status messages use aria-live regions
 - Complex components include proper ARIA attributes
 
 ### Focus Management
+
 ```jsx
 // Auto-focus on modal open
 <Modal autoFocus>
@@ -496,12 +499,8 @@ import { useTheme } from '@/contexts/ThemeContext';
 
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
-  
-  return (
-    <Button onClick={toggleTheme}>
-      {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-    </Button>
-  );
+
+  return <Button onClick={toggleTheme}>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</Button>;
 }
 ```
 
@@ -563,7 +562,7 @@ import { Button } from '@/components/ui';
 test('button click handler', () => {
   const handleClick = jest.fn();
   render(<Button onClick={handleClick}>Click me</Button>);
-  
+
   fireEvent.click(screen.getByText('Click me'));
   expect(handleClick).toHaveBeenCalledTimes(1);
 });
@@ -572,24 +571,20 @@ test('button click handler', () => {
 ## Common Patterns
 
 ### Search with Filters
+
 ```jsx
 <div className="space-y-4">
-  <Input
-    placeholder="Search..."
-    value={search}
-    onChange={(e) => setSearch(e.target.value)}
-  />
+  <Input placeholder="Search..." value={search} onChange={e => setSearch(e.target.value)} />
   <div className="flex gap-2">
     <Badge>Filter 1 ×</Badge>
     <Badge>Filter 2 ×</Badge>
   </div>
-  <Table>
-    {/* Filtered results */}
-  </Table>
+  <Table>{/* Filtered results */}</Table>
 </div>
 ```
 
 ### Form with Auto-save
+
 ```jsx
 useEffect(() => {
   const timer = setTimeout(() => {
@@ -603,6 +598,7 @@ useEffect(() => {
 ```
 
 ### Confirmation Dialog
+
 ```jsx
 const [showConfirm, setShowConfirm] = useState(false);
 
@@ -624,15 +620,15 @@ const [showConfirm, setShowConfirm] = useState(false);
 
 ## Component Library Comparison
 
-| Feature | Artisan UI | Material-UI | Chakra UI |
-|---------|-----------|-------------|-----------|
-| Bundle Size | Small | Large | Medium |
-| Customization | High | Medium | High |
-| TypeScript | ✓ | ✓ | ✓ |
-| Dark Mode | ✓ Native | ✓ Theme | ✓ Native |
-| Accessibility | WCAG 2.1 AA | WCAG 2.1 AA | WCAG 2.1 AA |
-| Animation | Tailwind | Emotion | Framer Motion |
-| Learning Curve | Low | Medium | Low |
+| Feature        | Artisan UI  | Material-UI | Chakra UI     |
+| -------------- | ----------- | ----------- | ------------- |
+| Bundle Size    | Small       | Large       | Medium        |
+| Customization  | High        | Medium      | High          |
+| TypeScript     | ✓           | ✓           | ✓             |
+| Dark Mode      | ✓ Native    | ✓ Theme     | ✓ Native      |
+| Accessibility  | WCAG 2.1 AA | WCAG 2.1 AA | WCAG 2.1 AA   |
+| Animation      | Tailwind    | Emotion     | Framer Motion |
+| Learning Curve | Low         | Medium      | Low           |
 
 ## Support & Resources
 

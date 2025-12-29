@@ -7,76 +7,79 @@ export const useWorkflowExecution = (nodes, edges) => {
   const [executionLog, setExecutionLog] = useState([]);
 
   // Start execution
-  const startExecution = useCallback(async (onProgress, onComplete) => {
-    if (isExecuting || nodes.length === 0) return;
+  const startExecution = useCallback(
+    async (onProgress, onComplete) => {
+      if (isExecuting || nodes.length === 0) return;
 
-    setIsExecuting(true);
-    setExecutionStatus({});
-    setExecutionResults({});
-    setExecutionLog([]);
+      setIsExecuting(true);
+      setExecutionStatus({});
+      setExecutionResults({});
+      setExecutionLog([]);
 
-    const logEntry = (message, type = 'info') => {
-      const entry = {
-        timestamp: new Date().toISOString(),
-        message,
-        type,
+      const logEntry = (message, type = 'info') => {
+        const entry = {
+          timestamp: new Date().toISOString(),
+          message,
+          type,
+        };
+        setExecutionLog(prev => [...prev, entry]);
       };
-      setExecutionLog(prev => [...prev, entry]);
-    };
 
-    logEntry('Starting workflow execution...');
+      logEntry('Starting workflow execution...');
 
-    // Find trigger node
-    const triggerNode = nodes.find(n => n.type === 'trigger');
-    if (!triggerNode) {
-      logEntry('No trigger node found!', 'error');
+      // Find trigger node
+      const triggerNode = nodes.find(n => n.type === 'trigger');
+      if (!triggerNode) {
+        logEntry('No trigger node found!', 'error');
+        setIsExecuting(false);
+        return;
+      }
+
+      // Build execution order using topological sort
+      const executionOrder = buildExecutionOrder(triggerNode.id, nodes, edges);
+      logEntry(`Execution order: ${executionOrder.join(' → ')}`);
+
+      // Execute nodes in order
+      for (const nodeId of executionOrder) {
+        const node = nodes.find(n => n.id === nodeId);
+        if (!node) continue;
+
+        // Mark as running
+        setExecutionStatus(prev => ({ ...prev, [nodeId]: 'running' }));
+        logEntry(`Executing: ${node.data?.label || node.type}`);
+        onProgress?.(nodeId, 'running');
+
+        // Simulate execution time based on node type
+        const executionTime = getExecutionTime(node.type);
+        await delay(executionTime);
+
+        // Simulate results
+        const result = simulateNodeExecution(node);
+        setExecutionResults(prev => ({ ...prev, [nodeId]: result }));
+
+        // Mark as completed
+        setExecutionStatus(prev => ({ ...prev, [nodeId]: 'completed' }));
+        logEntry(`Completed: ${node.data?.label || node.type} - ${result.summary}`, 'success');
+        onProgress?.(nodeId, 'completed', result);
+      }
+
+      logEntry('Workflow execution completed!', 'success');
       setIsExecuting(false);
-      return;
-    }
 
-    // Build execution order using topological sort
-    const executionOrder = buildExecutionOrder(triggerNode.id, nodes, edges);
-    logEntry(`Execution order: ${executionOrder.join(' → ')}`);
+      const summary = {
+        nodesExecuted: executionOrder.length,
+        totalTime: executionOrder.reduce((acc, id) => {
+          const node = nodes.find(n => n.id === id);
+          return acc + getExecutionTime(node?.type || 'default');
+        }, 0),
+        success: true,
+      };
 
-    // Execute nodes in order
-    for (const nodeId of executionOrder) {
-      const node = nodes.find(n => n.id === nodeId);
-      if (!node) continue;
-
-      // Mark as running
-      setExecutionStatus(prev => ({ ...prev, [nodeId]: 'running' }));
-      logEntry(`Executing: ${node.data?.label || node.type}`);
-      onProgress?.(nodeId, 'running');
-
-      // Simulate execution time based on node type
-      const executionTime = getExecutionTime(node.type);
-      await delay(executionTime);
-
-      // Simulate results
-      const result = simulateNodeExecution(node);
-      setExecutionResults(prev => ({ ...prev, [nodeId]: result }));
-
-      // Mark as completed
-      setExecutionStatus(prev => ({ ...prev, [nodeId]: 'completed' }));
-      logEntry(`Completed: ${node.data?.label || node.type} - ${result.summary}`, 'success');
-      onProgress?.(nodeId, 'completed', result);
-    }
-
-    logEntry('Workflow execution completed!', 'success');
-    setIsExecuting(false);
-    
-    const summary = {
-      nodesExecuted: executionOrder.length,
-      totalTime: executionOrder.reduce((acc, id) => {
-        const node = nodes.find(n => n.id === id);
-        return acc + getExecutionTime(node?.type || 'default');
-      }, 0),
-      success: true,
-    };
-    
-    onComplete?.(summary);
-    return summary;
-  }, [nodes, edges, isExecuting]);
+      onComplete?.(summary);
+      return summary;
+    },
+    [nodes, edges, isExecuting]
+  );
 
   // Stop execution
   const stopExecution = useCallback(() => {
@@ -102,14 +105,20 @@ export const useWorkflowExecution = (nodes, edges) => {
   }, []);
 
   // Get node execution status
-  const getNodeStatus = useCallback((nodeId) => {
-    return executionStatus[nodeId] || 'pending';
-  }, [executionStatus]);
+  const getNodeStatus = useCallback(
+    nodeId => {
+      return executionStatus[nodeId] || 'pending';
+    },
+    [executionStatus]
+  );
 
   // Get node execution result
-  const getNodeResult = useCallback((nodeId) => {
-    return executionResults[nodeId] || null;
-  }, [executionResults]);
+  const getNodeResult = useCallback(
+    nodeId => {
+      return executionResults[nodeId] || null;
+    },
+    [executionResults]
+  );
 
   return {
     isExecuting,
@@ -129,7 +138,7 @@ const buildExecutionOrder = (startId, nodes, edges) => {
   const order = [];
   const visited = new Set();
 
-  const dfs = (nodeId) => {
+  const dfs = nodeId => {
     if (visited.has(nodeId)) return;
     visited.add(nodeId);
     order.push(nodeId);
@@ -146,7 +155,7 @@ const buildExecutionOrder = (startId, nodes, edges) => {
 };
 
 // Helper: Get simulated execution time
-const getExecutionTime = (nodeType) => {
+const getExecutionTime = nodeType => {
   const times = {
     trigger: 500,
     email: 1500,
@@ -161,9 +170,9 @@ const getExecutionTime = (nodeType) => {
 };
 
 // Helper: Simulate node execution results
-const simulateNodeExecution = (node) => {
+const simulateNodeExecution = node => {
   const type = node.type;
-  
+
   switch (type) {
     case 'trigger':
       return {
@@ -213,9 +222,9 @@ const simulateNodeExecution = (node) => {
     case 'abtest':
       const ratio = node.data?.splitRatio || 50;
       return {
-        summary: `Split ${ratio}/${100-ratio}`,
-        variantA: Math.round(150 * ratio / 100),
-        variantB: Math.round(150 * (100 - ratio) / 100),
+        summary: `Split ${ratio}/${100 - ratio}`,
+        variantA: Math.round((150 * ratio) / 100),
+        variantB: Math.round((150 * (100 - ratio)) / 100),
       };
     default:
       return {
@@ -225,6 +234,6 @@ const simulateNodeExecution = (node) => {
 };
 
 // Helper: Delay function
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 export default useWorkflowExecution;

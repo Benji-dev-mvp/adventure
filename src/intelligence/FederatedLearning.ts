@@ -1,6 +1,6 @@
 /**
  * Federated Learning Manager
- * 
+ *
  * Coordinates privacy-preserving collaborative model training
  * across organizations without sharing raw data.
  */
@@ -174,15 +174,11 @@ export class FederatedLearningManager {
   /**
    * Start a new training round
    */
-  startRound(
-    modelId: string,
-    config: Partial<RoundConfig> = {}
-  ): FederatedRound | null {
+  startRound(modelId: string, config: Partial<RoundConfig> = {}): FederatedRound | null {
     const model = this.models.get(modelId);
     if (!model) return null;
 
-    const existingRounds = Array.from(this.rounds.values())
-      .filter(r => r.modelId === modelId);
+    const existingRounds = Array.from(this.rounds.values()).filter(r => r.modelId === modelId);
     const roundNumber = existingRounds.length + 1;
 
     const round: FederatedRound = {
@@ -194,8 +190,7 @@ export class FederatedLearningManager {
       config: {
         ...DEFAULT_ROUND_CONFIG,
         ...config,
-        trainingDeadline: config.trainingDeadline || 
-          new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        trainingDeadline: config.trainingDeadline || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       },
       startedAt: new Date(),
     };
@@ -237,7 +232,7 @@ export class FederatedLearningManager {
     };
 
     round.participants.push(newParticipant);
-    
+
     // Add to model participants
     const modelParticipants = this.participants.get(round.modelId);
     if (modelParticipants) {
@@ -247,7 +242,11 @@ export class FederatedLearningManager {
     // Check if we have enough participants
     if (round.participants.length >= round.config.minParticipants) {
       round.status = 'training';
-      this.emit({ type: 'round-training-started', roundId, participants: round.participants.length });
+      this.emit({
+        type: 'round-training-started',
+        roundId,
+        participants: round.participants.length,
+      });
     }
 
     this.emit({ type: 'participant-joined', roundId, participant: newParticipant });
@@ -275,17 +274,14 @@ export class FederatedLearningManager {
     // Apply differential privacy noise if enabled
     const model = this.models.get(round.modelId);
     if (model?.trainingConfig.differentialPrivacy.enabled) {
-      this.applyDifferentialPrivacy(
-        update.gradients,
-        model.trainingConfig.differentialPrivacy
-      );
+      this.applyDifferentialPrivacy(update.gradients, model.trainingConfig.differentialPrivacy);
     }
 
     participant.status = 'submitted';
     participant.localMetrics = update.metrics;
     participant.submittedAt = new Date();
-    participant.contribution = update.dataSize / 
-      round.participants.reduce((sum, p) => sum + p.dataSize, 0);
+    participant.contribution =
+      update.dataSize / round.participants.reduce((sum, p) => sum + p.dataSize, 0);
 
     this.emit({ type: 'update-submitted', roundId, participantId });
 
@@ -304,10 +300,7 @@ export class FederatedLearningManager {
   /**
    * Apply differential privacy to gradients
    */
-  private applyDifferentialPrivacy(
-    gradients: number[],
-    config: DifferentialPrivacyConfig
-  ): void {
+  private applyDifferentialPrivacy(gradients: number[], config: DifferentialPrivacyConfig): void {
     // Clip gradients
     const norm = Math.sqrt(gradients.reduce((sum, g) => sum + g * g, 0));
     if (norm > config.maxGradNorm) {
@@ -337,9 +330,7 @@ export class FederatedLearningManager {
 
     round.status = 'aggregating';
 
-    const submittedParticipants = round.participants.filter(
-      p => p.status === 'submitted'
-    );
+    const submittedParticipants = round.participants.filter(p => p.status === 'submitted');
 
     if (submittedParticipants.length < round.config.minParticipants) {
       round.status = 'failed';
@@ -348,10 +339,7 @@ export class FederatedLearningManager {
     }
 
     // Perform federated averaging
-    const totalDataSize = submittedParticipants.reduce(
-      (sum, p) => sum + p.dataSize,
-      0
-    );
+    const totalDataSize = submittedParticipants.reduce((sum, p) => sum + p.dataSize, 0);
 
     // Weighted average of metrics
     const aggregatedMetrics: ModelPerformance = {
@@ -368,7 +356,7 @@ export class FederatedLearningManager {
     for (const participant of submittedParticipants) {
       if (!participant.localMetrics) continue;
       const weight = participant.dataSize / totalDataSize;
-      
+
       aggregatedMetrics.accuracy += participant.localMetrics.accuracy * weight;
       aggregatedMetrics.precision += participant.localMetrics.precision * weight;
       aggregatedMetrics.recall += participant.localMetrics.recall * weight;
@@ -381,7 +369,7 @@ export class FederatedLearningManager {
     const model = this.models.get(round.modelId);
     if (model) {
       const improvement = aggregatedMetrics.accuracy - model.performance.accuracy;
-      
+
       model.performance = aggregatedMetrics;
       model.contributors = this.participants.get(round.modelId)?.size || 0;
       model.lastUpdated = new Date();
@@ -482,8 +470,9 @@ export class FederatedLearningManager {
    * Get active rounds
    */
   getActiveRounds(): FederatedRound[] {
-    return Array.from(this.rounds.values())
-      .filter(r => r.status === 'recruiting' || r.status === 'training');
+    return Array.from(this.rounds.values()).filter(
+      r => r.status === 'recruiting' || r.status === 'training'
+    );
   }
 
   /**
@@ -529,9 +518,10 @@ export class FederatedLearningManager {
       }
     }
 
-    const avgAccuracy = models.length > 0
-      ? models.reduce((sum, m) => sum + m.performance.accuracy, 0) / models.length
-      : 0;
+    const avgAccuracy =
+      models.length > 0
+        ? models.reduce((sum, m) => sum + m.performance.accuracy, 0) / models.length
+        : 0;
 
     const totalPrivacyBudget = completed.reduce(
       (sum, r) => sum + (r.results?.privacyBudgetUsed || 0),

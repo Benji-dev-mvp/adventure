@@ -13,17 +13,10 @@ from typing import Any, Dict, List, Optional
 import qdrant_client
 from llama_index.core import (
     Document,
-    SimpleDirectoryReader,
     StorageContext,
     VectorStoreIndex,
-    load_index_from_storage,
 )
 from llama_index.core.node_parser import SentenceSplitter, SimpleNodeParser
-from llama_index.core.query_engine import RetrieverQueryEngine
-from llama_index.core.retrievers import (
-    KeywordTableSimpleRetriever,
-    VectorIndexRetriever,
-)
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.llms.openai import OpenAI
 from llama_index.vector_stores.qdrant import QdrantVectorStore
@@ -31,10 +24,8 @@ from qdrant_client.models import Distance, VectorParams
 
 from .rag_schemas import (
     ChunkingStrategy,
-    DocumentChunk,
     IngestionRequest,
     IngestionResult,
-    NormalizedDocument,
     SafeContextFilter,
     SearchFilter,
 )

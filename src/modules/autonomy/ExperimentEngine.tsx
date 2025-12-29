@@ -54,7 +54,14 @@ const ExperimentEngine = () => {
             traffic: 50,
             isControl: true,
             isWinner: false,
-            metrics: { sent: 1250, opened: 312, clicked: 89, replied: 23, conversionRate: 1.84, statisticalSignificance: 0 },
+            metrics: {
+              sent: 1250,
+              opened: 312,
+              clicked: 89,
+              replied: 23,
+              conversionRate: 1.84,
+              statisticalSignificance: 0,
+            },
           },
           {
             id: 'v2',
@@ -63,7 +70,14 @@ const ExperimentEngine = () => {
             traffic: 50,
             isControl: false,
             isWinner: false,
-            metrics: { sent: 1248, opened: 387, clicked: 112, replied: 34, conversionRate: 2.72, statisticalSignificance: 94 },
+            metrics: {
+              sent: 1248,
+              opened: 387,
+              clicked: 112,
+              replied: 34,
+              conversionRate: 2.72,
+              statisticalSignificance: 94,
+            },
           },
         ],
         minSampleSize: 3000,
@@ -88,7 +102,14 @@ const ExperimentEngine = () => {
             traffic: 50,
             isControl: true,
             isWinner: false,
-            metrics: { sent: 5000, opened: 1250, clicked: 187, replied: 45, conversionRate: 0.9, statisticalSignificance: 0 },
+            metrics: {
+              sent: 5000,
+              opened: 1250,
+              clicked: 187,
+              replied: 45,
+              conversionRate: 0.9,
+              statisticalSignificance: 0,
+            },
           },
           {
             id: 'v2',
@@ -97,7 +118,14 @@ const ExperimentEngine = () => {
             traffic: 50,
             isControl: false,
             isWinner: true,
-            metrics: { sent: 5000, opened: 1275, clicked: 268, replied: 72, conversionRate: 1.44, statisticalSignificance: 99 },
+            metrics: {
+              sent: 5000,
+              opened: 1275,
+              clicked: 268,
+              replied: 72,
+              conversionRate: 1.44,
+              statisticalSignificance: 99,
+            },
           },
         ],
         minSampleSize: 10000,
@@ -106,7 +134,10 @@ const ExperimentEngine = () => {
         startDate: new Date('2024-01-01'),
         endDate: new Date('2024-01-14'),
         autoApply: true,
-        learnings: ['Trial CTAs outperform demo CTAs by 60% for SMB segment', 'Effect diminishes for enterprise prospects'],
+        learnings: [
+          'Trial CTAs outperform demo CTAs by 60% for SMB segment',
+          'Effect diminishes for enterprise prospects',
+        ],
       },
       {
         id: 'exp-3',
@@ -122,7 +153,14 @@ const ExperimentEngine = () => {
             traffic: 50,
             isControl: false,
             isWinner: false,
-            metrics: { sent: 890, opened: 267, clicked: 78, replied: 19, conversionRate: 2.13, statisticalSignificance: 87 },
+            metrics: {
+              sent: 890,
+              opened: 267,
+              clicked: 78,
+              replied: 19,
+              conversionRate: 2.13,
+              statisticalSignificance: 87,
+            },
           },
           {
             id: 'v2',
@@ -131,7 +169,14 @@ const ExperimentEngine = () => {
             traffic: 50,
             isControl: true,
             isWinner: false,
-            metrics: { sent: 892, opened: 214, clicked: 56, replied: 12, conversionRate: 1.34, statisticalSignificance: 0 },
+            metrics: {
+              sent: 892,
+              opened: 214,
+              clicked: 56,
+              replied: 12,
+              conversionRate: 1.34,
+              statisticalSignificance: 0,
+            },
           },
         ],
         minSampleSize: 2000,
@@ -167,23 +212,33 @@ const ExperimentEngine = () => {
     setSuggestedExperiments(mockSuggested);
   }, []);
 
-  const getStatusColor = (status) => {
+  const getStatusColor = status => {
     switch (status) {
-      case 'running': return 'text-blue-400 bg-blue-400/10 border-blue-400/20';
-      case 'completed': return 'text-green-400 bg-green-400/10 border-green-400/20';
-      case 'paused': return 'text-amber-400 bg-amber-400/10 border-amber-400/20';
-      case 'inconclusive': return 'text-gray-400 bg-gray-400/10 border-gray-400/20';
-      default: return 'text-gray-400 bg-gray-400/10 border-gray-400/20';
+      case 'running':
+        return 'text-blue-400 bg-blue-400/10 border-blue-400/20';
+      case 'completed':
+        return 'text-green-400 bg-green-400/10 border-green-400/20';
+      case 'paused':
+        return 'text-amber-400 bg-amber-400/10 border-amber-400/20';
+      case 'inconclusive':
+        return 'text-gray-400 bg-gray-400/10 border-gray-400/20';
+      default:
+        return 'text-gray-400 bg-gray-400/10 border-gray-400/20';
     }
   };
 
-  const getTypeIcon = (type) => {
+  const getTypeIcon = type => {
     switch (type) {
-      case 'subject_line': return Mail;
-      case 'cta': return MousePointer;
-      case 'send_time': return Calendar;
-      case 'persona_angle': return Users;
-      default: return FlaskConical;
+      case 'subject_line':
+        return Mail;
+      case 'cta':
+        return MousePointer;
+      case 'send_time':
+        return Calendar;
+      case 'persona_angle':
+        return Users;
+      default:
+        return FlaskConical;
     }
   };
 
@@ -198,7 +253,9 @@ const ExperimentEngine = () => {
             </div>
             <div>
               <h2 className="text-lg font-semibold text-white">Auto-Experimentation Engine</h2>
-              <p className="text-sm text-gray-400">Continuous A/B testing with automatic optimization</p>
+              <p className="text-sm text-gray-400">
+                Continuous A/B testing with automatic optimization
+              </p>
             </div>
           </div>
           <button className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium rounded-lg flex items-center gap-2 transition-colors">
@@ -211,10 +268,25 @@ const ExperimentEngine = () => {
         <div className="grid grid-cols-4 gap-4 mt-6">
           {[
             { label: 'Active', value: stats.active, icon: Play, color: 'text-blue-400' },
-            { label: 'Completed', value: stats.completed, icon: CheckCircle2, color: 'text-green-400' },
-            { label: 'Win Rate', value: `${stats.winRate}%`, icon: Trophy, color: 'text-amber-400' },
-            { label: 'Learnings', value: stats.totalLearnings, icon: Sparkles, color: 'text-violet-400' },
-          ].map((stat) => (
+            {
+              label: 'Completed',
+              value: stats.completed,
+              icon: CheckCircle2,
+              color: 'text-green-400',
+            },
+            {
+              label: 'Win Rate',
+              value: `${stats.winRate}%`,
+              icon: Trophy,
+              color: 'text-amber-400',
+            },
+            {
+              label: 'Learnings',
+              value: stats.totalLearnings,
+              icon: Sparkles,
+              color: 'text-violet-400',
+            },
+          ].map(stat => (
             <div key={stat.label} className="bg-gray-800/50 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-1">
                 <stat.icon className={`w-4 h-4 ${stat.color}`} />
@@ -233,7 +305,7 @@ const ExperimentEngine = () => {
             Active & Recent Experiments
           </h3>
           <div className="space-y-3">
-            {experiments.map((exp) => {
+            {experiments.map(exp => {
               const TypeIcon = getTypeIcon(exp.type);
               return (
                 <motion.button
@@ -251,16 +323,20 @@ const ExperimentEngine = () => {
                       <TypeIcon className="w-4 h-4 text-gray-400" />
                       <span className="font-medium text-white text-sm">{exp.name}</span>
                     </div>
-                    <span className={`px-2 py-0.5 rounded-full text-xs font-medium border ${getStatusColor(exp.status)}`}>
+                    <span
+                      className={`px-2 py-0.5 rounded-full text-xs font-medium border ${getStatusColor(exp.status)}`}
+                    >
                       {exp.status}
                     </span>
                   </div>
-                  
+
                   {/* Progress */}
                   <div className="mb-2">
                     <div className="flex justify-between text-xs text-gray-400 mb-1">
                       <span>Sample Progress</span>
-                      <span>{exp.currentSampleSize}/{exp.minSampleSize}</span>
+                      <span>
+                        {exp.currentSampleSize}/{exp.minSampleSize}
+                      </span>
                     </div>
                     <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
                       <motion.div
@@ -288,7 +364,7 @@ const ExperimentEngine = () => {
             AI Suggested Experiments
           </h3>
           <div className="space-y-2">
-            {suggestedExperiments.map((sug) => (
+            {suggestedExperiments.map(sug => (
               <div
                 key={sug.id}
                 className="p-3 bg-gray-800/30 rounded-lg border border-dashed border-gray-700 hover:border-emerald-500/50 transition-colors cursor-pointer group"
@@ -299,7 +375,9 @@ const ExperimentEngine = () => {
                       <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
                       <span className="text-sm text-white">{sug.name}</span>
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">+{sug.potentialImpact}% potential impact</p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      +{sug.potentialImpact}% potential impact
+                    </p>
                   </div>
                   <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-emerald-400 transition-colors" />
                 </div>
@@ -344,7 +422,9 @@ const ExperimentEngine = () => {
                     >
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-2">
-                          <span className={`font-medium ${variant.isWinner ? 'text-green-400' : 'text-white'}`}>
+                          <span
+                            className={`font-medium ${variant.isWinner ? 'text-green-400' : 'text-white'}`}
+                          >
                             {variant.name}
                           </span>
                           {variant.isControl && (
@@ -352,9 +432,7 @@ const ExperimentEngine = () => {
                               Control
                             </span>
                           )}
-                          {variant.isWinner && (
-                            <Trophy className="w-4 h-4 text-green-400" />
-                          )}
+                          {variant.isWinner && <Trophy className="w-4 h-4 text-green-400" />}
                         </div>
                         <span className="text-sm text-gray-400">{variant.traffic}% traffic</span>
                       </div>
@@ -362,8 +440,8 @@ const ExperimentEngine = () => {
                       {/* Variant Content */}
                       <div className="bg-gray-900/50 rounded p-2 mb-3">
                         <code className="text-xs text-gray-300">
-                          {typeof variant.content === 'string' 
-                            ? variant.content 
+                          {typeof variant.content === 'string'
+                            ? variant.content
                             : JSON.stringify(variant.content)}
                         </code>
                       </div>
@@ -372,15 +450,35 @@ const ExperimentEngine = () => {
                       <div className="grid grid-cols-4 gap-2">
                         {[
                           { label: 'Sent', value: variant.metrics.sent },
-                          { label: 'Opened', value: variant.metrics.opened, rate: ((variant.metrics.opened / variant.metrics.sent) * 100).toFixed(1) },
-                          { label: 'Clicked', value: variant.metrics.clicked, rate: ((variant.metrics.clicked / variant.metrics.sent) * 100).toFixed(1) },
-                          { label: 'Replied', value: variant.metrics.replied, rate: ((variant.metrics.replied / variant.metrics.sent) * 100).toFixed(1) },
-                        ].map((metric) => (
+                          {
+                            label: 'Opened',
+                            value: variant.metrics.opened,
+                            rate: ((variant.metrics.opened / variant.metrics.sent) * 100).toFixed(
+                              1
+                            ),
+                          },
+                          {
+                            label: 'Clicked',
+                            value: variant.metrics.clicked,
+                            rate: ((variant.metrics.clicked / variant.metrics.sent) * 100).toFixed(
+                              1
+                            ),
+                          },
+                          {
+                            label: 'Replied',
+                            value: variant.metrics.replied,
+                            rate: ((variant.metrics.replied / variant.metrics.sent) * 100).toFixed(
+                              1
+                            ),
+                          },
+                        ].map(metric => (
                           <div key={metric.label} className="text-center">
                             <div className="text-lg font-semibold text-white">{metric.value}</div>
                             <div className="text-xs text-gray-500">
                               {metric.label}
-                              {metric.rate && <span className="ml-1 text-gray-400">({metric.rate}%)</span>}
+                              {metric.rate && (
+                                <span className="ml-1 text-gray-400">({metric.rate}%)</span>
+                              )}
                             </div>
                           </div>
                         ))}
@@ -391,9 +489,13 @@ const ExperimentEngine = () => {
                         <div className="mt-3 flex items-center gap-2">
                           <BarChart3 className="w-4 h-4 text-gray-400" />
                           <span className="text-sm text-gray-400">Statistical significance:</span>
-                          <span className={`text-sm font-medium ${
-                            variant.metrics.statisticalSignificance >= 95 ? 'text-green-400' : 'text-amber-400'
-                          }`}>
+                          <span
+                            className={`text-sm font-medium ${
+                              variant.metrics.statisticalSignificance >= 95
+                                ? 'text-green-400'
+                                : 'text-amber-400'
+                            }`}
+                          >
                             {variant.metrics.statisticalSignificance}%
                           </span>
                         </div>

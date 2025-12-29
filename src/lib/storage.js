@@ -19,7 +19,7 @@ export const storage = {
     }
   },
 
-  remove: (key) => {
+  remove: key => {
     try {
       localStorage.removeItem(STORAGE_PREFIX + key);
     } catch (error) {
@@ -30,8 +30,8 @@ export const storage = {
   clear: () => {
     try {
       Object.keys(localStorage)
-        .filter((key) => key.startsWith(STORAGE_PREFIX))
-        .forEach((key) => localStorage.removeItem(key));
+        .filter(key => key.startsWith(STORAGE_PREFIX))
+        .forEach(key => localStorage.removeItem(key));
     } catch (error) {
       console.error('Error clearing localStorage:', error);
     }
@@ -39,7 +39,7 @@ export const storage = {
 };
 
 // Persist user preferences
-export const saveUserPreferences = (preferences) => {
+export const saveUserPreferences = preferences => {
   storage.set('user_preferences', preferences);
 };
 

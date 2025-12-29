@@ -18,46 +18,89 @@ const request = async (path, options = {}) => {
 
 const STORAGE_KEY = 'app_state_v1';
 const TRUSTED_SOURCES = [
-  'Postgres', 'MySQL', 'MariaDB', 'Oracle', 'SQL Server', 'SQLite', 'CockroachDB',
-  'Snowflake', 'BigQuery', 'Redshift', 'Teradata', 'Trino', 'Presto', 'Druid', 'ClickHouse',
-  'Databricks', 'Elastic', 'Supabase',
-  'MongoDB', 'DynamoDB', 'Firestore',
-  'Airbyte', 'Fivetran', 'Hevo', 'Segment', 'RudderStack',
-  'Salesforce', 'HubSpot', 'Pipedrive', 'Copper', 'Zoho', 'Close', 'Outreach', 'Apollo',
-  'Salesloft', 'Gong', 'ZoomInfo', 'Clearbit', 'Intercom', 'LinkedIn Sales Navigator',
-  'Calendly', 'Zoom'
+  'Postgres',
+  'MySQL',
+  'MariaDB',
+  'Oracle',
+  'SQL Server',
+  'SQLite',
+  'CockroachDB',
+  'Snowflake',
+  'BigQuery',
+  'Redshift',
+  'Teradata',
+  'Trino',
+  'Presto',
+  'Druid',
+  'ClickHouse',
+  'Databricks',
+  'Elastic',
+  'Supabase',
+  'MongoDB',
+  'DynamoDB',
+  'Firestore',
+  'Airbyte',
+  'Fivetran',
+  'Hevo',
+  'Segment',
+  'RudderStack',
+  'Salesforce',
+  'HubSpot',
+  'Pipedrive',
+  'Copper',
+  'Zoho',
+  'Close',
+  'Outreach',
+  'Apollo',
+  'Salesloft',
+  'Gong',
+  'ZoomInfo',
+  'Clearbit',
+  'Intercom',
+  'LinkedIn Sales Navigator',
+  'Calendly',
+  'Zoom',
 ];
-const normalizeName = (s) => (s || '').toString().trim().toLowerCase();
-export const isTrustedSource = (name) => TRUSTED_SOURCES.map(normalizeName).includes(normalizeName(name));
+const normalizeName = s => (s || '').toString().trim().toLowerCase();
+export const isTrustedSource = name =>
+  TRUSTED_SOURCES.map(normalizeName).includes(normalizeName(name));
 
 const SOURCE_ICONS = {
-  'Postgres': '🐘',
-  'MySQL': '🐬',
-  'Snowflake': '❄️',
-  'BigQuery': '☁️',
-  'Redshift': '🔴',
-  'MongoDB': '🍃',
-  'Salesforce': '☁️',
-  'HubSpot': '🧡',
-  'Pipedrive': '🔷',
-  'Salesloft': '🧰',
-  'Gong': '🎧',
+  Postgres: '🐘',
+  MySQL: '🐬',
+  Snowflake: '❄️',
+  BigQuery: '☁️',
+  Redshift: '🔴',
+  MongoDB: '🍃',
+  Salesforce: '☁️',
+  HubSpot: '🧡',
+  Pipedrive: '🔷',
+  Salesloft: '🧰',
+  Gong: '🎧',
   'LinkedIn Sales Navigator': '💼',
-  'ZoomInfo': '📊',
-  'Apollo': '🚀',
-  'Clearbit': '✨',
-  'Intercom': '💬',
-  'Zoom': '🎥',
-  'Calendly': '📅',
+  ZoomInfo: '📊',
+  Apollo: '🚀',
+  Clearbit: '✨',
+  Intercom: '💬',
+  Zoom: '🎥',
+  Calendly: '📅',
 };
-export const getSourceIcon = (source) => SOURCE_ICONS[source] || '📦';
+export const getSourceIcon = source => SOURCE_ICONS[source] || '📦';
 
 const defaultState = {
   activeCRM: 'Salesforce',
   integrationsConnected: [],
   savedPrompts: [
-    { id: 'p-1', title: 'Enterprise VP Sales cold email', prompt: 'Write a cold email for a VP of Sales at an enterprise SaaS company' },
-    { id: 'p-2', title: 'Campaign analysis summary', prompt: 'Analyze my Q1 Enterprise Outreach campaign and suggest improvements' }
+    {
+      id: 'p-1',
+      title: 'Enterprise VP Sales cold email',
+      prompt: 'Write a cold email for a VP of Sales at an enterprise SaaS company',
+    },
+    {
+      id: 'p-2',
+      title: 'Campaign analysis summary',
+      prompt: 'Analyze my Q1 Enterprise Outreach campaign and suggest improvements',
+    },
   ],
   leads: [
     {
@@ -81,7 +124,11 @@ const defaultState = {
         recentNews: 'Just raised Series C funding',
       },
       activity: [
-        { type: 'email_opened', message: 'Opened "Quick question about scaling"', time: '2 hours ago' },
+        {
+          type: 'email_opened',
+          message: 'Opened "Quick question about scaling"',
+          time: '2 hours ago',
+        },
         { type: 'link_clicked', message: 'Clicked pricing page link', time: '2 hours ago' },
         { type: 'email_sent', message: 'Sent follow-up email', time: '2 days ago' },
       ],
@@ -107,7 +154,11 @@ const defaultState = {
         recentNews: 'Expanding to European market',
       },
       activity: [
-        { type: 'email_replied', message: 'Replied: "Interested, let\'s chat"', time: '5 days ago' },
+        {
+          type: 'email_replied',
+          message: 'Replied: "Interested, let\'s chat"',
+          time: '5 days ago',
+        },
         { type: 'email_opened', message: 'Opened initial outreach', time: '1 week ago' },
       ],
     },
@@ -173,7 +224,13 @@ const defaultState = {
       replies: 94,
       replyRate: 7.6,
       steps: [
-        { id: 'step-1', type: 'email', delay: 0, subject: 'Quick question about {{company}}', content: 'Hi {{firstName}}...' },
+        {
+          id: 'step-1',
+          type: 'email',
+          delay: 0,
+          subject: 'Quick question about {{company}}',
+          content: 'Hi {{firstName}}...',
+        },
       ],
     },
     {
@@ -206,7 +263,7 @@ const loadState = () => {
   return storage.get(STORAGE_KEY, defaultState);
 };
 
-const saveState = (nextState) => {
+const saveState = nextState => {
   storage.set(STORAGE_KEY, nextState);
 };
 
@@ -225,34 +282,31 @@ export const getDashboardStats = () => {
 
 export const getLeads = () => loadState().leads;
 
-export const searchLeads = (query) => {
+export const searchLeads = query => {
   const leads = getLeads();
   if (!query) return leads;
   const q = query.toLowerCase();
-  return leads.filter((lead) =>
-    [lead.name, lead.company, lead.title, lead.industry, lead.location]
-      .some((field) => field && field.toLowerCase().includes(q))
+  return leads.filter(lead =>
+    [lead.name, lead.company, lead.title, lead.industry, lead.location].some(
+      field => field && field.toLowerCase().includes(q)
+    )
   );
 };
 
 export const updateLeadStatus = (leadId, status) => {
   const state = loadState();
-  state.leads = state.leads.map((lead) =>
-    lead.id === leadId ? { ...lead, status } : lead
-  );
+  state.leads = state.leads.map(lead => (lead.id === leadId ? { ...lead, status } : lead));
   saveState(state);
   return state.leads;
 };
 
 export const addLeadActivity = (leadId, activity) => {
   const state = loadState();
-  state.leads = state.leads.map((lead) =>
-    lead.id === leadId
-      ? { ...lead, activity: [activity, ...(lead.activity || [])] }
-      : lead
+  state.leads = state.leads.map(lead =>
+    lead.id === leadId ? { ...lead, activity: [activity, ...(lead.activity || [])] } : lead
   );
   saveState(state);
-  return state.leads.find((lead) => lead.id === leadId);
+  return state.leads.find(lead => lead.id === leadId);
 };
 
 export const exportLeads = () => {
@@ -269,20 +323,22 @@ export const addSavedPrompt = (title, prompt) => {
   saveState(state);
   return state.savedPrompts;
 };
-export const removeSavedPrompt = (id) => {
+export const removeSavedPrompt = id => {
   const state = loadState();
-  state.savedPrompts = (state.savedPrompts || []).filter((p) => p.id !== id);
+  state.savedPrompts = (state.savedPrompts || []).filter(p => p.id !== id);
   saveState(state);
   return state.savedPrompts;
 };
 
 export const updateLeadVerification = (leadId, { verified, source }) => {
   const state = loadState();
-  state.leads = state.leads.map((lead) =>
-    lead.id === leadId ? { ...lead, verified: Boolean(verified), source: source || lead.source } : lead
+  state.leads = state.leads.map(lead =>
+    lead.id === leadId
+      ? { ...lead, verified: Boolean(verified), source: source || lead.source }
+      : lead
   );
   saveState(state);
-  return state.leads.find((l) => l.id === leadId);
+  return state.leads.find(l => l.id === leadId);
 };
 
 export const getLeadSources = () => {
@@ -298,14 +354,14 @@ export const getLeadSources = () => {
   return Array.from(summary.values()).sort((a, b) => b.total - a.total);
 };
 
-export const getExampleLead = (source) => {
+export const getExampleLead = source => {
   const leads = getLeads();
-  const match = leads.find((l) => (source ? (l.source === source) : true));
+  const match = leads.find(l => (source ? l.source === source : true));
   return match || leads[0] || null;
 };
 
-export const estimateTokens = (text) => Math.max(1, Math.ceil((text || '').length / 4));
-export const estimateResponseTime = (contentLength) => {
+export const estimateTokens = text => Math.max(1, Math.ceil((text || '').length / 4));
+export const estimateResponseTime = contentLength => {
   const base = 200;
   const perToken = 5;
   const tokens = estimateTokens(contentLength);
@@ -314,11 +370,13 @@ export const estimateResponseTime = (contentLength) => {
 
 export const getCampaigns = () => loadState().campaigns;
 
-export const saveCampaign = (campaign) => {
+export const saveCampaign = campaign => {
   const state = loadState();
-  const existing = state.campaigns.find((c) => c.id === campaign.id);
+  const existing = state.campaigns.find(c => c.id === campaign.id);
   if (existing) {
-    state.campaigns = state.campaigns.map((c) => (c.id === campaign.id ? { ...existing, ...campaign } : c));
+    state.campaigns = state.campaigns.map(c =>
+      c.id === campaign.id ? { ...existing, ...campaign } : c
+    );
   } else {
     state.campaigns.push(campaign);
   }
@@ -328,14 +386,14 @@ export const saveCampaign = (campaign) => {
 
 export const getCampaignDraft = (campaignId = 'default') => {
   const state = loadState();
-  return state.campaigns.find((c) => c.id === campaignId) || null;
+  return state.campaigns.find(c => c.id === campaignId) || null;
 };
 
 export const getAnalytics = async () => ({});
 
 export const getAIMessages = () => loadState().aiMessages;
 
-export const addAIMessage = (message) => {
+export const addAIMessage = message => {
   const state = loadState();
   state.aiMessages = [...state.aiMessages, message];
   saveState(state);
@@ -343,7 +401,7 @@ export const addAIMessage = (message) => {
 };
 
 export const getActiveCRM = () => loadState().activeCRM || null;
-export const setActiveCRM = (name) => {
+export const setActiveCRM = name => {
   const state = loadState();
   state.activeCRM = name;
   saveState(state);
@@ -352,7 +410,7 @@ export const setActiveCRM = (name) => {
 
 // --- AI stubs for server-side behavior ---
 export const fetchAIRecommendations = async (context = {}) => {
-  await new Promise((r) => setTimeout(r, 400));
+  await new Promise(r => setTimeout(r, 400));
   return [
     {
       title: 'Reduce send volume by 12% on low-warm domains',
@@ -393,34 +451,38 @@ export const fetchCampaigns = async () => request('/campaigns');
 export const fetchSystemStatus = async () => request('/status');
 
 export const applyGuardrail = async (options = {}) => {
-  await new Promise((r) => setTimeout(r, 350));
+  await new Promise(r => setTimeout(r, 350));
   // Could persist a setting here
   return { ok: true, applied: { type: 'guardrail', ...options } };
 };
 
 export const updateTemplateCTA = async (options = {}) => {
-  await new Promise((r) => setTimeout(r, 350));
+  await new Promise(r => setTimeout(r, 350));
   return { ok: true, updated: { type: 'template-cta', ...options } };
 };
 
 export const scheduleOptimalWindow = async (options = {}) => {
-  await new Promise((r) => setTimeout(r, 350));
+  await new Promise(r => setTimeout(r, 350));
   return { ok: true, scheduled: { type: 'send-window', ...options } };
 };
 
-export const askAva = async (prompt) => {
+export const askAva = async prompt => {
   try {
     const res = await fetch(`${API_BASE}/ai/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt })
+      body: JSON.stringify({ prompt }),
     });
     if (res.ok) {
       const data = await res.json();
       const response = {
         role: data.role || 'assistant',
         content: data.content,
-        suggestions: data.suggestions || ['Apply guardrail', 'Schedule optimal window', 'Tune subject lines']
+        suggestions: data.suggestions || [
+          'Apply guardrail',
+          'Schedule optimal window',
+          'Tune subject lines',
+        ],
       };
       addAIMessage(response);
       return response;
@@ -428,7 +490,7 @@ export const askAva = async (prompt) => {
   } catch (e) {
     // fall back to local mock if backend unavailable
   }
-  await new Promise((r) => setTimeout(r, 500));
+  await new Promise(r => setTimeout(r, 500));
   const response = {
     role: 'assistant',
     content: `Here’s a quick take on: “${prompt}”. Consider reducing volume on warming domains and focusing sends at peak reply windows (Tue 10am for Finance). I can apply those changes for you.`,
@@ -439,13 +501,13 @@ export const askAva = async (prompt) => {
 };
 
 export const sendToSlack = async (payload = { text: 'Test message' }) => {
-  await new Promise((r) => setTimeout(r, 300));
+  await new Promise(r => setTimeout(r, 300));
   // Normally POST to Slack webhook; here we just simulate
   return { ok: true, sent: payload };
 };
 
 // --- External Integrations: connect + extract stubs ---
-export const connectIntegration = (name) => {
+export const connectIntegration = name => {
   const state = loadState();
   const set = new Set(state.integrationsConnected || []);
   set.add(name);
@@ -454,29 +516,84 @@ export const connectIntegration = (name) => {
   return state.integrationsConnected;
 };
 
-export const isIntegrationConnected = (name) => {
+export const isIntegrationConnected = name => {
   const state = loadState();
   return (state.integrationsConnected || []).includes(name);
 };
 
-export const extractIntegrationData = async (name) => {
-  await new Promise((r) => setTimeout(r, 500));
+export const extractIntegrationData = async name => {
+  await new Promise(r => setTimeout(r, 500));
   const state = loadState();
   // Simulate different payloads per integration
   let imported = [];
   if (name === 'Salesloft') {
     imported = [
-      { id: Date.now(), name: 'Alex Carter', title: 'SDR Manager', company: 'RevOpsCo', industry: 'SaaS', location: 'Remote', score: 72, status: 'warm', email: 'alex.c@revops.co', avatar: '👨', source: 'Salesloft', verified: true, enrichment: { techStack: ['Salesloft', 'Salesforce'] }, activity: [{ type: 'email_opened', message: 'Opened outreach from Salesloft', time: 'Today' }] },
-      { id: Date.now() + 1, name: 'Nina Patel', title: 'VP Growth', company: 'ScaleWorks', industry: 'AI', location: 'NYC', score: 88, status: 'hot', email: 'nina@scaleworks.ai', avatar: '👩', source: 'Salesloft', verified: true, enrichment: { techStack: ['Salesloft'] }, activity: [{ type: 'email_replied', message: 'Responded via Salesloft thread', time: 'Today' }] },
+      {
+        id: Date.now(),
+        name: 'Alex Carter',
+        title: 'SDR Manager',
+        company: 'RevOpsCo',
+        industry: 'SaaS',
+        location: 'Remote',
+        score: 72,
+        status: 'warm',
+        email: 'alex.c@revops.co',
+        avatar: '👨',
+        source: 'Salesloft',
+        verified: true,
+        enrichment: { techStack: ['Salesloft', 'Salesforce'] },
+        activity: [
+          { type: 'email_opened', message: 'Opened outreach from Salesloft', time: 'Today' },
+        ],
+      },
+      {
+        id: Date.now() + 1,
+        name: 'Nina Patel',
+        title: 'VP Growth',
+        company: 'ScaleWorks',
+        industry: 'AI',
+        location: 'NYC',
+        score: 88,
+        status: 'hot',
+        email: 'nina@scaleworks.ai',
+        avatar: '👩',
+        source: 'Salesloft',
+        verified: true,
+        enrichment: { techStack: ['Salesloft'] },
+        activity: [
+          { type: 'email_replied', message: 'Responded via Salesloft thread', time: 'Today' },
+        ],
+      },
     ];
   } else if (name === 'Gong') {
     imported = [
-      { id: Date.now() + 2, name: 'Chris Wong', title: 'Director Sales', company: 'DataQuanta', industry: 'Analytics', location: 'SF', score: 81, status: 'warm', email: 'chris.w@dataquanta.com', avatar: '👨', source: 'Gong', verified: true, enrichment: { recentNews: 'New ARR milestone' }, activity: [{ type: 'meeting_booked', message: 'Gong recording: discovery call booked', time: 'Yesterday' }] },
+      {
+        id: Date.now() + 2,
+        name: 'Chris Wong',
+        title: 'Director Sales',
+        company: 'DataQuanta',
+        industry: 'Analytics',
+        location: 'SF',
+        score: 81,
+        status: 'warm',
+        email: 'chris.w@dataquanta.com',
+        avatar: '👨',
+        source: 'Gong',
+        verified: true,
+        enrichment: { recentNews: 'New ARR milestone' },
+        activity: [
+          {
+            type: 'meeting_booked',
+            message: 'Gong recording: discovery call booked',
+            time: 'Yesterday',
+          },
+        ],
+      },
     ];
   }
   // Merge leads (dedupe by email)
-  const existingEmails = new Set((state.leads || []).map((l) => l.email));
-  const toAdd = imported.filter((l) => l.email && !existingEmails.has(l.email));
+  const existingEmails = new Set((state.leads || []).map(l => l.email));
+  const toAdd = imported.filter(l => l.email && !existingEmails.has(l.email));
   state.leads = [...toAdd, ...(state.leads || [])];
   saveState(state);
   return { ok: true, importedCount: toAdd.length };
@@ -484,7 +601,7 @@ export const extractIntegrationData = async (name) => {
 
 // --- Universal Database Import (CSV/JSON) ---
 const normalizeLeadRecord = (raw = {}, source = 'Database') => {
-  const get = (key) => raw[key] ?? raw[key?.toLowerCase?.()] ?? raw[key?.toUpperCase?.()];
+  const get = key => raw[key] ?? raw[key?.toLowerCase?.()] ?? raw[key?.toUpperCase?.()];
   const name = get('name') || `${get('firstName') || ''} ${get('lastName') || ''}`.trim();
   const email = get('email');
   const score = Number(get('score')) || 75;
@@ -512,19 +629,15 @@ const normalizeLeadRecord = (raw = {}, source = 'Database') => {
       techStack: Array.isArray(get('techStack')) ? get('techStack') : [],
       recentNews: get('recentNews') || '',
     },
-    activity: [
-      { type: 'email_opened', message: `Imported from ${source}`, time: 'Just now' },
-    ],
+    activity: [{ type: 'email_opened', message: `Imported from ${source}`, time: 'Just now' }],
   };
 };
 
 export const importLeads = (records = [], source = 'Database') => {
   const state = loadState();
-  const existingEmails = new Set((state.leads || []).map((l) => l.email).filter(Boolean));
-  const normalized = records
-    .map((r) => normalizeLeadRecord(r, source))
-    .filter((l) => l.email); // require email for dedupe
-  const toAdd = normalized.filter((l) => !existingEmails.has(l.email));
+  const existingEmails = new Set((state.leads || []).map(l => l.email).filter(Boolean));
+  const normalized = records.map(r => normalizeLeadRecord(r, source)).filter(l => l.email); // require email for dedupe
+  const toAdd = normalized.filter(l => !existingEmails.has(l.email));
   state.leads = [...toAdd, ...(state.leads || [])];
   saveState(state);
   return { ok: true, importedCount: toAdd.length };
@@ -533,32 +646,32 @@ export const importLeads = (records = [], source = 'Database') => {
 export const parseCSVLeads = (csvText = '', defaultSource = 'Database') => {
   const lines = csvText.trim().split(/\r?\n/);
   if (lines.length < 2) return [];
-  const headers = lines[0].split(',').map((h) => h.trim());
-  const records = lines.slice(1).map((line) => {
+  const headers = lines[0].split(',').map(h => h.trim());
+  const records = lines.slice(1).map(line => {
     // naive CSV split; acceptable for simple cases
-    const cols = line.split(',').map((c) => c.trim().replace(/^"|"$/g, ''));
+    const cols = line.split(',').map(c => c.trim().replace(/^"|"$/g, ''));
     const obj = {};
     headers.forEach((h, i) => {
       obj[h] = cols[i];
     });
     return obj;
   });
-  return records.map((r) => normalizeLeadRecord(r, r.source || defaultSource));
+  return records.map(r => normalizeLeadRecord(r, r.source || defaultSource));
 };
 
 export const parseJSONLeads = (jsonText = '', defaultSource = 'Database') => {
   let arr = [];
   try {
     const parsed = JSON.parse(jsonText);
-    arr = Array.isArray(parsed) ? parsed : (parsed?.rows || []);
+    arr = Array.isArray(parsed) ? parsed : parsed?.rows || [];
   } catch {
     arr = [];
   }
-  return arr.map((r) => normalizeLeadRecord(r, r.source || defaultSource));
+  return arr.map(r => normalizeLeadRecord(r, r.source || defaultSource));
 };
 
 // --- AI endpoint helpers ---
-export const scoreLeadWithAI = async (lead) => {
+export const scoreLeadWithAI = async lead => {
   try {
     const res = await fetch(`${API_BASE}/ai/lead-score`, {
       method: 'POST',
@@ -568,8 +681,8 @@ export const scoreLeadWithAI = async (lead) => {
         title: lead.title,
         company: lead.company,
         industry: lead.industry,
-        activity: lead.activity || []
-      })
+        activity: lead.activity || [],
+      }),
     });
     if (res.ok) {
       return await res.json();
@@ -580,7 +693,12 @@ export const scoreLeadWithAI = async (lead) => {
   return { score: 75, tier: 'warm', rationale: 'fallback scoring' };
 };
 
-export const generateEmailWithAI = async (lead, prompt, tone = 'professional', length = 'medium') => {
+export const generateEmailWithAI = async (
+  lead,
+  prompt,
+  tone = 'professional',
+  length = 'medium'
+) => {
   try {
     const res = await fetch(`${API_BASE}/ai/generate-email`, {
       method: 'POST',
@@ -594,9 +712,9 @@ export const generateEmailWithAI = async (lead, prompt, tone = 'professional', l
           title: lead.title,
           company: lead.company,
           industry: lead.industry,
-          activity: lead.activity || []
-        }
-      })
+          activity: lead.activity || [],
+        },
+      }),
     });
     if (res.ok) {
       return await res.json();
@@ -612,8 +730,9 @@ export const dataService = {
   getCampaigns,
   getLeads,
   getAnalytics,
-  post: (path, payload) => request(path, {
-    method: 'POST',
-    body: JSON.stringify(payload),
-  }),
+  post: (path, payload) =>
+    request(path, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
 };

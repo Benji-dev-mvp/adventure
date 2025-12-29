@@ -26,7 +26,7 @@ export const SMSNode = ({ data, selected }) => {
           </label>
           <textarea
             value={content}
-            onChange={(e) => {
+            onChange={e => {
               setContent(e.target.value);
               data.onChange?.({ content: e.target.value });
             }}
@@ -39,7 +39,9 @@ export const SMSNode = ({ data, selected }) => {
         </div>
 
         {/* Character count */}
-        <div className={`flex items-center justify-between text-xs ${isOverLimit ? 'text-red-500' : 'text-gray-400'}`}>
+        <div
+          className={`flex items-center justify-between text-xs ${isOverLimit ? 'text-red-500' : 'text-gray-400'}`}
+        >
           {isOverLimit && (
             <div className="flex items-center gap-1">
               <AlertCircle className="w-3 h-3" />

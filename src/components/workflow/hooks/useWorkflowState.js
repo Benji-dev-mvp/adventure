@@ -6,7 +6,7 @@ const defaultNodes = [
     id: 'trigger-1',
     type: 'trigger',
     position: { x: 250, y: 50 },
-    data: { 
+    data: {
       label: 'Campaign Start',
       triggerType: 'manual',
       description: 'Manually trigger campaign',
@@ -17,12 +17,8 @@ const defaultNodes = [
 const defaultEdges = [];
 
 export const useWorkflowState = (initialWorkflow = null) => {
-  const [nodes, setNodes, onNodesChange] = useNodesState(
-    initialWorkflow?.nodes || defaultNodes
-  );
-  const [edges, setEdges, onEdgesChange] = useEdgesState(
-    initialWorkflow?.edges || defaultEdges
-  );
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialWorkflow?.nodes || defaultNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialWorkflow?.edges || defaultEdges);
   const [history, setHistory] = useState([{ nodes: defaultNodes, edges: defaultEdges }]);
   const [historyIndex, setHistoryIndex] = useState(0);
   const [isDirty, setIsDirty] = useState(false);
@@ -63,47 +59,62 @@ export const useWorkflowState = (initialWorkflow = null) => {
   }, [history, historyIndex, setNodes, setEdges]);
 
   // Add node
-  const addNode = useCallback((type, position, data = {}) => {
-    const nodeId = `${type}-${Date.now()}`;
-    const newNode = {
-      id: nodeId,
-      type,
-      position: position || { x: 250, y: nodes.length * 150 + 100 },
-      data: {
-        ...getDefaultNodeData(type),
-        ...data,
-      },
-    };
-    setNodes((nds) => [...nds, newNode]);
-    addToHistory();
-    return nodeId;
-  }, [nodes, setNodes, addToHistory]);
+  const addNode = useCallback(
+    (type, position, data = {}) => {
+      const nodeId = `${type}-${Date.now()}`;
+      const newNode = {
+        id: nodeId,
+        type,
+        position: position || { x: 250, y: nodes.length * 150 + 100 },
+        data: {
+          ...getDefaultNodeData(type),
+          ...data,
+        },
+      };
+      setNodes(nds => [...nds, newNode]);
+      addToHistory();
+      return nodeId;
+    },
+    [nodes, setNodes, addToHistory]
+  );
 
   // Remove node
-  const removeNode = useCallback((nodeId) => {
-    setNodes((nds) => nds.filter((n) => n.id !== nodeId));
-    setEdges((eds) => eds.filter((e) => e.source !== nodeId && e.target !== nodeId));
-    addToHistory();
-  }, [setNodes, setEdges, addToHistory]);
+  const removeNode = useCallback(
+    nodeId => {
+      setNodes(nds => nds.filter(n => n.id !== nodeId));
+      setEdges(eds => eds.filter(e => e.source !== nodeId && e.target !== nodeId));
+      addToHistory();
+    },
+    [setNodes, setEdges, addToHistory]
+  );
 
   // Update node data
-  const updateNodeData = useCallback((nodeId, data) => {
-    setNodes((nds) =>
-      nds.map((node) =>
-        node.id === nodeId ? { ...node, data: { ...node.data, ...data } } : node
-      )
-    );
-  }, [setNodes]);
+  const updateNodeData = useCallback(
+    (nodeId, data) => {
+      setNodes(nds =>
+        nds.map(node => (node.id === nodeId ? { ...node, data: { ...node.data, ...data } } : node))
+      );
+    },
+    [setNodes]
+  );
 
   // Connect nodes
-  const connectNodes = useCallback((params) => {
-    setEdges((eds) => addEdge({
-      ...params,
-      type: 'smoothstep',
-      animated: false,
-    }, eds));
-    addToHistory();
-  }, [setEdges, addToHistory]);
+  const connectNodes = useCallback(
+    params => {
+      setEdges(eds =>
+        addEdge(
+          {
+            ...params,
+            type: 'smoothstep',
+            animated: false,
+          },
+          eds
+        )
+      );
+      addToHistory();
+    },
+    [setEdges, addToHistory]
+  );
 
   // Get workflow data for saving
   const getWorkflowData = useCallback(() => {
@@ -130,17 +141,22 @@ export const useWorkflowState = (initialWorkflow = null) => {
   }, [nodes, edges]);
 
   // Load workflow
-  const loadWorkflow = useCallback((workflow) => {
-    if (workflow?.nodes) {
-      setNodes(workflow.nodes);
-    }
-    if (workflow?.edges) {
-      setEdges(workflow.edges);
-    }
-    setIsDirty(false);
-    setHistory([{ nodes: workflow?.nodes || defaultNodes, edges: workflow?.edges || defaultEdges }]);
-    setHistoryIndex(0);
-  }, [setNodes, setEdges]);
+  const loadWorkflow = useCallback(
+    workflow => {
+      if (workflow?.nodes) {
+        setNodes(workflow.nodes);
+      }
+      if (workflow?.edges) {
+        setEdges(workflow.edges);
+      }
+      setIsDirty(false);
+      setHistory([
+        { nodes: workflow?.nodes || defaultNodes, edges: workflow?.edges || defaultEdges },
+      ]);
+      setHistoryIndex(0);
+    },
+    [setNodes, setEdges]
+  );
 
   // Reset workflow
   const resetWorkflow = useCallback(() => {
@@ -185,7 +201,7 @@ export const useWorkflowState = (initialWorkflow = null) => {
 };
 
 // Helper functions
-const getDefaultNodeData = (type) => {
+const getDefaultNodeData = type => {
   const defaults = {
     trigger: { label: 'Campaign Start', triggerType: 'manual' },
     email: { label: 'Send Email', subject: '', content: '', tone: 'professional' },
@@ -199,7 +215,7 @@ const getDefaultNodeData = (type) => {
   return defaults[type] || { label: 'Unknown' };
 };
 
-const sanitizeNodeData = (data) => {
+const sanitizeNodeData = data => {
   // Remove callback functions before saving
   const { onDelete, onDuplicate, onChange, executionStatus, ...cleanData } = data;
   return cleanData;

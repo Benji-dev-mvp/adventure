@@ -4,7 +4,7 @@ import { ArrowRight, Workflow, Play, CheckCircle2 } from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import DataFlowVisualization from '../components/features/DataFlowVisualization';
 import { KpiFunnelChart } from '../components/analytics';
-import { 
+import {
   GlassCard,
   GlassCardContent,
   GradientText,
@@ -15,14 +15,26 @@ import {
 } from '../components/futuristic';
 
 const ARCHITECTURE_STEPS = [
-  { step: 1, title: 'ICP Definition', description: 'Define your ideal customer profile with AI assistance' },
+  {
+    step: 1,
+    title: 'ICP Definition',
+    description: 'Define your ideal customer profile with AI assistance',
+  },
   { step: 2, title: 'Lead Discovery', description: '300M+ contacts with real-time intent signals' },
   { step: 3, title: 'Data Enrichment', description: 'Automatic enrichment from 50+ data sources' },
   { step: 4, title: 'AI Research', description: 'Deep prospect research for personalization' },
   { step: 5, title: 'Sequence Building', description: 'Multi-channel automated sequences' },
   { step: 6, title: 'AI Personalization', description: 'Unique messaging for every prospect' },
-  { step: 7, title: 'Campaign Execution', description: 'Automated sending with deliverability optimization' },
-  { step: 8, title: 'Meeting Booking', description: 'Calendar integration and automated scheduling' },
+  {
+    step: 7,
+    title: 'Campaign Execution',
+    description: 'Automated sending with deliverability optimization',
+  },
+  {
+    step: 8,
+    title: 'Meeting Booking',
+    description: 'Calendar integration and automated scheduling',
+  },
   { step: 9, title: 'Reply Handling', description: 'AI-powered response classification' },
   { step: 10, title: 'CRM Sync', description: 'Bi-directional sync with your CRM' },
   { step: 11, title: 'Analytics', description: 'Real-time pipeline and performance metrics' },
@@ -36,7 +48,7 @@ const FlowPage = () => {
       <section className="py-20 px-6 relative overflow-hidden">
         <ParticleBackground variant="default" className="absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-cyan-900/20 to-transparent" />
-        
+
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/20 border border-cyan-500/30 mb-6">
@@ -44,7 +56,7 @@ const FlowPage = () => {
               <span className="text-sm text-cyan-300">Architecture in Action</span>
             </div>
           </RevealText>
-          
+
           <RevealText delay={100}>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 font-space-grotesk">
               <GradientText gradient="cyber" animate>
@@ -52,14 +64,14 @@ const FlowPage = () => {
               </GradientText>
             </h1>
           </RevealText>
-          
+
           <RevealText delay={200}>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Visualize how Ava orchestrates your entire outbound pipeline — 
-              from lead discovery to booked meetings, all on autopilot.
+              Visualize how Ava orchestrates your entire outbound pipeline — from lead discovery to
+              booked meetings, all on autopilot.
             </p>
           </RevealText>
-          
+
           <RevealText delay={300}>
             <div className="flex flex-wrap justify-center gap-4">
               <a href="#live-flow">
@@ -90,16 +102,14 @@ const FlowPage = () => {
           <RevealText>
             <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 font-space-grotesk">
-                <GradientText gradient="cyber">
-                  Watch Your Pipeline Convert
-                </GradientText>
+                <GradientText gradient="cyber">Watch Your Pipeline Convert</GradientText>
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
                 Track conversion rates at every stage of your outbound funnel in real-time
               </p>
             </div>
           </RevealText>
-          
+
           <KpiFunnelChart />
         </div>
       </section>
@@ -107,7 +117,7 @@ const FlowPage = () => {
       {/* Full 12-Step Architecture Timeline */}
       <section className="py-20 px-6 relative overflow-hidden">
         <ParticleBackground variant="minimal" className="absolute inset-0" />
-        
+
         <div className="max-w-7xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
@@ -124,11 +134,7 @@ const FlowPage = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {ARCHITECTURE_STEPS.map((item, index) => (
               <RevealText key={item.step} delay={index * 50}>
-                <GlassCard 
-                  variant="default" 
-                  hover 
-                  className="h-full group"
-                >
+                <GlassCard variant="default" hover className="h-full group">
                   <GlassCardContent className="p-5">
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
@@ -138,9 +144,7 @@ const FlowPage = () => {
                         <h3 className="text-base font-bold text-white mb-1 font-space-grotesk group-hover:text-cyan-400 transition-colors">
                           {item.title}
                         </h3>
-                        <p className="text-gray-400 text-sm">
-                          {item.description}
-                        </p>
+                        <p className="text-gray-400 text-sm">{item.description}</p>
                       </div>
                     </div>
                   </GlassCardContent>
@@ -183,9 +187,7 @@ const FlowPage = () => {
               <h2 className="text-3xl font-bold mb-4 font-space-grotesk">
                 <GradientText gradient="cyber">Seamless Integrations</GradientText>
               </h2>
-              <p className="text-gray-300">
-                Every step connects with your existing stack
-              </p>
+              <p className="text-gray-300">Every step connects with your existing stack</p>
             </div>
           </RevealText>
 
@@ -203,8 +205,11 @@ const FlowPage = () => {
                       {integration.category}
                     </h3>
                     <div className="space-y-2">
-                      {integration.tools.map((tool) => (
-                        <div key={tool} className="text-sm text-gray-400 flex items-center justify-center gap-2">
+                      {integration.tools.map(tool => (
+                        <div
+                          key={tool}
+                          className="text-sm text-gray-400 flex items-center justify-center gap-2"
+                        >
                           <CheckCircle2 size={14} className="text-emerald-400" />
                           {tool}
                         </div>
@@ -221,13 +226,11 @@ const FlowPage = () => {
       {/* CTA */}
       <section className="py-20 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
-        
+
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <RevealText>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 font-space-grotesk">
-              <GradientText gradient="aurora">
-                See This Flow Running for Your Team
-              </GradientText>
+              <GradientText gradient="aurora">See This Flow Running for Your Team</GradientText>
             </h2>
             <p className="text-xl text-gray-300 mb-8">
               Get a personalized demo showing how Ava fits your outbound process

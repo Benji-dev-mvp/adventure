@@ -52,7 +52,7 @@ const defaultPreferences: UserPreferences = {
 export const useUserStore = create<UserState>()(
   devtools(
     persist(
-      immer((set) => ({
+      immer(set => ({
         // Initial state
         user: null,
         token: null,
@@ -61,24 +61,24 @@ export const useUserStore = create<UserState>()(
         isLoading: false,
 
         // Actions
-        setUser: (user) =>
-          set((state) => {
+        setUser: user =>
+          set(state => {
             state.user = user;
             state.isAuthenticated = true;
           }),
 
-        setToken: (token) =>
-          set((state) => {
+        setToken: token =>
+          set(state => {
             state.token = token;
           }),
 
-        updatePreferences: (prefs) =>
-          set((state) => {
+        updatePreferences: prefs =>
+          set(state => {
             state.preferences = { ...state.preferences, ...prefs };
           }),
 
         login: (user, token) =>
-          set((state) => {
+          set(state => {
             state.user = user;
             state.token = token;
             state.isAuthenticated = true;
@@ -86,20 +86,20 @@ export const useUserStore = create<UserState>()(
           }),
 
         logout: () =>
-          set((state) => {
+          set(state => {
             state.user = null;
             state.token = null;
             state.isAuthenticated = false;
           }),
 
-        setLoading: (loading) =>
-          set((state) => {
+        setLoading: loading =>
+          set(state => {
             state.isLoading = loading;
           }),
       })),
       {
         name: 'user-storage',
-        partialize: (state) => ({
+        partialize: state => ({
           user: state.user,
           token: state.token,
           preferences: state.preferences,

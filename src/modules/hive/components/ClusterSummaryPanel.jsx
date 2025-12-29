@@ -1,17 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Users, Calendar, Sparkles, ArrowRight, 
-  TrendingUp, Target, Zap, Bot
-} from 'lucide-react';
+import { Users, Calendar, Sparkles, ArrowRight, TrendingUp, Target, Zap, Bot } from 'lucide-react';
 import { GlassCard, GlassCardContent, GradientText } from '../../../components/futuristic';
 import { Button } from '../../../components/ui/Button';
 
 const ClusterCard = ({ cluster, index }) => {
-  const intentColor = 
-    cluster.avgIntentScore >= 70 ? 'text-emerald-400' :
-    cluster.avgIntentScore >= 50 ? 'text-cyan-400' :
-    'text-amber-400';
+  const intentColor =
+    cluster.avgIntentScore >= 70
+      ? 'text-emerald-400'
+      : cluster.avgIntentScore >= 50
+        ? 'text-cyan-400'
+        : 'text-amber-400';
 
   return (
     <motion.div
@@ -25,10 +24,7 @@ const ClusterCard = ({ cluster, index }) => {
           <h4 className="font-medium text-slate-100 text-sm">{cluster.name}</h4>
           <p className="text-xs text-slate-500">{cluster.segment}</p>
         </div>
-        <div 
-          className="w-3 h-3 rounded-full"
-          style={{ backgroundColor: cluster.color }}
-        />
+        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: cluster.color }} />
       </div>
 
       <div className="grid grid-cols-3 gap-2 mb-3">
@@ -46,9 +42,7 @@ const ClusterCard = ({ cluster, index }) => {
         </div>
       </div>
 
-      <p className="text-xs text-slate-400 mb-3 line-clamp-2">
-        {cluster.recommendedStrategy}
-      </p>
+      <p className="text-xs text-slate-400 mb-3 line-clamp-2">{cluster.recommendedStrategy}</p>
 
       <button className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-cyan-500/10 text-cyan-400 text-xs font-medium rounded-lg hover:bg-cyan-500/20 transition-colors">
         <Target className="w-3 h-3" />
@@ -78,28 +72,32 @@ const AvaRecommendation = ({ clusters }) => {
       </div>
 
       <p className="text-sm text-slate-300 mb-4 leading-relaxed">
-        I've identified <span className="text-cyan-400 font-medium">{topCluster.accounts} high-intent accounts</span> in 
-        the "{topCluster.name}" cluster. Based on current signals, I recommend launching 
-        a <span className="text-purple-400 font-medium">multi-touch sequence</span> focusing on {topCluster.segment.toLowerCase()} prospects.
+        I've identified{' '}
+        <span className="text-cyan-400 font-medium">
+          {topCluster.accounts} high-intent accounts
+        </span>{' '}
+        in the "{topCluster.name}" cluster. Based on current signals, I recommend launching a{' '}
+        <span className="text-purple-400 font-medium">multi-touch sequence</span> focusing on{' '}
+        {topCluster.segment.toLowerCase()} prospects.
       </p>
 
       <div className="flex items-center gap-2 mb-4">
         <div className="flex -space-x-2">
           {[1, 2, 3].map(i => (
-            <div 
+            <div
               key={i}
               className="w-8 h-8 rounded-full bg-slate-700 border-2 border-slate-800 flex items-center justify-center"
             >
-              <span className="text-xs text-slate-400">{topCluster.topAccounts?.[i-1]?.name?.charAt(0) || '?'}</span>
+              <span className="text-xs text-slate-400">
+                {topCluster.topAccounts?.[i - 1]?.name?.charAt(0) || '?'}
+              </span>
             </div>
           ))}
         </div>
         <span className="text-xs text-slate-500">+{topCluster.accounts - 3} more</span>
       </div>
 
-      <Button 
-        className="w-full bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-medium"
-      >
+      <Button className="w-full bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-medium">
         <Zap className="w-4 h-4 mr-2" />
         Launch Play into this Hive
       </Button>

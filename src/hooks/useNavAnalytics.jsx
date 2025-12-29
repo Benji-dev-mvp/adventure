@@ -1,10 +1,10 @@
 /**
  * Navigation Analytics Hook
- * 
+ *
  * Provides instrumentation for navigation events:
  * - app.nav.click - Navigation item clicked
  * - app.page.view - Page viewed
- * 
+ *
  * Decouples UI from analytics provider for flexibility.
  */
 
@@ -32,7 +32,7 @@ import { track, page } from '@/lib/analytics';
 
 /**
  * Hook for tracking navigation events
- * 
+ *
  * @param {Object} options
  * @param {string} [options.tenantId] - Tenant ID for attribution
  * @param {string} [options.plan] - Tenant plan tier
@@ -45,52 +45,58 @@ export function useNavAnalytics({ tenantId, plan, userId } = {}) {
   /**
    * Track navigation item click
    */
-  const trackNavClick = useCallback((itemId, section, path) => {
-    const event = {
-      itemId,
-      section,
-      path,
-      tenantId,
-      plan,
-      userId,
-      timestamp: Date.now(),
-    };
+  const trackNavClick = useCallback(
+    (itemId, section, path) => {
+      const event = {
+        itemId,
+        section,
+        path,
+        tenantId,
+        plan,
+        userId,
+        timestamp: Date.now(),
+      };
 
-    // Use the analytics service
-    track('app.nav.click', event);
+      // Use the analytics service
+      track('app.nav.click', event);
 
-    // Also log in dev for debugging
-    if (import.meta.env.DEV) {
-      console.debug('[NavAnalytics] nav.click:', event);
-    }
-  }, [tenantId, plan, userId]);
+      // Also log in dev for debugging
+      if (import.meta.env.DEV) {
+        console.debug('[NavAnalytics] nav.click:', event);
+      }
+    },
+    [tenantId, plan, userId]
+  );
 
   /**
    * Track page view - called automatically on route change
    */
-  const trackPageView = useCallback((route, properties = {}) => {
-    const event = {
-      route,
-      tenantId,
-      plan,
-      userId,
-      timestamp: Date.now(),
-      ...properties,
-    };
+  const trackPageView = useCallback(
+    (route, properties = {}) => {
+      const event = {
+        route,
+        tenantId,
+        plan,
+        userId,
+        timestamp: Date.now(),
+        ...properties,
+      };
 
-    // Use the analytics service
-    page(route, event);
+      // Use the analytics service
+      page(route, event);
 
-    // Also log in dev for debugging
-    if (import.meta.env.DEV) {
-      console.debug('[NavAnalytics] page.view:', event);
-    }
-  }, [tenantId, plan, userId]);
+      // Also log in dev for debugging
+      if (import.meta.env.DEV) {
+        console.debug('[NavAnalytics] page.view:', event);
+      }
+    },
+    [tenantId, plan, userId]
+  );
 
   // Auto-track page views on route change
   useEffect(() => {
     const currentPath = location.pathname;
-    
+
     // Only track if path actually changed
     if (currentPath !== previousPath.current) {
       previousPath.current = currentPath;
@@ -109,27 +115,33 @@ export function useNavAnalytics({ tenantId, plan, userId } = {}) {
 
 /**
  * Hook for tracking feature usage
- * 
+ *
  * @param {string} featureName - Name of the feature being used
  */
 export function useFeatureAnalytics(featureName) {
-  const trackUsage = useCallback((action, properties = {}) => {
-    track('feature_used', {
-      feature: featureName,
-      action,
-      timestamp: Date.now(),
-      ...properties,
-    });
-  }, [featureName]);
+  const trackUsage = useCallback(
+    (action, properties = {}) => {
+      track('feature_used', {
+        feature: featureName,
+        action,
+        timestamp: Date.now(),
+        ...properties,
+      });
+    },
+    [featureName]
+  );
 
-  const trackError = useCallback((error, properties = {}) => {
-    track('feature_error', {
-      feature: featureName,
-      error: error?.message || String(error),
-      timestamp: Date.now(),
-      ...properties,
-    });
-  }, [featureName]);
+  const trackError = useCallback(
+    (error, properties = {}) => {
+      track('feature_error', {
+        feature: featureName,
+        error: error?.message || String(error),
+        timestamp: Date.now(),
+        ...properties,
+      });
+    },
+    [featureName]
+  );
 
   return {
     trackUsage,
@@ -147,11 +159,7 @@ export function createTrackedNavLink(trackNavClick) {
       trackNavClick(item.id, section, item.path);
     };
 
-    return (
-      <div onClick={handleClick}>
-        {children}
-      </div>
-    );
+    return <div onClick={handleClick}>{children}</div>;
   };
 }
 

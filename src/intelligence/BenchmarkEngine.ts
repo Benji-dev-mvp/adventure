@@ -1,6 +1,6 @@
 /**
  * Benchmark Engine
- * 
+ *
  * Anonymized industry benchmarks that let organizations
  * compare performance without exposing sensitive data.
  */
@@ -231,8 +231,7 @@ export class BenchmarkEngine {
    * Get benchmarks by category
    */
   getBenchmarksByCategory(category: BenchmarkCategory): Benchmark[] {
-    return Array.from(this.benchmarks.values())
-      .filter(b => b.category === category);
+    return Array.from(this.benchmarks.values()).filter(b => b.category === category);
   }
 
   /**
@@ -321,7 +320,10 @@ export class BenchmarkEngine {
   /**
    * Calculate histogram buckets
    */
-  private calculateHistogram(values: number[], bucketCount: number): Array<{ bucket: string; count: number }> {
+  private calculateHistogram(
+    values: number[],
+    bucketCount: number
+  ): Array<{ bucket: string; count: number }> {
     if (values.length === 0) return [];
 
     const min = values[0];
@@ -329,7 +331,7 @@ export class BenchmarkEngine {
     const bucketSize = (max - min) / bucketCount;
 
     const buckets: Array<{ bucket: string; count: number }> = [];
-    
+
     for (let i = 0; i < bucketCount; i++) {
       const bucketMin = min + i * bucketSize;
       const bucketMax = bucketMin + bucketSize;
@@ -337,8 +339,7 @@ export class BenchmarkEngine {
         v => v >= bucketMin && (i === bucketCount - 1 ? v <= bucketMax : v < bucketMax)
       ).length;
 
-      const formatNum = (n: number) => 
-        n >= 1 ? n.toFixed(0) : (n * 100).toFixed(0) + '%';
+      const formatNum = (n: number) => (n >= 1 ? n.toFixed(0) : (n * 100).toFixed(0) + '%');
 
       buckets.push({
         bucket: `${formatNum(bucketMin)}-${formatNum(bucketMax)}`,
@@ -366,15 +367,12 @@ export class BenchmarkEngine {
 
     for (const metricDef of benchmark.metrics) {
       benchmarkMetrics[metricDef.name] = metricDef.distribution;
-      
+
       const yourValue = yourMetrics[metricDef.name];
       if (yourValue === undefined) continue;
 
       // Calculate percentile rank
-      const percentile = this.calculatePercentile(
-        yourValue,
-        metricDef.distribution
-      );
+      const percentile = this.calculatePercentile(yourValue, metricDef.distribution);
       percentileRanks[metricDef.name] = percentile;
 
       // Generate insight
@@ -389,11 +387,7 @@ export class BenchmarkEngine {
       // Generate recommendation if underperforming
       if (insight.type === 'underperforming') {
         recommendations.push(
-          this.generateRecommendation(
-            metricDef.name,
-            yourValue,
-            metricDef.distribution
-          )
+          this.generateRecommendation(metricDef.name, yourValue, metricDef.distribution)
         );
       }
     }
@@ -424,7 +418,7 @@ export class BenchmarkEngine {
     for (let i = 0; i < sortedPercentiles.length; i++) {
       if (value < sortedPercentiles[i].value) {
         if (i === 0) return sortedPercentiles[i].percentile / 2;
-        
+
         // Interpolate
         const prev = sortedPercentiles[i - 1];
         const curr = sortedPercentiles[i];
@@ -457,8 +451,7 @@ export class BenchmarkEngine {
       type = 'underperforming';
     }
 
-    const formatValue = (v: number) => 
-      v >= 1 ? v.toFixed(1) : (v * 100).toFixed(1) + '%';
+    const formatValue = (v: number) => (v >= 1 ? v.toFixed(1) : (v * 100).toFixed(1) + '%');
 
     const descriptions: Record<BenchmarkInsight['type'], string> = {
       outperforming: `Your ${metric} (${formatValue(yourValue)}) is in the top ${(100 - percentile).toFixed(0)}% - ${formatValue(Math.abs(gap))} above median`,
@@ -508,13 +501,10 @@ export class BenchmarkEngine {
   /**
    * Get industry-filtered benchmark
    */
-  getIndustryBenchmark(
-    benchmarkId: string,
-    industry: string
-  ): Benchmark | null {
+  getIndustryBenchmark(benchmarkId: string, industry: string): Benchmark | null {
     const benchmark = this.benchmarks.get(benchmarkId);
     const submissions = this.submissions.get(benchmarkId);
-    
+
     if (!benchmark || !submissions) return null;
 
     // Filter submissions by industry
@@ -606,9 +596,10 @@ export class BenchmarkEngine {
       totalBenchmarks: benchmarks.length,
       totalSubmissions: allSubmissions.length,
       categoryCoverage: categoryCoverage as Record<BenchmarkCategory, number>,
-      averageParticipants: benchmarks.length > 0
-        ? benchmarks.reduce((sum, b) => sum + b.participants, 0) / benchmarks.length
-        : 0,
+      averageParticipants:
+        benchmarks.length > 0
+          ? benchmarks.reduce((sum, b) => sum + b.participants, 0) / benchmarks.length
+          : 0,
     };
   }
 }

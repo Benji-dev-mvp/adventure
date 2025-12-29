@@ -1,9 +1,9 @@
 /**
  * UnifiedCTA.jsx
- * 
+ *
  * A streamlined, data-driven call-to-action component with
  * autonomous animations and interactive elements.
- * 
+ *
  * CTO Design Principles:
  * - Clear value proposition
  * - Social proof integrated
@@ -59,7 +59,7 @@ const QUICK_STATS = [
 // MAIN COMPONENT
 // ============================================================================
 
-const UnifiedCTA = ({ 
+const UnifiedCTA = ({
   variant = 'full', // 'full' | 'compact' | 'inline'
   headline = 'Ready to Transform Your Pipeline?',
   subheadline = 'Join 2,500+ revenue teams using Ava to book 3x more qualified meetings.',
@@ -91,17 +91,12 @@ const UnifiedCTA = ({
   // Compact variant
   if (variant === 'compact') {
     return (
-      <div 
+      <div
         ref={containerRef}
         className="py-12 px-4 lg:px-6 relative overflow-hidden bg-gradient-to-r from-purple-900/20 via-[#030712] to-cyan-900/20"
       >
         <div className="max-w-5xl mx-auto">
-          <GlassCard 
-            className="p-6 lg:p-8"
-            variant="gradient"
-            glow
-            glowColor="purple"
-          >
+          <GlassCard className="p-6 lg:p-8" variant="gradient" glow glowColor="purple">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
               <div className="text-center lg:text-left">
                 <h3 className="text-2xl font-bold text-white mb-2 font-space-grotesk">
@@ -109,11 +104,11 @@ const UnifiedCTA = ({
                 </h3>
                 <p className="text-gray-400">{subheadline}</p>
               </div>
-              
+
               <div className="flex items-center gap-4">
                 <Link to="/onboarding">
-                  <GlowButton 
-                    variant="primary" 
+                  <GlowButton
+                    variant="primary"
                     size="lg"
                     icon={<ArrowRight size={18} />}
                     iconPosition="right"
@@ -121,7 +116,10 @@ const UnifiedCTA = ({
                     Start Free Trial
                   </GlowButton>
                 </Link>
-                <a href="#demo" className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1">
+                <a
+                  href="#demo"
+                  className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1"
+                >
                   <Play size={14} />
                   Watch Demo
                 </a>
@@ -136,7 +134,7 @@ const UnifiedCTA = ({
   // Inline variant
   if (variant === 'inline') {
     return (
-      <div 
+      <div
         ref={containerRef}
         className="py-8 px-4 lg:px-6 border-y border-white/10 bg-white/[0.02]"
       >
@@ -155,37 +153,39 @@ const UnifiedCTA = ({
 
   // Full variant (default)
   return (
-    <section 
+    <section
       ref={containerRef}
-      id="unified-cta" 
+      id="unified-cta"
       className="py-20 lg:py-28 px-4 lg:px-6 relative overflow-hidden bg-[#030712]"
     >
       {/* Background */}
       <ParticleBackground variant="aurora" className="absolute inset-0 opacity-40" />
-      
+
       {/* Gradient orbs */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-purple-900/30 via-purple-900/10 to-transparent blur-3xl" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Main CTA Card */}
         <RevealText>
-          <div 
+          <div
             className="relative"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
             {/* Animated border */}
-            <div className={`absolute -inset-[1px] bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-30'}`} />
-            
-            <GlassCard 
-              variant="gradient" 
-              blur="2xl" 
+            <div
+              className={`absolute -inset-[1px] bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-30'}`}
+            />
+
+            <GlassCard
+              variant="gradient"
+              blur="2xl"
               radius="3xl"
               className="relative p-8 lg:p-12 xl:p-16 overflow-hidden"
             >
               {/* Floating particles */}
               <FloatingParticles count={15} color="mixed" />
-              
+
               <div className="relative z-10 text-center max-w-3xl mx-auto">
                 {/* Badge */}
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-purple-500/10 border border-white/10 mb-8">
@@ -203,9 +203,7 @@ const UnifiedCTA = ({
                 </h2>
 
                 {/* Subheadline */}
-                <p className="text-lg lg:text-xl text-gray-300 mb-10">
-                  {subheadline}
-                </p>
+                <p className="text-lg lg:text-xl text-gray-300 mb-10">{subheadline}</p>
 
                 {/* CTA Form */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
@@ -213,14 +211,14 @@ const UnifiedCTA = ({
                     <input
                       type="email"
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={e => setEmail(e.target.value)}
                       placeholder="Enter your work email"
                       className="w-full px-6 py-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 transition-all"
                     />
                   </div>
                   <Link to="/onboarding">
-                    <GlowButton 
-                      variant="primary" 
+                    <GlowButton
+                      variant="primary"
                       size="lg"
                       icon={<ArrowRight size={20} />}
                       iconPosition="right"
@@ -237,7 +235,7 @@ const UnifiedCTA = ({
                   {TRUST_SIGNALS.map((signal, index) => {
                     const Icon = signal.icon;
                     return (
-                      <div 
+                      <div
                         key={signal.label}
                         className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300"
                         style={{ animationDelay: `${index * 100}ms` }}
@@ -266,8 +264,8 @@ const UnifiedCTA = ({
               {QUICK_STATS.map((stat, index) => (
                 <div key={stat.label} className="text-center">
                   <div className="text-2xl lg:text-3xl font-bold text-white mb-1">
-                    <CountUpText 
-                      end={isVisible ? stat.value : 0} 
+                    <CountUpText
+                      end={isVisible ? stat.value : 0}
                       duration={1500}
                       delay={index * 200}
                       decimals={stat.value < 10 ? 1 : 0}
@@ -285,8 +283,8 @@ const UnifiedCTA = ({
         <RevealText delay={400}>
           <div className="mt-12 flex flex-col items-center">
             <div className="flex -space-x-2 mb-4">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <div 
+              {[1, 2, 3, 4, 5].map(i => (
+                <div
                   key={i}
                   className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 border-2 border-[#030712] flex items-center justify-center text-white text-xs font-bold"
                 >
@@ -297,15 +295,16 @@ const UnifiedCTA = ({
                 +2.5K
               </div>
             </div>
-            
+
             <div className="flex items-center gap-1 mb-2">
-              {[1, 2, 3, 4, 5].map((i) => (
+              {[1, 2, 3, 4, 5].map(i => (
                 <Star key={i} size={16} className="text-yellow-400 fill-yellow-400" />
               ))}
             </div>
-            
+
             <p className="text-sm text-gray-400">
-              Trusted by <span className="text-white font-medium">2,500+ revenue teams</span> worldwide
+              Trusted by <span className="text-white font-medium">2,500+ revenue teams</span>{' '}
+              worldwide
             </p>
           </div>
         </RevealText>
@@ -318,7 +317,7 @@ UnifiedCTA.propTypes = {
   variant: PropTypes.oneOf(['full', 'compact', 'inline']),
   headline: PropTypes.string,
   subheadline: PropTypes.string,
-  showStats: PropTypes.bool
+  showStats: PropTypes.bool,
 };
 
 export default UnifiedCTA;

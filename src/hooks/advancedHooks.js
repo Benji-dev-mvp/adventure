@@ -39,15 +39,18 @@ export function useLocalStorage(key, initialValue) {
     }
   });
 
-  const setValue = useCallback((value) => {
-    try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
-      setStoredValue(valueToStore);
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (error) {
-      console.error(`Error saving ${key} to localStorage:`, error);
-    }
-  }, [key, storedValue]);
+  const setValue = useCallback(
+    value => {
+      try {
+        const valueToStore = value instanceof Function ? value(storedValue) : value;
+        setStoredValue(valueToStore);
+        window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      } catch (error) {
+        console.error(`Error saving ${key} to localStorage:`, error);
+      }
+    },
+    [key, storedValue]
+  );
 
   return [storedValue, setValue];
 }
@@ -60,22 +63,25 @@ export function useAsync(asyncFunction, immediate = true) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
-  const execute = useCallback(async (...args) => {
-    setStatus('pending');
-    setData(null);
-    setError(null);
+  const execute = useCallback(
+    async (...args) => {
+      setStatus('pending');
+      setData(null);
+      setError(null);
 
-    try {
-      const response = await asyncFunction(...args);
-      setData(response);
-      setStatus('success');
-      return response;
-    } catch (error) {
-      setError(error);
-      setStatus('error');
-      throw error;
-    }
-  }, [asyncFunction]);
+      try {
+        const response = await asyncFunction(...args);
+        setData(response);
+        setStatus('success');
+        return response;
+      } catch (error) {
+        setError(error);
+        setStatus('error');
+        throw error;
+      }
+    },
+    [asyncFunction]
+  );
 
   useEffect(() => {
     if (immediate) {
@@ -140,7 +146,7 @@ export function useMediaQuery(query) {
  */
 export function useOnClickOutside(ref, handler) {
   useEffect(() => {
-    const listener = (event) => {
+    const listener = event => {
       if (!ref.current || ref.current.contains(event.target)) {
         return;
       }
@@ -229,10 +235,10 @@ export function useInfiniteScroll(callback, hasMore) {
   useEffect(() => {
     const handleScroll = () => {
       if (
-        window.innerHeight + document.documentElement.scrollTop
-        !== document.documentElement.offsetHeight
-        || isFetching
-        || !hasMore
+        window.innerHeight + document.documentElement.scrollTop !==
+          document.documentElement.offsetHeight ||
+        isFetching ||
+        !hasMore
       ) {
         return;
       }
@@ -260,7 +266,7 @@ export function useInfiniteScroll(callback, hasMore) {
 export function useClipboard() {
   const [copied, setCopied] = useState(false);
 
-  const copy = useCallback(async (text) => {
+  const copy = useCallback(async text => {
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
@@ -287,13 +293,16 @@ export function useUndoRedo(initialState) {
   const canUndo = historyIndex > 0;
   const canRedo = historyIndex < history.length - 1;
 
-  const updateState = useCallback((newState) => {
-    const newHistory = history.slice(0, historyIndex + 1);
-    newHistory.push(newState);
-    setHistory(newHistory);
-    setHistoryIndex(newHistory.length - 1);
-    setState(newState);
-  }, [history, historyIndex]);
+  const updateState = useCallback(
+    newState => {
+      const newHistory = history.slice(0, historyIndex + 1);
+      newHistory.push(newState);
+      setHistory(newHistory);
+      setHistoryIndex(newHistory.length - 1);
+      setState(newState);
+    },
+    [history, historyIndex]
+  );
 
   const undo = useCallback(() => {
     if (canUndo) {
@@ -325,7 +334,7 @@ export function useUndoRedo(initialState) {
     canUndo,
     canRedo,
     reset,
-    history
+    history,
   };
 }
 

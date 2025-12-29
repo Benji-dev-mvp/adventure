@@ -57,7 +57,7 @@ export function useLeadStats() {
 
 export function useCreateLead() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: api.createLead,
     onSuccess: () => {
@@ -70,20 +70,18 @@ export function useCreateLead() {
 
 export function useUpdateLead() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: ({ id, data }) => api.updateLead(id, data),
-    ...createOptimisticUpdate(
-      queryKeys.leads.all,
-      (oldLeads, { id, data }) => 
-        oldLeads?.map(lead => lead.id === id ? { ...lead, ...data } : lead)
+    ...createOptimisticUpdate(queryKeys.leads.all, (oldLeads, { id, data }) =>
+      oldLeads?.map(lead => (lead.id === id ? { ...lead, ...data } : lead))
     ),
   });
 }
 
 export function useDeleteLead() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: api.deleteLead,
     onSuccess: () => {
@@ -122,7 +120,7 @@ export function useCampaignStats() {
 
 export function useCreateCampaign() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: api.createCampaign,
     onSuccess: () => {
@@ -134,7 +132,7 @@ export function useCreateCampaign() {
 
 export function useUpdateCampaign() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: ({ id, data }) => api.updateCampaign(id, data),
     onSuccess: (_, { id }) => {
@@ -158,7 +156,7 @@ export function useTemplates(type = 'all') {
 
 export function useCreateTemplate() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: api.createTemplate,
     onSuccess: () => {
@@ -210,7 +208,7 @@ export function useUserPreferences() {
 
 export function useUpdatePreferences() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: api.updateUserPreferences,
     onSuccess: () => {
@@ -225,7 +223,7 @@ export function useUpdatePreferences() {
 
 export function usePrefetchDashboard() {
   const queryClient = useQueryClient();
-  
+
   return () => {
     queryClient.prefetchQuery({
       queryKey: queryKeys.dashboard.stats(),
@@ -240,7 +238,7 @@ export function usePrefetchDashboard() {
 
 export function usePrefetchLeads() {
   const queryClient = useQueryClient();
-  
+
   return () => {
     queryClient.prefetchQuery({
       queryKey: queryKeys.leads.list({}),
@@ -255,19 +253,19 @@ export function usePrefetchLeads() {
 
 export function useEnrichEmail() {
   return useMutation({
-    mutationFn: (email) => api.enrichEmail(email),
+    mutationFn: email => api.enrichEmail(email),
   });
 }
 
 export function useEnrichBulk() {
   return useMutation({
-    mutationFn: (emails) => api.enrichBulk(emails),
+    mutationFn: emails => api.enrichBulk(emails),
   });
 }
 
 export function useEnrichCompany() {
   return useMutation({
-    mutationFn: (domain) => api.enrichCompany(domain),
+    mutationFn: domain => api.enrichCompany(domain),
   });
 }
 
@@ -301,7 +299,7 @@ export function useSequence(id) {
 
 export function useCreateSequence() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: api.createSequence,
     onSuccess: () => {
@@ -312,7 +310,7 @@ export function useCreateSequence() {
 
 export function useUpdateSequence() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: ({ id, data }) => api.updateSequence(id, data),
     onSuccess: (_, { id }) => {
@@ -324,7 +322,7 @@ export function useUpdateSequence() {
 
 export function useEnrollLead() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: ({ sequenceId, leadData }) => api.enrollLead(sequenceId, leadData),
     onSuccess: (_, { sequenceId }) => {
@@ -348,13 +346,12 @@ export function useSequenceStats(id) {
 
 export function useGenerateEmail() {
   return useMutation({
-    mutationFn: (params) => api.generateEmail(params),
+    mutationFn: params => api.generateEmail(params),
   });
 }
 
 export function useAiChat() {
   return useMutation({
-    mutationFn: (message) => api.aiChat(message),
+    mutationFn: message => api.aiChat(message),
   });
 }
-

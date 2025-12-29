@@ -5,7 +5,6 @@ import os
 import shutil
 import subprocess
 from datetime import datetime, timedelta
-from typing import Optional
 
 import boto3
 from botocore.exceptions import ClientError

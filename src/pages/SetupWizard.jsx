@@ -46,13 +46,18 @@ const CRM_OPTIONS = [
 ];
 
 const ICP_INDUSTRIES = [
-  'Technology', 'Healthcare', 'Finance', 'Manufacturing', 'Retail', 
-  'Education', 'Real Estate', 'Professional Services', 'Other'
+  'Technology',
+  'Healthcare',
+  'Finance',
+  'Manufacturing',
+  'Retail',
+  'Education',
+  'Real Estate',
+  'Professional Services',
+  'Other',
 ];
 
-const ICP_SIZES = [
-  '1-10', '11-50', '51-200', '201-500', '501-1000', '1000+'
-];
+const ICP_SIZES = ['1-10', '11-50', '51-200', '201-500', '501-1000', '1000+'];
 
 const SOLUTION_OPTIONS = [
   {
@@ -75,7 +80,13 @@ const SOLUTION_OPTIONS = [
     id: 'enterprise',
     name: 'Enterprise',
     description: 'Full platform for large sales organizations',
-    features: ['AI-powered everything', 'Custom integrations', 'Advanced analytics', 'Dedicated support', 'Custom playbooks'],
+    features: [
+      'AI-powered everything',
+      'Custom integrations',
+      'Advanced analytics',
+      'Dedicated support',
+      'Custom playbooks',
+    ],
     icon: Sparkles,
     color: 'from-purple-500 to-pink-500',
     recommended: true,
@@ -83,10 +94,30 @@ const SOLUTION_OPTIONS = [
 ];
 
 const PLAYBOOK_OPTIONS = [
-  { id: 'outbound-startup', name: 'Outbound for Startups', description: 'Quick, scrappy outreach for early-stage', channels: ['email', 'linkedin'] },
-  { id: 'enterprise-sale', name: 'Enterprise Sales Motion', description: 'Multi-touch, high-value approach', channels: ['email', 'linkedin', 'call'] },
-  { id: 'reactivate', name: 'Re-activate Stale Pipeline', description: 'Win back cold leads', channels: ['email'] },
-  { id: 'inbound-followup', name: 'Inbound Lead Follow-up', description: 'Strike while the iron is hot', channels: ['email', 'call'] },
+  {
+    id: 'outbound-startup',
+    name: 'Outbound for Startups',
+    description: 'Quick, scrappy outreach for early-stage',
+    channels: ['email', 'linkedin'],
+  },
+  {
+    id: 'enterprise-sale',
+    name: 'Enterprise Sales Motion',
+    description: 'Multi-touch, high-value approach',
+    channels: ['email', 'linkedin', 'call'],
+  },
+  {
+    id: 'reactivate',
+    name: 'Re-activate Stale Pipeline',
+    description: 'Win back cold leads',
+    channels: ['email'],
+  },
+  {
+    id: 'inbound-followup',
+    name: 'Inbound Lead Follow-up',
+    description: 'Strike while the iron is hot',
+    channels: ['email', 'call'],
+  },
 ];
 
 const StepIndicator = ({ steps, currentStep, completedSteps }) => (
@@ -94,34 +125,40 @@ const StepIndicator = ({ steps, currentStep, completedSteps }) => (
     {steps.map((step, index) => (
       <React.Fragment key={step.id}>
         <div className="flex items-center gap-2">
-          <div className={cn(
-            "w-10 h-10 rounded-full flex items-center justify-center transition-all",
-            completedSteps.includes(step.id)
-              ? "bg-green-500 text-white"
-              : currentStep === step.id
-              ? "bg-accent-500 text-white shadow-lg shadow-accent-500/30"
-              : "bg-gray-200 dark:bg-white/10 text-gray-400"
-          )}>
+          <div
+            className={cn(
+              'w-10 h-10 rounded-full flex items-center justify-center transition-all',
+              completedSteps.includes(step.id)
+                ? 'bg-green-500 text-white'
+                : currentStep === step.id
+                  ? 'bg-accent-500 text-white shadow-lg shadow-accent-500/30'
+                  : 'bg-gray-200 dark:bg-white/10 text-gray-400'
+            )}
+          >
             {completedSteps.includes(step.id) ? (
               <Check className="h-5 w-5" />
             ) : (
               <step.icon className="h-5 w-5" />
             )}
           </div>
-          <span className={cn(
-            "text-sm font-medium hidden md:block",
-            currentStep === step.id
-              ? "text-gray-900 dark:text-white"
-              : "text-gray-500 dark:text-gray-400"
-          )}>
+          <span
+            className={cn(
+              'text-sm font-medium hidden md:block',
+              currentStep === step.id
+                ? 'text-gray-900 dark:text-white'
+                : 'text-gray-500 dark:text-gray-400'
+            )}
+          >
             {step.title}
           </span>
         </div>
         {index < steps.length - 1 && (
-          <div className={cn(
-            "w-12 h-0.5",
-            completedSteps.includes(step.id) ? "bg-green-500" : "bg-gray-200 dark:bg-white/10"
-          )} />
+          <div
+            className={cn(
+              'w-12 h-0.5',
+              completedSteps.includes(step.id) ? 'bg-green-500' : 'bg-gray-200 dark:bg-white/10'
+            )}
+          />
         )}
       </React.Fragment>
     ))}
@@ -143,19 +180,21 @@ const Step1CRM = ({ selectedCRM, onSelect }) => (
     </div>
 
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-      {CRM_OPTIONS.map((crm) => (
+      {CRM_OPTIONS.map(crm => (
         <button
           key={crm.id}
           onClick={() => onSelect(crm.id)}
           className={cn(
-            "relative p-6 rounded-xl border-2 transition-all text-center",
+            'relative p-6 rounded-xl border-2 transition-all text-center',
             selectedCRM === crm.id
-              ? "border-accent-500 bg-accent-500/10 shadow-lg"
-              : "border-gray-200 dark:border-white/10 hover:border-accent-500/50"
+              ? 'border-accent-500 bg-accent-500/10 shadow-lg'
+              : 'border-gray-200 dark:border-white/10 hover:border-accent-500/50'
           )}
         >
           {crm.popular && (
-            <Badge variant="primary" size="sm" className="absolute -top-2 -right-2">Popular</Badge>
+            <Badge variant="primary" size="sm" className="absolute -top-2 -right-2">
+              Popular
+            </Badge>
           )}
           <div className="text-4xl mb-3">{crm.logo}</div>
           <p className="font-medium text-gray-900 dark:text-white">{crm.name}</p>
@@ -176,10 +215,10 @@ const Step2ICP = ({ icpData, onUpdate }) => (
     className="max-w-2xl mx-auto"
   >
     <div className="text-center mb-8">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Define Your Ideal Customer</h2>
-      <p className="text-gray-500 dark:text-gray-400">
-        Help Ava understand who you're targeting
-      </p>
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+        Define Your Ideal Customer
+      </h2>
+      <p className="text-gray-500 dark:text-gray-400">Help Ava understand who you're targeting</p>
     </div>
 
     <div className="space-y-6">
@@ -189,7 +228,7 @@ const Step2ICP = ({ icpData, onUpdate }) => (
           Target Industries
         </label>
         <div className="flex flex-wrap gap-2">
-          {ICP_INDUSTRIES.map((industry) => (
+          {ICP_INDUSTRIES.map(industry => (
             <button
               key={industry}
               onClick={() => {
@@ -200,10 +239,10 @@ const Step2ICP = ({ icpData, onUpdate }) => (
                 onUpdate({ ...icpData, industries: updated });
               }}
               className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-all",
+                'px-4 py-2 rounded-full text-sm font-medium transition-all',
                 (icpData.industries || []).includes(industry)
-                  ? "bg-accent-500 text-white"
-                  : "bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/20"
+                  ? 'bg-accent-500 text-white'
+                  : 'bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/20'
               )}
             >
               {industry}
@@ -218,7 +257,7 @@ const Step2ICP = ({ icpData, onUpdate }) => (
           Company Size (Employees)
         </label>
         <div className="flex flex-wrap gap-2">
-          {ICP_SIZES.map((size) => (
+          {ICP_SIZES.map(size => (
             <button
               key={size}
               onClick={() => {
@@ -229,10 +268,10 @@ const Step2ICP = ({ icpData, onUpdate }) => (
                 onUpdate({ ...icpData, sizes: updated });
               }}
               className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-all",
+                'px-4 py-2 rounded-full text-sm font-medium transition-all',
                 (icpData.sizes || []).includes(size)
-                  ? "bg-accent-500 text-white"
-                  : "bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/20"
+                  ? 'bg-accent-500 text-white'
+                  : 'bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/20'
               )}
             >
               {size}
@@ -250,7 +289,7 @@ const Step2ICP = ({ icpData, onUpdate }) => (
           type="text"
           placeholder="e.g., VP Sales, CRO, Head of Growth"
           value={icpData.titles || ''}
-          onChange={(e) => onUpdate({ ...icpData, titles: e.target.value })}
+          onChange={e => onUpdate({ ...icpData, titles: e.target.value })}
           className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-500"
         />
       </div>
@@ -266,22 +305,22 @@ const Step3Solution = ({ selectedSolution, onSelect }) => (
     className="max-w-4xl mx-auto"
   >
     <div className="text-center mb-8">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Choose Your Solution</h2>
-      <p className="text-gray-500 dark:text-gray-400">
-        Select the plan that best fits your team
-      </p>
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+        Choose Your Solution
+      </h2>
+      <p className="text-gray-500 dark:text-gray-400">Select the plan that best fits your team</p>
     </div>
 
     <div className="grid md:grid-cols-3 gap-6">
-      {SOLUTION_OPTIONS.map((solution) => (
+      {SOLUTION_OPTIONS.map(solution => (
         <button
           key={solution.id}
           onClick={() => onSelect(solution.id)}
           className={cn(
-            "relative p-6 rounded-2xl border-2 text-left transition-all",
+            'relative p-6 rounded-2xl border-2 text-left transition-all',
             selectedSolution === solution.id
-              ? "border-accent-500 shadow-xl"
-              : "border-gray-200 dark:border-white/10 hover:border-accent-500/50"
+              ? 'border-accent-500 shadow-xl'
+              : 'border-gray-200 dark:border-white/10 hover:border-accent-500/50'
           )}
         >
           {solution.recommended && (
@@ -289,26 +328,31 @@ const Step3Solution = ({ selectedSolution, onSelect }) => (
               Recommended
             </Badge>
           )}
-          
-          <div className={cn(
-            "w-14 h-14 rounded-xl flex items-center justify-center text-white mb-4 bg-gradient-to-br",
-            solution.color
-          )}>
+
+          <div
+            className={cn(
+              'w-14 h-14 rounded-xl flex items-center justify-center text-white mb-4 bg-gradient-to-br',
+              solution.color
+            )}
+          >
             <solution.icon className="h-7 w-7" />
           </div>
-          
+
           <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{solution.name}</h3>
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{solution.description}</p>
-          
+
           <ul className="space-y-2">
             {solution.features.map((feature, i) => (
-              <li key={i} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+              <li
+                key={i}
+                className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
+              >
                 <Check className="h-4 w-4 text-green-500" />
                 {feature}
               </li>
             ))}
           </ul>
-          
+
           {selectedSolution === solution.id && (
             <div className="absolute inset-0 rounded-2xl ring-2 ring-accent-500" />
           )}
@@ -329,42 +373,48 @@ const Step4Ava = ({ selectedPlaybooks, onToggle }) => (
       <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl mx-auto mb-4 flex items-center justify-center shadow-lg shadow-purple-500/30">
         <Bot className="h-10 w-10 text-white" />
       </div>
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Meet Ava, Your AI SDR</h2>
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+        Meet Ava, Your AI SDR
+      </h2>
       <p className="text-gray-500 dark:text-gray-400">
         Select playbooks for Ava to run automatically
       </p>
     </div>
 
     <div className="space-y-4">
-      {PLAYBOOK_OPTIONS.map((playbook) => (
+      {PLAYBOOK_OPTIONS.map(playbook => (
         <button
           key={playbook.id}
           onClick={() => onToggle(playbook.id)}
           className={cn(
-            "w-full p-4 rounded-xl border-2 text-left transition-all flex items-start gap-4",
+            'w-full p-4 rounded-xl border-2 text-left transition-all flex items-start gap-4',
             selectedPlaybooks.includes(playbook.id)
-              ? "border-accent-500 bg-accent-500/10"
-              : "border-gray-200 dark:border-white/10 hover:border-accent-500/50"
+              ? 'border-accent-500 bg-accent-500/10'
+              : 'border-gray-200 dark:border-white/10 hover:border-accent-500/50'
           )}
         >
-          <div className={cn(
-            "w-10 h-10 rounded-lg flex items-center justify-center shrink-0",
-            selectedPlaybooks.includes(playbook.id)
-              ? "bg-accent-500 text-white"
-              : "bg-gray-100 dark:bg-white/10 text-gray-400"
-          )}>
+          <div
+            className={cn(
+              'w-10 h-10 rounded-lg flex items-center justify-center shrink-0',
+              selectedPlaybooks.includes(playbook.id)
+                ? 'bg-accent-500 text-white'
+                : 'bg-gray-100 dark:bg-white/10 text-gray-400'
+            )}
+          >
             {selectedPlaybooks.includes(playbook.id) ? (
               <CheckCircle2 className="h-5 w-5" />
             ) : (
               <Circle className="h-5 w-5" />
             )}
           </div>
-          
+
           <div className="flex-1">
             <p className="font-medium text-gray-900 dark:text-white">{playbook.name}</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{playbook.description}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+              {playbook.description}
+            </p>
             <div className="flex gap-2 mt-2">
-              {playbook.channels.map((channel) => (
+              {playbook.channels.map(channel => (
                 <Badge key={channel} variant="secondary" size="sm">
                   {channel === 'email' && <Mail className="h-3 w-3 mr-1" />}
                   {channel === 'linkedin' && <Linkedin className="h-3 w-3 mr-1" />}
@@ -384,7 +434,7 @@ const SetupWizard = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState([]);
-  
+
   // Form state
   const [selectedCRM, setSelectedCRM] = useState(null);
   const [icpData, setICPData] = useState({ industries: [], sizes: [], titles: '' });
@@ -399,11 +449,16 @@ const SetupWizard = () => {
 
   const canProceed = () => {
     switch (currentStep) {
-      case 1: return selectedCRM !== null;
-      case 2: return (icpData.industries?.length > 0 || icpData.sizes?.length > 0);
-      case 3: return selectedSolution !== null;
-      case 4: return true; // Playbooks are optional
-      default: return false;
+      case 1:
+        return selectedCRM !== null;
+      case 2:
+        return icpData.industries?.length > 0 || icpData.sizes?.length > 0;
+      case 3:
+        return selectedSolution !== null;
+      case 4:
+        return true; // Playbooks are optional
+      default:
+        return false;
     }
   };
 
@@ -411,7 +466,7 @@ const SetupWizard = () => {
     if (!completedSteps.includes(currentStep)) {
       setCompletedSteps([...completedSteps, currentStep]);
     }
-    
+
     if (currentStep < STEPS.length) {
       setCurrentStep(currentStep + 1);
     }
@@ -426,21 +481,22 @@ const SetupWizard = () => {
   const handleComplete = () => {
     // Save setup data
     localStorage.setItem(STORAGE_KEY, 'true');
-    localStorage.setItem('artisan_setup_data', JSON.stringify({
-      crm: selectedCRM,
-      icp: icpData,
-      solution: selectedSolution,
-      playbooks: selectedPlaybooks,
-    }));
-    
+    localStorage.setItem(
+      'artisan_setup_data',
+      JSON.stringify({
+        crm: selectedCRM,
+        icp: icpData,
+        solution: selectedSolution,
+        playbooks: selectedPlaybooks,
+      })
+    );
+
     // Navigate to dashboard
     navigate('/dashboard');
   };
 
-  const togglePlaybook = (id) => {
-    setSelectedPlaybooks(prev =>
-      prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id]
-    );
+  const togglePlaybook = id => {
+    setSelectedPlaybooks(prev => (prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id]));
   };
 
   return (
@@ -470,19 +526,9 @@ const SetupWizard = () => {
       <div className="flex-1 flex items-center justify-center p-6">
         <AnimatePresence mode="wait">
           {currentStep === 1 && (
-            <Step1CRM
-              key="step1"
-              selectedCRM={selectedCRM}
-              onSelect={setSelectedCRM}
-            />
+            <Step1CRM key="step1" selectedCRM={selectedCRM} onSelect={setSelectedCRM} />
           )}
-          {currentStep === 2 && (
-            <Step2ICP
-              key="step2"
-              icpData={icpData}
-              onUpdate={setICPData}
-            />
-          )}
+          {currentStep === 2 && <Step2ICP key="step2" icpData={icpData} onUpdate={setICPData} />}
           {currentStep === 3 && (
             <Step3Solution
               key="step3"
@@ -491,11 +537,7 @@ const SetupWizard = () => {
             />
           )}
           {currentStep === 4 && (
-            <Step4Ava
-              key="step4"
-              selectedPlaybooks={selectedPlaybooks}
-              onToggle={togglePlaybook}
-            />
+            <Step4Ava key="step4" selectedPlaybooks={selectedPlaybooks} onToggle={togglePlaybook} />
           )}
         </AnimatePresence>
       </div>
@@ -503,24 +545,17 @@ const SetupWizard = () => {
       {/* Footer */}
       <footer className="p-6 border-t border-gray-200 dark:border-white/10">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <Button
-            variant="ghost"
-            onClick={handleBack}
-            disabled={currentStep === 1}
-          >
+          <Button variant="ghost" onClick={handleBack} disabled={currentStep === 1}>
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back
           </Button>
-          
+
           <div className="text-sm text-gray-500 dark:text-gray-400">
             Step {currentStep} of {STEPS.length}
           </div>
-          
+
           {currentStep < STEPS.length ? (
-            <Button
-              onClick={handleNext}
-              disabled={!canProceed()}
-            >
+            <Button onClick={handleNext} disabled={!canProceed()}>
               Continue
               <ArrowRight className="h-4 w-4 ml-2" />
             </Button>

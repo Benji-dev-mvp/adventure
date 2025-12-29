@@ -5,10 +5,10 @@ Enhanced database models with proper indexing, constraints, and relationships
 import re
 from datetime import datetime
 from enum import Enum
-from typing import List, Optional
+from typing import Optional
 
-from pydantic import EmailStr, constr, validator
-from sqlmodel import TEXT, Column, Field, Index, Relationship, SQLModel
+from pydantic import EmailStr, validator
+from sqlmodel import TEXT, Column, Field, Index, SQLModel
 
 
 class CampaignStatus(str, Enum):

@@ -13,7 +13,7 @@ const reportWebVitals = onPerfEntry => {
 // Enhanced performance tracking
 export const trackPerformance = () => {
   // Track Web Vitals
-  reportWebVitals((metric) => {
+  reportWebVitals(metric => {
     // Send to analytics
     if (window.gtag) {
       window.gtag('event', metric.name, {
@@ -23,7 +23,7 @@ export const trackPerformance = () => {
         non_interaction: true,
       });
     }
-    
+
     // Log in development
     if (process.env.NODE_ENV === 'development') {
       console.log(`[Performance] ${metric.name}:`, metric.value, metric);
@@ -33,7 +33,7 @@ export const trackPerformance = () => {
   // Track long tasks
   if ('PerformanceObserver' in window) {
     try {
-      const observer = new PerformanceObserver((list) => {
+      const observer = new PerformanceObserver(list => {
         for (const entry of list.getEntries()) {
           if (entry.duration > 50) {
             console.warn('[Performance] Long task detected:', entry.duration, 'ms');
@@ -65,7 +65,7 @@ export const trackPerformance = () => {
           dom: timing.domComplete - timing.domLoading,
           load: timing.loadEventEnd - timing.navigationStart,
         };
-        
+
         console.log('[Performance] Navigation timing:', metrics);
       }, 0);
     });

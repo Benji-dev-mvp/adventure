@@ -31,7 +31,7 @@ export const apiClient = ky.create({
   },
   hooks: {
     beforeRequest: [
-      (request) => {
+      request => {
         // Add auth token to requests
         const token = useUserStore.getState().token;
         if (token) {
@@ -56,15 +56,19 @@ export const apiClient = ky.create({
       },
     ],
     beforeError: [
-      async (error) => {
+      async error => {
         const { response } = error;
         if (response) {
           try {
-            const body = await response.json() as { message?: string; code?: string; details?: unknown };
+            const body = (await response.json()) as {
+              message?: string;
+              code?: string;
+              details?: unknown;
+            };
             error.message = body.message || error.message;
             // Attach additional error info
-          (error as unknown as ApiError).code = body.code;
-          (error as unknown as ApiError).details = body.details;
+            (error as unknown as ApiError).code = body.code;
+            (error as unknown as ApiError).details = body.details;
           } catch {
             // Response is not JSON, use default message
           }
@@ -80,8 +84,7 @@ export const api = {
   /**
    * GET request
    */
-  get: <T>(url: string, options?: Options): Promise<T> =>
-    apiClient.get(url, options).json<T>(),
+  get: <T>(url: string, options?: Options): Promise<T> => apiClient.get(url, options).json<T>(),
 
   /**
    * POST request with JSON body
@@ -116,14 +119,12 @@ export const api = {
   /**
    * Download file as blob
    */
-  download: (url: string, options?: Options): Promise<Blob> =>
-    apiClient.get(url, options).blob(),
+  download: (url: string, options?: Options): Promise<Blob> => apiClient.get(url, options).blob(),
 
   /**
    * Stream response (for SSE or streaming APIs)
    */
-  stream: (url: string, options?: Options): Promise<KyResponse> =>
-    apiClient.get(url, options),
+  stream: (url: string, options?: Options): Promise<KyResponse> => apiClient.get(url, options),
 };
 
 // Convenience functions for common patterns

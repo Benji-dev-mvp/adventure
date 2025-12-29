@@ -1,6 +1,6 @@
 /**
  * Multi-Agent Autonomy System - Type Definitions
- * 
+ *
  * Defines the agent architecture, communication protocols,
  * task marketplace, and orchestration primitives.
  */
@@ -22,7 +22,7 @@ export interface Agent {
   config: AgentConfig;
   createdAt: Date;
   lastActive: Date;
-  
+
   // Methods required for orchestration
   generateBid(task: Task): TaskBid | null;
   canHandle(task: Task): boolean;
@@ -30,13 +30,7 @@ export interface Agent {
   receive(message: AgentMessage): void;
 }
 
-export type AgentStatus = 
-  | 'idle'
-  | 'working'
-  | 'waiting'
-  | 'blocked'
-  | 'learning'
-  | 'offline';
+export type AgentStatus = 'idle' | 'working' | 'waiting' | 'blocked' | 'learning' | 'offline';
 
 export interface Capability {
   id: string;

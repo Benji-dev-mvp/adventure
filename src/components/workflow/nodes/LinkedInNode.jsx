@@ -26,7 +26,7 @@ export const LinkedInNode = ({ data, selected }) => {
             <input
               type="checkbox"
               checked={connectionRequest}
-              onChange={(e) => {
+              onChange={e => {
                 setConnectionRequest(e.target.checked);
                 data.onChange?.({ connectionRequest: e.target.checked });
               }}
@@ -43,7 +43,7 @@ export const LinkedInNode = ({ data, selected }) => {
           </label>
           <textarea
             value={messagePreview}
-            onChange={(e) => {
+            onChange={e => {
               setMessagePreview(e.target.value);
               data.onChange?.({ content: e.target.value });
             }}

@@ -23,19 +23,23 @@ const Header = ({ title, subtitle, onOpenCommandPalette }) => {
           <div className="flex items-center gap-4">
             {/* Workspace Switcher */}
             <WorkspaceSwitcher />
-            
+
             <div className="h-6 w-px bg-gray-200 dark:bg-white/10" />
-            
+
             <div>
-              {title && <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{title}</h1>}
-              {subtitle && <p className="text-sm text-gray-500 dark:text-gray-300 mt-1">{subtitle}</p>}
+              {title && (
+                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{title}</h1>
+              )}
+              {subtitle && (
+                <p className="text-sm text-gray-500 dark:text-gray-300 mt-1">{subtitle}</p>
+              )}
             </div>
           </div>
 
           <div className="flex items-center gap-3">
             {/* What's New Badge */}
             <WhatsNewBadge onClick={() => navigate('/changelog')} />
-            
+
             {/* Command Palette Trigger */}
             <button
               onClick={onOpenCommandPalette}
@@ -52,16 +56,13 @@ const Header = ({ title, subtitle, onOpenCommandPalette }) => {
             <div className="h-6 w-px bg-gray-200 dark:bg-white/10" />
 
             {/* Task Trigger */}
-            <TaskTrigger 
-              onClick={() => setIsTaskSidebarOpen(true)} 
-              count={incompleteTasks} 
-            />
+            <TaskTrigger onClick={() => setIsTaskSidebarOpen(true)} count={incompleteTasks} />
 
             {/* Notification Bell */}
             <NotificationBell />
 
             {/* Theme Toggle */}
-            <button 
+            <button
               onClick={toggleTheme}
               className="p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-xl transition-colors"
               aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
@@ -75,7 +76,10 @@ const Header = ({ title, subtitle, onOpenCommandPalette }) => {
             </button>
 
             {/* User Profile */}
-            <button className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-xl transition-colors" aria-label="User profile">
+            <button
+              className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-xl transition-colors"
+              aria-label="User profile"
+            >
               <div className="w-8 h-8 bg-gradient-to-br from-accent-500 to-primary-500 rounded-full flex items-center justify-center">
                 <User size={18} className="text-white" />
               </div>
@@ -85,10 +89,7 @@ const Header = ({ title, subtitle, onOpenCommandPalette }) => {
       </header>
 
       {/* Task Sidebar */}
-      <TaskSidebar 
-        isOpen={isTaskSidebarOpen} 
-        onClose={() => setIsTaskSidebarOpen(false)} 
-      />
+      <TaskSidebar isOpen={isTaskSidebarOpen} onClose={() => setIsTaskSidebarOpen(false)} />
     </>
   );
 };

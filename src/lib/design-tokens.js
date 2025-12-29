@@ -15,7 +15,7 @@ export const colors = {
     600: '#1e293b',
     500: '#334155',
   },
-  
+
   // Accent colors - neon/cyber
   neon: {
     cyan: '#00f5ff',
@@ -24,7 +24,7 @@ export const colors = {
     blue: '#3b82f6',
     green: '#10b981',
   },
-  
+
   // Gradient definitions
   gradients: {
     aurora: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
@@ -34,7 +34,7 @@ export const colors = {
     midnight: 'linear-gradient(135deg, #0a0f1a 0%, #1e293b 50%, #334155 100%)',
     glow: 'radial-gradient(ellipse at center, rgba(0, 245, 255, 0.15) 0%, transparent 70%)',
   },
-  
+
   // Glass/overlay colors
   glass: {
     white: 'rgba(255, 255, 255, 0.05)',
@@ -50,15 +50,15 @@ export const colors = {
 // SPACING TOKENS
 // ============================================
 export const spacing = {
-  xs: '0.25rem',   // 4px
-  sm: '0.5rem',    // 8px
-  md: '1rem',      // 16px
-  lg: '1.5rem',    // 24px
-  xl: '2rem',      // 32px
-  '2xl': '3rem',   // 48px
-  '3xl': '4rem',   // 64px
-  '4xl': '6rem',   // 96px
-  '5xl': '8rem',   // 128px
+  xs: '0.25rem', // 4px
+  sm: '0.5rem', // 8px
+  md: '1rem', // 16px
+  lg: '1.5rem', // 24px
+  xl: '2rem', // 32px
+  '2xl': '3rem', // 48px
+  '3xl': '4rem', // 64px
+  '4xl': '6rem', // 96px
+  '5xl': '8rem', // 128px
 };
 
 // ============================================
@@ -245,7 +245,7 @@ export const presets = {
     border: `${effects.borders.thin} solid ${colors.glass.border}`,
     borderRadius: effects.radius.xl,
   },
-  
+
   // Glow button preset
   glowButton: {
     background: colors.gradients.cyber,
@@ -253,7 +253,7 @@ export const presets = {
     borderRadius: effects.radius.full,
     transition: `all ${animation.durations.normal} ${animation.easings.easeOut}`,
   },
-  
+
   // Neon text preset
   neonText: {
     color: colors.neon.cyan,

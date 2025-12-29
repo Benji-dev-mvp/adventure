@@ -2,10 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '../../components/layout/DashboardLayout';
 import { GlassCard, GlassCardContent, GradientText } from '../../components/futuristic';
-import { 
-  Hexagon, Filter, Clock, Eye, EyeOff,
-  ChevronDown, Sparkles 
-} from 'lucide-react';
+import { Hexagon, Filter, Clock, Eye, EyeOff, ChevronDown, Sparkles } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 import { Select } from '../../components/ui/Select';
 
@@ -28,11 +25,11 @@ export function LeadHivePage() {
     topClusters,
   } = useLeadHive();
 
-  const handleSegmentChange = (value) => {
+  const handleSegmentChange = value => {
     setFilters(prev => ({ ...prev, segment: value }));
   };
 
-  const handleTimeHorizonChange = (value) => {
+  const handleTimeHorizonChange = value => {
     setFilters(prev => ({ ...prev, timeHorizon: parseInt(value) }));
   };
 
@@ -66,7 +63,7 @@ export function LeadHivePage() {
               <Filter className="w-4 h-4 text-slate-400" />
               <select
                 value={filters.segment}
-                onChange={(e) => handleSegmentChange(e.target.value)}
+                onChange={e => handleSegmentChange(e.target.value)}
                 className="bg-transparent text-sm text-slate-300 outline-none cursor-pointer"
               >
                 <option value="all">All Segments</option>
@@ -81,7 +78,7 @@ export function LeadHivePage() {
               <Clock className="w-4 h-4 text-slate-400" />
               <select
                 value={filters.timeHorizon}
-                onChange={(e) => handleTimeHorizonChange(e.target.value)}
+                onChange={e => handleTimeHorizonChange(e.target.value)}
                 className="bg-transparent text-sm text-slate-300 outline-none cursor-pointer"
               >
                 <option value="7">Next 7 days</option>
@@ -95,17 +92,14 @@ export function LeadHivePage() {
               onClick={handleToggleSynthetic}
               className={`
                 flex items-center gap-2 px-3 py-2 rounded-xl border transition-colors
-                ${filters.showSynthetic 
-                  ? 'bg-purple-500/10 border-purple-500/30 text-purple-400' 
-                  : 'bg-slate-800/50 border-white/5 text-slate-400'
+                ${
+                  filters.showSynthetic
+                    ? 'bg-purple-500/10 border-purple-500/30 text-purple-400'
+                    : 'bg-slate-800/50 border-white/5 text-slate-400'
                 }
               `}
             >
-              {filters.showSynthetic ? (
-                <Eye className="w-4 h-4" />
-              ) : (
-                <EyeOff className="w-4 h-4" />
-              )}
+              {filters.showSynthetic ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
               <span className="text-sm">Synthetic Predictions</span>
             </button>
           </div>
@@ -129,11 +123,7 @@ export function LeadHivePage() {
 
           {/* Right panel */}
           <div className="w-80 flex-shrink-0">
-            <ClusterSummaryPanel
-              topClusters={topClusters}
-              summary={summary}
-              loading={loading}
-            />
+            <ClusterSummaryPanel topClusters={topClusters} summary={summary} loading={loading} />
           </div>
         </div>
       </div>

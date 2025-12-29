@@ -76,28 +76,61 @@ const PipelineCommitments = () => {
   const [selectedCommitment, setSelectedCommitment] = useState(commitments[0]);
 
   const adjustments = [
-    { type: 'increase_volume', description: 'Increase daily send volume by 25%', impact: 18, effort: 'low', autoApplicable: true },
-    { type: 'expand_icp', description: 'Expand ICP to adjacent industries', impact: 15, effort: 'medium', autoApplicable: true },
-    { type: 'add_channel', description: 'Add LinkedIn voice messaging', impact: 12, effort: 'medium', autoApplicable: false },
-    { type: 'improve_conversion', description: 'Optimize follow-up sequence', impact: 8, effort: 'high', autoApplicable: true },
+    {
+      type: 'increase_volume',
+      description: 'Increase daily send volume by 25%',
+      impact: 18,
+      effort: 'low',
+      autoApplicable: true,
+    },
+    {
+      type: 'expand_icp',
+      description: 'Expand ICP to adjacent industries',
+      impact: 15,
+      effort: 'medium',
+      autoApplicable: true,
+    },
+    {
+      type: 'add_channel',
+      description: 'Add LinkedIn voice messaging',
+      impact: 12,
+      effort: 'medium',
+      autoApplicable: false,
+    },
+    {
+      type: 'improve_conversion',
+      description: 'Optimize follow-up sequence',
+      impact: 8,
+      effort: 'high',
+      autoApplicable: true,
+    },
   ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'ahead': return 'text-green-400 bg-green-400/10';
-      case 'on_track': return 'text-blue-400 bg-blue-400/10';
-      case 'at_risk': return 'text-amber-400 bg-amber-400/10';
-      case 'behind': return 'text-red-400 bg-red-400/10';
-      default: return 'text-gray-400 bg-gray-400/10';
+      case 'ahead':
+        return 'text-green-400 bg-green-400/10';
+      case 'on_track':
+        return 'text-blue-400 bg-blue-400/10';
+      case 'at_risk':
+        return 'text-amber-400 bg-amber-400/10';
+      case 'behind':
+        return 'text-red-400 bg-red-400/10';
+      default:
+        return 'text-gray-400 bg-gray-400/10';
     }
   };
 
   const getPacingIcon = (status: string) => {
     switch (status) {
-      case 'ahead': return TrendingUp;
-      case 'on_track': return ArrowRight;
-      case 'behind': return TrendingDown;
-      default: return ArrowRight;
+      case 'ahead':
+        return TrendingUp;
+      case 'on_track':
+        return ArrowRight;
+      case 'behind':
+        return TrendingDown;
+      default:
+        return ArrowRight;
     }
   };
 
@@ -133,11 +166,35 @@ const PipelineCommitments = () => {
         {/* Summary Cards */}
         <div className="grid grid-cols-4 gap-4 mt-6">
           {[
-            { label: 'Total Target', value: formatCurrency(3750000), subValue: '950 meetings', icon: Target, color: 'text-violet-400' },
-            { label: 'Current Pipeline', value: formatCurrency(2112000), subValue: '627 meetings', icon: DollarSign, color: 'text-green-400' },
-            { label: 'Avg Burn Rate', value: '4.9/day', subValue: 'meetings', icon: Zap, color: 'text-amber-400' },
-            { label: 'Days Remaining', value: '62', subValue: 'Q1 2024', icon: Calendar, color: 'text-blue-400' },
-          ].map((stat) => (
+            {
+              label: 'Total Target',
+              value: formatCurrency(3750000),
+              subValue: '950 meetings',
+              icon: Target,
+              color: 'text-violet-400',
+            },
+            {
+              label: 'Current Pipeline',
+              value: formatCurrency(2112000),
+              subValue: '627 meetings',
+              icon: DollarSign,
+              color: 'text-green-400',
+            },
+            {
+              label: 'Avg Burn Rate',
+              value: '4.9/day',
+              subValue: 'meetings',
+              icon: Zap,
+              color: 'text-amber-400',
+            },
+            {
+              label: 'Days Remaining',
+              value: '62',
+              subValue: 'Q1 2024',
+              icon: Calendar,
+              color: 'text-blue-400',
+            },
+          ].map(stat => (
             <div key={stat.label} className="bg-gray-800/50 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-2">
                 <stat.icon className={`w-4 h-4 ${stat.color}`} />
@@ -157,10 +214,10 @@ const PipelineCommitments = () => {
             Active Commitments
           </h3>
           <div className="space-y-3">
-            {commitments.map((commitment) => {
+            {commitments.map(commitment => {
               const PacingIcon = getPacingIcon(commitment.pacingStatus);
               const progress = (commitment.currentMeetings / commitment.targetMeetings) * 100;
-              
+
               return (
                 <motion.button
                   key={commitment.id}
@@ -174,7 +231,9 @@ const PipelineCommitments = () => {
                 >
                   <div className="flex items-start justify-between mb-2">
                     <span className="font-medium text-white text-sm">{commitment.name}</span>
-                    <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusColor(commitment.status)}`}>
+                    <span
+                      className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusColor(commitment.status)}`}
+                    >
                       {commitment.status.replace('_', ' ')}
                     </span>
                   </div>
@@ -182,16 +241,21 @@ const PipelineCommitments = () => {
                   {/* Progress */}
                   <div className="mb-3">
                     <div className="flex justify-between text-xs text-gray-400 mb-1">
-                      <span>{commitment.currentMeetings} / {commitment.targetMeetings} meetings</span>
+                      <span>
+                        {commitment.currentMeetings} / {commitment.targetMeetings} meetings
+                      </span>
                       <span>{Math.round(progress)}%</span>
                     </div>
                     <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
                       <motion.div
                         className={`h-full rounded-full ${
-                          commitment.status === 'ahead' ? 'bg-green-500' :
-                          commitment.status === 'on_track' ? 'bg-blue-500' :
-                          commitment.status === 'at_risk' ? 'bg-amber-500' :
-                          'bg-red-500'
+                          commitment.status === 'ahead'
+                            ? 'bg-green-500'
+                            : commitment.status === 'on_track'
+                              ? 'bg-blue-500'
+                              : commitment.status === 'at_risk'
+                                ? 'bg-amber-500'
+                                : 'bg-red-500'
                         }`}
                         initial={{ width: 0 }}
                         animate={{ width: `${progress}%` }}
@@ -205,11 +269,15 @@ const PipelineCommitments = () => {
                       <DollarSign className="w-3 h-3" />
                       {formatCurrency(commitment.currentPipeline)}
                     </div>
-                    <div className={`flex items-center gap-1 ${
-                      commitment.pacingStatus === 'ahead' ? 'text-green-400' :
-                      commitment.pacingStatus === 'on_track' ? 'text-blue-400' :
-                      'text-amber-400'
-                    }`}>
+                    <div
+                      className={`flex items-center gap-1 ${
+                        commitment.pacingStatus === 'ahead'
+                          ? 'text-green-400'
+                          : commitment.pacingStatus === 'on_track'
+                            ? 'text-blue-400'
+                            : 'text-amber-400'
+                      }`}
+                    >
                       <PacingIcon className="w-3 h-3" />
                       {commitment.burnRate}/day
                     </div>
@@ -241,23 +309,42 @@ const PipelineCommitments = () => {
                 <div className="bg-gray-800/50 rounded-lg p-3">
                   <span className="text-xs text-gray-400">Projected Completion</span>
                   <div className="text-lg font-semibold text-white">
-                    {selectedCommitment.projectedCompletion.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                    {selectedCommitment.projectedCompletion.toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                    })}
                   </div>
-                  <span className={`text-xs ${
-                    selectedCommitment.projectedCompletion <= selectedCommitment.endDate ? 'text-green-400' : 'text-red-400'
-                  }`}>
-                    {selectedCommitment.projectedCompletion <= selectedCommitment.endDate ? 'On target' : 'Behind schedule'}
+                  <span
+                    className={`text-xs ${
+                      selectedCommitment.projectedCompletion <= selectedCommitment.endDate
+                        ? 'text-green-400'
+                        : 'text-red-400'
+                    }`}
+                  >
+                    {selectedCommitment.projectedCompletion <= selectedCommitment.endDate
+                      ? 'On target'
+                      : 'Behind schedule'}
                   </span>
                 </div>
                 <div className="bg-gray-800/50 rounded-lg p-3">
                   <span className="text-xs text-gray-400">Required Rate</span>
                   <div className="text-lg font-semibold text-white">
-                    {Math.ceil((selectedCommitment.targetMeetings - selectedCommitment.currentMeetings) / selectedCommitment.daysRemaining * 10) / 10}/day
+                    {Math.ceil(
+                      ((selectedCommitment.targetMeetings - selectedCommitment.currentMeetings) /
+                        selectedCommitment.daysRemaining) *
+                        10
+                    ) / 10}
+                    /day
                   </div>
-                  <span className={`text-xs ${
-                    selectedCommitment.burnRate >= (selectedCommitment.targetMeetings - selectedCommitment.currentMeetings) / selectedCommitment.daysRemaining
-                      ? 'text-green-400' : 'text-amber-400'
-                  }`}>
+                  <span
+                    className={`text-xs ${
+                      selectedCommitment.burnRate >=
+                      (selectedCommitment.targetMeetings - selectedCommitment.currentMeetings) /
+                        selectedCommitment.daysRemaining
+                        ? 'text-green-400'
+                        : 'text-amber-400'
+                    }`}
+                  >
                     Current: {selectedCommitment.burnRate}/day
                   </span>
                 </div>
@@ -271,10 +358,13 @@ const PipelineCommitments = () => {
                     <div>
                       <h4 className="text-sm font-medium text-amber-400 mb-1">Pacing Warning</h4>
                       <p className="text-xs text-amber-300/80">
-                        At current rate, you'll miss target by {Math.ceil(
-                          (selectedCommitment.targetMeetings - selectedCommitment.currentMeetings) - 
-                          (selectedCommitment.burnRate * selectedCommitment.daysRemaining)
-                        )} meetings. Consider applying recommended adjustments.
+                        At current rate, you'll miss target by{' '}
+                        {Math.ceil(
+                          selectedCommitment.targetMeetings -
+                            selectedCommitment.currentMeetings -
+                            selectedCommitment.burnRate * selectedCommitment.daysRemaining
+                        )}{' '}
+                        meetings. Consider applying recommended adjustments.
                       </p>
                     </div>
                   </div>
@@ -300,9 +390,7 @@ const PipelineCommitments = () => {
               >
                 <div className="flex items-start justify-between mb-2">
                   <span className="text-sm font-medium text-white">{adjustment.description}</span>
-                  {adjustment.autoApplicable && (
-                    <Zap className="w-4 h-4 text-amber-400" />
-                  )}
+                  {adjustment.autoApplicable && <Zap className="w-4 h-4 text-amber-400" />}
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3 text-xs">

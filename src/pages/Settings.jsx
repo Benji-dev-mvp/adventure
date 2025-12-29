@@ -9,7 +9,7 @@ import { useTenant } from '../contexts/TenantContext';
 import { getUserPreferences, saveUserPreferences } from '../lib/storage';
 import { cn } from '../lib/utils';
 import { SegmentSwitcher } from '../components/SegmentSwitcher';
-import { 
+import {
   Mail,
   Shield,
   Users,
@@ -25,13 +25,13 @@ import {
   Moon,
   Layout,
   PanelLeft,
-  PanelTop
+  PanelTop,
 } from 'lucide-react';
 import {
   EmailWarmup,
   DomainSetup,
   TwoFactorAuth,
-  RateLimiting
+  RateLimiting,
 } from '../components/settings/SettingsComponents';
 
 /**
@@ -39,7 +39,7 @@ import {
  */
 function NavigationLayoutSettings() {
   const { navigationLayout, setNavigationLayout } = useTenant();
-  
+
   const layouts = [
     {
       id: 'sidebar-only',
@@ -54,7 +54,7 @@ function NavigationLayoutSettings() {
       icon: Layout,
     },
   ];
-  
+
   return (
     <Card>
       <CardHeader>
@@ -63,10 +63,10 @@ function NavigationLayoutSettings() {
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-2 gap-4">
-          {layouts.map((layout) => {
+          {layouts.map(layout => {
             const Icon = layout.icon;
             const isSelected = navigationLayout === layout.id;
-            
+
             return (
               <button
                 key={layout.id}
@@ -79,21 +79,25 @@ function NavigationLayoutSettings() {
                 )}
               >
                 <div className="flex flex-col items-center gap-3">
-                  <div className={cn(
-                    'w-12 h-12 rounded-lg flex items-center justify-center',
-                    isSelected 
-                      ? 'bg-accent-500 text-white' 
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-                  )}>
+                  <div
+                    className={cn(
+                      'w-12 h-12 rounded-lg flex items-center justify-center',
+                      isSelected
+                        ? 'bg-accent-500 text-white'
+                        : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                    )}
+                  >
                     <Icon size={24} />
                   </div>
                   <div className="text-center">
-                    <p className={cn(
-                      'font-semibold',
-                      isSelected 
-                        ? 'text-accent-700 dark:text-accent-300' 
-                        : 'text-gray-900 dark:text-white'
-                    )}>
+                    <p
+                      className={cn(
+                        'font-semibold',
+                        isSelected
+                          ? 'text-accent-700 dark:text-accent-300'
+                          : 'text-gray-900 dark:text-white'
+                      )}
+                    >
                       {layout.label}
                     </p>
                     <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -122,13 +126,15 @@ const Settings = () => {
   const isDark = theme === 'dark';
 
   const initialPrefs = getUserPreferences();
-  const [emailPrefs, setEmailPrefs] = useState(initialPrefs.emailNotifications || {
-    campaignPerformanceReports: true,
-    newLeads: true,
-    meetingBookings: true,
-    replies: false,
-    aiInsights: false,
-  });
+  const [emailPrefs, setEmailPrefs] = useState(
+    initialPrefs.emailNotifications || {
+      campaignPerformanceReports: true,
+      newLeads: true,
+      meetingBookings: true,
+      replies: false,
+      aiInsights: false,
+    }
+  );
 
   const tabs = [
     { id: 'appearance', label: 'Appearance', icon: Palette },
@@ -148,7 +154,7 @@ const Settings = () => {
           <Card>
             <CardContent className="p-1">
               <nav className="space-y-0.5">
-                {tabs.map((tab) => {
+                {tabs.map(tab => {
                   const Icon = tab.icon;
                   return (
                     <button
@@ -250,7 +256,8 @@ const Settings = () => {
                         <div>
                           <p className="font-medium text-blue-900 mb-1">Theme Preference</p>
                           <p className="text-sm text-blue-700">
-                            Your theme preference is saved automatically and will be applied across all pages.
+                            Your theme preference is saved automatically and will be applied across
+                            all pages.
                           </p>
                         </div>
                       </div>
@@ -276,7 +283,9 @@ const Settings = () => {
                     <div className="flex items-center justify-between flex-wrap gap-3">
                       <div>
                         <p className="font-medium text-gray-900">Animations</p>
-                        <p className="text-sm text-gray-500">Enable smooth transitions and effects</p>
+                        <p className="text-sm text-gray-500">
+                          Enable smooth transitions and effects
+                        </p>
                       </div>
                       <input type="checkbox" defaultChecked className="rounded" />
                     </div>
@@ -291,7 +300,9 @@ const Settings = () => {
               <Card>
                 <CardHeader>
                   <CardTitle>Demo Organization</CardTitle>
-                  <CardDescription>Switch between segments to preview different features</CardDescription>
+                  <CardDescription>
+                    Switch between segments to preview different features
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <SegmentSwitcher />
@@ -325,7 +336,9 @@ const Settings = () => {
                           <CheckCircle2 size={12} />
                           Connected
                         </Badge>
-                        <Button variant="ghost" size="sm">Disconnect</Button>
+                        <Button variant="ghost" size="sm">
+                          Disconnect
+                        </Button>
                       </div>
                     </div>
 
@@ -354,7 +367,9 @@ const Settings = () => {
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-2">
                           <CheckCircle2 className="text-green-600" size={20} />
-                          <span className="font-semibold text-gray-900">Domain Health: Excellent</span>
+                          <span className="font-semibold text-gray-900">
+                            Domain Health: Excellent
+                          </span>
                         </div>
                         <Badge variant="success">92/100</Badge>
                       </div>
@@ -404,7 +419,9 @@ const Settings = () => {
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-gray-700">Send during business hours only</span>
+                      <span className="text-sm font-medium text-gray-700">
+                        Send during business hours only
+                      </span>
                       <input type="checkbox" defaultChecked className="rounded" />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
@@ -441,8 +458,11 @@ const Settings = () => {
                       { name: 'Salesforce', status: 'connected', logo: '☁️' },
                       { name: 'HubSpot', status: 'not-connected', logo: '🟠' },
                       { name: 'Pipedrive', status: 'not-connected', logo: '🟢' },
-                    ].map((integration) => (
-                      <div key={integration.name} className="flex items-center justify-between p-4 border border-gray-200 rounded-xl">
+                    ].map(integration => (
+                      <div
+                        key={integration.name}
+                        className="flex items-center justify-between p-4 border border-gray-200 rounded-xl"
+                      >
                         <div className="flex items-center gap-3">
                           <span className="text-2xl">{integration.logo}</span>
                           <span className="font-medium text-gray-900">{integration.name}</span>
@@ -450,10 +470,14 @@ const Settings = () => {
                         {integration.status === 'connected' ? (
                           <div className="flex items-center gap-3">
                             <Badge variant="success">Connected</Badge>
-                            <Button variant="ghost" size="sm">Configure</Button>
+                            <Button variant="ghost" size="sm">
+                              Configure
+                            </Button>
                           </div>
                         ) : (
-                          <Button variant="outline" size="sm">Connect</Button>
+                          <Button variant="outline" size="sm">
+                            Connect
+                          </Button>
                         )}
                       </div>
                     ))}
@@ -478,7 +502,9 @@ const Settings = () => {
                           <p className="text-sm text-gray-500">Multi-channel outreach</p>
                         </div>
                       </div>
-                      <Button variant="outline" size="sm">Connect</Button>
+                      <Button variant="outline" size="sm">
+                        Connect
+                      </Button>
                     </div>
                   </div>
                 </CardContent>
@@ -492,7 +518,9 @@ const Settings = () => {
                 <CardContent>
                   <div className="space-y-3">
                     <Input label="Webhook URL" placeholder="https://your-domain.com/webhook" />
-                    <Button variant="outline" size="sm">Test Webhook</Button>
+                    <Button variant="outline" size="sm">
+                      Test Webhook
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -515,11 +543,29 @@ const Settings = () => {
                 <CardContent>
                   <div className="space-y-3">
                     {[
-                      { name: 'Alex Johnson', email: 'alex@company.com', role: 'Owner', avatar: '👤' },
-                      { name: 'Sarah Chen', email: 'sarah@company.com', role: 'Admin', avatar: '👩' },
-                      { name: 'Michael Park', email: 'michael@company.com', role: 'Member', avatar: '👨' },
+                      {
+                        name: 'Alex Johnson',
+                        email: 'alex@company.com',
+                        role: 'Owner',
+                        avatar: '👤',
+                      },
+                      {
+                        name: 'Sarah Chen',
+                        email: 'sarah@company.com',
+                        role: 'Admin',
+                        avatar: '👩',
+                      },
+                      {
+                        name: 'Michael Park',
+                        email: 'michael@company.com',
+                        role: 'Member',
+                        avatar: '👨',
+                      },
                     ].map((member, index) => (
-                      <div key={index} className="flex items-center justify-between p-4 border border-gray-200 rounded-xl">
+                      <div
+                        key={index}
+                        className="flex items-center justify-between p-4 border border-gray-200 rounded-xl"
+                      >
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-xl">
                             {member.avatar}
@@ -532,7 +578,9 @@ const Settings = () => {
                         <div className="flex items-center gap-3">
                           <Badge>{member.role}</Badge>
                           {member.role !== 'Owner' && (
-                            <Button variant="ghost" size="sm">Remove</Button>
+                            <Button variant="ghost" size="sm">
+                              Remove
+                            </Button>
                           )}
                         </div>
                       </div>
@@ -559,7 +607,9 @@ const Settings = () => {
                             <p className="font-medium text-gray-900">{roleType.role}</p>
                             <p className="text-sm text-gray-500">{roleType.description}</p>
                           </div>
-                          <Button variant="ghost" size="sm">Edit</Button>
+                          <Button variant="ghost" size="sm">
+                            Edit
+                          </Button>
                         </div>
                       </div>
                     ))}
@@ -581,8 +631,12 @@ const Settings = () => {
                   <div className="p-6 bg-gradient-to-br from-accent-50 to-primary-50 rounded-xl">
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <p className="text-3xl font-bold text-gray-900 mb-1">$299<span className="text-lg text-gray-600">/month</span></p>
-                        <p className="text-sm text-gray-600">Billed monthly • Next billing: Jan 26, 2026</p>
+                        <p className="text-3xl font-bold text-gray-900 mb-1">
+                          $299<span className="text-lg text-gray-600">/month</span>
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          Billed monthly • Next billing: Jan 26, 2026
+                        </p>
                       </div>
                       <Badge variant="accent">Active</Badge>
                     </div>
@@ -619,7 +673,9 @@ const Settings = () => {
                           <p className="text-sm text-gray-500">Expires 12/25</p>
                         </div>
                       </div>
-                      <Button variant="outline" size="sm">Update</Button>
+                      <Button variant="outline" size="sm">
+                        Update
+                      </Button>
                     </div>
                   </div>
                 </CardContent>
@@ -637,14 +693,19 @@ const Settings = () => {
                       { date: 'Nov 26, 2025', amount: '$299.00', status: 'Paid' },
                       { date: 'Oct 26, 2025', amount: '$299.00', status: 'Paid' },
                     ].map((invoice, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
+                      <div
+                        key={index}
+                        className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg"
+                      >
                         <div>
                           <p className="font-medium text-gray-900">{invoice.date}</p>
                           <p className="text-sm text-gray-500">{invoice.amount}</p>
                         </div>
                         <div className="flex items-center gap-3">
                           <Badge variant="success">{invoice.status}</Badge>
-                          <Button variant="ghost" size="sm">Download</Button>
+                          <Button variant="ghost" size="sm">
+                            Download
+                          </Button>
                         </div>
                       </div>
                     ))}
@@ -687,12 +748,18 @@ const Settings = () => {
                         <Key size={20} className="text-gray-400" />
                         <div>
                           <p className="font-medium text-gray-900">Production API Key</p>
-                          <p className="text-sm text-gray-500 font-mono">sk_prod_••••••••••••••••</p>
+                          <p className="text-sm text-gray-500 font-mono">
+                            sk_prod_••••••••••••••••
+                          </p>
                         </div>
                       </div>
-                      <Button variant="ghost" size="sm">Revoke</Button>
+                      <Button variant="ghost" size="sm">
+                        Revoke
+                      </Button>
                     </div>
-                    <Button variant="outline" className="w-full">+ Create New API Key</Button>
+                    <Button variant="outline" className="w-full">
+                      + Create New API Key
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -710,12 +777,32 @@ const Settings = () => {
                 <CardContent>
                   <div className="space-y-4">
                     {[
-                      { key: 'campaignPerformanceReports', label: 'Campaign Performance Reports', description: 'Weekly summary of your campaigns' },
-                      { key: 'newLeads', label: 'New Leads', description: 'When new leads are added' },
-                      { key: 'meetingBookings', label: 'Meeting Bookings', description: 'When a prospect books a meeting' },
-                      { key: 'replies', label: 'Replies', description: 'When someone replies to your emails' },
-                      { key: 'aiInsights', label: 'AI Insights', description: 'When Ava finds optimization opportunities' },
-                    ].map((notification) => (
+                      {
+                        key: 'campaignPerformanceReports',
+                        label: 'Campaign Performance Reports',
+                        description: 'Weekly summary of your campaigns',
+                      },
+                      {
+                        key: 'newLeads',
+                        label: 'New Leads',
+                        description: 'When new leads are added',
+                      },
+                      {
+                        key: 'meetingBookings',
+                        label: 'Meeting Bookings',
+                        description: 'When a prospect books a meeting',
+                      },
+                      {
+                        key: 'replies',
+                        label: 'Replies',
+                        description: 'When someone replies to your emails',
+                      },
+                      {
+                        key: 'aiInsights',
+                        label: 'AI Insights',
+                        description: 'When Ava finds optimization opportunities',
+                      },
+                    ].map(notification => (
                       <div key={notification.key} className="flex items-center justify-between">
                         <div>
                           <p className="font-medium text-gray-900">{notification.label}</p>
@@ -726,7 +813,10 @@ const Settings = () => {
                           className="rounded"
                           checked={Boolean(emailPrefs[notification.key])}
                           onChange={() =>
-                            setEmailPrefs((prev) => ({ ...prev, [notification.key]: !prev[notification.key] }))
+                            setEmailPrefs(prev => ({
+                              ...prev,
+                              [notification.key]: !prev[notification.key],
+                            }))
                           }
                         />
                       </div>
@@ -752,7 +842,9 @@ const Settings = () => {
                           <p className="text-sm text-gray-500">Real-time notifications</p>
                         </div>
                       </div>
-                      <Button variant="outline" size="sm">Connect</Button>
+                      <Button variant="outline" size="sm">
+                        Connect
+                      </Button>
                     </div>
                   </div>
                 </CardContent>

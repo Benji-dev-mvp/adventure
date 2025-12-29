@@ -1,6 +1,6 @@
 /**
  * ROI Optimizer
- * 
+ *
  * Optimizes resource allocation across agents, tasks,
  * and campaigns to maximize return on investment.
  */
@@ -17,7 +17,7 @@ import type {
 
 // === Optimization Strategies ===
 
-export type OptimizationStrategy = 
+export type OptimizationStrategy =
   | 'maximize-revenue'
   | 'maximize-efficiency'
   | 'minimize-cost'
@@ -76,7 +76,13 @@ export class ROIOptimizer {
         { name: 'adSpend', type: 'credits', value: 0, unit: 'credits', weight: 0.25 },
       ],
       outputs: [
-        { name: 'totalMeetings', type: 'meetings', projected: 0, confidence: 0.75, unit: 'meetings' },
+        {
+          name: 'totalMeetings',
+          type: 'meetings',
+          projected: 0,
+          confidence: 0.75,
+          unit: 'meetings',
+        },
         { name: 'pipelineValue', type: 'revenue', projected: 0, confidence: 0.5, unit: 'USD' },
         { name: 'brandAwareness', type: 'custom', projected: 0, confidence: 0.7, unit: 'score' },
       ],
@@ -121,9 +127,9 @@ export class ROIOptimizer {
         byCategory: {
           'email-sequences': 3000,
           'phone-outreach': 2000,
-          'linkedin': 2000,
+          linkedin: 2000,
           'data-enrichment': 1500,
-          'analysis': 1500,
+          analysis: 1500,
         },
         byAgent: {},
       },
@@ -134,10 +140,10 @@ export class ROIOptimizer {
       },
       priority: {
         weights: {
-          'revenue': 0.4,
-          'efficiency': 0.3,
-          'quality': 0.2,
-          'speed': 0.1,
+          revenue: 0.4,
+          efficiency: 0.3,
+          quality: 0.2,
+          speed: 0.1,
         },
         rules: [],
       },
@@ -176,7 +182,7 @@ export class ROIOptimizer {
     for (const output of model.outputs) {
       // Simple projection: higher inputs = higher outputs
       const inputSum = Object.values(inputs).reduce((a, b) => a + b, 0);
-      
+
       switch (output.type) {
         case 'meetings':
           outputs[output.name] = inputSum * 0.02 * output.confidence;
@@ -190,14 +196,15 @@ export class ROIOptimizer {
         default:
           outputs[output.name] = inputSum * 0.1 * output.confidence;
       }
-      
+
       avgConfidence += output.confidence;
     }
 
     avgConfidence /= model.outputs.length;
 
     // Calculate ROI
-    const totalOutput = outputs['revenue'] || Object.values(outputs).reduce((a, b) => a + b, 0) * 100;
+    const totalOutput =
+      outputs['revenue'] || Object.values(outputs).reduce((a, b) => a + b, 0) * 100;
     const roi = totalCost > 0 ? (totalOutput - totalCost) / totalCost : 0;
 
     return {
@@ -215,28 +222,25 @@ export class ROIOptimizer {
     constraints?: Partial<ROIConstraint>[]
   ): ROIOptimizationResult {
     const currentROI = this.calculateCurrentROI();
-    
+
     // Get strategy weights
     const weights = this.getStrategyWeights(strategy);
-    
+
     // Run optimization algorithm (simplified gradient descent)
     const optimizedAllocation = this.runOptimization(weights, constraints);
-    
+
     // Calculate optimized ROI
     const optimizedROI = this.calculateAllocationROI(optimizedAllocation);
-    
+
     // Generate recommendations
     const recommendations = this.generateRecommendations(
       this.currentAllocation,
       optimizedAllocation,
       strategy
     );
-    
+
     // Identify tradeoffs
-    const tradeoffs = this.identifyTradeoffs(
-      this.currentAllocation,
-      optimizedAllocation
-    );
+    const tradeoffs = this.identifyTradeoffs(this.currentAllocation, optimizedAllocation);
 
     const result: ROIOptimizationResult = {
       modelId: 'composite',
@@ -261,7 +265,7 @@ export class ROIOptimizer {
       'maximize-revenue': { revenue: 0.7, efficiency: 0.15, quality: 0.1, speed: 0.05 },
       'maximize-efficiency': { revenue: 0.2, efficiency: 0.5, quality: 0.2, speed: 0.1 },
       'minimize-cost': { revenue: 0.1, efficiency: 0.6, quality: 0.1, speed: 0.2 },
-      'balanced': { revenue: 0.35, efficiency: 0.25, quality: 0.25, speed: 0.15 },
+      balanced: { revenue: 0.35, efficiency: 0.25, quality: 0.25, speed: 0.15 },
       'growth-focused': { revenue: 0.5, efficiency: 0.1, quality: 0.2, speed: 0.2 },
       'risk-averse': { revenue: 0.2, efficiency: 0.3, quality: 0.4, speed: 0.1 },
     };
@@ -277,11 +281,11 @@ export class ROIOptimizer {
     constraints?: Partial<ROIConstraint>[]
   ): ResourceAllocation {
     const allocation = JSON.parse(JSON.stringify(this.currentAllocation));
-    
+
     // Simplified optimization: redistribute based on weights
     const totalBudget = allocation.budget.total;
     const categories = Object.keys(allocation.budget.byCategory);
-    
+
     // Score each category
     const scores: Record<string, number> = {};
     for (const category of categories) {
@@ -397,14 +401,14 @@ export class ROIOptimizer {
   private calculateAllocationROI(allocation: ResourceAllocation): number {
     const totalBudget = allocation.budget.total;
     const utilization = allocation.capacity.utilized / Math.max(allocation.capacity.total, 1);
-    
+
     // Simplified ROI calculation based on allocation efficiency
-    const allocationEfficiency = Object.values(allocation.budget.byCategory)
-      .reduce((sum, val) => sum + val, 0) / totalBudget;
-    
+    const allocationEfficiency =
+      Object.values(allocation.budget.byCategory).reduce((sum, val) => sum + val, 0) / totalBudget;
+
     // Expected output (simplified model)
     const expectedRevenue = totalBudget * 3 * allocationEfficiency * (0.5 + utilization * 0.5);
-    
+
     return (expectedRevenue - totalBudget) / totalBudget;
   }
 
@@ -422,14 +426,15 @@ export class ROIOptimizer {
     for (const [category, currentAmount] of Object.entries(current.budget.byCategory)) {
       const optimizedAmount = optimized.budget.byCategory[category] || 0;
       const change = optimizedAmount - currentAmount;
-      const changePercent = Math.abs(change) / Math.max(currentAmount, 1) * 100;
+      const changePercent = (Math.abs(change) / Math.max(currentAmount, 1)) * 100;
 
       if (changePercent > 10) {
         recommendations.push({
           priority: changePercent > 30 ? 'high' : 'medium',
-          action: change > 0
-            ? `Increase ${category} budget by ${changePercent.toFixed(0)}%`
-            : `Reduce ${category} budget by ${changePercent.toFixed(0)}%`,
+          action:
+            change > 0
+              ? `Increase ${category} budget by ${changePercent.toFixed(0)}%`
+              : `Reduce ${category} budget by ${changePercent.toFixed(0)}%`,
           expectedImpact: Math.abs(change) * 0.5,
           confidence: 0.7,
           effort: changePercent > 30 ? 'medium' : 'low',
@@ -499,9 +504,10 @@ export class ROIOptimizer {
         dimension2: 'Quality',
         currentBalance: currentQualityWeight,
         optimalBalance: optimizedQualityWeight,
-        recommendation: optimizedQualityWeight > currentQualityWeight
-          ? 'Increase quality focus at cost of speed'
-          : 'Prioritize speed over quality',
+        recommendation:
+          optimizedQualityWeight > currentQualityWeight
+            ? 'Increase quality focus at cost of speed'
+            : 'Prioritize speed over quality',
       });
     }
 

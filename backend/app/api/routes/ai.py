@@ -6,9 +6,7 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
 from app.core.ai_prompts import (
-    PROMPT_TEMPLATES,
     AIPersonality,
-    PromptBuilder,
     PromptTemplate,
 )
 from app.core.ai_provider import chat as ai_chat

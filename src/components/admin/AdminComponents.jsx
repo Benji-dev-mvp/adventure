@@ -54,7 +54,9 @@ export const PermissionMatrix = () => {
             <tr className="border-b">
               <th className="p-2 text-left">Permission</th>
               {roles.map(role => (
-                <th key={role} className="p-2 text-center">{role}</th>
+                <th key={role} className="p-2 text-center">
+                  {role}
+                </th>
               ))}
             </tr>
           </thead>
@@ -127,8 +129,11 @@ export const FeatureFlags = () => {
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
-          {features.map((feature) => (
-            <div key={feature.name} className="flex items-center justify-between p-3 border rounded-lg">
+          {features.map(feature => (
+            <div
+              key={feature.name}
+              className="flex items-center justify-between p-3 border rounded-lg"
+            >
               <span className="font-medium">{feature.name}</span>
               <Badge variant={feature.enabled ? 'success' : 'secondary'}>
                 {feature.enabled ? 'Enabled' : 'Disabled'}

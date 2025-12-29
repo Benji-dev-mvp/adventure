@@ -1,7 +1,7 @@
 """File storage service with S3/GCS support."""
 
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import BinaryIO, Optional
 
 import boto3

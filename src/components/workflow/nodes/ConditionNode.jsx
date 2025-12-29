@@ -51,14 +51,16 @@ export const ConditionNode = ({ data, selected }) => {
           </label>
           <select
             value={field}
-            onChange={(e) => {
+            onChange={e => {
               setField(e.target.value);
               data.onChange?.({ field: e.target.value });
             }}
             className="w-full px-2 py-1.5 text-sm border border-gray-200 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
           >
             {fieldOptions.map(opt => (
-              <option key={opt.value} value={opt.value}>{opt.label}</option>
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
             ))}
           </select>
         </div>
@@ -70,14 +72,16 @@ export const ConditionNode = ({ data, selected }) => {
           </label>
           <select
             value={operator}
-            onChange={(e) => {
+            onChange={e => {
               setOperator(e.target.value);
               data.onChange?.({ operator: e.target.value });
             }}
             className="w-full px-2 py-1.5 text-sm border border-gray-200 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
           >
             {operatorOptions.map(opt => (
-              <option key={opt.value} value={opt.value}>{opt.label}</option>
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
             ))}
           </select>
         </div>
@@ -90,7 +94,7 @@ export const ConditionNode = ({ data, selected }) => {
           <input
             type="text"
             value={value}
-            onChange={(e) => {
+            onChange={e => {
               setValue(e.target.value);
               data.onChange?.({ value: e.target.value });
             }}

@@ -9,16 +9,13 @@ import { Badge } from '../components/ui/Badge';
 import { useTenant } from '../contexts/TenantContext';
 import { useWorkspaceMetrics, useSegmentCTA } from '../hooks/useWorkspaceMetrics';
 import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
-import { 
-  KpiFunnelChart, 
-  CustomerImpactSparklines 
-} from '../components/analytics';
-import { 
-  Activity, 
-  TrendingUp, 
-  Users, 
-  Target, 
-  Mail, 
+import { KpiFunnelChart, CustomerImpactSparklines } from '../components/analytics';
+import {
+  Activity,
+  TrendingUp,
+  Users,
+  Target,
+  Mail,
   Calendar,
   Sparkles,
   Brain,
@@ -36,9 +33,19 @@ import {
   Bot,
   Shield,
   Crown,
-  ChevronRight
+  ChevronRight,
 } from 'lucide-react';
-import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import {
+  LineChart,
+  Line,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../components/Toast';
 import { getDashboardStats } from '../lib/dataService';
@@ -60,7 +67,7 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = '', prefix = '' }) => 
       const progress = Math.min((now - startTime) / duration, 1);
       const easeOutQuad = progress * (2 - progress);
       const currentCount = Math.floor(easeOutQuad * end);
-      
+
       setCount(currentCount);
       countRef.current = currentCount;
 
@@ -74,7 +81,13 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = '', prefix = '' }) => 
     requestAnimationFrame(animate);
   }, [end, duration]);
 
-  return <span>{prefix}{count}{suffix}</span>;
+  return (
+    <span>
+      {prefix}
+      {count}
+      {suffix}
+    </span>
+  );
 };
 
 // Live Indicator
@@ -103,7 +116,7 @@ const AnimatedProgress = ({ value, color = 'cyan', label }) => {
     green: 'bg-gradient-to-r from-green-400 to-green-600',
     purple: 'bg-gradient-to-r from-purple-400 to-purple-600',
     pink: 'bg-gradient-to-r from-pink-400 to-pink-600',
-    yellow: 'bg-gradient-to-r from-yellow-400 to-yellow-600'
+    yellow: 'bg-gradient-to-r from-yellow-400 to-yellow-600',
   };
 
   return (
@@ -115,7 +128,7 @@ const AnimatedProgress = ({ value, color = 'cyan', label }) => {
         </div>
       )}
       <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-        <div 
+        <div
           className={`h-full ${colorClasses[color] || colorClasses.cyan} transition-all duration-1000 ease-out rounded-full relative`}
           style={{ width: `${progress}%` }}
         >
@@ -130,13 +143,13 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const toast = useToast();
   const { plan, isStartup, isMidmarket, isEnterprise } = useTenant();
-  const { 
-    metrics, 
-    kpiFunnel, 
-    sparklines, 
-    summary, 
-    headline, 
-    cta: segmentCta 
+  const {
+    metrics,
+    kpiFunnel,
+    sparklines,
+    summary,
+    headline,
+    cta: segmentCta,
   } = useWorkspaceMetrics();
   const segmentCTA = useSegmentCTA();
   const prefersReducedMotion = useReducedMotion();
@@ -145,7 +158,7 @@ const Dashboard = () => {
     emailsSent: summary?.emailsSent || 12453,
     replyRate: 8.4,
     meetings: summary?.meetingsBooked || 47,
-    activeLeads: summary?.qualifiedLeads || 1284
+    activeLeads: summary?.qualifiedLeads || 1284,
   });
 
   // Update live stats when metrics change
@@ -155,7 +168,7 @@ const Dashboard = () => {
         ...prev,
         emailsSent: summary.emailsSent || prev.emailsSent,
         meetings: summary.meetingsBooked || prev.meetings,
-        activeLeads: summary.qualifiedLeads || prev.activeLeads
+        activeLeads: summary.qualifiedLeads || prev.activeLeads,
       }));
     }
   }, [summary]);
@@ -170,11 +183,13 @@ const Dashboard = () => {
       efficiency: BarChart3,
       compliance: Shield,
     };
-    return sparklines?.map(s => ({
-      ...s,
-      icon: iconMap[s.id] || TrendingUp,
-      chartType: 'area'
-    })) || [];
+    return (
+      sparklines?.map(s => ({
+        ...s,
+        icon: iconMap[s.id] || TrendingUp,
+        chartType: 'area',
+      })) || []
+    );
   }, [sparklines]);
 
   // Simulate live updates
@@ -184,7 +199,7 @@ const Dashboard = () => {
         emailsSent: prev.emailsSent + Math.floor(Math.random() * 10),
         replyRate: Math.max(0, Math.min(15, prev.replyRate + (Math.random() - 0.5) * 0.5)),
         meetings: prev.meetings + (Math.random() > 0.8 ? 1 : 0),
-        activeLeads: prev.activeLeads + Math.floor(Math.random() * 5) - 2
+        activeLeads: prev.activeLeads + Math.floor(Math.random() * 5) - 2,
       }));
     }, 5000);
 
@@ -196,7 +211,7 @@ const Dashboard = () => {
     { id: 'campaigns', label: 'Campaigns', icon: Rocket, color: 'purple' },
     { id: 'analytics', label: 'Analytics', icon: BarChart3, color: 'blue' },
     { id: 'ai-insights', label: 'AI Insights', icon: Brain, color: 'pink' },
-    { id: 'actions', label: 'Quick Actions', icon: Zap, color: 'yellow' }
+    { id: 'actions', label: 'Quick Actions', icon: Zap, color: 'yellow' },
   ];
 
   const performanceData = [
@@ -206,13 +221,34 @@ const Dashboard = () => {
     { name: 'Thu', emails: 510, replies: 42, meetings: 18 },
     { name: 'Fri', emails: 490, replies: 40, meetings: 16 },
     { name: 'Sat', emails: 120, replies: 10, meetings: 3 },
-    { name: 'Sun', emails: 80, replies: 7, meetings: 2 }
+    { name: 'Sun', emails: 80, replies: 7, meetings: 2 },
   ];
 
   const activeCampaigns = [
-    { name: 'SaaS Outreach Q4', status: 'active', leads: 450, sent: 320, replies: 28, replyRate: 8.8 },
-    { name: 'Enterprise Follow-up', status: 'active', leads: 180, sent: 156, replies: 15, replyRate: 9.6 },
-    { name: 'Product Launch', status: 'paused', leads: 290, sent: 180, replies: 12, replyRate: 6.7 }
+    {
+      name: 'SaaS Outreach Q4',
+      status: 'active',
+      leads: 450,
+      sent: 320,
+      replies: 28,
+      replyRate: 8.8,
+    },
+    {
+      name: 'Enterprise Follow-up',
+      status: 'active',
+      leads: 180,
+      sent: 156,
+      replies: 15,
+      replyRate: 9.6,
+    },
+    {
+      name: 'Product Launch',
+      status: 'paused',
+      leads: 290,
+      sent: 180,
+      replies: 12,
+      replyRate: 6.7,
+    },
   ];
 
   const aiRecommendations = [
@@ -221,29 +257,53 @@ const Dashboard = () => {
       description: 'Send emails on Tuesdays at 10 AM for 3x higher reply rates',
       impact: 'High Impact',
       confidence: 0.94,
-      action: 'Apply Now'
+      action: 'Apply Now',
     },
     {
       title: 'Personalize Campaign B',
       description: 'Add dynamic variables to increase engagement by 27%',
       impact: 'Medium Impact',
       confidence: 0.87,
-      action: 'Review'
+      action: 'Review',
     },
     {
       title: 'Follow Up Hot Leads',
       description: '3 leads with high reply probability need immediate follow-up',
       impact: 'High Impact',
       confidence: 0.91,
-      action: 'View Leads'
-    }
+      action: 'View Leads',
+    },
   ];
 
   const recentActivity = [
-    { lead: 'Sarah Chen', company: 'TechCorp', action: 'replied to email', time: '2 min ago', type: 'reply' },
-    { lead: 'Michael Torres', company: 'InnovateCo', action: 'opened email', time: '8 min ago', type: 'open' },
-    { lead: 'Emily Watson', company: 'GrowthLabs', action: 'booked a meeting', time: '15 min ago', type: 'meeting' },
-    { lead: 'David Kim', company: 'StartupXYZ', action: 'replied to email', time: '32 min ago', type: 'reply' }
+    {
+      lead: 'Sarah Chen',
+      company: 'TechCorp',
+      action: 'replied to email',
+      time: '2 min ago',
+      type: 'reply',
+    },
+    {
+      lead: 'Michael Torres',
+      company: 'InnovateCo',
+      action: 'opened email',
+      time: '8 min ago',
+      type: 'open',
+    },
+    {
+      lead: 'Emily Watson',
+      company: 'GrowthLabs',
+      action: 'booked a meeting',
+      time: '15 min ago',
+      type: 'meeting',
+    },
+    {
+      lead: 'David Kim',
+      company: 'StartupXYZ',
+      action: 'replied to email',
+      time: '32 min ago',
+      type: 'reply',
+    },
   ];
 
   useEffect(() => {
@@ -258,36 +318,42 @@ const Dashboard = () => {
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
           className={`relative overflow-hidden rounded-xl p-6 border ${
-            isEnterprise 
-              ? 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-amber-500/20' 
-              : isMidmarket 
+            isEnterprise
+              ? 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-amber-500/20'
+              : isMidmarket
                 ? 'bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-purple-500/20'
                 : 'bg-gradient-to-br from-cyan-500/10 to-purple-500/10 border-cyan-500/20'
           }`}
         >
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className={`p-3 rounded-xl ${
-                isEnterprise ? 'bg-amber-500/20' : isMidmarket ? 'bg-purple-500/20' : 'bg-cyan-500/20'
-              }`}>
-                {isEnterprise ? <Crown className="h-6 w-6 text-amber-400" /> : 
-                 isMidmarket ? <Rocket className="h-6 w-6 text-purple-400" /> : 
-                 <Bot className="h-6 w-6 text-cyan-400" />}
+              <div
+                className={`p-3 rounded-xl ${
+                  isEnterprise
+                    ? 'bg-amber-500/20'
+                    : isMidmarket
+                      ? 'bg-purple-500/20'
+                      : 'bg-cyan-500/20'
+                }`}
+              >
+                {isEnterprise ? (
+                  <Crown className="h-6 w-6 text-amber-400" />
+                ) : isMidmarket ? (
+                  <Rocket className="h-6 w-6 text-purple-400" />
+                ) : (
+                  <Bot className="h-6 w-6 text-cyan-400" />
+                )}
               </div>
               <div>
-                <h2 className="text-lg font-bold text-white">
-                  {segmentCTA.headline}
-                </h2>
-                <p className="text-sm text-slate-400">
-                  {segmentCTA.subheadline}
-                </p>
+                <h2 className="text-lg font-bold text-white">{segmentCTA.headline}</h2>
+                <p className="text-sm text-slate-400">{segmentCTA.subheadline}</p>
               </div>
             </div>
-            <Button 
+            <Button
               className={`${
-                isEnterprise 
-                  ? 'bg-gradient-to-r from-amber-500 to-orange-500' 
-                  : isMidmarket 
+                isEnterprise
+                  ? 'bg-gradient-to-r from-amber-500 to-orange-500'
+                  : isMidmarket
                     ? 'bg-gradient-to-r from-purple-500 to-pink-500'
                     : 'bg-gradient-to-r from-cyan-500 to-purple-500'
               } text-white font-semibold`}
@@ -303,7 +369,9 @@ const Dashboard = () => {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Dashboard</h1>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Welcome back! Here's what's happening today.</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Welcome back! Here's what's happening today.
+            </p>
           </div>
           <div className="flex items-center gap-3">
             <LiveIndicator label="LIVE" />
@@ -410,20 +478,32 @@ const Dashboard = () => {
                     <AreaChart data={performanceData}>
                       <defs>
                         <linearGradient id="colorEmails" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
-                          <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                          <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8} />
+                          <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
                         </linearGradient>
                         <linearGradient id="colorReplies" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#10b981" stopOpacity={0.8}/>
-                          <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                          <stop offset="5%" stopColor="#10b981" stopOpacity={0.8} />
+                          <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
                         </linearGradient>
                       </defs>
                       <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
                       <XAxis dataKey="name" tick={{ fontSize: 12 }} />
                       <YAxis tick={{ fontSize: 12 }} />
                       <Tooltip />
-                      <Area type="monotone" dataKey="emails" stroke="#3b82f6" fillOpacity={1} fill="url(#colorEmails)" />
-                      <Area type="monotone" dataKey="replies" stroke="#10b981" fillOpacity={1} fill="url(#colorReplies)" />
+                      <Area
+                        type="monotone"
+                        dataKey="emails"
+                        stroke="#3b82f6"
+                        fillOpacity={1}
+                        fill="url(#colorEmails)"
+                      />
+                      <Area
+                        type="monotone"
+                        dataKey="replies"
+                        stroke="#10b981"
+                        fillOpacity={1}
+                        fill="url(#colorReplies)"
+                      />
                     </AreaChart>
                   </ResponsiveContainer>
                 </CardContent>
@@ -441,18 +521,29 @@ const Dashboard = () => {
                 <CardContent>
                   <div className="space-y-4">
                     {recentActivity.map((activity, index) => (
-                      <div key={index} className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                        <div className={`w-2 h-2 rounded-full mt-2 ${
-                          activity.type === 'meeting' ? 'bg-green-500' :
-                          activity.type === 'reply' ? 'bg-blue-500' :
-                          'bg-gray-400'
-                        }`} />
+                      <div
+                        key={index}
+                        className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                      >
+                        <div
+                          className={`w-2 h-2 rounded-full mt-2 ${
+                            activity.type === 'meeting'
+                              ? 'bg-green-500'
+                              : activity.type === 'reply'
+                                ? 'bg-blue-500'
+                                : 'bg-gray-400'
+                          }`}
+                        />
                         <div className="flex-1 min-w-0">
                           <p className="text-sm text-gray-900 dark:text-white">
                             <span className="font-semibold">{activity.lead}</span> {activity.action}
                           </p>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">{activity.company}</p>
-                          <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{activity.time}</p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">
+                            {activity.company}
+                          </p>
+                          <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                            {activity.time}
+                          </p>
                         </div>
                       </div>
                     ))}
@@ -483,39 +574,63 @@ const Dashboard = () => {
               <CardContent>
                 <div className="space-y-4">
                   {activeCampaigns.map((campaign, index) => (
-                    <div key={index} className="p-4 rounded-xl border border-gray-200 dark:border-white/10 dark:bg-white/5 hover:border-accent-300 transition-colors">
+                    <div
+                      key={index}
+                      className="p-4 rounded-xl border border-gray-200 dark:border-white/10 dark:bg-white/5 hover:border-accent-300 transition-colors"
+                    >
                       <div className="flex items-start justify-between mb-3">
                         <div>
-                          <h4 className="font-semibold text-gray-900 dark:text-white mb-1">{campaign.name}</h4>
-                          <Badge variant={campaign.status === 'active' ? 'success' : 'default'} className="text-xs">
+                          <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
+                            {campaign.name}
+                          </h4>
+                          <Badge
+                            variant={campaign.status === 'active' ? 'success' : 'default'}
+                            className="text-xs"
+                          >
                             {campaign.status === 'active' ? (
-                              <><Play size={12} className="mr-1" /> Active</>
+                              <>
+                                <Play size={12} className="mr-1" /> Active
+                              </>
                             ) : (
-                              <><Clock size={12} className="mr-1" /> Paused</>
+                              <>
+                                <Clock size={12} className="mr-1" /> Paused
+                              </>
                             )}
                           </Badge>
                         </div>
-                        <span className={`text-lg font-bold ${
-                          campaign.replyRate > 8 ? 'text-green-600' : 'text-orange-600'
-                        }`}>
+                        <span
+                          className={`text-lg font-bold ${
+                            campaign.replyRate > 8 ? 'text-green-600' : 'text-orange-600'
+                          }`}
+                        >
                           {campaign.replyRate}%
                         </span>
                       </div>
                       <div className="grid grid-cols-3 gap-4 text-sm">
                         <div>
                           <p className="text-gray-500 dark:text-gray-400">Leads</p>
-                          <p className="font-semibold text-gray-900 dark:text-white">{campaign.leads}</p>
+                          <p className="font-semibold text-gray-900 dark:text-white">
+                            {campaign.leads}
+                          </p>
                         </div>
                         <div>
                           <p className="text-gray-500 dark:text-gray-400">Sent</p>
-                          <p className="font-semibold text-gray-900 dark:text-white">{campaign.sent}</p>
+                          <p className="font-semibold text-gray-900 dark:text-white">
+                            {campaign.sent}
+                          </p>
                         </div>
                         <div>
                           <p className="text-gray-500 dark:text-gray-400">Replies</p>
-                          <p className="font-semibold text-gray-900 dark:text-white">{campaign.replies}</p>
+                          <p className="font-semibold text-gray-900 dark:text-white">
+                            {campaign.replies}
+                          </p>
                         </div>
                       </div>
-                      <AnimatedProgress value={Math.round((campaign.sent / campaign.leads) * 100)} color="blue" label="Progress" />
+                      <AnimatedProgress
+                        value={Math.round((campaign.sent / campaign.leads) * 100)}
+                        color="blue"
+                        label="Progress"
+                      />
                     </div>
                   ))}
                 </div>
@@ -531,9 +646,13 @@ const Dashboard = () => {
                   <CardTitle className="text-base">Open Rate</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">34.2%</div>
+                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                    34.2%
+                  </div>
                   <AnimatedProgress value={34} color="blue" />
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">Above industry avg (28%)</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
+                    Above industry avg (28%)
+                  </p>
                 </CardContent>
               </Card>
 
@@ -542,9 +661,13 @@ const Dashboard = () => {
                   <CardTitle className="text-base">Click Rate</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">12.8%</div>
+                  <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                    12.8%
+                  </div>
                   <AnimatedProgress value={13} color="green" />
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">Excellent performance</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
+                    Excellent performance
+                  </p>
                 </CardContent>
               </Card>
 
@@ -553,9 +676,13 @@ const Dashboard = () => {
                   <CardTitle className="text-base">Conversion Rate</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">6.4%</div>
+                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
+                    6.4%
+                  </div>
                   <AnimatedProgress value={6} color="purple" />
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">Meeting to close ratio</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
+                    Meeting to close ratio
+                  </p>
                 </CardContent>
               </Card>
             </div>
@@ -596,20 +723,29 @@ const Dashboard = () => {
               <CardContent>
                 <div className="space-y-4">
                   {aiRecommendations.map((rec, index) => (
-                    <div key={index} className="p-4 rounded-xl border border-gray-200 dark:border-white/10 dark:bg-white/5">
+                    <div
+                      key={index}
+                      className="p-4 rounded-xl border border-gray-200 dark:border-white/10 dark:bg-white/5"
+                    >
                       <div className="flex items-start justify-between mb-2">
                         <div className="flex items-center gap-2">
                           <Lightbulb className="text-yellow-500" size={18} />
-                          <h4 className="font-semibold text-gray-900 dark:text-white">{rec.title}</h4>
+                          <h4 className="font-semibold text-gray-900 dark:text-white">
+                            {rec.title}
+                          </h4>
                         </div>
                         <div className="inline-flex items-center gap-2 text-xs px-2 py-1 rounded-full bg-primary-50 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300">
                           <Gauge size={14} />
                           {(rec.confidence * 100).toFixed(0)}%
                         </div>
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{rec.description}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                        {rec.description}
+                      </p>
                       <div className="flex items-center justify-between">
-                        <Badge variant="accent" className="text-xs">{rec.impact}</Badge>
+                        <Badge variant="accent" className="text-xs">
+                          {rec.impact}
+                        </Badge>
                         <Button variant="outline" size="sm" className="gap-2">
                           {rec.action}
                           <ArrowUpRight size={14} />
@@ -634,19 +770,35 @@ const Dashboard = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
-                    <Button className="w-full justify-start gap-2" variant="outline" onClick={() => navigate('/campaigns')}>
+                    <Button
+                      className="w-full justify-start gap-2"
+                      variant="outline"
+                      onClick={() => navigate('/campaigns')}
+                    >
                       <Rocket size={16} />
                       Create New Campaign
                     </Button>
-                    <Button className="w-full justify-start gap-2" variant="outline" onClick={() => navigate('/leads')}>
+                    <Button
+                      className="w-full justify-start gap-2"
+                      variant="outline"
+                      onClick={() => navigate('/leads')}
+                    >
                       <Users size={16} />
                       Import Leads
                     </Button>
-                    <Button className="w-full justify-start gap-2" variant="outline" onClick={() => navigate('/ai-assistant')}>
+                    <Button
+                      className="w-full justify-start gap-2"
+                      variant="outline"
+                      onClick={() => navigate('/ai-assistant')}
+                    >
                       <Sparkles size={16} />
                       Ask Ava AI
                     </Button>
-                    <Button className="w-full justify-start gap-2" variant="outline" onClick={() => navigate('/analytics')}>
+                    <Button
+                      className="w-full justify-start gap-2"
+                      variant="outline"
+                      onClick={() => navigate('/analytics')}
+                    >
                       <BarChart3 size={16} />
                       View Full Analytics
                     </Button>
@@ -665,8 +817,12 @@ const Dashboard = () => {
                   <div className="space-y-3">
                     <div className="p-3 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border border-green-200 dark:border-green-500/30">
                       <div className="flex items-start justify-between mb-2">
-                        <p className="text-sm font-semibold text-gray-900 dark:text-white">Follow up with 3 hot leads</p>
-                        <Badge variant="default" className="text-xs">High</Badge>
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                          Follow up with 3 hot leads
+                        </p>
+                        <Badge variant="default" className="text-xs">
+                          High
+                        </Badge>
                       </div>
                       <Button variant="outline" size="sm" className="w-full gap-2 text-xs">
                         <CheckCircle2 size={14} />
@@ -676,8 +832,12 @@ const Dashboard = () => {
 
                     <div className="p-3 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border border-blue-200 dark:border-blue-500/30">
                       <div className="flex items-start justify-between mb-2">
-                        <p className="text-sm font-semibold text-gray-900 dark:text-white">Optimize send times</p>
-                        <Badge variant="outline" className="text-xs">Med</Badge>
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                          Optimize send times
+                        </p>
+                        <Badge variant="outline" className="text-xs">
+                          Med
+                        </Badge>
                       </div>
                       <Button variant="outline" size="sm" className="w-full gap-2 text-xs">
                         <Clock size={14} />

@@ -62,8 +62,20 @@ const ClosedLoopLearning = () => {
         performanceImprovement: 12.4,
         status: 'active',
         modelUpdates: [
-          { component: 'messaging', description: 'Updated opening line patterns for VP personas', beforeMetric: 2.1, afterMetric: 2.8, confidence: 91 },
-          { component: 'timing', description: 'Refined send time optimization for tech industry', beforeMetric: 24.5, afterMetric: 31.2, confidence: 88 },
+          {
+            component: 'messaging',
+            description: 'Updated opening line patterns for VP personas',
+            beforeMetric: 2.1,
+            afterMetric: 2.8,
+            confidence: 91,
+          },
+          {
+            component: 'timing',
+            description: 'Refined send time optimization for tech industry',
+            beforeMetric: 24.5,
+            afterMetric: 31.2,
+            confidence: 88,
+          },
         ],
         topInsights: [
           'Questions in subject lines increase open rates by 18% for C-level',
@@ -80,8 +92,20 @@ const ClosedLoopLearning = () => {
         performanceImprovement: 8.7,
         status: 'completed',
         modelUpdates: [
-          { component: 'targeting', description: 'Improved ICP scoring for fintech segment', beforeMetric: 67, afterMetric: 78, confidence: 94 },
-          { component: 'scoring', description: 'Enhanced lead scoring with engagement signals', beforeMetric: 72, afterMetric: 81, confidence: 89 },
+          {
+            component: 'targeting',
+            description: 'Improved ICP scoring for fintech segment',
+            beforeMetric: 67,
+            afterMetric: 78,
+            confidence: 94,
+          },
+          {
+            component: 'scoring',
+            description: 'Enhanced lead scoring with engagement signals',
+            beforeMetric: 72,
+            afterMetric: 81,
+            confidence: 89,
+          },
         ],
         topInsights: [
           'LinkedIn engagement correlates 0.72 with email response',
@@ -97,7 +121,13 @@ const ClosedLoopLearning = () => {
         performanceImprovement: 15.2,
         status: 'completed',
         modelUpdates: [
-          { component: 'messaging', description: 'New personalization patterns identified', beforeMetric: 1.8, afterMetric: 2.4, confidence: 92 },
+          {
+            component: 'messaging',
+            description: 'New personalization patterns identified',
+            beforeMetric: 1.8,
+            afterMetric: 2.4,
+            confidence: 92,
+          },
         ],
         topInsights: [
           'Mentioning recent company news increases reply rate by 45%',
@@ -119,11 +149,16 @@ const ClosedLoopLearning = () => {
 
   const getComponentIcon = (component: string) => {
     switch (component) {
-      case 'messaging': return '💬';
-      case 'timing': return '⏰';
-      case 'targeting': return '🎯';
-      case 'scoring': return '📊';
-      default: return '🔄';
+      case 'messaging':
+        return '💬';
+      case 'timing':
+        return '⏰';
+      case 'targeting':
+        return '🎯';
+      case 'scoring':
+        return '📊';
+      default:
+        return '🔄';
     }
   };
 
@@ -175,11 +210,15 @@ const ClosedLoopLearning = () => {
           ].map((step, idx) => (
             <React.Fragment key={step.label}>
               <div className="flex flex-col items-center gap-2">
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                  step.status === 'active' ? 'bg-cyan-500/20 text-cyan-400' :
-                  step.status === 'processing' ? 'bg-amber-500/20 text-amber-400' :
-                  'bg-gray-700 text-gray-500'
-                }`}>
+                <div
+                  className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                    step.status === 'active'
+                      ? 'bg-cyan-500/20 text-cyan-400'
+                      : step.status === 'processing'
+                        ? 'bg-amber-500/20 text-amber-400'
+                        : 'bg-gray-700 text-gray-500'
+                  }`}
+                >
                   {step.status === 'processing' ? (
                     <motion.div
                       animate={{ rotate: 360 }}
@@ -193,9 +232,7 @@ const ClosedLoopLearning = () => {
                 </div>
                 <span className="text-xs text-gray-400">{step.label}</span>
               </div>
-              {idx < 3 && (
-                <ArrowRight className="w-5 h-5 text-gray-600" />
-              )}
+              {idx < 3 && <ArrowRight className="w-5 h-5 text-gray-600" />}
             </React.Fragment>
           ))}
         </div>
@@ -262,7 +299,7 @@ const ClosedLoopLearning = () => {
             Learning Cycles
           </h3>
           <div className="space-y-3">
-            {learningCycles.map((cycle) => (
+            {learningCycles.map(cycle => (
               <motion.button
                 key={cycle.id}
                 onClick={() => setCurrentCycle(cycle)}
@@ -283,8 +320,7 @@ const ClosedLoopLearning = () => {
                     )}
                   </div>
                   <span className="text-green-400 text-sm flex items-center gap-1">
-                    <TrendingUp className="w-3.5 h-3.5" />
-                    +{cycle.performanceImprovement}%
+                    <TrendingUp className="w-3.5 h-3.5" />+{cycle.performanceImprovement}%
                   </span>
                 </div>
                 <div className="flex items-center gap-4 text-xs text-gray-400">

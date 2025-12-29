@@ -1,35 +1,54 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Settings, AlertTriangle, Shield, Sparkles,
-  MessageSquare, Target, UserCheck
+import {
+  Settings,
+  AlertTriangle,
+  Shield,
+  Sparkles,
+  MessageSquare,
+  Target,
+  UserCheck,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 import { Button } from '../../../components/ui/Button';
 
 const POLICY_OPTIONS = [
-  { value: 'conservative', label: 'Conservative', description: 'Careful approach, avoids aggressive tactics' },
+  {
+    value: 'conservative',
+    label: 'Conservative',
+    description: 'Careful approach, avoids aggressive tactics',
+  },
   { value: 'standard', label: 'Standard', description: 'Balanced approach with proven techniques' },
-  { value: 'aggressive', label: 'Aggressive', description: 'Direct approach, pushes for commitment' },
+  {
+    value: 'aggressive',
+    label: 'Aggressive',
+    description: 'Direct approach, pushes for commitment',
+  },
 ];
 
 const PERSONA_OPTIONS = [
   { value: 'helpful', label: 'Helpful', icon: Sparkles, description: 'Friendly and supportive' },
   { value: 'direct', label: 'Direct', icon: Target, description: 'Clear and to the point' },
-  { value: 'consultative', label: 'Consultative', icon: MessageSquare, description: 'Questions and advises' },
+  {
+    value: 'consultative',
+    label: 'Consultative',
+    icon: MessageSquare,
+    description: 'Questions and advises',
+  },
 ];
 
 const OptionButton = ({ option, isSelected, onClick, showDescription = true }) => {
   const Icon = option.icon;
-  
+
   return (
     <button
       onClick={onClick}
       className={`
         flex-1 p-3 rounded-xl border text-left transition-all
-        ${isSelected 
-          ? 'bg-cyan-500/10 border-cyan-500/30 ring-2 ring-cyan-500/20' 
-          : 'bg-slate-800/30 border-white/5 hover:border-white/10'
+        ${
+          isSelected
+            ? 'bg-cyan-500/10 border-cyan-500/30 ring-2 ring-cyan-500/20'
+            : 'bg-slate-800/30 border-white/5 hover:border-white/10'
         }
       `}
     >
@@ -39,9 +58,7 @@ const OptionButton = ({ option, isSelected, onClick, showDescription = true }) =
           {option.label}
         </span>
       </div>
-      {showDescription && (
-        <p className="text-xs text-slate-500">{option.description}</p>
-      )}
+      {showDescription && <p className="text-xs text-slate-500">{option.description}</p>}
     </button>
   );
 };
@@ -62,7 +79,7 @@ export function CallControls({ settings, updateSettings, onEmergencyTakeover, st
             Policy
           </h4>
           <div className="flex gap-2">
-            {POLICY_OPTIONS.map((option) => (
+            {POLICY_OPTIONS.map(option => (
               <OptionButton
                 key={option.value}
                 option={option}
@@ -80,7 +97,7 @@ export function CallControls({ settings, updateSettings, onEmergencyTakeover, st
             Persona
           </h4>
           <div className="flex gap-2">
-            {PERSONA_OPTIONS.map((option) => (
+            {PERSONA_OPTIONS.map(option => (
               <OptionButton
                 key={option.value}
                 option={option}
@@ -101,9 +118,10 @@ export function CallControls({ settings, updateSettings, onEmergencyTakeover, st
             className={`
               w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl
               border-2 border-dashed transition-colors
-              ${status === 'in-call'
-                ? 'border-rose-500/50 bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 cursor-pointer'
-                : 'border-slate-700 bg-slate-800/30 text-slate-500 cursor-not-allowed'
+              ${
+                status === 'in-call'
+                  ? 'border-rose-500/50 bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 cursor-pointer'
+                  : 'border-slate-700 bg-slate-800/30 text-slate-500 cursor-not-allowed'
               }
             `}
           >

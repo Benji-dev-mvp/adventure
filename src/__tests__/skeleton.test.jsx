@@ -65,9 +65,7 @@ describe('Skeleton Components', () => {
     });
 
     it('should apply custom className', () => {
-      const { container } = render(
-        <SkeletonGroup count={2} className="custom-group" />
-      );
+      const { container } = render(<SkeletonGroup count={2} className="custom-group" />);
       expect(container.firstChild).toHaveClass('custom-group');
       expect(container.firstChild).toHaveClass('space-y-2');
     });

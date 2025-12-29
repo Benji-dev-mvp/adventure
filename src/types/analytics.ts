@@ -7,7 +7,7 @@
 // Board Deck Generator Types
 // ============================================
 
-export type SlideType = 
+export type SlideType =
   | 'title'
   | 'executive_summary'
   | 'pipeline_overview'
@@ -48,21 +48,21 @@ export interface SlideContent {
   subheadline?: string;
   date?: string;
   presenter?: string;
-  
+
   // Metric slides
   metrics?: DeckMetric[];
   charts?: DeckChart[];
-  
+
   // Text content
   bullets?: string[];
   highlights?: Highlight[];
-  
+
   // Table content
   table?: DeckTable;
-  
+
   // Comparison
   comparison?: DeckComparison;
-  
+
   // Custom
   customHtml?: string;
 }

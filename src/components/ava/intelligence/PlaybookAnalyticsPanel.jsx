@@ -1,9 +1,9 @@
 /**
  * PlaybookAnalyticsPanel.jsx
- * 
+ *
  * Comprehensive funnel + channel dashboard with data-first storytelling.
  * Integrates all Phase 1 visual intelligence components into a unified view.
- * 
+ *
  * Features:
  * - Multi-stage funnel visualization
  * - Channel performance comparison
@@ -15,10 +15,25 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import {
-  BarChart3, TrendingUp, TrendingDown, Download, Filter, 
-  RefreshCw, Maximize2, ChevronDown, ArrowRight,
-  Users, Mail, MessageSquare, Calendar, Target, Zap,
-  Phone, Linkedin, ArrowUpRight, ArrowDownRight
+  BarChart3,
+  TrendingUp,
+  TrendingDown,
+  Download,
+  Filter,
+  RefreshCw,
+  Maximize2,
+  ChevronDown,
+  ArrowRight,
+  Users,
+  Mail,
+  MessageSquare,
+  Calendar,
+  Target,
+  Zap,
+  Phone,
+  Linkedin,
+  ArrowUpRight,
+  ArrowDownRight,
 } from 'lucide-react';
 import { AnimatedCounter } from '../../ui/AnimatedComponents';
 
@@ -30,12 +45,12 @@ const FunnelStage = ({ stage, value, previousValue, color, isLast }) => {
   return (
     <div className="flex-1 relative">
       {/* Stage Bar */}
-      <div 
+      <div
         className={`h-20 ${color} rounded-lg flex items-center justify-center relative overflow-hidden`}
-        style={{ 
-          clipPath: isLast 
-            ? 'polygon(10% 0, 100% 0, 100% 100%, 10% 100%, 0% 50%)' 
-            : 'polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%, 10% 50%)'
+        style={{
+          clipPath: isLast
+            ? 'polygon(10% 0, 100% 0, 100% 100%, 10% 100%, 0% 50%)'
+            : 'polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%, 10% 50%)',
         }}
       >
         <div className="text-center text-white z-10">
@@ -60,9 +75,7 @@ const FunnelStage = ({ stage, value, previousValue, color, isLast }) => {
       {/* Drop-off indicator */}
       {dropOff && dropOff > 0 && (
         <div className="absolute -bottom-6 left-1/2 -translate-x-1/2">
-          <span className="text-xs text-red-500">
-            -{dropOff.toLocaleString()} lost
-          </span>
+          <span className="text-xs text-red-500">-{dropOff.toLocaleString()} lost</span>
         </div>
       )}
     </div>
@@ -85,9 +98,17 @@ FunnelStage.propTypes = {
 const FunnelVisualization = ({ data }) => {
   const stages = [
     { key: 'leads', label: 'Leads Targeted', color: 'bg-gradient-to-r from-blue-500 to-blue-600' },
-    { key: 'contacted', label: 'Contacted', color: 'bg-gradient-to-r from-purple-500 to-purple-600' },
+    {
+      key: 'contacted',
+      label: 'Contacted',
+      color: 'bg-gradient-to-r from-purple-500 to-purple-600',
+    },
     { key: 'engaged', label: 'Engaged', color: 'bg-gradient-to-r from-pink-500 to-pink-600' },
-    { key: 'responded', label: 'Responded', color: 'bg-gradient-to-r from-orange-500 to-orange-600' },
+    {
+      key: 'responded',
+      label: 'Responded',
+      color: 'bg-gradient-to-r from-orange-500 to-orange-600',
+    },
     { key: 'meetings', label: 'Meetings', color: 'bg-gradient-to-r from-green-500 to-green-600' },
   ];
 
@@ -107,8 +128,15 @@ const FunnelVisualization = ({ data }) => {
         ))}
       </div>
       <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-8">
-        <span>Overall Conversion: <strong className="text-green-600">{((data.meetings / data.leads) * 100).toFixed(2)}%</strong></span>
-        <span>Best Stage: <strong className="text-blue-600">Engaged → Responded (42%)</strong></span>
+        <span>
+          Overall Conversion:{' '}
+          <strong className="text-green-600">
+            {((data.meetings / data.leads) * 100).toFixed(2)}%
+          </strong>
+        </span>
+        <span>
+          Best Stage: <strong className="text-blue-600">Engaged → Responded (42%)</strong>
+        </span>
       </div>
     </div>
   );
@@ -159,14 +187,20 @@ const ChannelPerformance = ({ data }) => {
                   <span className="font-semibold text-gray-900 dark:text-white">
                     {channelData.meetings} meetings
                   </span>
-                  <span className={`flex items-center ${channelData.trend >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                    {channelData.trend >= 0 ? <ArrowUpRight size={14} /> : <ArrowDownRight size={14} />}
+                  <span
+                    className={`flex items-center ${channelData.trend >= 0 ? 'text-green-600' : 'text-red-600'}`}
+                  >
+                    {channelData.trend >= 0 ? (
+                      <ArrowUpRight size={14} />
+                    ) : (
+                      <ArrowDownRight size={14} />
+                    )}
                     {Math.abs(channelData.trend)}%
                   </span>
                 </div>
               </div>
               <div className="h-3 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-                <div 
+                <div
                   className={`h-full bg-gradient-to-r ${channel.color} rounded-full transition-all duration-500`}
                   style={{ width: `${barWidth}%` }}
                 />
@@ -183,9 +217,12 @@ const ChannelPerformance = ({ data }) => {
 const KPICard = ({ label, value, format, trend, icon: Icon, color }) => {
   const formatValue = (val, fmt) => {
     switch (fmt) {
-      case 'percent': return `${val.toFixed(1)}%`;
-      case 'currency': return `$${(val / 1000).toFixed(1)}k`;
-      default: return val.toLocaleString();
+      case 'percent':
+        return `${val.toFixed(1)}%`;
+      case 'currency':
+        return `$${(val / 1000).toFixed(1)}k`;
+      default:
+        return val.toLocaleString();
     }
   };
 
@@ -194,7 +231,9 @@ const KPICard = ({ label, value, format, trend, icon: Icon, color }) => {
       <div className="flex items-center justify-between mb-2">
         <Icon size={20} className="opacity-80" />
         {trend !== undefined && (
-          <div className={`flex items-center text-xs ${trend >= 0 ? 'text-green-200' : 'text-red-200'}`}>
+          <div
+            className={`flex items-center text-xs ${trend >= 0 ? 'text-green-200' : 'text-red-200'}`}
+          >
             {trend >= 0 ? <ArrowUpRight size={14} /> : <ArrowDownRight size={14} />}
             {Math.abs(trend)}%
           </div>
@@ -235,7 +274,7 @@ const SegmentBreakdown = ({ data }) => {
           const meetings = data[segment.key]?.meetings || 0;
           const width = (meetings / total) * 100;
           return (
-            <div 
+            <div
               key={segment.key}
               className={`${segment.color} transition-all duration-500`}
               style={{ width: `${width}%` }}
@@ -259,11 +298,13 @@ const SegmentBreakdown = ({ data }) => {
 };
 
 SegmentBreakdown.propTypes = {
-  data: PropTypes.objectOf(PropTypes.shape({
-    leads: PropTypes.number,
-    meetings: PropTypes.number,
-    pipeline: PropTypes.number,
-  })).isRequired,
+  data: PropTypes.objectOf(
+    PropTypes.shape({
+      leads: PropTypes.number,
+      meetings: PropTypes.number,
+      pipeline: PropTypes.number,
+    })
+  ).isRequired,
 };
 
 // Time Series Mini Chart
@@ -276,9 +317,7 @@ const TrendMiniChart = ({ data, label }) => {
     <div className="space-y-2">
       <div className="flex justify-between items-center">
         <span className="text-xs text-gray-500 dark:text-gray-400">{label}</span>
-        <span className="text-xs font-medium text-gray-700 dark:text-gray-300">
-          Last 7 days
-        </span>
+        <span className="text-xs font-medium text-gray-700 dark:text-gray-300">Last 7 days</span>
       </div>
       <div className="flex items-end gap-1 h-12">
         {data.map((value, i) => (
@@ -317,26 +356,26 @@ export const PlaybookAnalyticsPanel = ({ playbooks = [], runs = [], dateRange = 
 
     // Channel data
     const channels = {
-      email: { 
-        leads: 1800, 
-        responses: 378, 
-        meetings: 52, 
+      email: {
+        leads: 1800,
+        responses: 378,
+        meetings: 52,
         response_rate: 21.0,
-        trend: 8 
+        trend: 8,
       },
-      linkedin: { 
-        leads: 720, 
-        responses: 187, 
-        meetings: 58, 
+      linkedin: {
+        leads: 720,
+        responses: 187,
+        meetings: 58,
         response_rate: 26.0,
-        trend: 15 
+        trend: 15,
       },
-      phone: { 
-        leads: 327, 
-        responses: 47, 
-        meetings: 17, 
+      phone: {
+        leads: 327,
+        responses: 47,
+        meetings: 17,
         response_rate: 14.4,
-        trend: -5 
+        trend: -5,
       },
     };
 
@@ -392,7 +431,7 @@ export const PlaybookAnalyticsPanel = ({ playbooks = [], runs = [], dateRange = 
           <div className="flex items-center gap-3">
             {/* View Toggle */}
             <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
-              {['overview', 'funnel', 'channels'].map((view) => (
+              {['overview', 'funnel', 'channels'].map(view => (
                 <button
                   key={view}
                   onClick={() => setSelectedView(view)}
@@ -412,7 +451,10 @@ export const PlaybookAnalyticsPanel = ({ playbooks = [], runs = [], dateRange = 
               disabled={refreshing}
               className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
             >
-              <RefreshCw size={18} className={`text-gray-600 dark:text-gray-400 ${refreshing ? 'animate-spin' : ''}`} />
+              <RefreshCw
+                size={18}
+                className={`text-gray-600 dark:text-gray-400 ${refreshing ? 'animate-spin' : ''}`}
+              />
             </button>
 
             <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
@@ -518,15 +560,16 @@ export const PlaybookAnalyticsPanel = ({ playbooks = [], runs = [], dateRange = 
               <Zap className="text-white" size={16} />
             </div>
             <div>
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
-                AI Data Story
-              </h4>
+              <h4 className="font-semibold text-gray-900 dark:text-white mb-1">AI Data Story</h4>
               <p className="text-sm text-gray-700 dark:text-gray-300">
-                This month, your playbooks generated <strong className="text-purple-600">127 meetings</strong> from 
-                <strong> 2,847 leads</strong>, a <strong className="text-green-600">+23% improvement</strong> over last month. 
-                LinkedIn continues to outperform with a <strong>26% response rate</strong>—15% higher than email. 
-                Enterprise segment drives <strong>55% of pipeline value</strong> despite representing only 21% of leads. 
-                Consider increasing LinkedIn allocation for enterprise accounts.
+                This month, your playbooks generated{' '}
+                <strong className="text-purple-600">127 meetings</strong> from
+                <strong> 2,847 leads</strong>, a{' '}
+                <strong className="text-green-600">+23% improvement</strong> over last month.
+                LinkedIn continues to outperform with a <strong>26% response rate</strong>—15%
+                higher than email. Enterprise segment drives <strong>55% of pipeline value</strong>{' '}
+                despite representing only 21% of leads. Consider increasing LinkedIn allocation for
+                enterprise accounts.
               </p>
             </div>
           </div>

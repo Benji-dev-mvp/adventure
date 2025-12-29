@@ -53,7 +53,7 @@ interface UIState {
 
 export const useUIStore = create<UIState>()(
   devtools(
-    immer((set) => ({
+    immer(set => ({
       // Initial state
       sidebarCollapsed: false,
       sidebarHovered: false,
@@ -65,35 +65,35 @@ export const useUIStore = create<UIState>()(
 
       // Sidebar actions
       toggleSidebar: () =>
-        set((state) => {
+        set(state => {
           state.sidebarCollapsed = !state.sidebarCollapsed;
         }),
 
-      setSidebarCollapsed: (collapsed) =>
-        set((state) => {
+      setSidebarCollapsed: collapsed =>
+        set(state => {
           state.sidebarCollapsed = collapsed;
         }),
 
-      setSidebarHovered: (hovered) =>
-        set((state) => {
+      setSidebarHovered: hovered =>
+        set(state => {
           state.sidebarHovered = hovered;
         }),
 
       // Modal actions
       openModal: (id, data) =>
-        set((state) => {
+        set(state => {
           state.modals[id] = { isOpen: true, data };
         }),
 
-      closeModal: (id) =>
-        set((state) => {
+      closeModal: id =>
+        set(state => {
           if (state.modals[id]) {
             state.modals[id].isOpen = false;
           }
         }),
 
-      toggleModal: (id) =>
-        set((state) => {
+      toggleModal: id =>
+        set(state => {
           if (state.modals[id]) {
             state.modals[id].isOpen = !state.modals[id].isOpen;
           } else {
@@ -103,30 +103,30 @@ export const useUIStore = create<UIState>()(
 
       // Command palette
       toggleCommandPalette: () =>
-        set((state) => {
+        set(state => {
           state.commandPaletteOpen = !state.commandPaletteOpen;
         }),
 
-      setCommandPaletteOpen: (open) =>
-        set((state) => {
+      setCommandPaletteOpen: open =>
+        set(state => {
           state.commandPaletteOpen = open;
         }),
 
       // Loading
       setGlobalLoading: (loading, message = '') =>
-        set((state) => {
+        set(state => {
           state.globalLoading = loading;
           state.loadingMessage = message;
         }),
 
       // Notifications
       toggleNotificationsPanel: () =>
-        set((state) => {
+        set(state => {
           state.notificationsPanelOpen = !state.notificationsPanelOpen;
         }),
 
-      setNotificationsPanelOpen: (open) =>
-        set((state) => {
+      setNotificationsPanelOpen: open =>
+        set(state => {
           state.notificationsPanelOpen = open;
         }),
     })),
@@ -145,9 +145,9 @@ export const selectGlobalLoading = (state: UIState) => ({
 
 // Modal helper hook
 export const useModal = (modalId: string) => {
-  const modal = useUIStore((state) => state.modals[modalId]);
-  const openModal = useUIStore((state) => state.openModal);
-  const closeModal = useUIStore((state) => state.closeModal);
+  const modal = useUIStore(state => state.modals[modalId]);
+  const openModal = useUIStore(state => state.openModal);
+  const closeModal = useUIStore(state => state.closeModal);
 
   return {
     isOpen: modal?.isOpen ?? false,

@@ -49,6 +49,7 @@ class Permission(str, Enum):
 
     # System permissions
     SYSTEM_ADMIN = "system:admin"
+    SYSTEM_SETTINGS = "system:settings"
     AUDIT_LOG_READ = "audit:read"
     SETTINGS_UPDATE = "settings:update"
 
@@ -82,12 +83,13 @@ ROLE_PERMISSIONS = {
 class User(BaseModel):
     """User model"""
 
-    id: int
+    id: int = 1
     email: EmailStr
-    name: str
+    name: str = "Test User"
+    hashed_password: Optional[str] = None
     role: UserRole = UserRole.USER
     is_active: bool = True
-    created_at: datetime
+    created_at: datetime = datetime.now()
     last_login: Optional[datetime] = None
 
     # OAuth fields

@@ -21,12 +21,12 @@ export const SpamChecker = ({ subject, content }) => {
 
   const checkSpam = async () => {
     setLoading(true);
-    
+
     try {
       // Call Python backend for spam analysis
       const response = await dataService.post('/campaigns/check-spam', {
         subject: subject || '',
-        content: content || ''
+        content: content || '',
       });
 
       setScore(response.score);
@@ -36,11 +36,13 @@ export const SpamChecker = ({ subject, content }) => {
       setDeliverability(response.estimated_deliverability);
     } catch (error) {
       console.error('Spam check failed:', error);
-      setIssues([{
-        type: 'error',
-        message: 'Failed to analyze content',
-        impact: 'High'
-      }]);
+      setIssues([
+        {
+          type: 'error',
+          message: 'Failed to analyze content',
+          impact: 'High',
+        },
+      ]);
     } finally {
       setLoading(false);
     }
@@ -59,7 +61,7 @@ export const SpamChecker = ({ subject, content }) => {
     return riskLevel;
   };
 
-  const getIcon = (type) => {
+  const getIcon = type => {
     switch (type) {
       case 'error':
         return <AlertCircle className="text-red-500" size={16} />;
@@ -139,7 +141,9 @@ export const SpamChecker = ({ subject, content }) => {
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   Estimated Deliverability:
                 </span>
-                <span className={`text-sm font-semibold ${deliverability >= 80 ? 'text-green-600' : deliverability >= 60 ? 'text-yellow-600' : 'text-red-600'}`}>
+                <span
+                  className={`text-sm font-semibold ${deliverability >= 80 ? 'text-green-600' : deliverability >= 60 ? 'text-yellow-600' : 'text-red-600'}`}
+                >
                   {deliverability}%
                 </span>
               </div>
@@ -149,7 +153,8 @@ export const SpamChecker = ({ subject, content }) => {
           {/* Tips */}
           <div className="pt-4 border-t border-gray-200 dark:border-white/10 mt-2">
             <p className="text-xs text-gray-600 dark:text-gray-400">
-              <strong>Tip:</strong> {safeToSend ? 'Content looks safe to send!' : 'Review and fix issues before sending'}
+              <strong>Tip:</strong>{' '}
+              {safeToSend ? 'Content looks safe to send!' : 'Review and fix issues before sending'}
             </p>
           </div>
         </div>
@@ -160,5 +165,5 @@ export const SpamChecker = ({ subject, content }) => {
 
 SpamChecker.propTypes = {
   subject: PropTypes.string,
-  content: PropTypes.string
+  content: PropTypes.string,
 };

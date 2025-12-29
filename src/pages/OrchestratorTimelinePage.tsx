@@ -7,7 +7,9 @@ import { Loader2 } from 'lucide-react';
  * Real-time workflow execution monitoring
  */
 
-const ExecutionTimeline = lazy(() => import('@/workflow/ExecutionTimeline').then(m => ({ default: m.ExecutionTimeline })));
+const ExecutionTimeline = lazy(() =>
+  import('@/workflow/ExecutionTimeline').then(m => ({ default: m.ExecutionTimeline }))
+);
 
 const PageLoader = () => (
   <div className="h-screen w-full flex items-center justify-center bg-gray-950">

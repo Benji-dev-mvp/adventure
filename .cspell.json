@@ -1,0 +1,19 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en",
+  "ignorePaths": [
+    "node_modules/**",
+    "backend/.venv/**",
+    "backend/app/__pycache__/**",
+    "dist/**",
+    "build/**",
+    ".github/**"
+  ],
+  "words": [
+    "API","AI","UI","UX","SDK","CLI","CPU","GPU","DB","ORM","SQL","NoSQL","JWT","SSO","MFA","OAuth","RBAC","ACL","KPI","OKR","ROI","ACV","ARR","MRR","CTA","PM","AM","TX","VP","SDR","BDR","GTM","SaaS","FastAPI","Uvicorn","Pydantic","SQLModel","TanStack","Zustand","Radix","Ky","Vite","Playwright","Vitest","React","TypeScript","PostgreSQL","SQLite","Redis","Celery","Sentry","OpenTelemetry","WebSocket","SSE","RAG","LLM","LangChain","Anthropic","OpenAI","Groq","Mem0","Qdrant","WeasyPrint","Weasy","ReportLab","Weaviate","XGBoost","Scikit","NumPy","Pandas","PyJWT","bcrypt","Argon2","dotenv","CORS","CSRF","TSX","JSX","npm","pnpm","yarn","Docker","Kubernetes","Helm","Nginx","GCP","AWS","Azure","OIDC","SMTP","TLS","SSL","IPv6","IPv4","OPA","GraphQL","Strawberry","Zod","ReactQuery","Immer","Lucide","Cmdk"
+  ],
+  "flagWords": [
+    "hte","teh","adn","recieve","occured"
+  ]
+}

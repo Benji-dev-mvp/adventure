@@ -2,12 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { cn } from '@/lib/utils';
 
-const Spinner = ({ 
-  size = 'md',
-  variant = 'primary',
-  className,
-  ...props 
-}) => {
+const Spinner = ({ size = 'md', variant = 'primary', className, ...props }) => {
   const sizes = {
     xs: 'w-3 h-3 border',
     sm: 'w-4 h-4 border-2',
@@ -25,7 +20,7 @@ const Spinner = ({
   return (
     <div
       className={cn(
-        "inline-block rounded-full animate-spin",
+        'inline-block rounded-full animate-spin',
         sizes[size],
         variants[variant],
         className
@@ -43,7 +38,7 @@ const LoadingOverlay = ({ children, loading, spinnerSize = 'lg', className }) =>
   if (!loading) return children;
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn('relative', className)}>
       <div className="opacity-50 pointer-events-none">{children}</div>
       <div className="absolute inset-0 flex items-center justify-center bg-white/50 dark:bg-gray-900/50">
         <Spinner size={spinnerSize} />
@@ -54,10 +49,19 @@ const LoadingOverlay = ({ children, loading, spinnerSize = 'lg', className }) =>
 
 const LoadingDots = ({ className, ...props }) => {
   return (
-    <div className={cn("flex items-center gap-1", className)} {...props}>
-      <span className="w-2 h-2 bg-accent-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-      <span className="w-2 h-2 bg-accent-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-      <span className="w-2 h-2 bg-accent-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+    <div className={cn('flex items-center gap-1', className)} {...props}>
+      <span
+        className="w-2 h-2 bg-accent-600 rounded-full animate-bounce"
+        style={{ animationDelay: '0ms' }}
+      />
+      <span
+        className="w-2 h-2 bg-accent-600 rounded-full animate-bounce"
+        style={{ animationDelay: '150ms' }}
+      />
+      <span
+        className="w-2 h-2 bg-accent-600 rounded-full animate-bounce"
+        style={{ animationDelay: '300ms' }}
+      />
     </div>
   );
 };
@@ -68,7 +72,13 @@ LoadingDots.propTypes = {
 
 const LoadingBar = ({ progress, className, ...props }) => {
   return (
-    <div className={cn("w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden", className)} {...props}>
+    <div
+      className={cn(
+        'w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden',
+        className
+      )}
+      {...props}
+    >
       <div
         className="h-full bg-accent-600 transition-all duration-300 ease-out"
         style={{ width: `${progress}%` }}

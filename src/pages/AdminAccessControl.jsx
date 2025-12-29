@@ -1,6 +1,6 @@
 /**
  * Access Control Page
- * 
+ *
  * Full RBAC surface for enterprise administration.
  * - Role management with Owner, Admin, Manager, Contributor, Read-only
  * - Resource scopes: Playbooks, Campaigns, Leads, Analytics, Settings, Admin
@@ -13,18 +13,15 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import { 
-  AccessMatrix, 
-  SecurityStatusCard 
-} from '../components/enterprise';
+import { AccessMatrix, SecurityStatusCard } from '../components/enterprise';
 import { useRBAC, useSecurityStatus } from '../hooks/useEnterprise';
 import { useTenant } from '../contexts/TenantContext';
 import { useReducedMotion } from '../hooks/useMotion';
-import { 
-  Shield, 
-  Users, 
-  Plus, 
-  Download, 
+import {
+  Shield,
+  Users,
+  Plus,
+  Download,
   Upload,
   Settings,
   Search,
@@ -35,19 +32,13 @@ import {
   Lock,
   Edit,
   Trash2,
-  MoreVertical
+  MoreVertical,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent, GradientText } from '../components/futuristic';
 
 const AccessControl = () => {
   const { isEnterprise, isAdmin } = useTenant();
-  const { 
-    roles, 
-    scopes, 
-    capabilities, 
-    currentRole, 
-    getPermissionMatrix 
-  } = useRBAC();
+  const { roles, scopes, capabilities, currentRole, getPermissionMatrix } = useRBAC();
   const { status: securityStatus, securityScore } = useSecurityStatus();
   const prefersReducedMotion = useReducedMotion();
   const [activeTab, setActiveTab] = useState('matrix');
@@ -55,11 +46,46 @@ const AccessControl = () => {
 
   // Mock team members
   const teamMembers = [
-    { id: 1, name: 'Sarah Chen', email: 'sarah@company.com', role: 'admin', avatar: 'SC', lastActive: '2 min ago' },
-    { id: 2, name: 'Michael Torres', email: 'michael@company.com', role: 'manager', avatar: 'MT', lastActive: '1 hour ago' },
-    { id: 3, name: 'Emily Watson', email: 'emily@company.com', role: 'contributor', avatar: 'EW', lastActive: '3 hours ago' },
-    { id: 4, name: 'David Kim', email: 'david@company.com', role: 'readonly', avatar: 'DK', lastActive: '1 day ago' },
-    { id: 5, name: 'Jessica Park', email: 'jessica@company.com', role: 'manager', avatar: 'JP', lastActive: '5 min ago' },
+    {
+      id: 1,
+      name: 'Sarah Chen',
+      email: 'sarah@company.com',
+      role: 'admin',
+      avatar: 'SC',
+      lastActive: '2 min ago',
+    },
+    {
+      id: 2,
+      name: 'Michael Torres',
+      email: 'michael@company.com',
+      role: 'manager',
+      avatar: 'MT',
+      lastActive: '1 hour ago',
+    },
+    {
+      id: 3,
+      name: 'Emily Watson',
+      email: 'emily@company.com',
+      role: 'contributor',
+      avatar: 'EW',
+      lastActive: '3 hours ago',
+    },
+    {
+      id: 4,
+      name: 'David Kim',
+      email: 'david@company.com',
+      role: 'readonly',
+      avatar: 'DK',
+      lastActive: '1 day ago',
+    },
+    {
+      id: 5,
+      name: 'Jessica Park',
+      email: 'jessica@company.com',
+      role: 'manager',
+      avatar: 'JP',
+      lastActive: '5 min ago',
+    },
   ];
 
   const tabs = [
@@ -91,7 +117,7 @@ const AccessControl = () => {
               Manage roles, permissions, and team access to your workspace
             </p>
           </div>
-          
+
           <div className="flex items-center gap-3">
             <Button variant="outline" size="sm" className="gap-2">
               <Download className="h-4 w-4" />
@@ -147,7 +173,7 @@ const AccessControl = () => {
             <GlassCard variant="gradient">
               <GlassCardContent className="p-6">
                 <h3 className="text-lg font-semibold text-white mb-6">Role Permission Matrix</h3>
-                <AccessMatrix 
+                <AccessMatrix
                   roles={roles}
                   scopes={scopes}
                   capabilities={capabilities}
@@ -172,7 +198,7 @@ const AccessControl = () => {
                         type="text"
                         placeholder="Search members..."
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={e => setSearchQuery(e.target.value)}
                         className="pl-10 pr-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-cyan-500"
                       />
                     </div>
@@ -185,19 +211,20 @@ const AccessControl = () => {
 
                 <div className="space-y-3">
                   {teamMembers
-                    .filter(m => 
-                      m.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                      m.email.toLowerCase().includes(searchQuery.toLowerCase())
+                    .filter(
+                      m =>
+                        m.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        m.email.toLowerCase().includes(searchQuery.toLowerCase())
                     )
                     .map(member => {
                       const role = roles.find(r => r.id === member.role);
                       return (
-                        <div 
+                        <div
                           key={member.id}
                           className="flex items-center justify-between p-4 rounded-lg bg-slate-800/50 border border-slate-700 hover:border-slate-600 transition-colors"
                         >
                           <div className="flex items-center gap-4">
-                            <div 
+                            <div
                               className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold text-white"
                               style={{ backgroundColor: role?.color || '#6b7280' }}
                             >
@@ -208,11 +235,11 @@ const AccessControl = () => {
                               <div className="text-sm text-slate-400">{member.email}</div>
                             </div>
                           </div>
-                          
+
                           <div className="flex items-center gap-4">
                             <div className="text-right">
-                              <Badge 
-                                variant="outline" 
+                              <Badge
+                                variant="outline"
                                 style={{ borderColor: `${role?.color}50`, color: role?.color }}
                               >
                                 {role?.name}
@@ -239,7 +266,7 @@ const AccessControl = () => {
                   <GlassCardContent className="p-6">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-4">
-                        <div 
+                        <div
                           className="w-12 h-12 rounded-xl flex items-center justify-center"
                           style={{ backgroundColor: `${role.color}20` }}
                         >
@@ -250,24 +277,28 @@ const AccessControl = () => {
                           <p className="text-sm text-slate-400">{role.description}</p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center gap-2">
                         <Button variant="ghost" size="sm" className="gap-2">
                           <Edit className="h-4 w-4" />
                           Edit
                         </Button>
                         {role.id !== 'owner' && (
-                          <Button variant="ghost" size="sm" className="gap-2 text-red-400 hover:text-red-300">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="gap-2 text-red-400 hover:text-red-300"
+                          >
                             <Trash2 className="h-4 w-4" />
                             Delete
                           </Button>
                         )}
                       </div>
                     </div>
-                    
+
                     <div className="mt-4 flex flex-wrap gap-2">
                       {role.permissions.slice(0, 5).map((perm, i) => (
-                        <span 
+                        <span
                           key={i}
                           className="text-xs px-2 py-1 rounded-md bg-slate-700 text-slate-300"
                         >
@@ -283,7 +314,7 @@ const AccessControl = () => {
                   </GlassCardContent>
                 </GlassCard>
               ))}
-              
+
               <Button variant="outline" className="w-full gap-2 border-dashed border-slate-600">
                 <Plus className="h-4 w-4" />
                 Create Custom Role

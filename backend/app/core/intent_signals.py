@@ -4,9 +4,7 @@ Real-time monitoring and alerting for sales triggers
 """
 
 import asyncio
-import json
 import logging
-import re
 from datetime import datetime, timedelta
 from enum import Enum
 from typing import Dict, List, Optional, Set
@@ -381,7 +379,7 @@ intent_engine = IntentSignalEngine()
 async def track_company_intent(company_domain: str, company_name: str) -> Dict:
     """Track a company and get initial intent signals"""
     await intent_engine.track_company(company_domain, company_name)
-    signals = await intent_engine.scan_all_signals(company_domain, company_name)
+    await intent_engine.scan_all_signals(company_domain, company_name)
     return intent_engine.calculate_company_intent_score(company_domain)
 
 

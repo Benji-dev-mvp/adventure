@@ -6,7 +6,7 @@ import logging
 from datetime import datetime, timedelta
 from typing import Any, Dict, List
 
-from celery import Task, chain, chord, group
+from celery import Task, group
 from sqlmodel import select
 
 from app.core.celery_app import celery_app

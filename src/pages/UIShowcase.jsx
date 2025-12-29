@@ -4,9 +4,28 @@ import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card'
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs';
-import { TabsRadix, TabsListRadix, TabsTriggerRadix, TabsContentRadix } from '../components/ui/TabsRadix';
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '../components/ui/Dialog';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/Select';
+import {
+  TabsRadix,
+  TabsListRadix,
+  TabsTriggerRadix,
+  TabsContentRadix,
+} from '../components/ui/TabsRadix';
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '../components/ui/Dialog';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/Select';
 import { Sparkles, Palette, Code2, Zap, Check, X, Settings } from 'lucide-react';
 
 const UIShowcase = () => {
@@ -27,8 +46,9 @@ const UIShowcase = () => {
             </div>
             <h1 className="text-4xl font-bold mb-3">Advanced UI Architecture</h1>
             <p className="text-lg text-white/90 max-w-3xl">
-              Artisan now features a dual UI system: <strong>Shadcn/ui</strong> (premium Radix UI components) + <strong>DaisyUI</strong> (rapid prototyping utilities).
-              Both work seamlessly with your existing Tailwind CSS setup.
+              Artisan now features a dual UI system: <strong>Shadcn/ui</strong> (premium Radix UI
+              components) + <strong>DaisyUI</strong> (rapid prototyping utilities). Both work
+              seamlessly with your existing Tailwind CSS setup.
             </p>
           </div>
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
@@ -82,7 +102,8 @@ const UIShowcase = () => {
                 <div className="flex items-start gap-3">
                   <Badge variant="outline">Next.js</Badge>
                   <p className="text-sm text-gray-700 dark:text-gray-300">
-                    Great for SSR/SEO but overkill for your B2B dashboard (no public content to rank)
+                    Great for SSR/SEO but overkill for your B2B dashboard (no public content to
+                    rank)
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
@@ -110,17 +131,26 @@ const UIShowcase = () => {
               Shadcn/ui Components (Radix UI Primitives)
             </CardTitle>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-              Premium, accessible components you own and customize. No package dependency, copied into your codebase.
+              Premium, accessible components you own and customize. No package dependency, copied
+              into your codebase.
             </p>
           </CardHeader>
           <CardContent className="space-y-6">
             {/* Enhanced Buttons */}
             <div>
-              <h4 className="font-semibold mb-3">Enhanced Button with CVA (Class Variance Authority)</h4>
+              <h4 className="font-semibold mb-3">
+                Enhanced Button with CVA (Class Variance Authority)
+              </h4>
               <div className="flex flex-wrap gap-3">
-                <Button variant="primary" size="sm">Primary Small</Button>
-                <Button variant="secondary" size="md">Secondary</Button>
-                <Button variant="outline" size="lg">Outline Large</Button>
+                <Button variant="primary" size="sm">
+                  Primary Small
+                </Button>
+                <Button variant="secondary" size="md">
+                  Secondary
+                </Button>
+                <Button variant="outline" size="lg">
+                  Outline Large
+                </Button>
                 <Button variant="ghost">Ghost</Button>
                 <Button variant="danger">Danger</Button>
                 <Button variant="success">Success</Button>
@@ -142,14 +172,15 @@ const UIShowcase = () => {
                   <DialogHeader>
                     <DialogTitle>Create New Campaign</DialogTitle>
                     <DialogDescription>
-                      Set up your multi-channel outbound campaign with Ava AI. Includes email, LinkedIn, SMS, and calls.
+                      Set up your multi-channel outbound campaign with Ava AI. Includes email,
+                      LinkedIn, SMS, and calls.
                     </DialogDescription>
                   </DialogHeader>
                   <div className="space-y-4 py-4">
                     <div>
                       <label className="text-sm font-medium mb-2 block">Campaign Name</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         placeholder="Q1 2025 Enterprise Outreach"
                         className="w-full px-4 py-2 rounded-xl border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 focus:ring-2 focus:ring-accent-500"
                       />
@@ -189,7 +220,8 @@ const UIShowcase = () => {
                   <Card className="mt-4">
                     <CardContent className="pt-6">
                       <p className="text-gray-600 dark:text-gray-400">
-                        Campaign overview data with real-time metrics. This tab content is accessible via keyboard (Tab → Arrow keys).
+                        Campaign overview data with real-time metrics. This tab content is
+                        accessible via keyboard (Tab → Arrow keys).
                       </p>
                     </CardContent>
                   </Card>
@@ -314,11 +346,26 @@ const UIShowcase = () => {
                   Use Shadcn/ui When:
                 </h4>
                 <ul className="space-y-2 text-sm">
-                  <li className="flex gap-2"><Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Building core product features</li>
-                  <li className="flex gap-2"><Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Need full design control & customization</li>
-                  <li className="flex gap-2"><Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Accessibility is critical (WCAG 2.1)</li>
-                  <li className="flex gap-2"><Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Want to own the component code</li>
-                  <li className="flex gap-2"><Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Complex interactions (dialogs, popovers, selects)</li>
+                  <li className="flex gap-2">
+                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Building core
+                    product features
+                  </li>
+                  <li className="flex gap-2">
+                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Need full design
+                    control & customization
+                  </li>
+                  <li className="flex gap-2">
+                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Accessibility is
+                    critical (WCAG 2.1)
+                  </li>
+                  <li className="flex gap-2">
+                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Want to own the
+                    component code
+                  </li>
+                  <li className="flex gap-2">
+                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Complex
+                    interactions (dialogs, popovers, selects)
+                  </li>
                 </ul>
               </div>
 
@@ -328,11 +375,26 @@ const UIShowcase = () => {
                   Use DaisyUI When:
                 </h4>
                 <ul className="space-y-2 text-sm">
-                  <li className="flex gap-2"><Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Rapid prototyping & MVPs</li>
-                  <li className="flex gap-2"><Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Internal admin dashboards</li>
-                  <li className="flex gap-2"><Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Quick mockups for stakeholders</li>
-                  <li className="flex gap-2"><Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Simple UI patterns (alerts, badges, stats)</li>
-                  <li className="flex gap-2"><Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Want to ship fast without custom CSS</li>
+                  <li className="flex gap-2">
+                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Rapid prototyping &
+                    MVPs
+                  </li>
+                  <li className="flex gap-2">
+                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Internal admin
+                    dashboards
+                  </li>
+                  <li className="flex gap-2">
+                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Quick mockups for
+                    stakeholders
+                  </li>
+                  <li className="flex gap-2">
+                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Simple UI patterns
+                    (alerts, badges, stats)
+                  </li>
+                  <li className="flex gap-2">
+                    <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" /> Want to ship fast
+                    without custom CSS
+                  </li>
                 </ul>
               </div>
             </div>

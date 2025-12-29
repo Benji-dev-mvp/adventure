@@ -15,10 +15,8 @@ from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, Field
-from sqlmodel import Session
 
 from ...core.ai_orchestrator import UnifiedAIOrchestrator
-from ...core.db import get_session
 from ...core.security import get_current_user
 from ...models.user import User
 

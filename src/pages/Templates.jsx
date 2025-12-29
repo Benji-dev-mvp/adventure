@@ -4,12 +4,36 @@ import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import {
-  Sparkles, Filter, Search, Plus, ChevronDown, Wand2, 
-  Copy, Edit, Trash2, Play, Zap, Target, Mail, Clock,
-  TrendingUp, Users, FileText, Settings, CheckCircle2,
-  XCircle, AlertCircle, Download, Upload, BarChart3
+  Sparkles,
+  Filter,
+  Search,
+  Plus,
+  ChevronDown,
+  Wand2,
+  Copy,
+  Edit,
+  Trash2,
+  Play,
+  Zap,
+  Target,
+  Mail,
+  Clock,
+  TrendingUp,
+  Users,
+  FileText,
+  Settings,
+  CheckCircle2,
+  XCircle,
+  AlertCircle,
+  Download,
+  Upload,
+  BarChart3,
 } from 'lucide-react';
-import { AnimatedCounter, LiveIndicator, FuturisticBackground } from '../components/ui/AnimatedComponents';
+import {
+  AnimatedCounter,
+  LiveIndicator,
+  FuturisticBackground,
+} from '../components/ui/AnimatedComponents';
 
 const Templates = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -28,7 +52,7 @@ const Templates = () => {
     totalTemplates: 247,
     activeTemplates: 89,
     avgPerformance: 31.2,
-    templatesUsedToday: 12
+    templatesUsedToday: 12,
   });
 
   // Simulate live stats updates
@@ -38,7 +62,7 @@ const Templates = () => {
         totalTemplates: prev.totalTemplates + Math.floor(Math.random() * 3),
         activeTemplates: prev.activeTemplates + Math.floor(Math.random() * 2),
         avgPerformance: +(prev.avgPerformance + (Math.random() - 0.5) * 0.5).toFixed(1),
-        templatesUsedToday: prev.templatesUsedToday + Math.floor(Math.random() * 2)
+        templatesUsedToday: prev.templatesUsedToday + Math.floor(Math.random() * 2),
       }));
     }, 5000);
     return () => clearInterval(interval);
@@ -55,7 +79,7 @@ const Templates = () => {
       uses: 156,
       lastUsed: '2 hours ago',
       description: 'Multi-threaded enterprise sales with economic buyer focus',
-      status: 'active'
+      status: 'active',
     },
     {
       id: 2,
@@ -67,7 +91,7 @@ const Templates = () => {
       uses: 98,
       lastUsed: '4 hours ago',
       description: 'Provocative insights for manufacturing and industrial ops',
-      status: 'active'
+      status: 'active',
     },
     {
       id: 3,
@@ -79,7 +103,7 @@ const Templates = () => {
       uses: 203,
       lastUsed: '1 hour ago',
       description: 'Product-led growth expansion with usage signals',
-      status: 'active'
+      status: 'active',
     },
     {
       id: 4,
@@ -91,7 +115,7 @@ const Templates = () => {
       uses: 124,
       lastUsed: '3 hours ago',
       description: 'Compliance-first approach for banking and insurance',
-      status: 'active'
+      status: 'active',
     },
     {
       id: 5,
@@ -103,7 +127,7 @@ const Templates = () => {
       uses: 187,
       lastUsed: '30 min ago',
       description: 'Risk quantification for CISO and security teams',
-      status: 'active'
+      status: 'active',
     },
     {
       id: 6,
@@ -115,13 +139,21 @@ const Templates = () => {
       uses: 312,
       lastUsed: '5 hours ago',
       description: 'High-velocity outbound for small business',
-      status: 'active'
-    }
+      status: 'active',
+    },
   ];
 
   const categories = ['all', 'Enterprise', 'Mid-Market', 'Growth', 'SMB'];
   const industries = ['all', 'SaaS', 'Manufacturing', 'Financial', 'Security', 'Healthcare'];
-  const methodologies = ['all', 'MEDDIC', 'Challenger', 'SPICED', 'Sandler', 'Value Selling', 'SPIN'];
+  const methodologies = [
+    'all',
+    'MEDDIC',
+    'Challenger',
+    'SPICED',
+    'Sandler',
+    'Value Selling',
+    'SPIN',
+  ];
 
   const aiActions = [
     { id: 'generate', label: 'Generate new template from description', icon: Wand2 },
@@ -129,45 +161,52 @@ const Templates = () => {
     { id: 'personalize', label: 'Personalize template for specific prospect', icon: Target },
     { id: 'ab-test', label: 'Create A/B test variations', icon: BarChart3 },
     { id: 'translate', label: 'Translate template to multiple languages', icon: Mail },
-    { id: 'schedule', label: 'Schedule automated sends', icon: Clock }
+    { id: 'schedule', label: 'Schedule automated sends', icon: Clock },
   ];
 
   const filteredTemplates = templates.filter(template => {
     const matchesCategory = selectedCategory === 'all' || template.category === selectedCategory;
     const matchesIndustry = selectedIndustry === 'all' || template.industry === selectedIndustry;
-    const matchesMethodology = selectedMethodology === 'all' || template.methodology === selectedMethodology;
-    const matchesSearch = searchQuery === '' || 
+    const matchesMethodology =
+      selectedMethodology === 'all' || template.methodology === selectedMethodology;
+    const matchesSearch =
+      searchQuery === '' ||
       template.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       template.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesIndustry && matchesMethodology && matchesSearch;
   });
 
-  const handleAiAction = async (actionId) => {
+  const handleAiAction = async actionId => {
     setIsProcessing(true);
     setAiAction(actionId);
-    
+
     // Simulate AI processing
     setTimeout(() => {
       const responses = {
-        generate: 'Template generated successfully! I\'ve created a personalized outbound sequence with 5 touchpoints optimized for your ICP.',
-        optimize: 'Template optimized! Performance score improved from 31% to 38% with enhanced subject lines and better CTAs.',
-        personalize: 'Personalized version created! Added company-specific insights and tailored value propositions.',
+        generate:
+          "Template generated successfully! I've created a personalized outbound sequence with 5 touchpoints optimized for your ICP.",
+        optimize:
+          'Template optimized! Performance score improved from 31% to 38% with enhanced subject lines and better CTAs.',
+        personalize:
+          'Personalized version created! Added company-specific insights and tailored value propositions.',
         'ab-test': 'Created 3 A/B test variations with different subject lines and opening hooks.',
-        translate: 'Template translated to 7 languages: Spanish, French, German, Italian, Portuguese, Japanese, and Chinese.',
-        schedule: 'Automated campaign scheduled! 150 prospects will receive personalized emails over the next 3 days.'
+        translate:
+          'Template translated to 7 languages: Spanish, French, German, Italian, Portuguese, Japanese, and Chinese.',
+        schedule:
+          'Automated campaign scheduled! 150 prospects will receive personalized emails over the next 3 days.',
       };
       setAiResponse(responses[actionId] || 'Action completed successfully!');
       setIsProcessing(false);
     }, 2000);
   };
 
-  const handleUseTemplate = (template) => {
+  const handleUseTemplate = template => {
     // Show success message
     const successMsg = `"${template.name}" is now active! Starting campaign with this template...`;
     setAiResponse(successMsg);
     setIsAiAssistOpen(true);
     setIsProcessing(false);
-    
+
     // Simulate launching campaign
     setTimeout(() => {
       setAiResponse(`Campaign launched successfully with "${template.name}"! 
@@ -179,12 +218,12 @@ const Templates = () => {
     }, 1000);
   };
 
-  const handleEditTemplate = (template) => {
+  const handleEditTemplate = template => {
     setEditingTemplate(template);
     setShowTemplateEditor(true);
   };
 
-  const handleCopyTemplate = (template) => {
+  const handleCopyTemplate = template => {
     // Simulate copying template
     setAiResponse(`Template "${template.name}" copied successfully! 
     
@@ -194,7 +233,7 @@ const Templates = () => {
     setIsProcessing(false);
   };
 
-  const handleDeleteTemplate = (template) => {
+  const handleDeleteTemplate = template => {
     if (window.confirm(`Are you sure you want to delete "${template.name}"?`)) {
       setAiResponse(`Template "${template.name}" has been deleted.`);
       setIsAiAssistOpen(true);
@@ -205,7 +244,7 @@ const Templates = () => {
   return (
     <DashboardLayout>
       <FuturisticBackground />
-      
+
       <div className="relative z-10 max-w-7xl mx-auto space-y-4">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -220,7 +259,7 @@ const Templates = () => {
               AI-powered templates for every sales motion
             </p>
           </div>
-          <Button 
+          <Button
             className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600"
             onClick={() => setIsAiAssistOpen(true)}
           >
@@ -288,12 +327,15 @@ const Templates = () => {
               {/* Search */}
               <div className="flex-1 min-w-[300px]">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                  <Search
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                    size={20}
+                  />
                   <input
                     type="text"
                     placeholder="Search templates..."
                     value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={e => setSearchQuery(e.target.value)}
                     className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                 </div>
@@ -302,31 +344,37 @@ const Templates = () => {
               {/* Dropdowns */}
               <select
                 value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
+                onChange={e => setSelectedCategory(e.target.value)}
                 className="px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-purple-500 cursor-pointer"
               >
                 {categories.map(cat => (
-                  <option key={cat} value={cat}>{cat === 'all' ? 'All Categories' : cat}</option>
+                  <option key={cat} value={cat}>
+                    {cat === 'all' ? 'All Categories' : cat}
+                  </option>
                 ))}
               </select>
 
               <select
                 value={selectedIndustry}
-                onChange={(e) => setSelectedIndustry(e.target.value)}
+                onChange={e => setSelectedIndustry(e.target.value)}
                 className="px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-purple-500 cursor-pointer"
               >
                 {industries.map(ind => (
-                  <option key={ind} value={ind}>{ind === 'all' ? 'All Industries' : ind}</option>
+                  <option key={ind} value={ind}>
+                    {ind === 'all' ? 'All Industries' : ind}
+                  </option>
                 ))}
               </select>
 
               <select
                 value={selectedMethodology}
-                onChange={(e) => setSelectedMethodology(e.target.value)}
+                onChange={e => setSelectedMethodology(e.target.value)}
                 className="px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-purple-500 cursor-pointer"
               >
                 {methodologies.map(method => (
-                  <option key={method} value={method}>{method === 'all' ? 'All Methodologies' : method}</option>
+                  <option key={method} value={method}>
+                    {method === 'all' ? 'All Methodologies' : method}
+                  </option>
                 ))}
               </select>
 
@@ -340,8 +388,8 @@ const Templates = () => {
 
         {/* Templates Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredTemplates.map((template) => (
-            <Card 
+          {filteredTemplates.map(template => (
+            <Card
               key={template.id}
               className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl border border-white/20 hover:border-purple-500/50 transition-all cursor-pointer group"
               onClick={() => setSelectedTemplate(template)}
@@ -356,7 +404,10 @@ const Templates = () => {
                       {template.description}
                     </p>
                   </div>
-                  <Badge variant={template.status === 'active' ? 'success' : 'default'} className="ml-2">
+                  <Badge
+                    variant={template.status === 'active' ? 'success' : 'default'}
+                    className="ml-2"
+                  >
                     {template.status}
                   </Badge>
                 </div>
@@ -376,7 +427,9 @@ const Templates = () => {
                 <div className="grid grid-cols-3 gap-2 mb-4 text-sm">
                   <div>
                     <div className="text-gray-500 dark:text-gray-400 text-xs">Performance</div>
-                    <div className="font-bold text-green-600 dark:text-green-400">{template.performance}%</div>
+                    <div className="font-bold text-green-600 dark:text-green-400">
+                      {template.performance}%
+                    </div>
                   </div>
                   <div>
                     <div className="text-gray-500 dark:text-gray-400 text-xs">Uses</div>
@@ -384,16 +437,18 @@ const Templates = () => {
                   </div>
                   <div>
                     <div className="text-gray-500 dark:text-gray-400 text-xs">Last Used</div>
-                    <div className="font-bold text-gray-900 dark:text-white text-xs">{template.lastUsed}</div>
+                    <div className="font-bold text-gray-900 dark:text-white text-xs">
+                      {template.lastUsed}
+                    </div>
                   </div>
                 </div>
 
                 <div className="flex gap-2">
-                  <Button 
-                    variant="primary" 
-                    size="sm" 
+                  <Button
+                    variant="primary"
+                    size="sm"
                     className="flex-1"
-                    onClick={(e) => {
+                    onClick={e => {
                       e.stopPropagation();
                       handleUseTemplate(template);
                     }}
@@ -401,20 +456,20 @@ const Templates = () => {
                     <Play size={14} className="mr-1" />
                     Use Template
                   </Button>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
-                    onClick={(e) => {
+                    onClick={e => {
                       e.stopPropagation();
                       handleEditTemplate(template);
                     }}
                   >
                     <Edit size={14} />
                   </Button>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
-                    onClick={(e) => {
+                    onClick={e => {
                       e.stopPropagation();
                       handleCopyTemplate(template);
                     }}
@@ -429,8 +484,14 @@ const Templates = () => {
 
         {/* Template Editor Modal */}
         {showTemplateEditor && editingTemplate && (
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4" onClick={() => setShowTemplateEditor(false)}>
-            <Card className="w-full max-w-4xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-2 border-purple-500/50 shadow-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4"
+            onClick={() => setShowTemplateEditor(false)}
+          >
+            <Card
+              className="w-full max-w-4xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-2 border-purple-500/50 shadow-2xl max-h-[90vh] overflow-y-auto"
+              onClick={e => e.stopPropagation()}
+            >
               <div className="p-8">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
@@ -471,9 +532,13 @@ const Templates = () => {
                         defaultValue={editingTemplate.category}
                         className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
                       >
-                        {categories.filter(c => c !== 'all').map(cat => (
-                          <option key={cat} value={cat}>{cat}</option>
-                        ))}
+                        {categories
+                          .filter(c => c !== 'all')
+                          .map(cat => (
+                            <option key={cat} value={cat}>
+                              {cat}
+                            </option>
+                          ))}
                       </select>
                     </div>
                   </div>
@@ -487,9 +552,13 @@ const Templates = () => {
                         defaultValue={editingTemplate.industry}
                         className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
                       >
-                        {industries.filter(i => i !== 'all').map(ind => (
-                          <option key={ind} value={ind}>{ind}</option>
-                        ))}
+                        {industries
+                          .filter(i => i !== 'all')
+                          .map(ind => (
+                            <option key={ind} value={ind}>
+                              {ind}
+                            </option>
+                          ))}
                       </select>
                     </div>
                     <div>
@@ -500,9 +569,13 @@ const Templates = () => {
                         defaultValue={editingTemplate.methodology}
                         className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
                       >
-                        {methodologies.filter(m => m !== 'all').map(method => (
-                          <option key={method} value={method}>{method}</option>
-                        ))}
+                        {methodologies
+                          .filter(m => m !== 'all')
+                          .map(method => (
+                            <option key={method} value={method}>
+                              {method}
+                            </option>
+                          ))}
                       </select>
                     </div>
                   </div>
@@ -532,14 +605,15 @@ I noticed that {{company}} is..."
                       className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500 font-mono text-sm"
                     />
                     <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                      Use variables: {{firstName}}, {{lastName}}, {{company}}, {{title}}, {{industry}}
+                      Use variables: {{ firstName }}, {{ lastName }}, {{ company }}, {{ title }},{' '}
+                      {{ industry }}
                     </p>
                   </div>
 
                   {/* Actions */}
                   <div className="flex gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
-                    <Button 
-                      variant="primary" 
+                    <Button
+                      variant="primary"
                       className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500"
                       onClick={() => {
                         setShowTemplateEditor(false);
@@ -550,7 +624,7 @@ I noticed that {{company}} is..."
                       <CheckCircle2 size={16} className="mr-2" />
                       Save Changes
                     </Button>
-                    <Button 
+                    <Button
                       variant="outline"
                       onClick={() => {
                         handleAiAction('optimize');
@@ -560,10 +634,7 @@ I noticed that {{company}} is..."
                       <Wand2 size={16} className="mr-2" />
                       AI Optimize
                     </Button>
-                    <Button 
-                      variant="outline"
-                      onClick={() => setShowTemplateEditor(false)}
-                    >
+                    <Button variant="outline" onClick={() => setShowTemplateEditor(false)}>
                       Cancel
                     </Button>
                   </div>
@@ -575,8 +646,14 @@ I noticed that {{company}} is..."
 
         {/* AI Assistant Panel */}
         {isAiAssistOpen && (
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4" onClick={() => !isProcessing && setIsAiAssistOpen(false)}>
-            <Card className="w-full max-w-3xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-2 border-purple-500/50 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4"
+            onClick={() => !isProcessing && setIsAiAssistOpen(false)}
+          >
+            <Card
+              className="w-full max-w-3xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-2 border-purple-500/50 shadow-2xl"
+              onClick={e => e.stopPropagation()}
+            >
               <div className="p-8">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
@@ -590,9 +667,16 @@ I noticed that {{company}} is..."
                     <div>
                       <h2 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                         Ava Template Assistant
-                        <Badge variant="outline" className="text-xs bg-gradient-to-r from-purple-500/10 to-pink-500/10">AI</Badge>
+                        <Badge
+                          variant="outline"
+                          className="text-xs bg-gradient-to-r from-purple-500/10 to-pink-500/10"
+                        >
+                          AI
+                        </Badge>
                       </h2>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Select an action to automate your workflow</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        Select an action to automate your workflow
+                      </p>
                     </div>
                   </div>
                   <button
@@ -610,7 +694,7 @@ I noticed that {{company}} is..."
 
                 {/* Quick Actions Grid */}
                 <div className="grid grid-cols-2 gap-4 mb-6">
-                  {aiActions.map((action) => {
+                  {aiActions.map(action => {
                     const Icon = action.icon;
                     const isActive = aiAction === action.id && isProcessing;
                     return (
@@ -626,16 +710,18 @@ I noticed that {{company}} is..."
                       >
                         {/* Gradient overlay on hover */}
                         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        
+
                         <div className="relative flex items-start gap-4">
-                          <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${
-                            isActive 
-                              ? 'bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg shadow-purple-500/50' 
-                              : 'bg-gradient-to-br from-purple-400 to-pink-400 group-hover:scale-110 group-hover:shadow-md'
-                          }`}>
+                          <div
+                            className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${
+                              isActive
+                                ? 'bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg shadow-purple-500/50'
+                                : 'bg-gradient-to-br from-purple-400 to-pink-400 group-hover:scale-110 group-hover:shadow-md'
+                            }`}
+                          >
                             <Icon className="text-white" size={22} />
                           </div>
-                          
+
                           <div className="flex-1 min-w-0">
                             <h3 className="font-semibold text-gray-900 dark:text-white mb-1 text-sm leading-tight">
                               {action.label}
@@ -649,7 +735,7 @@ I noticed that {{company}} is..."
                               {action.id === 'schedule' && 'Automate your outreach'}
                             </p>
                           </div>
-                          
+
                           {isActive && (
                             <div className="absolute top-3 right-3">
                               <div className="animate-spin rounded-full h-6 w-6 border-2 border-purple-500 border-t-transparent"></div>
@@ -671,8 +757,12 @@ I noticed that {{company}} is..."
                           <CheckCircle2 className="text-white" size={20} />
                         </div>
                         <div className="flex-1">
-                          <p className="font-bold text-gray-900 dark:text-white mb-2 text-lg">Action Complete!</p>
-                          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-4">{aiResponse}</p>
+                          <p className="font-bold text-gray-900 dark:text-white mb-2 text-lg">
+                            Action Complete!
+                          </p>
+                          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                            {aiResponse}
+                          </p>
                           <div className="flex gap-2">
                             <Button variant="outline" size="sm" className="text-xs">
                               <Download size={14} className="mr-1" />

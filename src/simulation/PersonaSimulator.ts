@@ -1,16 +1,11 @@
 /**
  * Persona Resistance Simulator
- * 
+ *
  * Models buyer persona behavior patterns and resistance factors
  * to predict engagement and conversion probabilities.
  */
 
-import type {
-  PersonaModel,
-  ResponseCurveExtended,
-  Strategy,
-  ResistanceFactors,
-} from './types';
+import type { PersonaModel, ResponseCurveExtended, Strategy, ResistanceFactors } from './types';
 
 // === Persona Templates ===
 
@@ -29,7 +24,7 @@ export const PERSONA_ARCHETYPES: Record<string, Partial<PersonaModel>> = {
       informationNeed: 0.9,
     },
   },
-  
+
   busyVPSales: {
     id: 'busy-vp-sales',
     name: 'Busy VP Sales',
@@ -44,7 +39,7 @@ export const PERSONA_ARCHETYPES: Record<string, Partial<PersonaModel>> = {
       informationNeed: 0.4,
     },
   },
-  
+
   curiousSDRManager: {
     id: 'curious-sdr-manager',
     name: 'Curious SDR Manager',
@@ -59,7 +54,7 @@ export const PERSONA_ARCHETYPES: Record<string, Partial<PersonaModel>> = {
       informationNeed: 0.6,
     },
   },
-  
+
   technicalCTO: {
     id: 'technical-cto',
     name: 'Technical CTO',
@@ -74,7 +69,7 @@ export const PERSONA_ARCHETYPES: Record<string, Partial<PersonaModel>> = {
       informationNeed: 0.95,
     },
   },
-  
+
   enthusiasticChampion: {
     id: 'enthusiastic-champion',
     name: 'Enthusiastic Champion',
@@ -238,9 +233,9 @@ export class PersonaSimulator {
 
     // Find matching response curve
     const responseCurves = persona.responseCurves || [];
-    const curve = responseCurves.find(
-      (c: ResponseCurveExtended) => c.method === context.method
-    ) || responseCurves[0];
+    const curve =
+      responseCurves.find((c: ResponseCurveExtended) => c.method === context.method) ||
+      responseCurves[0];
 
     if (!curve) {
       return {
@@ -255,10 +250,7 @@ export class PersonaSimulator {
     let responseProb = curve.baseResponseRate;
 
     // Apply touchpoint degradation
-    const touchpointPenalty = Math.pow(
-      1 - curve.degradationRate,
-      context.touchpoint - 1
-    );
+    const touchpointPenalty = Math.pow(1 - curve.degradationRate, context.touchpoint - 1);
     responseProb *= touchpointPenalty;
 
     // Check saturation
@@ -273,9 +265,7 @@ export class PersonaSimulator {
 
     // Apply contextual modifiers
     for (const ctxName of context.contexts) {
-      const modifier = persona.contextualModifiers?.find(
-        m => m.context === ctxName
-      );
+      const modifier = persona.contextualModifiers?.find(m => m.context === ctxName);
       if (modifier) {
         responseProb *= 1 / modifier.resistanceMultiplier;
       }
@@ -287,7 +277,7 @@ export class PersonaSimulator {
 
     // Calculate meeting probability (conditional on response)
     let meetingProb = responseProb * 0.3;
-    
+
     // Decision makers more likely to book meetings
     if (persona.buyingPower === 'decision-maker') {
       meetingProb *= 1.4;
@@ -301,11 +291,7 @@ export class PersonaSimulator {
     }
 
     // Generate recommendations
-    const recommendations = this.generateRecommendations(
-      persona,
-      context,
-      responseProb
-    );
+    const recommendations = this.generateRecommendations(persona, context, responseProb);
 
     return {
       responseProb: Math.min(responseProb, 1),
@@ -330,7 +316,7 @@ export class PersonaSimulator {
     };
 
     const preferredApproaches = styleMatches[persona.decisionStyle || 'analytical'] || [];
-    
+
     for (const tactic of strategy.tactics) {
       if (tactic.approach && preferredApproaches.some(a => tactic.approach!.includes(a))) {
         fit *= 1.2;
@@ -361,28 +347,20 @@ export class PersonaSimulator {
 
     // Low response probability recommendations
     if (currentProb < 0.02) {
-      recommendations.push(
-        'Response probability is very low. Consider changing approach.'
-      );
+      recommendations.push('Response probability is very low. Consider changing approach.');
     }
 
     // Resistance-specific recommendations
     if ((resistance.priceObjection ?? 0) > 0.7) {
-      recommendations.push(
-        'Lead with ROI and cost-savings, not product features.'
-      );
+      recommendations.push('Lead with ROI and cost-savings, not product features.');
     }
 
     if ((resistance.timingObjection ?? 0) > 0.7) {
-      recommendations.push(
-        'Emphasize quick time-to-value and low implementation effort.'
-      );
+      recommendations.push('Emphasize quick time-to-value and low implementation effort.');
     }
 
     if ((resistance.informationNeed ?? 0) > 0.8) {
-      recommendations.push(
-        'Provide detailed case studies and technical documentation.'
-      );
+      recommendations.push('Provide detailed case studies and technical documentation.');
     }
 
     if ((resistance.authorityBarrier ?? 0) > 0.7) {
@@ -393,22 +371,16 @@ export class PersonaSimulator {
 
     // Channel recommendations
     if (context.touchpoint > 3 && context.method === 'email') {
-      recommendations.push(
-        'Email fatigue likely. Try switching to LinkedIn or phone.'
-      );
+      recommendations.push('Email fatigue likely. Try switching to LinkedIn or phone.');
     }
 
     // Context-aware recommendations
     if (context.contexts.includes('end-of-quarter')) {
-      recommendations.push(
-        'End of quarter: emphasize quick wins and budget utilization.'
-      );
+      recommendations.push('End of quarter: emphasize quick wins and budget utilization.');
     }
 
     if (context.contexts.includes('budget-freeze')) {
-      recommendations.push(
-        'Budget freeze: pivot to nurture mode, provide value-add content.'
-      );
+      recommendations.push('Budget freeze: pivot to nurture mode, provide value-add content.');
     }
 
     return recommendations.slice(0, 5); // Return top 5 recommendations
@@ -439,14 +411,13 @@ export class PersonaSimulator {
     }> = [];
 
     // Start with base resistance
-    let currentResistance: Record<string, number> = { ...(persona.baseResistance || {}) };
+    const currentResistance: Record<string, number> = { ...(persona.baseResistance || {}) };
     let engagementScore = 0.5;
 
     for (const interaction of interactions) {
       // Modify resistance based on interaction outcome
-      const modifier = 
-        interaction.outcome === 'positive' ? -0.1 :
-        interaction.outcome === 'negative' ? 0.15 : 0;
+      const modifier =
+        interaction.outcome === 'positive' ? -0.1 : interaction.outcome === 'negative' ? 0.15 : 0;
 
       // Different interactions affect different resistance factors
       switch (interaction.type) {
@@ -483,10 +454,7 @@ export class PersonaSimulator {
       // Update engagement score
       engagementScore = Math.max(
         0,
-        Math.min(
-          1,
-          engagementScore + (interaction.outcome === 'positive' ? 0.15 : -0.1)
-        )
+        Math.min(1, engagementScore + (interaction.outcome === 'positive' ? 0.15 : -0.1))
       );
 
       evolution.push({
@@ -526,12 +494,8 @@ export class PersonaSimulator {
     const emailCount = history.filter(h => h.method === 'email').length;
     const phoneCount = history.filter(h => h.method === 'phone').length;
     const linkedinCount = history.filter(h => h.method === 'linkedin').length;
-    const lastTouch = history.length > 0 
-      ? history[history.length - 1] 
-      : null;
-    const daysSinceLastTouch = lastTouch 
-      ? (Date.now() / 86400000) - lastTouch.day 
-      : 30;
+    const lastTouch = history.length > 0 ? history[history.length - 1] : null;
+    const daysSinceLastTouch = lastTouch ? Date.now() / 86400000 - lastTouch.day : 30;
 
     // Score each method
     const methods = ['email', 'phone', 'linkedin', 'content'] as const;
@@ -548,11 +512,15 @@ export class PersonaSimulator {
       let score = curve.baseResponseRate;
 
       // Penalize over-used channels
-      const usageCount = 
-        method === 'email' ? emailCount :
-        method === 'phone' ? phoneCount :
-        method === 'linkedin' ? linkedinCount : 0;
-      
+      const usageCount =
+        method === 'email'
+          ? emailCount
+          : method === 'phone'
+            ? phoneCount
+            : method === 'linkedin'
+              ? linkedinCount
+              : 0;
+
       score *= Math.pow(0.9, usageCount);
 
       // Boost under-used channels
@@ -569,8 +537,11 @@ export class PersonaSimulator {
     }
 
     // Find best method
-    const recommendedMethod = (Object.entries(scores)
-      .sort(([, a], [, b]) => b - a)[0][0]) as 'email' | 'phone' | 'linkedin' | 'content';
+    const recommendedMethod = Object.entries(scores).sort(([, a], [, b]) => b - a)[0][0] as
+      | 'email'
+      | 'phone'
+      | 'linkedin'
+      | 'content';
 
     // Find best strategy
     let bestStrategy: Strategy | null = null;

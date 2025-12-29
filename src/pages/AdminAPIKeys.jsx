@@ -14,7 +14,7 @@ const AdminAPIKeys = () => {
       lastUsed: '2 hours ago',
       permissions: ['read', 'write'],
       requests: 15847,
-      status: 'active'
+      status: 'active',
     },
     {
       id: '2',
@@ -24,17 +24,17 @@ const AdminAPIKeys = () => {
       lastUsed: '1 day ago',
       permissions: ['read'],
       requests: 3421,
-      status: 'active'
-    }
+      status: 'active',
+    },
   ]);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [revealedKeys, setRevealedKeys] = useState(new Set());
   const [newKeyForm, setNewKeyForm] = useState({
     name: '',
-    permissions: []
+    permissions: [],
   });
 
-  const toggleKeyVisibility = (id) => {
+  const toggleKeyVisibility = id => {
     setRevealedKeys(prev => {
       const next = new Set(prev);
       if (next.has(id)) {
@@ -46,7 +46,7 @@ const AdminAPIKeys = () => {
     });
   };
 
-  const copyToClipboard = (key) => {
+  const copyToClipboard = key => {
     navigator.clipboard.writeText(key);
     toast.success('API key copied to clipboard');
   };
@@ -69,7 +69,7 @@ const AdminAPIKeys = () => {
       lastUsed: 'Never',
       permissions: newKeyForm.permissions,
       requests: 0,
-      status: 'active'
+      status: 'active',
     };
 
     setApiKeys([...apiKeys, newKey]);
@@ -78,19 +78,19 @@ const AdminAPIKeys = () => {
     toast.success('API key created successfully');
   };
 
-  const deleteAPIKey = (id) => {
+  const deleteAPIKey = id => {
     if (confirm('Are you sure you want to delete this API key? This action cannot be undone.')) {
       setApiKeys(apiKeys.filter(k => k.id !== id));
       toast.success('API key deleted');
     }
   };
 
-  const togglePermission = (permission) => {
+  const togglePermission = permission => {
     setNewKeyForm(prev => ({
       ...prev,
       permissions: prev.permissions.includes(permission)
         ? prev.permissions.filter(p => p !== permission)
-        : [...prev.permissions, permission]
+        : [...prev.permissions, permission],
     }));
   };
 
@@ -118,7 +118,7 @@ const AdminAPIKeys = () => {
 
         {/* API Keys List */}
         <div className="space-y-4">
-          {apiKeys.map((apiKey) => (
+          {apiKeys.map(apiKey => (
             <div
               key={apiKey.id}
               className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6"
@@ -181,9 +181,11 @@ const AdminAPIKeys = () => {
 
               {/* Permissions */}
               <div>
-                <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Permissions:</p>
+                <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Permissions:
+                </p>
                 <div className="flex flex-wrap gap-2">
-                  {apiKey.permissions.map((permission) => (
+                  {apiKey.permissions.map(permission => (
                     <span
                       key={permission}
                       className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-xs font-medium rounded-full"
@@ -213,7 +215,7 @@ const AdminAPIKeys = () => {
                   <input
                     type="text"
                     value={newKeyForm.name}
-                    onChange={(e) => setNewKeyForm({...newKeyForm, name: e.target.value})}
+                    onChange={e => setNewKeyForm({ ...newKeyForm, name: e.target.value })}
                     placeholder="Production API Key"
                     className="w-full px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
                   />
@@ -224,7 +226,7 @@ const AdminAPIKeys = () => {
                     Permissions
                   </label>
                   <div className="space-y-2">
-                    {['read', 'write', 'delete', 'admin'].map((perm) => (
+                    {['read', 'write', 'delete', 'admin'].map(perm => (
                       <label key={perm} className="flex items-center gap-2 cursor-pointer">
                         <input
                           type="checkbox"
@@ -232,7 +234,9 @@ const AdminAPIKeys = () => {
                           onChange={() => togglePermission(perm)}
                           className="w-4 h-4 text-primary-600 rounded"
                         />
-                        <span className="text-sm text-gray-700 dark:text-gray-300 capitalize">{perm}</span>
+                        <span className="text-sm text-gray-700 dark:text-gray-300 capitalize">
+                          {perm}
+                        </span>
                       </label>
                     ))}
                   </div>
@@ -246,7 +250,8 @@ const AdminAPIKeys = () => {
                         Important Security Notice
                       </p>
                       <p className="text-xs text-yellow-700 dark:text-yellow-400">
-                        Make sure to copy your API key now. You won't be able to see it again after creating it.
+                        Make sure to copy your API key now. You won't be able to see it again after
+                        creating it.
                       </p>
                     </div>
                   </div>

@@ -1,6 +1,6 @@
 /**
  * Intelligence Grid Module
- * 
+ *
  * Federated learning, anonymized benchmarks,
  * and predictive analytics for collective intelligence.
  */
@@ -9,21 +9,15 @@
 export * from './types';
 
 // Core Systems
-export { 
-  FederatedLearningManager, 
+export {
+  FederatedLearningManager,
   federatedLearning,
   type FederatedEvent,
 } from './FederatedLearning';
 
-export { 
-  BenchmarkEngine, 
-  benchmarkEngine,
-} from './BenchmarkEngine';
+export { BenchmarkEngine, benchmarkEngine } from './BenchmarkEngine';
 
-export { 
-  PredictiveEngine, 
-  predictiveEngine,
-} from './PredictiveEngine';
+export { PredictiveEngine, predictiveEngine } from './PredictiveEngine';
 
 // Convenience re-exports
 export type {

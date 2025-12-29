@@ -1,8 +1,8 @@
 /**
  * Playbook Intelligence Components
- * 
+ *
  * Phase 1 - Visual Intelligence Layer Foundation
- * 
+ *
  * These components transform playbooks from simple lists into
  * a visual intelligence control surface.
  */

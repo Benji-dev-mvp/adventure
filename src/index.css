@@ -57,7 +57,11 @@
   }
 
   body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family:
+      'Inter',
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
 
   /* Dark mode text improvements */
@@ -144,9 +148,15 @@
   }
 
   @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 
   /* Floating animation */
@@ -155,21 +165,28 @@
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
   }
 
   /* Glow effect */
   .glow {
-    box-shadow: 0 0 20px rgba(124, 58, 237, 0.5),
-                0 0 40px rgba(124, 58, 237, 0.3),
-                0 0 60px rgba(124, 58, 237, 0.1);
+    box-shadow:
+      0 0 20px rgba(124, 58, 237, 0.5),
+      0 0 40px rgba(124, 58, 237, 0.3),
+      0 0 60px rgba(124, 58, 237, 0.1);
   }
 
   .glow-magenta {
-    box-shadow: 0 0 20px rgba(236, 72, 153, 0.5),
-                0 0 40px rgba(236, 72, 153, 0.3),
-                0 0 60px rgba(236, 72, 153, 0.1);
+    box-shadow:
+      0 0 20px rgba(236, 72, 153, 0.5),
+      0 0 40px rgba(236, 72, 153, 0.3),
+      0 0 60px rgba(236, 72, 153, 0.1);
   }
 
   /* Shine effect */
@@ -185,12 +202,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.3),
-      transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
     transition: left 0.5s;
   }
 
@@ -200,7 +212,7 @@
 
   /* Futuristic grid background */
   .grid-background {
-    background-image: 
+    background-image:
       linear-gradient(rgba(124, 58, 237, 0.05) 1px, transparent 1px),
       linear-gradient(90deg, rgba(124, 58, 237, 0.05) 1px, transparent 1px);
     background-size: 50px 50px;
@@ -220,7 +232,9 @@
 
   /* Scale on hover */
   .hover-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
   .hover-lift:hover {
@@ -263,18 +277,15 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(
-      to bottom,
-      transparent 50%,
-      rgba(0, 0, 0, 0.02) 51%
-    );
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.02) 51%);
     background-size: 100% 4px;
     pointer-events: none;
   }
 
   /* Marketing Page Animations */
   @keyframes float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0);
     }
     50% {
@@ -315,7 +326,8 @@
   }
 
   @keyframes bounce-slow {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0);
     }
     50% {
@@ -356,28 +368,39 @@
    ============================================ */
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { 
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
     transform: scale(1);
   }
-  50% { 
+  50% {
     box-shadow: 0 0 40px rgba(0, 245, 255, 0.5);
     transform: scale(1.02);
   }
 }
 
 @keyframes blob {
-  0%, 100% {
+  0%,
+  100% {
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     transform: translate(0, 0) rotate(0deg);
   }
@@ -447,23 +470,39 @@
 }
 
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes typewriter-cursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes glow-pulse {
-  0%, 100% {
+  0%,
+  100% {
     filter: drop-shadow(0 0 10px currentColor);
   }
   50% {

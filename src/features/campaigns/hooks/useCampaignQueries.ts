@@ -2,12 +2,7 @@
  * Campaign Query Hooks
  * TanStack Query hooks for campaign data fetching with optimistic updates
  */
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  type UseQueryOptions,
-} from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient, type UseQueryOptions } from '@tanstack/react-query';
 import { campaignApi, type CreateCampaignDTO, type UpdateCampaignDTO } from '../api/campaignApi';
 import type { Campaign, CampaignFilters } from '../../../stores/campaignStore';
 
@@ -38,7 +33,7 @@ export function useCampaigns(
 ) {
   return useQuery({
     queryKey: campaignKeys.list(filters),
-    queryFn: () => campaignApi.list(filters).then((res) => res.campaigns),
+    queryFn: () => campaignApi.list(filters).then(res => res.campaigns),
     staleTime: 30 * 1000, // 30 seconds
     ...options,
   });
@@ -97,7 +92,7 @@ export function useCreateCampaign() {
 
   return useMutation({
     mutationFn: (data: CreateCampaignDTO) => campaignApi.create(data),
-    onMutate: async (newCampaign) => {
+    onMutate: async newCampaign => {
       // Cancel any outgoing refetches
       await queryClient.cancelQueries({ queryKey: campaignKeys.lists() });
 
@@ -192,7 +187,7 @@ export function useDeleteCampaign() {
 
   return useMutation({
     mutationFn: (id: string) => campaignApi.delete(id),
-    onMutate: async (id) => {
+    onMutate: async id => {
       await queryClient.cancelQueries({ queryKey: campaignKeys.lists() });
 
       const previousCampaigns = queryClient.getQueryData<Campaign[]>(campaignKeys.lists());
@@ -200,7 +195,7 @@ export function useDeleteCampaign() {
       if (previousCampaigns) {
         queryClient.setQueryData<Campaign[]>(
           campaignKeys.lists(),
-          previousCampaigns.filter((c) => c.id !== id)
+          previousCampaigns.filter(c => c.id !== id)
         );
       }
 
@@ -239,7 +234,7 @@ export function useLaunchCampaign() {
 
   return useMutation({
     mutationFn: (id: string) => campaignApi.launch(id),
-    onSuccess: (campaign) => {
+    onSuccess: campaign => {
       queryClient.setQueryData(campaignKeys.detail(campaign.id), campaign);
       queryClient.invalidateQueries({ queryKey: campaignKeys.lists() });
     },
@@ -254,7 +249,7 @@ export function usePauseCampaign() {
 
   return useMutation({
     mutationFn: (id: string) => campaignApi.pause(id),
-    onSuccess: (campaign) => {
+    onSuccess: campaign => {
       queryClient.setQueryData(campaignKeys.detail(campaign.id), campaign);
       queryClient.invalidateQueries({ queryKey: campaignKeys.lists() });
     },
@@ -269,7 +264,7 @@ export function useResumeCampaign() {
 
   return useMutation({
     mutationFn: (id: string) => campaignApi.resume(id),
-    onSuccess: (campaign) => {
+    onSuccess: campaign => {
       queryClient.setQueryData(campaignKeys.detail(campaign.id), campaign);
       queryClient.invalidateQueries({ queryKey: campaignKeys.lists() });
     },
@@ -336,7 +331,7 @@ export function usePrefetchCampaigns() {
   return () => {
     queryClient.prefetchQuery({
       queryKey: campaignKeys.lists(),
-      queryFn: () => campaignApi.list().then((res) => res.campaigns),
+      queryFn: () => campaignApi.list().then(res => res.campaigns),
       staleTime: 10 * 1000,
     });
   };

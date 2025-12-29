@@ -5,7 +5,7 @@ Wires all new systems into main application
 
 from typing import Any, Dict
 
-from fastapi import Depends, FastAPI
+from fastapi import FastAPI
 
 # Import all new route modules
 from app.api.routes import (

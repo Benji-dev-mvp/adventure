@@ -1,5 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Bot, Send, Brain, Database, Search, Sparkles, Clock, Tag, Trash2, Loader2, MessageSquare, BookOpen } from 'lucide-react';
+import {
+  Bot,
+  Send,
+  Brain,
+  Database,
+  Search,
+  Sparkles,
+  Clock,
+  Tag,
+  Trash2,
+  Loader2,
+  MessageSquare,
+  BookOpen,
+} from 'lucide-react';
 import { dataService } from '../lib/dataService';
 import { useToast } from '../components/Toast';
 
@@ -33,7 +46,7 @@ export default function AdvancedAIAssistant() {
 
     try {
       const result = await dataService.post('/ai-advanced/conversation', {
-        message: input
+        message: input,
       });
 
       const assistantMessage = {
@@ -42,7 +55,7 @@ export default function AdvancedAIAssistant() {
         timestamp: new Date(),
         context_used: result.memory_context_used,
         kb_used: result.knowledge_base_used,
-        steps: result.intermediate_steps
+        steps: result.intermediate_steps,
       };
 
       setMessages(prev => [...prev, assistantMessage]);
@@ -50,12 +63,12 @@ export default function AdvancedAIAssistant() {
     } catch (error) {
       console.error('Chat failed:', error);
       toast.error('Failed to get response: ' + (error.message || 'Unknown error'));
-      
+
       const errorMessage = {
         role: 'assistant',
         content: 'I apologize, but I encountered an error. Please try again.',
         timestamp: new Date(),
-        error: true
+        error: true,
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
@@ -72,7 +85,7 @@ export default function AdvancedAIAssistant() {
     try {
       const result = await dataService.post('/ai-advanced/memory/search', {
         query: memorySearch,
-        limit: 20
+        limit: 20,
       });
       setMemories(result.results);
       toast.success(`Found ${result.count} memories`);
@@ -91,7 +104,7 @@ export default function AdvancedAIAssistant() {
     }
   };
 
-  const deleteMemory = async (memoryId) => {
+  const deleteMemory = async memoryId => {
     try {
       await dataService.delete(`/ai-advanced/memory/${memoryId}`);
       setMemories(prev => prev.filter(m => m.id !== memoryId));
@@ -110,7 +123,7 @@ export default function AdvancedAIAssistant() {
       const result = await dataService.post('/ai-advanced/rag/query', {
         query: ragQuery,
         index_name: 'knowledge_base',
-        top_k: 5
+        top_k: 5,
       });
       setRagResults(result.result);
       toast.success('Found relevant documents');
@@ -127,7 +140,7 @@ export default function AdvancedAIAssistant() {
     'How should I follow up with leads?',
     'What makes a high-priority lead?',
     'Analyze my recent campaign performance',
-    'Suggest improvements for email outreach'
+    'Suggest improvements for email outreach',
   ];
 
   return (
@@ -140,7 +153,9 @@ export default function AdvancedAIAssistant() {
           </div>
           <div>
             <h1 className="text-4xl font-bold text-gray-900">Advanced AI Assistant</h1>
-            <p className="text-gray-600 mt-1">Context-aware conversations with memory, RAG, and agent tools</p>
+            <p className="text-gray-600 mt-1">
+              Context-aware conversations with memory, RAG, and agent tools
+            </p>
           </div>
         </div>
 
@@ -205,21 +220,31 @@ export default function AdvancedAIAssistant() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Chat Area */}
-            <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-col" style={{height: '600px'}}>
+            <div
+              className="lg:col-span-2 bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-col"
+              style={{ height: '600px' }}
+            >
               {/* Messages */}
               <div className="flex-1 overflow-y-auto p-6 space-y-4">
                 {messages.length === 0 ? (
                   <div className="flex flex-col items-center justify-center h-full text-gray-500">
                     <Bot className="w-16 h-16 mb-4 text-gray-400" />
                     <p className="text-lg font-medium mb-2">Ask me anything about B2B sales</p>
-                    <p className="text-sm">I have access to your memories, knowledge base, and agent tools</p>
+                    <p className="text-sm">
+                      I have access to your memories, knowledge base, and agent tools
+                    </p>
                   </div>
                 ) : (
                   messages.map((msg, idx) => (
-                    <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                      <div className={`max-w-[80%] ${msg.role === 'user' ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-900'} rounded-2xl p-4`}>
+                    <div
+                      key={idx}
+                      className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                    >
+                      <div
+                        className={`max-w-[80%] ${msg.role === 'user' ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-900'} rounded-2xl p-4`}
+                      >
                         <div className="whitespace-pre-wrap">{msg.content}</div>
-                        
+
                         {msg.role === 'assistant' && (msg.context_used || msg.kb_used) && (
                           <div className="flex gap-2 mt-3 pt-3 border-t border-gray-300">
                             {msg.context_used && (
@@ -236,7 +261,7 @@ export default function AdvancedAIAssistant() {
                             )}
                           </div>
                         )}
-                        
+
                         <div className="text-xs opacity-70 mt-2">
                           {msg.timestamp.toLocaleTimeString()}
                         </div>
@@ -253,8 +278,8 @@ export default function AdvancedAIAssistant() {
                   <input
                     type="text"
                     value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && !loading && sendMessage()}
+                    onChange={e => setInput(e.target.value)}
+                    onKeyPress={e => e.key === 'Enter' && !loading && sendMessage()}
                     placeholder="Ask Ava anything..."
                     disabled={loading}
                     className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:outline-none disabled:opacity-50"
@@ -296,8 +321,8 @@ export default function AdvancedAIAssistant() {
               <div className="mt-6 p-4 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl border border-purple-200">
                 <div className="text-xs font-medium text-gray-900 mb-2">Context-Aware AI</div>
                 <div className="text-xs text-gray-600">
-                  Every response uses your past interactions (Mem0), searches knowledge base (LlamaIndex), 
-                  and can execute agent tools (LangChain) for comprehensive answers.
+                  Every response uses your past interactions (Mem0), searches knowledge base
+                  (LlamaIndex), and can execute agent tools (LangChain) for comprehensive answers.
                 </div>
               </div>
             </div>
@@ -314,8 +339,8 @@ export default function AdvancedAIAssistant() {
               <input
                 type="text"
                 value={memorySearch}
-                onChange={(e) => setMemorySearch(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && searchMemories()}
+                onChange={e => setMemorySearch(e.target.value)}
+                onKeyPress={e => e.key === 'Enter' && searchMemories()}
                 placeholder="Search memories semantically..."
                 className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none"
               />
@@ -338,10 +363,15 @@ export default function AdvancedAIAssistant() {
                 </div>
               ) : (
                 memories.map((memory, idx) => (
-                  <div key={idx} className="p-4 border-2 border-gray-200 rounded-xl hover:border-purple-300 transition-all">
+                  <div
+                    key={idx}
+                    className="p-4 border-2 border-gray-200 rounded-xl hover:border-purple-300 transition-all"
+                  >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <div className="text-sm text-gray-900 mb-2">{memory.memory || memory.content}</div>
+                        <div className="text-sm text-gray-900 mb-2">
+                          {memory.memory || memory.content}
+                        </div>
                         {memory.metadata && (
                           <div className="flex gap-2 flex-wrap">
                             {memory.metadata.category && (
@@ -384,8 +414,8 @@ export default function AdvancedAIAssistant() {
               <input
                 type="text"
                 value={ragQuery}
-                onChange={(e) => setRagQuery(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && !loading && queryRAG()}
+                onChange={e => setRagQuery(e.target.value)}
+                onKeyPress={e => e.key === 'Enter' && !loading && queryRAG()}
                 placeholder="Search knowledge base..."
                 disabled={loading}
                 className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none disabled:opacity-50"
@@ -426,7 +456,9 @@ export default function AdvancedAIAssistant() {
                       {ragResults.sources.map((source, idx) => (
                         <div key={idx} className="p-4 border-2 border-gray-200 rounded-xl">
                           <div className="flex items-start justify-between mb-2">
-                            <div className="text-sm font-medium text-gray-900">Document {idx + 1}</div>
+                            <div className="text-sm font-medium text-gray-900">
+                              Document {idx + 1}
+                            </div>
                             <div className="px-2 py-1 bg-green-100 text-green-700 rounded-lg text-xs">
                               {(source.score * 100).toFixed(0)}% match
                             </div>

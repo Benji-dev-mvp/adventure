@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 const Table = ({ children, className, ...props }) => {
   return (
     <div className="w-full overflow-auto rounded-lg border border-gray-200 dark:border-gray-700">
-      <table className={cn("w-full text-sm", className)} {...props}>
+      <table className={cn('w-full text-sm', className)} {...props}>
         {children}
       </table>
     </div>
@@ -14,11 +14,11 @@ const Table = ({ children, className, ...props }) => {
 
 const TableHeader = ({ children, className, ...props }) => {
   return (
-    <thead 
+    <thead
       className={cn(
-        "bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700",
+        'bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700',
         className
-      )} 
+      )}
       {...props}
     >
       {children}
@@ -28,11 +28,11 @@ const TableHeader = ({ children, className, ...props }) => {
 
 const TableBody = ({ children, className, ...props }) => {
   return (
-    <tbody 
+    <tbody
       className={cn(
-        "divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-900",
+        'divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-900',
         className
-      )} 
+      )}
       {...props}
     >
       {children}
@@ -42,12 +42,12 @@ const TableBody = ({ children, className, ...props }) => {
 
 const TableRow = ({ children, className, clickable, ...props }) => {
   return (
-    <tr 
+    <tr
       className={cn(
-        "transition-colors",
-        clickable && "hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer",
+        'transition-colors',
+        clickable && 'hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer',
         className
-      )} 
+      )}
       {...props}
     >
       {children}
@@ -57,11 +57,11 @@ const TableRow = ({ children, className, clickable, ...props }) => {
 
 const TableHead = ({ children, className, ...props }) => {
   return (
-    <th 
+    <th
       className={cn(
-        "px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider",
+        'px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider',
         className
-      )} 
+      )}
       {...props}
     >
       {children}
@@ -71,13 +71,7 @@ const TableHead = ({ children, className, ...props }) => {
 
 const TableCell = ({ children, className, ...props }) => {
   return (
-    <td 
-      className={cn(
-        "px-6 py-4 text-gray-900 dark:text-gray-100",
-        className
-      )} 
-      {...props}
-    >
+    <td className={cn('px-6 py-4 text-gray-900 dark:text-gray-100', className)} {...props}>
       {children}
     </td>
   );
@@ -85,11 +79,11 @@ const TableCell = ({ children, className, ...props }) => {
 
 const TableFooter = ({ children, className, ...props }) => {
   return (
-    <tfoot 
+    <tfoot
       className={cn(
-        "bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700",
+        'bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700',
         className
-      )} 
+      )}
       {...props}
     >
       {children}
@@ -99,13 +93,7 @@ const TableFooter = ({ children, className, ...props }) => {
 
 const TableCaption = ({ children, className, ...props }) => {
   return (
-    <caption 
-      className={cn(
-        "mt-4 text-sm text-gray-500 dark:text-gray-400",
-        className
-      )} 
-      {...props}
-    >
+    <caption className={cn('mt-4 text-sm text-gray-500 dark:text-gray-400', className)} {...props}>
       {children}
     </caption>
   );
@@ -161,15 +149,6 @@ TableCaption.propTypes = {
   className: PropTypes.string,
 };
 
-export { 
-  Table, 
-  TableHeader, 
-  TableBody, 
-  TableRow, 
-  TableHead, 
-  TableCell, 
-  TableFooter,
-  TableCaption 
-};
+export { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableFooter, TableCaption };
 
 export default Table;

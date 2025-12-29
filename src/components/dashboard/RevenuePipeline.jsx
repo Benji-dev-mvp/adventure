@@ -34,14 +34,12 @@ export const RevenuePipeline = () => {
         <div className="space-y-3">
           {pipeline.map((stage, index) => {
             const percentage = (stage.value / maxValue) * 100;
-            
+
             return (
               <div key={stage.stage} className="space-y-2">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="font-medium text-gray-900 dark:text-white">
-                      {stage.stage}
-                    </span>
+                    <span className="font-medium text-gray-900 dark:text-white">{stage.stage}</span>
                     <span className="text-sm text-gray-600 dark:text-gray-400">
                       ({stage.deals} deals)
                     </span>
@@ -50,7 +48,7 @@ export const RevenuePipeline = () => {
                     ${(stage.value / 1000).toFixed(0)}K
                   </span>
                 </div>
-                
+
                 <div className="relative">
                   <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
                     <div
@@ -63,7 +61,7 @@ export const RevenuePipeline = () => {
             );
           })}
         </div>
-        
+
         <div className="mt-6 grid grid-cols-3 gap-4 pt-4 border-t border-gray-200 dark:border-white/10">
           <div className="text-center">
             <p className="text-sm text-gray-600 dark:text-gray-400">Avg Deal</p>

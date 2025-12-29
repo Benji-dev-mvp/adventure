@@ -1,6 +1,6 @@
 /**
  * Orchestrator - Multi-Agent Coordination System
- * 
+ *
  * The brain that coordinates all agents, manages task distribution,
  * runs the task marketplace, and ensures collaborative execution.
  */
@@ -51,7 +51,13 @@ interface TaskCreationParams {
 }
 
 interface OrchestrationEvent {
-  type: 'task-created' | 'task-assigned' | 'task-completed' | 'task-failed' | 'agent-message' | 'auction-complete';
+  type:
+    | 'task-created'
+    | 'task-assigned'
+    | 'task-completed'
+    | 'task-failed'
+    | 'agent-message'
+    | 'auction-complete';
   timestamp: Date;
   data: unknown;
 }
@@ -147,7 +153,8 @@ class Orchestrator {
       constraints: {
         maxLatency: params.constraints?.maxLatency || 30000,
         maxCost: params.constraints?.maxCost || 100,
-        qualityThreshold: params.constraints?.qualityThreshold || this.state.config.qualityThreshold,
+        qualityThreshold:
+          params.constraints?.qualityThreshold || this.state.config.qualityThreshold,
         requiredApprovals: params.constraints?.requiredApprovals || [],
         blockedAgents: params.constraints?.blockedAgents || [],
       },
@@ -179,7 +186,7 @@ class Orchestrator {
 
     // Collect bids from eligible agents
     const eligibleAgents = this.findEligibleAgents(task);
-    
+
     if (eligibleAgents.length === 0) {
       console.warn(`No eligible agents for task ${task.id}`);
       task.status = 'pending';
@@ -191,7 +198,7 @@ class Orchestrator {
       const bid = agent.generateBid(task);
       if (bid) {
         task.bids.push(bid);
-        
+
         // Track in marketplace
         const existing = this.state.marketplace.activeBids.get(task.id) || [];
         existing.push(bid);
@@ -216,11 +223,11 @@ class Orchestrator {
    */
   private findEligibleAgents(task: Task): Agent[] {
     const eligible: Agent[] = [];
-    
+
     for (const agent of this.state.agents.values()) {
       // Check if agent is blocked
       if (task.constraints.blockedAgents.includes(agent.id)) continue;
-      
+
       // Check if agent can handle the task
       if (agent.canHandle(task)) {
         eligible.push(agent);
@@ -236,7 +243,7 @@ class Orchestrator {
   private async waitForBids(task: Task): Promise<void> {
     const timeout = this.state.config.biddingTimeout;
     const expectedBids = this.findEligibleAgents(task).length;
-    
+
     const start = Date.now();
     while (Date.now() - start < timeout && task.bids.length < expectedBids) {
       await new Promise(resolve => setTimeout(resolve, 100));
@@ -253,12 +260,12 @@ class Orchestrator {
     switch (strategy) {
       case 'aggressive':
         // Lowest cost
-        return bids.reduce((a, b) => a.proposedCost < b.proposedCost ? a : b, bids[0]);
-      
+        return bids.reduce((a, b) => (a.proposedCost < b.proposedCost ? a : b), bids[0]);
+
       case 'quality-first':
         // Highest confidence
-        return bids.reduce((a, b) => a.confidence > b.confidence ? a : b, bids[0]);
-      
+        return bids.reduce((a, b) => (a.confidence > b.confidence ? a : b), bids[0]);
+
       case 'balanced':
       default:
         // Best value (confidence / cost ratio)
@@ -310,12 +317,12 @@ class Orchestrator {
    */
   onTaskComplete(task: Task): void {
     this.state.metrics.completedTasks++;
-    
+
     // Update average latency
     if (task.timeline.started && task.timeline.completed) {
       const latency = task.timeline.completed.getTime() - task.timeline.started.getTime();
       const n = this.state.metrics.completedTasks;
-      this.state.metrics.averageLatency = 
+      this.state.metrics.averageLatency =
         (this.state.metrics.averageLatency * (n - 1) + latency) / n;
     }
 
@@ -323,7 +330,7 @@ class Orchestrator {
     const winningBid = task.bids.find(b => b.agentId === task.assignedAgent);
     if (winningBid) {
       const n = this.state.metrics.completedTasks;
-      this.state.metrics.averageCost = 
+      this.state.metrics.averageCost =
         (this.state.metrics.averageCost * (n - 1) + winningBid.proposedCost) / n;
     }
 
@@ -346,7 +353,7 @@ class Orchestrator {
    */
   onTaskFailed(task: Task, error: Error): void {
     this.state.metrics.failedTasks++;
-    
+
     this.emit('task-failed', { task, error: error.message });
 
     // Retry logic
@@ -356,12 +363,12 @@ class Orchestrator {
       task.metadata.retryCount = retryCount + 1;
       task.status = 'pending';
       task.bids = [];
-      
+
       // Block the failed agent for this task
       if (task.assignedAgent) {
         task.constraints.blockedAgents.push(task.assignedAgent);
       }
-      
+
       // Re-run auction
       this.runAuction(task);
     }
@@ -404,11 +411,12 @@ class Orchestrator {
   ): Promise<Conversation> {
     // Find agents for each role
     const participants: string[] = [];
-    
+
     for (const role of participantRoles) {
-      const agent = Array.from(this.state.agents.values())
-        .find(a => a.role === role && !participants.includes(a.id));
-      
+      const agent = Array.from(this.state.agents.values()).find(
+        a => a.role === role && !participants.includes(a.id)
+      );
+
       if (agent) {
         participants.push(agent.id);
       }
@@ -512,7 +520,7 @@ class Orchestrator {
       // Arrange agents in a circle
       const angle = (i / this.state.agents.size) * 2 * Math.PI;
       const radius = 200;
-      
+
       return {
         id: a.id,
         role: a.role,
@@ -522,10 +530,12 @@ class Orchestrator {
           x: Math.cos(angle) * radius + 250,
           y: Math.sin(angle) * radius + 250,
         },
-        connections: Array.from(a.memory.collaboratorProfiles.entries()).map(([targetId, profile]) => ({
-          targetId,
-          strength: profile.trustScore,
-        })),
+        connections: Array.from(a.memory.collaboratorProfiles.entries()).map(
+          ([targetId, profile]) => ({
+            targetId,
+            strength: profile.trustScore,
+          })
+        ),
       };
     });
 
@@ -576,7 +586,7 @@ class Orchestrator {
    */
   private async spawnAgent(role: AgentRole): Promise<Agent | null> {
     const count = Array.from(this.state.agents.values()).filter(a => a.role === role).length;
-    
+
     let agent: Agent;
     switch (role) {
       case 'hunter':
@@ -600,7 +610,7 @@ class Orchestrator {
 
     this.state.agents.set(agent.id, agent);
     this.state.metrics.agentUtilization.set(agent.id, 0);
-    
+
     console.log(`Spawned new agent: ${agent.name}`);
     return agent;
   }
@@ -609,16 +619,17 @@ class Orchestrator {
    * Retire an idle agent of the given role
    */
   private async retireAgent(role: AgentRole): Promise<boolean> {
-    const candidate = Array.from(this.state.agents.values())
-      .find(a => a.role === role && a.status === 'idle' && a.taskQueue.length === 0);
-    
+    const candidate = Array.from(this.state.agents.values()).find(
+      a => a.role === role && a.status === 'idle' && a.taskQueue.length === 0
+    );
+
     if (candidate) {
       this.state.agents.delete(candidate.id);
       this.state.metrics.agentUtilization.delete(candidate.id);
       console.log(`Retired agent: ${candidate.name}`);
       return true;
     }
-    
+
     return false;
   }
 
@@ -652,11 +663,11 @@ class Orchestrator {
       'research-signal': ['signal-research', 'signal-detection'],
       'enrich-contact': ['contact-identification'],
       'craft-message': ['message-generation', 'personalization'],
-      'personalize': ['personalization', 'tone-adaptation'],
+      personalize: ['personalization', 'tone-adaptation'],
       'send-sequence': ['sequence-optimization'],
       'handle-reply': ['reply-handling', 'objection-handling'],
       'schedule-meeting': ['meeting-scheduling'],
-      'negotiate': ['negotiation'],
+      negotiate: ['negotiation'],
       'optimize-sequence': ['sequence-optimization'],
       'analyze-performance': ['pipeline-analysis', 'performance-forecasting'],
       'rebalance-pipeline': ['pipeline-analysis', 'routing-optimization'],
@@ -670,11 +681,11 @@ class Orchestrator {
       'research-signal': 'scout',
       'enrich-contact': 'hunter',
       'craft-message': 'writer',
-      'personalize': 'writer',
+      personalize: 'writer',
       'send-sequence': 'revops',
       'handle-reply': 'closer',
       'schedule-meeting': 'closer',
-      'negotiate': 'closer',
+      negotiate: 'closer',
       'optimize-sequence': 'revops',
       'analyze-performance': 'revops',
       'rebalance-pipeline': 'revops',
@@ -686,24 +697,29 @@ class Orchestrator {
     const agent = this.state.agents.get(agentId);
     if (!agent) return;
 
-    const utilization = agent.status === 'working' ? 1 :
-                       agent.taskQueue.length > 0 ? 0.5 + agent.taskQueue.length * 0.1 : 0;
-    
+    const utilization =
+      agent.status === 'working'
+        ? 1
+        : agent.taskQueue.length > 0
+          ? 0.5 + agent.taskQueue.length * 0.1
+          : 0;
+
     this.state.metrics.agentUtilization.set(agentId, Math.min(utilization, 1));
   }
 
   private updateThroughput(): void {
     // Calculate throughput as tasks completed per minute (rolling 5-minute window)
     const now = Date.now();
-    const recentAuctions = this.state.marketplace.completedAuctions
-      .filter(a => now - a.timestamp.getTime() < 5 * 60 * 1000);
-    
+    const recentAuctions = this.state.marketplace.completedAuctions.filter(
+      a => now - a.timestamp.getTime() < 5 * 60 * 1000
+    );
+
     this.state.metrics.throughput = recentAuctions.length / 5;
   }
 
   private trackConversation(message: AgentMessage): void {
     if (!message.conversationId) return;
-    
+
     const conversation = this.state.activeConversations.get(message.conversationId);
     if (conversation) {
       conversation.messages.push(message);

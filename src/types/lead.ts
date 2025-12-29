@@ -3,7 +3,7 @@
  * TypeScript type definitions for lead-related entities
  */
 
-export type LeadStatus = 
+export type LeadStatus =
   | 'new'
   | 'contacted'
   | 'engaged'
@@ -30,7 +30,7 @@ export type LeadSource =
 
 export interface Lead {
   id: string;
-  
+
   // Basic Info
   firstName: string;
   lastName: string;
@@ -38,28 +38,28 @@ export interface Lead {
   email: string;
   phone?: string;
   mobile?: string;
-  
+
   // Professional Info
   title: string;
   company: string;
   department?: string;
   seniority?: 'entry' | 'mid' | 'senior' | 'director' | 'vp' | 'c-level';
-  
+
   // Location
   city?: string;
   state?: string;
   country?: string;
   timezone?: string;
-  
+
   // Social Profiles
   linkedinUrl?: string;
   twitterHandle?: string;
   websiteUrl?: string;
-  
+
   // Scoring & Status
   score: number;
   status: LeadStatus;
-  
+
   // Engagement
   lastContactDate?: string;
   lastActivityDate?: string;
@@ -67,25 +67,25 @@ export interface Lead {
   emailsOpened?: number;
   emailsClicked?: number;
   emailsReplied?: number;
-  
+
   // Source & Attribution
   source: LeadSource;
   sourceDetails?: string;
   campaignId?: string;
-  
+
   // Enrichment Data
   enrichment?: LeadEnrichment;
-  
+
   // Organization
   tags: string[];
   listIds?: string[];
   ownerId?: string;
   ownerName?: string;
-  
+
   // Metadata
   createdAt: string;
   updatedAt: string;
-  
+
   // Custom Fields
   customFields?: Record<string, string | number | boolean>;
 }
@@ -99,29 +99,29 @@ export interface LeadEnrichment {
   companyFounded?: number;
   companyLinkedinUrl?: string;
   companyWebsite?: string;
-  
+
   // Tech Stack
   techStack?: string[];
-  
+
   // Funding & News
   fundingStage?: string;
   fundingTotal?: string;
   recentNews?: LeadNewsItem[];
-  
+
   // Social Data
   linkedinFollowers?: number;
   twitterFollowers?: number;
-  
+
   // Contact Details
   directPhone?: string;
   verifiedEmail?: boolean;
   emailConfidence?: number;
-  
+
   // Additional Data
   bio?: string;
   skills?: string[];
   education?: string;
-  
+
   // Enrichment Metadata
   enrichedAt?: string;
   enrichmentProvider?: string;

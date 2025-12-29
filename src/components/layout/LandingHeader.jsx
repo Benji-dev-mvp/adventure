@@ -47,18 +47,20 @@ const LandingHeader = () => {
           >
             Login
           </Link>
-          
+
           {/* Solutions Dropdown */}
-          <div 
+          <div
             className="relative"
             onMouseEnter={() => setSolutionsOpen(true)}
             onMouseLeave={() => setSolutionsOpen(false)}
           >
             <button className="px-3 py-2 text-sm font-semibold text-white rounded-full hover:bg-white/10 transition-colors shine flex items-center gap-1">
               Solutions
-              <ChevronDown className={`w-3 h-3 transition-transform ${solutionsOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown
+                className={`w-3 h-3 transition-transform ${solutionsOpen ? 'rotate-180' : ''}`}
+              />
             </button>
-            
+
             {solutionsOpen && (
               <div className="absolute top-full left-0 mt-2 w-56 rounded-2xl glass-dark border border-white/20 backdrop-blur-xl shadow-2xl overflow-hidden animate-fadeIn">
                 <Link
@@ -100,12 +102,37 @@ const LandingHeader = () => {
               </div>
             )}
           </div>
-          
-          <a href="#ai-tour" className="px-3 py-2 text-sm font-semibold text-white rounded-full hover:bg-white/10 transition-colors shine scroll-smooth">AI Tour</a>
-          <a href="#flow" className="px-3 py-2 text-sm font-semibold text-white rounded-full hover:bg-white/10 transition-colors shine scroll-smooth">Flow</a>
-          <a href="#platform" className="px-3 py-2 text-sm font-semibold text-white rounded-full hover:bg-white/10 transition-colors shine scroll-smooth">Platform</a>
-          <a href="#security" className="px-3 py-2 text-sm font-semibold text-white rounded-full hover:bg-white/10 transition-colors shine scroll-smooth">Security</a>
-          <a href="#customers" className="px-3 py-2 text-sm font-semibold text-white rounded-full hover:bg-white/10 transition-colors shine scroll-smooth">Customers</a>
+
+          <a
+            href="#ai-tour"
+            className="px-3 py-2 text-sm font-semibold text-white rounded-full hover:bg-white/10 transition-colors shine scroll-smooth"
+          >
+            AI Tour
+          </a>
+          <a
+            href="#flow"
+            className="px-3 py-2 text-sm font-semibold text-white rounded-full hover:bg-white/10 transition-colors shine scroll-smooth"
+          >
+            Flow
+          </a>
+          <a
+            href="#platform"
+            className="px-3 py-2 text-sm font-semibold text-white rounded-full hover:bg-white/10 transition-colors shine scroll-smooth"
+          >
+            Platform
+          </a>
+          <a
+            href="#security"
+            className="px-3 py-2 text-sm font-semibold text-white rounded-full hover:bg-white/10 transition-colors shine scroll-smooth"
+          >
+            Security
+          </a>
+          <a
+            href="#customers"
+            className="px-3 py-2 text-sm font-semibold text-white rounded-full hover:bg-white/10 transition-colors shine scroll-smooth"
+          >
+            Customers
+          </a>
 
           <div className="w-[1px] h-5 rounded-full bg-white/20"></div>
 
@@ -113,9 +140,7 @@ const LandingHeader = () => {
             href="#enterprise-cta"
             className="group relative flex items-center justify-between overflow-hidden duration-300 transition-transform rounded-full p-3 pl-4 gap-3 whitespace-nowrap text-sm gradient-mesh hover:shadow-xl transform hover:scale-105 glow shine"
           >
-            <div className="font-bold leading-5 text-white">
-              Talk to Sales
-            </div>
+            <div className="font-bold leading-5 text-white">Talk to Sales</div>
             <div className="relative flex items-center w-8 h-8 p-2 overflow-hidden rounded-full bg-white/20">
               <ArrowRight className="w-4 h-4 text-white transition-transform group-hover:translate-x-1" />
             </div>
@@ -132,9 +157,7 @@ const LandingHeader = () => {
         {/* Mobile Navigation */}
         <div className="flex lg:hidden items-center p-2 px-4 rounded-full gap-2 glass-dark border border-white/20 backdrop-blur-lg">
           <button className="group relative flex items-center justify-between overflow-hidden duration-300 rounded-full p-2 pl-3 gap-2 text-sm gradient-mesh glow">
-            <div className="font-bold text-white text-sm">
-              Sales
-            </div>
+            <div className="font-bold text-white text-sm">Sales</div>
             <div className="flex items-center w-7 h-7 rounded-full bg-white/20">
               <ArrowRight className="w-3 h-3 text-white ml-2" />
             </div>
@@ -154,13 +177,11 @@ const LandingHeader = () => {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-50 glass-dark backdrop-blur-xl animate-fadeIn"
           style={{
-            clipPath: mobileMenuOpen 
-              ? 'circle(150% at 100% 0)' 
-              : 'circle(0px at 100% 0)',
-            transition: 'clip-path 0.4s ease-in-out'
+            clipPath: mobileMenuOpen ? 'circle(150% at 100% 0)' : 'circle(0px at 100% 0)',
+            transition: 'clip-path 0.4s ease-in-out',
           }}
         >
           <div className="flex flex-col gap-3 p-5 w-full h-full">
@@ -201,10 +222,12 @@ const LandingHeader = () => {
                 <p className="font-medium">Login</p>
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              
+
               {/* Mobile Solutions Section */}
               <div className="flex flex-col gap-2">
-                <p className="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Solutions</p>
+                <p className="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                  Solutions
+                </p>
                 <Link
                   to="/solutions/startups"
                   onClick={() => setMobileMenuOpen(false)}
@@ -248,7 +271,7 @@ const LandingHeader = () => {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
-              
+
               <a
                 href="#ai-tour"
                 onClick={() => setMobileMenuOpen(false)}

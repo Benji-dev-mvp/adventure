@@ -4,7 +4,16 @@ import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { Input } from '../ui/Input';
-import { Code2, Briefcase, DollarSign, Newspaper, Mic, Target, BarChart3, Users } from 'lucide-react';
+import {
+  Code2,
+  Briefcase,
+  DollarSign,
+  Newspaper,
+  Mic,
+  Target,
+  BarChart3,
+  Users,
+} from 'lucide-react';
 
 export const TechnographicFilters = () => {
   const [selectedTech, setSelectedTech] = useState([]);
@@ -12,7 +21,7 @@ export const TechnographicFilters = () => {
     { name: 'CRM', options: ['Salesforce', 'HubSpot', 'Pipedrive', 'Zoho'], count: 2340 },
     { name: 'Analytics', options: ['Google Analytics', 'Mixpanel', 'Amplitude'], count: 3450 },
     { name: 'Marketing', options: ['Marketo', 'Pardot', 'ActiveCampaign'], count: 1890 },
-    { name: 'Dev Tools', options: ['GitHub', 'GitLab', 'Bitbucket'], count: 5670 }
+    { name: 'Dev Tools', options: ['GitHub', 'GitLab', 'Bitbucket'], count: 5670 },
   ];
 
   return (
@@ -26,7 +35,7 @@ export const TechnographicFilters = () => {
       <CardContent>
         <div className="space-y-4">
           <Input placeholder="Search technologies..." />
-          
+
           <div className="space-y-3 max-h-[300px] overflow-y-auto">
             {techCategories.map((category, idx) => (
               <div key={idx} className="border rounded-lg p-3">
@@ -54,9 +63,27 @@ export const TechnographicFilters = () => {
 
 export const JobChangeAlerts = () => {
   const [alerts, setAlerts] = useState([
-    { name: 'Sarah Johnson', oldCompany: 'Acme Corp', newCompany: 'TechCo', newTitle: 'VP of Sales', date: '2 days ago' },
-    { name: 'Mike Chen', oldCompany: 'StartupXYZ', newCompany: 'BigCorp', newTitle: 'CTO', date: '5 days ago' },
-    { name: 'Lisa Brown', oldCompany: 'SmallCo', newCompany: 'Acme Corp', newTitle: 'Director of Marketing', date: '1 week ago' }
+    {
+      name: 'Sarah Johnson',
+      oldCompany: 'Acme Corp',
+      newCompany: 'TechCo',
+      newTitle: 'VP of Sales',
+      date: '2 days ago',
+    },
+    {
+      name: 'Mike Chen',
+      oldCompany: 'StartupXYZ',
+      newCompany: 'BigCorp',
+      newTitle: 'CTO',
+      date: '5 days ago',
+    },
+    {
+      name: 'Lisa Brown',
+      oldCompany: 'SmallCo',
+      newCompany: 'Acme Corp',
+      newTitle: 'Director of Marketing',
+      date: '1 week ago',
+    },
   ]);
 
   return (
@@ -73,17 +100,23 @@ export const JobChangeAlerts = () => {
             <div key={idx} className="p-3 border rounded-lg bg-blue-50 dark:bg-blue-900/10">
               <div className="flex justify-between items-start mb-2">
                 <h4 className="font-semibold">{alert.name}</h4>
-                <Badge variant="secondary" className="text-xs">{alert.date}</Badge>
+                <Badge variant="secondary" className="text-xs">
+                  {alert.date}
+                </Badge>
               </div>
               <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
                 {alert.oldCompany} → <strong>{alert.newCompany}</strong>
               </p>
               <p className="text-sm text-primary-600 font-medium">{alert.newTitle}</p>
-              <Button size="sm" className="mt-2">Reach Out</Button>
+              <Button size="sm" className="mt-2">
+                Reach Out
+              </Button>
             </div>
           ))}
         </div>
-        <Button variant="outline" className="w-full mt-4">Configure Alerts</Button>
+        <Button variant="outline" className="w-full mt-4">
+          Configure Alerts
+        </Button>
       </CardContent>
     </Card>
   );
@@ -91,9 +124,27 @@ export const JobChangeAlerts = () => {
 
 export const FundingEventTriggers = () => {
   const [events, setEvents] = useState([
-    { company: 'TechStartup Inc', round: 'Series B', amount: '$25M', lead: 'Sequoia Capital', date: '3 days ago' },
-    { company: 'AI Solutions', round: 'Series A', amount: '$12M', lead: 'Andreessen Horowitz', date: '1 week ago' },
-    { company: 'CloudCo', round: 'Seed', amount: '$3.5M', lead: 'Y Combinator', date: '2 weeks ago' }
+    {
+      company: 'TechStartup Inc',
+      round: 'Series B',
+      amount: '$25M',
+      lead: 'Sequoia Capital',
+      date: '3 days ago',
+    },
+    {
+      company: 'AI Solutions',
+      round: 'Series A',
+      amount: '$12M',
+      lead: 'Andreessen Horowitz',
+      date: '1 week ago',
+    },
+    {
+      company: 'CloudCo',
+      round: 'Seed',
+      amount: '$3.5M',
+      lead: 'Y Combinator',
+      date: '2 weeks ago',
+    },
   ]);
 
   return (
@@ -113,15 +164,21 @@ export const FundingEventTriggers = () => {
                 <Badge variant="success">{event.round}</Badge>
               </div>
               <div className="space-y-1 text-sm">
-                <p><strong className="text-green-600">{event.amount}</strong> raised</p>
+                <p>
+                  <strong className="text-green-600">{event.amount}</strong> raised
+                </p>
                 <p className="text-gray-600">Lead: {event.lead}</p>
                 <p className="text-xs text-gray-500">{event.date}</p>
               </div>
-              <Button size="sm" className="mt-2">Add to Campaign</Button>
+              <Button size="sm" className="mt-2">
+                Add to Campaign
+              </Button>
             </div>
           ))}
         </div>
-        <Button variant="outline" className="w-full mt-4">Set Up Triggers</Button>
+        <Button variant="outline" className="w-full mt-4">
+          Set Up Triggers
+        </Button>
       </CardContent>
     </Card>
   );
@@ -129,9 +186,27 @@ export const FundingEventTriggers = () => {
 
 export const NewsMonitoring = () => {
   const [news, setNews] = useState([
-    { company: 'Acme Corp', headline: 'Announces new product line', source: 'TechCrunch', date: '1 hour ago', relevance: 'high' },
-    { company: 'TechCo', headline: 'Expands to European market', source: 'Bloomberg', date: '3 hours ago', relevance: 'high' },
-    { company: 'StartupXYZ', headline: 'Wins industry award', source: 'Forbes', date: '1 day ago', relevance: 'medium' }
+    {
+      company: 'Acme Corp',
+      headline: 'Announces new product line',
+      source: 'TechCrunch',
+      date: '1 hour ago',
+      relevance: 'high',
+    },
+    {
+      company: 'TechCo',
+      headline: 'Expands to European market',
+      source: 'Bloomberg',
+      date: '3 hours ago',
+      relevance: 'high',
+    },
+    {
+      company: 'StartupXYZ',
+      headline: 'Wins industry award',
+      source: 'Forbes',
+      date: '1 day ago',
+      relevance: 'medium',
+    },
   ]);
 
   return (
@@ -160,7 +235,9 @@ export const NewsMonitoring = () => {
             </div>
           ))}
         </div>
-        <Button variant="outline" className="w-full mt-4">View All News</Button>
+        <Button variant="outline" className="w-full mt-4">
+          View All News
+        </Button>
       </CardContent>
     </Card>
   );
@@ -168,9 +245,27 @@ export const NewsMonitoring = () => {
 
 export const SocialListening = () => {
   const [conversations, setConversations] = useState([
-    { platform: 'Twitter', user: '@techceo', text: 'Looking for a new CRM solution...', engagement: 45, sentiment: 'neutral' },
-    { platform: 'LinkedIn', user: 'Sarah J.', text: 'Anyone using automation tools for sales?', engagement: 89, sentiment: 'positive' },
-    { platform: 'Reddit', user: 'u/sales_pro', text: 'Best lead generation platform?', engagement: 234, sentiment: 'neutral' }
+    {
+      platform: 'Twitter',
+      user: '@techceo',
+      text: 'Looking for a new CRM solution...',
+      engagement: 45,
+      sentiment: 'neutral',
+    },
+    {
+      platform: 'LinkedIn',
+      user: 'Sarah J.',
+      text: 'Anyone using automation tools for sales?',
+      engagement: 89,
+      sentiment: 'positive',
+    },
+    {
+      platform: 'Reddit',
+      user: 'u/sales_pro',
+      text: 'Best lead generation platform?',
+      engagement: 234,
+      sentiment: 'neutral',
+    },
   ]);
 
   return (
@@ -187,13 +282,17 @@ export const SocialListening = () => {
             <div key={idx} className="p-3 border rounded-lg">
               <div className="flex justify-between items-start mb-2">
                 <div className="flex items-center gap-2">
-                  <Badge variant="secondary" className="text-xs">{conv.platform}</Badge>
+                  <Badge variant="secondary" className="text-xs">
+                    {conv.platform}
+                  </Badge>
                   <span className="font-semibold text-sm">{conv.user}</span>
                 </div>
                 <span className="text-xs text-gray-500">{conv.engagement} interactions</span>
               </div>
               <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">{conv.text}</p>
-              <Button size="sm" variant="outline">Engage</Button>
+              <Button size="sm" variant="outline">
+                Engage
+              </Button>
             </div>
           ))}
         </div>
@@ -206,7 +305,7 @@ export const CompetitorTracking = () => {
   const [competitors, setCompetitors] = useState([
     { name: 'Competitor A', wins: 12, losses: 8, deals: 20, avgDeal: '$42K' },
     { name: 'Competitor B', wins: 8, losses: 15, deals: 23, avgDeal: '$38K' },
-    { name: 'Competitor C', wins: 5, losses: 18, deals: 23, avgDeal: '$45K' }
+    { name: 'Competitor C', wins: 5, losses: 18, deals: 23, avgDeal: '$45K' },
   ]);
 
   return (
@@ -242,7 +341,7 @@ export const CompetitorTracking = () => {
               </div>
               <div className="mt-2">
                 <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
+                  <div
                     className="bg-green-500 h-2 rounded-full"
                     style={{ width: `${(comp.wins / comp.deals) * 100}%` }}
                   ></div>
@@ -260,7 +359,7 @@ export const MarketSegmentation = () => {
   const segments = [
     { name: 'Enterprise', size: 234, revenue: '$2.4M', growth: '+15%', avgDeal: '$45K' },
     { name: 'Mid-Market', size: 567, revenue: '$1.8M', growth: '+22%', avgDeal: '$28K' },
-    { name: 'SMB', size: 1234, revenue: '$1.2M', growth: '+8%', avgDeal: '$12K' }
+    { name: 'SMB', size: 1234, revenue: '$1.2M', growth: '+8%', avgDeal: '$12K' },
   ];
 
   return (
@@ -305,11 +404,35 @@ export const BuyingCommitteeMapper = () => {
   const [committee, setCommittee] = useState({
     company: 'Acme Corp',
     members: [
-      { name: 'John Doe', title: 'CEO', role: 'Economic Buyer', influence: 'high', contacted: true },
-      { name: 'Jane Smith', title: 'CTO', role: 'Technical Buyer', influence: 'high', contacted: true },
-      { name: 'Bob Johnson', title: 'VP Sales', role: 'Champion', influence: 'medium', contacted: false },
-      { name: 'Alice Williams', title: 'Sales Manager', role: 'End User', influence: 'low', contacted: false }
-    ]
+      {
+        name: 'John Doe',
+        title: 'CEO',
+        role: 'Economic Buyer',
+        influence: 'high',
+        contacted: true,
+      },
+      {
+        name: 'Jane Smith',
+        title: 'CTO',
+        role: 'Technical Buyer',
+        influence: 'high',
+        contacted: true,
+      },
+      {
+        name: 'Bob Johnson',
+        title: 'VP Sales',
+        role: 'Champion',
+        influence: 'medium',
+        contacted: false,
+      },
+      {
+        name: 'Alice Williams',
+        title: 'Sales Manager',
+        role: 'End User',
+        influence: 'low',
+        contacted: false,
+      },
+    ],
   });
 
   return (
@@ -323,7 +446,9 @@ export const BuyingCommitteeMapper = () => {
       <CardContent>
         <div className="mb-4">
           <h3 className="font-semibold text-lg">{committee.company}</h3>
-          <p className="text-sm text-gray-600">{committee.members.length} decision makers identified</p>
+          <p className="text-sm text-gray-600">
+            {committee.members.length} decision makers identified
+          </p>
         </div>
 
         <div className="space-y-2">
@@ -335,15 +460,28 @@ export const BuyingCommitteeMapper = () => {
                   <p className="text-xs text-gray-600">{member.title}</p>
                 </div>
                 <div className="text-right">
-                  <Badge variant={member.influence === 'high' ? 'success' : member.influence === 'medium' ? 'warning' : 'secondary'} className="text-xs mb-1">
+                  <Badge
+                    variant={
+                      member.influence === 'high'
+                        ? 'success'
+                        : member.influence === 'medium'
+                          ? 'warning'
+                          : 'secondary'
+                    }
+                    className="text-xs mb-1"
+                  >
                     {member.influence}
                   </Badge>
                   {member.contacted && (
-                    <Badge variant="success" className="text-xs block">✓ Contacted</Badge>
+                    <Badge variant="success" className="text-xs block">
+                      ✓ Contacted
+                    </Badge>
                   )}
                 </div>
               </div>
-              <Badge variant="secondary" className="text-xs">{member.role}</Badge>
+              <Badge variant="secondary" className="text-xs">
+                {member.role}
+              </Badge>
             </div>
           ))}
         </div>

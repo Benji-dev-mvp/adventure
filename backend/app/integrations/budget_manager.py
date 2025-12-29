@@ -9,7 +9,7 @@ Central budget/cost control system with:
 
 import logging
 from datetime import datetime, timedelta
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 from ..core.cache import cache
 from .policies import AIPolicy

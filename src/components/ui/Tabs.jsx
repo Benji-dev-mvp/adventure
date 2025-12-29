@@ -12,14 +12,14 @@ export const Tabs = ({ children, defaultValue, value, onValueChange, className }
     }
   }, [value]);
 
-  const handleTabChange = (newValue) => {
+  const handleTabChange = newValue => {
     setActiveTab(newValue);
     onValueChange?.(newValue);
   };
 
   return (
     <div className={cn('w-full', className)}>
-      {React.Children.map(children, (child) => {
+      {React.Children.map(children, child => {
         if (!React.isValidElement(child)) return child;
         return React.cloneElement(child, { activeTab, onTabChange: handleTabChange });
       })}
@@ -45,7 +45,7 @@ export const TabsList = ({ children, activeTab, onTabChange, className }) => {
         className
       )}
     >
-      {React.Children.map(children, (child) => {
+      {React.Children.map(children, child => {
         if (!React.isValidElement(child)) return child;
         return React.cloneElement(child, { activeTab, onTabChange });
       })}
@@ -62,7 +62,7 @@ TabsList.propTypes = {
 
 export const TabsTrigger = ({ children, value, activeTab, onTabChange, className }) => {
   const isActive = activeTab === value;
-  
+
   return (
     <button
       onClick={() => onTabChange(value)}

@@ -31,18 +31,18 @@ const HeroScene = ({ content }) => {
     >
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div 
+        <div
           className="absolute top-1/4 -left-48 w-96 h-96 bg-accent-300/20 dark:bg-accent-500/10 rounded-full blur-3xl"
-          style={{ 
+          style={{
             transform: `translate3d(${progress * -100}px, ${progress * 50}px, 0)`,
-            willChange: 'transform'
+            willChange: 'transform',
           }}
         />
-        <div 
+        <div
           className="absolute bottom-1/4 -right-48 w-96 h-96 bg-primary-300/20 dark:bg-primary-500/10 rounded-full blur-3xl"
-          style={{ 
+          style={{
             transform: `translate3d(${progress * 100}px, ${progress * -50}px, 0)`,
-            willChange: 'transform'
+            willChange: 'transform',
           }}
         />
       </div>
@@ -50,22 +50,21 @@ const HeroScene = ({ content }) => {
       {/* Content Container */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-20 md:py-32">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          
           {/* Left Column: Copy + CTA */}
-          <div 
+          <div
             className="space-y-8"
             style={{
               opacity: heroOpacity,
               transform: `scale(${heroScale})`,
               transformOrigin: 'left center',
               transition: 'opacity 0.1s ease-out, transform 0.1s ease-out',
-              willChange: 'transform, opacity'
+              willChange: 'transform, opacity',
             }}
           >
             {/* Badge */}
             <div className="inline-flex">
-              <Badge 
-                variant="secondary" 
+              <Badge
+                variant="secondary"
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 border border-accent-300 dark:border-accent-700"
               >
                 <Sparkles className="w-4 h-4" />
@@ -85,7 +84,7 @@ const HeroScene = ({ content }) => {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button 
+              <Button
                 size="lg"
                 className="text-lg px-8 py-6 bg-accent hover:bg-accent-600 text-white shadow-lg hover:shadow-xl transition-all duration-200 group"
                 asChild
@@ -95,15 +94,13 @@ const HeroScene = ({ content }) => {
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button 
+              <Button
                 size="lg"
                 variant="outline"
                 className="text-lg px-8 py-6 border-2 border-primary hover:bg-primary hover:text-white dark:border-accent dark:hover:bg-accent transition-all duration-200"
                 asChild
               >
-                <Link to="/dashboard">
-                  {content.cta.secondary}
-                </Link>
+                <Link to="/dashboard">{content.cta.secondary}</Link>
               </Button>
             </div>
 
@@ -123,13 +120,13 @@ const HeroScene = ({ content }) => {
           </div>
 
           {/* Right Column: Product Frame */}
-          <div 
+          <div
             className="relative"
             style={{
               transform: `scale(${productFrameScale}) translate3d(0, ${productFrameY}px, 0)`,
               transformOrigin: 'center center',
               transition: 'transform 0.1s ease-out',
-              willChange: 'transform'
+              willChange: 'transform',
             }}
           >
             <ProductFrame isScrolled={isScrolled} />
@@ -173,7 +170,6 @@ const ProductFrame = ({ isScrolled }) => {
     <div className="relative group">
       {/* Frame Container */}
       <div className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700 transition-all duration-300 group-hover:shadow-3xl">
-        
         {/* Browser Chrome */}
         <div className="flex items-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
           <div className="flex gap-2">
@@ -198,13 +194,13 @@ const ProductFrame = ({ isScrolled }) => {
       </div>
 
       {/* Floating Elements */}
-      <FloatingMetric 
+      <FloatingMetric
         icon={TrendingUp}
         label="Response Rate"
         value="+127%"
         className="absolute -top-6 -right-6"
       />
-      <FloatingMetric 
+      <FloatingMetric
         icon={Users}
         label="Active Campaigns"
         value="12"
@@ -238,7 +234,10 @@ const DashboardPreview = () => (
 const CampaignsPreview = () => (
   <div className="space-y-3">
     {[1, 2, 3, 4].map(i => (
-      <div key={i} className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm flex items-center gap-4">
+      <div
+        key={i}
+        className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm flex items-center gap-4"
+      >
         <div className="w-12 h-12 bg-accent-200 dark:bg-accent-700 rounded-lg" />
         <div className="flex-1 space-y-2">
           <div className="h-4 w-3/4 bg-gray-300 dark:bg-gray-600 rounded" />
@@ -254,8 +253,8 @@ const AnalyticsPreview = () => (
   <div className="space-y-4">
     <div className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm h-40 flex items-end gap-2">
       {[40, 65, 45, 80, 60, 90, 70].map((height, i) => (
-        <div 
-          key={i} 
+        <div
+          key={i}
           className="flex-1 bg-accent-300 dark:bg-accent-600 rounded-t"
           style={{ height: `${height}%` }}
         />
@@ -276,7 +275,7 @@ const AnalyticsPreview = () => (
  * FloatingMetric Component
  */
 const FloatingMetric = ({ icon: Icon, label, value, className = '' }) => (
-  <div 
+  <div
     className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 border border-gray-200 dark:border-gray-700 animate-float ${className}`}
   >
     <div className="flex items-center gap-3">

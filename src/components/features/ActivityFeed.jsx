@@ -41,7 +41,7 @@ export const ActivityFeed = ({ activities = [] }) => {
 
   const displayActivities = activities.length > 0 ? activities : defaultActivities;
 
-  const getIcon = (activity) => {
+  const getIcon = activity => {
     const Icon = activity.icon || Clock;
     return Icon;
   };
@@ -53,20 +53,18 @@ export const ActivityFeed = ({ activities = [] }) => {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {displayActivities.map((activity) => {
+          {displayActivities.map(activity => {
             const Icon = getIcon(activity);
             return (
               <div key={activity.id} className="flex gap-4">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${activity.color}`}>
+                <div
+                  className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${activity.color}`}
+                >
                   <Icon size={18} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-gray-900 font-medium">
-                    {activity.message}
-                  </p>
-                  <p className="text-xs text-gray-500 mt-1">
-                    {activity.time}
-                  </p>
+                  <p className="text-sm text-gray-900 font-medium">{activity.message}</p>
+                  <p className="text-xs text-gray-500 mt-1">{activity.time}</p>
                 </div>
               </div>
             );
@@ -78,12 +76,14 @@ export const ActivityFeed = ({ activities = [] }) => {
 };
 
 ActivityFeed.propTypes = {
-  activities: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    type: PropTypes.string,
-    message: PropTypes.string,
-    time: PropTypes.string,
-    icon: PropTypes.elementType,
-    color: PropTypes.string,
-  })),
+  activities: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      type: PropTypes.string,
+      message: PropTypes.string,
+      time: PropTypes.string,
+      icon: PropTypes.elementType,
+      color: PropTypes.string,
+    })
+  ),
 };

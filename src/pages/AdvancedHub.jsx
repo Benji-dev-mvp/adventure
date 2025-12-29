@@ -2,22 +2,35 @@ import React, { useState } from 'react';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { Tabs } from '../components/ui/Tabs';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
-import { Brain, Zap, BarChart3, Users, Shield, MessageSquare, Target, TrendingUp, Image as ImageIcon, Search, Code, FlaskConical } from 'lucide-react';
+import {
+  Brain,
+  Zap,
+  BarChart3,
+  Users,
+  Shield,
+  MessageSquare,
+  Target,
+  TrendingUp,
+  Image as ImageIcon,
+  Search,
+  Code,
+  FlaskConical,
+} from 'lucide-react';
 
 // AI & ML Components
-import { 
-  AILeadScoringTrainer, 
-  ConversationIntelligence, 
-  ChurnPrediction, 
+import {
+  AILeadScoringTrainer,
+  ConversationIntelligence,
+  ChurnPrediction,
   NextBestActionEngine,
   EmailReplyCategorizer,
   ABTestOptimizer,
   SentimentTrendAnalysis,
-  SmartReplyGenerator
+  SmartReplyGenerator,
 } from '../components/ai/AIMLComponents';
 
 // Automation Components
-import { 
+import {
   VisualWorkflowBuilder,
   LeadRoutingEngine,
   TriggerBasedActions,
@@ -25,7 +38,7 @@ import {
   ScheduledReports,
   AutoFollowUpSequences,
   TaskAutomation,
-  DataSyncScheduler
+  DataSyncScheduler,
 } from '../components/automation/AutomationComponents';
 
 // Advanced Analytics
@@ -38,7 +51,7 @@ import {
   CompetitiveIntelligence,
   ForecastAccuracy,
   CustomSQLQueryBuilder,
-  DataExportScheduler
+  DataExportScheduler,
 } from '../components/analytics/AdvancedAnalytics';
 
 // Team Collaboration
@@ -50,7 +63,7 @@ import {
   TeamActivityFeed,
   DealRooms,
   VideoCallIntegration,
-  SlackTeamsBot
+  SlackTeamsBot,
 } from '../components/collaboration/TeamComponents';
 
 // Security & Compliance
@@ -62,7 +75,7 @@ import {
   SessionManagement,
   EncryptionKeyRotation,
   DataPrivacyDashboard,
-  ComplianceReporting
+  ComplianceReporting,
 } from '../components/security/SecurityComponents';
 
 // Communication Channels
@@ -74,7 +87,7 @@ import {
   VoicemailDrops,
   VideoMessages,
   ChatbotBuilder,
-  SocialMediaMonitor
+  SocialMediaMonitor,
 } from '../components/communication/CommunicationComponents';
 
 // Sales Intelligence
@@ -86,7 +99,7 @@ import {
   SocialListening,
   CompetitorTracking,
   MarketSegmentation,
-  BuyingCommitteeMapper
+  BuyingCommitteeMapper,
 } from '../components/sales-intel/SalesIntelComponents';
 
 // ABM Components
@@ -98,7 +111,7 @@ import {
   StakeholderMapping,
   AccountAdSync,
   TerritoryManagement,
-  AccountHealthScore
+  AccountHealthScore,
 } from '../components/abm/ABMComponents';
 
 // Misc Components (Content, Search, Developer, Testing)
@@ -117,7 +130,7 @@ import {
   ZapierIntegration,
   MultivariateTestBuilder,
   SendTimeABTesting,
-  EmailHeatmapTracker
+  EmailHeatmapTracker,
 } from '../components/advanced/MiscComponents';
 
 const AdvancedHub = () => {
@@ -135,7 +148,7 @@ const AdvancedHub = () => {
     { id: 'content', label: 'Content', icon: <ImageIcon size={16} /> },
     { id: 'search', label: 'Search', icon: <Search size={16} /> },
     { id: 'developer', label: 'Developer', icon: <Code size={16} /> },
-    { id: 'testing', label: 'Testing', icon: <FlaskConical size={16} /> }
+    { id: 'testing', label: 'Testing', icon: <FlaskConical size={16} /> },
   ];
 
   return (
@@ -154,7 +167,7 @@ const AdvancedHub = () => {
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
-            {tabs.map((tab) => (
+            {tabs.map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}

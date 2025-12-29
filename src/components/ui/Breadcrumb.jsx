@@ -5,12 +5,16 @@ import { cn } from '@/lib/utils';
 const Breadcrumb = ({ children, className, separator, ...props }) => {
   const defaultSeparator = (
     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-      <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+      <path
+        fillRule="evenodd"
+        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+        clipRule="evenodd"
+      />
     </svg>
   );
 
   return (
-    <nav aria-label="Breadcrumb" className={cn("flex items-center", className)} {...props}>
+    <nav aria-label="Breadcrumb" className={cn('flex items-center', className)} {...props}>
       <ol className="flex items-center space-x-2 text-sm">
         {React.Children.map(children, (child, index) => {
           const isLast = index === React.Children.count(children) - 1;
@@ -32,10 +36,10 @@ const Breadcrumb = ({ children, className, separator, ...props }) => {
 
 const BreadcrumbItem = ({ children, href, active, className, ...props }) => {
   const baseClasses = cn(
-    "transition-colors",
-    active 
-      ? "text-gray-900 dark:text-gray-100 font-medium" 
-      : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100",
+    'transition-colors',
+    active
+      ? 'text-gray-900 dark:text-gray-100 font-medium'
+      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100',
     className
   );
 
@@ -48,11 +52,7 @@ const BreadcrumbItem = ({ children, href, active, className, ...props }) => {
   }
 
   return (
-    <span 
-      className={baseClasses} 
-      aria-current={active ? 'page' : undefined}
-      {...props}
-    >
+    <span className={baseClasses} aria-current={active ? 'page' : undefined} {...props}>
       {children}
     </span>
   );

@@ -49,15 +49,13 @@ export const QuickActions = () => {
                 key={index}
                 className="flex flex-col items-start p-4 rounded-xl border border-gray-200 hover:border-accent-300 hover:bg-accent-50 transition-all group text-left"
               >
-                <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 ${action.color}`}>
+                <div
+                  className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 ${action.color}`}
+                >
                   <Icon size={20} />
                 </div>
-                <h4 className="font-semibold text-gray-900 text-sm mb-1">
-                  {action.title}
-                </h4>
-                <p className="text-xs text-gray-600">
-                  {action.description}
-                </p>
+                <h4 className="font-semibold text-gray-900 text-sm mb-1">{action.title}</h4>
+                <p className="text-xs text-gray-600">{action.description}</p>
               </button>
             );
           })}

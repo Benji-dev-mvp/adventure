@@ -19,7 +19,7 @@ export const EmailPreview = ({ subject, content, from }) => {
     { id: 'dark', label: 'Dark', icon: Moon },
   ];
 
-  const processContent = (text) => {
+  const processContent = text => {
     if (!text) return '';
     // Replace merge tags with sample data
     return text
@@ -41,7 +41,7 @@ export const EmailPreview = ({ subject, content, from }) => {
           <div className="flex items-center gap-2">
             {/* Device Toggle */}
             <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
-              {devices.map((d) => {
+              {devices.map(d => {
                 const Icon = d.icon;
                 return (
                   <button
@@ -62,7 +62,7 @@ export const EmailPreview = ({ subject, content, from }) => {
 
             {/* Theme Toggle */}
             <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
-              {themes.map((t) => {
+              {themes.map(t => {
                 const Icon = t.icon;
                 return (
                   <button
@@ -89,50 +89,60 @@ export const EmailPreview = ({ subject, content, from }) => {
             className={`transition-all duration-300 rounded-lg shadow-xl overflow-hidden ${
               theme === 'dark' ? 'bg-gray-900' : 'bg-white'
             }`}
-            style={{ width: devices.find(d => d.id === device)?.width || '100%', maxWidth: '800px' }}
+            style={{
+              width: devices.find(d => d.id === device)?.width || '100%',
+              maxWidth: '800px',
+            }}
           >
             {/* Email Header */}
-            <div className={`p-4 border-b ${
-              theme === 'dark' ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'
-            }`}>
+            <div
+              className={`p-4 border-b ${
+                theme === 'dark' ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'
+              }`}
+            >
               <div className="flex items-center justify-between mb-2">
-                <span className={`text-xs font-medium ${
-                  theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                }`}>
+                <span
+                  className={`text-xs font-medium ${
+                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                  }`}
+                >
                   From:
                 </span>
-                <Badge variant="secondary" className="text-xs">Inbox</Badge>
+                <Badge variant="secondary" className="text-xs">
+                  Inbox
+                </Badge>
               </div>
-              <div className={`text-sm ${
-                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-              }`}>
+              <div className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
                 {from || 'you@company.com'}
               </div>
             </div>
 
             {/* Subject Line */}
-            <div className={`p-4 border-b ${
-              theme === 'dark' ? 'border-gray-700' : 'border-gray-200'
-            }`}>
-              <div className={`text-lg font-semibold ${
-                theme === 'dark' ? 'text-white' : 'text-gray-900'
-              }`}>
+            <div
+              className={`p-4 border-b ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}
+            >
+              <div
+                className={`text-lg font-semibold ${
+                  theme === 'dark' ? 'text-white' : 'text-gray-900'
+                }`}
+              >
                 {processContent(subject) || 'Your Subject Line Here'}
               </div>
             </div>
 
             {/* Email Body */}
             <div className={`p-6 ${device === 'mobile' ? 'p-4' : ''}`}>
-              <div className={`prose max-w-none ${
-                theme === 'dark' ? 'prose-invert' : ''
-              }`}>
-                {processContent(content)?.split('\n').map((line, i) => (
-                  <p key={i} className={`mb-4 ${
-                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                  }`}>
-                    {line || <br />}
-                  </p>
-                )) || (
+              <div className={`prose max-w-none ${theme === 'dark' ? 'prose-invert' : ''}`}>
+                {processContent(content)
+                  ?.split('\n')
+                  .map((line, i) => (
+                    <p
+                      key={i}
+                      className={`mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}
+                    >
+                      {line || <br />}
+                    </p>
+                  )) || (
                   <p className={theme === 'dark' ? 'text-gray-500' : 'text-gray-400'}>
                     Email content will appear here...
                   </p>
@@ -141,12 +151,12 @@ export const EmailPreview = ({ subject, content, from }) => {
             </div>
 
             {/* Email Footer */}
-            <div className={`p-4 border-t text-center ${
-              theme === 'dark' ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'
-            }`}>
-              <p className={`text-xs ${
-                theme === 'dark' ? 'text-gray-500' : 'text-gray-500'
-              }`}>
+            <div
+              className={`p-4 border-t text-center ${
+                theme === 'dark' ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'
+              }`}
+            >
+              <p className={`text-xs ${theme === 'dark' ? 'text-gray-500' : 'text-gray-500'}`}>
                 Unsubscribe | Update Preferences
               </p>
             </div>
@@ -158,8 +168,8 @@ export const EmailPreview = ({ subject, content, from }) => {
           <div className="flex items-start gap-2">
             <Eye size={16} className="text-blue-600 dark:text-blue-400 mt-0.5" />
             <div className="text-sm text-blue-900 dark:text-blue-300">
-              <strong>Preview mode:</strong> Merge tags like {`{{firstName}}`} are replaced with sample data. 
-              Actual emails will use real lead information.
+              <strong>Preview mode:</strong> Merge tags like {`{{firstName}}`} are replaced with
+              sample data. Actual emails will use real lead information.
             </div>
           </div>
         </div>
@@ -171,5 +181,5 @@ export const EmailPreview = ({ subject, content, from }) => {
 EmailPreview.propTypes = {
   subject: PropTypes.string,
   content: PropTypes.string,
-  from: PropTypes.string
+  from: PropTypes.string,
 };

@@ -54,10 +54,10 @@ describe('AnimatedButton Component', () => {
   it('handles click events', () => {
     const handleClick = vi.fn();
     render(<AnimatedButton onClick={handleClick}>Click</AnimatedButton>);
-    
+
     const button = screen.getByRole('button', { name: /click/i });
     button.click();
-    
+
     expect(handleClick).toHaveBeenCalledOnce();
   });
 

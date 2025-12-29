@@ -3,14 +3,12 @@ Real-time event streaming via WebSocket.
 Provides live updates for campaigns, lead scores, and system alerts.
 """
 
-import json
 import logging
 from datetime import datetime
 from typing import Dict, Optional, Set
 
-from fastapi import Depends, WebSocket, WebSocketDisconnect
+from fastapi import WebSocket
 
-from app.core.security import get_current_user_ws
 from app.models.user import User
 
 logger = logging.getLogger(__name__)

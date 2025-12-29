@@ -1,9 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Zap, Scale, Shield, Check, 
-  TrendingUp, Target
-} from 'lucide-react';
+import { Zap, Scale, Shield, Check, TrendingUp, Target } from 'lucide-react';
 import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 
 const MODEL_CONFIG = {
@@ -27,15 +24,10 @@ const MODEL_CONFIG = {
   },
 };
 
-export function StrategySelector({ 
-  strategies, 
-  activeStrategy, 
-  onSelect, 
-  recommendation 
-}) {
+export function StrategySelector({ strategies, activeStrategy, onSelect, recommendation }) {
   return (
     <div className="flex items-center gap-4 mb-6">
-      {strategies.map((strategy) => {
+      {strategies.map(strategy => {
         const isActive = activeStrategy === strategy.id;
         const isRecommended = recommendation?.strategyId === strategy.id;
         const config = MODEL_CONFIG[strategy.model];
@@ -49,9 +41,10 @@ export function StrategySelector({
             whileTap={{ scale: 0.98 }}
             className={`
               relative flex-1 p-4 rounded-xl border transition-all text-left
-              ${isActive 
-                ? `bg-gradient-to-br ${config.gradient} ${config.border}` 
-                : 'bg-slate-800/50 border-white/5 hover:border-white/10'
+              ${
+                isActive
+                  ? `bg-gradient-to-br ${config.gradient} ${config.border}`
+                  : 'bg-slate-800/50 border-white/5 hover:border-white/10'
               }
             `}
           >
@@ -64,18 +57,18 @@ export function StrategySelector({
             )}
 
             <div className="flex items-start gap-3">
-              <div 
-                className="p-2.5 rounded-lg"
-                style={{ backgroundColor: `${config.color}20` }}
-              >
+              <div className="p-2.5 rounded-lg" style={{ backgroundColor: `${config.color}20` }}>
                 <Icon className="w-5 h-5" style={{ color: config.color }} />
               </div>
-              
+
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="font-semibold text-slate-100">{strategy.name}</span>
                   {isActive && (
-                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: config.color }} />
+                    <div
+                      className="w-2 h-2 rounded-full"
+                      style={{ backgroundColor: config.color }}
+                    />
                   )}
                 </div>
                 <p className="text-sm text-slate-400 mb-2">{strategy.label}</p>
@@ -85,7 +78,7 @@ export function StrategySelector({
 
             {/* Active check */}
             {isActive && (
-              <div 
+              <div
                 className="absolute top-4 right-4 w-6 h-6 rounded-full flex items-center justify-center"
                 style={{ backgroundColor: config.color }}
               >

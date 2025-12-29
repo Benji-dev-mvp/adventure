@@ -4,11 +4,7 @@
  */
 
 // Buttons
-export {
-  GlowButton,
-  GlowButtonOutline,
-  IconButton,
-} from './GlowButton';
+export { GlowButton, GlowButtonOutline, IconButton } from './GlowButton';
 
 // Cards
 export {
@@ -45,9 +41,4 @@ export {
 } from './ParticleBackground';
 
 // Hero Sections
-export {
-  HeroSection,
-  HeroWithCards,
-  HeroMinimal,
-  HeroSplit,
-} from './HeroSection';
+export { HeroSection, HeroWithCards, HeroMinimal, HeroSplit } from './HeroSection';

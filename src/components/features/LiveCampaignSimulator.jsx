@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '../ui/Card';
-import { 
-  User, 
-  Mail, 
-  MessageSquare, 
-  Phone, 
-  CheckCircle, 
-  Clock, 
+import {
+  User,
+  Mail,
+  MessageSquare,
+  Phone,
+  CheckCircle,
+  Clock,
   TrendingUp,
   Zap,
   Brain,
@@ -18,7 +18,7 @@ import {
   MousePointer,
   UserCheck,
   Calendar,
-  Activity
+  Activity,
 } from 'lucide-react';
 
 const LiveCampaignSimulator = () => {
@@ -29,37 +29,37 @@ const LiveCampaignSimulator = () => {
     sent: 0,
     opened: 0,
     clicked: 0,
-    replied: 0
+    replied: 0,
   });
 
   // Simulate real lead data
   useEffect(() => {
     const leads = [
       {
-        name: "Sarah Chen",
-        title: "VP of Sales",
-        company: "TechCorp Solutions",
-        signals: ["Visited pricing page", "Downloaded whitepaper", "High intent"],
-        avatar: "SC"
+        name: 'Sarah Chen',
+        title: 'VP of Sales',
+        company: 'TechCorp Solutions',
+        signals: ['Visited pricing page', 'Downloaded whitepaper', 'High intent'],
+        avatar: 'SC',
       },
       {
-        name: "Michael Rodriguez",
-        title: "Director of Marketing",
-        company: "Growth Industries",
-        signals: ["Job change alert", "Budget season", "Active buyer"],
-        avatar: "MR"
+        name: 'Michael Rodriguez',
+        title: 'Director of Marketing',
+        company: 'Growth Industries',
+        signals: ['Job change alert', 'Budget season', 'Active buyer'],
+        avatar: 'MR',
       },
       {
-        name: "Emily Watson",
-        title: "Chief Revenue Officer",
-        company: "Enterprise Systems",
-        signals: ["Tech stack match", "Expansion mode", "Warm lead"],
-        avatar: "EW"
-      }
+        name: 'Emily Watson',
+        title: 'Chief Revenue Officer',
+        company: 'Enterprise Systems',
+        signals: ['Tech stack match', 'Expansion mode', 'Warm lead'],
+        avatar: 'EW',
+      },
     ];
-    
+
     const interval = setInterval(() => {
-      setActiveStep((prev) => {
+      setActiveStep(prev => {
         const next = (prev + 1) % 8;
         if (next === 0) {
           setLeadData(leads[Math.floor(Math.random() * leads.length)]);
@@ -95,76 +95,79 @@ const LiveCampaignSimulator = () => {
   }, [activeStep]);
 
   const steps = [
-    { 
-      id: 0, 
-      title: 'Lead Discovered', 
-      icon: Target, 
+    {
+      id: 0,
+      title: 'Lead Discovered',
+      icon: Target,
       color: 'from-blue-500 to-cyan-500',
-      description: 'AI identifies high-intent prospect from 300M+ database'
+      description: 'AI identifies high-intent prospect from 300M+ database',
     },
-    { 
-      id: 1, 
-      title: 'Intent Analysis', 
-      icon: Brain, 
+    {
+      id: 1,
+      title: 'Intent Analysis',
+      icon: Brain,
       color: 'from-purple-500 to-pink-500',
-      description: 'GPT-4 analyzes signals and buying context'
+      description: 'GPT-4 analyzes signals and buying context',
     },
-    { 
-      id: 2, 
-      title: 'Content Generated', 
-      icon: Zap, 
+    {
+      id: 2,
+      title: 'Content Generated',
+      icon: Zap,
       color: 'from-orange-500 to-red-500',
-      description: 'Personalized message crafted based on lead data'
+      description: 'Personalized message crafted based on lead data',
     },
-    { 
-      id: 3, 
-      title: 'Email Sent', 
-      icon: Mail, 
+    {
+      id: 3,
+      title: 'Email Sent',
+      icon: Mail,
       color: 'from-green-500 to-emerald-500',
-      description: 'First touchpoint delivered at optimal time'
+      description: 'First touchpoint delivered at optimal time',
     },
-    { 
-      id: 4, 
-      title: 'Opened', 
-      icon: Eye, 
+    {
+      id: 4,
+      title: 'Opened',
+      icon: Eye,
       color: 'from-blue-500 to-indigo-500',
-      description: 'Lead engages with content'
+      description: 'Lead engages with content',
     },
-    { 
-      id: 5, 
-      title: 'LinkedIn Follow-up', 
-      icon: Linkedin, 
+    {
+      id: 5,
+      title: 'LinkedIn Follow-up',
+      icon: Linkedin,
       color: 'from-blue-600 to-blue-700',
-      description: 'Multi-channel sequence continues'
+      description: 'Multi-channel sequence continues',
     },
-    { 
-      id: 6, 
-      title: 'Link Clicked', 
-      icon: MousePointer, 
+    {
+      id: 6,
+      title: 'Link Clicked',
+      icon: MousePointer,
       color: 'from-purple-500 to-purple-600',
-      description: 'High engagement signal detected'
+      description: 'High engagement signal detected',
     },
-    { 
-      id: 7, 
-      title: 'Reply Received', 
-      icon: UserCheck, 
+    {
+      id: 7,
+      title: 'Reply Received',
+      icon: UserCheck,
       color: 'from-green-600 to-green-700',
-      description: 'Conversation started - lead qualified'
-    }
+      description: 'Conversation started - lead qualified',
+    },
   ];
 
   const channelIcons = {
     email: Mail,
     linkedin: Linkedin,
     sms: MessageSquare,
-    call: Phone
+    call: Phone,
   };
 
   return (
-    <div id="flow" className="w-full py-20 bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 relative overflow-hidden">
+    <div
+      id="flow"
+      className="w-full py-20 bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 relative overflow-hidden"
+    >
       <div className="absolute inset-0 grid-background opacity-10" />
       <div className="absolute top-20 left-20 w-96 h-96 bg-blue-600/20 blur-3xl animate-pulse-slow" />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
@@ -176,7 +179,8 @@ const LiveCampaignSimulator = () => {
             See Ava in Action - Real-Time
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Watch a live simulation of how Ava discovers leads, personalizes outreach, and drives conversations across multiple channels
+            Watch a live simulation of how Ava discovers leads, personalizes outreach, and drives
+            conversations across multiple channels
           </p>
         </div>
 
@@ -189,7 +193,7 @@ const LiveCampaignSimulator = () => {
                 <User className="w-5 h-5 text-blue-400" />
                 Current Lead
               </h3>
-              
+
               {leadData && (
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
@@ -241,22 +245,26 @@ const LiveCampaignSimulator = () => {
                   const Icon = step.icon;
                   const isActive = activeStep === step.id;
                   const isPast = activeStep > step.id;
-                  
+
                   return (
-                    <div 
+                    <div
                       key={step.id}
                       className={`relative flex items-start gap-4 p-4 rounded-lg border transition-all duration-500 ${
-                        isActive 
-                          ? 'bg-gradient-to-r ' + step.color + ' bg-opacity-10 border-white/30 shadow-lg scale-105' 
+                        isActive
+                          ? 'bg-gradient-to-r ' +
+                            step.color +
+                            ' bg-opacity-10 border-white/30 shadow-lg scale-105'
                           : isPast
                             ? 'bg-slate-800/50 border-white/10'
                             : 'bg-slate-900/30 border-white/5'
                       }`}
                     >
-                      <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center flex-shrink-0 ${isActive ? 'animate-pulse' : ''}`}>
+                      <div
+                        className={`w-10 h-10 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center flex-shrink-0 ${isActive ? 'animate-pulse' : ''}`}
+                      >
                         <Icon className="w-5 h-5 text-white" />
                       </div>
-                      
+
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-1">
                           <h4 className="font-semibold text-white">{step.title}</h4>
@@ -265,9 +273,7 @@ const LiveCampaignSimulator = () => {
                               Processing...
                             </span>
                           )}
-                          {isPast && (
-                            <CheckCircle className="w-4 h-4 text-green-400" />
-                          )}
+                          {isPast && <CheckCircle className="w-4 h-4 text-green-400" />}
                         </div>
                         <p className="text-sm text-gray-400">{step.description}</p>
                       </div>
@@ -329,15 +335,15 @@ const LiveCampaignSimulator = () => {
             </div>
             <div className="relative">
               <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
-                <div 
+                <div
                   className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 transition-all duration-500 rounded-full"
                   style={{ width: `${((activeStep + 1) / steps.length) * 100}%` }}
                 />
               </div>
               <div className="flex justify-between mt-2">
                 {steps.map((step, idx) => (
-                  <div 
-                    key={idx} 
+                  <div
+                    key={idx}
                     className={`text-xs ${activeStep >= idx ? 'text-white font-semibold' : 'text-gray-600'}`}
                   >
                     {idx === 0 && 'Start'}

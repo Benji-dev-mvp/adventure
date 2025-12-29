@@ -1,14 +1,9 @@
 """WebSocket support for real-time updates."""
 
-import asyncio
-import json
 from datetime import datetime
-from typing import Dict, List, Set
+from typing import Dict, Set
 
-from fastapi import Depends, WebSocket, WebSocketDisconnect
-
-from app.core.security import get_current_user_ws
-from app.models.user import User
+from fastapi import WebSocket
 
 
 class ConnectionManager:
@@ -55,7 +50,6 @@ class ConnectionManager:
     async def send_to_role(self, message: dict, role: str):
         """Send message to all users with specific role."""
         # Implementation depends on user role tracking
-        pass
 
 
 manager = ConnectionManager()

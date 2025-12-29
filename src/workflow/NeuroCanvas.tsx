@@ -1,11 +1,11 @@
 /**
  * NeuroCanvas - Adaptive Orchestration Canvas
- * 
+ *
  * A living neural-graph visualization where:
  * - Nodes pulse with real-time activity
  * - Edges thicken with traffic volume
  * - Agents move visually along the graph performing tasks
- * 
+ *
  * The canvas is ALIVE — not static UI.
  */
 
@@ -77,13 +77,13 @@ interface NeuroCanvasProps {
 // === Color Schemes ===
 
 const ROLE_COLORS: Record<AgentRole | 'default', string> = {
-  hunter: '#10B981',     // Emerald
-  scout: '#3B82F6',      // Blue
-  writer: '#8B5CF6',     // Violet
-  closer: '#F59E0B',     // Amber
-  revops: '#EC4899',     // Pink
+  hunter: '#10B981', // Emerald
+  scout: '#3B82F6', // Blue
+  writer: '#8B5CF6', // Violet
+  closer: '#F59E0B', // Amber
+  revops: '#EC4899', // Pink
   orchestrator: '#6366F1', // Indigo
-  default: '#6B7280',    // Gray
+  default: '#6B7280', // Gray
 };
 
 const STATUS_COLORS = {
@@ -163,7 +163,7 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
 
     // Create edges from task flows
     const newEdges: CanvasEdge[] = [];
-    
+
     // Connect all agents to orchestrator
     data.agents.forEach(agent => {
       newEdges.push({
@@ -201,7 +201,7 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
     const centerX = width / 2;
     const centerY = height / 2;
     const radius = Math.min(width, height) * 0.35;
-    
+
     const demoAgents: Array<{ role: AgentRole; name: string }> = [
       { role: 'hunter', name: 'Hunter Alpha' },
       { role: 'hunter', name: 'Hunter Beta' },
@@ -226,7 +226,9 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
         color: ROLE_COLORS[agent.role],
         pulseIntensity: 0.3 + Math.random() * 0.7,
         activity: Math.random(),
-        status: ['idle', 'working', 'working', 'idle'][Math.floor(Math.random() * 4)] as CanvasNode['status'],
+        status: ['idle', 'working', 'working', 'idle'][
+          Math.floor(Math.random() * 4)
+        ] as CanvasNode['status'],
       };
     });
 
@@ -285,7 +287,7 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
 
     const animate = () => {
       timeRef.current += 0.016; // ~60fps
-      
+
       // Clear canvas
       ctx.fillStyle = '#0f172a'; // Dark blue-gray
       ctx.fillRect(0, 0, width, height);
@@ -305,7 +307,7 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
               particle.progress = 0;
             }
           });
-          
+
           drawEdge(ctx, sourceNode, targetNode, edge);
         }
       });
@@ -315,7 +317,7 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
         // Apply gentle physics
         node.x += node.vx;
         node.y += node.vy;
-        
+
         // Boundary constraints with dampening
         if (node.x < node.radius || node.x > width - node.radius) {
           node.vx *= -0.8;
@@ -325,14 +327,14 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
           node.vy *= -0.8;
           node.y = Math.max(node.radius, Math.min(height - node.radius, node.y));
         }
-        
+
         // Friction
         node.vx *= 0.99;
         node.vy *= 0.99;
-        
+
         // Pulse animation
         const pulse = Math.sin(timeRef.current * 3 + node.activity * 10) * 0.1 + 1;
-        
+
         drawNode(ctx, node, pulse, hoveredNode === node.id);
       });
 
@@ -355,16 +357,16 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
   const drawGrid = (ctx: CanvasRenderingContext2D) => {
     ctx.strokeStyle = 'rgba(99, 102, 241, 0.1)';
     ctx.lineWidth = 1;
-    
+
     const gridSize = 40;
-    
+
     for (let x = 0; x < width; x += gridSize) {
       ctx.beginPath();
       ctx.moveTo(x, 0);
       ctx.lineTo(x, height);
       ctx.stroke();
     }
-    
+
     for (let y = 0; y < height; y += gridSize) {
       ctx.beginPath();
       ctx.moveTo(0, y);
@@ -382,7 +384,7 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
     const gradient = ctx.createLinearGradient(source.x, source.y, target.x, target.y);
     gradient.addColorStop(0, addAlpha(source.color, '40'));
     gradient.addColorStop(1, addAlpha(target.color, '40'));
-    
+
     // Draw edge line
     ctx.strokeStyle = gradient;
     ctx.lineWidth = 1 + edge.traffic * 3;
@@ -390,17 +392,17 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
     ctx.moveTo(source.x, source.y);
     ctx.lineTo(target.x, target.y);
     ctx.stroke();
-    
+
     // Draw particles
     edge.particles.forEach(particle => {
       const x = source.x + (target.x - source.x) * particle.progress;
       const y = source.y + (target.y - source.y) * particle.progress;
-      
+
       ctx.beginPath();
       ctx.arc(x, y, particle.size, 0, Math.PI * 2);
       ctx.fillStyle = particle.color;
       ctx.fill();
-      
+
       // Glow effect
       const glowGradient = ctx.createRadialGradient(x, y, 0, x, y, particle.size * 3);
       glowGradient.addColorStop(0, addAlpha(particle.color, '80'));
@@ -419,52 +421,68 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
     isHovered: boolean
   ) => {
     const radius = node.radius * pulse * (isHovered ? 1.1 : 1);
-    
+
     // Outer glow
     const glowRadius = radius * 2;
     const glowGradient = ctx.createRadialGradient(
-      node.x, node.y, radius * 0.5,
-      node.x, node.y, glowRadius
+      node.x,
+      node.y,
+      radius * 0.5,
+      node.x,
+      node.y,
+      glowRadius
     );
-    glowGradient.addColorStop(0, addAlpha(node.color, Math.floor(node.pulseIntensity * 60).toString(16).padStart(2, '0')));
+    glowGradient.addColorStop(
+      0,
+      addAlpha(
+        node.color,
+        Math.floor(node.pulseIntensity * 60)
+          .toString(16)
+          .padStart(2, '0')
+      )
+    );
     glowGradient.addColorStop(1, addAlpha(node.color, '00'));
-    
+
     ctx.beginPath();
     ctx.arc(node.x, node.y, glowRadius, 0, Math.PI * 2);
     ctx.fillStyle = glowGradient;
     ctx.fill();
-    
+
     // Node body
     const bodyGradient = ctx.createRadialGradient(
-      node.x - radius * 0.3, node.y - radius * 0.3, 0,
-      node.x, node.y, radius
+      node.x - radius * 0.3,
+      node.y - radius * 0.3,
+      0,
+      node.x,
+      node.y,
+      radius
     );
     bodyGradient.addColorStop(0, node.color);
     bodyGradient.addColorStop(1, adjustColor(node.color, -40));
-    
+
     ctx.beginPath();
     ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
     ctx.fillStyle = bodyGradient;
     ctx.fill();
-    
+
     // Status indicator
     const statusColor = STATUS_COLORS[node.status];
     ctx.beginPath();
     ctx.arc(node.x + radius * 0.7, node.y - radius * 0.7, 6, 0, Math.PI * 2);
     ctx.fillStyle = statusColor;
     ctx.fill();
-    
+
     // Node label
     ctx.fillStyle = '#fff';
     ctx.font = `${isHovered ? 'bold ' : ''}11px Inter, system-ui, sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    
+
     // Role icon/letter
     const roleInitial = node.role ? node.role[0].toUpperCase() : 'O';
     ctx.font = 'bold 16px Inter, system-ui, sans-serif';
     ctx.fillText(roleInitial, node.x, node.y);
-    
+
     // Label below
     if (isHovered) {
       ctx.font = '10px Inter, system-ui, sans-serif';
@@ -479,58 +497,66 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
     ctx.font = 'bold 14px Inter, system-ui, sans-serif';
     ctx.textAlign = 'left';
     ctx.fillText('NEURAL ORCHESTRATION', 20, 30);
-    
+
     // Stats
     ctx.font = '11px Inter, system-ui, sans-serif';
     ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
     ctx.fillText(`Agents: ${nodes.filter(n => n.type === 'agent').length}`, 20, 50);
     ctx.fillText(`Active: ${nodes.filter(n => n.status === 'working').length}`, 20, 65);
-    
+
     // Legend
     const legendY = height - 80;
     ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
     ctx.fillText('AGENTS', 20, legendY);
-    
-    Object.entries(ROLE_COLORS).slice(0, 5).forEach(([role, color], i) => {
-      ctx.fillStyle = color;
-      ctx.beginPath();
-      ctx.arc(30 + i * 70, legendY + 20, 8, 0, Math.PI * 2);
-      ctx.fill();
-      
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-      ctx.font = '9px Inter, system-ui, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(role.charAt(0).toUpperCase() + role.slice(1), 30 + i * 70, legendY + 40);
-    });
+
+    Object.entries(ROLE_COLORS)
+      .slice(0, 5)
+      .forEach(([role, color], i) => {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(30 + i * 70, legendY + 20, 8, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+        ctx.font = '9px Inter, system-ui, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(role.charAt(0).toUpperCase() + role.slice(1), 30 + i * 70, legendY + 40);
+      });
   };
 
   // Mouse interaction
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
-    const rect = canvasRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    const hoveredNodeFound = nodes.find(node => {
-      const dx = node.x - x;
-      const dy = node.y - y;
-      return Math.sqrt(dx * dx + dy * dy) < node.radius;
-    });
-    
-    const newHovered = hoveredNodeFound?.id || null;
-    if (newHovered !== hoveredNode) {
-      setHoveredNode(newHovered);
-      onNodeHover?.(newHovered);
-    }
-  }, [nodes, hoveredNode, onNodeHover]);
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLCanvasElement>) => {
+      const rect = canvasRef.current?.getBoundingClientRect();
+      if (!rect) return;
 
-  const handleClick = useCallback((_e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (hoveredNode) {
-      setSelectedNode(hoveredNode);
-      onNodeClick?.(hoveredNode);
-    }
-  }, [hoveredNode, onNodeClick]);
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const hoveredNodeFound = nodes.find(node => {
+        const dx = node.x - x;
+        const dy = node.y - y;
+        return Math.sqrt(dx * dx + dy * dy) < node.radius;
+      });
+
+      const newHovered = hoveredNodeFound?.id || null;
+      if (newHovered !== hoveredNode) {
+        setHoveredNode(newHovered);
+        onNodeHover?.(newHovered);
+      }
+    },
+    [nodes, hoveredNode, onNodeHover]
+  );
+
+  const handleClick = useCallback(
+    (_e: React.MouseEvent<HTMLCanvasElement>) => {
+      if (hoveredNode) {
+        setSelectedNode(hoveredNode);
+        onNodeClick?.(hoveredNode);
+      }
+    },
+    [hoveredNode, onNodeClick]
+  );
 
   return (
     <div className="relative rounded-xl overflow-hidden border border-indigo-500/30 bg-slate-900">
@@ -543,7 +569,7 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
         className="cursor-pointer"
         style={{ display: 'block' }}
       />
-      
+
       {/* Overlay UI */}
       <div className="absolute top-4 right-4 flex gap-2">
         <button className="px-3 py-1.5 bg-indigo-600/80 hover:bg-indigo-600 text-white text-xs rounded-lg transition-colors">
@@ -553,7 +579,7 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
           Reset View
         </button>
       </div>
-      
+
       {/* Selected node details */}
       {selectedNode && (
         <div className="absolute bottom-4 right-4 bg-slate-800/90 backdrop-blur-sm rounded-lg p-4 border border-slate-700 min-w-[200px]">
@@ -561,10 +587,20 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
             {nodes.find(n => n.id === selectedNode)?.label}
           </h4>
           <div className="space-y-1 text-xs text-slate-400">
-            <p>Status: <span className="text-green-400">{nodes.find(n => n.id === selectedNode)?.status}</span></p>
-            <p>Activity: <span className="text-white">{((nodes.find(n => n.id === selectedNode)?.activity || 0) * 100).toFixed(0)}%</span></p>
+            <p>
+              Status:{' '}
+              <span className="text-green-400">
+                {nodes.find(n => n.id === selectedNode)?.status}
+              </span>
+            </p>
+            <p>
+              Activity:{' '}
+              <span className="text-white">
+                {((nodes.find(n => n.id === selectedNode)?.activity || 0) * 100).toFixed(0)}%
+              </span>
+            </p>
           </div>
-          <button 
+          <button
             onClick={() => setSelectedNode(null)}
             className="absolute top-2 right-2 text-slate-500 hover:text-white"
           >
@@ -592,12 +628,15 @@ function adjustColor(color: string, amount: number): string {
  */
 function addAlpha(color: string, alpha: string): string {
   let hex = color.replace('#', '');
-  
+
   // Expand 3-char hex to 6-char
   if (hex.length === 3) {
-    hex = hex.split('').map(char => char + char).join('');
+    hex = hex
+      .split('')
+      .map(char => char + char)
+      .join('');
   }
-  
+
   return `#${hex}${alpha}`;
 }
 

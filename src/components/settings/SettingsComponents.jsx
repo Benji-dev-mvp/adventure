@@ -20,7 +20,9 @@ export const EmailWarmup = () => {
           <div>
             <label className="text-sm font-medium">Daily Send Limit</label>
             <Input type="number" placeholder="50" className="mt-1" />
-            <p className="text-xs text-gray-500 mt-1">Gradually increase to protect sender reputation</p>
+            <p className="text-xs text-gray-500 mt-1">
+              Gradually increase to protect sender reputation
+            </p>
           </div>
           <div>
             <label className="text-sm font-medium">Warmup Duration</label>
@@ -31,7 +33,9 @@ export const EmailWarmup = () => {
             </select>
           </div>
           <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-            <p className="text-sm"><strong>Current Status:</strong> Day 14 of 28 (78% complete)</p>
+            <p className="text-sm">
+              <strong>Current Status:</strong> Day 14 of 28 (78% complete)
+            </p>
             <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
               <div className="bg-green-500 h-2 rounded-full" style={{ width: '78%' }}></div>
             </div>
@@ -95,8 +99,12 @@ export const TwoFactorAuth = () => {
             <Shield className="text-green-600" size={32} />
           </div>
           <h4 className="font-semibold mb-2">2FA is Enabled</h4>
-          <p className="text-sm text-gray-600 mb-4">Your account is protected with two-factor authentication</p>
-          <Button variant="outline" size="sm">Generate Backup Codes</Button>
+          <p className="text-sm text-gray-600 mb-4">
+            Your account is protected with two-factor authentication
+          </p>
+          <Button variant="outline" size="sm">
+            Generate Backup Codes
+          </Button>
         </div>
       </CardContent>
     </Card>

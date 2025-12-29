@@ -1,17 +1,33 @@
 /**
  * AI Playbooks Manager
- * 
+ *
  * Allows users to create, manage, and run AI-powered sales playbooks
  * that automate outreach sequences based on ICP filters and channel mix.
  */
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { 
-  Play, Pause, Plus, Edit2, Trash2, ChevronRight, 
-  Target, Mail, Linkedin, Phone, Calendar, TrendingUp,
-  Users, CheckCircle, Clock, AlertCircle, Loader2, Zap,
-  BarChart3, Settings
+import {
+  Play,
+  Pause,
+  Plus,
+  Edit2,
+  Trash2,
+  ChevronRight,
+  Target,
+  Mail,
+  Linkedin,
+  Phone,
+  Calendar,
+  TrendingUp,
+  Users,
+  CheckCircle,
+  Clock,
+  AlertCircle,
+  Loader2,
+  Zap,
+  BarChart3,
+  Settings,
 } from 'lucide-react';
 import { useToast } from '../Toast';
 import { AnimatedCounter } from '../ui/AnimatedComponents';
@@ -27,7 +43,9 @@ const StatusBadge = ({ status }) => {
   };
 
   return (
-    <span className={`px-2 py-1 text-xs font-medium rounded-full ${styles[status] || styles.draft}`}>
+    <span
+      className={`px-2 py-1 text-xs font-medium rounded-full ${styles[status] || styles.draft}`}
+    >
       {status.charAt(0).toUpperCase() + status.slice(1)}
     </span>
   );
@@ -68,7 +86,7 @@ const ChannelMix = ({ channels = {} }) => {
         if (!config || !value) return null;
         const Icon = config.icon;
         return (
-          <div 
+          <div
             key={key}
             className={`flex items-center gap-1 text-xs ${config.color}`}
             title={`${config.label}: ${value}%`}
@@ -108,7 +126,7 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
   });
   const [saving, setSaving] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     setSaving(true);
     try {
@@ -131,14 +149,17 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
           {/* Basic Info */}
           <div className="space-y-4">
             <div>
-              <label htmlFor="playbook-name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="playbook-name"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
                 Playbook Name
               </label>
               <input
                 id="playbook-name"
                 type="text"
                 value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                onChange={e => setForm({ ...form, name: e.target.value })}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 placeholder="e.g., Enterprise Tech Outreach"
                 required
@@ -146,13 +167,16 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
             </div>
 
             <div>
-              <label htmlFor="playbook-description" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="playbook-description"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
                 Description
               </label>
               <textarea
                 id="playbook-description"
                 value={form.description}
-                onChange={(e) => setForm({ ...form, description: e.target.value })}
+                onChange={e => setForm({ ...form, description: e.target.value })}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 placeholder="Describe the playbook strategy..."
                 rows={3}
@@ -163,13 +187,16 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
           {/* Segment & Goal */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="playbook-segment" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="playbook-segment"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
                 Target Segment
               </label>
               <select
                 id="playbook-segment"
                 value={form.segment}
-                onChange={(e) => setForm({ ...form, segment: e.target.value })}
+                onChange={e => setForm({ ...form, segment: e.target.value })}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               >
                 <option value="startup">Startup (1-50)</option>
@@ -179,13 +206,16 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
             </div>
 
             <div>
-              <label htmlFor="playbook-goal" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="playbook-goal"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
                 Primary Goal
               </label>
               <select
                 id="playbook-goal"
                 value={form.goal}
-                onChange={(e) => setForm({ ...form, goal: e.target.value })}
+                onChange={e => setForm({ ...form, goal: e.target.value })}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               >
                 <option value="meetings">Book Meetings</option>
@@ -202,7 +232,7 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
               Channel Mix
             </label>
             <div className="space-y-3">
-              {['email', 'linkedin', 'phone'].map((channel) => (
+              {['email', 'linkedin', 'phone'].map(channel => (
                 <div key={channel} className="flex items-center gap-3">
                   <span className="w-20 text-sm capitalize text-gray-600 dark:text-gray-400">
                     {channel}
@@ -212,13 +242,15 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
                     min="0"
                     max="100"
                     value={form.channel_mix[channel] || 0}
-                    onChange={(e) => setForm({
-                      ...form,
-                      channel_mix: {
-                        ...form.channel_mix,
-                        [channel]: Number.parseInt(e.target.value, 10)
-                      }
-                    })}
+                    onChange={e =>
+                      setForm({
+                        ...form,
+                        channel_mix: {
+                          ...form.channel_mix,
+                          [channel]: Number.parseInt(e.target.value, 10),
+                        },
+                      })
+                    }
                     className="flex-1"
                   />
                   <span className="w-12 text-sm text-gray-700 dark:text-gray-300">
@@ -231,13 +263,16 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
 
           {/* Schedule */}
           <div>
-            <label htmlFor="playbook-frequency" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label
+              htmlFor="playbook-frequency"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
               Run Frequency
             </label>
             <select
               id="playbook-frequency"
               value={form.schedule_frequency}
-              onChange={(e) => setForm({ ...form, schedule_frequency: e.target.value })}
+              onChange={e => setForm({ ...form, schedule_frequency: e.target.value })}
               className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             >
               <option value="manual">Manual Only</option>
@@ -296,7 +331,10 @@ const RunHistoryModal = ({ playbook, runs, onClose }) => {
           <h2 className="text-xl font-bold text-gray-900 dark:text-white">
             Run History: {playbook.name}
           </h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+          >
             ✕
           </button>
         </div>
@@ -305,43 +343,60 @@ const RunHistoryModal = ({ playbook, runs, onClose }) => {
           <table className="w-full">
             <thead className="bg-gray-50 dark:bg-gray-700/50 sticky top-0">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Started</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Leads</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Emails</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Responses</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Meetings</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
+                  Status
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
+                  Started
+                </th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
+                  Leads
+                </th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
+                  Emails
+                </th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
+                  Responses
+                </th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
+                  Meetings
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
               {runs.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
+                  <td
+                    colSpan={6}
+                    className="px-6 py-8 text-center text-gray-500 dark:text-gray-400"
+                  >
                     No runs yet. Click "Run Now" to execute this playbook.
                   </td>
                 </tr>
-              ) : runs.map((run) => (
-                <tr key={run.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/30">
-                  <td className="px-6 py-4">
-                    <StatusBadge status={run.status} />
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
-                    {run.started_at ? new Date(run.started_at).toLocaleString() : '-'}
-                  </td>
-                  <td className="px-6 py-4 text-sm text-right text-gray-700 dark:text-gray-300">
-                    {run.leads_targeted || 0}
-                  </td>
-                  <td className="px-6 py-4 text-sm text-right text-gray-700 dark:text-gray-300">
-                    {run.emails_sent || 0}
-                  </td>
-                  <td className="px-6 py-4 text-sm text-right text-gray-700 dark:text-gray-300">
-                    {run.responses || 0}
-                  </td>
-                  <td className="px-6 py-4 text-sm text-right font-medium text-green-600 dark:text-green-400">
-                    {run.meetings_booked || 0}
-                  </td>
-                </tr>
-              ))}
+              ) : (
+                runs.map(run => (
+                  <tr key={run.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/30">
+                    <td className="px-6 py-4">
+                      <StatusBadge status={run.status} />
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                      {run.started_at ? new Date(run.started_at).toLocaleString() : '-'}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-right text-gray-700 dark:text-gray-300">
+                      {run.leads_targeted || 0}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-right text-gray-700 dark:text-gray-300">
+                      {run.emails_sent || 0}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-right text-gray-700 dark:text-gray-300">
+                      {run.responses || 0}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-right font-medium text-green-600 dark:text-green-400">
+                      {run.meetings_booked || 0}
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -354,15 +409,17 @@ RunHistoryModal.propTypes = {
   playbook: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }).isRequired,
-  runs: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    status: PropTypes.string,
-    started_at: PropTypes.string,
-    leads_targeted: PropTypes.number,
-    emails_sent: PropTypes.number,
-    responses: PropTypes.number,
-    meetings_booked: PropTypes.number,
-  })).isRequired,
+  runs: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      status: PropTypes.string,
+      started_at: PropTypes.string,
+      leads_targeted: PropTypes.number,
+      emails_sent: PropTypes.number,
+      responses: PropTypes.number,
+      meetings_booked: PropTypes.number,
+    })
+  ).isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
@@ -394,7 +451,9 @@ const PlaybookCard = ({ playbook, onRun, onEdit, onPause, onActivate, onDelete, 
             </div>
             <div>
               <h3 className="font-semibold text-gray-900 dark:text-white">{playbook.name}</h3>
-              <span className="text-xs text-gray-500 dark:text-gray-400 capitalize">{playbook.segment} segment</span>
+              <span className="text-xs text-gray-500 dark:text-gray-400 capitalize">
+                {playbook.segment} segment
+              </span>
             </div>
           </div>
           <StatusBadge status={playbook.status} />
@@ -479,14 +538,16 @@ const PlaybookCard = ({ playbook, onRun, onEdit, onPause, onActivate, onDelete, 
               <Pause size={14} />
               Pause
             </button>
-          ) : playbook.status !== 'archived' && (
-            <button
-              onClick={() => onActivate(playbook.id)}
-              className="flex items-center gap-1 px-3 py-1.5 text-sm text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900/30 rounded-lg hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors"
-            >
-              <CheckCircle size={14} />
-              Activate
-            </button>
+          ) : (
+            playbook.status !== 'archived' && (
+              <button
+                onClick={() => onActivate(playbook.id)}
+                className="flex items-center gap-1 px-3 py-1.5 text-sm text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900/30 rounded-lg hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors"
+              >
+                <CheckCircle size={14} />
+                Activate
+              </button>
+            )
           )}
           <button
             onClick={handleRun}
@@ -632,11 +693,9 @@ export const AIPlaybooksManager = () => {
   }, []);
 
   // Create/Update playbook
-  const handleSave = async (formData) => {
+  const handleSave = async formData => {
     const method = editingPlaybook ? 'PATCH' : 'POST';
-    const url = editingPlaybook 
-      ? `/api/playbooks/${editingPlaybook.id}` 
-      : '/api/playbooks';
+    const url = editingPlaybook ? `/api/playbooks/${editingPlaybook.id}` : '/api/playbooks';
 
     try {
       const res = await fetch(url, {
@@ -646,10 +705,7 @@ export const AIPlaybooksManager = () => {
       });
 
       if (res.ok) {
-        showToast(
-          editingPlaybook ? 'Playbook updated!' : 'Playbook created!',
-          'success'
-        );
+        showToast(editingPlaybook ? 'Playbook updated!' : 'Playbook created!', 'success');
         setShowModal(false);
         setEditingPlaybook(null);
         await Promise.all([fetchPlaybooks(), fetchSummary()]);
@@ -662,7 +718,7 @@ export const AIPlaybooksManager = () => {
   };
 
   // Run playbook
-  const handleRun = async (playbookId) => {
+  const handleRun = async playbookId => {
     const res = await fetch(`/api/playbooks/${playbookId}/run`, {
       method: 'POST',
     });
@@ -671,7 +727,7 @@ export const AIPlaybooksManager = () => {
   };
 
   // Pause playbook
-  const handlePause = async (playbookId) => {
+  const handlePause = async playbookId => {
     try {
       const res = await fetch(`/api/playbooks/${playbookId}/pause`, {
         method: 'POST',
@@ -686,7 +742,7 @@ export const AIPlaybooksManager = () => {
   };
 
   // Activate playbook
-  const handleActivate = async (playbookId) => {
+  const handleActivate = async playbookId => {
     try {
       const res = await fetch(`/api/playbooks/${playbookId}/activate`, {
         method: 'POST',
@@ -701,7 +757,7 @@ export const AIPlaybooksManager = () => {
   };
 
   // Delete playbook
-  const handleDelete = async (playbookId) => {
+  const handleDelete = async playbookId => {
     if (!confirm('Are you sure you want to delete this playbook?')) return;
 
     try {
@@ -718,7 +774,7 @@ export const AIPlaybooksManager = () => {
   };
 
   // View run history
-  const handleViewRuns = async (playbook) => {
+  const handleViewRuns = async playbook => {
     try {
       const res = await fetch(`/api/playbooks/${playbook.id}/runs`);
       if (res.ok) {
@@ -732,7 +788,7 @@ export const AIPlaybooksManager = () => {
   };
 
   // Edit playbook
-  const handleEdit = (playbook) => {
+  const handleEdit = playbook => {
     setEditingPlaybook(playbook);
     setShowModal(true);
   };
@@ -783,7 +839,8 @@ export const AIPlaybooksManager = () => {
             No Playbooks Yet
           </h3>
           <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
-            Create your first AI playbook to automate outreach sequences and let Ava handle the prospecting.
+            Create your first AI playbook to automate outreach sequences and let Ava handle the
+            prospecting.
           </p>
           <button
             onClick={() => setShowModal(true)}
@@ -795,7 +852,7 @@ export const AIPlaybooksManager = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {playbooks.map((playbook) => (
+          {playbooks.map(playbook => (
             <PlaybookCard
               key={playbook.id}
               playbook={playbook}

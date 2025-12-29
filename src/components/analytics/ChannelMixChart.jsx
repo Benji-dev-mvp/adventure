@@ -30,18 +30,6 @@ const ChannelMixChart = ({
   title = 'Channel Mix Distribution',
   showLegend = true,
 }) => {
-  const validateDeps = () => {
-    const missing = [];
-    if (!GlassCard) missing.push('GlassCard');
-    if (!GlassCardContent) missing.push('GlassCardContent');
-    if (!GradientText) missing.push('GradientText');
-    if (missing.length) {
-      console.error('[ChannelMixChart] Missing UI dependencies:', missing);
-      return false;
-    }
-    return true;
-  };
-
   const prefersReducedMotion = useReducedMotion();
   const [isVisible, setIsVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
@@ -53,16 +41,6 @@ const ChannelMixChart = ({
   const onPieLeave = () => {
     setActiveIndex(null);
   };
-
-  if (!validateDeps()) {
-    return (
-      <div className="p-4 rounded-lg bg-white/5 border border-white/10">
-        <p className="text-sm text-red-300">
-          Failed to render ChannelMixChart: missing UI components.
-        </p>
-      </div>
-    );
-  }
 
   return (
     <motion.div

@@ -1,9 +1,16 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Brain, Users, MessageSquare, Zap, 
-  Mail, Linkedin, Phone, MessageCircle,
-  ArrowRight, Clock
+import {
+  Brain,
+  Users,
+  MessageSquare,
+  Zap,
+  Mail,
+  Linkedin,
+  Phone,
+  MessageCircle,
+  ArrowRight,
+  Clock,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent, GradientText } from '../../../components/futuristic';
 import { Badge } from '../../../components/ui/Badge';
@@ -26,39 +33,32 @@ const ChannelMixMini = ({ channelMix }) => {
     const radius = 40;
     const cx = 50;
     const cy = 50;
-    
+
     const x1 = cx + radius * Math.cos(start);
     const y1 = cy + radius * Math.sin(start);
     const x2 = cx + radius * Math.cos(end);
     const y2 = cy + radius * Math.sin(end);
-    
+
     const largeArc = endAngle - startAngle > 180 ? 1 : 0;
-    
+
     return `M ${cx} ${cy} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2} Z`;
   };
 
   return (
     <div className="flex items-center gap-4">
       <svg viewBox="0 0 100 100" className="w-20 h-20">
-        {channels.map((channel) => {
+        {channels.map(channel => {
           const value = channelMix[channel.key] || 0;
           const angle = (value / total) * 360;
           const path = createArc(currentAngle, currentAngle + angle, channel.color);
-          const result = (
-            <path 
-              key={channel.key} 
-              d={path} 
-              fill={channel.color}
-              opacity="0.8"
-            />
-          );
+          const result = <path key={channel.key} d={path} fill={channel.color} opacity="0.8" />;
           currentAngle += angle;
           return result;
         })}
         <circle cx="50" cy="50" r="25" fill="#1e293b" />
         <Brain className="w-6 h-6 text-cyan-400" x="38" y="38" />
       </svg>
-      
+
       <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
         {channels.map(channel => {
           const Icon = channel.icon;
@@ -79,7 +79,7 @@ const ChannelMixMini = ({ channelMix }) => {
 const MessagingChips = ({ angles }) => (
   <div className="flex flex-wrap gap-2">
     {angles.map((angle, index) => (
-      <span 
+      <span
         key={index}
         className="px-2.5 py-1 bg-purple-500/10 text-purple-300 text-xs rounded-full border border-purple-500/20"
       >
@@ -158,9 +158,7 @@ export function ProgramBrainPanel({ programs, selectedProgram }) {
                 <Users className="w-4 h-4 text-purple-400" />
                 <h4 className="text-sm font-medium text-slate-300">ICP Target</h4>
               </div>
-              <p className="text-sm text-slate-400 leading-relaxed">
-                {program.icpDescription}
-              </p>
+              <p className="text-sm text-slate-400 leading-relaxed">{program.icpDescription}</p>
             </div>
 
             {/* Channel Mix */}

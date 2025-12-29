@@ -73,13 +73,49 @@ interface Connection {
 }
 
 const initialBlocks: WorkflowBlock[] = [
-  { id: 'b1', type: 'source', x: 100, y: 200, config: { name: 'Import Leads', source: 'csv_upload' } },
-  { id: 'b2', type: 'score', x: 300, y: 200, config: { name: 'Lead Scoring', model: 'default_model' } },
-  { id: 'b3', type: 'enrich', x: 500, y: 150, config: { name: 'Data Enrichment', provider: 'clearbit' } },
-  { id: 'b4', type: 'condition', x: 700, y: 200, config: { name: 'Score Check', condition: 'score >= 70' } },
-  { id: 'b5', type: 'send_email', x: 900, y: 100, config: { name: 'Hot Lead Email', template: 'hot_lead_v1' } },
+  {
+    id: 'b1',
+    type: 'source',
+    x: 100,
+    y: 200,
+    config: { name: 'Import Leads', source: 'csv_upload' },
+  },
+  {
+    id: 'b2',
+    type: 'score',
+    x: 300,
+    y: 200,
+    config: { name: 'Lead Scoring', model: 'default_model' },
+  },
+  {
+    id: 'b3',
+    type: 'enrich',
+    x: 500,
+    y: 150,
+    config: { name: 'Data Enrichment', provider: 'clearbit' },
+  },
+  {
+    id: 'b4',
+    type: 'condition',
+    x: 700,
+    y: 200,
+    config: { name: 'Score Check', condition: 'score >= 70' },
+  },
+  {
+    id: 'b5',
+    type: 'send_email',
+    x: 900,
+    y: 100,
+    config: { name: 'Hot Lead Email', template: 'hot_lead_v1' },
+  },
   { id: 'b6', type: 'wait', x: 900, y: 300, config: { name: 'Nurture Wait', duration: '3 days' } },
-  { id: 'b7', type: 'ai_action', x: 1100, y: 300, config: { name: 'AI Follow-up', action: 'personalize' } },
+  {
+    id: 'b7',
+    type: 'ai_action',
+    x: 1100,
+    y: 300,
+    config: { name: 'AI Follow-up', action: 'personalize' },
+  },
 ];
 
 const initialConnections: Connection[] = [
@@ -102,17 +138,22 @@ const OrchestratorCanvas = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [draggedBlock, setDraggedBlock] = useState<string | null>(null);
   const [isConnecting, setIsConnecting] = useState(false);
-  const [connectionStart, setConnectionStart] = useState<{ blockId: string; port: string } | null>(null);
+  const [connectionStart, setConnectionStart] = useState<{ blockId: string; port: string } | null>(
+    null
+  );
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [showBlockPalette, setShowBlockPalette] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
 
   // Workflow execution stats
-  const stats = useMemo(() => ({
-    totalBlocks: blocks.length,
-    connections: connections.length,
-    channels: new Set(blocks.filter(b => b.type.startsWith('send_')).map(b => b.type)).size,
-  }), [blocks, connections]);
+  const stats = useMemo(
+    () => ({
+      totalBlocks: blocks.length,
+      connections: connections.length,
+      channels: new Set(blocks.filter(b => b.type.startsWith('send_')).map(b => b.type)).size,
+    }),
+    [blocks, connections]
+  );
 
   const handleBlockDragStart = useCallback((e: React.MouseEvent, blockId: string) => {
     e.stopPropagation();
@@ -120,22 +161,25 @@ const OrchestratorCanvas = () => {
     setIsDragging(true);
   }, []);
 
-  const handleCanvasMouseMove = useCallback((e: React.MouseEvent) => {
-    const rect = canvasRef.current?.getBoundingClientRect();
-    if (!rect) return;
+  const handleCanvasMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      const rect = canvasRef.current?.getBoundingClientRect();
+      if (!rect) return;
 
-    const x = (e.clientX - rect.left - panOffset.x) / zoom;
-    const y = (e.clientY - rect.top - panOffset.y) / zoom;
-    setMousePos({ x, y });
+      const x = (e.clientX - rect.left - panOffset.x) / zoom;
+      const y = (e.clientY - rect.top - panOffset.y) / zoom;
+      setMousePos({ x, y });
 
-    if (isDragging && draggedBlock) {
-      setBlocks(prev => prev.map(b =>
-        b.id === draggedBlock
-          ? { ...b, x: Math.max(0, x - 60), y: Math.max(0, y - 30) }
-          : b
-      ));
-    }
-  }, [isDragging, draggedBlock, panOffset, zoom]);
+      if (isDragging && draggedBlock) {
+        setBlocks(prev =>
+          prev.map(b =>
+            b.id === draggedBlock ? { ...b, x: Math.max(0, x - 60), y: Math.max(0, y - 30) } : b
+          )
+        );
+      }
+    },
+    [isDragging, draggedBlock, panOffset, zoom]
+  );
 
   const handleCanvasMouseUp = useCallback(() => {
     setIsDragging(false);
@@ -151,20 +195,23 @@ const OrchestratorCanvas = () => {
     setConnectionStart({ blockId, port });
   }, []);
 
-  const handleEndConnection = useCallback((blockId: string, port: string) => {
-    if (isConnecting && connectionStart && connectionStart.blockId !== blockId) {
-      const newConnection = {
-        id: `c${Date.now()}`,
-        from: connectionStart.blockId,
-        to: blockId,
-        fromPort: connectionStart.port,
-        toPort: port,
-      };
-      setConnections(prev => [...prev, newConnection]);
-    }
-    setIsConnecting(false);
-    setConnectionStart(null);
-  }, [isConnecting, connectionStart]);
+  const handleEndConnection = useCallback(
+    (blockId: string, port: string) => {
+      if (isConnecting && connectionStart && connectionStart.blockId !== blockId) {
+        const newConnection = {
+          id: `c${Date.now()}`,
+          from: connectionStart.blockId,
+          to: blockId,
+          fromPort: connectionStart.port,
+          toPort: port,
+        };
+        setConnections(prev => [...prev, newConnection]);
+      }
+      setIsConnecting(false);
+      setConnectionStart(null);
+    },
+    [isConnecting, connectionStart]
+  );
 
   const handleDeleteBlock = useCallback((blockId: string) => {
     setBlocks(prev => prev.filter(b => b.id !== blockId));
@@ -184,10 +231,13 @@ const OrchestratorCanvas = () => {
     setShowBlockPalette(false);
   }, []);
 
-  const getBlockPosition = useCallback((blockId: string) => {
-    const block = blocks.find(b => b.id === blockId);
-    return block ? { x: block.x + 60, y: block.y + 30 } : { x: 0, y: 0 };
-  }, [blocks]);
+  const getBlockPosition = useCallback(
+    (blockId: string) => {
+      const block = blocks.find(b => b.id === blockId);
+      return block ? { x: block.x + 60, y: block.y + 30 } : { x: 0, y: 0 };
+    },
+    [blocks]
+  );
 
   return (
     <div className="h-full flex flex-col bg-gray-950">
@@ -204,14 +254,16 @@ const OrchestratorCanvas = () => {
           </div>
           <div className="w-px h-6 bg-gray-700" />
           <div className="flex items-center gap-1 bg-gray-800 rounded-lg p-1">
-            <button 
+            <button
               onClick={() => setZoom(z => Math.max(0.5, z - 0.1))}
               className="p-1.5 text-gray-400 hover:text-white transition-colors rounded"
             >
               <ZoomOut className="w-4 h-4" />
             </button>
-            <span className="text-xs text-gray-400 w-12 text-center">{Math.round(zoom * 100)}%</span>
-            <button 
+            <span className="text-xs text-gray-400 w-12 text-center">
+              {Math.round(zoom * 100)}%
+            </span>
+            <button
               onClick={() => setZoom(z => Math.min(2, z + 0.1))}
               className="p-1.5 text-gray-400 hover:text-white transition-colors rounded"
             >
@@ -243,9 +295,7 @@ const OrchestratorCanvas = () => {
           <button
             onClick={() => setIsRunning(!isRunning)}
             className={`flex items-center gap-2 px-4 py-1.5 text-white text-sm font-medium rounded-lg transition-colors ${
-              isRunning 
-                ? 'bg-amber-600 hover:bg-amber-500' 
-                : 'bg-green-600 hover:bg-green-500'
+              isRunning ? 'bg-amber-600 hover:bg-amber-500' : 'bg-green-600 hover:bg-green-500'
             }`}
           >
             {isRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
@@ -273,7 +323,12 @@ const OrchestratorCanvas = () => {
           <svg className="absolute inset-0 w-full h-full pointer-events-none">
             <defs>
               <pattern id="workflow-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+                <path
+                  d="M 40 0 L 0 0 0 40"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.03)"
+                  strokeWidth="1"
+                />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#workflow-grid)" />
@@ -296,18 +351,22 @@ const OrchestratorCanvas = () => {
                 <polygon points="0 0, 10 3.5, 0 7" fill="rgba(139, 92, 246, 0.8)" />
               </marker>
             </defs>
-            
+
             {connections.map(conn => {
               const from = getBlockPosition(conn.from);
               const to = getBlockPosition(conn.to);
               const midX = (from.x + to.x) / 2;
-              
+
               return (
                 <g key={conn.id}>
                   <path
                     d={`M ${from.x} ${from.y} C ${midX} ${from.y}, ${midX} ${to.y}, ${to.x} ${to.y}`}
                     fill="none"
-                    stroke={selectedConnection === conn.id ? 'rgba(139, 92, 246, 1)' : 'rgba(139, 92, 246, 0.5)'}
+                    stroke={
+                      selectedConnection === conn.id
+                        ? 'rgba(139, 92, 246, 1)'
+                        : 'rgba(139, 92, 246, 0.5)'
+                    }
                     strokeWidth={selectedConnection === conn.id ? 3 : 2}
                     markerEnd="url(#connection-arrow)"
                     className="cursor-pointer pointer-events-auto hover:stroke-violet-400"
@@ -353,8 +412,8 @@ const OrchestratorCanvas = () => {
                 <motion.div
                   key={block.id}
                   initial={{ scale: 0, opacity: 0 }}
-                  animate={{ 
-                    scale: 1, 
+                  animate={{
+                    scale: 1,
                     opacity: 1,
                     boxShadow: isSelected ? '0 0 0 2px rgba(139, 92, 246, 0.8)' : 'none',
                   }}
@@ -363,14 +422,18 @@ const OrchestratorCanvas = () => {
                   }`}
                   style={{ left: block.x, top: block.y }}
                   onClick={() => setSelectedBlock(block.id)}
-                  onMouseDown={(e) => handleBlockDragStart(e, block.id)}
+                  onMouseDown={e => handleBlockDragStart(e, block.id)}
                 >
                   {/* Block Header */}
-                  <div className={`px-3 py-2 rounded-t-lg flex items-center gap-2 ${blockType?.color || 'bg-gray-700'}`}>
+                  <div
+                    className={`px-3 py-2 rounded-t-lg flex items-center gap-2 ${blockType?.color || 'bg-gray-700'}`}
+                  >
                     <Icon className="w-4 h-4 text-white" />
-                    <span className="text-xs font-medium text-white truncate">{blockType?.label}</span>
+                    <span className="text-xs font-medium text-white truncate">
+                      {blockType?.label}
+                    </span>
                   </div>
-                  
+
                   {/* Block Body */}
                   <div className="px-3 py-2">
                     <div className="text-xs text-gray-300 truncate">{block.config?.name}</div>
@@ -394,7 +457,7 @@ const OrchestratorCanvas = () => {
                     className="absolute -left-2 top-1/2 w-4 h-4 rounded-full bg-gray-700 border-2 border-gray-600 hover:bg-violet-500 hover:border-violet-400 transition-colors cursor-crosshair"
                     style={{ transform: 'translateY(-50%)' }}
                     onMouseUp={() => handleEndConnection(block.id, 'input')}
-                    onKeyDown={(e) => e.key === 'Enter' && handleEndConnection(block.id, 'input')}
+                    onKeyDown={e => e.key === 'Enter' && handleEndConnection(block.id, 'input')}
                   />
                   <div
                     role="button"
@@ -402,11 +465,11 @@ const OrchestratorCanvas = () => {
                     aria-label="Output connection port"
                     className="absolute -right-2 top-1/2 w-4 h-4 rounded-full bg-gray-700 border-2 border-gray-600 hover:bg-green-500 hover:border-green-400 transition-colors cursor-crosshair"
                     style={{ transform: 'translateY(-50%)' }}
-                    onMouseDown={(e) => {
+                    onMouseDown={e => {
                       e.stopPropagation();
                       handleStartConnection(block.id, 'output');
                     }}
-                    onKeyDown={(e) => {
+                    onKeyDown={e => {
                       if (e.key === 'Enter') {
                         e.stopPropagation();
                         handleStartConnection(block.id, 'output');
@@ -423,11 +486,11 @@ const OrchestratorCanvas = () => {
                         aria-label="True condition port"
                         className="absolute -right-2 top-1/4 w-4 h-4 rounded-full bg-green-600 border-2 border-green-500 hover:bg-green-500 transition-colors cursor-crosshair"
                         style={{ transform: 'translateY(-50%)' }}
-                        onMouseDown={(e) => {
+                        onMouseDown={e => {
                           e.stopPropagation();
                           handleStartConnection(block.id, 'true');
                         }}
-                        onKeyDown={(e) => {
+                        onKeyDown={e => {
                           if (e.key === 'Enter') {
                             e.stopPropagation();
                             handleStartConnection(block.id, 'true');
@@ -440,11 +503,11 @@ const OrchestratorCanvas = () => {
                         aria-label="False condition port"
                         className="absolute -right-2 top-3/4 w-4 h-4 rounded-full bg-red-600 border-2 border-red-500 hover:bg-red-500 transition-colors cursor-crosshair"
                         style={{ transform: 'translateY(-50%)' }}
-                        onMouseDown={(e) => {
+                        onMouseDown={e => {
                           e.stopPropagation();
                           handleStartConnection(block.id, 'false');
                         }}
-                        onKeyDown={(e) => {
+                        onKeyDown={e => {
                           if (e.key === 'Enter') {
                             e.stopPropagation();
                             handleStartConnection(block.id, 'false');
@@ -456,8 +519,8 @@ const OrchestratorCanvas = () => {
 
                   {/* Hover actions */}
                   <div className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
-                    <button 
-                      onClick={(e) => {
+                    <button
+                      onClick={e => {
                         e.stopPropagation();
                         handleDeleteBlock(block.id);
                       }}
@@ -515,17 +578,21 @@ const OrchestratorCanvas = () => {
 
                     <div className="p-4 space-y-4">
                       <div>
-                        <label htmlFor="block-name" className="block text-sm text-gray-400 mb-1">Name</label>
+                        <label htmlFor="block-name" className="block text-sm text-gray-400 mb-1">
+                          Name
+                        </label>
                         <input
                           id="block-name"
                           type="text"
                           value={block.config?.name || ''}
-                          onChange={(e) => {
-                            setBlocks(prev => prev.map(b =>
-                              b.id === block.id
-                                ? { ...b, config: { ...b.config, name: e.target.value } }
-                                : b
-                            ));
+                          onChange={e => {
+                            setBlocks(prev =>
+                              prev.map(b =>
+                                b.id === block.id
+                                  ? { ...b, config: { ...b.config, name: e.target.value } }
+                                  : b
+                              )
+                            );
                           }}
                           className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm focus:border-violet-500 focus:outline-none"
                         />
@@ -533,8 +600,16 @@ const OrchestratorCanvas = () => {
 
                       {block.type === 'score' && (
                         <div>
-                          <label htmlFor="scoring-model" className="block text-sm text-gray-400 mb-1">Scoring Model</label>
-                          <select id="scoring-model" className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm focus:border-violet-500 focus:outline-none">
+                          <label
+                            htmlFor="scoring-model"
+                            className="block text-sm text-gray-400 mb-1"
+                          >
+                            Scoring Model
+                          </label>
+                          <select
+                            id="scoring-model"
+                            className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm focus:border-violet-500 focus:outline-none"
+                          >
                             <option value="default_model">Default Model</option>
                             <option value="ml_model">ML-Powered Model</option>
                             <option value="custom">Custom Rules</option>
@@ -544,8 +619,16 @@ const OrchestratorCanvas = () => {
 
                       {block.type === 'wait' && (
                         <div>
-                          <label htmlFor="wait-duration" className="block text-sm text-gray-400 mb-1">Wait Duration</label>
-                          <select id="wait-duration" className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm focus:border-violet-500 focus:outline-none">
+                          <label
+                            htmlFor="wait-duration"
+                            className="block text-sm text-gray-400 mb-1"
+                          >
+                            Wait Duration
+                          </label>
+                          <select
+                            id="wait-duration"
+                            className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm focus:border-violet-500 focus:outline-none"
+                          >
                             <option value="1 hour">1 hour</option>
                             <option value="1 day">1 day</option>
                             <option value="3 days">3 days</option>
@@ -556,7 +639,12 @@ const OrchestratorCanvas = () => {
 
                       {block.type === 'condition' && (
                         <div>
-                          <label htmlFor="condition-text" className="block text-sm text-gray-400 mb-1">Condition</label>
+                          <label
+                            htmlFor="condition-text"
+                            className="block text-sm text-gray-400 mb-1"
+                          >
+                            Condition
+                          </label>
                           <textarea
                             id="condition-text"
                             className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm focus:border-violet-500 focus:outline-none resize-none"
@@ -569,8 +657,16 @@ const OrchestratorCanvas = () => {
 
                       {block.type.startsWith('send_') && (
                         <div>
-                          <label htmlFor="template-select" className="block text-sm text-gray-400 mb-1">Template</label>
-                          <select id="template-select" className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm focus:border-violet-500 focus:outline-none">
+                          <label
+                            htmlFor="template-select"
+                            className="block text-sm text-gray-400 mb-1"
+                          >
+                            Template
+                          </label>
+                          <select
+                            id="template-select"
+                            className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm focus:border-violet-500 focus:outline-none"
+                          >
                             <option value="default">Default Template</option>
                             <option value="hot_lead">Hot Lead Outreach</option>
                             <option value="nurture">Nurture Sequence</option>
@@ -633,7 +729,9 @@ const OrchestratorCanvas = () => {
                       onClick={() => handleAddBlock(type)}
                       className="p-4 bg-gray-800 hover:bg-gray-700 rounded-lg border border-gray-700 hover:border-gray-600 transition-all text-left group"
                     >
-                      <div className={`w-10 h-10 rounded-lg ${config.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
+                      <div
+                        className={`w-10 h-10 rounded-lg ${config.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}
+                      >
                         <Icon className="w-5 h-5 text-white" />
                       </div>
                       <div className="text-sm font-medium text-white">{config.label}</div>

@@ -5,7 +5,7 @@ import { Button } from '../components/ui/Button';
 import { Input, Textarea } from '../components/ui/Input';
 import { Badge } from '../components/ui/Badge';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs';
-import { 
+import {
   Upload,
   Download,
   Search,
@@ -20,14 +20,14 @@ import {
   Globe,
   Tag,
   Sparkles,
-  CheckCircle2
+  CheckCircle2,
 } from 'lucide-react';
 import {
   BooleanSearchBuilder,
   LookalikeAudience,
   IntentSignals,
   CompanyHierarchy,
-  ContactWaterfall
+  ContactWaterfall,
 } from '../components/leads/LeadDatabaseComponents';
 
 const LeadDatabase = () => {
@@ -84,10 +84,7 @@ const LeadDatabase = () => {
   ];
 
   return (
-    <DashboardLayout 
-      title="Lead Database" 
-      subtitle="Access 300M+ verified B2B contacts"
-    >
+    <DashboardLayout title="Lead Database" subtitle="Access 300M+ verified B2B contacts">
       <Tabs defaultValue="search" className="space-y-6">
         <TabsList className="w-full flex-wrap">
           <TabsTrigger value="search">Search Leads</TabsTrigger>
@@ -135,12 +132,8 @@ const LeadDatabase = () => {
               <Card>
                 <CardContent className="p-4">
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-accent-600 mb-1">
-                      300M+
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      Verified contacts
-                    </p>
+                    <p className="text-2xl font-bold text-accent-600 mb-1">300M+</p>
+                    <p className="text-sm text-gray-600">Verified contacts</p>
                   </div>
                 </CardContent>
               </Card>
@@ -152,10 +145,13 @@ const LeadDatabase = () => {
                 <CardContent className="p-6">
                   <div className="flex flex-col md:flex-row gap-4">
                     <div className="flex-1 relative">
-                      <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                      <Search
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
+                        size={20}
+                      />
                       <Input
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={e => setSearchQuery(e.target.value)}
                         placeholder="Search by name, title, company..."
                         className="pl-11"
                       />
@@ -216,7 +212,10 @@ const LeadDatabase = () => {
                         verified: true,
                       },
                     ].map((lead, index) => (
-                      <div key={index} className="p-4 border border-gray-200 rounded-xl hover:border-accent-300 transition-colors">
+                      <div
+                        key={index}
+                        className="p-4 border border-gray-200 rounded-xl hover:border-accent-300 transition-colors"
+                      >
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
                             <div className="flex items-center gap-2 mb-2">
@@ -228,10 +227,15 @@ const LeadDatabase = () => {
                                 </Badge>
                               )}
                             </div>
-                            <p className="text-sm text-gray-600 mb-1">{lead.title} at {lead.company}</p>
+                            <p className="text-sm text-gray-600 mb-1">
+                              {lead.title} at {lead.company}
+                            </p>
                             <p className="text-sm text-gray-500 mb-3">{lead.location}</p>
                             <div className="flex items-center gap-4 text-sm">
-                              <a href={`mailto:${lead.email}`} className="flex items-center gap-1 text-accent-600 hover:text-accent-700">
+                              <a
+                                href={`mailto:${lead.email}`}
+                                className="flex items-center gap-1 text-accent-600 hover:text-accent-700"
+                              >
                                 <Mail size={14} />
                                 {lead.email}
                               </a>
@@ -250,12 +254,14 @@ const LeadDatabase = () => {
                   </div>
 
                   <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-gray-200 pt-4">
-                    <p className="text-sm text-gray-600">
-                      Showing 1-3 of 2,847 results
-                    </p>
+                    <p className="text-sm text-gray-600">Showing 1-3 of 2,847 results</p>
                     <div className="flex gap-2 flex-wrap">
-                      <Button variant="outline" size="sm">Previous</Button>
-                      <Button variant="outline" size="sm">Next</Button>
+                      <Button variant="outline" size="sm">
+                        Previous
+                      </Button>
+                      <Button variant="outline" size="sm">
+                        Next
+                      </Button>
                     </div>
                   </div>
                 </CardContent>
@@ -273,28 +279,18 @@ const LeadDatabase = () => {
                   <FileUp size={20} />
                   Upload CSV/Excel
                 </CardTitle>
-                <CardDescription>
-                  Import your existing lead lists
-                </CardDescription>
+                <CardDescription>Import your existing lead lists</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="border-2 border-dashed border-gray-300 rounded-xl p-12 text-center hover:border-accent-400 transition-colors cursor-pointer">
                   <Upload size={48} className="text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    Drop your file here
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    or click to browse
-                  </p>
-                  <Badge variant="outline">
-                    Supports CSV, XLSX
-                  </Badge>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Drop your file here</h3>
+                  <p className="text-sm text-gray-600 mb-4">or click to browse</p>
+                  <Badge variant="outline">Supports CSV, XLSX</Badge>
                 </div>
 
                 <div className="mt-6 p-4 bg-accent-50 rounded-lg">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">
-                    Required fields:
-                  </h4>
+                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Required fields:</h4>
                   <ul className="text-sm text-gray-600 space-y-1">
                     <li>• Email address (required)</li>
                     <li>• First name, Last name</li>
@@ -315,12 +311,8 @@ const LeadDatabase = () => {
                   {recentUploads.map((upload, index) => (
                     <div key={index} className="p-4 border border-gray-200 rounded-xl">
                       <div className="flex items-start justify-between mb-2">
-                        <h4 className="font-medium text-gray-900 text-sm">
-                          {upload.name}
-                        </h4>
-                        <Badge variant="success">
-                          {upload.status}
-                        </Badge>
+                        <h4 className="font-medium text-gray-900 text-sm">{upload.name}</h4>
+                        <Badge variant="success">{upload.status}</Badge>
                       </div>
                       <p className="text-sm text-gray-600 mb-2">
                         {upload.leads} leads • {upload.date}
@@ -347,12 +339,8 @@ const LeadDatabase = () => {
             {savedSearches.map((search, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    {search.name}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    {search.filters}
-                  </p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{search.name}</h3>
+                  <p className="text-sm text-gray-600 mb-4">{search.filters}</p>
                   <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-200">
                     <div>
                       <p className="text-2xl font-bold text-accent-600">
@@ -360,11 +348,9 @@ const LeadDatabase = () => {
                       </p>
                       <p className="text-xs text-gray-500">leads found</p>
                     </div>
-                    <p className="text-xs text-gray-500">
-                      Last run: {search.lastRun}
-                    </p>
+                    <p className="text-xs text-gray-500">Last run: {search.lastRun}</p>
                   </div>
-                    <div className="flex gap-2 flex-wrap">
+                  <div className="flex gap-2 flex-wrap">
                     <Button size="sm" className="flex-1 gap-2">
                       <Search size={14} />
                       Run Search
@@ -380,12 +366,8 @@ const LeadDatabase = () => {
             <Card className="border-2 border-dashed border-gray-300 hover:border-accent-400 transition-colors cursor-pointer">
               <CardContent className="p-6 flex flex-col items-center justify-center h-full text-center">
                 <Plus size={48} className="text-gray-400 mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Create New Search
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Save your search criteria for quick access
-                </p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Create New Search</h3>
+                <p className="text-sm text-gray-600">Save your search criteria for quick access</p>
               </CardContent>
             </Card>
           </div>

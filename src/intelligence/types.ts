@@ -1,6 +1,6 @@
 /**
  * Intelligence Grid Types
- * 
+ *
  * Federated learning, anonymized benchmarks,
  * and predictive analytics for collective intelligence.
  */
@@ -20,7 +20,7 @@ export interface FederatedModel {
   contributors: number;
 }
 
-export type ModelType = 
+export type ModelType =
   | 'reply-prediction'
   | 'meeting-conversion'
   | 'persona-classification'
@@ -127,7 +127,7 @@ export interface Benchmark {
   visibility: 'public' | 'industry' | 'private';
 }
 
-export type BenchmarkCategory = 
+export type BenchmarkCategory =
   | 'outbound-performance'
   | 'sequence-effectiveness'
   | 'reply-rates'
@@ -212,7 +212,7 @@ export interface Prediction {
   expiresAt: Date;
 }
 
-export type PredictionType = 
+export type PredictionType =
   | 'reply-probability'
   | 'meeting-likelihood'
   | 'deal-close-probability'
@@ -299,7 +299,7 @@ export interface IntelligenceInsight {
   expiresAt: Date;
 }
 
-export type InsightType = 
+export type InsightType =
   | 'market-shift'
   | 'competitor-activity'
   | 'persona-evolution'

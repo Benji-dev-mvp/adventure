@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary';
 import { PageLoader } from './components/Loading';
 import { AppProviders } from './app/providers';
@@ -133,135 +133,135 @@ function App() {
         <Router>
           <Suspense fallback={<PageLoader message="Loading Artisan..." />}>
             <Routes>
-                {/* ===== MULTI-PAGE MARKETING SITE ===== */}
-                <Route path="/" element={<HomePage />} />
-                <Route path="/ai-tour" element={<AiTourPage />} />
-                <Route path="/flow" element={<FlowPage />} />
-                <Route path="/platform" element={<PlatformPage />} />
-                <Route path="/security" element={<SecurityPage />} />
-                <Route path="/customers" element={<CustomersPage />} />
-                <Route path="/pricing" element={<PricingPage />} />
-                
-                {/* Legacy single-page landing (accessible at /landing) */}
-                <Route path="/landing" element={<LandingPage />} />
-                
-                {/* ===== PUBLIC SOLUTIONS PAGES (marketing, outside app shell) ===== */}
-                <Route path="/solutions/startups" element={<SolutionsStartups />} />
-                <Route path="/solutions/midmarket" element={<SolutionsMidMarket />} />
-                <Route path="/solutions/enterprise" element={<SolutionsEnterprise />} />
-                
-                {/* ===== POST-LOGIN APP ROUTES (with unified shell) ===== */}
-                <Route element={<PostLoginShell />}>
-                  {/* App Routes */}
-                  <Route path="/marketing" element={<Marketing />} />
-                  <Route path="/onboarding" element={<Onboarding />} />
-                  <Route path="/home" element={<WorkspaceHome />} />
-                  <Route path="/dashboard" element={<EnhancedDashboardNew />} />
-                  <Route path="/dashboard-original" element={<Dashboard />} />
-                  <Route path="/dashboard-enhanced" element={<EnhancedDashboard />} />
-                  <Route path="/campaigns" element={<CampaignBuilder />} />
-                  <Route path="/leads" element={<Leads />} />
-                  <Route path="/lead-database" element={<LeadDatabase />} />
-                  <Route path="/ai-assistant" element={<AIAssistant />} />
-                  <Route path="/analytics" element={<Analytics />} />
-                  <Route path="/integrations" element={<Integrations />} />
-                  <Route path="/settings" element={<Settings />} />
-                  <Route path="/templates" element={<Templates />} />
-                  
-                  {/* Advanced AI Intelligence Features */}
-                  <Route path="/ai-lead-intelligence" element={<AILeadIntelligence />} />
-                  <Route path="/ai-campaign-strategist" element={<AICampaignStrategist />} />
-                  <Route path="/ai-assistant-advanced" element={<AdvancedAIAssistant />} />
-                  <Route path="/admin" element={<Admin />} />
-                  <Route path="/advanced" element={<AdvancedHub />} />
-                  <Route path="/ava" element={<AvaHub />} />
-                  <Route path="/exceptional" element={<ExceptionalHub />} />
-                  <Route path="/ui-showcase" element={<UIShowcase />} />
-                  <Route path="/component-showcase" element={<ComponentShowcase />} />
-                  <Route path="/help" element={<HelpCenter />} />
-                
-                  {/* Advanced Features */}
-                  <Route path="/lead-scoring" element={<LeadScoring />} />
-                  <Route path="/ab-testing" element={<ABTesting />} />
-                  <Route path="/email-templates" element={<EmailTemplateBuilder />} />
-                  <Route path="/lead-enrichment" element={<LeadEnrichment />} />
-                  <Route path="/revenue-forecasting" element={<RevenueForecasting />} />
-                  <Route path="/audience-segmentation" element={<AudienceSegmentation />} />
-                  <Route path="/call-intelligence" element={<CallIntelligence />} />
-                  <Route path="/workflow-orchestrator" element={<WorkflowOrchestrator />} />
-                  <Route path="/sales-leaderboard" element={<SalesLeaderboard />} />
-                  <Route path="/compliance-center" element={<ComplianceCenter />} />
-                
-                  {/* Additional Advanced Features */}
-                  <Route path="/activity-feed" element={<ActivityFeed />} />
-                  <Route path="/executive-dashboard" element={<ExecutiveDashboard />} />
-                  <Route path="/lead-inbox" element={<LeadInbox />} />
-                  <Route path="/battle-cards" element={<BattleCards />} />
-                  <Route path="/calendar-scheduler" element={<CalendarScheduler />} />
-                
-                  {/* New Platform Features */}
-                  <Route path="/multichannel-campaigns" element={<MultiChannelCampaigns />} />
-                  <Route path="/advanced-lead-database" element={<AdvancedLeadDatabase />} />
-                  <Route path="/data-enrichment" element={<DataEnrichment />} />
-                  <Route path="/reply-intelligence" element={<ReplyIntelligence />} />
-                  <Route path="/crm-integrations" element={<CRMIntegrations />} />
-                  <Route path="/team-collaboration" element={<TeamCollaboration />} />
-                  <Route path="/sales-playbooks" element={<SalesPlaybooks />} />
-                
-                  {/* Admin & Enterprise Features */}
-                  <Route path="/admin/api-keys" element={<AdminAPIKeys />} />
-                  <Route path="/admin/webhooks" element={<AdminWebhooks />} />
-                  <Route path="/admin/audit-log" element={<AdminAuditLog />} />
-                  <Route path="/admin/access-control" element={<AdminAccessControl />} />
-                  <Route path="/admin/observability" element={<AdminObservability />} />
-                  <Route path="/admin/ai-decisions" element={<AdminAIDecisions />} />
-                  <Route path="/admin/enterprise-readiness" element={<AdminEnterpriseReadiness />} />
-                  <Route path="/admin/feature-flags" element={<FeatureFlags />} />
-                  <Route path="/admin/ai-policies" element={<AIPolicies />} />
-                  <Route path="/settings/usage" element={<SettingsUsage />} />
-                
-                  {/* Setup & Onboarding */}
-                  <Route path="/setup" element={<SetupWizard />} />
-                
-                  {/* Changelog */}
-                  <Route path="/changelog" element={<Changelog />} />
-                
-                  {/* Campaign Detail */}
-                  <Route path="/campaigns/:id" element={<CampaignDetailCanvas />} />
-                
-                  {/* Demo Pages */}
-                  <Route path="/futuristic-demo" element={<FuturisticDemo />} />
-                
-                  {/* Advanced AI Modules */}
-                  <Route path="/autopilot" element={<AutopilotPage />} />
-                  <Route path="/lead-hive" element={<LeadHivePage />} />
-                  <Route path="/parliament" element={<ParliamentPage />} />
-                  <Route path="/simulate" element={<SimulationPage />} />
-                  <Route path="/avatar" element={<AvatarPage />} />
-                
-                  {/* ===== AUTONOMOUS OPERATING SYSTEM ===== */}
-                  <Route path="/autonomy" element={<AutonomyDashboard />} />
-                  <Route path="/forecasting" element={<ForecastingPage />} />
-                  <Route path="/intelligence-graph" element={<IntelligenceGraphPage />} />
-                  <Route path="/influence-map" element={<InfluenceMapPage />} />
-                  <Route path="/orchestrator" element={<OrchestratorPage />} />
-                  <Route path="/orchestrator/timeline" element={<OrchestratorTimelinePage />} />
-                
-                  {/* ===== NEXT-GEN AUTONOMOUS GTM PLATFORM ===== */}
-                  <Route path="/orchestration" element={<OrchestrationPage />} />
-                  <Route path="/simulate-next" element={<SimulatePage />} />
-                  <Route path="/intelligence-grid" element={<IntelligenceGridPage />} />
-                  <Route path="/boardroom" element={<BoardroomPage />} />
-                  <Route path="/immersive" element={<ImmersivePage />} />
-                </Route>
-                
-                {/* 404 - outside shell */}
-                <Route path="/404" element={<NotFound />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </Router>
-        </AppProviders>
+              {/* ===== MULTI-PAGE MARKETING SITE ===== */}
+              <Route path="/" element={<HomePage />} />
+              <Route path="/ai-tour" element={<AiTourPage />} />
+              <Route path="/flow" element={<FlowPage />} />
+              <Route path="/platform" element={<PlatformPage />} />
+              <Route path="/security" element={<SecurityPage />} />
+              <Route path="/customers" element={<CustomersPage />} />
+              <Route path="/pricing" element={<PricingPage />} />
+
+              {/* Legacy single-page landing (accessible at /landing) */}
+              <Route path="/landing" element={<LandingPage />} />
+
+              {/* ===== PUBLIC SOLUTIONS PAGES (marketing, outside app shell) ===== */}
+              <Route path="/solutions/startups" element={<SolutionsStartups />} />
+              <Route path="/solutions/midmarket" element={<SolutionsMidMarket />} />
+              <Route path="/solutions/enterprise" element={<SolutionsEnterprise />} />
+
+              {/* ===== POST-LOGIN APP ROUTES (with unified shell) ===== */}
+              <Route element={<PostLoginShell />}>
+                {/* App Routes */}
+                <Route path="/marketing" element={<Marketing />} />
+                <Route path="/onboarding" element={<Onboarding />} />
+                <Route path="/home" element={<WorkspaceHome />} />
+                <Route path="/dashboard" element={<EnhancedDashboardNew />} />
+                <Route path="/dashboard-original" element={<Dashboard />} />
+                <Route path="/dashboard-enhanced" element={<EnhancedDashboard />} />
+                <Route path="/campaigns" element={<CampaignBuilder />} />
+                <Route path="/leads" element={<Leads />} />
+                <Route path="/lead-database" element={<LeadDatabase />} />
+                <Route path="/ai-assistant" element={<AIAssistant />} />
+                <Route path="/analytics" element={<Analytics />} />
+                <Route path="/integrations" element={<Integrations />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/templates" element={<Templates />} />
+
+                {/* Advanced AI Intelligence Features */}
+                <Route path="/ai-lead-intelligence" element={<AILeadIntelligence />} />
+                <Route path="/ai-campaign-strategist" element={<AICampaignStrategist />} />
+                <Route path="/ai-assistant-advanced" element={<AdvancedAIAssistant />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/advanced" element={<AdvancedHub />} />
+                <Route path="/ava" element={<AvaHub />} />
+                <Route path="/exceptional" element={<ExceptionalHub />} />
+                <Route path="/ui-showcase" element={<UIShowcase />} />
+                <Route path="/component-showcase" element={<ComponentShowcase />} />
+                <Route path="/help" element={<HelpCenter />} />
+
+                {/* Advanced Features */}
+                <Route path="/lead-scoring" element={<LeadScoring />} />
+                <Route path="/ab-testing" element={<ABTesting />} />
+                <Route path="/email-templates" element={<EmailTemplateBuilder />} />
+                <Route path="/lead-enrichment" element={<LeadEnrichment />} />
+                <Route path="/revenue-forecasting" element={<RevenueForecasting />} />
+                <Route path="/audience-segmentation" element={<AudienceSegmentation />} />
+                <Route path="/call-intelligence" element={<CallIntelligence />} />
+                <Route path="/workflow-orchestrator" element={<WorkflowOrchestrator />} />
+                <Route path="/sales-leaderboard" element={<SalesLeaderboard />} />
+                <Route path="/compliance-center" element={<ComplianceCenter />} />
+
+                {/* Additional Advanced Features */}
+                <Route path="/activity-feed" element={<ActivityFeed />} />
+                <Route path="/executive-dashboard" element={<ExecutiveDashboard />} />
+                <Route path="/lead-inbox" element={<LeadInbox />} />
+                <Route path="/battle-cards" element={<BattleCards />} />
+                <Route path="/calendar-scheduler" element={<CalendarScheduler />} />
+
+                {/* New Platform Features */}
+                <Route path="/multichannel-campaigns" element={<MultiChannelCampaigns />} />
+                <Route path="/advanced-lead-database" element={<AdvancedLeadDatabase />} />
+                <Route path="/data-enrichment" element={<DataEnrichment />} />
+                <Route path="/reply-intelligence" element={<ReplyIntelligence />} />
+                <Route path="/crm-integrations" element={<CRMIntegrations />} />
+                <Route path="/team-collaboration" element={<TeamCollaboration />} />
+                <Route path="/sales-playbooks" element={<SalesPlaybooks />} />
+
+                {/* Admin & Enterprise Features */}
+                <Route path="/admin/api-keys" element={<AdminAPIKeys />} />
+                <Route path="/admin/webhooks" element={<AdminWebhooks />} />
+                <Route path="/admin/audit-log" element={<AdminAuditLog />} />
+                <Route path="/admin/access-control" element={<AdminAccessControl />} />
+                <Route path="/admin/observability" element={<AdminObservability />} />
+                <Route path="/admin/ai-decisions" element={<AdminAIDecisions />} />
+                <Route path="/admin/enterprise-readiness" element={<AdminEnterpriseReadiness />} />
+                <Route path="/admin/feature-flags" element={<FeatureFlags />} />
+                <Route path="/admin/ai-policies" element={<AIPolicies />} />
+                <Route path="/settings/usage" element={<SettingsUsage />} />
+
+                {/* Setup & Onboarding */}
+                <Route path="/setup" element={<SetupWizard />} />
+
+                {/* Changelog */}
+                <Route path="/changelog" element={<Changelog />} />
+
+                {/* Campaign Detail */}
+                <Route path="/campaigns/:id" element={<CampaignDetailCanvas />} />
+
+                {/* Demo Pages */}
+                <Route path="/futuristic-demo" element={<FuturisticDemo />} />
+
+                {/* Advanced AI Modules */}
+                <Route path="/autopilot" element={<AutopilotPage />} />
+                <Route path="/lead-hive" element={<LeadHivePage />} />
+                <Route path="/parliament" element={<ParliamentPage />} />
+                <Route path="/simulate" element={<SimulationPage />} />
+                <Route path="/avatar" element={<AvatarPage />} />
+
+                {/* ===== AUTONOMOUS OPERATING SYSTEM ===== */}
+                <Route path="/autonomy" element={<AutonomyDashboard />} />
+                <Route path="/forecasting" element={<ForecastingPage />} />
+                <Route path="/intelligence-graph" element={<IntelligenceGraphPage />} />
+                <Route path="/influence-map" element={<InfluenceMapPage />} />
+                <Route path="/orchestrator" element={<OrchestratorPage />} />
+                <Route path="/orchestrator/timeline" element={<OrchestratorTimelinePage />} />
+
+                {/* ===== NEXT-GEN AUTONOMOUS GTM PLATFORM ===== */}
+                <Route path="/orchestration" element={<OrchestrationPage />} />
+                <Route path="/simulate-next" element={<SimulatePage />} />
+                <Route path="/intelligence-grid" element={<IntelligenceGridPage />} />
+                <Route path="/boardroom" element={<BoardroomPage />} />
+                <Route path="/immersive" element={<ImmersivePage />} />
+              </Route>
+
+              {/* 404 - outside shell */}
+              <Route path="/404" element={<NotFound />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </Router>
+      </AppProviders>
     </ErrorBoundary>
   );
 }

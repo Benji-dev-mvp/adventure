@@ -21,11 +21,11 @@ const getAgentPosition = (index, total, radius = 120) => {
 const getCurvedPath = (from, to) => {
   const midX = (from.x + to.x) / 2;
   const midY = (from.y + to.y) / 2;
-  
+
   // Offset control point toward center for curved effect
   const offsetX = (150 - midX) * 0.3;
   const offsetY = (150 - midY) * 0.3;
-  
+
   return `M ${from.x} ${from.y} Q ${midX + offsetX} ${midY + offsetY} ${to.x} ${to.y}`;
 };
 
@@ -70,32 +70,22 @@ export function DebateRing({ agents, arguments_, selectedAgenda }) {
     <GlassCard variant="subtle" className="h-full">
       <GlassCardContent className="p-6 h-full flex flex-col">
         <h3 className="text-lg font-semibold text-slate-100 mb-4">Debate Ring</h3>
-        
+
         <div className="flex-1 relative">
           <svg viewBox="0 0 300 300" className="w-full h-full max-h-80">
             {/* Center circle */}
-            <circle 
-              cx="150" 
-              cy="150" 
-              r="30" 
+            <circle
+              cx="150"
+              cy="150"
+              r="30"
               fill="rgba(6, 182, 212, 0.1)"
               stroke="rgba(6, 182, 212, 0.3)"
               strokeWidth="1"
             />
-            <text 
-              x="150" 
-              y="145" 
-              textAnchor="middle" 
-              className="text-[10px] fill-slate-400"
-            >
+            <text x="150" y="145" textAnchor="middle" className="text-[10px] fill-slate-400">
               Agenda
             </text>
-            <text 
-              x="150" 
-              y="158" 
-              textAnchor="middle" 
-              className="text-[8px] fill-slate-500"
-            >
+            <text x="150" y="158" textAnchor="middle" className="text-[8px] fill-slate-500">
               #{selectedAgenda?.id.split('-')[1]}
             </text>
 
@@ -132,10 +122,10 @@ export function DebateRing({ agents, arguments_, selectedAgenda }) {
             })}
 
             {/* Agent nodes */}
-            {agents.map((agent) => {
+            {agents.map(agent => {
               const pos = agentPositions[agent.id];
               const isActive = activeAgentIds.has(agent.id);
-              
+
               return (
                 <motion.g
                   key={agent.id}
@@ -153,7 +143,7 @@ export function DebateRing({ agents, arguments_, selectedAgenda }) {
                       className="animate-pulse"
                     />
                   )}
-                  
+
                   {/* Agent circle */}
                   <circle
                     cx={pos.x}
@@ -163,7 +153,7 @@ export function DebateRing({ agents, arguments_, selectedAgenda }) {
                     stroke={isActive ? agent.color : 'rgba(255,255,255,0.1)'}
                     strokeWidth={isActive ? 2 : 1}
                   />
-                  
+
                   {/* Agent emoji */}
                   <text
                     x={pos.x}
@@ -174,7 +164,7 @@ export function DebateRing({ agents, arguments_, selectedAgenda }) {
                   >
                     {agent.avatar}
                   </text>
-                  
+
                   {/* Agent name */}
                   <text
                     x={pos.x}
@@ -194,10 +184,7 @@ export function DebateRing({ agents, arguments_, selectedAgenda }) {
         <div className="flex items-center justify-center gap-6 mt-4 pt-4 border-t border-white/5">
           {Object.entries(ARGUMENT_COLORS).map(([type, color]) => (
             <div key={type} className="flex items-center gap-2">
-              <div 
-                className="w-3 h-1 rounded-full"
-                style={{ backgroundColor: color }}
-              />
+              <div className="w-3 h-1 rounded-full" style={{ backgroundColor: color }} />
               <span className="text-xs text-slate-400 capitalize">{type}</span>
             </div>
           ))}

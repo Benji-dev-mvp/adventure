@@ -4,11 +4,11 @@ import random
 from datetime import datetime, timedelta
 from typing import List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
-from sqlmodel import Session, select
+from fastapi import APIRouter, Depends, Query, status
+from sqlmodel import Session
 
 from app.core.db import get_session
-from app.core.security import get_current_user, require_permission
+from app.core.security import get_current_user
 from app.models.user import User
 
 # Initialize routers

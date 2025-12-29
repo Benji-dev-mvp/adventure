@@ -5,10 +5,10 @@ import PlaybookLibrary from '../components/workflow/PlaybookLibrary';
 import AIWorkflowAssistant from '../components/workflow/AIWorkflowAssistant';
 import { useToast } from '../components/Toast';
 import { saveCampaignDraft, getCampaignDraft } from '../lib/storage';
-import { 
-  BookOpen, 
-  Save, 
-  Play, 
+import {
+  BookOpen,
+  Save,
+  Play,
   Settings,
   ChevronDown,
   Users,
@@ -21,7 +21,7 @@ import {
   EyeOff,
   Download,
   Upload,
-  Zap
+  Zap,
 } from 'lucide-react';
 
 const VisualCampaignBuilder = () => {
@@ -59,46 +59,58 @@ const VisualCampaignBuilder = () => {
   }, []);
 
   // Handle workflow save
-  const handleSave = useCallback(async (workflowData) => {
-    setIsSaving(true);
-    try {
-      const draft = {
-        campaignName,
-        workflow: workflowData,
-        settings,
-        savedAt: new Date().toISOString(),
-      };
-      saveCampaignDraft(draft);
-      setWorkflow(workflowData);
-      setLastSaved(new Date());
-      showToast('✓ Campaign saved successfully', 'success');
-    } catch (error) {
-      showToast('Failed to save campaign', 'error');
-    } finally {
-      setIsSaving(false);
-    }
-  }, [campaignName, settings, showToast]);
+  const handleSave = useCallback(
+    async workflowData => {
+      setIsSaving(true);
+      try {
+        const draft = {
+          campaignName,
+          workflow: workflowData,
+          settings,
+          savedAt: new Date().toISOString(),
+        };
+        saveCampaignDraft(draft);
+        setWorkflow(workflowData);
+        setLastSaved(new Date());
+        showToast('✓ Campaign saved successfully', 'success');
+      } catch (error) {
+        showToast('Failed to save campaign', 'error');
+      } finally {
+        setIsSaving(false);
+      }
+    },
+    [campaignName, settings, showToast]
+  );
 
   // Handle workflow execution
-  const handleExecute = useCallback((result) => {
-    console.log('Execution result:', result);
-    showToast(`✓ Campaign executed: ${result.nodes} steps processed`, 'success');
-  }, [showToast]);
+  const handleExecute = useCallback(
+    result => {
+      console.log('Execution result:', result);
+      showToast(`✓ Campaign executed: ${result.nodes} steps processed`, 'success');
+    },
+    [showToast]
+  );
 
   // Handle playbook selection
-  const handleSelectPlaybook = useCallback((playbook) => {
-    setWorkflow(playbook.workflow);
-    setCampaignName(`${playbook.name} Campaign`);
-    setShowPlaybooks(false);
-    showToast(`✓ Loaded "${playbook.name}" template`, 'success');
-  }, [showToast]);
+  const handleSelectPlaybook = useCallback(
+    playbook => {
+      setWorkflow(playbook.workflow);
+      setCampaignName(`${playbook.name} Campaign`);
+      setShowPlaybooks(false);
+      showToast(`✓ Loaded "${playbook.name}" template`, 'success');
+    },
+    [showToast]
+  );
 
   // Handle AI-generated workflow
-  const handleAIWorkflow = useCallback((aiWorkflow) => {
-    setWorkflow(aiWorkflow);
-    setCampaignName(aiWorkflow.name || 'AI Generated Campaign');
-    showToast('✓ AI workflow applied to canvas!', 'success');
-  }, [showToast]);
+  const handleAIWorkflow = useCallback(
+    aiWorkflow => {
+      setWorkflow(aiWorkflow);
+      setCampaignName(aiWorkflow.name || 'AI Generated Campaign');
+      showToast('✓ AI workflow applied to canvas!', 'success');
+    },
+    [showToast]
+  );
 
   // Export workflow
   const handleExport = useCallback(() => {
@@ -121,11 +133,11 @@ const VisualCampaignBuilder = () => {
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = '.json';
-    input.onchange = (e) => {
+    input.onchange = e => {
       const file = e.target.files[0];
       if (!file) return;
       const reader = new FileReader();
-      reader.onload = (event) => {
+      reader.onload = event => {
         try {
           const data = JSON.parse(event.target.result);
           if (data.workflow) {
@@ -163,14 +175,14 @@ const VisualCampaignBuilder = () => {
                 <input
                   type="text"
                   value={campaignName}
-                  onChange={(e) => setCampaignName(e.target.value)}
+                  onChange={e => setCampaignName(e.target.value)}
                   onBlur={() => setIsEditing(false)}
-                  onKeyDown={(e) => e.key === 'Enter' && setIsEditing(false)}
+                  onKeyDown={e => e.key === 'Enter' && setIsEditing(false)}
                   autoFocus
                   className="text-lg font-semibold bg-transparent border-b-2 border-indigo-500 focus:outline-none text-gray-900 dark:text-white"
                 />
               ) : (
-                <h1 
+                <h1
                   onClick={() => setIsEditing(true)}
                   className="text-lg font-semibold text-gray-900 dark:text-white cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400"
                 >
@@ -195,8 +207,8 @@ const VisualCampaignBuilder = () => {
             <button
               onClick={() => setShowMetrics(!showMetrics)}
               className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${
-                showMetrics 
-                  ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300' 
+                showMetrics
+                  ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300'
                   : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
               }`}
               title={showMetrics ? 'Hide Metrics' : 'Show Metrics'}
@@ -235,18 +247,20 @@ const VisualCampaignBuilder = () => {
             <button
               onClick={() => setShowSettings(!showSettings)}
               className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${
-                showSettings 
-                  ? 'bg-gray-100 dark:bg-gray-700' 
+                showSettings
+                  ? 'bg-gray-100 dark:bg-gray-700'
                   : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
               }`}
             >
               <Settings className="w-4 h-4" />
               <span className="text-sm font-medium hidden sm:inline">Settings</span>
-              <ChevronDown className={`w-4 h-4 transition-transform ${showSettings ? 'rotate-180' : ''}`} />
+              <ChevronDown
+                className={`w-4 h-4 transition-transform ${showSettings ? 'rotate-180' : ''}`}
+              />
             </button>
 
             {/* AI Assistant */}
-            <button 
+            <button
               onClick={() => setShowAIAssistant(true)}
               className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all shadow-lg shadow-purple-500/25"
             >
@@ -268,7 +282,7 @@ const VisualCampaignBuilder = () => {
                 </label>
                 <select
                   value={settings.targetAudience}
-                  onChange={(e) => setSettings({ ...settings, targetAudience: e.target.value })}
+                  onChange={e => setSettings({ ...settings, targetAudience: e.target.value })}
                   className="w-full px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                 >
                   <option>All Leads</option>
@@ -288,7 +302,7 @@ const VisualCampaignBuilder = () => {
                 <input
                   type="date"
                   value={settings.startDate}
-                  onChange={(e) => setSettings({ ...settings, startDate: e.target.value })}
+                  onChange={e => setSettings({ ...settings, startDate: e.target.value })}
                   className="w-full px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                 />
               </div>
@@ -302,7 +316,7 @@ const VisualCampaignBuilder = () => {
                 <input
                   type="date"
                   value={settings.endDate}
-                  onChange={(e) => setSettings({ ...settings, endDate: e.target.value })}
+                  onChange={e => setSettings({ ...settings, endDate: e.target.value })}
                   className="w-full px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                 />
               </div>
@@ -316,7 +330,7 @@ const VisualCampaignBuilder = () => {
                 <input
                   type="number"
                   value={settings.dailyLimit}
-                  onChange={(e) => setSettings({ ...settings, dailyLimit: parseInt(e.target.value) })}
+                  onChange={e => setSettings({ ...settings, dailyLimit: parseInt(e.target.value) })}
                   className="w-full px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                 />
               </div>
@@ -329,7 +343,7 @@ const VisualCampaignBuilder = () => {
                 </label>
                 <select
                   value={settings.priority}
-                  onChange={(e) => setSettings({ ...settings, priority: e.target.value })}
+                  onChange={e => setSettings({ ...settings, priority: e.target.value })}
                   className="w-full px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                 >
                   <option value="low">Low</option>
@@ -345,7 +359,9 @@ const VisualCampaignBuilder = () => {
                   AI Optimization
                 </label>
                 <button
-                  onClick={() => setSettings({ ...settings, aiOptimization: !settings.aiOptimization })}
+                  onClick={() =>
+                    setSettings({ ...settings, aiOptimization: !settings.aiOptimization })
+                  }
                   className={`w-full px-3 py-2 text-sm rounded-lg flex items-center justify-center gap-2 transition-colors ${
                     settings.aiOptimization
                       ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300'
@@ -364,7 +380,7 @@ const VisualCampaignBuilder = () => {
                 </label>
                 <select
                   value={settings.timezone}
-                  onChange={(e) => setSettings({ ...settings, timezone: e.target.value })}
+                  onChange={e => setSettings({ ...settings, timezone: e.target.value })}
                   className="w-full px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                 >
                   <option value="America/New_York">Eastern Time</option>

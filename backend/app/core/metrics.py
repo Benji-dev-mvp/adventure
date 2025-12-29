@@ -1,10 +1,8 @@
 """Prometheus metrics exporter for FastAPI."""
 
 import time
-from typing import Callable
 
 from fastapi import Request, Response
-from fastapi.routing import APIRoute
 from prometheus_client import (
     CONTENT_TYPE_LATEST,
     Counter,

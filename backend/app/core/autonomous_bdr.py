@@ -3,14 +3,13 @@ Autonomous AI BDR 2.0 - Full autonomy with meeting booking and objection handlin
 Handles the entire outreach lifecycle from research to meeting booking
 """
 
-import asyncio
 import logging
 import re
 from datetime import datetime, timedelta
 from enum import Enum
 from typing import Dict, List, Optional
 
-from app.core.ai_provider import chat_with_history, llm_client
+from app.core.ai_provider import chat_with_history
 
 logger = logging.getLogger(__name__)
 

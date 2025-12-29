@@ -5,7 +5,7 @@ const generateMockActivities = () => {
   const now = Date.now();
   const minute = 60 * 1000;
   const hour = 60 * minute;
-  
+
   return [
     {
       id: '1',
@@ -142,14 +142,14 @@ const generateMockActivities = () => {
 
 export const useActivityFeed = (options = {}) => {
   const { autoRefresh = false, refreshInterval = 30000 } = options;
-  
+
   const [activities, setActivities] = useState(() => generateMockActivities());
   const [isLoading, setIsLoading] = useState(false);
   const [filter, setFilter] = useState('all'); // all, unread, campaign, lead, ai, system
-  
+
   // Derived state
   const unreadCount = activities.filter(a => !a.read).length;
-  
+
   const filteredActivities = activities.filter(activity => {
     if (filter === 'all') return true;
     if (filter === 'unread') return !activity.read;
@@ -157,10 +157,8 @@ export const useActivityFeed = (options = {}) => {
   });
 
   // Mark as read
-  const markAsRead = useCallback((activityId) => {
-    setActivities(prev => 
-      prev.map(a => a.id === activityId ? { ...a, read: true } : a)
-    );
+  const markAsRead = useCallback(activityId => {
+    setActivities(prev => prev.map(a => (a.id === activityId ? { ...a, read: true } : a)));
   }, []);
 
   // Mark all as read
@@ -198,18 +196,18 @@ export const useActivityFeed = (options = {}) => {
     return yesterday;
   };
 
-  const isToday = (timestamp) => {
+  const isToday = timestamp => {
     return new Date(timestamp) >= getTodayMidnight();
   };
 
-  const isYesterday = (timestamp) => {
+  const isYesterday = timestamp => {
     const today = getTodayMidnight();
     const yesterday = getYesterdayMidnight();
     const activityDate = new Date(timestamp);
     return activityDate >= yesterday && activityDate < today;
   };
 
-  const isOlder = (timestamp) => {
+  const isOlder = timestamp => {
     return new Date(timestamp) < getYesterdayMidnight();
   };
 

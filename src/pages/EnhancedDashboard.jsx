@@ -4,20 +4,48 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../components/Toast';
 import {
-  Activity, TrendingUp, Users, Target, Mail, Calendar,
-  Sparkles, Brain, Zap, BarChart3, Clock, Rocket,
-  DollarSign, ShoppingCart, TrendingDown, Eye, Download
+  Activity,
+  TrendingUp,
+  Users,
+  Target,
+  Mail,
+  Calendar,
+  Sparkles,
+  Brain,
+  Zap,
+  BarChart3,
+  Clock,
+  Rocket,
+  DollarSign,
+  ShoppingCart,
+  TrendingDown,
+  Eye,
+  Download,
 } from 'lucide-react';
 
 // Import new responsive components
 import {
-  GridContainer, GridRow, GridCol, ResponsiveGrid,
-  KPICard, StatsWidget, ProgressRing, Gauge, MetricCard,
-  TopBar, Breadcrumbs,
-  DataTable, TableActions,
+  GridContainer,
+  GridRow,
+  GridCol,
+  ResponsiveGrid,
+  KPICard,
+  StatsWidget,
+  ProgressRing,
+  Gauge,
+  MetricCard,
+  TopBar,
+  Breadcrumbs,
+  DataTable,
+  TableActions,
   ResponsiveModal,
-  TaskList, ProjectCard, CalendarWidget, ActivityLog, StatusBadge,
-  ImageGallery, Carousel
+  TaskList,
+  ProjectCard,
+  CalendarWidget,
+  ActivityLog,
+  StatusBadge,
+  ImageGallery,
+  Carousel,
 } from '../components/ui/ResponsiveDashboardKit';
 
 const EnhancedDashboard = () => {
@@ -28,18 +56,32 @@ const EnhancedDashboard = () => {
   // Sample data for tables
   const tableColumns = [
     { accessor: 'name', label: 'Campaign Name', sortable: true },
-    { accessor: 'status', label: 'Status', render: (val) => <StatusBadge status={val} size="sm" /> },
+    { accessor: 'status', label: 'Status', render: val => <StatusBadge status={val} size="sm" /> },
     { accessor: 'leads', label: 'Leads', sortable: true },
     { accessor: 'sent', label: 'Sent', sortable: true },
     { accessor: 'replies', label: 'Replies', sortable: true },
-    { accessor: 'rate', label: 'Rate', render: (val) => `${val}%` }
+    { accessor: 'rate', label: 'Rate', render: val => `${val}%` },
   ];
 
   const tableData = [
     { name: 'Q4 SaaS Outreach', status: 'active', leads: 450, sent: 320, replies: 28, rate: 8.8 },
-    { name: 'Enterprise Follow-up', status: 'active', leads: 180, sent: 156, replies: 15, rate: 9.6 },
+    {
+      name: 'Enterprise Follow-up',
+      status: 'active',
+      leads: 180,
+      sent: 156,
+      replies: 15,
+      rate: 9.6,
+    },
     { name: 'Product Launch', status: 'pending', leads: 290, sent: 180, replies: 12, rate: 6.7 },
-    { name: 'Holiday Campaign', status: 'completed', leads: 550, sent: 550, replies: 44, rate: 8.0 },
+    {
+      name: 'Holiday Campaign',
+      status: 'completed',
+      leads: 550,
+      sent: 550,
+      replies: 44,
+      rate: 8.0,
+    },
   ];
 
   // Sample project data
@@ -54,7 +96,7 @@ const EnhancedDashboard = () => {
       dueDate: 'Dec 31',
       priority: 'high',
       color: 'bg-blue-100 dark:bg-blue-900',
-      iconColor: 'text-blue-600 dark:text-blue-400'
+      iconColor: 'text-blue-600 dark:text-blue-400',
     },
     {
       name: 'Product Launch Sequence',
@@ -66,7 +108,7 @@ const EnhancedDashboard = () => {
       dueDate: 'Jan 15',
       priority: 'medium',
       color: 'bg-purple-100 dark:bg-purple-900',
-      iconColor: 'text-purple-600 dark:text-purple-400'
+      iconColor: 'text-purple-600 dark:text-purple-400',
     },
     {
       name: 'Customer Retention',
@@ -78,8 +120,8 @@ const EnhancedDashboard = () => {
       dueDate: 'Jan 30',
       priority: 'low',
       color: 'bg-green-100 dark:bg-green-900',
-      iconColor: 'text-green-600 dark:text-green-400'
-    }
+      iconColor: 'text-green-600 dark:text-green-400',
+    },
   ];
 
   // Sample activities
@@ -89,29 +131,29 @@ const EnhancedDashboard = () => {
       description: 'Sarah Chen from TechCorp responded to your email',
       time: '2 minutes ago',
       icon: Mail,
-      color: 'bg-blue-100 dark:bg-blue-900'
+      color: 'bg-blue-100 dark:bg-blue-900',
     },
     {
       title: 'Meeting booked',
       description: 'Michael Torres scheduled a demo for tomorrow',
       time: '15 minutes ago',
       icon: Calendar,
-      color: 'bg-green-100 dark:bg-green-900'
+      color: 'bg-green-100 dark:bg-green-900',
     },
     {
       title: 'Campaign launched',
       description: 'Enterprise Follow-up campaign is now active',
       time: '1 hour ago',
       icon: Rocket,
-      color: 'bg-purple-100 dark:bg-purple-900'
-    }
+      color: 'bg-purple-100 dark:bg-purple-900',
+    },
   ];
 
   // Sample calendar events
   const calendarEvents = [
     { title: 'Product Demo', date: '2025-12-28', color: 'bg-blue-600' },
     { title: 'Team Sync', date: '2025-12-29', color: 'bg-green-600' },
-    { title: 'Campaign Review', date: '2025-12-30', color: 'bg-purple-600' }
+    { title: 'Campaign Review', date: '2025-12-30', color: 'bg-purple-600' },
   ];
 
   // Carousel items
@@ -120,20 +162,20 @@ const EnhancedDashboard = () => {
       type: 'image',
       src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800',
       title: 'Analytics Dashboard',
-      description: 'Track your campaign performance in real-time'
+      description: 'Track your campaign performance in real-time',
     },
     {
       type: 'image',
       src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800',
       title: 'AI-Powered Insights',
-      description: 'Get smart recommendations from Ava'
+      description: 'Get smart recommendations from Ava',
     },
     {
       type: 'image',
       src: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800',
       title: 'Team Collaboration',
-      description: 'Work together seamlessly'
-    }
+      description: 'Work together seamlessly',
+    },
   ];
 
   return (
@@ -142,9 +184,7 @@ const EnhancedDashboard = () => {
       <TopBar
         title="Dashboard Overview"
         subtitle="Welcome back! Here's what's happening with your campaigns."
-        breadcrumbs={[
-          { label: 'Dashboard', path: '/dashboard' }
-        ]}
+        breadcrumbs={[{ label: 'Dashboard', path: '/dashboard' }]}
         actions={[
           <button
             key="new-campaign"
@@ -153,7 +193,7 @@ const EnhancedDashboard = () => {
           >
             <Rocket size={16} />
             <span className="hidden sm:inline">New Campaign</span>
-          </button>
+          </button>,
         ]}
       />
 
@@ -202,7 +242,7 @@ const EnhancedDashboard = () => {
               { label: 'Emails Sent', value: '2,543', subtext: '+12% from last week' },
               { label: 'Open Rate', value: '34.2%', subtext: 'Above average' },
               { label: 'Click Rate', value: '12.8%', subtext: 'Excellent' },
-              { label: 'Conversions', value: '89', subtext: '6.4% conversion rate' }
+              { label: 'Conversions', value: '89', subtext: '6.4% conversion rate' },
             ]}
           />
         </div>
@@ -216,18 +256,8 @@ const EnhancedDashboard = () => {
                 Campaign Progress
               </h3>
               <div className="flex flex-col sm:flex-row gap-6 justify-around">
-                <ProgressRing
-                  value={75}
-                  label="Completion"
-                  size="md"
-                  color="blue"
-                />
-                <ProgressRing
-                  value={88}
-                  label="Engagement"
-                  size="md"
-                  color="green"
-                />
+                <ProgressRing value={75} label="Completion" size="md" color="blue" />
+                <ProgressRing value={88} label="Engagement" size="md" color="green" />
               </div>
             </div>
           </GridCol>
@@ -239,13 +269,7 @@ const EnhancedDashboard = () => {
                 Performance Score
               </h3>
               <div className="flex justify-center">
-                <Gauge
-                  value={84}
-                  min={0}
-                  max={100}
-                  label="Overall Health"
-                  size="md"
-                />
+                <Gauge value={84} min={0} max={100} label="Overall Health" size="md" />
               </div>
             </div>
           </GridCol>
@@ -266,8 +290,8 @@ const EnhancedDashboard = () => {
             pagination
             pageSize={5}
             mobileCardView
-            onRowClick={(row) => toast.info(`Clicked: ${row.name}`)}
-            actions={(row) => (
+            onRowClick={row => toast.info(`Clicked: ${row.name}`)}
+            actions={row => (
               <TableActions
                 onView={() => toast.info(`Viewing ${row.name}`)}
                 onEdit={() => toast.info(`Editing ${row.name}`)}
@@ -279,9 +303,7 @@ const EnhancedDashboard = () => {
 
         {/* Project Cards Grid */}
         <div className="mb-8">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-            Active Projects
-          </h2>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Active Projects</h2>
           <ResponsiveGrid cols={{ xs: 1, md: 2, lg: 3 }} gap="md">
             {projects.map((project, index) => (
               <ProjectCard
@@ -303,13 +325,7 @@ const EnhancedDashboard = () => {
           {/* Metric Cards */}
           <GridCol xs={12} lg={6}>
             <ResponsiveGrid cols={{ xs: 1, sm: 2 }} gap="md">
-              <MetricCard
-                label="Page Views"
-                value="24.5K"
-                change="+12.5%"
-                trend="up"
-                icon={Eye}
-              />
+              <MetricCard label="Page Views" value="24.5K" change="+12.5%" trend="up" icon={Eye} />
               <MetricCard
                 label="Downloads"
                 value="3,247"
@@ -349,7 +365,8 @@ const EnhancedDashboard = () => {
             Ready to Scale Your Outreach?
           </h3>
           <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
-            Launch your next campaign with AI-powered automation and watch your conversion rates soar.
+            Launch your next campaign with AI-powered automation and watch your conversion rates
+            soar.
           </p>
           <button
             onClick={() => setModalOpen(true)}
@@ -389,15 +406,13 @@ const EnhancedDashboard = () => {
         }
       >
         <div className="space-y-4">
-          <p className="text-gray-600 dark:text-gray-400">
-            Ava can help you:
-          </p>
+          <p className="text-gray-600 dark:text-gray-400">Ava can help you:</p>
           <ul className="space-y-2">
             {[
               'Generate personalized email sequences',
               'Optimize send times for maximum engagement',
               'Score and prioritize leads automatically',
-              'Provide real-time campaign insights'
+              'Provide real-time campaign insights',
             ].map((item, index) => (
               <li key={index} className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-blue-600 rounded-full" />

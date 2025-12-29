@@ -1,8 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  AlertTriangle, CheckCircle, Info,
-  Target, MessageSquare, Radio, Users
+import {
+  AlertTriangle,
+  CheckCircle,
+  Info,
+  Target,
+  MessageSquare,
+  Radio,
+  Users,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent } from '../../../components/futuristic';
 
@@ -10,7 +15,7 @@ const RISK_ICONS = {
   'market-fit': Target,
   'message-fit': MessageSquare,
   'channel-saturation': Radio,
-  'capacity': Users,
+  capacity: Users,
 };
 
 const RISK_COLORS = {
@@ -24,21 +29,15 @@ const RiskBar = ({ risk }) => {
   const Icon = RISK_ICONS[risk.id] || AlertTriangle;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      className="group"
-    >
+    <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="group">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <Icon className={`w-4 h-4 ${colors.text}`} />
           <span className="text-sm text-slate-300">{risk.label}</span>
         </div>
-        <span className={`text-sm font-medium ${colors.text}`}>
-          {risk.score}%
-        </span>
+        <span className={`text-sm font-medium ${colors.text}`}>{risk.score}%</span>
       </div>
-      
+
       <div className="relative h-2 bg-slate-800 rounded-full overflow-hidden">
         <motion.div
           initial={{ width: 0 }}
@@ -79,7 +78,9 @@ export function RiskBreakdown({ risks, recommendation, activeStrategyData }) {
       <GlassCardContent className="p-6">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-semibold text-slate-100">Risk Breakdown</h3>
-          <div className={`px-3 py-1 rounded-full text-sm font-medium ${overallColors.bg} ${overallColors.text}`}>
+          <div
+            className={`px-3 py-1 rounded-full text-sm font-medium ${overallColors.bg} ${overallColors.text}`}
+          >
             {overallLevel.charAt(0).toUpperCase() + overallLevel.slice(1)} Risk ({overallRisk}%)
           </div>
         </div>

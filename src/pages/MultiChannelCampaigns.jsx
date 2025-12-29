@@ -4,16 +4,48 @@ import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card'
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { Input, Textarea } from '../components/ui/Input';
-import { Mail, Linkedin, Phone, MessageSquare, Clock, Zap, TrendingUp, Settings, Plus, Play, CheckCircle } from 'lucide-react';
+import {
+  Mail,
+  Linkedin,
+  Phone,
+  MessageSquare,
+  Clock,
+  Zap,
+  TrendingUp,
+  Settings,
+  Plus,
+  Play,
+  CheckCircle,
+} from 'lucide-react';
 
 const MultiChannelCampaigns = () => {
   const [activeChannel, setActiveChannel] = useState('email');
   const [campaignSteps, setCampaignSteps] = useState([
-    { id: 1, channel: 'email', delay: 0, subject: 'Introduction', content: 'Hi {{firstName}}...', status: 'active' },
-    { id: 2, channel: 'linkedin', delay: 3, content: 'Connect request with note', status: 'active' },
-    { id: 3, channel: 'email', delay: 5, subject: 'Follow-up', content: 'Checking back...', status: 'active' },
+    {
+      id: 1,
+      channel: 'email',
+      delay: 0,
+      subject: 'Introduction',
+      content: 'Hi {{firstName}}...',
+      status: 'active',
+    },
+    {
+      id: 2,
+      channel: 'linkedin',
+      delay: 3,
+      content: 'Connect request with note',
+      status: 'active',
+    },
+    {
+      id: 3,
+      channel: 'email',
+      delay: 5,
+      subject: 'Follow-up',
+      content: 'Checking back...',
+      status: 'active',
+    },
     { id: 4, channel: 'phone', delay: 7, script: 'Cold call script', status: 'active' },
-    { id: 5, channel: 'sms', delay: 10, content: 'Quick text follow-up', status: 'fallback' }
+    { id: 5, channel: 'sms', delay: 10, content: 'Quick text follow-up', status: 'fallback' },
   ]);
 
   const channels = [
@@ -21,14 +53,20 @@ const MultiChannelCampaigns = () => {
     { id: 'linkedin', name: 'LinkedIn', icon: <Linkedin size={20} />, color: 'blue', active: 389 },
     { id: 'sms', name: 'SMS', icon: <MessageSquare size={20} />, color: 'green', active: 156 },
     { id: 'phone', name: 'Phone', icon: <Phone size={20} />, color: 'purple', active: 89 },
-    { id: 'whatsapp', name: 'WhatsApp', icon: <MessageSquare size={20} />, color: 'green', active: 42 }
+    {
+      id: 'whatsapp',
+      name: 'WhatsApp',
+      icon: <MessageSquare size={20} />,
+      color: 'green',
+      active: 42,
+    },
   ];
 
   const channelStats = {
     email: { sent: 12847, opened: 3156, replied: 428, booked: 47 },
     linkedin: { sent: 3891, connected: 1247, replied: 189, booked: 23 },
     sms: { sent: 1567, replied: 234, booked: 12 },
-    phone: { calls: 892, connected: 267, meetings: 34 }
+    phone: { calls: 892, connected: 267, meetings: 34 },
   };
 
   return (
@@ -52,10 +90,12 @@ const MultiChannelCampaigns = () => {
 
         {/* Channel Overview */}
         <div className="grid grid-cols-5 gap-4 mb-6">
-          {channels.map((channel) => (
+          {channels.map(channel => (
             <Card key={channel.id} className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="p-6">
-                <div className={`w-12 h-12 bg-${channel.color}-50 dark:bg-${channel.color}-900/20 rounded-xl flex items-center justify-center mb-3`}>
+                <div
+                  className={`w-12 h-12 bg-${channel.color}-50 dark:bg-${channel.color}-900/20 rounded-xl flex items-center justify-center mb-3`}
+                >
                   {channel.icon}
                 </div>
                 <h3 className="font-bold text-lg mb-1">{channel.name}</h3>
@@ -88,7 +128,7 @@ const MultiChannelCampaigns = () => {
                       {idx < campaignSteps.length - 1 && (
                         <div className="absolute left-6 top-16 w-0.5 h-8 bg-gray-300 dark:bg-gray-700"></div>
                       )}
-                      
+
                       <div className="flex items-start gap-4 p-4 border rounded-lg bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-800/50">
                         {/* Step Number */}
                         <div className="flex-shrink-0">
@@ -121,24 +161,36 @@ const MultiChannelCampaigns = () => {
                           {step.channel === 'email' && (
                             <>
                               <p className="font-semibold text-sm mb-1">Subject: {step.subject}</p>
-                              <p className="text-sm text-gray-600 dark:text-gray-400">{step.content}</p>
+                              <p className="text-sm text-gray-600 dark:text-gray-400">
+                                {step.content}
+                              </p>
                             </>
                           )}
                           {step.channel === 'linkedin' && (
-                            <p className="text-sm text-gray-600 dark:text-gray-400">{step.content}</p>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">
+                              {step.content}
+                            </p>
                           )}
                           {step.channel === 'phone' && (
-                            <p className="text-sm text-gray-600 dark:text-gray-400">📞 {step.script}</p>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">
+                              📞 {step.script}
+                            </p>
                           )}
                           {step.channel === 'sms' && (
-                            <p className="text-sm text-gray-600 dark:text-gray-400">💬 {step.content}</p>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">
+                              💬 {step.content}
+                            </p>
                           )}
                         </div>
 
                         {/* Actions */}
                         <div className="flex gap-2">
-                          <Button size="sm" variant="outline">Edit</Button>
-                          <Button size="sm" variant="outline">Delete</Button>
+                          <Button size="sm" variant="outline">
+                            Edit
+                          </Button>
+                          <Button size="sm" variant="outline">
+                            Delete
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -185,10 +237,26 @@ const MultiChannelCampaigns = () => {
                       <span className="font-semibold text-sm">Email</span>
                     </div>
                     <div className="grid grid-cols-2 gap-2 text-xs">
-                      <div><span className="text-gray-600">Sent:</span> <span className="font-bold">{channelStats.email.sent}</span></div>
-                      <div><span className="text-gray-600">Opened:</span> <span className="font-bold">{channelStats.email.opened}</span></div>
-                      <div><span className="text-gray-600">Replied:</span> <span className="font-bold text-green-600">{channelStats.email.replied}</span></div>
-                      <div><span className="text-gray-600">Booked:</span> <span className="font-bold text-purple-600">{channelStats.email.booked}</span></div>
+                      <div>
+                        <span className="text-gray-600">Sent:</span>{' '}
+                        <span className="font-bold">{channelStats.email.sent}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Opened:</span>{' '}
+                        <span className="font-bold">{channelStats.email.opened}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Replied:</span>{' '}
+                        <span className="font-bold text-green-600">
+                          {channelStats.email.replied}
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Booked:</span>{' '}
+                        <span className="font-bold text-purple-600">
+                          {channelStats.email.booked}
+                        </span>
+                      </div>
                     </div>
                   </div>
 
@@ -199,10 +267,26 @@ const MultiChannelCampaigns = () => {
                       <span className="font-semibold text-sm">LinkedIn</span>
                     </div>
                     <div className="grid grid-cols-2 gap-2 text-xs">
-                      <div><span className="text-gray-600">Sent:</span> <span className="font-bold">{channelStats.linkedin.sent}</span></div>
-                      <div><span className="text-gray-600">Connected:</span> <span className="font-bold">{channelStats.linkedin.connected}</span></div>
-                      <div><span className="text-gray-600">Replied:</span> <span className="font-bold text-green-600">{channelStats.linkedin.replied}</span></div>
-                      <div><span className="text-gray-600">Booked:</span> <span className="font-bold text-purple-600">{channelStats.linkedin.booked}</span></div>
+                      <div>
+                        <span className="text-gray-600">Sent:</span>{' '}
+                        <span className="font-bold">{channelStats.linkedin.sent}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Connected:</span>{' '}
+                        <span className="font-bold">{channelStats.linkedin.connected}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Replied:</span>{' '}
+                        <span className="font-bold text-green-600">
+                          {channelStats.linkedin.replied}
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Booked:</span>{' '}
+                        <span className="font-bold text-purple-600">
+                          {channelStats.linkedin.booked}
+                        </span>
+                      </div>
                     </div>
                   </div>
 
@@ -213,9 +297,18 @@ const MultiChannelCampaigns = () => {
                       <span className="font-semibold text-sm">SMS</span>
                     </div>
                     <div className="grid grid-cols-2 gap-2 text-xs">
-                      <div><span className="text-gray-600">Sent:</span> <span className="font-bold">{channelStats.sms.sent}</span></div>
-                      <div><span className="text-gray-600">Replied:</span> <span className="font-bold text-green-600">{channelStats.sms.replied}</span></div>
-                      <div><span className="text-gray-600">Booked:</span> <span className="font-bold text-purple-600">{channelStats.sms.booked}</span></div>
+                      <div>
+                        <span className="text-gray-600">Sent:</span>{' '}
+                        <span className="font-bold">{channelStats.sms.sent}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Replied:</span>{' '}
+                        <span className="font-bold text-green-600">{channelStats.sms.replied}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Booked:</span>{' '}
+                        <span className="font-bold text-purple-600">{channelStats.sms.booked}</span>
+                      </div>
                     </div>
                   </div>
 
@@ -226,9 +319,20 @@ const MultiChannelCampaigns = () => {
                       <span className="font-semibold text-sm">Phone</span>
                     </div>
                     <div className="grid grid-cols-2 gap-2 text-xs">
-                      <div><span className="text-gray-600">Calls:</span> <span className="font-bold">{channelStats.phone.calls}</span></div>
-                      <div><span className="text-gray-600">Connected:</span> <span className="font-bold">{channelStats.phone.connected}</span></div>
-                      <div><span className="text-gray-600">Meetings:</span> <span className="font-bold text-purple-600">{channelStats.phone.meetings}</span></div>
+                      <div>
+                        <span className="text-gray-600">Calls:</span>{' '}
+                        <span className="font-bold">{channelStats.phone.calls}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Connected:</span>{' '}
+                        <span className="font-bold">{channelStats.phone.connected}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">Meetings:</span>{' '}
+                        <span className="font-bold text-purple-600">
+                          {channelStats.phone.meetings}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>

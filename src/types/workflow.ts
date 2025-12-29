@@ -7,7 +7,7 @@
 // Orchestrator Canvas Types
 // ============================================
 
-export type BlockType = 
+export type BlockType =
   | 'source'
   | 'score'
   | 'qualify'
@@ -29,7 +29,16 @@ export type BlockType =
   | 'custom';
 
 export type SourceType = 'database' | 'csv' | 'webhook' | 'api' | 'crm' | 'manual';
-export type ConditionOperator = 'equals' | 'not_equals' | 'contains' | 'greater_than' | 'less_than' | 'in' | 'not_in' | 'exists' | 'not_exists';
+export type ConditionOperator =
+  | 'equals'
+  | 'not_equals'
+  | 'contains'
+  | 'greater_than'
+  | 'less_than'
+  | 'in'
+  | 'not_in'
+  | 'exists'
+  | 'not_exists';
 
 export interface WorkflowBlock {
   id: string;
@@ -74,40 +83,40 @@ export interface BlockConfig {
   // Source blocks
   sourceType?: SourceType;
   sourceConfig?: SourceConfig;
-  
+
   // Score/Qualify blocks
   scoringModel?: string;
   qualificationCriteria?: QualificationCriteria[];
-  
+
   // Research/Enrich blocks
   enrichmentProviders?: string[];
   researchDepth?: 'basic' | 'standard' | 'deep';
-  
+
   // Message generation
   templateId?: string;
   personalizationLevel?: 'none' | 'basic' | 'advanced' | 'hyper';
   aiModel?: string;
-  
+
   // Send blocks
   channel?: 'email' | 'linkedin' | 'sms' | 'phone';
   sendConfig?: SendConfig;
-  
+
   // Wait blocks
   waitDuration?: number;
   waitUnit?: 'minutes' | 'hours' | 'days' | 'business_days';
   waitUntil?: 'specific_time' | 'event' | 'condition';
-  
+
   // Condition blocks
   conditions?: Condition[];
-  
+
   // Escalation blocks
   escalationTarget?: 'rep' | 'manager' | 'ai_agent';
   escalationReason?: string;
-  
+
   // CRM blocks
   crmAction?: 'create_contact' | 'create_deal' | 'update_stage' | 'add_note';
   crmMapping?: Record<string, string>;
-  
+
   // Custom/Webhook
   webhookUrl?: string;
   customCode?: string;
@@ -117,14 +126,14 @@ export interface SourceConfig {
   // Database source
   query?: string;
   filters?: Record<string, any>;
-  
+
   // CSV source
   fileId?: string;
   columnMapping?: Record<string, string>;
-  
+
   // Webhook source
   webhookSecret?: string;
-  
+
   // API source
   apiEndpoint?: string;
   apiAuth?: { type: 'bearer' | 'api_key' | 'oauth'; credentials: string };
@@ -236,7 +245,7 @@ export interface WorkflowMetrics {
 // Real-Time Execution Timeline Types
 // ============================================
 
-export type ExecutionEventType = 
+export type ExecutionEventType =
   | 'workflow_started'
   | 'workflow_completed'
   | 'workflow_failed'

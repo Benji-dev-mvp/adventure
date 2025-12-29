@@ -92,19 +92,19 @@ export const useLeadStore = create<LeadState>()(
       sortDirection: 'desc',
 
       // Actions
-      setLeads: (leads) =>
-        set((state) => {
+      setLeads: leads =>
+        set(state => {
           state.leads = leads;
         }),
 
-      addLead: (lead) =>
-        set((state) => {
+      addLead: lead =>
+        set(state => {
           state.leads.unshift(lead);
         }),
 
       updateLead: (id, updates) =>
-        set((state) => {
-          const index = state.leads.findIndex((l) => l.id === id);
+        set(state => {
+          const index = state.leads.findIndex(l => l.id === id);
           if (index !== -1) {
             state.leads[index] = { ...state.leads[index], ...updates };
             if (state.activeLead?.id === id) {
@@ -113,33 +113,33 @@ export const useLeadStore = create<LeadState>()(
           }
         }),
 
-      deleteLead: (id) =>
-        set((state) => {
-          state.leads = state.leads.filter((l) => l.id !== id);
+      deleteLead: id =>
+        set(state => {
+          state.leads = state.leads.filter(l => l.id !== id);
           state.selectedLeads.delete(id);
           if (state.activeLead?.id === id) {
             state.activeLead = null;
           }
         }),
 
-      deleteLeads: (ids) =>
-        set((state) => {
+      deleteLeads: ids =>
+        set(state => {
           const idSet = new Set(ids);
-          state.leads = state.leads.filter((l) => !idSet.has(l.id));
-          ids.forEach((id) => state.selectedLeads.delete(id));
+          state.leads = state.leads.filter(l => !idSet.has(l.id));
+          ids.forEach(id => state.selectedLeads.delete(id));
           if (state.activeLead && idSet.has(state.activeLead.id)) {
             state.activeLead = null;
           }
         }),
 
       // Selection
-      selectLead: (id) =>
-        set((state) => {
-          state.activeLead = id ? state.leads.find((l) => l.id === id) || null : null;
+      selectLead: id =>
+        set(state => {
+          state.activeLead = id ? state.leads.find(l => l.id === id) || null : null;
         }),
 
-      toggleLeadSelection: (id) =>
-        set((state) => {
+      toggleLeadSelection: id =>
+        set(state => {
           if (state.selectedLeads.has(id)) {
             state.selectedLeads.delete(id);
           } else {
@@ -148,33 +148,33 @@ export const useLeadStore = create<LeadState>()(
         }),
 
       selectAllLeads: () =>
-        set((state) => {
-          state.selectedLeads = new Set(state.leads.map((l) => l.id));
+        set(state => {
+          state.selectedLeads = new Set(state.leads.map(l => l.id));
         }),
 
       clearSelection: () =>
-        set((state) => {
+        set(state => {
           state.selectedLeads = new Set();
         }),
 
       getSelectedLeads: () => {
         const { leads, selectedLeads } = get();
-        return leads.filter((l) => selectedLeads.has(l.id));
+        return leads.filter(l => selectedLeads.has(l.id));
       },
 
       // Filtering & Sorting
-      setFilters: (filters) =>
-        set((state) => {
+      setFilters: filters =>
+        set(state => {
           state.filters = { ...state.filters, ...filters };
         }),
 
       clearFilters: () =>
-        set((state) => {
+        set(state => {
           state.filters = {};
         }),
 
       setSort: (column, direction) =>
-        set((state) => {
+        set(state => {
           if (state.sortBy === column && !direction) {
             state.sortDirection = state.sortDirection === 'asc' ? 'desc' : 'asc';
           } else {
@@ -185,9 +185,9 @@ export const useLeadStore = create<LeadState>()(
 
       // Bulk operations
       bulkUpdateStatus: (ids, status) =>
-        set((state) => {
+        set(state => {
           const idSet = new Set(ids);
-          state.leads.forEach((lead) => {
+          state.leads.forEach(lead => {
             if (idSet.has(lead.id)) {
               lead.status = status;
             }
@@ -195,24 +195,24 @@ export const useLeadStore = create<LeadState>()(
         }),
 
       bulkAddTags: (ids, tags) =>
-        set((state) => {
+        set(state => {
           const idSet = new Set(ids);
-          state.leads.forEach((lead) => {
+          state.leads.forEach(lead => {
             if (idSet.has(lead.id)) {
               const existingTags = new Set(lead.tags);
-              tags.forEach((tag) => existingTags.add(tag));
+              tags.forEach(tag => existingTags.add(tag));
               lead.tags = Array.from(existingTags);
             }
           });
         }),
 
       bulkRemoveTags: (ids, tags) =>
-        set((state) => {
+        set(state => {
           const idSet = new Set(ids);
           const tagsToRemove = new Set(tags);
-          state.leads.forEach((lead) => {
+          state.leads.forEach(lead => {
             if (idSet.has(lead.id)) {
-              lead.tags = lead.tags.filter((t) => !tagsToRemove.has(t));
+              lead.tags = lead.tags.filter(t => !tagsToRemove.has(t));
             }
           });
         }),
@@ -231,7 +231,7 @@ export const selectFilters = (state: LeadState) => state.filters;
 export const selectFilteredLeads = (state: LeadState) => {
   const { leads, filters, sortBy, sortDirection } = state;
 
-  let filtered = leads.filter((lead) => {
+  const filtered = leads.filter(lead => {
     if (filters.status && lead.status !== filters.status) return false;
     if (filters.scoreMin !== undefined && lead.score < filters.scoreMin) return false;
     if (filters.scoreMax !== undefined && lead.score > filters.scoreMax) return false;
@@ -243,7 +243,7 @@ export const selectFilteredLeads = (state: LeadState) => {
       if (!searchable.includes(search)) return false;
     }
     if (filters.tags?.length) {
-      const hasAllTags = filters.tags.every((tag) => lead.tags.includes(tag));
+      const hasAllTags = filters.tags.every(tag => lead.tags.includes(tag));
       if (!hasAllTags) return false;
     }
     return true;
@@ -267,10 +267,10 @@ export const selectLeadStats = (state: LeadState) => {
   const { leads } = state;
   return {
     total: leads.length,
-    hot: leads.filter((l) => l.status === 'hot').length,
-    warm: leads.filter((l) => l.status === 'warm').length,
-    cold: leads.filter((l) => l.status === 'cold').length,
-    qualified: leads.filter((l) => l.status === 'qualified').length,
+    hot: leads.filter(l => l.status === 'hot').length,
+    warm: leads.filter(l => l.status === 'warm').length,
+    cold: leads.filter(l => l.status === 'cold').length,
+    qualified: leads.filter(l => l.status === 'qualified').length,
     avgScore: leads.length
       ? Math.round(leads.reduce((sum, l) => sum + l.score, 0) / leads.length)
       : 0,

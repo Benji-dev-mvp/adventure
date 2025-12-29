@@ -1,11 +1,11 @@
 import React from 'react';
 
-export const validateEmail = (email) => {
+export const validateEmail = email => {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(email);
 };
 
-export const validateRequired = (value) => {
+export const validateRequired = value => {
   return value && value.trim().length > 0;
 };
 
@@ -17,7 +17,7 @@ export const validateMaxLength = (value, max) => {
   return value && value.length <= max;
 };
 
-export const validateUrl = (url) => {
+export const validateUrl = url => {
   try {
     new URL(url);
     return true;
@@ -28,7 +28,7 @@ export const validateUrl = (url) => {
 
 export const validateURL = validateUrl;
 
-export const validatePhone = (phone) => {
+export const validatePhone = phone => {
   if (!phone) return false;
   const normalized = phone.replace(/[^\d]/g, '');
   if (normalized.length < 10 || normalized.length > 15) {
@@ -37,7 +37,7 @@ export const validatePhone = (phone) => {
   return /^\+?[\d\s\-()]+$/.test(phone);
 };
 
-export const validateNumber = (value) => {
+export const validateNumber = value => {
   return !isNaN(value) && value !== '';
 };
 
@@ -50,11 +50,11 @@ export const useFormValidation = (initialValues = {}) => {
     for (const rule of validators) {
       const error = rule(value);
       if (error) {
-        setErrors((prev) => ({ ...prev, [name]: error }));
+        setErrors(prev => ({ ...prev, [name]: error }));
         return false;
       }
     }
-    setErrors((prev) => {
+    setErrors(prev => {
       const next = { ...prev };
       delete next[name];
       return next;
@@ -71,8 +71,8 @@ export const useFormValidation = (initialValues = {}) => {
     return isValid;
   };
 
-  const clearError = (name) => {
-    setErrors((prev) => {
+  const clearError = name => {
+    setErrors(prev => {
       const next = { ...prev };
       delete next[name];
       return next;
@@ -80,7 +80,7 @@ export const useFormValidation = (initialValues = {}) => {
   };
 
   const setError = (name, message) => {
-    setErrors((prev) => ({ ...prev, [name]: message }));
+    setErrors(prev => ({ ...prev, [name]: message }));
   };
 
   return {

@@ -1,7 +1,7 @@
 /**
  * Types Index
  * Central export for all TypeScript type definitions
- * 
+ *
  * This file re-exports from modular type files for comprehensive coverage
  * while maintaining backwards compatibility with existing simple types.
  */
@@ -106,7 +106,6 @@ export type {
   CreateWebhookRequest,
   WebhookResponse,
 } from './api';
-
 
 // ============================================
 // Legacy Types (for backwards compatibility)

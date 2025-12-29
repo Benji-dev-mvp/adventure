@@ -1,6 +1,6 @@
 /**
  * Observability Console
- * 
+ *
  * Enterprise admin page for system health monitoring:
  * - System Health: API latency, error rates, uptime
  * - AI Infrastructure: Model latency, fallback rates
@@ -12,18 +12,15 @@ import { motion } from 'framer-motion';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import { 
-  SystemHealthCard,
-  UsageBar 
-} from '../components/enterprise';
+import { SystemHealthCard, UsageBar } from '../components/enterprise';
 import { useSystemStatus } from '../hooks/useEnterprise';
 import { useReducedMotion } from '../hooks/useMotion';
-import { 
-  Activity, 
-  Server, 
-  Zap, 
-  Database, 
-  Mail, 
+import {
+  Activity,
+  Server,
+  Zap,
+  Database,
+  Mail,
   Webhook,
   RefreshCw,
   AlertTriangle,
@@ -35,10 +32,20 @@ import {
   BarChart3,
   Settings,
   Bell,
-  Download
+  Download,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent, GradientText } from '../components/futuristic';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  LineChart,
+  Line,
+} from 'recharts';
 
 const AdminObservability = () => {
   const { status, serviceList, overallHealth, isMaintenanceMode } = useSystemStatus();
@@ -81,7 +88,7 @@ const AdminObservability = () => {
     setRefreshing(false);
   };
 
-  const getSLOStatus = (metric) => {
+  const getSLOStatus = metric => {
     if (metric.inverse) {
       return metric.actual <= metric.target;
     }
@@ -106,11 +113,11 @@ const AdminObservability = () => {
               Monitor system health, performance, and reliability metrics
             </p>
           </div>
-          
+
           <div className="flex items-center gap-3">
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               className="gap-2"
               onClick={handleRefresh}
               disabled={refreshing}
@@ -139,7 +146,9 @@ const AdminObservability = () => {
             <AlertTriangle className="h-6 w-6 text-amber-400" />
             <div>
               <h4 className="font-semibold text-amber-400">Maintenance Mode Active</h4>
-              <p className="text-sm text-slate-300">Read-only mode is in effect. No changes allowed.</p>
+              <p className="text-sm text-slate-300">
+                Read-only mode is in effect. No changes allowed.
+              </p>
             </div>
           </motion.div>
         )}
@@ -170,16 +179,37 @@ const AdminObservability = () => {
                     <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                     <XAxis dataKey="time" stroke="#94a3b8" tick={{ fontSize: 12 }} />
                     <YAxis stroke="#94a3b8" tick={{ fontSize: 12 }} />
-                    <Tooltip 
-                      contentStyle={{ 
-                        backgroundColor: '#1e293b', 
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: '#1e293b',
                         border: '1px solid #334155',
-                        borderRadius: '8px'
+                        borderRadius: '8px',
                       }}
                     />
-                    <Line type="monotone" dataKey="api" stroke="#06b6d4" strokeWidth={2} dot={false} name="API" />
-                    <Line type="monotone" dataKey="ai" stroke="#8b5cf6" strokeWidth={2} dot={false} name="AI" />
-                    <Line type="monotone" dataKey="email" stroke="#f97316" strokeWidth={2} dot={false} name="Email" />
+                    <Line
+                      type="monotone"
+                      dataKey="api"
+                      stroke="#06b6d4"
+                      strokeWidth={2}
+                      dot={false}
+                      name="API"
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="ai"
+                      stroke="#8b5cf6"
+                      strokeWidth={2}
+                      dot={false}
+                      name="AI"
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="email"
+                      stroke="#f97316"
+                      strokeWidth={2}
+                      dot={false}
+                      name="Email"
+                    />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
@@ -209,27 +239,27 @@ const AdminObservability = () => {
                   <AreaChart data={errorRateData}>
                     <defs>
                       <linearGradient id="errorGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3}/>
-                        <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
+                        <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                     <XAxis dataKey="time" stroke="#94a3b8" tick={{ fontSize: 12 }} />
                     <YAxis stroke="#94a3b8" tick={{ fontSize: 12 }} />
-                    <Tooltip 
-                      contentStyle={{ 
-                        backgroundColor: '#1e293b', 
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: '#1e293b',
                         border: '1px solid #334155',
-                        borderRadius: '8px'
+                        borderRadius: '8px',
                       }}
-                      formatter={(value) => [`${value}%`, 'Error Rate']}
+                      formatter={value => [`${value}%`, 'Error Rate']}
                     />
-                    <Area 
-                      type="monotone" 
-                      dataKey="rate" 
-                      stroke="#ef4444" 
+                    <Area
+                      type="monotone"
+                      dataKey="rate"
+                      stroke="#ef4444"
                       strokeWidth={2}
-                      fill="url(#errorGradient)" 
+                      fill="url(#errorGradient)"
                     />
                   </AreaChart>
                 </ResponsiveContainer>
@@ -251,11 +281,11 @@ const AdminObservability = () => {
                 {sloMetrics.map((metric, i) => {
                   const passing = getSLOStatus(metric);
                   return (
-                    <div 
+                    <div
                       key={i}
                       className={`p-4 rounded-lg border ${
-                        passing 
-                          ? 'bg-green-500/10 border-green-500/30' 
+                        passing
+                          ? 'bg-green-500/10 border-green-500/30'
                           : 'bg-red-500/10 border-red-500/30'
                       }`}
                     >
@@ -268,10 +298,12 @@ const AdminObservability = () => {
                         )}
                       </div>
                       <div className="text-2xl font-bold text-white">
-                        {metric.actual}{metric.unit}
+                        {metric.actual}
+                        {metric.unit}
                       </div>
                       <div className="text-xs text-slate-400 mt-1">
-                        Target: {metric.inverse ? '≤' : '≥'} {metric.target}{metric.unit}
+                        Target: {metric.inverse ? '≤' : '≥'} {metric.target}
+                        {metric.unit}
                       </div>
                     </div>
                   );
@@ -295,7 +327,7 @@ const AdminObservability = () => {
               </h3>
               <div className="grid md:grid-cols-4 gap-6">
                 <div className="space-y-4">
-                  <UsageBar 
+                  <UsageBar
                     label="Model Latency (P95)"
                     used={320}
                     limit={500}
@@ -304,24 +336,13 @@ const AdminObservability = () => {
                   />
                 </div>
                 <div className="space-y-4">
-                  <UsageBar 
-                    label="Token Usage"
-                    used={847000}
-                    limit={1000000}
-                    showTrend={false}
-                  />
+                  <UsageBar label="Token Usage" used={847000} limit={1000000} showTrend={false} />
                 </div>
                 <div className="space-y-4">
-                  <UsageBar 
-                    label="Fallback Rate"
-                    used={2}
-                    limit={100}
-                    unit="%"
-                    showTrend={false}
-                  />
+                  <UsageBar label="Fallback Rate" used={2} limit={100} unit="%" showTrend={false} />
                 </div>
                 <div className="space-y-4">
-                  <UsageBar 
+                  <UsageBar
                     label="Cache Hit Rate"
                     used={78}
                     limit={100}

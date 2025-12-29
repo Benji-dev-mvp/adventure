@@ -5,21 +5,24 @@ import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { useToast } from '../components/Toast';
 import { Badge } from '../components/ui/Badge';
-import { 
-  Search,
-  Zap,
-  CheckCircle2,
-  ExternalLink,
-  Star,
-  TrendingUp
-} from 'lucide-react';
+import { Search, Zap, CheckCircle2, ExternalLink, Star, TrendingUp } from 'lucide-react';
 import { Modal, ModalHeader, ModalTitle, ModalContent, ModalFooter } from '../components/ui/Modal';
-import { setActiveCRM, getActiveCRM, connectIntegration, isIntegrationConnected, extractIntegrationData, importLeads, parseCSVLeads, parseJSONLeads, isTrustedSource } from '../lib/dataService';
+import {
+  setActiveCRM,
+  getActiveCRM,
+  connectIntegration,
+  isIntegrationConnected,
+  extractIntegrationData,
+  importLeads,
+  parseCSVLeads,
+  parseJSONLeads,
+  isTrustedSource,
+} from '../lib/dataService';
 import VueWidgetHost from '../components/features/VueWidgetHost';
 import {
   WebhookBuilder,
   CalendarSync,
-  IntegrationHealth
+  IntegrationHealth,
 } from '../components/integrations/IntegrationComponents';
 
 const Integrations = () => {
@@ -213,8 +216,9 @@ const Integrations = () => {
   ];
 
   const filteredIntegrations = integrations.filter(integration => {
-    const matchesSearch = integration.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         integration.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch =
+      integration.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      integration.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || integration.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -222,8 +226,8 @@ const Integrations = () => {
   const connectedCount = integrations.filter(i => i.connected).length;
 
   return (
-    <DashboardLayout 
-      title="Integrations" 
+    <DashboardLayout
+      title="Integrations"
       subtitle="Connect your favorite tools and supercharge your workflow"
     >
       {/* Header Stats */}
@@ -289,10 +293,13 @@ const Integrations = () => {
         <CardContent>
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <Search
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
+                size={20}
+              />
               <Input
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={e => setSearchQuery(e.target.value)}
                 placeholder="Search integrations..."
                 className="pl-11"
               />
@@ -323,7 +330,9 @@ const Integrations = () => {
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-lg font-semibold text-gray-900">Universal Database Import</h3>
-              <p className="text-sm text-gray-600">Bring leads from any database via CSV or JSON export</p>
+              <p className="text-sm text-gray-600">
+                Bring leads from any database via CSV or JSON export
+              </p>
             </div>
             <div className="flex items-center gap-2">
               <Button variant="primary" onClick={() => setDbModalOpen(true)} className="gap-2">
@@ -340,7 +349,9 @@ const Integrations = () => {
           <Card key={integration.id} className="hover:shadow-lg transition-shadow">
             <CardContent className="p-6">
               <div className="flex items-start justify-between mb-4">
-                <div className={`w-14 h-14 ${integration.color} rounded-xl flex items-center justify-center text-2xl`}>
+                <div
+                  className={`w-14 h-14 ${integration.color} rounded-xl flex items-center justify-center text-2xl`}
+                >
                   {integration.logo}
                 </div>
                 {integration.popular && (
@@ -351,22 +362,16 @@ const Integrations = () => {
                 )}
               </div>
 
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                {integration.name}
-              </h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{integration.name}</h3>
 
-              <p className="text-sm text-gray-600 mb-4 line-clamp-2">
-                {integration.description}
-              </p>
+              <p className="text-sm text-gray-600 mb-4 line-clamp-2">{integration.description}</p>
 
               <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
                 <div className="flex items-center gap-1">
                   <Star size={14} className="text-yellow-400 fill-yellow-400" />
                   <span>{integration.rating}</span>
                 </div>
-                <div>
-                  {integration.users} users
-                </div>
+                <div>{integration.users} users</div>
               </div>
 
               {integration.connected || isIntegrationConnected(integration.name) ? (
@@ -392,7 +397,9 @@ const Integrations = () => {
                     size="sm"
                     onClick={async () => {
                       const res = await extractIntegrationData(integration.name);
-                      toast.success(`Imported ${res.importedCount} records from ${integration.name}`);
+                      toast.success(
+                        `Imported ${res.importedCount} records from ${integration.name}`
+                      );
                     }}
                   >
                     Import Data
@@ -429,12 +436,8 @@ const Integrations = () => {
             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Search size={32} className="text-gray-400" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              No integrations found
-            </h3>
-            <p className="text-gray-600">
-              Try adjusting your search or filters
-            </p>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No integrations found</h3>
+            <p className="text-gray-600">Try adjusting your search or filters</p>
           </CardContent>
         </Card>
       )}
@@ -449,10 +452,17 @@ const Integrations = () => {
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="text-sm text-gray-700">Source Name</label>
-                <Input value={dbSource} onChange={(e) => setDbSource(e.target.value)} placeholder="e.g., Postgres, MySQL" />
+                <Input
+                  value={dbSource}
+                  onChange={e => setDbSource(e.target.value)}
+                  placeholder="e.g., Postgres, MySQL"
+                />
                 <div className="mt-2">
                   {isTrustedSource(dbSource) ? (
-                    <Badge variant="success" className="gap-1"> <CheckCircle2 size={12} /> Trusted source</Badge>
+                    <Badge variant="success" className="gap-1">
+                      {' '}
+                      <CheckCircle2 size={12} /> Trusted source
+                    </Badge>
                   ) : (
                     <Badge variant="warning">Unverified source</Badge>
                   )}
@@ -463,7 +473,7 @@ const Integrations = () => {
                 <input
                   type="file"
                   accept=".csv,.json,application/json,text/csv"
-                  onChange={(e) => setDbFile(e.target.files?.[0] || null)}
+                  onChange={e => setDbFile(e.target.files?.[0] || null)}
                   className="block w-full text-sm text-gray-700"
                 />
               </div>
@@ -472,17 +482,22 @@ const Integrations = () => {
               <label className="text-sm text-gray-700">Or Paste Rows (CSV or JSON array)</label>
               <textarea
                 value={dbPaste}
-                onChange={(e) => setDbPaste(e.target.value)}
+                onChange={e => setDbPaste(e.target.value)}
                 rows={8}
                 className="w-full rounded-xl border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-accent-500"
                 placeholder="name,email,company,title,location,score,status\nJane Doe,jane@acme.com,Acme,VP Sales,NYC,88,warm"
               />
-              <p className="text-xs text-gray-500 mt-2">Required column: <span className="font-medium">email</span>. Optional: name, title, company, location, score, status.</p>
+              <p className="text-xs text-gray-500 mt-2">
+                Required column: <span className="font-medium">email</span>. Optional: name, title,
+                company, location, score, status.
+              </p>
             </div>
           </div>
         </ModalContent>
         <ModalFooter>
-          <Button variant="outline" onClick={() => setDbModalOpen(false)}>Cancel</Button>
+          <Button variant="outline" onClick={() => setDbModalOpen(false)}>
+            Cancel
+          </Button>
           <Button
             className="gap-2"
             onClick={async () => {
@@ -491,7 +506,8 @@ const Integrations = () => {
                 let leads = [];
                 if (dbFile) {
                   const text = await dbFile.text();
-                  const isJSON = dbFile.name.toLowerCase().endsWith('.json') || text.trim().startsWith('[');
+                  const isJSON =
+                    dbFile.name.toLowerCase().endsWith('.json') || text.trim().startsWith('[');
                   leads = isJSON ? parseJSONLeads(text, dbSource) : parseCSVLeads(text, dbSource);
                 } else if (dbPaste.trim()) {
                   const text = dbPaste.trim();
@@ -532,13 +548,15 @@ const Integrations = () => {
         <CardContent className="p-8 text-center">
           <div className="max-w-2xl mx-auto">
             <Zap size={48} className="text-white mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-white mb-3">
-              Need a Custom Integration?
-            </h3>
+            <h3 className="text-2xl font-bold text-white mb-3">Need a Custom Integration?</h3>
             <p className="text-white/90 mb-6">
               Our team can build custom integrations for your enterprise needs
             </p>
-            <Button size="lg" variant="outline" className="bg-white text-primary-500 hover:bg-gray-100">
+            <Button
+              size="lg"
+              variant="outline"
+              className="bg-white text-primary-500 hover:bg-gray-100"
+            >
               Contact Sales
             </Button>
           </div>

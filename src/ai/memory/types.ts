@@ -18,11 +18,11 @@ export interface MessagePattern {
   decayFactor: number;
 }
 
-export type EmotionalTone = 
-  | 'authoritative' 
-  | 'empathetic' 
-  | 'urgent' 
-  | 'curious' 
+export type EmotionalTone =
+  | 'authoritative'
+  | 'empathetic'
+  | 'urgent'
+  | 'curious'
   | 'collaborative'
   | 'provocative'
   | 'analytical'

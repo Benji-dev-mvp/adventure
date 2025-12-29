@@ -7,7 +7,9 @@ import { Loader2 } from 'lucide-react';
  * Stakeholder relationship mapping within accounts
  */
 
-const InfluenceMap = lazy(() => import('@/ai/brain/InfluenceMap').then(m => ({ default: m.InfluenceMap })));
+const InfluenceMap = lazy(() =>
+  import('@/ai/brain/InfluenceMap').then(m => ({ default: m.InfluenceMap }))
+);
 
 const PageLoader = () => (
   <div className="h-screen w-full flex items-center justify-center bg-gray-950">

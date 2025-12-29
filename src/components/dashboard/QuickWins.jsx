@@ -21,7 +21,7 @@ export const QuickWins = () => {
     },
   ];
 
-  const getPriorityColor = (priority) => {
+  const getPriorityColor = priority => {
     switch (priority) {
       case 'high':
         return 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400';
@@ -39,9 +39,7 @@ export const QuickWins = () => {
           <Sparkles className="text-accent-500" size={16} />
           <CardTitle>Quick Wins</CardTitle>
         </div>
-        <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">
-          AI-powered actions
-        </p>
+        <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">AI-powered actions</p>
       </CardHeader>
       <CardContent>
         <div className="space-y-2">
@@ -51,14 +49,14 @@ export const QuickWins = () => {
               className="p-2 rounded-lg border border-gray-200 dark:border-white/10 hover:border-accent-300 dark:hover:border-accent-500 transition-all group flex items-center justify-between"
             >
               <div className="flex items-center gap-2 flex-1">
-                <h4 className="font-semibold text-xs text-gray-900 dark:text-white">
-                  {win.title}
-                </h4>
-                <span className={`text-xs px-1.5 py-0.5 rounded-full ${getPriorityColor(win.priority)}`}>
+                <h4 className="font-semibold text-xs text-gray-900 dark:text-white">{win.title}</h4>
+                <span
+                  className={`text-xs px-1.5 py-0.5 rounded-full ${getPriorityColor(win.priority)}`}
+                >
                   {win.priority}
                 </span>
               </div>
-              
+
               <Button
                 size="sm"
                 variant="ghost"
@@ -69,7 +67,7 @@ export const QuickWins = () => {
             </div>
           ))}
         </div>
-        
+
         <div className="mt-3 text-center">
           <button className="text-xs text-gray-600 dark:text-gray-400 hover:text-accent-600 dark:hover:text-accent-400 flex items-center gap-1 mx-auto">
             <CheckCircle2 size={12} />

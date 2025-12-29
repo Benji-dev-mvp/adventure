@@ -97,6 +97,9 @@ const SetupWizard = lazy(() => import('./pages/SetupWizard'));
 // Changelog
 const Changelog = lazy(() => import('./pages/Changelog'));
 
+// Dev Tools
+const RouteHealthPage = lazy(() => import('./pages/RouteHealthPage'));
+
 // Campaign Detail
 const CampaignDetailCanvas = lazy(() => import('./pages/CampaignDetailCanvas'));
 
@@ -152,6 +155,9 @@ function App() {
                 
                 {/* ===== POST-LOGIN APP ROUTES (with unified shell) ===== */}
                 <Route element={<PostLoginShell />}>
+                  {/* Dev Tools (not in navConfig) */}
+                  <Route path="/health/routes" element={<RouteHealthPage />} />
+                  
                   {/* App Routes */}
                   <Route path="/marketing" element={<Marketing />} />
                   <Route path="/onboarding" element={<Onboarding />} />

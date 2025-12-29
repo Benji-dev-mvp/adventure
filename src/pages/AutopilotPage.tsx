@@ -1,4 +1,4 @@
-import { Suspense, lazy, useMemo } from 'react';
+import React, { Suspense, lazy, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Loader2, 

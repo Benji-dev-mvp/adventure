@@ -8,6 +8,7 @@
 
 @layer base {
   :root {
+    /* Base Colors */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -28,9 +29,31 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 221 83% 53%;
     --radius: 0.5rem;
+    
+    /* Extended Token System - Light Mode */
+    --bg-primary: 0 0% 100%;
+    --bg-secondary: 210 40% 98%;
+    --bg-tertiary: 210 40% 96%;
+    --surface: 0 0% 100%;
+    --surface-elevated: 0 0% 100%;
+    --text-primary: 222.2 84% 4.9%;
+    --text-secondary: 215.4 16.3% 46.9%;
+    --text-tertiary: 215.4 16.3% 56.9%;
+    --text-muted: 215 20.2% 65.1%;
+    --border-default: 214.3 31.8% 91.4%;
+    --border-emphasis: 214.3 31.8% 81.4%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --danger: 0 84.2% 60.2%;
+    --danger-foreground: 0 0% 100%;
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
   }
 
   .dark {
+    /* Base Colors - Dark Mode */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
@@ -50,6 +73,27 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 263 85% 61%;
+    
+    /* Extended Token System - Dark Mode */
+    --bg-primary: 222.2 47% 3%;
+    --bg-secondary: 217.2 32.6% 9.5%;
+    --bg-tertiary: 217.2 32.6% 12.5%;
+    --surface: 222.2 47% 5%;
+    --surface-elevated: 217.2 32.6% 12.5%;
+    --text-primary: 210 40% 98%;
+    --text-secondary: 215 20.2% 75.1%;
+    --text-tertiary: 215 20.2% 65.1%;
+    --text-muted: 215 20.2% 55.1%;
+    --border-default: 217.2 32.6% 17.5%;
+    --border-emphasis: 217.2 32.6% 27.5%;
+    --success: 142 76% 46%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 60%;
+    --warning-foreground: 0 0% 100%;
+    --danger: 0 72% 51%;
+    --danger-foreground: 0 0% 100%;
+    --info: 199 89% 58%;
+    --info-foreground: 0 0% 100%;
   }
 
   html {

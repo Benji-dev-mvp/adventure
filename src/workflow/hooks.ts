@@ -116,11 +116,11 @@ export function useWorkflow(workflowId?: string) {
     
     // Check for orphaned blocks
     const connectedBlocks = new Set([
-      ...connections.map(c => c.from.blockId),
-      ...connections.map(c => c.to.blockId),
+      ...connections.map((c: WorkflowConnection) => c.from.blockId),
+      ...connections.map((c: WorkflowConnection) => c.to.blockId),
     ]);
     
-    blocks.forEach(block => {
+    blocks.forEach((block: WorkflowBlock) => {
       if (!connectedBlocks.has(block.id) && blocks.length > 1) {
         errors.push(`Block "${block.name}" is not connected`);
       }
@@ -282,13 +282,13 @@ export function useBlockLibrary() {
     if (!query) return categories;
     
     const lowerQuery = query.toLowerCase();
-    return categories.map(cat => ({
+    return categories.map((cat: { id: string; label: string; blocks: Array<{ type: string; label: string; description: string }> }) => ({
       ...cat,
-      blocks: cat.blocks.filter(b =>
+      blocks: cat.blocks.filter((b: { type: string; label: string; description: string }) =>
         b.label.toLowerCase().includes(lowerQuery) ||
         b.description.toLowerCase().includes(lowerQuery)
       ),
-    })).filter(cat => cat.blocks.length > 0);
+    })).filter((cat: { blocks: any[] }) => cat.blocks.length > 0);
   }, [categories]);
 
   return {

@@ -1,83 +1,81 @@
-import React, { useState } from 'react';
-import DashboardLayout from '../components/layout/DashboardLayout';
+import React, { useState, useMemo } from 'react';
+import { PageScaffold, BadgePill, SectionHeader, EmptyState, LoadingSkeleton } from '@/components/layout/shared';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
-import { Badge } from '../components/ui/Badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/Select';
-import { Mail, Phone, Calendar, User, TrendingUp, Send, MousePointer, MessageCircle, Clock, Filter } from 'lucide-react';
+import { Mail, Phone, Calendar, User, TrendingUp, Send, MousePointer, MessageCircle, Clock, Filter, Activity as ActivityIcon } from 'lucide-react';
+import { useAppPlan } from '@/state/appStore';
+import { getDemoEvents } from '@/demo/demoData';
+import { cn } from '@/lib/utils';
 
 const ActivityFeed = () => {
+  const plan = useAppPlan();
   const [filter, setFilter] = useState('all');
   const [userFilter, setUserFilter] = useState('all');
 
-  const activities = [
-    { id: 1, type: 'email_sent', user: 'Sarah Chen', lead: 'John Doe', campaign: 'Q1 Outreach', time: '2 min ago', details: 'Subject: Partnership Opportunity' },
-    { id: 2, type: 'email_opened', user: 'Michael Rodriguez', lead: 'Jane Smith', campaign: 'Product Launch', time: '5 min ago', details: 'Opened 3 times' },
-    { id: 3, type: 'email_replied', user: 'Emily Watson', lead: 'Bob Johnson', campaign: 'Re-engagement', time: '12 min ago', details: 'Positive response - interested in demo' },
-    { id: 4, type: 'meeting_booked', user: 'James Kim', lead: 'Alice Williams', campaign: 'Enterprise Sales', time: '18 min ago', details: 'Demo scheduled for Jan 15' },
-    { id: 5, type: 'call_completed', user: 'Lisa Anderson', lead: 'Charlie Brown', campaign: 'Cold Calling', time: '25 min ago', details: 'Duration: 18:42, Sentiment: Positive' },
-    { id: 6, type: 'lead_scored', user: 'System', lead: 'Diana Prince', campaign: 'Auto-scoring', time: '32 min ago', details: 'Score increased: 45 → 82 (Hot)' },
-    { id: 7, type: 'email_clicked', user: 'Michael Rodriguez', lead: 'Eve Adams', campaign: 'Product Launch', time: '45 min ago', details: 'Clicked: Pricing page' },
-    { id: 8, type: 'email_sent', user: 'Sarah Chen', lead: 'Frank Miller', campaign: 'Q1 Outreach', time: '1 hour ago', details: 'Follow-up #2' },
-    { id: 9, type: 'meeting_booked', user: 'Emily Watson', lead: 'Grace Lee', campaign: 'Demo Requests', time: '1 hour ago', details: 'Discovery call scheduled' },
-    { id: 10, type: 'email_replied', user: 'James Kim', lead: 'Henry Ford', campaign: 'Enterprise Sales', time: '2 hours ago', details: 'Requested pricing information' },
-    { id: 11, type: 'lead_assigned', user: 'System', lead: 'Ivy Chen', campaign: 'Auto-routing', time: '2 hours ago', details: 'Assigned to: Michael Rodriguez' },
-    { id: 12, type: 'call_completed', user: 'Lisa Anderson', lead: 'Jack Wilson', campaign: 'Follow-up Calls', time: '3 hours ago', details: 'Duration: 12:15, Left voicemail' },
-  ];
+  // Get demo events from centralized data contract
+  const activities = useMemo(() => getDemoEvents(plan), [plan]);
 
-  const getActivityIcon = (type) => {
-    const icons = {
-      email_sent: <Send className="w-5 h-5 text-blue-600" />,
-      email_opened: <Mail className="w-5 h-5 text-green-600" />,
-      email_replied: <MessageCircle className="w-5 h-5 text-purple-600" />,
-      email_clicked: <MousePointer className="w-5 h-5 text-orange-600" />,
-      meeting_booked: <Calendar className="w-5 h-5 text-pink-600" />,
-      call_completed: <Phone className="w-5 h-5 text-indigo-600" />,
-      lead_scored: <TrendingUp className="w-5 h-5 text-yellow-600" />,
-      lead_assigned: <User className="w-5 h-5 text-teal-600" />
-    };
-    return icons[type] || <Clock className="w-5 h-5 text-gray-600" />;
+  // Map demo events to activity format
+  const mappedActivities = useMemo(() => {
+    return activities.map((event) => ({
+      id: event.id,
+      type: event.type,
+      user: event.actor,
+      action: event.action,
+      target: event.target,
+      details: event.details,
+      timestamp: event.timestamp,
+      importance: event.importance,
+      timeAgo: formatTimeAgo(event.timestamp),
+    }));
+  }, [activities]);
+
+  // Helper to format timestamp as "time ago"
+  function formatTimeAgo(timestamp: string): string {
+    const now = new Date();
+    const then = new Date(timestamp);
+    const diffMs = now.getTime() - then.getTime();
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMins / 60);
+    const diffDays = Math.floor(diffHours / 24);
+
+    if (diffDays > 0) return `${diffDays}d ago`;
+    if (diffHours > 0) return `${diffHours}h ago`;
+    if (diffMins > 0) return `${diffMins}m ago`;
+    return 'Just now';
+  }
+
+  const getActivityIcon = (type: string) => {
+    if (type === 'ai') return <MessageCircle className="w-5 h-5 text-cyan-600" />;
+    if (type === 'human') return <User className="w-5 h-5 text-purple-600" />;
+    if (type === 'system') return <ActivityIcon className="w-5 h-5 text-slate-600" />;
+    return <Clock className="w-5 h-5 text-gray-600" />;
   };
 
-  const getActivityLabel = (type) => {
-    const labels = {
-      email_sent: 'Email Sent',
-      email_opened: 'Email Opened',
-      email_replied: 'Email Replied',
-      email_clicked: 'Link Clicked',
-      meeting_booked: 'Meeting Booked',
-      call_completed: 'Call Completed',
-      lead_scored: 'Lead Scored',
-      lead_assigned: 'Lead Assigned'
-    };
-    return labels[type] || type;
+  const getActivityColor = (type: string, importance: string) => {
+    if (importance === 'high') return 'bg-red-100 dark:bg-red-500/20 border-red-500/30';
+    if (importance === 'medium') return 'bg-amber-100 dark:bg-amber-500/20 border-amber-500/30';
+    
+    if (type === 'ai') return 'bg-cyan-100 dark:bg-cyan-500/20 border-cyan-500/30';
+    if (type === 'human') return 'bg-purple-100 dark:bg-purple-500/20 border-purple-500/30';
+    return 'bg-slate-100 dark:bg-slate-800 border-slate-700';
   };
 
-  const getActivityColor = (type) => {
-    const colors = {
-      email_sent: 'bg-blue-100 dark:bg-blue-500/20',
-      email_opened: 'bg-green-100 dark:bg-green-500/20',
-      email_replied: 'bg-purple-100 dark:bg-purple-500/20',
-      email_clicked: 'bg-orange-100 dark:bg-orange-500/20',
-      meeting_booked: 'bg-pink-100 dark:bg-pink-500/20',
-      call_completed: 'bg-indigo-100 dark:bg-indigo-500/20',
-      lead_scored: 'bg-yellow-100 dark:bg-yellow-500/20',
-      lead_assigned: 'bg-teal-100 dark:bg-teal-500/20'
-    };
-    return colors[type] || 'bg-gray-100 dark:bg-gray-800';
-  };
-
-  const filteredActivities = activities.filter(activity => {
+  const filteredActivities = mappedActivities.filter(activity => {
     if (filter !== 'all' && activity.type !== filter) return false;
     if (userFilter !== 'all' && activity.user !== userFilter) return false;
     return true;
   });
 
-  const users = ['all', ...new Set(activities.map(a => a.user))];
-  const activityTypes = ['all', 'email_sent', 'email_opened', 'email_replied', 'email_clicked', 'meeting_booked', 'call_completed', 'lead_scored'];
+  const users = ['all', ...new Set(mappedActivities.map(a => a.user))];
+  const activityTypes = ['all', 'ai', 'human', 'system'];
 
   const stats = {
-    total: activities.length,
-    emails: activities.filter(a => a.type.startsWith('email')).length,
+    total: mappedActivities.length,
+    ai: mappedActivities.filter(a => a.type === 'ai').length,
+    human: mappedActivities.filter(a => a.type === 'human').length,
+    system: mappedActivities.filter(a => a.type === 'system').length,
+  };
     meetings: activities.filter(a => a.type === 'meeting_booked').length,
     calls: activities.filter(a => a.type === 'call_completed').length
   };

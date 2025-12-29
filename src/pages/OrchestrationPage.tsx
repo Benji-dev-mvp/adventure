@@ -5,8 +5,9 @@
  * Visualizes agent activity, task flow, and system health.
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useMemo, useCallback, useState } from 'react';
 import { NeuroCanvas } from '@/workflow/NeuroCanvas';
+import { useLocalStorage, usePrevious } from '@/hooks/advancedHooks';
 
 // === Types ===
 
@@ -32,58 +33,25 @@ interface SystemMetrics {
   throughput: number;
 }
 
-// === Mock Data ===
+type MetricChanges = Partial<Record<keyof SystemMetrics, number | undefined>>;
 
-const MOCK_AGENTS: AgentStatus[] = [
-  {
-    id: 'agent-1',
-    name: 'Hunter Alpha',
-    type: 'hunter',
-    status: 'working',
-    currentTask: 'Discovering accounts in FinTech vertical',
-    performance: { tasksCompleted: 145, successRate: 0.92, avgTime: 2.3 },
-  },
-  {
-    id: 'agent-2',
-    name: 'Scout Prime',
-    type: 'scout',
-    status: 'working',
-    currentTask: 'Researching Stripe decision makers',
-    performance: { tasksCompleted: 312, successRate: 0.88, avgTime: 4.1 },
-  },
-  {
-    id: 'agent-3',
-    name: 'Writer One',
-    type: 'writer',
-    status: 'idle',
-    performance: { tasksCompleted: 890, successRate: 0.85, avgTime: 1.2 },
-  },
-  {
-    id: 'agent-4',
-    name: 'Closer Beta',
-    type: 'closer',
-    status: 'working',
-    currentTask: 'Handling objection from Acme Corp',
-    performance: { tasksCompleted: 67, successRate: 0.78, avgTime: 8.5 },
-  },
-  {
-    id: 'agent-5',
-    name: 'RevOps Core',
-    type: 'revops',
-    status: 'waiting',
-    currentTask: 'Awaiting pipeline data refresh',
-    performance: { tasksCompleted: 23, successRate: 0.95, avgTime: 12.3 },
-  },
-];
+type TaskPriority = 'low' | 'medium' | 'high';
+type TaskStatus = 'queued' | 'in_progress' | 'completed';
 
-const INITIAL_METRICS: SystemMetrics = {
-  activeAgents: 4,
-  tasksInQueue: 127,
-  tasksCompleted: 1437,
-  avgLatency: 245,
-  errorRate: 0.02,
-  throughput: 42,
+interface TaskItem {
+  id: string;
+  type: string;
+  priority: TaskPriority;
+  status: TaskStatus;
+  latencyMs?: number;
+}
+
+const STORAGE_KEYS = {
+  agents: 'artisan_orchestration_agents',
+  tasks: 'artisan_orchestration_tasks',
 };
+
+const AGENT_TYPES: AgentStatus['type'][] = ['hunter', 'scout', 'writer', 'closer', 'revops'];
 
 // === Components ===
 
@@ -162,25 +130,31 @@ const AgentCard: React.FC<{ agent: AgentStatus }> = ({ agent }) => {
   );
 };
 
-const TaskQueue: React.FC<{ tasks: Array<{ id: string; type: string; priority: string }> }> = ({ tasks }) => (
+const TaskQueue: React.FC<{ tasks: TaskItem[] }> = ({ tasks }) => (
   <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
     <h3 className="text-lg font-semibold text-white mb-3">Task Queue</h3>
     <div className="space-y-2 max-h-64 overflow-y-auto">
-      {tasks.map((task) => (
-        <div 
-          key={task.id}
-          className="flex items-center justify-between p-2 bg-gray-700 rounded text-sm"
-        >
-          <span className="text-gray-300">{task.type}</span>
-          <span className={`px-2 py-0.5 rounded text-xs ${
-            task.priority === 'high' ? 'bg-red-500/20 text-red-400' :
-            task.priority === 'medium' ? 'bg-yellow-500/20 text-yellow-400' :
-            'bg-gray-600 text-gray-400'
-          }`}>
-            {task.priority}
-          </span>
+      {tasks.length === 0 ? (
+        <div className="text-sm text-gray-400 bg-gray-900/40 rounded-lg p-3">
+          No queued work. Add agents or ingest tasks to begin execution.
         </div>
-      ))}
+      ) : (
+        tasks.map((task) => (
+          <div
+            key={task.id}
+            className="flex items-center justify-between p-2 bg-gray-700 rounded text-sm"
+          >
+            <span className="text-gray-300">{task.type}</span>
+            <span className={`px-2 py-0.5 rounded text-xs ${
+              task.priority === 'high' ? 'bg-red-500/20 text-red-400' :
+              task.priority === 'medium' ? 'bg-yellow-500/20 text-yellow-400' :
+              'bg-gray-600 text-gray-400'
+            }`}>
+              {task.priority}
+            </span>
+          </div>
+        ))
+      )}
     </div>
   </div>
 );
@@ -188,39 +162,131 @@ const TaskQueue: React.FC<{ tasks: Array<{ id: string; type: string; priority: s
 // === Main Page ===
 
 export const OrchestrationPage: React.FC = () => {
-  const [agents, setAgents] = useState<AgentStatus[]>(MOCK_AGENTS);
-  const [metrics, setMetrics] = useState<SystemMetrics>(INITIAL_METRICS);
+  const [agents, setAgents] = useLocalStorage(STORAGE_KEYS.agents, [] as AgentStatus[]);
+  const [tasks, setTasks] = useLocalStorage(STORAGE_KEYS.tasks, [] as TaskItem[]);
   const [showCanvas, setShowCanvas] = useState(true);
-
-  // Simulate real-time updates
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMetrics(prev => ({
-        ...prev,
-        tasksCompleted: prev.tasksCompleted + Math.floor(Math.random() * 3),
-        tasksInQueue: Math.max(0, prev.tasksInQueue + Math.floor(Math.random() * 5) - 2),
-        throughput: prev.throughput + (Math.random() - 0.5) * 5,
-      }));
-      
-      // Update agent statuses
-      setAgents(prev => prev.map(agent => ({
+  const normalizedAgents = useMemo(
+    () =>
+      agents.map((agent) => ({
         ...agent,
-        status: Math.random() > 0.7 ? 'working' : agent.status,
-      })));
-    }, 2000);
+        performance: agent.performance ?? {
+          tasksCompleted: 0,
+          successRate: 0,
+          avgTime: 0,
+        },
+      })),
+    [agents]
+  );
+  const normalizedTasks = useMemo(
+    () =>
+      tasks.map((task) => ({
+        ...task,
+        priority: task.priority ?? 'medium',
+        status: task.status ?? 'queued',
+      })),
+    [tasks]
+  );
+  const metrics = useMemo<SystemMetrics>(() => {
+    const activeAgents = normalizedAgents.filter((agent) => agent.status === 'working').length;
+    const tasksCompleted = normalizedTasks.filter((task) => task.status === 'completed').length;
+    const queuedTasks = normalizedTasks.filter((task) => task.status !== 'completed');
+    const avgLatency = tasksCompleted
+      ? Math.round(
+          normalizedTasks.reduce((sum, task) => sum + (task.latencyMs ?? 0), 0) / tasksCompleted
+        )
+      : 0;
+    const errorRate = normalizedAgents.length
+      ? normalizedAgents.filter((agent) => agent.status === 'error').length / normalizedAgents.length
+      : 0;
+    const throughput = activeAgents ? tasksCompleted / activeAgents : 0;
 
-    return () => clearInterval(interval);
-  }, []);
+    return {
+      activeAgents,
+      tasksInQueue: queuedTasks.length,
+      tasksCompleted,
+      avgLatency,
+      errorRate,
+      throughput,
+    };
+  }, [normalizedAgents, normalizedTasks]);
 
-  const mockTasks = [
-    { id: '1', type: 'Prospect Research', priority: 'high' },
-    { id: '2', type: 'Email Generation', priority: 'high' },
-    { id: '3', type: 'Data Enrichment', priority: 'medium' },
-    { id: '4', type: 'Sequence Optimization', priority: 'medium' },
-    { id: '5', type: 'Reply Analysis', priority: 'low' },
-    { id: '6', type: 'Meeting Scheduling', priority: 'high' },
-    { id: '7', type: 'ICP Scoring', priority: 'medium' },
-  ];
+  const previousMetrics = usePrevious(metrics);
+  const metricChange = useMemo<MetricChanges>(() => {
+    if (!previousMetrics) return {};
+    const delta = (current: number, previous: number) => {
+      if (previous === 0) return undefined;
+      return Math.round(((current - previous) / previous) * 100);
+    };
+
+    return {
+      activeAgents: delta(metrics.activeAgents, previousMetrics.activeAgents),
+      tasksInQueue: delta(metrics.tasksInQueue, previousMetrics.tasksInQueue),
+      tasksCompleted: delta(metrics.tasksCompleted, previousMetrics.tasksCompleted),
+      avgLatency: delta(metrics.avgLatency, previousMetrics.avgLatency),
+      errorRate: delta(metrics.errorRate, previousMetrics.errorRate),
+      throughput: delta(metrics.throughput, previousMetrics.throughput),
+    };
+  }, [metrics, previousMetrics]);
+
+  const handleAddAgent = useCallback(() => {
+    setAgents((prev) => {
+      const nextType = AGENT_TYPES[prev.length % AGENT_TYPES.length];
+      const nextAgent: AgentStatus = {
+        id: `agent-${Date.now()}`,
+        name: `Agent ${prev.length + 1}`,
+        type: nextType,
+        status: 'idle',
+        performance: {
+          tasksCompleted: 0,
+          successRate: 0,
+          avgTime: 0,
+        },
+      };
+
+      return [...prev, nextAgent];
+    });
+  }, [setAgents]);
+
+  const handlePauseAll = useCallback(() => {
+    setAgents((prev) =>
+      prev.map((agent) => ({
+        ...agent,
+        status: agent.status === 'error' ? agent.status : 'waiting',
+      }))
+    );
+    setTasks((prev) =>
+      prev.map((task) => ({
+        ...task,
+        status: task.status === 'in_progress' ? 'queued' : task.status,
+      }))
+    );
+  }, [setAgents, setTasks]);
+
+  const handleRebalance = useCallback(() => {
+    let activeSlots = 0;
+    setAgents((prev) => {
+      const hasQueuedTasks = normalizedTasks.some((task) => task.status === 'queued');
+      const nextAgents = prev.map((agent, index) => ({
+        ...agent,
+        status: hasQueuedTasks && index % 2 === 0 ? 'working' : 'idle',
+      }));
+      activeSlots = nextAgents.filter((agent) => agent.status === 'working').length;
+      return nextAgents;
+    });
+    setTasks((prev) => {
+      return prev.map((task) => {
+        if (task.status !== 'queued') return task;
+        if (activeSlots <= 0) return task;
+        activeSlots -= 1;
+        return { ...task, status: 'in_progress' };
+      });
+    });
+  }, [setAgents, setTasks, normalizedTasks]);
+
+  const queuedTasks = useMemo(
+    () => normalizedTasks.filter((task) => task.status !== 'completed'),
+    [normalizedTasks]
+  );
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
@@ -246,12 +312,21 @@ export const OrchestrationPage: React.FC = () => {
 
       {/* Metrics Row */}
       <div className="grid grid-cols-6 gap-4 mb-6">
-        <MetricCard label="Active Agents" value={metrics.activeAgents} change={5} />
-        <MetricCard label="Tasks in Queue" value={metrics.tasksInQueue} />
-        <MetricCard label="Tasks Completed" value={metrics.tasksCompleted} change={12} />
+        <MetricCard label="Active Agents" value={metrics.activeAgents} change={metricChange.activeAgents} />
+        <MetricCard label="Tasks in Queue" value={metrics.tasksInQueue} change={metricChange.tasksInQueue} />
+        <MetricCard label="Tasks Completed" value={metrics.tasksCompleted} change={metricChange.tasksCompleted} />
         <MetricCard label="Avg Latency" value={metrics.avgLatency} unit="ms" />
-        <MetricCard label="Error Rate" value={`${(metrics.errorRate * 100).toFixed(1)}%`} change={-15} />
-        <MetricCard label="Throughput" value={metrics.throughput.toFixed(1)} unit="/min" change={8} />
+        <MetricCard
+          label="Error Rate"
+          value={`${(metrics.errorRate * 100).toFixed(1)}%`}
+          change={metricChange.errorRate}
+        />
+        <MetricCard
+          label="Throughput"
+          value={metrics.throughput.toFixed(1)}
+          unit="/min"
+          change={metricChange.throughput}
+        />
       </div>
 
       {/* Neural Canvas */}
@@ -281,7 +356,7 @@ export const OrchestrationPage: React.FC = () => {
         <div className="col-span-3">
           <h3 className="text-lg font-semibold mb-4">Agent Fleet</h3>
           <div className="grid grid-cols-3 gap-4">
-            {agents.map(agent => (
+            {normalizedAgents.map(agent => (
               <AgentCard key={agent.id} agent={agent} />
             ))}
           </div>
@@ -289,19 +364,28 @@ export const OrchestrationPage: React.FC = () => {
 
         {/* Task Queue */}
         <div>
-          <TaskQueue tasks={mockTasks} />
+          <TaskQueue tasks={queuedTasks} />
           
           {/* Quick Actions */}
           <div className="mt-4 bg-gray-800 rounded-xl p-4 border border-gray-700">
             <h3 className="text-lg font-semibold text-white mb-3">Quick Actions</h3>
             <div className="space-y-2">
-              <button className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors text-sm">
+              <button
+                onClick={handleAddAgent}
+                className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors text-sm"
+              >
                 + Add New Agent
               </button>
-              <button className="w-full px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors text-sm">
+              <button
+                onClick={handlePauseAll}
+                className="w-full px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors text-sm"
+              >
                 Pause All Tasks
               </button>
-              <button className="w-full px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors text-sm">
+              <button
+                onClick={handleRebalance}
+                className="w-full px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors text-sm"
+              >
                 Rebalance Workload
               </button>
               <button className="w-full px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors text-sm">

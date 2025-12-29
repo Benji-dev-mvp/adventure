@@ -125,3 +125,16 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+backend/.venv/
+backend/venv/
+backend/ENV/
+backend/env/
+*.db
+*.sqlite3

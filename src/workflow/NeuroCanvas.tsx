@@ -301,12 +301,10 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
         const sourceNode = nodes.find(n => n.id === edge.source);
         const targetNode = nodes.find(n => n.id === edge.target);
         if (sourceNode && targetNode) {
-          // Update particles with safe progress
+          // Update particles with safe progress (value, fallback, min, max)
           edge.particles.forEach(particle => {
-            particle.progress = safeNumber(particle.progress + particle.speed, 0, 0, 1);
-            if (particle.progress >= 1) {
-              particle.progress = 0;
-            }
+            const newProgress = safeNumber(particle.progress + particle.speed, particle.progress, 0, 1);
+            particle.progress = newProgress >= 1 ? 0 : newProgress;
           });
           
           drawEdge(ctx, sourceNode, targetNode, edge);

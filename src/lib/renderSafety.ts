@@ -195,11 +195,16 @@ export function safeChartData(data: any[]): ChartDataPoint[] {
 }
 
 /**
+ * Valid time window values
+ */
+export const VALID_TIME_WINDOWS = ['1d', '7d', '14d', '30d', '60d', '90d', '180d', '365d', 'all'] as const;
+export type TimeWindow = typeof VALID_TIME_WINDOWS[number];
+
+/**
  * Validate and normalize time window value
  */
-export function safeTimeWindow(value: any, fallback: '7d' | '30d' | '90d' = '30d'): string {
-  const validWindows = ['1d', '7d', '14d', '30d', '60d', '90d', '180d', '365d', 'all'];
-  if (validWindows.includes(value)) return value;
+export function safeTimeWindow(value: any, fallback: TimeWindow = '30d'): TimeWindow {
+  if (VALID_TIME_WINDOWS.includes(value)) return value as TimeWindow;
   return fallback;
 }
 

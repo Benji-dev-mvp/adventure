@@ -97,6 +97,9 @@ const SetupWizard = lazy(() => import('./pages/SetupWizard'));
 // Changelog
 const Changelog = lazy(() => import('./pages/Changelog'));
 
+// Dev Tools
+const RouteHealthPage = lazy(() => import('./pages/RouteHealthPage'));
+
 // Campaign Detail
 const CampaignDetailCanvas = lazy(() => import('./pages/CampaignDetailCanvas'));
 

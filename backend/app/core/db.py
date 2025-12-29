@@ -8,6 +8,7 @@ from sqlalchemy.orm import sessionmaker
 
 from app.core.config import settings
 from app.models.schemas import Lead, Campaign
+from app.models.activity import ActivityEvent  # Import for table creation
 
 logger = logging.getLogger(__name__)
 

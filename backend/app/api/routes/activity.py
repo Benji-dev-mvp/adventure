@@ -51,7 +51,7 @@ async def broadcast_event_delta(tenant_id: str, action: str, event: ActivityEven
                 "sourceObjectType": event.source_object_type,
                 "title": event.title,
                 "description": event.description,
-                "metadata": event.metadata,
+                "metadata": event.event_metadata,
                 "entityId": event.entity_id,
                 "entityType": event.entity_type,
                 "userId": event.user_id,

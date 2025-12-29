@@ -105,7 +105,7 @@ class ActivityEventBase(SQLModel):
     # Event payload
     title: str
     description: str
-    metadata: Dict[str, Any] = Field(default_factory=dict, sa_column=Column(JSON))
+    event_metadata: Dict[str, Any] = Field(default_factory=dict, sa_column=Column(JSON))
     
     # Entity relationships
     entity_id: Optional[str] = Field(default=None, index=True)
@@ -149,7 +149,7 @@ class ActivityEventCreate(SQLModel):
     source_object_type: Optional[str] = None
     title: str
     description: str
-    metadata: Optional[Dict[str, Any]] = None
+    event_metadata: Optional[Dict[str, Any]] = None
     entity_id: Optional[str] = None
     entity_type: Optional[str] = None
     user_id: Optional[str] = None

@@ -95,7 +95,7 @@ class ActivityStore:
             source_object_type=event_data.source_object_type,
             title=title,
             description=description,
-            metadata=event_data.metadata or {},
+            event_metadata=event_data.event_metadata or {},
             entity_id=event_data.entity_id,
             entity_type=event_data.entity_type,
             user_id=event_data.user_id,

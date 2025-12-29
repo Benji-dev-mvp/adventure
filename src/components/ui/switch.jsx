@@ -1,27 +1,30 @@
-"use client"
+'use client';
 
-import * as React from "react"
-import * as SwitchPrimitives from "@radix-ui/react-switch"
+import * as React from 'react';
+import * as SwitchPrimitives from '@radix-ui/react-switch';
+import PropTypes from 'prop-types';
 
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils';
 
 const Switch = React.forwardRef(({ className, label, ...props }, ref) => (
   <div className="flex items-center gap-2">
     <SwitchPrimitives.Root
       className={cn(
-        "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2",
-        "disabled:cursor-not-allowed disabled:opacity-50",
-        "data-[state=checked]:bg-accent-600 data-[state=unchecked]:bg-gray-300 dark:data-[state=unchecked]:bg-gray-700",
+        'peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2',
+        'disabled:cursor-not-allowed disabled:opacity-50',
+        'data-[state=checked]:bg-accent-600 data-[state=unchecked]:bg-gray-300 dark:data-[state=unchecked]:bg-gray-700',
         className
       )}
       {...props}
-      ref={ref}>
+      ref={ref}
+    >
       <SwitchPrimitives.Thumb
         className={cn(
-          "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform",
-          "data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
-        )} />
+          'pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform',
+          'data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0'
+        )}
+      />
     </SwitchPrimitives.Root>
     {label && (
       <label className="text-sm font-medium text-gray-700 dark:text-gray-300 cursor-pointer">
@@ -29,7 +32,12 @@ const Switch = React.forwardRef(({ className, label, ...props }, ref) => (
       </label>
     )}
   </div>
-))
-Switch.displayName = SwitchPrimitives.Root.displayName
+));
+Switch.displayName = SwitchPrimitives.Root.displayName;
 
-export { Switch }
+export { Switch };
+
+Switch.propTypes = {
+  className: PropTypes.string,
+  label: PropTypes.node,
+};

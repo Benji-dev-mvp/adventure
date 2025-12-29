@@ -1,9 +1,9 @@
 /**
  * EnterpriseSecurityHub.jsx
- * 
+ *
  * Unified security, compliance, and platform status visualization.
  * Data-driven with real-time animations and hover interactions.
- * 
+ *
  * CTO Design Principles:
  * - Security is visible, not hidden
  * - Real-time status builds trust
@@ -12,6 +12,7 @@
  */
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import {
   Shield,
   ShieldCheck,
@@ -36,13 +37,7 @@ import {
   ArrowUpRight,
   RefreshCw,
 } from 'lucide-react';
-import {
-  GlassCard,
-  GradientText,
-  GlowText,
-  RevealText,
-  CountUpText,
-} from '../futuristic';
+import { GlassCard, GradientText, GlowText, RevealText, CountUpText } from '../futuristic';
 
 // ============================================================================
 // DATA CONFIGURATION
@@ -127,35 +122,37 @@ const ACCESS_CONTROLS = [
 // ============================================================================
 
 // Security metric card with live indicator
-const SecurityMetricCard = ({ metric, isHovered, onHover, onLeave }) => {
+const SecurityMetricCard = ({ metric, isHovered, onHover }) => {
   const Icon = metric.icon;
   const isLiveValue = typeof metric.value === 'number';
 
   return (
-    <div
-      className="relative group"
-      onMouseEnter={onHover}
-      onMouseLeave={onLeave}
-    >
+    <div className="relative group" onMouseEnter={onHover} onMouseLeave={() => {}}>
       {/* Glow effect */}
-      <div className={`absolute -inset-1 rounded-xl bg-${metric.color}-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity`} />
-      
-      <GlassCard 
+      <div
+        className={`absolute -inset-1 rounded-xl bg-${metric.color}-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity`}
+      />
+
+      <GlassCard
         className={`relative p-5 transition-all duration-300 ${
           isHovered ? 'scale-105 border-white/30' : ''
         }`}
         variant="default"
       >
         <div className="flex items-start justify-between mb-3">
-          <div className={`w-10 h-10 rounded-lg bg-${metric.color}-500/20 flex items-center justify-center`}>
+          <div
+            className={`w-10 h-10 rounded-lg bg-${metric.color}-500/20 flex items-center justify-center`}
+          >
             <Icon size={20} className={`text-${metric.color}-400`} />
           </div>
           <div className="flex items-center gap-1.5">
-            <span className={`w-2 h-2 rounded-full ${
-              metric.status === 'active' || metric.status === 'secure' 
-                ? 'bg-emerald-400 animate-pulse' 
-                : 'bg-amber-400'
-            }`} />
+            <span
+              className={`w-2 h-2 rounded-full ${
+                metric.status === 'active' || metric.status === 'secure'
+                  ? 'bg-emerald-400 animate-pulse'
+                  : 'bg-amber-400'
+              }`}
+            />
             <span className="text-xs text-gray-400 capitalize">{metric.status}</span>
           </div>
         </div>
@@ -163,24 +160,43 @@ const SecurityMetricCard = ({ metric, isHovered, onHover, onLeave }) => {
         <div className="text-2xl font-bold text-white mb-1">
           {isLiveValue ? (
             <>
-              <CountUpText end={metric.value} duration={1500} decimals={metric.unit === '%' ? 2 : 0} />
+              <CountUpText
+                end={metric.value}
+                duration={1500}
+                decimals={metric.unit === '%' ? 2 : 0}
+              />
               {metric.unit}
             </>
           ) : (
             metric.value
           )}
         </div>
-        
+
         <div className="text-sm text-gray-400 mb-2">{metric.label}</div>
-        
+
         {isHovered && (
-          <div className="text-xs text-gray-500 animate-fadeIn">
-            {metric.description}
-          </div>
+          <div className="text-xs text-gray-500 animate-fadeIn">{metric.description}</div>
         )}
       </GlassCard>
     </div>
   );
+};
+
+SecurityMetricCard.propTypes = {
+  metric: PropTypes.shape({
+    icon: PropTypes.elementType.isRequired,
+    label: PropTypes.string.isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    unit: PropTypes.string,
+    color: PropTypes.string.isRequired,
+    status: PropTypes.string,
+    trend: PropTypes.shape({
+      direction: PropTypes.string,
+      value: PropTypes.number,
+    }),
+  }).isRequired,
+  isHovered: PropTypes.bool.isRequired,
+  onHover: PropTypes.func.isRequired,
 };
 
 // Service status row
@@ -192,7 +208,7 @@ const ServiceRow = ({ service, index }) => {
   };
 
   return (
-    <div 
+    <div
       className="flex items-center justify-between py-3 border-b border-white/5 last:border-0 group hover:bg-white/5 px-3 -mx-3 rounded-lg transition-all"
       style={{ animationDelay: `${index * 50}ms` }}
     >
@@ -200,7 +216,7 @@ const ServiceRow = ({ service, index }) => {
         <span className={`w-2 h-2 rounded-full ${statusColors[service.status]} animate-pulse`} />
         <span className="text-sm text-white">{service.name}</span>
       </div>
-      
+
       <div className="flex items-center gap-4 text-xs">
         <span className="text-gray-400">{service.latency}ms</span>
         <span className="text-emerald-400">{service.uptime}%</span>
@@ -212,7 +228,7 @@ const ServiceRow = ({ service, index }) => {
 // Compliance badge
 const ComplianceBadge = ({ badge, index }) => {
   return (
-    <div 
+    <div
       className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all group"
       style={{ animationDelay: `${index * 100}ms` }}
     >
@@ -230,7 +246,7 @@ const ComplianceBadge = ({ badge, index }) => {
 // Data region card
 const RegionCard = ({ region, isActive }) => {
   return (
-    <div 
+    <div
       className={`p-4 rounded-xl border transition-all duration-300 ${
         region.status === 'active'
           ? 'bg-white/5 border-white/10 hover:border-cyan-500/30'
@@ -239,7 +255,10 @@ const RegionCard = ({ region, isActive }) => {
     >
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
-          <Globe size={16} className={region.status === 'active' ? 'text-cyan-400' : 'text-gray-500'} />
+          <Globe
+            size={16}
+            className={region.status === 'active' ? 'text-cyan-400' : 'text-gray-500'}
+          />
           <span className="text-sm font-medium text-white">{region.label}</span>
         </div>
         {region.status === 'active' ? (
@@ -248,9 +267,9 @@ const RegionCard = ({ region, isActive }) => {
           <span className="text-xs text-gray-500">Coming Soon</span>
         )}
       </div>
-      
+
       <div className="text-xs text-gray-400">{region.location}</div>
-      
+
       {region.status === 'active' && (
         <div className="mt-2 flex items-center gap-1 text-xs text-emerald-400">
           <Zap size={12} />
@@ -264,21 +283,21 @@ const RegionCard = ({ region, isActive }) => {
 // Access control item
 const AccessControlItem = ({ control, index }) => {
   const Icon = control.icon;
-  
+
   return (
-    <div 
+    <div
       className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10 hover:border-purple-500/30 transition-all group"
       style={{ animationDelay: `${index * 80}ms` }}
     >
       <div className="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center">
         <Icon size={16} className="text-purple-400" />
       </div>
-      
+
       <div className="flex-1">
         <div className="text-sm font-medium text-white">{control.label}</div>
         <div className="text-xs text-gray-400">{control.description}</div>
       </div>
-      
+
       <div className="w-2 h-2 rounded-full bg-emerald-400" />
     </div>
   );
@@ -324,9 +343,9 @@ const EnterpriseSecurityHub = () => {
   }, [isVisible]);
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      id="security-hub" 
+      id="security-hub"
       className="py-20 lg:py-28 px-4 lg:px-6 relative overflow-hidden bg-[#030712]"
     >
       {/* Background effects */}
@@ -408,7 +427,7 @@ const EnterpriseSecurityHub = () => {
                   <FileCheck size={18} className="text-emerald-400" />
                   Compliance
                 </h3>
-                
+
                 <div className="grid grid-cols-2 gap-2">
                   {COMPLIANCE_BADGES.map((badge, index) => (
                     <ComplianceBadge key={badge.id} badge={badge} index={index} />
@@ -422,9 +441,9 @@ const EnterpriseSecurityHub = () => {
                   <Globe size={18} className="text-cyan-400" />
                   Data Residency
                 </h3>
-                
+
                 <div className="grid grid-cols-2 gap-3">
-                  {DATA_REGIONS.map((region) => (
+                  {DATA_REGIONS.map(region => (
                     <RegionCard key={region.id} region={region} />
                   ))}
                 </div>
@@ -465,12 +484,10 @@ const EnterpriseSecurityHub = () => {
             <div className="inline-flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
               <div className="flex items-center gap-2">
                 <Shield size={20} className="text-emerald-400" />
-                <span className="text-sm text-gray-300">
-                  Questions about security? 
-                </span>
+                <span className="text-sm text-gray-300">Questions about security?</span>
               </div>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="flex items-center gap-1 text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
               >
                 View Security Whitepaper

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { cn } from '../../lib/utils';
 import { ChevronLeft, ChevronRight, X, ZoomIn, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 
@@ -279,6 +280,26 @@ export const Carousel = ({ items = [], autoPlay = false, interval = 5000, classN
   );
 };
 
+ImageGallery.propTypes = {
+  images: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        url: PropTypes.string,
+        alt: PropTypes.string,
+        title: PropTypes.string
+      })
+    ])
+  ),
+  columns: PropTypes.shape({
+    xs: PropTypes.number,
+    sm: PropTypes.number,
+    md: PropTypes.number,
+    lg: PropTypes.number
+  }),
+  className: PropTypes.string
+};
+
 // Video Player
 export const VideoEmbed = ({ 
   src, 
@@ -326,6 +347,7 @@ export const VideoEmbed = ({
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
         >
+          <track kind="captions" srcLang="en" label="English" />
           Your browser does not support the video tag.
         </video>
 
@@ -373,6 +395,7 @@ export const VideoEmbed = ({
           poster={poster}
           className="w-full aspect-video rounded-xl"
         >
+          <track kind="captions" srcLang="en" label="English" />
           Your browser does not support the video tag.
         </video>
       )}
@@ -396,4 +419,21 @@ export const VideoIframe = ({ url, title, aspectRatio = '16/9', className }) => 
       />
     </div>
   );
+};
+
+VideoEmbed.propTypes = {
+  src: PropTypes.string.isRequired,
+  poster: PropTypes.string,
+  type: PropTypes.string,
+  title: PropTypes.string,
+  controls: PropTypes.bool,
+  autoplay: PropTypes.bool,
+  className: PropTypes.string
+};
+
+VideoIframe.propTypes = {
+  url: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  aspectRatio: PropTypes.string,
+  className: PropTypes.string
 };

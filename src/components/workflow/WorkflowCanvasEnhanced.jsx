@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 import ReactFlow, {
   Background,
   Controls,
@@ -27,12 +28,7 @@ import WorkflowToolbar from './WorkflowToolbar';
 import ExecutionOverlay from './ExecutionOverlay';
 import WorkflowMetricsPanel from './WorkflowMetricsPanel';
 import { useToast } from '../Toast';
-import { 
-  Trash2, 
-  Percent, 
-  Zap,
-  ArrowRight
-} from 'lucide-react';
+import { Trash2, Percent, Zap, ArrowRight } from 'lucide-react';
 
 // Custom node types
 const nodeTypes = {
@@ -85,7 +81,7 @@ const DataFlowEdge = ({
           className="animate-pulse"
         />
       )}
-      
+
       {/* Main path */}
       <path
         id={id}
@@ -95,14 +91,14 @@ const DataFlowEdge = ({
         markerEnd={markerEnd}
         fill="none"
       />
-      
+
       {/* Data flow particles for animated edges */}
       {isAnimated && (
         <circle r="4" fill="#6366f1">
           <animateMotion dur="1.5s" repeatCount="indefinite" path={edgePath} />
         </circle>
       )}
-      
+
       {/* Edge label with leads count */}
       {leadsCount > 0 && (
         <EdgeLabelRenderer>
@@ -121,6 +117,23 @@ const DataFlowEdge = ({
       )}
     </>
   );
+};
+
+DataFlowEdge.propTypes = {
+  id: PropTypes.string.isRequired,
+  sourceX: PropTypes.number.isRequired,
+  sourceY: PropTypes.number.isRequired,
+  targetX: PropTypes.number.isRequired,
+  targetY: PropTypes.number.isRequired,
+  sourcePosition: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
+  targetPosition: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
+  style: PropTypes.object,
+  markerEnd: PropTypes.any,
+  data: PropTypes.shape({
+    animated: PropTypes.bool,
+    leadsCount: PropTypes.number,
+    isActive: PropTypes.bool,
+  }),
 };
 
 // Edge types
@@ -150,7 +163,7 @@ const initialNodes = [
     id: 'trigger-1',
     type: 'trigger',
     position: { x: 400, y: 50 },
-    data: { 
+    data: {
       label: 'Campaign Start',
       triggerType: 'manual',
       description: 'Manually trigger campaign',
@@ -161,9 +174,9 @@ const initialNodes = [
 
 const initialEdges = [];
 
-const WorkflowCanvas = ({ 
-  onSave, 
-  onExecute, 
+const WorkflowCanvas = ({
+  onSave,
+  onExecute,
   campaignName = 'Untitled Campaign',
   readOnly = false,
   initialWorkflow = null,
@@ -173,12 +186,8 @@ const WorkflowCanvas = ({
 }) => {
   const { showToast } = useToast();
   const reactFlowWrapper = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(
-    initialWorkflow?.nodes || initialNodes
-  );
-  const [edges, setEdges, onEdgesChange] = useEdgesState(
-    initialWorkflow?.edges || initialEdges
-  );
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialWorkflow?.nodes || initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialWorkflow?.edges || initialEdges);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [selectedNode, setSelectedNode] = useState(null);
   const [isExecuting, setIsExecuting] = useState(false);
@@ -187,7 +196,7 @@ const WorkflowCanvas = ({
 
   // Handle new connections with visual feedback
   const onConnect = useCallback(
-    (params) => {
+    params => {
       const newEdge = {
         ...params,
         ...defaultEdgeOptions,
@@ -198,21 +207,21 @@ const WorkflowCanvas = ({
           isActive: true,
         },
       };
-      setEdges((eds) => addEdge(newEdge, eds));
+      setEdges(eds => addEdge(newEdge, eds));
       showToast('✓ Nodes connected successfully', 'success');
     },
     [setEdges, showToast]
   );
 
   // Handle drag over
-  const onDragOver = useCallback((event) => {
+  const onDragOver = useCallback(event => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
   }, []);
 
   // Handle drop from node creator
   const onDrop = useCallback(
-    (event) => {
+    event => {
       event.preventDefault();
 
       const type = event.dataTransfer.getData('application/reactflow');
@@ -229,30 +238,33 @@ const WorkflowCanvas = ({
   );
 
   // Add new node from panel
-  const onAddNode = useCallback((nodeType, position) => {
-    const newNodeId = `${nodeType}-${Date.now()}`;
-    const nodeDefaults = getNodeDefaults(nodeType);
-    
-    const newNode = {
-      id: newNodeId,
-      type: nodeType,
-      position: position || { x: 400, y: nodes.length * 150 + 100 },
-      data: {
-        ...nodeDefaults,
-        stats: { leads: 0, success: 0, pending: 0 },
-        onDelete: () => handleDeleteNode(newNodeId),
-        onDuplicate: () => handleDuplicateNode(newNodeId),
-        onChange: (data) => handleNodeDataChange(newNodeId, data),
-      },
-    };
+  const onAddNode = useCallback(
+    (nodeType, position) => {
+      const newNodeId = `${nodeType}-${Date.now()}`;
+      const nodeDefaults = getNodeDefaults(nodeType);
 
-    setNodes((nds) => [...nds, newNode]);
-    setIsPanelOpen(false);
-    showToast(`✓ ${nodeDefaults.label} added to canvas`, 'success');
-  }, [nodes, setNodes, showToast]);
+      const newNode = {
+        id: newNodeId,
+        type: nodeType,
+        position: position || { x: 400, y: nodes.length * 150 + 100 },
+        data: {
+          ...nodeDefaults,
+          stats: { leads: 0, success: 0, pending: 0 },
+          onDelete: () => handleDeleteNode(newNodeId),
+          onDuplicate: () => handleDuplicateNode(newNodeId),
+          onChange: data => handleNodeDataChange(newNodeId, data),
+        },
+      };
+
+      setNodes(nds => [...nds, newNode]);
+      setIsPanelOpen(false);
+      showToast(`✓ ${nodeDefaults.label} added to canvas`, 'success');
+    },
+    [nodes, setNodes, showToast]
+  );
 
   // Get default data for each node type
-  const getNodeDefaults = (type) => {
+  const getNodeDefaults = type => {
     const defaults = {
       trigger: { label: 'Campaign Trigger', triggerType: 'manual', description: 'Start campaign' },
       email: { label: 'Send Email', subject: '', content: '', tone: 'professional' },
@@ -267,44 +279,53 @@ const WorkflowCanvas = ({
   };
 
   // Delete node
-  const handleDeleteNode = useCallback((nodeId) => {
-    setNodes((nds) => nds.filter((node) => node.id !== nodeId));
-    setEdges((eds) => eds.filter((edge) => edge.source !== nodeId && edge.target !== nodeId));
-    showToast('Node deleted', 'success');
-  }, [setNodes, setEdges, showToast]);
+  const handleDeleteNode = useCallback(
+    nodeId => {
+      setNodes(nds => nds.filter(node => node.id !== nodeId));
+      setEdges(eds => eds.filter(edge => edge.source !== nodeId && edge.target !== nodeId));
+      showToast('Node deleted', 'success');
+    },
+    [setNodes, setEdges, showToast]
+  );
 
   // Duplicate node
-  const handleDuplicateNode = useCallback((nodeId) => {
-    const nodeToDuplicate = nodes.find((n) => n.id === nodeId);
-    if (!nodeToDuplicate) return;
+  const handleDuplicateNode = useCallback(
+    nodeId => {
+      const nodeToDuplicate = nodes.find(n => n.id === nodeId);
+      if (!nodeToDuplicate) return;
 
-    const newNodeId = `${nodeToDuplicate.type}-${Date.now()}`;
-    const newNode = {
-      ...nodeToDuplicate,
-      id: newNodeId,
-      position: {
-        x: nodeToDuplicate.position.x + 50,
-        y: nodeToDuplicate.position.y + 50,
-      },
-      data: {
-        ...nodeToDuplicate.data,
-        onDelete: () => handleDeleteNode(newNodeId),
-        onDuplicate: () => handleDuplicateNode(newNodeId),
-      },
-    };
+      const newNodeId = `${nodeToDuplicate.type}-${Date.now()}`;
+      const newNode = {
+        ...nodeToDuplicate,
+        id: newNodeId,
+        position: {
+          x: nodeToDuplicate.position.x + 50,
+          y: nodeToDuplicate.position.y + 50,
+        },
+        data: {
+          ...nodeToDuplicate.data,
+          onDelete: () => handleDeleteNode(newNodeId),
+          onDuplicate: () => handleDuplicateNode(newNodeId),
+        },
+      };
 
-    setNodes((nds) => [...nds, newNode]);
-    showToast('Node duplicated', 'success');
-  }, [nodes, setNodes, showToast]);
+      setNodes(nds => [...nds, newNode]);
+      showToast('Node duplicated', 'success');
+    },
+    [nodes, setNodes, showToast]
+  );
 
   // Update node data
-  const handleNodeDataChange = useCallback((nodeId, newData) => {
-    setNodes((nds) =>
-      nds.map((node) =>
-        node.id === nodeId ? { ...node, data: { ...node.data, ...newData } } : node
-      )
-    );
-  }, [setNodes]);
+  const handleNodeDataChange = useCallback(
+    (nodeId, newData) => {
+      setNodes(nds =>
+        nds.map(node =>
+          node.id === nodeId ? { ...node, data: { ...node.data, ...newData } } : node
+        )
+      );
+    },
+    [setNodes]
+  );
 
   // Handle node selection
   const onNodeClick = useCallback((event, node) => {
@@ -312,36 +333,39 @@ const WorkflowCanvas = ({
   }, []);
 
   // Apply AI-generated workflow
-  const applyAIWorkflow = useCallback((workflow) => {
-    if (!workflow?.nodes || !workflow?.edges) return;
-    
-    // Enhance nodes with callbacks
-    const enhancedNodes = workflow.nodes.map(node => ({
-      ...node,
-      data: {
-        ...node.data,
-        stats: { leads: Math.floor(Math.random() * 100), success: 0, pending: 0 },
-        onDelete: () => handleDeleteNode(node.id),
-        onDuplicate: () => handleDuplicateNode(node.id),
-        onChange: (data) => handleNodeDataChange(node.id, data),
-      },
-    }));
-    
-    // Enhance edges with styling
-    const enhancedEdges = workflow.edges.map(edge => ({
-      ...edge,
-      ...defaultEdgeOptions,
-      data: {
-        leadsCount: Math.floor(Math.random() * 50),
-        animated: false,
-        isActive: true,
-      },
-    }));
-    
-    setNodes(enhancedNodes);
-    setEdges(enhancedEdges);
-    showToast('✓ AI workflow applied successfully!', 'success');
-  }, [setNodes, setEdges, showToast]);
+  const applyAIWorkflow = useCallback(
+    workflow => {
+      if (!workflow?.nodes || !workflow?.edges) return;
+
+      // Enhance nodes with callbacks
+      const enhancedNodes = workflow.nodes.map(node => ({
+        ...node,
+        data: {
+          ...node.data,
+          stats: { leads: Math.floor(Math.random() * 100), success: 0, pending: 0 },
+          onDelete: () => handleDeleteNode(node.id),
+          onDuplicate: () => handleDuplicateNode(node.id),
+          onChange: data => handleNodeDataChange(node.id, data),
+        },
+      }));
+
+      // Enhance edges with styling
+      const enhancedEdges = workflow.edges.map(edge => ({
+        ...edge,
+        ...defaultEdgeOptions,
+        data: {
+          leadsCount: Math.floor(Math.random() * 50),
+          animated: false,
+          isActive: true,
+        },
+      }));
+
+      setNodes(enhancedNodes);
+      setEdges(enhancedEdges);
+      showToast('✓ AI workflow applied successfully!', 'success');
+    },
+    [setNodes, setEdges, showToast]
+  );
 
   // Save workflow
   const handleSave = useCallback(() => {
@@ -350,10 +374,10 @@ const WorkflowCanvas = ({
         id,
         type,
         position,
-        data: { 
-          ...data, 
-          onDelete: undefined, 
-          onDuplicate: undefined, 
+        data: {
+          ...data,
+          onDelete: undefined,
+          onDuplicate: undefined,
           onChange: undefined,
           stats: undefined,
         },
@@ -387,7 +411,7 @@ const WorkflowCanvas = ({
 
     // Simulate execution through nodes
     const executeNodes = async () => {
-      const triggerNode = nodes.find((n) => n.type === 'trigger');
+      const triggerNode = nodes.find(n => n.type === 'trigger');
       if (!triggerNode) {
         showToast('Workflow must start with a trigger', 'error');
         setIsExecuting(false);
@@ -404,51 +428,53 @@ const WorkflowCanvas = ({
         visited.add(currentId);
 
         // Update status to running
-        setExecutionStatus((prev) => ({ ...prev, [currentId]: 'running' }));
-        
+        setExecutionStatus(prev => ({ ...prev, [currentId]: 'running' }));
+
         // Animate incoming edges
-        setEdges((eds) => eds.map(e => 
-          e.target === currentId 
-            ? { ...e, data: { ...e.data, animated: true } }
-            : e
-        ));
-        
+        setEdges(eds =>
+          eds.map(e => (e.target === currentId ? { ...e, data: { ...e.data, animated: true } } : e))
+        );
+
         // Simulate execution time
-        await new Promise((resolve) => setTimeout(resolve, 1200));
+        await new Promise(resolve => setTimeout(resolve, 1200));
 
         // Update node with random stats
         const successRate = 0.6 + Math.random() * 0.3;
         leadsProcessed = Math.floor(leadsProcessed * successRate);
-        
-        setNodes((nds) => nds.map(n => 
-          n.id === currentId
-            ? { 
-                ...n, 
-                data: { 
-                  ...n.data, 
-                  stats: { 
-                    leads: leadsProcessed, 
-                    success: Math.floor(leadsProcessed * successRate),
-                    pending: Math.floor(leadsProcessed * 0.1),
-                  } 
-                } 
-              }
-            : n
-        ));
+
+        setNodes(nds =>
+          nds.map(n =>
+            n.id === currentId
+              ? {
+                  ...n,
+                  data: {
+                    ...n.data,
+                    stats: {
+                      leads: leadsProcessed,
+                      success: Math.floor(leadsProcessed * successRate),
+                      pending: Math.floor(leadsProcessed * 0.1),
+                    },
+                  },
+                }
+              : n
+          )
+        );
 
         // Update status to completed
-        setExecutionStatus((prev) => ({ ...prev, [currentId]: 'completed' }));
-        
+        setExecutionStatus(prev => ({ ...prev, [currentId]: 'completed' }));
+
         // Update edge with leads count
-        setEdges((eds) => eds.map(e => 
-          e.source === currentId 
-            ? { ...e, data: { ...e.data, leadsCount: leadsProcessed, animated: false } }
-            : e
-        ));
+        setEdges(eds =>
+          eds.map(e =>
+            e.source === currentId
+              ? { ...e, data: { ...e.data, leadsCount: leadsProcessed, animated: false } }
+              : e
+          )
+        );
 
         // Find connected nodes
-        const connectedEdges = edges.filter((e) => e.source === currentId);
-        connectedEdges.forEach((edge) => queue.push(edge.target));
+        const connectedEdges = edges.filter(e => e.source === currentId);
+        connectedEdges.forEach(edge => queue.push(edge.target));
       }
 
       setIsExecuting(false);
@@ -464,7 +490,7 @@ const WorkflowCanvas = ({
     // Group nodes by their depth in the graph
     const nodeDepths = {};
     const visited = new Set();
-    
+
     const triggerNode = nodes.find(n => n.type === 'trigger');
     if (!triggerNode) {
       // Simple vertical layout if no trigger
@@ -484,10 +510,12 @@ const WorkflowCanvas = ({
       if (visited.has(id)) continue;
       visited.add(id);
       nodeDepths[id] = depth;
-      
-      edges.filter(e => e.source === id).forEach(edge => {
-        queue.push({ id: edge.target, depth: depth + 1 });
-      });
+
+      edges
+        .filter(e => e.source === id)
+        .forEach(edge => {
+          queue.push({ id: edge.target, depth: depth + 1 });
+        });
     }
 
     // Group by depth
@@ -505,7 +533,7 @@ const WorkflowCanvas = ({
       const index = levelNodes.indexOf(node);
       const totalWidth = levelNodes.length * 280;
       const startX = 400 - totalWidth / 2 + 140;
-      
+
       return {
         ...node,
         position: {
@@ -520,7 +548,7 @@ const WorkflowCanvas = ({
   }, [nodes, edges, setNodes, showToast]);
 
   // Minimap node color
-  const nodeColor = (node) => {
+  const nodeColor = node => {
     const colors = {
       trigger: '#22c55e',
       email: '#3b82f6',
@@ -539,17 +567,17 @@ const WorkflowCanvas = ({
       {/* Main Canvas */}
       <div className="flex-1" ref={reactFlowWrapper}>
         <ReactFlow
-          nodes={nodes.map((node) => ({
+          nodes={nodes.map(node => ({
             ...node,
             data: {
               ...node.data,
               executionStatus: executionStatus[node.id],
               onDelete: () => handleDeleteNode(node.id),
               onDuplicate: () => handleDuplicateNode(node.id),
-              onChange: (data) => handleNodeDataChange(node.id, data),
+              onChange: data => handleNodeDataChange(node.id, data),
             },
           }))}
-          edges={edges.map((edge) => ({
+          edges={edges.map(edge => ({
             ...edge,
             data: {
               ...edge.data,
@@ -575,16 +603,11 @@ const WorkflowCanvas = ({
           connectionLineType="smoothstep"
         >
           {/* Dotted Grid Background */}
-          <Background 
-            color="#94a3b8" 
-            gap={20} 
-            size={1.5}
-            variant="dots"
-          />
-          
+          <Background color="#94a3b8" gap={20} size={1.5} variant="dots" />
+
           <Controls className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg" />
-          
-          <MiniMap 
+
+          <MiniMap
             nodeColor={nodeColor}
             className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg"
             maskColor="rgba(0, 0, 0, 0.1)"
@@ -627,10 +650,7 @@ const WorkflowCanvas = ({
           {/* Execution Status */}
           {isExecuting && (
             <Panel position="top-right">
-              <ExecutionOverlay 
-                status={executionStatus}
-                nodes={nodes}
-              />
+              <ExecutionOverlay status={executionStatus} nodes={nodes} />
             </Panel>
           )}
 
@@ -638,12 +658,12 @@ const WorkflowCanvas = ({
           <Panel position="bottom-left">
             <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-3 py-2 rounded-lg text-xs text-gray-600 dark:text-gray-400 flex items-center gap-4">
               <span className="flex items-center gap-1">
-                <span className="w-6 h-6 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-[10px]">⌘</span>
+                <span className="w-6 h-6 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-[10px]">
+                  ⌘
+                </span>
                 + drag to pan
               </span>
-              <span className="flex items-center gap-1">
-                Scroll to zoom
-              </span>
+              <span className="flex items-center gap-1">Scroll to zoom</span>
               <span className="flex items-center gap-1">
                 Drag from <span className="w-2 h-2 bg-indigo-500 rounded-full"></span> to connect
               </span>
@@ -655,11 +675,7 @@ const WorkflowCanvas = ({
       {/* Right Sidebar - Metrics Panel */}
       {showMetrics && nodes.length > 0 && (
         <div className="w-72 border-l border-gray-200 dark:border-gray-700 overflow-y-auto">
-          <WorkflowMetricsPanel 
-            nodes={nodes}
-            edges={edges}
-            executionData={executionData}
-          />
+          <WorkflowMetricsPanel nodes={nodes} edges={edges} executionData={executionData} />
         </div>
       )}
 
@@ -671,6 +687,20 @@ const WorkflowCanvas = ({
       />
     </div>
   );
+};
+
+WorkflowCanvas.propTypes = {
+  onSave: PropTypes.func.isRequired,
+  onExecute: PropTypes.func.isRequired,
+  campaignName: PropTypes.string,
+  readOnly: PropTypes.bool,
+  initialWorkflow: PropTypes.shape({
+    nodes: PropTypes.array,
+    edges: PropTypes.array,
+  }),
+  executionData: PropTypes.object,
+  onAIAssistantOpen: PropTypes.func,
+  showMetrics: PropTypes.bool,
 };
 
 // Add CSS for dash animation

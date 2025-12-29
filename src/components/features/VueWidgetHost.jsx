@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * VueWidgetHost - DEPRECATED
@@ -22,6 +23,10 @@ const VueWidgetHost = ({ title = 'Vue Widget' }) => {
       </div>
     </div>
   );
+};
+
+VueWidgetHost.propTypes = {
+  title: PropTypes.string
 };
 
 export default VueWidgetHost;

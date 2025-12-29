@@ -1,8 +1,9 @@
 import React from 'react';
-import { 
-  TrendingUp, 
-  Users, 
-  Mail, 
+import PropTypes from 'prop-types';
+import {
+  TrendingUp,
+  Users,
+  Mail,
   MousePointer,
   Clock,
   CheckCircle,
@@ -10,20 +11,20 @@ import {
   BarChart3,
   ArrowUpRight,
   ArrowDownRight,
-  Zap
+  Zap,
 } from 'lucide-react';
 
 // Real-time workflow metrics display
-const WorkflowMetricsPanel = ({ 
-  nodes = [], 
-  edges = [], 
+const WorkflowMetricsPanel = ({
+  nodes = [],
+  edges = [],
   executionData = null,
   campaignStats = null,
 }) => {
   // Calculate workflow complexity
   const complexity = nodes.length + edges.length;
   const complexityLevel = complexity < 5 ? 'Simple' : complexity < 10 ? 'Moderate' : 'Complex';
-  
+
   // Mock stats if not provided
   const stats = campaignStats || {
     totalLeads: 1250,
@@ -132,9 +133,7 @@ const WorkflowMetricsPanel = ({
                     {type === 'abtest' ? 'A/B Test' : type}
                   </span>
                 </div>
-                <span className="text-sm font-medium text-gray-900 dark:text-white">
-                  {count}
-                </span>
+                <span className="text-sm font-medium text-gray-900 dark:text-white">{count}</span>
               </div>
             ))}
           </div>
@@ -143,19 +142,28 @@ const WorkflowMetricsPanel = ({
         {/* Complexity Badge */}
         <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
           <span className="text-sm text-gray-600 dark:text-gray-400">Workflow Complexity</span>
-          <span className={`text-sm font-medium px-2 py-0.5 rounded-full ${
-            complexityLevel === 'Simple' 
-              ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
-              : complexityLevel === 'Moderate'
-              ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400'
-              : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
-          }`}>
+          <span
+            className={`text-sm font-medium px-2 py-0.5 rounded-full ${
+              complexityLevel === 'Simple'
+                ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                : complexityLevel === 'Moderate'
+                  ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400'
+                  : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+            }`}
+          >
             {complexityLevel}
           </span>
         </div>
       </div>
     </div>
   );
+};
+
+WorkflowMetricsPanel.propTypes = {
+  nodes: PropTypes.array,
+  edges: PropTypes.array,
+  executionData: PropTypes.object,
+  campaignStats: PropTypes.object,
 };
 
 // Individual metric card
@@ -174,9 +182,11 @@ const MetricCard = ({ label, value, change, icon: Icon, color }) => {
           <Icon className="w-3.5 h-3.5" />
         </div>
         {change !== undefined && (
-          <div className={`flex items-center text-xs ${
-            change >= 0 ? 'text-green-600' : 'text-red-600'
-          }`}>
+          <div
+            className={`flex items-center text-xs ${
+              change >= 0 ? 'text-green-600' : 'text-red-600'
+            }`}
+          >
             {change >= 0 ? (
               <ArrowUpRight className="w-3 h-3" />
             ) : (
@@ -192,6 +202,14 @@ const MetricCard = ({ label, value, change, icon: Icon, color }) => {
   );
 };
 
+MetricCard.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  change: PropTypes.number,
+  icon: PropTypes.elementType.isRequired,
+  color: PropTypes.oneOf(['blue', 'green', 'purple', 'emerald']).isRequired,
+};
+
 // Node type color indicator
 const NodeTypeIndicator = ({ type }) => {
   const colors = {
@@ -205,9 +223,11 @@ const NodeTypeIndicator = ({ type }) => {
     abtest: 'bg-indigo-500',
   };
 
-  return (
-    <div className={`w-3 h-3 rounded-full ${colors[type] || 'bg-gray-500'}`} />
-  );
+  return <div className={`w-3 h-3 rounded-full ${colors[type] || 'bg-gray-500'}`} />;
+};
+
+NodeTypeIndicator.propTypes = {
+  type: PropTypes.string.isRequired,
 };
 
 export default WorkflowMetricsPanel;

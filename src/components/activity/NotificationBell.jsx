@@ -48,7 +48,7 @@ const colorMap = {
   red: 'bg-red-500/20 text-red-500 border-red-500/30',
 };
 
-const formatTimeAgo = (date) => {
+const formatTimeAgo = date => {
   const now = new Date();
   const diff = now - new Date(date);
   const minutes = Math.floor(diff / 60000);
@@ -72,8 +72,8 @@ const ActivityItem = ({ activity, onMarkAsRead, onNavigate }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, x: -20 }}
       className={cn(
-        "flex gap-3 p-4 border-b border-gray-100 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors cursor-pointer",
-        !activity.read && "bg-accent-50/30 dark:bg-accent-500/5"
+        'flex gap-3 p-4 border-b border-gray-100 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors cursor-pointer',
+        !activity.read && 'bg-accent-50/30 dark:bg-accent-500/5'
       )}
       onClick={() => {
         onMarkAsRead(activity.id);
@@ -82,18 +82,20 @@ const ActivityItem = ({ activity, onMarkAsRead, onNavigate }) => {
         }
       }}
     >
-      <div className={cn("p-2 rounded-lg border shrink-0", colorClass)}>
+      <div className={cn('p-2 rounded-lg border shrink-0', colorClass)}>
         <Icon className="h-4 w-4" />
       </div>
-      
+
       <div className="flex-1 min-w-0">
         <div className="flex items-start justify-between gap-2">
-          <p className={cn(
-            "text-sm",
-            activity.read 
-              ? "text-gray-600 dark:text-gray-400" 
-              : "text-gray-900 dark:text-white font-medium"
-          )}>
+          <p
+            className={cn(
+              'text-sm',
+              activity.read
+                ? 'text-gray-600 dark:text-gray-400'
+                : 'text-gray-900 dark:text-white font-medium'
+            )}
+          >
             {activity.title}
           </p>
           {!activity.read && (
@@ -107,11 +109,11 @@ const ActivityItem = ({ activity, onMarkAsRead, onNavigate }) => {
           {formatTimeAgo(activity.timestamp)}
         </p>
       </div>
-      
+
       {activity.entityId && (
-        <button 
+        <button
           className="p-1 hover:bg-gray-200 dark:hover:bg-white/10 rounded shrink-0 self-center"
-          onClick={(e) => {
+          onClick={e => {
             e.stopPropagation();
             onNavigate(activity);
           }}
@@ -127,18 +129,20 @@ const FilterButton = ({ active, onClick, children, count }) => (
   <button
     onClick={onClick}
     className={cn(
-      "px-3 py-1.5 text-xs font-medium rounded-full transition-colors whitespace-nowrap",
+      'px-3 py-1.5 text-xs font-medium rounded-full transition-colors whitespace-nowrap',
       active
-        ? "bg-accent-500 text-white"
-        : "bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/20"
+        ? 'bg-accent-500 text-white'
+        : 'bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/20'
     )}
   >
     {children}
     {count > 0 && (
-      <span className={cn(
-        "ml-1.5 px-1.5 py-0.5 rounded-full text-xs",
-        active ? "bg-white/20" : "bg-gray-200 dark:bg-white/10"
-      )}>
+      <span
+        className={cn(
+          'ml-1.5 px-1.5 py-0.5 rounded-full text-xs',
+          active ? 'bg-white/20' : 'bg-gray-200 dark:bg-white/10'
+        )}
+      >
         {count}
       </span>
     )}
@@ -148,7 +152,7 @@ const FilterButton = ({ active, onClick, children, count }) => (
 export const NotificationBell = ({ className }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  
+
   const {
     activities,
     groupedActivities,
@@ -161,7 +165,7 @@ export const NotificationBell = ({ className }) => {
     refresh,
   } = useActivityFeed();
 
-  const handleNavigate = (activity) => {
+  const handleNavigate = activity => {
     setIsOpen(false);
     switch (activity.entityType) {
       case 'campaign':
@@ -179,7 +183,7 @@ export const NotificationBell = ({ className }) => {
   };
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn('relative', className)}>
       {/* Bell Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -204,7 +208,7 @@ export const NotificationBell = ({ className }) => {
               tabIndex={0}
               className="fixed inset-0 z-40"
               onClick={() => setIsOpen(false)}
-              onKeyDown={(e) => {
+              onKeyDown={e => {
                 if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') {
                   e.preventDefault();
                   setIsOpen(false);
@@ -224,9 +228,7 @@ export const NotificationBell = ({ className }) => {
               {/* Header */}
               <div className="p-4 border-b border-gray-100 dark:border-white/10">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    Activity
-                  </h3>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Activity</h3>
                   <div className="flex items-center gap-2">
                     <button
                       onClick={refresh}
@@ -234,7 +236,9 @@ export const NotificationBell = ({ className }) => {
                       className="p-1.5 hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg transition-colors"
                       title="Refresh"
                     >
-                      <RefreshCw className={cn("h-4 w-4 text-gray-500", isLoading && "animate-spin")} />
+                      <RefreshCw
+                        className={cn('h-4 w-4 text-gray-500', isLoading && 'animate-spin')}
+                      />
                     </button>
                     <button
                       onClick={markAllAsRead}
@@ -283,11 +287,7 @@ export const NotificationBell = ({ className }) => {
                   >
                     Leads
                   </FilterButton>
-                  <FilterButton
-                    active={filter === 'ai'}
-                    onClick={() => setFilter('ai')}
-                    count={0}
-                  >
+                  <FilterButton active={filter === 'ai'} onClick={() => setFilter('ai')} count={0}>
                     AI
                   </FilterButton>
                 </div>
@@ -308,7 +308,7 @@ export const NotificationBell = ({ className }) => {
                         <div className="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider bg-gray-50 dark:bg-white/5">
                           Today
                         </div>
-                        {groupedActivities.today.map((activity) => (
+                        {groupedActivities.today.map(activity => (
                           <ActivityItem
                             key={activity.id}
                             activity={activity}
@@ -325,7 +325,7 @@ export const NotificationBell = ({ className }) => {
                         <div className="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider bg-gray-50 dark:bg-white/5">
                           Yesterday
                         </div>
-                        {groupedActivities.yesterday.map((activity) => (
+                        {groupedActivities.yesterday.map(activity => (
                           <ActivityItem
                             key={activity.id}
                             activity={activity}
@@ -342,7 +342,7 @@ export const NotificationBell = ({ className }) => {
                         <div className="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider bg-gray-50 dark:bg-white/5">
                           Earlier
                         </div>
-                        {groupedActivities.older.map((activity) => (
+                        {groupedActivities.older.map(activity => (
                           <ActivityItem
                             key={activity.id}
                             activity={activity}

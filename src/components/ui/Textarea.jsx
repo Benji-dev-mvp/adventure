@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import PropTypes from 'prop-types';
 import { cn } from '@/lib/utils';
 
 const Textarea = forwardRef(({ 
@@ -60,6 +61,16 @@ const Textarea = forwardRef(({
 });
 
 Textarea.displayName = 'Textarea';
+
+Textarea.propTypes = {
+  className: PropTypes.string,
+  label: PropTypes.string,
+  error: PropTypes.string,
+  helperText: PropTypes.string,
+  required: PropTypes.bool,
+  id: PropTypes.string,
+  rows: PropTypes.number,
+};
 
 export { Textarea };
 export default Textarea;

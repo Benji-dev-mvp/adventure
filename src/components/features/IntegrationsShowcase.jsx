@@ -31,7 +31,9 @@ const replacements = [
 
 const Tile = ({ item }) => (
   <div className="group relative flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-white/25 hover:bg-white/10">
-    <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} text-sm font-bold text-white shadow-lg`}>
+    <div
+      className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} text-sm font-bold text-white shadow-lg`}
+    >
       {item.short}
     </div>
     <span className="sr-only">{item.name}</span>
@@ -51,18 +53,30 @@ const IntegrationsShowcase = () => {
     <section className="px-6 py-20">
       <div className="mx-auto max-w-6xl">
         <div className="relative overflow-hidden rounded-[32px] bg-[#0b072d] text-white shadow-2xl">
-          <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-artisan-purple blur-3xl opacity-40" aria-hidden />
-          <div className="pointer-events-none absolute -bottom-28 -left-20 h-80 w-80 rounded-full bg-artisan-magenta blur-3xl opacity-30" aria-hidden />
+          <div
+            className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-artisan-purple blur-3xl opacity-40"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute -bottom-28 -left-20 h-80 w-80 rounded-full bg-artisan-magenta blur-3xl opacity-30"
+            aria-hidden
+          />
 
           <div className="relative grid gap-12 p-10 md:p-14 lg:grid-cols-[1fr_auto_1fr] items-center">
             <div className="space-y-6">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/60">Integrations</p>
-                <h3 className="mt-2 text-3xl font-bold leading-tight md:text-4xl">Plays Well With Others</h3>
-                <p className="mt-3 max-w-md text-lg text-white/70">Easily integrates with the tools you already use.</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/60">
+                  Integrations
+                </p>
+                <h3 className="mt-2 text-3xl font-bold leading-tight md:text-4xl">
+                  Plays Well With Others
+                </h3>
+                <p className="mt-3 max-w-md text-lg text-white/70">
+                  Easily integrates with the tools you already use.
+                </p>
               </div>
               <div className="grid grid-cols-3 gap-4 max-w-md">
-                {integrations.map((item) => (
+                {integrations.map(item => (
                   <Tile key={item.name} item={item} />
                 ))}
               </div>
@@ -76,12 +90,18 @@ const IntegrationsShowcase = () => {
 
             <div className="space-y-6">
               <div className="text-left lg:text-right">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/60">Consolidation</p>
-                <h3 className="mt-2 text-3xl font-bold leading-tight md:text-4xl">Replaces Them Entirely</h3>
-                <p className="mt-3 text-lg text-white/70 lg:ml-auto lg:max-w-md">Consolidate dozens of tools with one Artisan subscription.</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/60">
+                  Consolidation
+                </p>
+                <h3 className="mt-2 text-3xl font-bold leading-tight md:text-4xl">
+                  Replaces Them Entirely
+                </h3>
+                <p className="mt-3 text-lg text-white/70 lg:ml-auto lg:max-w-md">
+                  Consolidate dozens of tools with one Artisan subscription.
+                </p>
               </div>
               <div className="grid grid-cols-3 gap-4 sm:grid-cols-4">
-                {replacements.map((item) => (
+                {replacements.map(item => (
                   <Tile key={item.name} item={item} />
                 ))}
               </div>

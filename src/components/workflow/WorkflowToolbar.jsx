@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { 
   Plus, 
   Save, 
@@ -139,6 +140,22 @@ const WorkflowToolbar = ({
       </button>
     </div>
   );
+};
+
+WorkflowToolbar.propTypes = {
+  onAddNode: PropTypes.func,
+  onSave: PropTypes.func,
+  onExecute: PropTypes.func,
+  onAutoLayout: PropTypes.func,
+  onUndo: PropTypes.func,
+  onRedo: PropTypes.func,
+  onExport: PropTypes.func,
+  onImport: PropTypes.func,
+  isExecuting: PropTypes.bool,
+  readOnly: PropTypes.bool,
+  nodeCount: PropTypes.number,
+  canUndo: PropTypes.bool,
+  canRedo: PropTypes.bool,
 };
 
 export default WorkflowToolbar;

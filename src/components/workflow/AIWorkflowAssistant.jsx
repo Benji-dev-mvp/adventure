@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { 
-  Sparkles, 
-  Send, 
-  X, 
-  Loader2, 
+import {
+  Sparkles,
+  Send,
+  X,
+  Loader2,
   MessageSquare,
   Zap,
   Wand2,
@@ -12,21 +12,89 @@ import {
   Copy,
   Check,
   Bot,
-  User
+  User,
 } from 'lucide-react';
+import PropTypes from 'prop-types';
 
 // AI-generated workflow templates based on prompts
 const workflowTemplates = {
   'cold outreach': {
     name: 'Cold Outreach Campaign',
     nodes: [
-      { id: 'trigger-1', type: 'trigger', position: { x: 300, y: 50 }, data: { label: 'New Lead Added', triggerType: 'event', description: 'Triggers when a new lead enters the system' } },
-      { id: 'delay-1', type: 'delay', position: { x: 300, y: 180 }, data: { label: 'Research Period', days: 1, hours: 0, description: 'Allow time for lead enrichment' } },
-      { id: 'linkedin-1', type: 'linkedin', position: { x: 300, y: 310 }, data: { label: 'LinkedIn Connection', content: 'Hi {{firstName}}, I noticed your work at {{company}}. Would love to connect!', connectionRequest: true } },
-      { id: 'delay-2', type: 'delay', position: { x: 300, y: 440 }, data: { label: 'Wait for Accept', days: 3, hours: 0, description: 'Wait for connection acceptance' } },
-      { id: 'condition-1', type: 'condition', position: { x: 300, y: 570 }, data: { label: 'Connection Accepted?', field: 'linkedin_connected', operator: 'equals', value: 'true' } },
-      { id: 'email-1', type: 'email', position: { x: 150, y: 700 }, data: { label: 'Intro Email', subject: 'Quick question about {{company}}', content: 'Hi {{firstName}},\n\nI noticed you accepted my connection...', tone: 'professional' } },
-      { id: 'linkedin-2', type: 'linkedin', position: { x: 450, y: 700 }, data: { label: 'LinkedIn Follow-up', content: 'Thanks for connecting! I wanted to reach out because...', connectionRequest: false } },
+      {
+        id: 'trigger-1',
+        type: 'trigger',
+        position: { x: 300, y: 50 },
+        data: {
+          label: 'New Lead Added',
+          triggerType: 'event',
+          description: 'Triggers when a new lead enters the system',
+        },
+      },
+      {
+        id: 'delay-1',
+        type: 'delay',
+        position: { x: 300, y: 180 },
+        data: {
+          label: 'Research Period',
+          days: 1,
+          hours: 0,
+          description: 'Allow time for lead enrichment',
+        },
+      },
+      {
+        id: 'linkedin-1',
+        type: 'linkedin',
+        position: { x: 300, y: 310 },
+        data: {
+          label: 'LinkedIn Connection',
+          content: 'Hi {{firstName}}, I noticed your work at {{company}}. Would love to connect!',
+          connectionRequest: true,
+        },
+      },
+      {
+        id: 'delay-2',
+        type: 'delay',
+        position: { x: 300, y: 440 },
+        data: {
+          label: 'Wait for Accept',
+          days: 3,
+          hours: 0,
+          description: 'Wait for connection acceptance',
+        },
+      },
+      {
+        id: 'condition-1',
+        type: 'condition',
+        position: { x: 300, y: 570 },
+        data: {
+          label: 'Connection Accepted?',
+          field: 'linkedin_connected',
+          operator: 'equals',
+          value: 'true',
+        },
+      },
+      {
+        id: 'email-1',
+        type: 'email',
+        position: { x: 150, y: 700 },
+        data: {
+          label: 'Intro Email',
+          subject: 'Quick question about {{company}}',
+          content: 'Hi {{firstName}},\n\nI noticed you accepted my connection...',
+          tone: 'professional',
+        },
+      },
+      {
+        id: 'linkedin-2',
+        type: 'linkedin',
+        position: { x: 450, y: 700 },
+        data: {
+          label: 'LinkedIn Follow-up',
+          content: 'Thanks for connecting! I wanted to reach out because...',
+          connectionRequest: false,
+        },
+      },
     ],
     edges: [
       { id: 'e1', source: 'trigger-1', target: 'delay-1' },
@@ -40,13 +108,66 @@ const workflowTemplates = {
   'follow up': {
     name: 'Smart Follow-up Sequence',
     nodes: [
-      { id: 'trigger-1', type: 'trigger', position: { x: 300, y: 50 }, data: { label: 'Email Sent Trigger', triggerType: 'event', description: 'After initial email sent' } },
-      { id: 'delay-1', type: 'delay', position: { x: 300, y: 180 }, data: { label: 'Wait 2 Days', days: 2, hours: 0, description: 'Give time to respond' } },
-      { id: 'condition-1', type: 'condition', position: { x: 300, y: 310 }, data: { label: 'Email Opened?', field: 'email_opened', operator: 'equals', value: 'true' } },
-      { id: 'condition-2', type: 'condition', position: { x: 150, y: 440 }, data: { label: 'Replied?', field: 'email_replied', operator: 'equals', value: 'true' } },
-      { id: 'email-1', type: 'email', position: { x: 450, y: 440 }, data: { label: 'Re-engage Email', subject: 'Did you see my previous note?', content: 'Hi {{firstName}},\n\nJust wanted to bump this to the top...', tone: 'friendly' } },
-      { id: 'call-1', type: 'call', position: { x: 50, y: 570 }, data: { label: 'Schedule Call', script: 'Hi {{firstName}}, this is {{senderName}}...', duration: 5 } },
-      { id: 'email-2', type: 'email', position: { x: 250, y: 570 }, data: { label: 'Value Email', subject: 'Resource for {{company}}', content: 'I thought you might find this useful...', tone: 'helpful' } },
+      {
+        id: 'trigger-1',
+        type: 'trigger',
+        position: { x: 300, y: 50 },
+        data: {
+          label: 'Email Sent Trigger',
+          triggerType: 'event',
+          description: 'After initial email sent',
+        },
+      },
+      {
+        id: 'delay-1',
+        type: 'delay',
+        position: { x: 300, y: 180 },
+        data: { label: 'Wait 2 Days', days: 2, hours: 0, description: 'Give time to respond' },
+      },
+      {
+        id: 'condition-1',
+        type: 'condition',
+        position: { x: 300, y: 310 },
+        data: { label: 'Email Opened?', field: 'email_opened', operator: 'equals', value: 'true' },
+      },
+      {
+        id: 'condition-2',
+        type: 'condition',
+        position: { x: 150, y: 440 },
+        data: { label: 'Replied?', field: 'email_replied', operator: 'equals', value: 'true' },
+      },
+      {
+        id: 'email-1',
+        type: 'email',
+        position: { x: 450, y: 440 },
+        data: {
+          label: 'Re-engage Email',
+          subject: 'Did you see my previous note?',
+          content: 'Hi {{firstName}},\n\nJust wanted to bump this to the top...',
+          tone: 'friendly',
+        },
+      },
+      {
+        id: 'call-1',
+        type: 'call',
+        position: { x: 50, y: 570 },
+        data: {
+          label: 'Schedule Call',
+          script: 'Hi {{firstName}}, this is {{senderName}}...',
+          duration: 5,
+        },
+      },
+      {
+        id: 'email-2',
+        type: 'email',
+        position: { x: 250, y: 570 },
+        data: {
+          label: 'Value Email',
+          subject: 'Resource for {{company}}',
+          content: 'I thought you might find this useful...',
+          tone: 'helpful',
+        },
+      },
     ],
     edges: [
       { id: 'e1', source: 'trigger-1', target: 'delay-1' },
@@ -60,13 +181,66 @@ const workflowTemplates = {
   'ab test': {
     name: 'A/B Testing Campaign',
     nodes: [
-      { id: 'trigger-1', type: 'trigger', position: { x: 300, y: 50 }, data: { label: 'Campaign Start', triggerType: 'manual', description: 'Manual campaign trigger' } },
-      { id: 'abtest-1', type: 'abtest', position: { x: 300, y: 180 }, data: { label: 'Subject Line Test', variants: ['Direct Approach', 'Question Hook'], splitRatio: 50 } },
-      { id: 'email-1', type: 'email', position: { x: 150, y: 310 }, data: { label: 'Variant A: Direct', subject: '{{firstName}}, quick question', content: 'Hi {{firstName}},\n\nI have a quick question...', tone: 'direct' } },
-      { id: 'email-2', type: 'email', position: { x: 450, y: 310 }, data: { label: 'Variant B: Hook', subject: 'Are you still struggling with...?', content: 'Hi {{firstName}},\n\nI noticed many companies like yours...', tone: 'curious' } },
-      { id: 'delay-1', type: 'delay', position: { x: 150, y: 440 }, data: { label: 'Wait 3 Days', days: 3, hours: 0 } },
-      { id: 'delay-2', type: 'delay', position: { x: 450, y: 440 }, data: { label: 'Wait 3 Days', days: 3, hours: 0 } },
-      { id: 'condition-1', type: 'condition', position: { x: 300, y: 570 }, data: { label: 'Any Response?', field: 'email_replied', operator: 'equals', value: 'true' } },
+      {
+        id: 'trigger-1',
+        type: 'trigger',
+        position: { x: 300, y: 50 },
+        data: {
+          label: 'Campaign Start',
+          triggerType: 'manual',
+          description: 'Manual campaign trigger',
+        },
+      },
+      {
+        id: 'abtest-1',
+        type: 'abtest',
+        position: { x: 300, y: 180 },
+        data: {
+          label: 'Subject Line Test',
+          variants: ['Direct Approach', 'Question Hook'],
+          splitRatio: 50,
+        },
+      },
+      {
+        id: 'email-1',
+        type: 'email',
+        position: { x: 150, y: 310 },
+        data: {
+          label: 'Variant A: Direct',
+          subject: '{{firstName}}, quick question',
+          content: 'Hi {{firstName}},\n\nI have a quick question...',
+          tone: 'direct',
+        },
+      },
+      {
+        id: 'email-2',
+        type: 'email',
+        position: { x: 450, y: 310 },
+        data: {
+          label: 'Variant B: Hook',
+          subject: 'Are you still struggling with...?',
+          content: 'Hi {{firstName}},\n\nI noticed many companies like yours...',
+          tone: 'curious',
+        },
+      },
+      {
+        id: 'delay-1',
+        type: 'delay',
+        position: { x: 150, y: 440 },
+        data: { label: 'Wait 3 Days', days: 3, hours: 0 },
+      },
+      {
+        id: 'delay-2',
+        type: 'delay',
+        position: { x: 450, y: 440 },
+        data: { label: 'Wait 3 Days', days: 3, hours: 0 },
+      },
+      {
+        id: 'condition-1',
+        type: 'condition',
+        position: { x: 300, y: 570 },
+        data: { label: 'Any Response?', field: 'email_replied', operator: 'equals', value: 'true' },
+      },
     ],
     edges: [
       { id: 'e1', source: 'trigger-1', target: 'abtest-1' },
@@ -81,13 +255,69 @@ const workflowTemplates = {
   'multi-channel': {
     name: 'Multi-Channel Blitz',
     nodes: [
-      { id: 'trigger-1', type: 'trigger', position: { x: 300, y: 50 }, data: { label: 'High-Value Lead', triggerType: 'event', description: 'When lead score > 80' } },
-      { id: 'email-1', type: 'email', position: { x: 300, y: 180 }, data: { label: 'Intro Email', subject: 'Partnership opportunity for {{company}}', content: 'Hi {{firstName}}...', tone: 'professional' } },
-      { id: 'linkedin-1', type: 'linkedin', position: { x: 300, y: 310 }, data: { label: 'LinkedIn Touch', content: 'Hi {{firstName}}, just sent you an email...', connectionRequest: true } },
-      { id: 'delay-1', type: 'delay', position: { x: 300, y: 440 }, data: { label: 'Wait 1 Day', days: 1, hours: 0 } },
-      { id: 'sms-1', type: 'sms', position: { x: 300, y: 570 }, data: { label: 'SMS Ping', content: 'Hi {{firstName}}, did you get a chance to review my email? - {{senderName}}', maxLength: 160 } },
-      { id: 'delay-2', type: 'delay', position: { x: 300, y: 700 }, data: { label: 'Wait 2 Days', days: 2, hours: 0 } },
-      { id: 'call-1', type: 'call', position: { x: 300, y: 830 }, data: { label: 'Personal Call', script: 'Hi {{firstName}}, I wanted to personally follow up...', duration: 10 } },
+      {
+        id: 'trigger-1',
+        type: 'trigger',
+        position: { x: 300, y: 50 },
+        data: {
+          label: 'High-Value Lead',
+          triggerType: 'event',
+          description: 'When lead score > 80',
+        },
+      },
+      {
+        id: 'email-1',
+        type: 'email',
+        position: { x: 300, y: 180 },
+        data: {
+          label: 'Intro Email',
+          subject: 'Partnership opportunity for {{company}}',
+          content: 'Hi {{firstName}}...',
+          tone: 'professional',
+        },
+      },
+      {
+        id: 'linkedin-1',
+        type: 'linkedin',
+        position: { x: 300, y: 310 },
+        data: {
+          label: 'LinkedIn Touch',
+          content: 'Hi {{firstName}}, just sent you an email...',
+          connectionRequest: true,
+        },
+      },
+      {
+        id: 'delay-1',
+        type: 'delay',
+        position: { x: 300, y: 440 },
+        data: { label: 'Wait 1 Day', days: 1, hours: 0 },
+      },
+      {
+        id: 'sms-1',
+        type: 'sms',
+        position: { x: 300, y: 570 },
+        data: {
+          label: 'SMS Ping',
+          content: 'Hi {{firstName}}, did you get a chance to review my email? - {{senderName}}',
+          maxLength: 160,
+        },
+      },
+      {
+        id: 'delay-2',
+        type: 'delay',
+        position: { x: 300, y: 700 },
+        data: { label: 'Wait 2 Days', days: 2, hours: 0 },
+      },
+      {
+        id: 'call-1',
+        type: 'call',
+        position: { x: 300, y: 830 },
+        data: {
+          label: 'Personal Call',
+          script: 'Hi {{firstName}}, I wanted to personally follow up...',
+          duration: 10,
+        },
+      },
     ],
     edges: [
       { id: 'e1', source: 'trigger-1', target: 'email-1' },
@@ -98,17 +328,81 @@ const workflowTemplates = {
       { id: 'e6', source: 'delay-2', target: 'call-1' },
     ],
   },
-  'nurture': {
+  nurture: {
     name: 'Lead Nurture Sequence',
     nodes: [
-      { id: 'trigger-1', type: 'trigger', position: { x: 300, y: 50 }, data: { label: 'Newsletter Signup', triggerType: 'event', description: 'When user signs up for newsletter' } },
-      { id: 'email-1', type: 'email', position: { x: 300, y: 180 }, data: { label: 'Welcome Email', subject: 'Welcome to {{company}}!', content: 'Thanks for joining...', tone: 'friendly' } },
-      { id: 'delay-1', type: 'delay', position: { x: 300, y: 310 }, data: { label: 'Wait 3 Days', days: 3, hours: 0 } },
-      { id: 'email-2', type: 'email', position: { x: 300, y: 440 }, data: { label: 'Value Content', subject: '5 tips for {{industry}}', content: 'Here are some insights...', tone: 'educational' } },
-      { id: 'delay-2', type: 'delay', position: { x: 300, y: 570 }, data: { label: 'Wait 1 Week', days: 7, hours: 0 } },
-      { id: 'email-3', type: 'email', position: { x: 300, y: 700 }, data: { label: 'Case Study', subject: 'How {{successCompany}} achieved 3x growth', content: 'Check out this success story...', tone: 'inspiring' } },
-      { id: 'delay-3', type: 'delay', position: { x: 300, y: 830 }, data: { label: 'Wait 5 Days', days: 5, hours: 0 } },
-      { id: 'email-4', type: 'email', position: { x: 300, y: 960 }, data: { label: 'Soft Pitch', subject: 'Ready to take the next step?', content: 'If you are ready to...', tone: 'persuasive' } },
+      {
+        id: 'trigger-1',
+        type: 'trigger',
+        position: { x: 300, y: 50 },
+        data: {
+          label: 'Newsletter Signup',
+          triggerType: 'event',
+          description: 'When user signs up for newsletter',
+        },
+      },
+      {
+        id: 'email-1',
+        type: 'email',
+        position: { x: 300, y: 180 },
+        data: {
+          label: 'Welcome Email',
+          subject: 'Welcome to {{company}}!',
+          content: 'Thanks for joining...',
+          tone: 'friendly',
+        },
+      },
+      {
+        id: 'delay-1',
+        type: 'delay',
+        position: { x: 300, y: 310 },
+        data: { label: 'Wait 3 Days', days: 3, hours: 0 },
+      },
+      {
+        id: 'email-2',
+        type: 'email',
+        position: { x: 300, y: 440 },
+        data: {
+          label: 'Value Content',
+          subject: '5 tips for {{industry}}',
+          content: 'Here are some insights...',
+          tone: 'educational',
+        },
+      },
+      {
+        id: 'delay-2',
+        type: 'delay',
+        position: { x: 300, y: 570 },
+        data: { label: 'Wait 1 Week', days: 7, hours: 0 },
+      },
+      {
+        id: 'email-3',
+        type: 'email',
+        position: { x: 300, y: 700 },
+        data: {
+          label: 'Case Study',
+          subject: 'How {{successCompany}} achieved 3x growth',
+          content: 'Check out this success story...',
+          tone: 'inspiring',
+        },
+      },
+      {
+        id: 'delay-3',
+        type: 'delay',
+        position: { x: 300, y: 830 },
+        data: { label: 'Wait 5 Days', days: 5, hours: 0 },
+      },
+      {
+        id: 'email-4',
+        type: 'email',
+        position: { x: 300, y: 960 },
+        data: {
+          label: 'Soft Pitch',
+          subject: 'Ready to take the next step?',
+          content: 'If you are ready to...',
+          tone: 'persuasive',
+        },
+      },
     ],
     edges: [
       { id: 'e1', source: 'trigger-1', target: 'email-1' },
@@ -123,37 +417,60 @@ const workflowTemplates = {
 };
 
 // Parse user intent and generate workflow
-const parseIntent = (prompt) => {
+const parseIntent = prompt => {
   const lowerPrompt = prompt.toLowerCase();
-  
+
   // Match patterns
-  if (lowerPrompt.includes('cold') || lowerPrompt.includes('outreach') || lowerPrompt.includes('prospect')) {
+  if (
+    lowerPrompt.includes('cold') ||
+    lowerPrompt.includes('outreach') ||
+    lowerPrompt.includes('prospect')
+  ) {
     return { template: 'cold outreach', confidence: 0.9 };
   }
-  if (lowerPrompt.includes('follow') || lowerPrompt.includes('reminder') || lowerPrompt.includes('bump')) {
+  if (
+    lowerPrompt.includes('follow') ||
+    lowerPrompt.includes('reminder') ||
+    lowerPrompt.includes('bump')
+  ) {
     return { template: 'follow up', confidence: 0.85 };
   }
-  if (lowerPrompt.includes('a/b') || lowerPrompt.includes('test') || lowerPrompt.includes('compare') || lowerPrompt.includes('variant')) {
+  if (
+    lowerPrompt.includes('a/b') ||
+    lowerPrompt.includes('test') ||
+    lowerPrompt.includes('compare') ||
+    lowerPrompt.includes('variant')
+  ) {
     return { template: 'ab test', confidence: 0.9 };
   }
-  if (lowerPrompt.includes('multi') || lowerPrompt.includes('channel') || lowerPrompt.includes('blitz') || lowerPrompt.includes('aggressive')) {
+  if (
+    lowerPrompt.includes('multi') ||
+    lowerPrompt.includes('channel') ||
+    lowerPrompt.includes('blitz') ||
+    lowerPrompt.includes('aggressive')
+  ) {
     return { template: 'multi-channel', confidence: 0.85 };
   }
-  if (lowerPrompt.includes('nurture') || lowerPrompt.includes('drip') || lowerPrompt.includes('sequence') || lowerPrompt.includes('series')) {
+  if (
+    lowerPrompt.includes('nurture') ||
+    lowerPrompt.includes('drip') ||
+    lowerPrompt.includes('sequence') ||
+    lowerPrompt.includes('series')
+  ) {
     return { template: 'nurture', confidence: 0.8 };
   }
-  
+
   // Default to cold outreach
   return { template: 'cold outreach', confidence: 0.5 };
 };
 
 // Suggested prompts
 const suggestedPrompts = [
-  "Create a cold outreach campaign for enterprise leads",
-  "Build a follow-up sequence for warm leads",
-  "Design an A/B test for email subject lines",
-  "Create a multi-channel campaign with email, LinkedIn, and calls",
-  "Build a nurture sequence for newsletter signups",
+  'Create a cold outreach campaign for enterprise leads',
+  'Build a follow-up sequence for warm leads',
+  'Design an A/B test for email subject lines',
+  'Create a multi-channel campaign with email, LinkedIn, and calls',
+  'Build a nurture sequence for newsletter signups',
 ];
 
 const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
@@ -162,8 +479,9 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "Hi! I'm Ava, your AI workflow assistant. Describe the campaign you want to create, and I'll build it for you. For example: \"Create a cold outreach campaign with LinkedIn and email follow-ups.\""
-    }
+      content:
+        'Hi! I\'m Ava, your AI workflow assistant. Describe the campaign you want to create, and I\'ll build it for you. For example: "Create a cold outreach campaign with LinkedIn and email follow-ups."',
+    },
   ]);
   const [isExpanded, setIsExpanded] = useState(true);
   const [copied, setCopied] = useState(false);
@@ -179,7 +497,7 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
 
   const handleGenerate = async () => {
     if (!prompt.trim()) return;
-    
+
     // Add user message
     const userMessage = { role: 'user', content: prompt };
     setMessages(prev => [...prev, userMessage]);
@@ -200,20 +518,24 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
       workflow: workflow,
       confidence: confidence,
     };
-    
+
     setMessages(prev => [...prev, assistantMessage]);
     setIsGenerating(false);
   };
 
-  const handleApplyWorkflow = (workflow) => {
+  const handleApplyWorkflow = workflow => {
     onGenerateWorkflow(workflow);
-    setMessages(prev => [...prev, {
-      role: 'assistant',
-      content: "Great! I've added the workflow to your canvas. You can now customize each node by clicking on it, or ask me to modify the workflow."
-    }]);
+    setMessages(prev => [
+      ...prev,
+      {
+        role: 'assistant',
+        content:
+          "Great! I've added the workflow to your canvas. You can now customize each node by clicking on it, or ask me to modify the workflow.",
+      },
+    ]);
   };
 
-  const handleSuggestedPrompt = (suggestedPrompt) => {
+  const handleSuggestedPrompt = suggestedPrompt => {
     setPrompt(suggestedPrompt);
   };
 
@@ -222,9 +544,11 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
   return (
     <div className="fixed bottom-4 right-4 z-50 flex flex-col">
       {/* Chat Window */}
-      <div className={`bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 ${isExpanded ? 'w-96 h-[500px]' : 'w-96 h-16'}`}>
+      <div
+        className={`bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 ${isExpanded ? 'w-96 h-[500px]' : 'w-96 h-16'}`}
+      >
         {/* Header */}
-        <div 
+        <div
           className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white cursor-pointer"
           onClick={() => setIsExpanded(!isExpanded)}
         >
@@ -238,13 +562,12 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            {isExpanded ? (
-              <ChevronDown className="w-5 h-5" />
-            ) : (
-              <ChevronUp className="w-5 h-5" />
-            )}
-            <button 
-              onClick={(e) => { e.stopPropagation(); onClose(); }}
+            {isExpanded ? <ChevronDown className="w-5 h-5" /> : <ChevronUp className="w-5 h-5" />}
+            <button
+              onClick={e => {
+                e.stopPropagation();
+                onClose();
+              }}
               className="p-1 hover:bg-white/20 rounded-lg"
             >
               <X className="w-4 h-4" />
@@ -263,26 +586,32 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
                 >
                   <div className={`max-w-[85%] ${message.role === 'user' ? 'order-2' : 'order-1'}`}>
                     {/* Avatar */}
-                    <div className={`flex items-start gap-2 ${message.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                      <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 ${
-                        message.role === 'user' 
-                          ? 'bg-indigo-100 dark:bg-indigo-900' 
-                          : 'bg-purple-100 dark:bg-purple-900'
-                      }`}>
+                    <div
+                      className={`flex items-start gap-2 ${message.role === 'user' ? 'flex-row-reverse' : ''}`}
+                    >
+                      <div
+                        className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 ${
+                          message.role === 'user'
+                            ? 'bg-indigo-100 dark:bg-indigo-900'
+                            : 'bg-purple-100 dark:bg-purple-900'
+                        }`}
+                      >
                         {message.role === 'user' ? (
                           <User className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                         ) : (
                           <Bot className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                         )}
                       </div>
-                      
-                      <div className={`rounded-2xl px-4 py-2 ${
-                        message.role === 'user'
-                          ? 'bg-indigo-600 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
-                      }`}>
+
+                      <div
+                        className={`rounded-2xl px-4 py-2 ${
+                          message.role === 'user'
+                            ? 'bg-indigo-600 text-white'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
+                        }`}
+                      >
                         <p className="text-sm whitespace-pre-line">{message.content}</p>
-                        
+
                         {/* Workflow Preview */}
                         {message.workflow && (
                           <div className="mt-3 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-600">
@@ -312,7 +641,7 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
                   </div>
                 </div>
               ))}
-              
+
               {isGenerating && (
                 <div className="flex justify-start">
                   <div className="flex items-start gap-2">
@@ -322,13 +651,15 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
                     <div className="bg-gray-100 dark:bg-gray-700 rounded-2xl px-4 py-3">
                       <div className="flex items-center gap-2">
                         <Loader2 className="w-4 h-4 animate-spin text-purple-600" />
-                        <span className="text-sm text-gray-600 dark:text-gray-300">Creating your workflow...</span>
+                        <span className="text-sm text-gray-600 dark:text-gray-300">
+                          Creating your workflow...
+                        </span>
                       </div>
                     </div>
                   </div>
                 </div>
               )}
-              
+
               <div ref={messagesEndRef} />
             </div>
 
@@ -356,8 +687,8 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
                 <input
                   type="text"
                   value={prompt}
-                  onChange={(e) => setPrompt(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleGenerate()}
+                  onChange={e => setPrompt(e.target.value)}
+                  onKeyDown={e => e.key === 'Enter' && !e.shiftKey && handleGenerate()}
                   placeholder="Describe your campaign..."
                   className="flex-1 px-4 py-2 bg-gray-100 dark:bg-gray-700 border-0 rounded-full text-sm focus:ring-2 focus:ring-purple-500 text-gray-900 dark:text-white placeholder-gray-500"
                   disabled={isGenerating}
@@ -376,6 +707,12 @@ const AIWorkflowAssistant = ({ isOpen, onClose, onGenerateWorkflow }) => {
       </div>
     </div>
   );
+};
+
+AIWorkflowAssistant.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onGenerateWorkflow: PropTypes.func.isRequired,
 };
 
 export default AIWorkflowAssistant;

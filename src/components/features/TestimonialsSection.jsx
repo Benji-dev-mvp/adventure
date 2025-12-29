@@ -56,7 +56,7 @@ const TestimonialsSection = () => {
               
               {/* Rating */}
               <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
+                {[...new Array(testimonial.rating)].map((_, i) => (
                   <Star 
                     key={i} 
                     size={18} 

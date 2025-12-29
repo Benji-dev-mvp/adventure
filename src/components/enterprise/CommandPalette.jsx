@@ -1,7 +1,21 @@
 // Command Palette - Universal search and command execution (Cmd+K)
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Search, Command, ArrowRight, Clock, Star, Hash, User, Settings, BarChart, Database, Zap, Mail, Calendar } from 'lucide-react';
+import {
+  Search,
+  Command,
+  ArrowRight,
+  Clock,
+  Star,
+  Hash,
+  User,
+  Settings,
+  BarChart,
+  Database,
+  Zap,
+  Mail,
+  Calendar,
+} from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const CommandPalette = ({ isOpen, onClose }) => {
@@ -10,38 +24,150 @@ const CommandPalette = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
 
   // All available commands
-  const commands = useMemo(() => [
-    // Navigation
-    { id: 'nav-dashboard', label: 'Go to Dashboard', icon: BarChart, action: () => navigate('/dashboard'), category: 'Navigation', keywords: ['home', 'overview'] },
-    { id: 'nav-campaigns', label: 'Go to Campaigns', icon: Zap, action: () => navigate('/campaigns'), category: 'Navigation', keywords: ['email', 'outreach'] },
-    { id: 'nav-leads', label: 'Go to Leads', icon: User, action: () => navigate('/leads'), category: 'Navigation', keywords: ['contacts', 'prospects'] },
-    { id: 'nav-analytics', label: 'Go to Analytics', icon: BarChart, action: () => navigate('/analytics'), category: 'Navigation', keywords: ['reports', 'data'] },
-    { id: 'nav-database', label: 'Go to Lead Database', icon: Database, action: () => navigate('/lead-database'), category: 'Navigation', keywords: ['search', 'find'] },
-    { id: 'nav-ava', label: 'Go to Ava AI', icon: Zap, action: () => navigate('/ava'), category: 'Navigation', keywords: ['assistant', 'ai', 'chat'] },
-    { id: 'nav-settings', label: 'Go to Settings', icon: Settings, action: () => navigate('/settings'), category: 'Navigation', keywords: ['preferences', 'config'] },
-    { id: 'nav-integrations', label: 'Go to Integrations', icon: Zap, action: () => navigate('/integrations'), category: 'Navigation', keywords: ['connect', 'apps'] },
-    { id: 'nav-templates', label: 'Go to Templates', icon: Mail, action: () => navigate('/templates'), category: 'Navigation', keywords: ['email', 'messages'] },
-    { id: 'nav-admin', label: 'Go to Admin', icon: Settings, action: () => navigate('/admin'), category: 'Navigation', keywords: ['management', 'users'] },
-    
-    // Actions
-    { id: 'action-new-campaign', label: 'Create New Campaign', icon: Zap, action: () => { navigate('/campaigns'); onClose(); }, category: 'Actions', keywords: ['new', 'start'] },
-    { id: 'action-import-leads', label: 'Import Leads', icon: Database, action: () => alert('Import functionality'), category: 'Actions', keywords: ['csv', 'upload'] },
-    { id: 'action-export-data', label: 'Export Data', icon: ArrowRight, action: () => alert('Export functionality'), category: 'Actions', keywords: ['download', 'csv'] },
-    { id: 'action-schedule-meeting', label: 'Schedule Meeting', icon: Calendar, action: () => alert('Calendar functionality'), category: 'Actions', keywords: ['book', 'appointment'] },
-    
-    // Quick Actions
-    { id: 'quick-theme', label: 'Toggle Dark Mode', icon: Settings, action: () => document.documentElement.classList.toggle('dark'), category: 'Quick Actions', keywords: ['theme', 'appearance'] },
-  ], [navigate, onClose]);
+  const commands = useMemo(
+    () => [
+      // Navigation
+      {
+        id: 'nav-dashboard',
+        label: 'Go to Dashboard',
+        icon: BarChart,
+        action: () => navigate('/dashboard'),
+        category: 'Navigation',
+        keywords: ['home', 'overview'],
+      },
+      {
+        id: 'nav-campaigns',
+        label: 'Go to Campaigns',
+        icon: Zap,
+        action: () => navigate('/campaigns'),
+        category: 'Navigation',
+        keywords: ['email', 'outreach'],
+      },
+      {
+        id: 'nav-leads',
+        label: 'Go to Leads',
+        icon: User,
+        action: () => navigate('/leads'),
+        category: 'Navigation',
+        keywords: ['contacts', 'prospects'],
+      },
+      {
+        id: 'nav-analytics',
+        label: 'Go to Analytics',
+        icon: BarChart,
+        action: () => navigate('/analytics'),
+        category: 'Navigation',
+        keywords: ['reports', 'data'],
+      },
+      {
+        id: 'nav-database',
+        label: 'Go to Lead Database',
+        icon: Database,
+        action: () => navigate('/lead-database'),
+        category: 'Navigation',
+        keywords: ['search', 'find'],
+      },
+      {
+        id: 'nav-ava',
+        label: 'Go to Ava AI',
+        icon: Zap,
+        action: () => navigate('/ava'),
+        category: 'Navigation',
+        keywords: ['assistant', 'ai', 'chat'],
+      },
+      {
+        id: 'nav-settings',
+        label: 'Go to Settings',
+        icon: Settings,
+        action: () => navigate('/settings'),
+        category: 'Navigation',
+        keywords: ['preferences', 'config'],
+      },
+      {
+        id: 'nav-integrations',
+        label: 'Go to Integrations',
+        icon: Zap,
+        action: () => navigate('/integrations'),
+        category: 'Navigation',
+        keywords: ['connect', 'apps'],
+      },
+      {
+        id: 'nav-templates',
+        label: 'Go to Templates',
+        icon: Mail,
+        action: () => navigate('/templates'),
+        category: 'Navigation',
+        keywords: ['email', 'messages'],
+      },
+      {
+        id: 'nav-admin',
+        label: 'Go to Admin',
+        icon: Settings,
+        action: () => navigate('/admin'),
+        category: 'Navigation',
+        keywords: ['management', 'users'],
+      },
+
+      // Actions
+      {
+        id: 'action-new-campaign',
+        label: 'Create New Campaign',
+        icon: Zap,
+        action: () => {
+          navigate('/campaigns');
+          onClose();
+        },
+        category: 'Actions',
+        keywords: ['new', 'start'],
+      },
+      {
+        id: 'action-import-leads',
+        label: 'Import Leads',
+        icon: Database,
+        action: () => alert('Import functionality'),
+        category: 'Actions',
+        keywords: ['csv', 'upload'],
+      },
+      {
+        id: 'action-export-data',
+        label: 'Export Data',
+        icon: ArrowRight,
+        action: () => alert('Export functionality'),
+        category: 'Actions',
+        keywords: ['download', 'csv'],
+      },
+      {
+        id: 'action-schedule-meeting',
+        label: 'Schedule Meeting',
+        icon: Calendar,
+        action: () => alert('Calendar functionality'),
+        category: 'Actions',
+        keywords: ['book', 'appointment'],
+      },
+
+      // Quick Actions
+      {
+        id: 'quick-theme',
+        label: 'Toggle Dark Mode',
+        icon: Settings,
+        action: () => document.documentElement.classList.toggle('dark'),
+        category: 'Quick Actions',
+        keywords: ['theme', 'appearance'],
+      },
+    ],
+    [navigate, onClose]
+  );
 
   // Filter commands based on query
   const filteredCommands = useMemo(() => {
     if (!query.trim()) return commands;
-    
+
     const lowerQuery = query.toLowerCase();
-    return commands.filter(cmd => 
-      cmd.label.toLowerCase().includes(lowerQuery) ||
-      cmd.category.toLowerCase().includes(lowerQuery) ||
-      cmd.keywords?.some(k => k.includes(lowerQuery))
+    return commands.filter(
+      cmd =>
+        cmd.label.toLowerCase().includes(lowerQuery) ||
+        cmd.category.toLowerCase().includes(lowerQuery) ||
+        cmd.keywords?.some(k => k.includes(lowerQuery))
     );
   }, [query, commands]);
 
@@ -57,7 +183,7 @@ const CommandPalette = ({ isOpen, onClose }) => {
 
   // Keyboard navigation
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = e => {
       if (!isOpen) return;
 
       switch (e.key) {
@@ -106,13 +232,15 @@ const CommandPalette = ({ isOpen, onClose }) => {
           <input
             type="text"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={e => setQuery(e.target.value)}
             placeholder="Type a command or search..."
             className="flex-1 bg-transparent outline-none text-gray-900 dark:text-gray-100 placeholder:text-gray-400"
             autoFocus
           />
           <div className="flex items-center gap-1 text-xs text-gray-400">
-            <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700">⌘K</kbd>
+            <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700">
+              ⌘K
+            </kbd>
           </div>
         </div>
 
@@ -132,7 +260,7 @@ const CommandPalette = ({ isOpen, onClose }) => {
                   const globalIndex = filteredCommands.indexOf(cmd);
                   const isSelected = globalIndex === selectedIndex;
                   const Icon = cmd.icon;
-                  
+
                   return (
                     <button
                       key={cmd.id}
@@ -162,18 +290,21 @@ const CommandPalette = ({ isOpen, onClose }) => {
           <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1">
-                <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-900 rounded border border-gray-200 dark:border-gray-700">↑↓</kbd>
-                {' '}
+                <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-900 rounded border border-gray-200 dark:border-gray-700">
+                  ↑↓
+                </kbd>{' '}
                 Navigate
               </span>
               <span className="flex items-center gap-1">
-                <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-900 rounded border border-gray-200 dark:border-gray-700">↵</kbd>
-                {' '}
+                <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-900 rounded border border-gray-200 dark:border-gray-700">
+                  ↵
+                </kbd>{' '}
                 Select
               </span>
               <span className="flex items-center gap-1">
-                <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-900 rounded border border-gray-200 dark:border-gray-700">esc</kbd>
-                {' '}
+                <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-900 rounded border border-gray-200 dark:border-gray-700">
+                  esc
+                </kbd>{' '}
                 Close
               </span>
             </div>
@@ -190,7 +321,7 @@ const CommandPalette = ({ isOpen, onClose }) => {
 
 CommandPalette.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired,
 };
 
 export default CommandPalette;

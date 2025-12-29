@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { cn } from '@/lib/utils';
 
 const Table = ({ children, className, ...props }) => {
@@ -118,6 +119,47 @@ TableHead.displayName = 'TableHead';
 TableCell.displayName = 'TableCell';
 TableFooter.displayName = 'TableFooter';
 TableCaption.displayName = 'TableCaption';
+
+Table.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
+
+TableHeader.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
+
+TableBody.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
+
+TableRow.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  clickable: PropTypes.bool,
+};
+
+TableHead.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
+
+TableCell.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
+
+TableFooter.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
+
+TableCaption.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
 
 export { 
   Table, 

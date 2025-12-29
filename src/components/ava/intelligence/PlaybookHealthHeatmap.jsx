@@ -1,9 +1,9 @@
 /**
  * PlaybookHealthHeatmap.jsx
- * 
+ *
  * Macro performance awareness through a visual heatmap showing playbook health
  * across multiple dimensions: segments, channels, time periods, and goals.
- * 
+ *
  * Color intensity represents performance relative to targets:
  * - Green: Exceeding targets
  * - Yellow: Meeting targets
@@ -13,9 +13,16 @@
 
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { 
-  Activity, TrendingUp, TrendingDown, AlertTriangle, 
-  ChevronDown, Filter, Maximize2, Info, Zap
+import {
+  Activity,
+  TrendingUp,
+  TrendingDown,
+  AlertTriangle,
+  ChevronDown,
+  Filter,
+  Maximize2,
+  Info,
+  Zap,
 } from 'lucide-react';
 import { AnimatedCounter } from '../../ui/AnimatedComponents';
 
@@ -28,13 +35,13 @@ const getHealthColor = (score, isDark = false) => {
   return isDark ? 'bg-red-700' : 'bg-red-500';
 };
 
-const getHealthTextColor = (score) => {
+const getHealthTextColor = score => {
   if (score >= 60) return 'text-white';
   if (score >= 40) return 'text-gray-900';
   return 'text-white';
 };
 
-const getHealthLabel = (score) => {
+const getHealthLabel = score => {
   if (score >= 80) return 'Excellent';
   if (score >= 60) return 'Good';
   if (score >= 40) return 'Fair';
@@ -65,7 +72,7 @@ const HeatmapCell = ({ value, label, sublabel, onClick, isSelected, size = 'md' 
     >
       <span className="text-lg font-bold">{value}%</span>
       {label && <span className="text-xs opacity-90 truncate max-w-full px-1">{label}</span>}
-      
+
       {/* Tooltip */}
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
         <div className="font-semibold">{label}</div>
@@ -96,7 +103,9 @@ const SegmentRow = ({ segment, channels, onCellClick, selectedCell }) => {
     <div className="flex items-center gap-2">
       {/* Segment Label */}
       <div className="w-28 flex-shrink-0">
-        <div className="text-sm font-medium text-gray-900 dark:text-white capitalize">{segment}</div>
+        <div className="text-sm font-medium text-gray-900 dark:text-white capitalize">
+          {segment}
+        </div>
         <div className="text-xs text-gray-500 dark:text-gray-400">Avg: {avgHealth}%</div>
       </div>
 
@@ -136,17 +145,22 @@ const TimeHeatmap = ({ data, onCellClick, selectedCell }) => {
     <div className="space-y-2">
       {/* Header */}
       <div className="flex items-center gap-2 ml-28">
-        {periods.map((period) => (
-          <div key={period} className="w-20 text-center text-xs font-medium text-gray-600 dark:text-gray-400">
+        {periods.map(period => (
+          <div
+            key={period}
+            className="w-20 text-center text-xs font-medium text-gray-600 dark:text-gray-400"
+          >
             {period}
           </div>
         ))}
       </div>
 
       {/* Rows */}
-      {metrics.map((metric) => (
+      {metrics.map(metric => (
         <div key={metric} className="flex items-center gap-2">
-          <div className="w-28 flex-shrink-0 text-sm text-gray-700 dark:text-gray-300">{metric}</div>
+          <div className="w-28 flex-shrink-0 text-sm text-gray-700 dark:text-gray-300">
+            {metric}
+          </div>
           <div className="flex gap-2">
             {periods.map((period, idx) => {
               const value = data[metric]?.[idx] || Math.floor(Math.random() * 60 + 40);
@@ -216,7 +230,9 @@ const CellDetailPanel = ({ cell, onClose }) => {
             {cell.segment} × {cell.channel}
           </h4>
           <div className="flex items-center gap-2 mt-1">
-            <span className={`px-2 py-0.5 rounded text-xs font-medium ${getHealthColor(cell.health)} ${getHealthTextColor(cell.health)}`}>
+            <span
+              className={`px-2 py-0.5 rounded text-xs font-medium ${getHealthColor(cell.health)} ${getHealthTextColor(cell.health)}`}
+            >
               {getHealthLabel(cell.health)}
             </span>
             <span className="text-sm text-gray-600 dark:text-gray-400">
@@ -224,7 +240,7 @@ const CellDetailPanel = ({ cell, onClose }) => {
             </span>
           </div>
         </div>
-        <button 
+        <button
           onClick={onClose}
           className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
         >
@@ -259,8 +275,11 @@ const CellDetailPanel = ({ cell, onClose }) => {
             ) : (
               <TrendingDown className="text-red-500" size={18} />
             )}
-            <span className={`text-xl font-bold ${cell.trend >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-              {cell.trend >= 0 ? '+' : ''}{cell.trend || 0}%
+            <span
+              className={`text-xl font-bold ${cell.trend >= 0 ? 'text-green-600' : 'text-red-600'}`}
+            >
+              {cell.trend >= 0 ? '+' : ''}
+              {cell.trend || 0}%
             </span>
           </div>
         </div>
@@ -269,13 +288,16 @@ const CellDetailPanel = ({ cell, onClose }) => {
       {cell.health < 60 && (
         <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
           <div className="flex items-start gap-2">
-            <AlertTriangle className="text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-0.5" size={16} />
+            <AlertTriangle
+              className="text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-0.5"
+              size={16}
+            />
             <div>
               <div className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
                 Performance Alert
               </div>
               <p className="text-xs text-yellow-700 dark:text-yellow-300 mt-1">
-                This segment-channel combination is underperforming. Consider adjusting messaging, 
+                This segment-channel combination is underperforming. Consider adjusting messaging,
                 timing, or targeting parameters. AI suggests increasing personalization depth.
               </p>
             </div>
@@ -316,7 +338,7 @@ export const PlaybookHealthHeatmap = ({ playbooks = [], onDrillDown }) => {
         const baseHealth = segment === 'enterprise' ? 70 : segment === 'midmarket' ? 60 : 50;
         const channelModifier = channel === 'email' ? 10 : channel === 'linkedin' ? 5 : -5;
         const variance = Math.floor(Math.random() * 20 - 10);
-        
+
         chAcc[channel] = {
           health: Math.min(100, Math.max(0, baseHealth + channelModifier + variance)),
           leads: Math.floor(Math.random() * 500 + 100),
@@ -348,7 +370,9 @@ export const PlaybookHealthHeatmap = ({ playbooks = [], onDrillDown }) => {
               <Activity className="text-white" size={20} />
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white">Playbook Health Heatmap</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white">
+                Playbook Health Heatmap
+              </h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 Macro performance across segments & channels
               </p>
@@ -357,7 +381,9 @@ export const PlaybookHealthHeatmap = ({ playbooks = [], onDrillDown }) => {
 
           <div className="flex items-center gap-3">
             {/* Overall Health Badge */}
-            <div className={`px-3 py-1.5 rounded-lg flex items-center gap-2 ${getHealthColor(overallHealth)} ${getHealthTextColor(overallHealth)}`}>
+            <div
+              className={`px-3 py-1.5 rounded-lg flex items-center gap-2 ${getHealthColor(overallHealth)} ${getHealthTextColor(overallHealth)}`}
+            >
               <Zap size={16} />
               <span className="font-bold">{overallHealth}%</span>
               <span className="text-sm opacity-90">Overall</span>
@@ -365,7 +391,7 @@ export const PlaybookHealthHeatmap = ({ playbooks = [], onDrillDown }) => {
 
             {/* View Toggle */}
             <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
-              {['segment', 'time', 'goal'].map((v) => (
+              {['segment', 'time', 'goal'].map(v => (
                 <button
                   key={v}
                   onClick={() => setView(v)}
@@ -383,7 +409,7 @@ export const PlaybookHealthHeatmap = ({ playbooks = [], onDrillDown }) => {
             {/* Time Range */}
             <select
               value={timeRange}
-              onChange={(e) => setTimeRange(e.target.value)}
+              onChange={e => setTimeRange(e.target.value)}
               className="px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 border-0 rounded-lg text-gray-700 dark:text-gray-300"
             >
               <option value="7d">Last 7 days</option>
@@ -400,8 +426,11 @@ export const PlaybookHealthHeatmap = ({ playbooks = [], onDrillDown }) => {
           <div className="space-y-3">
             {/* Column Headers */}
             <div className="flex items-center gap-2 ml-28">
-              {['email', 'linkedin', 'phone'].map((channel) => (
-                <div key={channel} className="w-20 text-center text-xs font-medium text-gray-600 dark:text-gray-400 capitalize">
+              {['email', 'linkedin', 'phone'].map(channel => (
+                <div
+                  key={channel}
+                  className="w-20 text-center text-xs font-medium text-gray-600 dark:text-gray-400 capitalize"
+                >
                   {channel}
                 </div>
               ))}
@@ -419,11 +448,7 @@ export const PlaybookHealthHeatmap = ({ playbooks = [], onDrillDown }) => {
             ))}
           </div>
         ) : view === 'time' ? (
-          <TimeHeatmap
-            data={{}}
-            onCellClick={setSelectedCell}
-            selectedCell={selectedCell}
-          />
+          <TimeHeatmap data={{}} onCellClick={setSelectedCell} selectedCell={selectedCell} />
         ) : (
           <div className="text-center py-8 text-gray-500 dark:text-gray-400">
             Goal-based heatmap coming soon...

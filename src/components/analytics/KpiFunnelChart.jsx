@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
-import { 
-  AreaChart, 
-  Area, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
   ResponsiveContainer,
-  Cell 
+  Cell,
 } from 'recharts';
 import { useReducedMotion, viewportSettings } from '../../hooks/useMotion';
 import { GlassCard, GlassCardContent, GradientText } from '../futuristic';
@@ -24,8 +24,8 @@ const DEFAULT_FUNNEL_DATA = [
   { stage: 'Revenue', value: 280, color: '#10b981' },
 ];
 
-const KpiFunnelChart = ({ 
-  data = DEFAULT_FUNNEL_DATA, 
+const KpiFunnelChart = ({
+  data = DEFAULT_FUNNEL_DATA,
   title = 'Pipeline Conversion Funnel',
   animate = true,
 }) => {
@@ -75,7 +75,7 @@ const KpiFunnelChart = ({
           <h3 className="text-xl font-bold mb-6 font-space-grotesk">
             <GradientText gradient="cyber">{title}</GradientText>
           </h3>
-          
+
           <div className="space-y-3">
             {animatedData.map((item, index) => {
               const width = (item.displayValue / maxValue) * 100;
@@ -96,7 +96,7 @@ const KpiFunnelChart = ({
                   <div className="h-8 bg-white/5 rounded-lg overflow-hidden relative">
                     <motion.div
                       className="h-full rounded-lg"
-                      style={{ 
+                      style={{
                         background: `linear-gradient(90deg, ${item.color}CC, ${item.color}66)`,
                         width: `${width}%`,
                       }}
@@ -104,7 +104,7 @@ const KpiFunnelChart = ({
                       animate={{ width: `${width}%` }}
                       transition={{ duration: 0.8, delay: index * 0.1, ease: 'easeOut' }}
                     />
-                    <div 
+                    <div
                       className="absolute inset-0 opacity-30"
                       style={{
                         background: `linear-gradient(90deg, transparent, ${item.color}40)`,
@@ -127,13 +127,13 @@ const KpiFunnelChart = ({
             <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/10">
               <div className="text-center">
                 <div className="text-2xl font-bold text-cyan-400">
-                  {Math.round((data[data.length - 1]?.value ?? 0) / (data[0]?.value ?? 1) * 100)}%
+                  {Math.round(((data[data.length - 1]?.value ?? 0) / (data[0]?.value ?? 1)) * 100)}%
                 </div>
                 <div className="text-xs text-gray-400">Total Conversion</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-purple-400">
-                  {Math.round((data[4]?.value ?? 0) / (data[0]?.value ?? 1) * 100)}%
+                  {Math.round(((data[4]?.value ?? 0) / (data[0]?.value ?? 1)) * 100)}%
                 </div>
                 <div className="text-xs text-gray-400">Lead → Meeting</div>
               </div>
@@ -152,11 +152,13 @@ const KpiFunnelChart = ({
 };
 
 KpiFunnelChart.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({
-    stage: PropTypes.string,
-    value: PropTypes.number,
-    color: PropTypes.string,
-  })),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      stage: PropTypes.string,
+      value: PropTypes.number,
+      color: PropTypes.string,
+    })
+  ),
   title: PropTypes.string,
   animate: PropTypes.bool,
 };

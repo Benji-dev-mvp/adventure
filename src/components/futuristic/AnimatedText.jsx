@@ -2,6 +2,7 @@
  * AnimatedText - Text components with typing, gradient, and reveal animations
  */
 import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import {
   useTypewriter,
   useIntersectionAnimation,
@@ -55,6 +56,17 @@ export function TypewriterText({
   );
 }
 
+TypewriterText.propTypes = {
+  text: PropTypes.string.isRequired,
+  speed: PropTypes.number,
+  delay: PropTypes.number,
+  loop: PropTypes.bool,
+  cursor: PropTypes.bool,
+  cursorChar: PropTypes.string,
+  className: PropTypes.string,
+  as: PropTypes.elementType
+};
+
 /**
  * GradientText - Text with animated gradient
  */
@@ -93,6 +105,14 @@ export function GradientText({
     </Component>
   );
 }
+
+GradientText.propTypes = {
+  children: PropTypes.node.isRequired,
+  gradient: PropTypes.oneOf(['cyber', 'aurora', 'sunset', 'ocean', 'gold', 'neon']),
+  animate: PropTypes.bool,
+  className: PropTypes.string,
+  as: PropTypes.elementType
+};
 
 /**
  * GlowText - Text with neon glow effect
@@ -146,6 +166,15 @@ export function GlowText({
     </Component>
   );
 }
+
+GlowText.propTypes = {
+  children: PropTypes.node.isRequired,
+  color: PropTypes.oneOf(['cyan', 'purple', 'pink', 'green', 'white']),
+  intensity: PropTypes.number,
+  pulse: PropTypes.bool,
+  className: PropTypes.string,
+  as: PropTypes.elementType
+};
 
 /**
  * RevealText - Text that reveals on scroll
@@ -213,6 +242,15 @@ export function RevealText({
   );
 }
 
+RevealText.propTypes = {
+  children: PropTypes.node.isRequired,
+  direction: PropTypes.oneOf(['up', 'down', 'left', 'right', 'scale']),
+  delay: PropTypes.number,
+  duration: PropTypes.number,
+  className: PropTypes.string,
+  as: PropTypes.elementType
+};
+
 /**
  * SplitText - Text that animates word by word
  */
@@ -264,6 +302,15 @@ export function SplitText({
   );
 }
 
+SplitText.propTypes = {
+  text: PropTypes.string.isRequired,
+  staggerDelay: PropTypes.number,
+  delay: PropTypes.number,
+  className: PropTypes.string,
+  wordClassName: PropTypes.string,
+  as: PropTypes.elementType
+};
+
 /**
  * CountUpText - Animated number counter
  */
@@ -300,6 +347,18 @@ export function CountUpText({
     </Component>
   );
 }
+
+CountUpText.propTypes = {
+  end: PropTypes.number.isRequired,
+  start: PropTypes.number,
+  duration: PropTypes.number,
+  delay: PropTypes.number,
+  decimals: PropTypes.number,
+  prefix: PropTypes.string,
+  suffix: PropTypes.string,
+  className: PropTypes.string,
+  as: PropTypes.elementType
+};
 
 /**
  * HighlightText - Text with animated highlight background
@@ -346,6 +405,14 @@ export function HighlightText({
   );
 }
 
+HighlightText.propTypes = {
+  children: PropTypes.node.isRequired,
+  color: PropTypes.oneOf(['cyan', 'purple', 'pink', 'yellow']),
+  active: PropTypes.bool,
+  className: PropTypes.string,
+  as: PropTypes.elementType
+};
+
 /**
  * HeadingWithLine - Heading with animated underline
  */
@@ -386,6 +453,13 @@ export function HeadingWithLine({
     </div>
   );
 }
+
+HeadingWithLine.propTypes = {
+  children: PropTypes.node.isRequired,
+  lineColor: PropTypes.oneOf(['gradient', 'cyan', 'purple', 'white']),
+  className: PropTypes.string,
+  as: PropTypes.elementType
+};
 
 export default {
   TypewriterText,

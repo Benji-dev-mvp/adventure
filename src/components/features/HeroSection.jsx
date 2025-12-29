@@ -16,13 +16,13 @@ const HeroSection = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const { ref, isVisible } = useIntersectionAnimation({ threshold: 0.1 });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     // Handle form submission
   };
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -39,21 +39,29 @@ const HeroSection = () => {
     <section className="relative overflow-hidden pt-32 pb-24 px-6 tablet:px-10">
       {/* Futuristic Particle Background */}
       <ParticleBackground variant="aurora" className="absolute inset-0" />
-      
+
       {/* Mouse-following glow effect */}
       <MouseFollowGlow size={500} color="purple" opacity={0.12} />
-      
+
       {/* Floating particles */}
       <FloatingParticles count={40} color="mixed" />
-      
+
       {/* Grid background */}
       <div className="absolute inset-0 grid-background opacity-20" />
 
-      <div ref={ref} className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+      <div
+        ref={ref}
+        className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10"
+      >
         {/* Left column: messaging + form */}
         <div className="space-y-6 text-left">
           <RevealText delay={0}>
-            <GlassCard variant="neon" padding="px-4 py-2" radius="full" className="inline-flex items-center gap-2">
+            <GlassCard
+              variant="neon"
+              padding="px-4 py-2"
+              radius="full"
+              className="inline-flex items-center gap-2"
+            >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -79,7 +87,7 @@ const HeroSection = () => {
 
           <RevealText delay={200}>
             <p className="text-lg tablet:text-xl text-gray-300 max-w-2xl">
-              <TypewriterText 
+              <TypewriterText
                 text="Ava, your AI BDR, runs outbound with the controls enterprises require: policy-driven sending, rigorous security, and executive-level reporting."
                 speed={20}
                 delay={500}
@@ -90,11 +98,11 @@ const HeroSection = () => {
           <RevealText delay={300}>
             <div className="flex flex-wrap items-center gap-3">
               {trustBadges.map((badge, index) => (
-                <GlassCard 
-                  key={badge} 
-                  variant="default" 
-                  padding="px-4 py-2" 
-                  radius="full" 
+                <GlassCard
+                  key={badge}
+                  variant="default"
+                  padding="px-4 py-2"
+                  radius="full"
                   hover
                   className="text-sm font-semibold text-white"
                 >
@@ -108,9 +116,7 @@ const HeroSection = () => {
             <div className="w-full max-w-xl mt-2">
               <form onSubmit={handleSubmit} className="w-full space-y-4">
                 <div className="relative group">
-                  <div
-                    className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl opacity-50 group-hover:opacity-75 group-focus-within:opacity-75 transition-opacity duration-300 blur-md"
-                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl opacity-50 group-hover:opacity-75 group-focus-within:opacity-75 transition-opacity duration-300 blur-md" />
                   <input
                     type="email"
                     name="email"
@@ -126,9 +132,7 @@ const HeroSection = () => {
                 {isExpanded && (
                   <>
                     <div className="relative group animate-fadeIn">
-                      <div
-                        className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl opacity-50 group-hover:opacity-75 group-focus-within:opacity-75 transition-opacity duration-300 blur-md"
-                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl opacity-50 group-hover:opacity-75 group-focus-within:opacity-75 transition-opacity duration-300 blur-md" />
                       <input
                         type="text"
                         name="fullName"
@@ -141,9 +145,7 @@ const HeroSection = () => {
                     </div>
 
                     <div className="relative group animate-fadeIn">
-                      <div
-                        className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl opacity-50 group-hover:opacity-75 group-focus-within:opacity-75 transition-opacity duration-300 blur-md"
-                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl opacity-50 group-hover:opacity-75 group-focus-within:opacity-75 transition-opacity duration-300 blur-md" />
                       <input
                         type="text"
                         name="jobTitle"
@@ -200,10 +202,10 @@ const HeroSection = () => {
         <RevealText delay={300} direction="scale">
           <div className="relative">
             <div className="absolute -inset-6 bg-gradient-to-br from-cyan-500/20 via-purple-500/20 to-pink-500/20 blur-3xl animate-pulse" />
-            <GlassCard 
-              variant="gradient" 
-              blur="2xl" 
-              radius="xl" 
+            <GlassCard
+              variant="gradient"
+              blur="2xl"
+              radius="xl"
               tilt
               glow
               glowColor="purple"
@@ -211,10 +213,19 @@ const HeroSection = () => {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-semibold text-cyan-400 uppercase tracking-wide">Enterprise control center</p>
-                  <h3 className="text-2xl font-bold text-white mt-1 font-space-grotesk">Realtime governance dashboard</h3>
+                  <p className="text-xs font-semibold text-cyan-400 uppercase tracking-wide">
+                    Enterprise control center
+                  </p>
+                  <h3 className="text-2xl font-bold text-white mt-1 font-space-grotesk">
+                    Realtime governance dashboard
+                  </h3>
                 </div>
-                <GlassCard variant="neon" padding="px-3 py-1" radius="full" className="flex items-center gap-2">
+                <GlassCard
+                  variant="neon"
+                  padding="px-3 py-1"
+                  radius="full"
+                  className="flex items-center gap-2"
+                >
                   <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.8)]" />
                   <span className="text-green-400 text-xs font-semibold">Live</span>
                 </GlassCard>
@@ -222,13 +233,30 @@ const HeroSection = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { label: 'Deliverability health', value: '98.8%', color: 'from-green-500/20 to-green-600/10 border-green-500/30 text-green-400' },
-                  { label: 'Sequence coverage', value: '4.2M', color: 'from-cyan-500/20 to-cyan-600/10 border-cyan-500/30 text-cyan-400' },
-                  { label: 'Data residency', value: 'US / EU', color: 'from-purple-500/20 to-purple-600/10 border-purple-500/30 text-purple-400' },
-                  { label: 'Uptime (90d)', value: '99.96%', color: 'from-amber-500/20 to-amber-600/10 border-amber-500/30 text-amber-400' }
-                ].map((metric) => (
-                  <div 
-                    key={metric.label} 
+                  {
+                    label: 'Deliverability health',
+                    value: '98.8%',
+                    color: 'from-green-500/20 to-green-600/10 border-green-500/30 text-green-400',
+                  },
+                  {
+                    label: 'Sequence coverage',
+                    value: '4.2M',
+                    color: 'from-cyan-500/20 to-cyan-600/10 border-cyan-500/30 text-cyan-400',
+                  },
+                  {
+                    label: 'Data residency',
+                    value: 'US / EU',
+                    color:
+                      'from-purple-500/20 to-purple-600/10 border-purple-500/30 text-purple-400',
+                  },
+                  {
+                    label: 'Uptime (90d)',
+                    value: '99.96%',
+                    color: 'from-amber-500/20 to-amber-600/10 border-amber-500/30 text-amber-400',
+                  },
+                ].map(metric => (
+                  <div
+                    key={metric.label}
                     className={`rounded-2xl border p-4 bg-gradient-to-br backdrop-blur-sm ${metric.color} hover:scale-105 transition-transform duration-300`}
                   >
                     <p className="text-sm text-gray-300 mb-1">{metric.label}</p>
@@ -240,7 +268,9 @@ const HeroSection = () => {
               <div className="rounded-2xl border border-purple-500/30 p-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm">
                 <div className="flex items-center justify-between mb-3">
                   <p className="text-sm font-semibold text-white">Guardrails enabled</p>
-                  <span className="text-xs font-semibold text-green-400 bg-green-500/20 border border-green-500/50 px-2 py-1 rounded-full">Compliant</span>
+                  <span className="text-xs font-semibold text-green-400 bg-green-500/20 border border-green-500/50 px-2 py-1 rounded-full">
+                    Compliant
+                  </span>
                 </div>
                 <ul className="space-y-2 text-sm text-gray-300">
                   <li className="flex items-center gap-2">

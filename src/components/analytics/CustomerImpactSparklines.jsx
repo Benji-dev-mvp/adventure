@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
-import { 
-  AreaChart, 
-  Area, 
-  BarChart,
-  Bar,
-  ResponsiveContainer,
-} from 'recharts';
+import { AreaChart, Area, BarChart, Bar, ResponsiveContainer } from 'recharts';
 import { TrendingUp, Users, Mail, Target, Clock, ArrowUp } from 'lucide-react';
 import { useReducedMotion, viewportSettings } from '../../hooks/useMotion';
 import { GlassCard, GlassCardContent, GradientText } from '../futuristic';
@@ -25,15 +19,15 @@ const generateSparklineData = (trend = 'up', points = 12, variance = 20) => {
 
 const MiniSparkline = ({ data, color, height = 40, trend = 'up' }) => {
   const prefersReducedMotion = useReducedMotion();
-  
+
   return (
     <div className="w-full" style={{ height }}>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={data} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
           <defs>
             <linearGradient id={`gradient-${color}`} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor={color} stopOpacity={0.4}/>
-              <stop offset="95%" stopColor={color} stopOpacity={0}/>
+              <stop offset="5%" stopColor={color} stopOpacity={0.4} />
+              <stop offset="95%" stopColor={color} stopOpacity={0} />
             </linearGradient>
           </defs>
           <Area
@@ -52,7 +46,7 @@ const MiniSparkline = ({ data, color, height = 40, trend = 'up' }) => {
 
 const MiniBarChart = ({ data, color, height = 40 }) => {
   const prefersReducedMotion = useReducedMotion();
-  
+
   return (
     <div className="w-full" style={{ height }}>
       <ResponsiveContainer width="100%" height="100%">
@@ -116,7 +110,7 @@ const DEFAULT_METRICS = [
   },
 ];
 
-const CustomerImpactSparklines = ({ 
+const CustomerImpactSparklines = ({
   metrics = DEFAULT_METRICS,
   title = 'Results at a Glance',
   columns = 4,
@@ -139,12 +133,12 @@ const CustomerImpactSparklines = ({
           </h3>
         </div>
       )}
-      
+
       <div className={`grid grid-cols-2 md:grid-cols-${columns} gap-4`}>
         {metrics.map((metric, index) => {
           const Icon = metric.icon;
           const isPositive = metric.change.startsWith('+');
-          
+
           return (
             <motion.div
               key={metric.id}
@@ -152,27 +146,22 @@ const CustomerImpactSparklines = ({
               animate={isVisible && !prefersReducedMotion ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.1 }}
             >
-              <GlassCard 
-                variant="default" 
-                hover 
-                className="h-full overflow-hidden group"
-              >
+              <GlassCard variant="default" hover className="h-full overflow-hidden group">
                 <GlassCardContent className="p-4">
                   {/* Header */}
                   <div className="flex items-center justify-between mb-3">
-                    <div 
+                    <div
                       className="w-8 h-8 rounded-lg flex items-center justify-center"
                       style={{ backgroundColor: `${metric.color}20` }}
                     >
                       <Icon size={16} style={{ color: metric.color }} />
                     </div>
-                    <div className={`flex items-center gap-1 text-xs font-medium ${
-                      isPositive ? 'text-emerald-400' : 'text-orange-400'
-                    }`}>
-                      <ArrowUp 
-                        size={12} 
-                        className={isPositive ? '' : 'rotate-180'}
-                      />
+                    <div
+                      className={`flex items-center gap-1 text-xs font-medium ${
+                        isPositive ? 'text-emerald-400' : 'text-orange-400'
+                      }`}
+                    >
+                      <ArrowUp size={12} className={isPositive ? '' : 'rotate-180'} />
                       {metric.change}
                     </div>
                   </div>
@@ -204,34 +193,40 @@ const CustomerImpactSparklines = ({
 };
 
 MiniSparkline.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.number,
-  })).isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.number,
+    })
+  ).isRequired,
   color: PropTypes.string.isRequired,
   height: PropTypes.number,
   trend: PropTypes.oneOf(['up', 'down', 'neutral']),
 };
 
 MiniBarChart.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.number,
-  })).isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.number,
+    })
+  ).isRequired,
   color: PropTypes.string.isRequired,
   height: PropTypes.number,
 };
 
 CustomerImpactSparklines.propTypes = {
-  metrics: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string,
-    label: PropTypes.string,
-    value: PropTypes.string,
-    change: PropTypes.string,
-    trend: PropTypes.string,
-    icon: PropTypes.elementType,
-    color: PropTypes.string,
-    chartType: PropTypes.oneOf(['area', 'bar']),
-    data: PropTypes.array,
-  })),
+  metrics: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string,
+      value: PropTypes.string,
+      change: PropTypes.string,
+      trend: PropTypes.string,
+      icon: PropTypes.elementType,
+      color: PropTypes.string,
+      chartType: PropTypes.oneOf(['area', 'bar']),
+      data: PropTypes.array,
+    })
+  ),
   title: PropTypes.string,
   columns: PropTypes.number,
 };

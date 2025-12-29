@@ -12,6 +12,7 @@
  */
 
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -289,7 +290,7 @@ const UnifiedCTA = ({
                   key={i}
                   className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 border-2 border-[#030712] flex items-center justify-center text-white text-xs font-bold"
                 >
-                  {String.fromCharCode(64 + i)}
+                  {String.fromCodePoint(64 + i)}
                 </div>
               ))}
               <div className="w-10 h-10 rounded-full bg-white/10 border-2 border-[#030712] flex items-center justify-center text-white text-xs">
@@ -311,6 +312,13 @@ const UnifiedCTA = ({
       </div>
     </section>
   );
+};
+
+UnifiedCTA.propTypes = {
+  variant: PropTypes.oneOf(['full', 'compact', 'inline']),
+  headline: PropTypes.string,
+  subheadline: PropTypes.string,
+  showStats: PropTypes.bool
 };
 
 export default UnifiedCTA;

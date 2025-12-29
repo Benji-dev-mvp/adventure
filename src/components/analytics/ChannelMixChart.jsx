@@ -25,11 +25,23 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
-const ChannelMixChart = ({ 
-  data = DEFAULT_CHANNEL_DATA, 
+const ChannelMixChart = ({
+  data = DEFAULT_CHANNEL_DATA,
   title = 'Channel Mix Distribution',
   showLegend = true,
 }) => {
+  const validateDeps = () => {
+    const missing = [];
+    if (!GlassCard) missing.push('GlassCard');
+    if (!GlassCardContent) missing.push('GlassCardContent');
+    if (!GradientText) missing.push('GradientText');
+    if (missing.length) {
+      console.error('[ChannelMixChart] Missing UI dependencies:', missing);
+      return false;
+    }
+    return true;
+  };
+
   const prefersReducedMotion = useReducedMotion();
   const [isVisible, setIsVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
@@ -41,6 +53,16 @@ const ChannelMixChart = ({
   const onPieLeave = () => {
     setActiveIndex(null);
   };
+
+  if (!validateDeps()) {
+    return (
+      <div className="p-4 rounded-lg bg-white/5 border border-white/10">
+        <p className="text-sm text-red-300">
+          Failed to render ChannelMixChart: missing UI components.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <motion.div
@@ -55,7 +77,7 @@ const ChannelMixChart = ({
           <h3 className="text-xl font-bold mb-6 font-space-grotesk">
             <GradientText gradient="cyber">{title}</GradientText>
           </h3>
-          
+
           <div className="flex flex-col lg:flex-row items-center gap-8">
             {/* Pie Chart */}
             <div className="w-full lg:w-1/2 h-64">
@@ -75,8 +97,8 @@ const ChannelMixChart = ({
                     animationDuration={prefersReducedMotion ? 0 : 1000}
                   >
                     {data.map((entry, index) => (
-                      <Cell 
-                        key={`cell-${index}`} 
+                      <Cell
+                        key={`cell-${index}`}
                         fill={entry.color}
                         stroke="transparent"
                         style={{
@@ -110,7 +132,7 @@ const ChannelMixChart = ({
                       onMouseEnter={() => setActiveIndex(index)}
                       onMouseLeave={() => setActiveIndex(null)}
                     >
-                      <div 
+                      <div
                         className="w-10 h-10 rounded-lg flex items-center justify-center"
                         style={{ backgroundColor: `${channel.color}30` }}
                       >
@@ -127,7 +149,9 @@ const ChannelMixChart = ({
                           <motion.div
                             className="h-full rounded-full"
                             style={{ backgroundColor: channel.color }}
-                            initial={prefersReducedMotion ? { width: `${channel.value}%` } : { width: 0 }}
+                            initial={
+                              prefersReducedMotion ? { width: `${channel.value}%` } : { width: 0 }
+                            }
                             animate={isVisible ? { width: `${channel.value}%` } : {}}
                             transition={{ duration: 0.8, delay: index * 0.15, ease: 'easeOut' }}
                           />
@@ -149,9 +173,7 @@ const ChannelMixChart = ({
               { label: 'Open Rate', value: '47%', color: 'purple' },
             ].map((metric, i) => (
               <div key={metric.label} className="text-center">
-                <div className={`text-xl font-bold text-${metric.color}-400`}>
-                  {metric.value}
-                </div>
+                <div className={`text-xl font-bold text-${metric.color}-400`}>{metric.value}</div>
                 <div className="text-xs text-gray-400">{metric.label}</div>
               </div>
             ))}
@@ -164,19 +186,23 @@ const ChannelMixChart = ({
 
 CustomTooltip.propTypes = {
   active: PropTypes.bool,
-  payload: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    value: PropTypes.number,
-  })),
+  payload: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      value: PropTypes.number,
+    })
+  ),
 };
 
 ChannelMixChart.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    value: PropTypes.number,
-    color: PropTypes.string,
-    icon: PropTypes.elementType,
-  })),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      value: PropTypes.number,
+      color: PropTypes.string,
+      icon: PropTypes.elementType,
+    })
+  ),
   title: PropTypes.string,
   showLegend: PropTypes.bool,
 };

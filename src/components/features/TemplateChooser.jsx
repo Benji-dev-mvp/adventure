@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
@@ -528,6 +529,10 @@ const TemplateChooser = ({ onTemplateSelect }) => {
       )}
     </div>
   );
+};
+
+TemplateChooser.propTypes = {
+  onTemplateSelect: PropTypes.func
 };
 
 export default TemplateChooser;

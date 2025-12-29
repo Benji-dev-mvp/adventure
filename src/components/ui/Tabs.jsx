@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { cn } from '../../lib/utils';
 
 export const Tabs = ({ children, defaultValue, value, onValueChange, className }) => {
@@ -26,6 +27,14 @@ export const Tabs = ({ children, defaultValue, value, onValueChange, className }
   );
 };
 
+Tabs.propTypes = {
+  children: PropTypes.node,
+  defaultValue: PropTypes.string,
+  value: PropTypes.string,
+  onValueChange: PropTypes.func,
+  className: PropTypes.string,
+};
+
 export const TabsList = ({ children, activeTab, onTabChange, className }) => {
   return (
     <div
@@ -42,6 +51,13 @@ export const TabsList = ({ children, activeTab, onTabChange, className }) => {
       })}
     </div>
   );
+};
+
+TabsList.propTypes = {
+  children: PropTypes.node,
+  activeTab: PropTypes.string,
+  onTabChange: PropTypes.func,
+  className: PropTypes.string,
 };
 
 export const TabsTrigger = ({ children, value, activeTab, onTabChange, className }) => {
@@ -66,6 +82,14 @@ export const TabsTrigger = ({ children, value, activeTab, onTabChange, className
   );
 };
 
+TabsTrigger.propTypes = {
+  children: PropTypes.node,
+  value: PropTypes.string.isRequired,
+  activeTab: PropTypes.string,
+  onTabChange: PropTypes.func,
+  className: PropTypes.string,
+};
+
 export const TabsContent = ({ children, value, activeTab, className }) => {
   if (activeTab !== value) return null;
 
@@ -80,4 +104,11 @@ export const TabsContent = ({ children, value, activeTab, className }) => {
       {children}
     </div>
   );
+};
+
+TabsContent.propTypes = {
+  children: PropTypes.node,
+  value: PropTypes.string.isRequired,
+  activeTab: PropTypes.string,
+  className: PropTypes.string,
 };

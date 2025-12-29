@@ -1,35 +1,44 @@
 import React, { useState } from 'react';
-import { 
-  X, 
-  Search, 
-  Mail, 
-  Linkedin, 
-  Phone, 
-  MessageSquare, 
-  Clock, 
-  GitBranch, 
-  Play, 
+import {
+  X,
+  Search,
+  Mail,
+  Linkedin,
+  Phone,
+  MessageSquare,
+  Clock,
+  GitBranch,
+  Play,
   Shuffle,
   Sparkles,
-  Zap
+  Zap,
 } from 'lucide-react';
 import { nodeDefinitions, getNodesByCategory } from './nodes';
+import PropTypes from 'prop-types';
 
 const NodeCreatorPanel = ({ isOpen, onClose, onAddNode }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const categories = getNodesByCategory();
-  
+
   // Filter nodes based on search
   const allNodes = Object.values(nodeDefinitions);
-  const filteredNodes = allNodes.filter(node => 
-    node.label.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    node.description.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredNodes = allNodes.filter(
+    node =>
+      node.label.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      node.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const iconMap = {
-    Play, Mail, Linkedin, Phone, MessageSquare, Clock, GitBranch, Shuffle
+    Play,
+    Mail,
+    Linkedin,
+    Phone,
+    MessageSquare,
+    Clock,
+    GitBranch,
+    Shuffle,
   };
 
   const colorClasses = {
@@ -42,14 +51,24 @@ const NodeCreatorPanel = ({ isOpen, onClose, onAddNode }) => {
     emerald: 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400',
   };
 
+  const handleClose = event => {
+    if (event.type === 'click' || event.key === 'Enter' || event.key === ' ') {
+      onClose();
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
     <>
       {/* Backdrop */}
-      <div 
+      <div
         className="fixed inset-0 bg-black/20 z-40"
-        onClick={onClose}
+        role="button"
+        tabIndex={0}
+        aria-label="Close node creator panel"
+        onClick={handleClose}
+        onKeyDown={handleClose}
       />
 
       {/* Panel */}
@@ -60,7 +79,7 @@ const NodeCreatorPanel = ({ isOpen, onClose, onAddNode }) => {
             <Zap className="w-5 h-5 text-indigo-500" />
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Add Node</h2>
           </div>
-          <button 
+          <button
             onClick={onClose}
             className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
           >
@@ -75,7 +94,7 @@ const NodeCreatorPanel = ({ isOpen, onClose, onAddNode }) => {
             <input
               type="text"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={e => setSearchTerm(e.target.value)}
               placeholder="Search nodes..."
               className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
             />
@@ -192,3 +211,9 @@ const NodeCreatorPanel = ({ isOpen, onClose, onAddNode }) => {
 };
 
 export default NodeCreatorPanel;
+
+NodeCreatorPanel.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onAddNode: PropTypes.func.isRequired,
+};

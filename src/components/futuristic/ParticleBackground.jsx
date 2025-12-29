@@ -2,6 +2,7 @@
  * ParticleBackground - Animated particle/orb background effects
  */
 import React, { useMemo, useRef, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { usePrefersReducedMotion, useMousePosition } from '../../hooks/useAnimations';
 
 /**
@@ -54,6 +55,18 @@ function Orb({
     />
   );
 }
+
+Orb.propTypes = {
+  size: PropTypes.number,
+  color: PropTypes.string,
+  x: PropTypes.number,
+  y: PropTypes.number,
+  blur: PropTypes.number,
+  opacity: PropTypes.number,
+  animate: PropTypes.bool,
+  duration: PropTypes.number,
+  className: PropTypes.string,
+};
 
 /**
  * ParticleBackground - Container with multiple animated orbs
@@ -134,7 +147,8 @@ export function ParticleBackground({
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at center, transparent 0%, rgba(3,7,18,0.5) 70%, rgba(3,7,18,0.8) 100%)',
+          background:
+            'radial-gradient(ellipse at center, transparent 0%, rgba(3,7,18,0.5) 70%, rgba(3,7,18,0.8) 100%)',
         }}
       />
 
@@ -143,6 +157,14 @@ export function ParticleBackground({
     </div>
   );
 }
+
+ParticleBackground.propTypes = {
+  variant: PropTypes.oneOf(['default', 'aurora', 'minimal', 'intense']),
+  children: PropTypes.node,
+  className: PropTypes.string,
+  overlay: PropTypes.bool,
+  noise: PropTypes.bool,
+};
 
 /**
  * FloatingParticles - Small floating particle dots
@@ -178,7 +200,7 @@ export function FloatingParticles({
 
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
-      {particles.map((particle) => (
+      {particles.map(particle => (
         <div
           key={particle.id}
           className={`
@@ -200,6 +222,14 @@ export function FloatingParticles({
     </div>
   );
 }
+
+FloatingParticles.propTypes = {
+  count: PropTypes.number,
+  color: PropTypes.oneOf(['white', 'cyan', 'purple', 'mixed']),
+  minSize: PropTypes.number,
+  maxSize: PropTypes.number,
+  className: PropTypes.string,
+};
 
 /**
  * MouseFollowGlow - Glow effect that follows mouse
@@ -236,7 +266,10 @@ export function MouseFollowGlow({
   };
 
   return (
-    <div ref={containerRef} className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+    <div
+      ref={containerRef}
+      className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
+    >
       <div
         className={`absolute rounded-full ${colors[color]} transition-transform duration-300 ease-out`}
         style={{
@@ -252,6 +285,14 @@ export function MouseFollowGlow({
     </div>
   );
 }
+
+MouseFollowGlow.propTypes = {
+  size: PropTypes.number,
+  color: PropTypes.oneOf(['cyan', 'purple', 'pink', 'gradient']),
+  opacity: PropTypes.number,
+  blur: PropTypes.number,
+  className: PropTypes.string,
+};
 
 /**
  * GradientMesh - Animated mesh gradient background
@@ -282,6 +323,10 @@ export function GradientMesh({ className = '' }) {
   );
 }
 
+GradientMesh.propTypes = {
+  className: PropTypes.string,
+};
+
 /**
  * StarField - Animated star background
  */
@@ -302,7 +347,7 @@ export function StarField({ count = 100, className = '' }) {
 
   return (
     <div className={`absolute inset-0 overflow-hidden ${className}`}>
-      {stars.map((star) => (
+      {stars.map(star => (
         <div
           key={star.id}
           className={`
@@ -322,5 +367,10 @@ export function StarField({ count = 100, className = '' }) {
     </div>
   );
 }
+
+StarField.propTypes = {
+  count: PropTypes.number,
+  className: PropTypes.string,
+};
 
 export default ParticleBackground;

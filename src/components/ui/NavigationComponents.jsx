@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { cn } from '../../lib/utils';
 import { X, Menu, ChevronRight, ChevronDown, Home } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
@@ -86,8 +87,16 @@ export const ResponsiveSidebar = ({
       {/* Mobile Overlay */}
       {mobileOpen && (
         <div
+          role="button"
+          tabIndex={0}
           className="lg:hidden fixed inset-0 bg-black/50 z-40"
           onClick={() => setMobileOpen(false)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              setMobileOpen(false);
+            }
+          }}
         />
       )}
 
@@ -375,4 +384,65 @@ export const CollapsibleMenu = ({ items = [], className }) => {
       })}
     </div>
   );
+};
+
+ResponsiveSidebar.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.shape({
+    icon: PropTypes.elementType,
+    label: PropTypes.string,
+    path: PropTypes.string,
+    badge: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  })),
+  logo: PropTypes.node,
+  collapsed: PropTypes.bool,
+  onCollapse: PropTypes.func,
+  className: PropTypes.string,
+  children: PropTypes.node
+};
+
+Breadcrumbs.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string,
+    path: PropTypes.string
+  })),
+  className: PropTypes.string
+};
+
+TopBar.propTypes = {
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  actions: PropTypes.arrayOf(PropTypes.node),
+  breadcrumbs: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string,
+    path: PropTypes.string
+  })),
+  className: PropTypes.string
+};
+
+MegaMenu.propTypes = {
+  trigger: PropTypes.node.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    items: PropTypes.arrayOf(PropTypes.shape({
+      icon: PropTypes.elementType,
+      label: PropTypes.string,
+      path: PropTypes.string,
+      description: PropTypes.string
+    }))
+  })),
+  className: PropTypes.string
+};
+
+CollapsibleMenu.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.shape({
+    icon: PropTypes.elementType,
+    label: PropTypes.string,
+    path: PropTypes.string,
+    children: PropTypes.arrayOf(PropTypes.shape({
+      icon: PropTypes.elementType,
+      label: PropTypes.string,
+      path: PropTypes.string
+    }))
+  })),
+  className: PropTypes.string
 };

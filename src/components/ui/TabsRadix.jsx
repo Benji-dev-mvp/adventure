@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import { cn } from '../../lib/utils';
 
@@ -17,6 +18,9 @@ const TabsListRadix = React.forwardRef(({ className, ...props }, ref) => (
   />
 ));
 TabsListRadix.displayName = TabsPrimitive.List.displayName;
+TabsListRadix.propTypes = {
+  className: PropTypes.string,
+};
 
 const TabsTriggerRadix = React.forwardRef(({ className, ...props }, ref) => (
   <TabsPrimitive.Trigger
@@ -36,6 +40,9 @@ const TabsTriggerRadix = React.forwardRef(({ className, ...props }, ref) => (
   />
 ));
 TabsTriggerRadix.displayName = TabsPrimitive.Trigger.displayName;
+TabsTriggerRadix.propTypes = {
+  className: PropTypes.string,
+};
 
 const TabsContentRadix = React.forwardRef(({ className, ...props }, ref) => (
   <TabsPrimitive.Content
@@ -49,5 +56,8 @@ const TabsContentRadix = React.forwardRef(({ className, ...props }, ref) => (
   />
 ));
 TabsContentRadix.displayName = TabsPrimitive.Content.displayName;
+TabsContentRadix.propTypes = {
+  className: PropTypes.string,
+};
 
 export { TabsRadix, TabsListRadix, TabsTriggerRadix, TabsContentRadix };

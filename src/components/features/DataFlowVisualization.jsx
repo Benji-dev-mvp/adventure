@@ -202,6 +202,11 @@ const FlowNode = ({
       className="relative group"
       onMouseEnter={() => onHover(index)}
       onMouseLeave={onLeave}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onHover(index); } }}
+      onBlur={onLeave}
+      aria-label={`${stage.title} - ${stage.subtitle || ''}`}
     >
       {/* Connection line to next node */}
       {index < totalStages - 1 && (
@@ -263,7 +268,7 @@ const FlowNode = ({
 
         {/* Title */}
         <h4 className={`font-semibold text-sm lg:text-base mb-1 ${
-          isActive ? 'text-white' : 'text-white'
+          isActive ? 'text-white' : 'text-gray-300'
         }`}>
           {stage.title}
         </h4>

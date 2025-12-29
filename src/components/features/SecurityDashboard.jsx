@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '../ui/Card';
-import { 
-  Shield, 
-  Lock, 
-  Key, 
-  FileCheck, 
+import {
+  Shield,
+  Lock,
+  Key,
+  FileCheck,
   AlertTriangle,
   CheckCircle,
   Activity,
@@ -14,7 +14,7 @@ import {
   UserCheck,
   Eye,
   Clock,
-  Zap
+  Zap,
 } from 'lucide-react';
 
 const SecurityDashboard = () => {
@@ -27,20 +27,20 @@ const SecurityDashboard = () => {
     const interval = setInterval(() => {
       setScanning(prev => !prev);
       setActiveThreats(Math.floor(Math.random() * 3));
-      
+
       // Add audit log entry
       const actions = [
         { user: 'sarah.chen@techcorp.com', action: 'Email campaign approved', severity: 'info' },
         { user: 'system', action: 'DLP scan completed - 0 violations', severity: 'success' },
         { user: 'admin@artisan.ai', action: 'New user provisioned via SCIM', severity: 'info' },
         { user: 'system', action: 'PII redaction applied to 15 messages', severity: 'warning' },
-        { user: 'michael.r@growth.com', action: 'Data export requested', severity: 'info' }
+        { user: 'michael.r@growth.com', action: 'Data export requested', severity: 'info' },
       ];
-      
+
       const newLog = actions[Math.floor(Math.random() * actions.length)];
       setAuditLogs(prev => [
         { ...newLog, timestamp: new Date().toLocaleTimeString(), id: Date.now() },
-        ...prev.slice(0, 9)
+        ...prev.slice(0, 9),
       ]);
     }, 3000);
 
@@ -55,7 +55,7 @@ const SecurityDashboard = () => {
       color: 'text-green-400',
       bgColor: 'from-green-500 to-emerald-500',
       value: '100%',
-      description: 'Annual attestation current'
+      description: 'Annual attestation current',
     },
     {
       title: 'Uptime',
@@ -64,7 +64,7 @@ const SecurityDashboard = () => {
       color: 'text-blue-400',
       bgColor: 'from-blue-500 to-cyan-500',
       value: '90d',
-      description: 'Last 90 days'
+      description: 'Last 90 days',
     },
     {
       title: 'Active Threats',
@@ -73,7 +73,7 @@ const SecurityDashboard = () => {
       color: activeThreats === 0 ? 'text-green-400' : 'text-orange-400',
       bgColor: activeThreats === 0 ? 'from-green-500 to-green-600' : 'from-orange-500 to-red-500',
       value: activeThreats,
-      description: 'Real-time monitoring'
+      description: 'Real-time monitoring',
     },
     {
       title: 'Encryption',
@@ -82,29 +82,32 @@ const SecurityDashboard = () => {
       color: 'text-purple-400',
       bgColor: 'from-purple-500 to-pink-500',
       value: '100%',
-      description: 'Data at rest & in transit'
-    }
+      description: 'Data at rest & in transit',
+    },
   ];
 
   const complianceChecks = [
     { name: 'GDPR Compliance', status: 'active', regions: ['EU', 'UK'] },
     { name: 'CCPA/CPRA', status: 'active', regions: ['California'] },
     { name: 'HIPAA (Healthcare)', status: 'available', regions: ['US'] },
-    { name: 'ISO 27001', status: 'certified', regions: ['Global'] }
+    { name: 'ISO 27001', status: 'certified', regions: ['Global'] },
   ];
 
   const dataResidency = [
     { region: 'US East (N. Virginia)', status: 'active', latency: '12ms' },
     { region: 'EU West (Frankfurt)', status: 'active', latency: '8ms' },
     { region: 'US West (Oregon)', status: 'active', latency: '18ms' },
-    { region: 'Asia Pacific (Singapore)', status: 'coming', latency: 'N/A' }
+    { region: 'Asia Pacific (Singapore)', status: 'coming', latency: 'N/A' },
   ];
 
   return (
-    <div id="security" className="w-full py-20 bg-gradient-to-br from-slate-900 via-slate-950 to-purple-950 relative overflow-hidden">
+    <div
+      id="security"
+      className="w-full py-20 bg-gradient-to-br from-slate-900 via-slate-950 to-purple-950 relative overflow-hidden"
+    >
       <div className="absolute inset-0 grid-background opacity-10" />
       <div className="absolute bottom-20 right-20 w-96 h-96 bg-red-600/20 blur-3xl animate-pulse-slow" />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
@@ -116,7 +119,8 @@ const SecurityDashboard = () => {
             Security-First Architecture
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            SOC 2 Type II certified with real-time threat monitoring, comprehensive audit trails, and enterprise-grade access controls
+            SOC 2 Type II certified with real-time threat monitoring, comprehensive audit trails,
+            and enterprise-grade access controls
           </p>
         </div>
 
@@ -125,10 +129,15 @@ const SecurityDashboard = () => {
           {securityMetrics.map((metric, idx) => {
             const Icon = metric.icon;
             return (
-              <Card key={idx} className="bg-slate-900/50 backdrop-blur-xl border-white/10 hover-lift">
+              <Card
+                key={idx}
+                className="bg-slate-900/50 backdrop-blur-xl border-white/10 hover-lift"
+              >
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${metric.bgColor} flex items-center justify-center`}>
+                    <div
+                      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${metric.bgColor} flex items-center justify-center`}
+                    >
                       <Icon className="w-6 h-6 text-white" />
                     </div>
                     {scanning && idx === 2 && (
@@ -161,16 +170,20 @@ const SecurityDashboard = () => {
               </div>
 
               <div className="space-y-2 max-h-[400px] overflow-y-auto custom-scrollbar">
-                {auditLogs.map((log) => (
-                  <div 
+                {auditLogs.map(log => (
+                  <div
                     key={log.id}
                     className="flex items-start gap-3 p-3 rounded-lg bg-slate-800/50 border border-white/5 hover:border-white/10 transition-all"
                   >
-                    <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
-                      log.severity === 'success' ? 'bg-green-500' :
-                      log.severity === 'warning' ? 'bg-orange-500' :
-                      'bg-blue-500'
-                    }`} />
+                    <div
+                      className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
+                        log.severity === 'success'
+                          ? 'bg-green-500'
+                          : log.severity === 'warning'
+                            ? 'bg-orange-500'
+                            : 'bg-blue-500'
+                      }`}
+                    />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-2 mb-1">
                         <span className="text-sm text-white font-medium truncate">{log.user}</span>
@@ -241,21 +254,26 @@ const SecurityDashboard = () => {
 
               <div className="space-y-3">
                 {complianceChecks.map((check, idx) => (
-                  <div key={idx} className="flex items-center justify-between p-3 rounded-lg bg-slate-800/50 border border-white/5">
+                  <div
+                    key={idx}
+                    className="flex items-center justify-between p-3 rounded-lg bg-slate-800/50 border border-white/5"
+                  >
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-green-400" />
                       <div>
                         <div className="text-sm font-semibold text-white">{check.name}</div>
-                        <div className="text-xs text-gray-400">
-                          {check.regions.join(', ')}
-                        </div>
+                        <div className="text-xs text-gray-400">{check.regions.join(', ')}</div>
                       </div>
                     </div>
-                    <span className={`text-xs px-2 py-1 rounded-full font-semibold ${
-                      check.status === 'active' ? 'bg-green-500/20 text-green-400' :
-                      check.status === 'certified' ? 'bg-blue-500/20 text-blue-400' :
-                      'bg-orange-500/20 text-orange-400'
-                    }`}>
+                    <span
+                      className={`text-xs px-2 py-1 rounded-full font-semibold ${
+                        check.status === 'active'
+                          ? 'bg-green-500/20 text-green-400'
+                          : check.status === 'certified'
+                            ? 'bg-blue-500/20 text-blue-400'
+                            : 'bg-orange-500/20 text-orange-400'
+                      }`}
+                    >
                       {check.status}
                     </span>
                   </div>
@@ -274,19 +292,26 @@ const SecurityDashboard = () => {
 
               <div className="space-y-3">
                 {dataResidency.map((location, idx) => (
-                  <div key={idx} className="flex items-center justify-between p-3 rounded-lg bg-slate-800/50 border border-white/5">
+                  <div
+                    key={idx}
+                    className="flex items-center justify-between p-3 rounded-lg bg-slate-800/50 border border-white/5"
+                  >
                     <div className="flex items-center gap-3">
-                      <Server className={`w-5 h-5 ${location.status === 'active' ? 'text-green-400' : 'text-gray-500'}`} />
+                      <Server
+                        className={`w-5 h-5 ${location.status === 'active' ? 'text-green-400' : 'text-gray-500'}`}
+                      />
                       <div>
                         <div className="text-sm font-semibold text-white">{location.region}</div>
                         <div className="text-xs text-gray-400">Latency: {location.latency}</div>
                       </div>
                     </div>
-                    <span className={`text-xs px-2 py-1 rounded-full font-semibold ${
-                      location.status === 'active' 
-                        ? 'bg-green-500/20 text-green-400' 
-                        : 'bg-gray-500/20 text-gray-400'
-                    }`}>
+                    <span
+                      className={`text-xs px-2 py-1 rounded-full font-semibold ${
+                        location.status === 'active'
+                          ? 'bg-green-500/20 text-green-400'
+                          : 'bg-gray-500/20 text-gray-400'
+                      }`}
+                    >
                       {location.status}
                     </span>
                   </div>
@@ -297,7 +322,8 @@ const SecurityDashboard = () => {
                 <div className="flex items-start gap-2">
                   <Database className="w-4 h-4 text-blue-400 mt-0.5" />
                   <p className="text-xs text-gray-300">
-                    Choose where your data lives. Private region deployment available for enterprise customers.
+                    Choose where your data lives. Private region deployment available for enterprise
+                    customers.
                   </p>
                 </div>
               </div>

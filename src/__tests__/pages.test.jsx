@@ -45,12 +45,14 @@ vi.mock('recharts', async () => {
 
 // Mock the data service
 vi.mock('../lib/dataService', () => ({
-  getDashboardStats: vi.fn(() => Promise.resolve({
-    totalCampaigns: 10,
-    totalLeads: 500,
-    emailsSent: 1000,
-    responseRate: 25
-  })),
+  getDashboardStats: vi.fn(() =>
+    Promise.resolve({
+      totalCampaigns: 10,
+      totalLeads: 500,
+      emailsSent: 1000,
+      responseRate: 25,
+    })
+  ),
   getCampaigns: vi.fn(() => Promise.resolve([])),
   getLeads: vi.fn(() => Promise.resolve([])),
   getAnalytics: vi.fn(() => Promise.resolve({})),
@@ -59,9 +61,7 @@ vi.mock('../lib/dataService', () => ({
 // Test wrapper with all required providers
 const TestWrapper = ({ children }) => (
   <BrowserRouter>
-    <TenantProvider>
-      {children}
-    </TenantProvider>
+    <TenantProvider>{children}</TenantProvider>
   </BrowserRouter>
 );
 TestWrapper.propTypes = {
@@ -88,7 +88,7 @@ describe('Dashboard Component', () => {
         <Dashboard />
       </TestWrapper>
     );
-    
+
     expect(await screen.findByText(/Emails Sent/i)).toBeInTheDocument();
     expect(screen.getByText(/Performance Overview/i)).toBeInTheDocument();
   });
@@ -105,7 +105,7 @@ describe('CampaignBuilder Component', () => {
         <CampaignBuilder />
       </TestWrapper>
     );
-    
+
     expect(screen.getByLabelText(/Campaign Name/i)).toBeInTheDocument();
   });
 
@@ -115,10 +115,10 @@ describe('CampaignBuilder Component', () => {
         <CampaignBuilder />
       </TestWrapper>
     );
-    
+
     const submitButton = screen.getByRole('button', { name: /submit/i });
     fireEvent.click(submitButton);
-    
+
     await waitFor(() => {
       expect(screen.getByText(/Campaign name is required/i)).toBeInTheDocument();
       expect(screen.getByText(/Please select a target audience/i)).toBeInTheDocument();
@@ -133,15 +133,15 @@ describe('CampaignBuilder Component', () => {
         <CampaignBuilder />
       </TestWrapper>
     );
-    
+
     const nameInput = screen.getByLabelText(/Campaign Name/i);
     fireEvent.change(nameInput, { target: { value: 'Test Campaign' } });
     const audienceSelect = screen.getByLabelText(/Target Audience/i);
     fireEvent.change(audienceSelect, { target: { value: 'enterprise' } });
-    
+
     const submitButton = screen.getByRole('button', { name: /submit/i });
     fireEvent.click(submitButton);
-    
+
     await waitFor(() => {
       expect(mockShowToast).toHaveBeenCalledWith('Campaign submitted successfully', 'success');
     });
@@ -155,7 +155,7 @@ describe('Analytics Component', () => {
         <Analytics />
       </TestWrapper>
     );
-    
+
     await waitFor(() => {
       expect(screen.getByText(/Analytics/i)).toBeInTheDocument();
     });
@@ -167,7 +167,7 @@ describe('Analytics Component', () => {
         <Analytics />
       </TestWrapper>
     );
-    
+
     await waitFor(() => {
       expect(screen.getByText(/Date Range/i)).toBeInTheDocument();
     });

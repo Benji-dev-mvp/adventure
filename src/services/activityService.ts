@@ -146,19 +146,26 @@ const isOlderThanYesterday = (timestamp: Date, yesterdayMidnight: Date): boolean
 /**
  * Generate mock activities for development
  */
+type ActivitySeed = Omit<Activity, 'timestamp'> & { offsetMs: number };
+
+const createActivity = (now: number, seed: ActivitySeed): Activity => ({
+  ...seed,
+  timestamp: new Date(now - seed.offsetMs),
+});
+
 export const generateMockActivities = (): Activity[] => {
   const now = Date.now();
   const minute = 60 * 1000;
   const hour = 60 * minute;
-  
-  return [
+
+  const mockActivitySeeds: ActivitySeed[] = [
     {
       id: '1',
       type: 'campaign',
       event: 'launched',
       title: 'Campaign "Q1 Outbound Blitz" launched',
       description: 'Started sending to 2,450 prospects in the Tech Startup segment',
-      timestamp: new Date(now - 12 * minute),
+      offsetMs: 12 * minute,
       icon: 'Rocket',
       color: 'green',
       read: false,
@@ -171,7 +178,7 @@ export const generateMockActivities = (): Activity[] => {
       event: 'high-intent',
       title: 'High-intent lead detected',
       description: 'Sarah Chen (Acme Corp) opened emails 5x and visited pricing page',
-      timestamp: new Date(now - 28 * minute),
+      offsetMs: 28 * minute,
       icon: 'Target',
       color: 'purple',
       read: false,
@@ -184,7 +191,7 @@ export const generateMockActivities = (): Activity[] => {
       event: 'reply',
       title: 'Reply received',
       description: 'James Wilson responded positively to the "Re-engagement" sequence',
-      timestamp: new Date(now - 45 * minute),
+      offsetMs: 45 * minute,
       icon: 'MessageSquare',
       color: 'blue',
       read: false,
@@ -197,7 +204,7 @@ export const generateMockActivities = (): Activity[] => {
       event: 'optimization',
       title: 'Ava optimized send times',
       description: 'Updated delivery windows for 3 campaigns based on engagement patterns',
-      timestamp: new Date(now - 1.5 * hour),
+      offsetMs: 1.5 * hour,
       icon: 'Sparkles',
       color: 'cyan',
       read: true,
@@ -210,7 +217,7 @@ export const generateMockActivities = (): Activity[] => {
       event: 'failing',
       title: 'Campaign performance alert',
       description: '"Enterprise Outreach" has 2.1% open rate - below 5% threshold',
-      timestamp: new Date(now - 2 * hour),
+      offsetMs: 2 * hour,
       icon: 'AlertTriangle',
       color: 'amber',
       read: true,
@@ -223,7 +230,7 @@ export const generateMockActivities = (): Activity[] => {
       event: 'integration-error',
       title: 'Salesforce sync issue',
       description: 'Failed to sync 12 leads. API rate limit exceeded.',
-      timestamp: new Date(now - 3 * hour),
+      offsetMs: 3 * hour,
       icon: 'AlertCircle',
       color: 'red',
       read: true,
@@ -236,7 +243,7 @@ export const generateMockActivities = (): Activity[] => {
       event: 'usage-warning',
       title: 'Email quota at 85%',
       description: 'You have used 8,500 of 10,000 monthly emails. Consider upgrading.',
-      timestamp: new Date(now - 4 * hour),
+      offsetMs: 4 * hour,
       icon: 'TrendingUp',
       color: 'amber',
       read: true,
@@ -249,7 +256,7 @@ export const generateMockActivities = (): Activity[] => {
       event: 'leads-scored',
       title: 'Ava scored 156 new leads',
       description: '23 marked as hot, 67 warm, 66 cold. Review recommended.',
-      timestamp: new Date(now - 5 * hour),
+      offsetMs: 5 * hour,
       icon: 'Brain',
       color: 'purple',
       read: true,
@@ -262,7 +269,7 @@ export const generateMockActivities = (): Activity[] => {
       event: 'paused',
       title: 'Campaign auto-paused',
       description: '"Holiday Promo" paused due to high bounce rate (12%)',
-      timestamp: new Date(now - 8 * hour),
+      offsetMs: 8 * hour,
       icon: 'PauseCircle',
       color: 'amber',
       read: true,
@@ -275,7 +282,7 @@ export const generateMockActivities = (): Activity[] => {
       event: 'meeting-booked',
       title: 'Meeting booked!',
       description: 'Michael Torres (Globex) scheduled a demo for tomorrow at 2pm',
-      timestamp: new Date(now - 12 * hour),
+      offsetMs: 12 * hour,
       icon: 'Calendar',
       color: 'green',
       read: true,
@@ -283,6 +290,8 @@ export const generateMockActivities = (): Activity[] => {
       entityType: 'lead',
     },
   ];
+
+  return mockActivitySeeds.map(seed => createActivity(now, seed));
 };
 
 export default {

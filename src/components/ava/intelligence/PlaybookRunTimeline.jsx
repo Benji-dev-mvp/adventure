@@ -1,9 +1,9 @@
 /**
  * PlaybookRunTimeline.jsx
- * 
+ *
  * Temporal visualization of playbook runs showing execution history,
  * outcomes, and patterns over time. Enables drill-down into specific runs.
- * 
+ *
  * Features:
  * - Interactive timeline with zoom/pan
  * - Run markers with outcome indicators
@@ -14,9 +14,23 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Clock, Play, CheckCircle, XCircle, AlertCircle, Pause,
-  ChevronLeft, ChevronRight, Calendar, TrendingUp, Filter,
-  Maximize2, Users, Mail, MessageSquare, Target, Zap
+  Clock,
+  Play,
+  CheckCircle,
+  XCircle,
+  AlertCircle,
+  Pause,
+  ChevronLeft,
+  ChevronRight,
+  Calendar,
+  TrendingUp,
+  Filter,
+  Maximize2,
+  Users,
+  Mail,
+  MessageSquare,
+  Target,
+  Zap,
 } from 'lucide-react';
 import { AnimatedCounter } from '../../ui/AnimatedComponents';
 
@@ -27,44 +41,44 @@ const runStatusConfig = {
     color: 'text-green-500',
     bg: 'bg-green-100 dark:bg-green-900/30',
     border: 'border-green-500',
-    label: 'Completed'
+    label: 'Completed',
   },
   running: {
     icon: Play,
     color: 'text-blue-500',
     bg: 'bg-blue-100 dark:bg-blue-900/30',
     border: 'border-blue-500',
-    label: 'Running'
+    label: 'Running',
   },
   failed: {
     icon: XCircle,
     color: 'text-red-500',
     bg: 'bg-red-100 dark:bg-red-900/30',
     border: 'border-red-500',
-    label: 'Failed'
+    label: 'Failed',
   },
   pending: {
     icon: Clock,
     color: 'text-yellow-500',
     bg: 'bg-yellow-100 dark:bg-yellow-900/30',
     border: 'border-yellow-500',
-    label: 'Pending'
+    label: 'Pending',
   },
   paused: {
     icon: Pause,
     color: 'text-gray-500',
     bg: 'bg-gray-100 dark:bg-gray-700',
     border: 'border-gray-500',
-    label: 'Paused'
-  }
+    label: 'Paused',
+  },
 };
 
 // Generate performance score from run metrics
-const getPerformanceScore = (run) => {
+const getPerformanceScore = run => {
   if (!run.leads_targeted) return 0;
   const responseRate = (run.responses / run.emails_sent) * 100 || 0;
   const meetingRate = (run.meetings_booked / run.responses) * 100 || 0;
-  return Math.round((responseRate * 0.6 + meetingRate * 0.4));
+  return Math.round(responseRate * 0.6 + meetingRate * 0.4);
 };
 
 // Timeline Run Marker
@@ -72,7 +86,7 @@ const RunMarker = ({ run, isSelected, onClick, position }) => {
   const config = runStatusConfig[run.status] || runStatusConfig.pending;
   const Icon = config.icon;
   const performance = getPerformanceScore(run);
-  
+
   // Size based on leads targeted (normalized)
   const size = Math.min(48, Math.max(24, Math.sqrt(run.leads_targeted || 10) * 4));
 
@@ -96,10 +110,10 @@ const RunMarker = ({ run, isSelected, onClick, position }) => {
       >
         <Icon size={size * 0.5} className={config.color} />
       </div>
-      
+
       {/* Performance indicator dot */}
       {run.status === 'completed' && (
-        <div 
+        <div
           className={`
             absolute -bottom-1 -right-1 w-3 h-3 rounded-full border-2 border-white dark:border-gray-800
             ${performance >= 70 ? 'bg-green-500' : performance >= 40 ? 'bg-yellow-500' : 'bg-red-500'}
@@ -111,7 +125,9 @@ const RunMarker = ({ run, isSelected, onClick, position }) => {
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 hover:opacity-100 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-30">
         <div className="font-semibold">{run.playbook_name || 'Playbook Run'}</div>
         <div className="text-gray-400">{new Date(run.started_at).toLocaleString()}</div>
-        <div className="mt-1">{run.leads_targeted} leads • {run.meetings_booked} meetings</div>
+        <div className="mt-1">
+          {run.leads_targeted} leads • {run.meetings_booked} meetings
+        </div>
       </div>
     </button>
   );
@@ -139,14 +155,14 @@ const TimelineTrack = ({ runs, selectedRun, onRunClick, dateRange }) => {
   // Calculate position for each run
   const runPositions = useMemo(() => {
     if (sortedRuns.length === 0) return [];
-    
+
     const start = new Date(dateRange.start).getTime();
     const end = new Date(dateRange.end).getTime();
     const range = end - start;
 
     return sortedRuns.map(run => ({
       run,
-      position: ((new Date(run.started_at).getTime() - start) / range) * 100
+      position: ((new Date(run.started_at).getTime() - start) / range) * 100,
     }));
   }, [sortedRuns, dateRange]);
 
@@ -157,13 +173,13 @@ const TimelineTrack = ({ runs, selectedRun, onRunClick, dateRange }) => {
     const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
     const tickCount = Math.min(days, 7);
     const tickInterval = days / tickCount;
-    
+
     return Array.from({ length: tickCount + 1 }, (_, i) => {
       const date = new Date(start);
       date.setDate(date.getDate() + Math.round(i * tickInterval));
       return {
         position: (i / tickCount) * 100,
-        label: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+        label: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
       };
     });
   }, [dateRange]);
@@ -201,7 +217,11 @@ const TimelineTrack = ({ runs, selectedRun, onRunClick, dateRange }) => {
           <span
             key={i}
             className="text-xs text-gray-500 dark:text-gray-400"
-            style={{ position: 'absolute', left: `${tick.position}%`, transform: 'translateX(-50%)' }}
+            style={{
+              position: 'absolute',
+              left: `${tick.position}%`,
+              transform: 'translateX(-50%)',
+            }}
           >
             {tick.label}
           </span>
@@ -230,7 +250,7 @@ const RunDetailPanel = ({ run, onClose }) => {
   const config = runStatusConfig[run.status] || runStatusConfig.pending;
   const Icon = config.icon;
   const performance = getPerformanceScore(run);
-  const duration = run.completed_at 
+  const duration = run.completed_at
     ? Math.round((new Date(run.completed_at) - new Date(run.started_at)) / 1000)
     : null;
 
@@ -252,7 +272,7 @@ const RunDetailPanel = ({ run, onClose }) => {
             </div>
           </div>
         </div>
-        <button 
+        <button
           onClick={onClose}
           className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
         >
@@ -269,7 +289,7 @@ const RunDetailPanel = ({ run, onClose }) => {
           </div>
           <div className="text-xs text-gray-500">Leads</div>
         </div>
-        
+
         <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3 text-center">
           <Mail size={18} className="mx-auto mb-1 text-blue-500" />
           <div className="text-xl font-bold text-gray-900 dark:text-white">
@@ -277,7 +297,7 @@ const RunDetailPanel = ({ run, onClose }) => {
           </div>
           <div className="text-xs text-gray-500">Emails</div>
         </div>
-        
+
         <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3 text-center">
           <MessageSquare size={18} className="mx-auto mb-1 text-purple-500" />
           <div className="text-xl font-bold text-gray-900 dark:text-white">
@@ -285,7 +305,7 @@ const RunDetailPanel = ({ run, onClose }) => {
           </div>
           <div className="text-xs text-gray-500">Responses</div>
         </div>
-        
+
         <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3 text-center">
           <Calendar size={18} className="mx-auto mb-1 text-green-500" />
           <div className="text-xl font-bold text-green-600">
@@ -293,13 +313,18 @@ const RunDetailPanel = ({ run, onClose }) => {
           </div>
           <div className="text-xs text-gray-500">Meetings</div>
         </div>
-        
+
         <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3 text-center">
           <Target size={18} className="mx-auto mb-1 text-pink-500" />
-          <div className={`text-xl font-bold ${
-            performance >= 70 ? 'text-green-600' : 
-            performance >= 40 ? 'text-yellow-600' : 'text-red-600'
-          }`}>
+          <div
+            className={`text-xl font-bold ${
+              performance >= 70
+                ? 'text-green-600'
+                : performance >= 40
+                  ? 'text-yellow-600'
+                  : 'text-red-600'
+            }`}
+          >
             {performance}%
           </div>
           <div className="text-xs text-gray-500">Performance</div>
@@ -314,9 +339,18 @@ const RunDetailPanel = ({ run, onClose }) => {
         </div>
         <div className="flex items-center gap-1 h-6">
           <div className="bg-blue-500 h-full rounded-l" style={{ width: '100%' }} />
-          <div className="bg-purple-500 h-full" style={{ width: `${(run.emails_sent / run.leads_targeted) * 100 || 0}%` }} />
-          <div className="bg-pink-500 h-full" style={{ width: `${(run.responses / run.leads_targeted) * 100 || 0}%` }} />
-          <div className="bg-green-500 h-full rounded-r" style={{ width: `${(run.meetings_booked / run.leads_targeted) * 100 || 0}%` }} />
+          <div
+            className="bg-purple-500 h-full"
+            style={{ width: `${(run.emails_sent / run.leads_targeted) * 100 || 0}%` }}
+          />
+          <div
+            className="bg-pink-500 h-full"
+            style={{ width: `${(run.responses / run.leads_targeted) * 100 || 0}%` }}
+          />
+          <div
+            className="bg-green-500 h-full rounded-r"
+            style={{ width: `${(run.meetings_booked / run.leads_targeted) * 100 || 0}%` }}
+          />
         </div>
         <div className="flex justify-between text-xs mt-1 text-gray-500">
           <span>Leads</span>
@@ -352,9 +386,11 @@ const TimelineSummary = ({ runs }) => {
       successRate: runs.length ? Math.round((completed.length / runs.length) * 100) : 0,
       totalLeads: runs.reduce((sum, r) => sum + (r.leads_targeted || 0), 0),
       totalMeetings: runs.reduce((sum, r) => sum + (r.meetings_booked || 0), 0),
-      avgPerformance: completed.length 
-        ? Math.round(completed.reduce((sum, r) => sum + getPerformanceScore(r), 0) / completed.length)
-        : 0
+      avgPerformance: completed.length
+        ? Math.round(
+            completed.reduce((sum, r) => sum + getPerformanceScore(r), 0) / completed.length
+          )
+        : 0,
     };
   }, [runs]);
 
@@ -362,10 +398,25 @@ const TimelineSummary = ({ runs }) => {
     <div className="grid grid-cols-5 gap-3 mb-4">
       {[
         { label: 'Total Runs', value: stats.totalRuns, icon: Play, color: 'text-blue-500' },
-        { label: 'Success Rate', value: `${stats.successRate}%`, icon: CheckCircle, color: 'text-green-500' },
+        {
+          label: 'Success Rate',
+          value: `${stats.successRate}%`,
+          icon: CheckCircle,
+          color: 'text-green-500',
+        },
         { label: 'Leads Targeted', value: stats.totalLeads, icon: Users, color: 'text-purple-500' },
-        { label: 'Meetings Booked', value: stats.totalMeetings, icon: Calendar, color: 'text-pink-500' },
-        { label: 'Avg Performance', value: `${stats.avgPerformance}%`, icon: TrendingUp, color: 'text-orange-500' },
+        {
+          label: 'Meetings Booked',
+          value: stats.totalMeetings,
+          icon: Calendar,
+          color: 'text-pink-500',
+        },
+        {
+          label: 'Avg Performance',
+          value: `${stats.avgPerformance}%`,
+          icon: TrendingUp,
+          color: 'text-orange-500',
+        },
       ].map((stat, i) => (
         <div key={i} className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3 text-center">
           <stat.icon size={16} className={`mx-auto mb-1 ${stat.color}`} />
@@ -408,7 +459,9 @@ export const PlaybookRunTimeline = ({ runs = [], playbooks = [] }) => {
       return {
         id: i + 1,
         playbook_name: ['Enterprise Outreach', 'Startup Blitz', 'Mid-Market Focus'][i % 3],
-        status: ['completed', 'completed', 'completed', 'failed', 'running'][Math.floor(Math.random() * 5)],
+        status: ['completed', 'completed', 'completed', 'failed', 'running'][
+          Math.floor(Math.random() * 5)
+        ],
         started_at: date.toISOString(),
         completed_at: new Date(date.getTime() + Math.random() * 3600000).toISOString(),
         leads_targeted: leadsTargeted,
@@ -426,11 +479,11 @@ export const PlaybookRunTimeline = ({ runs = [], playbooks = [] }) => {
   }, [displayRuns, filterStatus]);
 
   // Navigate date range
-  const shiftDateRange = (direction) => {
+  const shiftDateRange = direction => {
     const days = direction === 'forward' ? 7 : -7;
     setDateRange(prev => ({
       start: new Date(prev.start.getTime() + days * 24 * 60 * 60 * 1000),
-      end: new Date(prev.end.getTime() + days * 24 * 60 * 60 * 1000)
+      end: new Date(prev.end.getTime() + days * 24 * 60 * 60 * 1000),
     }));
   };
 
@@ -455,7 +508,7 @@ export const PlaybookRunTimeline = ({ runs = [], playbooks = [] }) => {
             {/* Status Filter */}
             <select
               value={filterStatus}
-              onChange={(e) => setFilterStatus(e.target.value)}
+              onChange={e => setFilterStatus(e.target.value)}
               className="px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 border-0 rounded-lg text-gray-700 dark:text-gray-300"
             >
               <option value="all">All Status</option>
@@ -500,9 +553,7 @@ export const PlaybookRunTimeline = ({ runs = [], playbooks = [] }) => {
         />
 
         {/* Selected Run Detail */}
-        {selectedRun && (
-          <RunDetailPanel run={selectedRun} onClose={() => setSelectedRun(null)} />
-        )}
+        {selectedRun && <RunDetailPanel run={selectedRun} onClose={() => setSelectedRun(null)} />}
       </div>
     </div>
   );

@@ -52,7 +52,7 @@ const colorMap = {
   red: 'bg-red-500/20 text-red-500 border-red-500/30',
 };
 
-const formatTimeAgo = (date) => {
+const formatTimeAgo = date => {
   const now = new Date();
   const diff = now - new Date(date);
   const minutes = Math.floor(diff / 60000);
@@ -75,35 +75,35 @@ const ActivityCard = ({ activity, onNavigate }) => {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       className={cn(
-        "flex gap-4 p-4 bg-white dark:bg-gray-900/50 rounded-xl border border-gray-200 dark:border-white/10 hover:border-accent-500/50 transition-all cursor-pointer group",
-        !activity.read && "ring-2 ring-accent-500/20"
+        'flex gap-4 p-4 bg-white dark:bg-gray-900/50 rounded-xl border border-gray-200 dark:border-white/10 hover:border-accent-500/50 transition-all cursor-pointer group',
+        !activity.read && 'ring-2 ring-accent-500/20'
       )}
       onClick={() => onNavigate(activity)}
     >
-      <div className={cn("p-3 rounded-xl border shrink-0", colorClass)}>
+      <div className={cn('p-3 rounded-xl border shrink-0', colorClass)}>
         <Icon className="h-5 w-5" />
       </div>
-      
+
       <div className="flex-1 min-w-0">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <p className={cn(
-              "text-sm font-medium",
-              activity.read 
-                ? "text-gray-600 dark:text-gray-400" 
-                : "text-gray-900 dark:text-white"
-            )}>
+            <p
+              className={cn(
+                'text-sm font-medium',
+                activity.read ? 'text-gray-600 dark:text-gray-400' : 'text-gray-900 dark:text-white'
+              )}
+            >
               {activity.title}
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-              {activity.description}
-            </p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{activity.description}</p>
           </div>
           {!activity.read && (
-            <Badge variant="primary" size="sm">New</Badge>
+            <Badge variant="primary" size="sm">
+              New
+            </Badge>
           )}
         </div>
-        
+
         <div className="flex items-center gap-4 mt-3">
           <span className="text-xs text-gray-400 dark:text-gray-500">
             {formatTimeAgo(activity.timestamp)}
@@ -112,9 +112,9 @@ const ActivityCard = ({ activity, onNavigate }) => {
             {activity.type.charAt(0).toUpperCase() + activity.type.slice(1)}
           </Badge>
           {activity.entityId && (
-            <button 
+            <button
               className="text-xs text-accent-600 dark:text-accent-400 hover:underline flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 onNavigate(activity);
               }}
@@ -133,18 +133,20 @@ const FilterPill = ({ active, onClick, children, count }) => (
   <button
     onClick={onClick}
     className={cn(
-      "px-4 py-2 text-sm font-medium rounded-xl transition-colors whitespace-nowrap",
+      'px-4 py-2 text-sm font-medium rounded-xl transition-colors whitespace-nowrap',
       active
-        ? "bg-accent-500 text-white shadow-lg shadow-accent-500/25"
-        : "bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/20"
+        ? 'bg-accent-500 text-white shadow-lg shadow-accent-500/25'
+        : 'bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/20'
     )}
   >
     {children}
     {count > 0 && (
-      <span className={cn(
-        "ml-2 px-2 py-0.5 rounded-full text-xs",
-        active ? "bg-white/20" : "bg-gray-200 dark:bg-white/10"
-      )}>
+      <span
+        className={cn(
+          'ml-2 px-2 py-0.5 rounded-full text-xs',
+          active ? 'bg-white/20' : 'bg-gray-200 dark:bg-white/10'
+        )}
+      >
         {count}
       </span>
     )}
@@ -165,7 +167,7 @@ const ActivityCenter = () => {
     refresh,
   } = useActivityFeed();
 
-  const handleNavigate = (activity) => {
+  const handleNavigate = activity => {
     markAsRead(activity.id);
     switch (activity.entityType) {
       case 'campaign':
@@ -204,21 +206,13 @@ const ActivityCenter = () => {
               Track all events across your campaigns, leads, and AI actions
             </p>
           </div>
-          
+
           <div className="flex items-center gap-3">
-            <Button
-              variant="outline"
-              onClick={refresh}
-              disabled={isLoading}
-            >
-              <RefreshCw className={cn("h-4 w-4 mr-2", isLoading && "animate-spin")} />
+            <Button variant="outline" onClick={refresh} disabled={isLoading}>
+              <RefreshCw className={cn('h-4 w-4 mr-2', isLoading && 'animate-spin')} />
               Refresh
             </Button>
-            <Button
-              variant="outline"
-              onClick={markAllAsRead}
-              disabled={unreadCount === 0}
-            >
+            <Button variant="outline" onClick={markAllAsRead} disabled={unreadCount === 0}>
               <CheckCheck className="h-4 w-4 mr-2" />
               Mark all read
             </Button>
@@ -233,10 +227,10 @@ const ActivityCenter = () => {
             { label: 'Leads', value: stats.leads, color: 'bg-purple-500' },
             { label: 'AI Actions', value: stats.ai, color: 'bg-cyan-500' },
             { label: 'System', value: stats.system, color: 'bg-amber-500' },
-          ].map((stat) => (
+          ].map(stat => (
             <Card key={stat.label} className="p-4">
               <div className="flex items-center gap-3">
-                <div className={cn("w-3 h-3 rounded-full", stat.color)} />
+                <div className={cn('w-3 h-3 rounded-full', stat.color)} />
                 <div>
                   <p className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</p>
                   <p className="text-sm text-gray-500 dark:text-gray-400">{stat.label}</p>
@@ -249,10 +243,7 @@ const ActivityCenter = () => {
         {/* Filters */}
         <div className="flex items-center gap-3 mb-6">
           <Filter className="h-4 w-4 text-gray-400" />
-          <FilterPill
-            active={filter === 'all'}
-            onClick={() => setFilter('all')}
-          >
+          <FilterPill active={filter === 'all'} onClick={() => setFilter('all')}>
             All
           </FilterPill>
           <FilterPill
@@ -262,28 +253,16 @@ const ActivityCenter = () => {
           >
             Unread
           </FilterPill>
-          <FilterPill
-            active={filter === 'campaign'}
-            onClick={() => setFilter('campaign')}
-          >
+          <FilterPill active={filter === 'campaign'} onClick={() => setFilter('campaign')}>
             Campaigns
           </FilterPill>
-          <FilterPill
-            active={filter === 'lead'}
-            onClick={() => setFilter('lead')}
-          >
+          <FilterPill active={filter === 'lead'} onClick={() => setFilter('lead')}>
             Leads
           </FilterPill>
-          <FilterPill
-            active={filter === 'ai'}
-            onClick={() => setFilter('ai')}
-          >
+          <FilterPill active={filter === 'ai'} onClick={() => setFilter('ai')}>
             AI
           </FilterPill>
-          <FilterPill
-            active={filter === 'system'}
-            onClick={() => setFilter('system')}
-          >
+          <FilterPill active={filter === 'system'} onClick={() => setFilter('system')}>
             System
           </FilterPill>
         </div>
@@ -309,7 +288,7 @@ const ActivityCenter = () => {
                     Today
                   </h2>
                   <div className="space-y-3">
-                    {groupedActivities.today.map((activity) => (
+                    {groupedActivities.today.map(activity => (
                       <ActivityCard
                         key={activity.id}
                         activity={activity}
@@ -327,7 +306,7 @@ const ActivityCenter = () => {
                     Yesterday
                   </h2>
                   <div className="space-y-3">
-                    {groupedActivities.yesterday.map((activity) => (
+                    {groupedActivities.yesterday.map(activity => (
                       <ActivityCard
                         key={activity.id}
                         activity={activity}
@@ -345,7 +324,7 @@ const ActivityCenter = () => {
                     Earlier
                   </h2>
                   <div className="space-y-3">
-                    {groupedActivities.older.map((activity) => (
+                    {groupedActivities.older.map(activity => (
                       <ActivityCard
                         key={activity.id}
                         activity={activity}

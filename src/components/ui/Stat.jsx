@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { cn } from '@/lib/utils';
 
 const Stat = ({ 
@@ -93,7 +94,23 @@ const StatGroup = ({ children, className, ...props }) => {
 };
 
 Stat.displayName = 'Stat';
+
+Stat.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  change: PropTypes.string,
+  trend: PropTypes.oneOf(['up', 'down']),
+  icon: PropTypes.node,
+  variant: PropTypes.oneOf(['default', 'success', 'warning', 'error', 'info']),
+  className: PropTypes.string,
+};
+
 StatGroup.displayName = 'StatGroup';
+
+StatGroup.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
 
 export { Stat, StatGroup };
 export default Stat;

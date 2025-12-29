@@ -1,9 +1,9 @@
 /**
  * ResultsShowcase.jsx
- * 
+ *
  * Data-driven results visualization with autonomous animations,
  * real metrics, and interactive hover states.
- * 
+ *
  * CTO Design Principles:
  * - Metrics are the hero
  * - Animation serves understanding
@@ -30,13 +30,7 @@ import {
   Award,
   Zap,
 } from 'lucide-react';
-import {
-  GlassCard,
-  GradientText,
-  GlowText,
-  RevealText,
-  CountUpText,
-} from '../futuristic';
+import { GlassCard, GradientText, GlowText, RevealText, CountUpText } from '../futuristic';
 
 // ============================================================================
 // DATA
@@ -54,7 +48,8 @@ const CUSTOMER_RESULTS = [
       { metric: 'Time to First Meeting', before: 18, after: 3.2, format: 'days', inverse: true },
       { metric: 'SDR Productivity', before: 100, after: 340, format: 'percent' },
     ],
-    quote: "Ava booked 47 meetings in our first month. Our SDRs now focus on closing instead of prospecting.",
+    quote:
+      'Ava booked 47 meetings in our first month. Our SDRs now focus on closing instead of prospecting.',
     author: 'Sarah Chen',
     role: 'VP of Sales',
     timeline: '90 days',
@@ -70,7 +65,7 @@ const CUSTOMER_RESULTS = [
       { metric: 'Time to First Meeting', before: 14, after: 2.8, format: 'days', inverse: true },
       { metric: 'SDR Productivity', before: 100, after: 420, format: 'percent' },
     ],
-    quote: "We replaced 8 tools with Ava. The ROI was clear in week one.",
+    quote: 'We replaced 8 tools with Ava. The ROI was clear in week one.',
     author: 'Michael Ross',
     role: 'CRO',
     timeline: '60 days',
@@ -86,7 +81,7 @@ const CUSTOMER_RESULTS = [
       { metric: 'Time to First Meeting', before: 21, after: 4.1, format: 'days', inverse: true },
       { metric: 'SDR Productivity', before: 100, after: 380, format: 'percent' },
     ],
-    quote: "Finally, enterprise-grade AI that our security team approved on first review.",
+    quote: 'Finally, enterprise-grade AI that our security team approved on first review.',
     author: 'Jennifer Walsh',
     role: 'CISO',
     timeline: '120 days',
@@ -94,38 +89,38 @@ const CUSTOMER_RESULTS = [
 ];
 
 const AGGREGATE_METRICS = [
-  { 
-    label: 'Meetings Booked', 
-    value: 847000, 
-    trend: '+23%', 
+  {
+    label: 'Meetings Booked',
+    value: 847000,
+    trend: '+23%',
     trendUp: true,
     icon: Calendar,
     color: 'cyan',
   },
-  { 
-    label: 'Pipeline Value', 
-    value: 2.4, 
+  {
+    label: 'Pipeline Value',
+    value: 2.4,
     suffix: 'B',
     prefix: '$',
-    trend: '+34%', 
+    trend: '+34%',
     trendUp: true,
     icon: DollarSign,
     color: 'purple',
   },
-  { 
-    label: 'Hours Saved', 
-    value: 12.8, 
+  {
+    label: 'Hours Saved',
+    value: 12.8,
     suffix: 'M',
-    trend: '+18%', 
+    trend: '+18%',
     trendUp: true,
     icon: Clock,
     color: 'emerald',
   },
-  { 
-    label: 'Enterprise Teams', 
-    value: 2500, 
+  {
+    label: 'Enterprise Teams',
+    value: 2500,
     suffix: '+',
-    trend: '+12%', 
+    trend: '+12%',
     trendUp: true,
     icon: Building2,
     color: 'pink',
@@ -138,15 +133,15 @@ const AGGREGATE_METRICS = [
 
 // Animated metric card with before/after
 const MetricCard = ({ metric, isVisible, delay }) => {
-  const improvement = metric.inverse 
-    ? ((metric.before - metric.after) / metric.before * 100).toFixed(0)
-    : ((metric.after - metric.before) / metric.before * 100).toFixed(0);
-  
+  const improvement = metric.inverse
+    ? (((metric.before - metric.after) / metric.before) * 100).toFixed(0)
+    : (((metric.after - metric.before) / metric.before) * 100).toFixed(0);
+
   const formatValue = (value, format) => {
     switch (format) {
       case 'currency':
-        return value >= 1000000 
-          ? `$${(value / 1000000).toFixed(1)}M` 
+        return value >= 1000000
+          ? `$${(value / 1000000).toFixed(1)}M`
           : `$${(value / 1000).toFixed(0)}K`;
       case 'percent':
         return `${value}%`;
@@ -158,7 +153,7 @@ const MetricCard = ({ metric, isVisible, delay }) => {
   };
 
   return (
-    <div 
+    <div
       className="relative group p-4 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-500/30 transition-all duration-300"
       style={{ animationDelay: `${delay}ms` }}
     >
@@ -206,7 +201,7 @@ MetricCard.propTypes = {
 
 // Customer result card
 const CustomerCard = ({ customer, isActive, onClick }) => {
-  const handleKeyDown = (e) => {
+  const handleKeyDown = e => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       onClick();
@@ -220,13 +215,15 @@ const CustomerCard = ({ customer, isActive, onClick }) => {
       onClick={onClick}
       onKeyDown={handleKeyDown}
       className={`cursor-pointer p-4 rounded-xl border transition-all duration-500 ${
-        isActive 
+        isActive
           ? `bg-gradient-to-br from-${customer.color}-500/20 to-${customer.color}-600/10 border-${customer.color}-500/50 shadow-lg shadow-${customer.color}-500/10`
           : 'bg-white/5 border-white/10 hover:border-white/20'
       }`}
     >
       <div className="flex items-center gap-3">
-        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br from-${customer.color}-500 to-${customer.color}-600 flex items-center justify-center text-white font-bold`}>
+        <div
+          className={`w-12 h-12 rounded-xl bg-gradient-to-br from-${customer.color}-500 to-${customer.color}-600 flex items-center justify-center text-white font-bold`}
+        >
           {customer.logo}
         </div>
         <div>
@@ -260,35 +257,39 @@ CustomerCard.propTypes = {
 // Aggregate stat card
 const StatCard = ({ stat, isVisible, delay }) => {
   const Icon = stat.icon;
-  
+
   return (
-    <div 
+    <div
       className="relative group p-6 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 overflow-hidden"
       style={{ animationDelay: `${delay}ms` }}
     >
       {/* Background glow */}
-      <div className={`absolute -top-10 -right-10 w-32 h-32 bg-${stat.color}-500/10 rounded-full blur-2xl group-hover:bg-${stat.color}-500/20 transition-all`} />
-      
+      <div
+        className={`absolute -top-10 -right-10 w-32 h-32 bg-${stat.color}-500/10 rounded-full blur-2xl group-hover:bg-${stat.color}-500/20 transition-all`}
+      />
+
       <div className="relative">
         <div className="flex items-center justify-between mb-3">
           <Icon size={24} className={`text-${stat.color}-400`} />
-          <div className={`flex items-center gap-1 text-xs ${stat.trendUp ? 'text-emerald-400' : 'text-red-400'}`}>
+          <div
+            className={`flex items-center gap-1 text-xs ${stat.trendUp ? 'text-emerald-400' : 'text-red-400'}`}
+          >
             {stat.trendUp ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
             {stat.trend}
           </div>
         </div>
-        
+
         <div className="text-3xl lg:text-4xl font-bold text-white mb-1">
           {stat.prefix}
-          <CountUpText 
-            end={isVisible ? stat.value : 0} 
+          <CountUpText
+            end={isVisible ? stat.value : 0}
             duration={2000}
             delay={delay}
             decimals={stat.value < 100 ? 1 : 0}
           />
           {stat.suffix}
         </div>
-        
+
         <div className="text-sm text-gray-400">{stat.label}</div>
       </div>
     </div>
@@ -352,9 +353,9 @@ const ResultsShowcase = () => {
   const currentCustomer = CUSTOMER_RESULTS[activeCustomer];
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      id="results-showcase" 
+      id="results-showcase"
       className="py-20 lg:py-28 px-4 lg:px-6 relative overflow-hidden bg-[#030712]"
     >
       {/* Background effects */}
@@ -385,12 +386,7 @@ const ResultsShowcase = () => {
         {/* Aggregate stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-12 lg:mb-16">
           {AGGREGATE_METRICS.map((stat, index) => (
-            <StatCard
-              key={stat.label}
-              stat={stat}
-              isVisible={isVisible}
-              delay={index * 150}
-            />
+            <StatCard key={stat.label} stat={stat} isVisible={isVisible} delay={index * 150} />
           ))}
         </div>
 
@@ -409,7 +405,7 @@ const ResultsShowcase = () => {
                     {isAutoPlaying ? 'Pause' : 'Auto-play'}
                   </button>
                 </div>
-                
+
                 {CUSTOMER_RESULTS.map((customer, index) => (
                   <CustomerCard
                     key={customer.company}
@@ -426,9 +422,7 @@ const ResultsShowcase = () => {
               {/* Results grid */}
               <div className="lg:col-span-2">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold text-white">
-                    {currentCustomer.company} Results
-                  </h3>
+                  <h3 className="font-semibold text-white">{currentCustomer.company} Results</h3>
                   <span className="text-xs text-gray-400">
                     Achieved in {currentCustomer.timeline}
                   </span>
@@ -449,7 +443,9 @@ const ResultsShowcase = () => {
                 <div className="p-4 rounded-xl bg-white/5 border border-white/10">
                   <p className="text-gray-300 italic mb-3">"{currentCustomer.quote}"</p>
                   <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-full bg-gradient-to-br from-${currentCustomer.color}-500 to-${currentCustomer.color}-600 flex items-center justify-center text-white text-xs font-bold`}>
+                    <div
+                      className={`w-8 h-8 rounded-full bg-gradient-to-br from-${currentCustomer.color}-500 to-${currentCustomer.color}-600 flex items-center justify-center text-white text-xs font-bold`}
+                    >
                       {currentCustomer.author[0]}
                     </div>
                     <div>
@@ -471,8 +467,8 @@ const ResultsShowcase = () => {
                     setIsAutoPlaying(false);
                   }}
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    activeCustomer === index 
-                      ? 'w-6 bg-gradient-to-r from-cyan-500 to-purple-500' 
+                    activeCustomer === index
+                      ? 'w-6 bg-gradient-to-r from-cyan-500 to-purple-500'
                       : 'bg-white/20 hover:bg-white/40'
                   }`}
                 />

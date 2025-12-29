@@ -1,9 +1,9 @@
-name: Auto-Commit to Main (Every 5 Min)
+name: Auto-Commit to Main (Every 1 Min)
 
 on:
-  # Run every 5 minutes
+  # Run every 1 minute
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/1 * * * *'
 
   # Allow manual triggering
   workflow_dispatch:

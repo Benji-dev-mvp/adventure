@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { 
   CheckCircle, 
   Loader2, 
@@ -125,3 +126,8 @@ const ExecutionOverlay = ({ status, nodes }) => {
 };
 
 export default ExecutionOverlay;
+
+ExecutionOverlay.propTypes = {
+  status: PropTypes.object.isRequired,
+  nodes: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

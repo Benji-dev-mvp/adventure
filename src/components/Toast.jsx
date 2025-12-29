@@ -23,21 +23,21 @@ export const ToastProvider = ({ children }) => {
 
   const addToast = useCallback((message, type = 'info') => {
     const id = Date.now();
-    setToasts((prev) => [...prev, { id, message, type }]);
+    setToasts(prev => [...prev, { id, message, type }]);
     setTimeout(() => {
-      setToasts((prev) => prev.filter((toast) => toast.id !== id));
+      setToasts(prev => prev.filter(toast => toast.id !== id));
     }, 5000);
   }, []);
 
-  const removeToast = useCallback((id) => {
-    setToasts((prev) => prev.filter((toast) => toast.id !== id));
+  const removeToast = useCallback(id => {
+    setToasts(prev => prev.filter(toast => toast.id !== id));
   }, []);
 
   const toast = {
-    success: (message) => addToast(message, 'success'),
-    error: (message) => addToast(message, 'error'),
-    info: (message) => addToast(message, 'info'),
-    warning: (message) => addToast(message, 'warning'),
+    success: message => addToast(message, 'success'),
+    error: message => addToast(message, 'error'),
+    info: message => addToast(message, 'info'),
+    warning: message => addToast(message, 'warning'),
     showToast: (message, type = 'info') => addToast(message, type),
   };
 
@@ -45,7 +45,7 @@ export const ToastProvider = ({ children }) => {
     <ToastContext.Provider value={toast}>
       {children}
       <div className="fixed top-4 right-4 z-50 space-y-2">
-        {toasts.map((toast) => (
+        {toasts.map(toast => (
           <Toast key={toast.id} {...toast} onClose={() => removeToast(toast.id)} />
         ))}
       </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { cn } from '@/lib/utils';
 
 const Tooltip = ({ 
@@ -65,6 +66,14 @@ const Tooltip = ({
       )}
     </div>
   );
+};
+
+Tooltip.propTypes = {
+  children: PropTypes.node.isRequired,
+  content: PropTypes.node,
+  position: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
+  delay: PropTypes.number,
+  className: PropTypes.string,
 };
 
 Tooltip.displayName = 'Tooltip';

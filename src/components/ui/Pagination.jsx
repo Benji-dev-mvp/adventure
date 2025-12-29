@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { cn } from '@/lib/utils';
 
 const Pagination = ({ 
@@ -137,6 +138,15 @@ const Pagination = ({
 };
 
 Pagination.displayName = 'Pagination';
+
+Pagination.propTypes = {
+  currentPage: PropTypes.number,
+  totalPages: PropTypes.number,
+  onPageChange: PropTypes.func.isRequired,
+  showFirstLast: PropTypes.bool,
+  maxVisible: PropTypes.number,
+  className: PropTypes.string
+};
 
 export { Pagination };
 export default Pagination;

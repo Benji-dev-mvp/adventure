@@ -1,6 +1,6 @@
 /**
  * Enterprise Admin Components
- * 
+ *
  * Shared UI components for enterprise admin surfaces:
  * - AccessMatrix: Role/permission matrix with toggles
  * - RoleDetailDrawer: Slide-out panel for role details
@@ -16,15 +16,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
-import { 
-  Shield, 
-  ShieldCheck, 
+import {
+  Shield,
+  ShieldCheck,
   ShieldAlert,
-  Users, 
-  Lock, 
-  Key, 
-  Check, 
-  X, 
+  Users,
+  Lock,
+  Key,
+  Check,
+  X,
   ChevronRight,
   AlertTriangle,
   Info,
@@ -53,7 +53,7 @@ import {
   Power,
   Trash2,
   Edit,
-  Eye
+  Eye,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent, GradientText } from '../futuristic';
 import { useReducedMotion } from '../../hooks/useMotion';
@@ -62,19 +62,19 @@ import { useReducedMotion } from '../../hooks/useMotion';
 // ACCESS MATRIX
 // ============================================================================
 
-export const AccessMatrix = ({ 
-  roles, 
-  scopes, 
-  capabilities, 
+export const AccessMatrix = ({
+  roles,
+  scopes,
+  capabilities,
   getPermissionMatrix,
   onPermissionChange,
-  readOnly = false 
+  readOnly = false,
 }) => {
   const [selectedRole, setSelectedRole] = useState(roles[0]?.id);
   const prefersReducedMotion = useReducedMotion();
-  
-  const matrix = useMemo(() => 
-    getPermissionMatrix(selectedRole), 
+
+  const matrix = useMemo(
+    () => getPermissionMatrix(selectedRole),
     [selectedRole, getPermissionMatrix]
   );
 
@@ -101,8 +101,8 @@ export const AccessMatrix = ({
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-600'
             }`}
           >
-            <span 
-              className="w-2 h-2 rounded-full inline-block mr-2" 
+            <span
+              className="w-2 h-2 rounded-full inline-block mr-2"
               style={{ backgroundColor: role.color }}
             />
             {role.name}
@@ -115,11 +115,12 @@ export const AccessMatrix = ({
         <table className="w-full">
           <thead>
             <tr className="border-b border-slate-700">
-              <th className="text-left py-3 px-4 text-sm font-semibold text-slate-300">
-                Resource
-              </th>
+              <th className="text-left py-3 px-4 text-sm font-semibold text-slate-300">Resource</th>
               {capabilities.map(cap => (
-                <th key={cap} className="text-center py-3 px-3 text-sm font-semibold text-slate-300 capitalize">
+                <th
+                  key={cap}
+                  className="text-center py-3 px-3 text-sm font-semibold text-slate-300 capitalize"
+                >
                   {cap}
                 </th>
               ))}
@@ -142,14 +143,20 @@ export const AccessMatrix = ({
                       <td key={cap} className="text-center py-3 px-3">
                         <button
                           disabled={readOnly}
-                          onClick={() => onPermissionChange?.(selectedRole, scope.id, cap, !hasPermission)}
+                          onClick={() =>
+                            onPermissionChange?.(selectedRole, scope.id, cap, !hasPermission)
+                          }
                           className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${
                             hasPermission
                               ? 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
                               : 'bg-slate-700/50 text-slate-500 hover:bg-slate-700'
                           } ${readOnly ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
                         >
-                          {hasPermission ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}
+                          {hasPermission ? (
+                            <Check className="h-4 w-4" />
+                          ) : (
+                            <X className="h-4 w-4" />
+                          )}
                         </button>
                       </td>
                     );
@@ -165,8 +172,8 @@ export const AccessMatrix = ({
       {selectedRole && (
         <div className="p-4 rounded-lg bg-slate-800/50 border border-slate-700">
           <div className="flex items-center gap-2 mb-2">
-            <span 
-              className="w-3 h-3 rounded-full" 
+            <span
+              className="w-3 h-3 rounded-full"
               style={{ backgroundColor: roles.find(r => r.id === selectedRole)?.color }}
             />
             <span className="font-semibold text-white">
@@ -183,16 +190,20 @@ export const AccessMatrix = ({
 };
 
 AccessMatrix.propTypes = {
-  roles: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    color: PropTypes.string,
-    description: PropTypes.string,
-  })).isRequired,
-  scopes: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  })).isRequired,
+  roles: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      color: PropTypes.string,
+      description: PropTypes.string,
+    })
+  ).isRequired,
+  scopes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   capabilities: PropTypes.arrayOf(PropTypes.string).isRequired,
   getPermissionMatrix: PropTypes.func.isRequired,
   onPermissionChange: PropTypes.func,
@@ -205,30 +216,30 @@ AccessMatrix.propTypes = {
 
 export const SecurityStatusCard = ({ status, securityScore, compact = false }) => {
   const items = [
-    { 
-      key: 'sso', 
-      label: 'SSO', 
+    {
+      key: 'sso',
+      label: 'SSO',
       enabled: status?.sso?.enabled,
       detail: status?.sso?.provider || 'Not configured',
       icon: Key,
     },
-    { 
-      key: 'mfa', 
-      label: 'MFA', 
+    {
+      key: 'mfa',
+      label: 'MFA',
       enabled: status?.mfa?.enabled,
       detail: status?.mfa?.enabled ? `${status.mfa.adoptionPercent}% adoption` : 'Disabled',
       icon: Shield,
     },
-    { 
-      key: 'scim', 
-      label: 'SCIM', 
+    {
+      key: 'scim',
+      label: 'SCIM',
       enabled: status?.scim?.enabled,
       detail: status?.scim?.enabled ? 'Active' : 'Not configured',
       icon: Users,
     },
-    { 
-      key: 'residency', 
-      label: 'Data Residency', 
+    {
+      key: 'residency',
+      label: 'Data Residency',
       enabled: status?.dataResidency?.compliant,
       detail: status?.dataResidency?.region || 'Not set',
       icon: Globe,
@@ -239,12 +250,10 @@ export const SecurityStatusCard = ({ status, securityScore, compact = false }) =
     return (
       <div className="flex items-center gap-3">
         {items.map(item => (
-          <div 
+          <div
             key={item.key}
             className={`flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-medium ${
-              item.enabled 
-                ? 'bg-green-500/10 text-green-400' 
-                : 'bg-slate-700/50 text-slate-400'
+              item.enabled ? 'bg-green-500/10 text-green-400' : 'bg-slate-700/50 text-slate-400'
             }`}
           >
             <item.icon className="h-3 w-3" />
@@ -276,11 +285,11 @@ export const SecurityStatusCard = ({ status, securityScore, compact = false }) =
 
         <div className="grid grid-cols-2 gap-4">
           {items.map(item => (
-            <div 
+            <div
               key={item.key}
               className={`p-3 rounded-lg border ${
-                item.enabled 
-                  ? 'bg-green-500/10 border-green-500/30' 
+                item.enabled
+                  ? 'bg-green-500/10 border-green-500/30'
                   : 'bg-slate-800/50 border-slate-700'
               }`}
             >
@@ -327,25 +336,14 @@ SecurityStatusCard.propTypes = {
 // USAGE BAR
 // ============================================================================
 
-export const UsageBar = ({ 
-  label, 
-  used, 
-  limit, 
-  trend = [], 
-  unit = '',
-  showTrend = true 
-}) => {
+export const UsageBar = ({ label, used, limit, trend = [], unit = '', showTrend = true }) => {
   const percent = Math.round((used / limit) * 100);
   const isWarning = percent >= 80;
   const isCritical = percent >= 95;
 
-  const barColor = isCritical 
-    ? 'bg-red-500' 
-    : isWarning 
-      ? 'bg-amber-500' 
-      : 'bg-cyan-500';
+  const barColor = isCritical ? 'bg-red-500' : isWarning ? 'bg-amber-500' : 'bg-cyan-500';
 
-  const formatNumber = (n) => {
+  const formatNumber = n => {
     if (n >= 1000000) return `${(n / 1000000).toFixed(1)}M`;
     if (n >= 1000) return `${(n / 1000).toFixed(1)}K`;
     return n.toString();
@@ -357,20 +355,26 @@ export const UsageBar = ({
         <span className="text-sm font-medium text-white">{label}</span>
         <div className="flex items-center gap-2">
           <span className="text-sm text-slate-400">
-            {formatNumber(used)}{unit} / {formatNumber(limit)}{unit}
+            {formatNumber(used)}
+            {unit} / {formatNumber(limit)}
+            {unit}
           </span>
-          <span className={`text-xs font-semibold px-1.5 py-0.5 rounded ${
-            isCritical ? 'bg-red-500/20 text-red-400' :
-            isWarning ? 'bg-amber-500/20 text-amber-400' :
-            'bg-slate-700 text-slate-300'
-          }`}>
+          <span
+            className={`text-xs font-semibold px-1.5 py-0.5 rounded ${
+              isCritical
+                ? 'bg-red-500/20 text-red-400'
+                : isWarning
+                  ? 'bg-amber-500/20 text-amber-400'
+                  : 'bg-slate-700 text-slate-300'
+            }`}
+          >
             {percent}%
           </span>
         </div>
       </div>
-      
+
       <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-        <motion.div 
+        <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${Math.min(percent, 100)}%` }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -381,15 +385,12 @@ export const UsageBar = ({
       {showTrend && trend.length > 0 && (
         <div className="flex items-center gap-1 h-4">
           {trend.map((val, i) => (
-            <div 
+            <div
               key={i}
               className="flex-1 bg-slate-700 rounded-sm overflow-hidden"
               style={{ height: '100%' }}
             >
-              <div 
-                className={`w-full ${barColor} opacity-50`}
-                style={{ height: `${val}%` }}
-              />
+              <div className={`w-full ${barColor} opacity-50`} style={{ height: `${val}%` }} />
             </div>
           ))}
         </div>
@@ -439,8 +440,8 @@ export const SystemHealthCard = ({ services, overallHealth }) => {
               <p className="text-sm text-slate-400">Service status overview</p>
             </div>
           </div>
-          <Badge 
-            variant="outline" 
+          <Badge
+            variant="outline"
             className={`${statusColors[overallHealth]?.text} border-current`}
           >
             {overallHealth.charAt(0).toUpperCase() + overallHealth.slice(1)}
@@ -451,9 +452,9 @@ export const SystemHealthCard = ({ services, overallHealth }) => {
           {services.map(service => {
             const Icon = iconMap[service.id] || Server;
             const StatusIcon = statusColors[service.status]?.icon || MinusCircle;
-            
+
             return (
-              <div 
+              <div
                 key={service.id}
                 className="flex items-center justify-between p-3 rounded-lg bg-slate-800/50 border border-slate-700"
               >
@@ -476,13 +477,15 @@ export const SystemHealthCard = ({ services, overallHealth }) => {
 };
 
 SystemHealthCard.propTypes = {
-  services: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    status: PropTypes.oneOf(['healthy', 'degraded', 'unhealthy']).isRequired,
-    latencyMs: PropTypes.number,
-    errorRate: PropTypes.number,
-  })).isRequired,
+  services: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      status: PropTypes.oneOf(['healthy', 'degraded', 'unhealthy']).isRequired,
+      latencyMs: PropTypes.number,
+      errorRate: PropTypes.number,
+    })
+  ).isRequired,
   overallHealth: PropTypes.oneOf(['healthy', 'degraded', 'unhealthy']).isRequired,
 };
 
@@ -490,27 +493,26 @@ SystemHealthCard.propTypes = {
 // FEATURE FLAG ROW
 // ============================================================================
 
-export const FeatureFlagRow = ({ 
-  flag, 
-  onToggle, 
-  onKillSwitch, 
+export const FeatureFlagRow = ({
+  flag,
+  onToggle,
+  onKillSwitch,
   onRolloutChange,
-  environment = 'production'
+  environment = 'production',
 }) => {
   const [showDetails, setShowDetails] = useState(false);
-  
-  const isActive = flag.enabled && 
-    flag.environment?.[environment] !== false &&
-    flag.rolloutPercent > 0;
+
+  const isActive =
+    flag.enabled && flag.environment?.[environment] !== false && flag.rolloutPercent > 0;
 
   return (
     <div className="border border-slate-700 rounded-lg overflow-hidden">
-      <div 
+      <div
         role="button"
         tabIndex={0}
         className="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-800/50"
         onClick={() => setShowDetails(!showDetails)}
-        onKeyDown={(e) => {
+        onKeyDown={e => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             setShowDetails(!showDetails);
@@ -519,7 +521,7 @@ export const FeatureFlagRow = ({
       >
         <div className="flex items-center gap-4">
           <button
-            onClick={(e) => {
+            onClick={e => {
               e.stopPropagation();
               onToggle?.(flag.key, !flag.enabled);
             }}
@@ -527,13 +529,9 @@ export const FeatureFlagRow = ({
               isActive ? 'text-green-400' : 'text-slate-500'
             }`}
           >
-            {isActive ? (
-              <ToggleRight className="h-6 w-6" />
-            ) : (
-              <ToggleLeft className="h-6 w-6" />
-            )}
+            {isActive ? <ToggleRight className="h-6 w-6" /> : <ToggleLeft className="h-6 w-6" />}
           </button>
-          
+
           <div>
             <div className="flex items-center gap-2">
               <span className="font-medium text-white">{flag.name}</span>
@@ -552,7 +550,9 @@ export const FeatureFlagRow = ({
             <div className="text-sm font-medium text-white">{flag.rolloutPercent}%</div>
             <div className="text-xs text-slate-400">rollout</div>
           </div>
-          <ChevronRight className={`h-5 w-5 text-slate-400 transition-transform ${showDetails ? 'rotate-90' : ''}`} />
+          <ChevronRight
+            className={`h-5 w-5 text-slate-400 transition-transform ${showDetails ? 'rotate-90' : ''}`}
+          />
         </div>
       </div>
 
@@ -572,23 +572,42 @@ export const FeatureFlagRow = ({
                 </div>
                 <div>
                   <div className="text-xs text-slate-400 block mb-1">Key</div>
-                  <code className="text-sm text-cyan-400 bg-slate-900 px-2 py-0.5 rounded">{flag.key}</code>
+                  <code className="text-sm text-cyan-400 bg-slate-900 px-2 py-0.5 rounded">
+                    {flag.key}
+                  </code>
                 </div>
                 <div>
                   <div className="text-xs text-slate-400 block mb-1">Environment</div>
                   <div className="flex gap-2">
-                    <span className={`text-xs px-2 py-0.5 rounded ${
-                      flag.environment?.production ? 'bg-green-500/20 text-green-400' : 'bg-slate-700 text-slate-400'
-                    }`}>Prod</span>
-                    <span className={`text-xs px-2 py-0.5 rounded ${
-                      flag.environment?.sandbox ? 'bg-blue-500/20 text-blue-400' : 'bg-slate-700 text-slate-400'
-                    }`}>Sandbox</span>
+                    <span
+                      className={`text-xs px-2 py-0.5 rounded ${
+                        flag.environment?.production
+                          ? 'bg-green-500/20 text-green-400'
+                          : 'bg-slate-700 text-slate-400'
+                      }`}
+                    >
+                      Prod
+                    </span>
+                    <span
+                      className={`text-xs px-2 py-0.5 rounded ${
+                        flag.environment?.sandbox
+                          ? 'bg-blue-500/20 text-blue-400'
+                          : 'bg-slate-700 text-slate-400'
+                      }`}
+                    >
+                      Sandbox
+                    </span>
                   </div>
                 </div>
               </div>
 
               <div>
-                <label htmlFor={`rollout-${flag.key}`} className="text-xs text-slate-400 block mb-2">Rollout Percentage</label>
+                <label
+                  htmlFor={`rollout-${flag.key}`}
+                  className="text-xs text-slate-400 block mb-2"
+                >
+                  Rollout Percentage
+                </label>
                 <div className="flex items-center gap-4">
                   <input
                     id={`rollout-${flag.key}`}
@@ -596,7 +615,7 @@ export const FeatureFlagRow = ({
                     min="0"
                     max="100"
                     value={flag.rolloutPercent}
-                    onChange={(e) => onRolloutChange?.(flag.key, Number.parseInt(e.target.value, 10))}
+                    onChange={e => onRolloutChange?.(flag.key, Number.parseInt(e.target.value, 10))}
                     className="flex-1 h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-500"
                   />
                   <span className="text-sm text-white w-12 text-right">{flag.rolloutPercent}%</span>
@@ -646,13 +665,13 @@ FeatureFlagRow.propTypes = {
 // ============================================================================
 
 export const EnterpriseReadinessMeter = ({ categories, overallScore }) => {
-  const getScoreColor = (score) => {
+  const getScoreColor = score => {
     if (score >= 80) return 'text-green-400';
     if (score >= 50) return 'text-amber-400';
     return 'text-red-400';
   };
 
-  const getBarColor = (score) => {
+  const getBarColor = score => {
     if (score >= 80) return 'bg-green-500';
     if (score >= 50) return 'bg-amber-500';
     return 'bg-red-500';
@@ -662,9 +681,7 @@ export const EnterpriseReadinessMeter = ({ categories, overallScore }) => {
     <div className="space-y-6">
       {/* Overall Score */}
       <div className="text-center">
-        <div className={`text-5xl font-bold ${getScoreColor(overallScore)}`}>
-          {overallScore}%
-        </div>
+        <div className={`text-5xl font-bold ${getScoreColor(overallScore)}`}>{overallScore}%</div>
         <p className="text-slate-400 mt-1">Enterprise Readiness Score</p>
       </div>
 
@@ -679,7 +696,7 @@ export const EnterpriseReadinessMeter = ({ categories, overallScore }) => {
               </span>
             </div>
             <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-              <motion.div 
+              <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${cat.score}%` }}
                 transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -692,8 +709,8 @@ export const EnterpriseReadinessMeter = ({ categories, overallScore }) => {
                   key={item.key}
                   href={item.link}
                   className={`text-xs px-2 py-1 rounded-md transition-colors ${
-                    item.done 
-                      ? 'bg-green-500/10 text-green-400' 
+                    item.done
+                      ? 'bg-green-500/10 text-green-400'
                       : 'bg-slate-700 text-slate-400 hover:bg-slate-600'
                   }`}
                 >
@@ -713,19 +730,14 @@ export const EnterpriseReadinessMeter = ({ categories, overallScore }) => {
 // AUDIT LOG TABLE
 // ============================================================================
 
-export const AuditLogTable = ({ 
-  logs = [], 
-  onExport,
-  onInspect,
-  loading = false 
-}) => {
-  const getResultColor = (result) => {
+export const AuditLogTable = ({ logs = [], onExport, onInspect, loading = false }) => {
+  const getResultColor = result => {
     if (result === 'success') return 'text-green-400 bg-green-500/10';
     if (result === 'failure') return 'text-red-400 bg-red-500/10';
     return 'text-slate-400 bg-slate-700';
   };
 
-  const getActionColor = (action) => {
+  const getActionColor = action => {
     if (action.includes('delete')) return 'text-red-400';
     if (action.includes('create')) return 'text-green-400';
     if (action.includes('update')) return 'text-amber-400';
@@ -737,13 +749,27 @@ export const AuditLogTable = ({
       <table className="w-full">
         <thead>
           <tr className="border-b border-slate-700">
-            <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">Time</th>
-            <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">Actor</th>
-            <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">Action</th>
-            <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">Resource</th>
-            <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">Result</th>
-            <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">Location</th>
-            <th className="text-right py-3 px-4 text-xs font-semibold text-slate-400 uppercase">Actions</th>
+            <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">
+              Time
+            </th>
+            <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">
+              Actor
+            </th>
+            <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">
+              Action
+            </th>
+            <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">
+              Resource
+            </th>
+            <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">
+              Result
+            </th>
+            <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">
+              Location
+            </th>
+            <th className="text-right py-3 px-4 text-xs font-semibold text-slate-400 uppercase">
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -783,7 +809,7 @@ export const AuditLogTable = ({
           ))}
         </tbody>
       </table>
-      
+
       {loading && (
         <div className="flex items-center justify-center py-8">
           <RefreshCw className="h-6 w-6 text-cyan-400 animate-spin" />
@@ -816,16 +842,13 @@ export const AIDecisionCard = ({ decision }) => {
             <p className="text-xs text-slate-400">{decision.timestamp}</p>
           </div>
         </div>
-        <Badge 
-          variant="outline" 
-          className={riskColors[decision.risk]}
-        >
+        <Badge variant="outline" className={riskColors[decision.risk]}>
           {decision.risk} risk
         </Badge>
       </div>
-      
+
       <p className="text-sm text-slate-300 mb-3">{decision.explanation}</p>
-      
+
       <div className="flex items-center justify-between text-xs">
         <span className="text-slate-400">
           Model: <span className="text-slate-300">{decision.model}</span>
@@ -842,12 +865,7 @@ export const AIDecisionCard = ({ decision }) => {
 // WORKSPACE SWITCHER
 // ============================================================================
 
-export const WorkspaceSwitcher = ({ 
-  workspaces, 
-  activeWorkspace, 
-  onSwitch,
-  compact = false 
-}) => {
+export const WorkspaceSwitcher = ({ workspaces, activeWorkspace, onSwitch, compact = false }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const productionWs = workspaces.filter(w => w.environment === 'production');
@@ -862,14 +880,18 @@ export const WorkspaceSwitcher = ({
         >
           <Globe className="h-4 w-4 text-slate-400" />
           <span className="text-sm text-white">{activeWorkspace?.name}</span>
-          <span className={`text-xs px-1.5 py-0.5 rounded ${
-            activeWorkspace?.environment === 'sandbox' 
-              ? 'bg-blue-500/20 text-blue-400' 
-              : 'bg-green-500/20 text-green-400'
-          }`}>
+          <span
+            className={`text-xs px-1.5 py-0.5 rounded ${
+              activeWorkspace?.environment === 'sandbox'
+                ? 'bg-blue-500/20 text-blue-400'
+                : 'bg-green-500/20 text-green-400'
+            }`}
+          >
             {activeWorkspace?.environment}
           </span>
-          <ChevronRight className={`h-4 w-4 text-slate-400 transition-transform ${isOpen ? 'rotate-90' : ''}`} />
+          <ChevronRight
+            className={`h-4 w-4 text-slate-400 transition-transform ${isOpen ? 'rotate-90' : ''}`}
+          />
         </button>
 
         <AnimatePresence>
@@ -885,10 +907,13 @@ export const WorkspaceSwitcher = ({
                 {productionWs.map(ws => (
                   <button
                     key={ws.id}
-                    onClick={() => { onSwitch(ws.id); setIsOpen(false); }}
+                    onClick={() => {
+                      onSwitch(ws.id);
+                      setIsOpen(false);
+                    }}
                     className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left ${
-                      ws.isActive 
-                        ? 'bg-cyan-500/10 text-cyan-400' 
+                      ws.isActive
+                        ? 'bg-cyan-500/10 text-cyan-400'
                         : 'text-slate-300 hover:bg-slate-700'
                     }`}
                   >
@@ -896,15 +921,18 @@ export const WorkspaceSwitcher = ({
                     <span className="text-xs text-slate-500">{ws.region}</span>
                   </button>
                 ))}
-                
+
                 <div className="text-xs text-slate-500 uppercase px-2 py-1 mt-2">Sandbox</div>
                 {sandboxWs.map(ws => (
                   <button
                     key={ws.id}
-                    onClick={() => { onSwitch(ws.id); setIsOpen(false); }}
+                    onClick={() => {
+                      onSwitch(ws.id);
+                      setIsOpen(false);
+                    }}
                     className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left ${
-                      ws.isActive 
-                        ? 'bg-blue-500/10 text-blue-400' 
+                      ws.isActive
+                        ? 'bg-blue-500/10 text-blue-400'
                         : 'text-slate-300 hover:bg-slate-700'
                     }`}
                   >
@@ -927,96 +955,40 @@ export const WorkspaceSwitcher = ({
 // PROP TYPES
 // ============================================================================
 
-SecurityStatusCard.propTypes = {
-  status: PropTypes.shape({
-    sso: PropTypes.shape({
-      enabled: PropTypes.bool,
-      provider: PropTypes.string,
-    }),
-    mfa: PropTypes.shape({
-      enabled: PropTypes.bool,
-      adoptionPercent: PropTypes.number,
-    }),
-    scim: PropTypes.shape({
-      enabled: PropTypes.bool,
-    }),
-    dataResidency: PropTypes.shape({
-      compliant: PropTypes.bool,
-      region: PropTypes.string,
-    }),
-  }),
-  securityScore: PropTypes.number,
-  compact: PropTypes.bool,
-};
-
-UsageBar.propTypes = {
-  label: PropTypes.string.isRequired,
-  used: PropTypes.number.isRequired,
-  limit: PropTypes.number.isRequired,
-  trend: PropTypes.arrayOf(PropTypes.number),
-  unit: PropTypes.string,
-  showTrend: PropTypes.bool,
-};
-
-SystemHealthCard.propTypes = {
-  services: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    status: PropTypes.oneOf(['healthy', 'degraded', 'unhealthy']).isRequired,
-    latencyMs: PropTypes.number,
-    errorRate: PropTypes.number,
-  })).isRequired,
-  overallHealth: PropTypes.oneOf(['healthy', 'degraded', 'unhealthy']).isRequired,
-};
-
-FeatureFlagRow.propTypes = {
-  flag: PropTypes.shape({
-    key: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string,
-    enabled: PropTypes.bool,
-    isKillSwitch: PropTypes.bool,
-    owner: PropTypes.string,
-    rolloutPercent: PropTypes.number,
-    environment: PropTypes.shape({
-      production: PropTypes.bool,
-      sandbox: PropTypes.bool,
-    }),
-  }).isRequired,
-  onToggle: PropTypes.func,
-  onKillSwitch: PropTypes.func,
-  onRolloutChange: PropTypes.func,
-  environment: PropTypes.oneOf(['production', 'sandbox', 'staging']),
-};
-
 EnterpriseReadinessMeter.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    score: PropTypes.number.isRequired,
-    items: PropTypes.arrayOf(PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      done: PropTypes.bool,
-      link: PropTypes.string,
-    })),
-  })).isRequired,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      score: PropTypes.number.isRequired,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          key: PropTypes.string.isRequired,
+          label: PropTypes.string.isRequired,
+          done: PropTypes.bool,
+          link: PropTypes.string,
+        })
+      ),
+    })
+  ).isRequired,
   overallScore: PropTypes.number.isRequired,
 };
 
 AuditLogTable.propTypes = {
-  logs: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string,
-    time: PropTypes.string,
-    actor: PropTypes.string,
-    actorEmail: PropTypes.string,
-    action: PropTypes.string,
-    resourceType: PropTypes.string,
-    resourceId: PropTypes.string,
-    result: PropTypes.oneOf(['success', 'failure', 'pending']),
-    ip: PropTypes.string,
-    location: PropTypes.string,
-  })),
+  logs: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      time: PropTypes.string,
+      actor: PropTypes.string,
+      actorEmail: PropTypes.string,
+      action: PropTypes.string,
+      resourceType: PropTypes.string,
+      resourceId: PropTypes.string,
+      result: PropTypes.oneOf(['success', 'failure', 'pending']),
+      ip: PropTypes.string,
+      location: PropTypes.string,
+    })
+  ),
   onExport: PropTypes.func,
   onInspect: PropTypes.func,
   loading: PropTypes.bool,
@@ -1026,26 +998,24 @@ AIDecisionCard.propTypes = {
   decision: PropTypes.shape({
     action: PropTypes.string.isRequired,
     timestamp: PropTypes.string,
-    risk: PropTypes.oneOf(['low', 'medium', 'high']),
+    risk: PropTypes.oneOf(['low', 'medium', 'high']).isRequired,
     explanation: PropTypes.string,
     model: PropTypes.string,
     confidence: PropTypes.number,
   }).isRequired,
 };
 
+const workspaceShape = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  environment: PropTypes.oneOf(['production', 'sandbox']).isRequired,
+  isActive: PropTypes.bool,
+  region: PropTypes.string,
+});
+
 WorkspaceSwitcher.propTypes = {
-  workspaces: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    environment: PropTypes.oneOf(['production', 'sandbox']).isRequired,
-    isActive: PropTypes.bool,
-    region: PropTypes.string,
-  })).isRequired,
-  activeWorkspace: PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
-    environment: PropTypes.string,
-  }),
+  workspaces: PropTypes.arrayOf(workspaceShape).isRequired,
+  activeWorkspace: workspaceShape,
   onSwitch: PropTypes.func.isRequired,
   compact: PropTypes.bool,
 };

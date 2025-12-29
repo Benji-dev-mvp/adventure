@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { cn } from "@/lib/utils"
 
 function Skeleton({
@@ -101,5 +102,35 @@ function SkeletonDashboard({ className, ...props }) {
     </div>
   );
 }
+
+Skeleton.propTypes = {
+  className: PropTypes.string,
+  variant: PropTypes.oneOf(['default', 'text', 'title', 'avatar']),
+};
+
+SkeletonGroup.propTypes = {
+  count: PropTypes.number,
+  className: PropTypes.string,
+  children: PropTypes.node,
+};
+
+SkeletonCard.propTypes = {
+  className: PropTypes.string,
+};
+
+SkeletonTable.propTypes = {
+  rows: PropTypes.number,
+  columns: PropTypes.number,
+  className: PropTypes.string,
+};
+
+SkeletonList.propTypes = {
+  items: PropTypes.number,
+  className: PropTypes.string,
+};
+
+SkeletonDashboard.propTypes = {
+  className: PropTypes.string,
+};
 
 export { Skeleton, SkeletonGroup, SkeletonCard, SkeletonTable, SkeletonList, SkeletonDashboard }

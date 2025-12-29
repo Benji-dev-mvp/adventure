@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
 import ReactFlow, {
   Background,
   Controls,
@@ -59,7 +60,7 @@ const initialNodes = [
     id: 'trigger-1',
     type: 'trigger',
     position: { x: 250, y: 50 },
-    data: { 
+    data: {
       label: 'Campaign Start',
       triggerType: 'manual',
       description: 'Manually trigger campaign',
@@ -69,21 +70,17 @@ const initialNodes = [
 
 const initialEdges = [];
 
-const WorkflowCanvas = ({ 
-  onSave, 
-  onExecute, 
+const WorkflowCanvas = ({
+  onSave,
+  onExecute,
   campaignName = 'Untitled Campaign',
   readOnly = false,
   initialWorkflow = null,
   executionData = null,
 }) => {
   const { showToast } = useToast();
-  const [nodes, setNodes, onNodesChange] = useNodesState(
-    initialWorkflow?.nodes || initialNodes
-  );
-  const [edges, setEdges, onEdgesChange] = useEdgesState(
-    initialWorkflow?.edges || initialEdges
-  );
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialWorkflow?.nodes || initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialWorkflow?.edges || initialEdges);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [selectedNode, setSelectedNode] = useState(null);
   const [isExecuting, setIsExecuting] = useState(false);
@@ -91,42 +88,45 @@ const WorkflowCanvas = ({
 
   // Handle new connections
   const onConnect = useCallback(
-    (params) => {
+    params => {
       const newEdge = {
         ...params,
         ...edgeOptions,
         id: `edge-${params.source}-${params.target}`,
       };
-      setEdges((eds) => addEdge(newEdge, eds));
+      setEdges(eds => addEdge(newEdge, eds));
       showToast('Nodes connected', 'success');
     },
     [setEdges, showToast]
   );
 
   // Add new node from panel
-  const onAddNode = useCallback((nodeType, position) => {
-    const newNodeId = `${nodeType}-${Date.now()}`;
-    const nodeDefaults = getNodeDefaults(nodeType);
-    
-    const newNode = {
-      id: newNodeId,
-      type: nodeType,
-      position: position || { x: 250, y: nodes.length * 150 + 100 },
-      data: {
-        ...nodeDefaults,
-        onDelete: () => handleDeleteNode(newNodeId),
-        onDuplicate: () => handleDuplicateNode(newNodeId),
-        onChange: (data) => handleNodeDataChange(newNodeId, data),
-      },
-    };
+  const onAddNode = useCallback(
+    (nodeType, position) => {
+      const newNodeId = `${nodeType}-${Date.now()}`;
+      const nodeDefaults = getNodeDefaults(nodeType);
 
-    setNodes((nds) => [...nds, newNode]);
-    setIsPanelOpen(false);
-    showToast(`${nodeDefaults.label} added`, 'success');
-  }, [nodes, setNodes, showToast]);
+      const newNode = {
+        id: newNodeId,
+        type: nodeType,
+        position: position || { x: 250, y: nodes.length * 150 + 100 },
+        data: {
+          ...nodeDefaults,
+          onDelete: () => handleDeleteNode(newNodeId),
+          onDuplicate: () => handleDuplicateNode(newNodeId),
+          onChange: data => handleNodeDataChange(newNodeId, data),
+        },
+      };
+
+      setNodes(nds => [...nds, newNode]);
+      setIsPanelOpen(false);
+      showToast(`${nodeDefaults.label} added`, 'success');
+    },
+    [nodes, setNodes, showToast]
+  );
 
   // Get default data for each node type
-  const getNodeDefaults = (type) => {
+  const getNodeDefaults = type => {
     const defaults = {
       trigger: { label: 'Campaign Trigger', triggerType: 'manual', description: 'Start campaign' },
       email: { label: 'Send Email', subject: '', content: '', tone: 'professional' },
@@ -141,44 +141,53 @@ const WorkflowCanvas = ({
   };
 
   // Delete node
-  const handleDeleteNode = useCallback((nodeId) => {
-    setNodes((nds) => nds.filter((node) => node.id !== nodeId));
-    setEdges((eds) => eds.filter((edge) => edge.source !== nodeId && edge.target !== nodeId));
-    showToast('Node deleted', 'success');
-  }, [setNodes, setEdges, showToast]);
+  const handleDeleteNode = useCallback(
+    nodeId => {
+      setNodes(nds => nds.filter(node => node.id !== nodeId));
+      setEdges(eds => eds.filter(edge => edge.source !== nodeId && edge.target !== nodeId));
+      showToast('Node deleted', 'success');
+    },
+    [setNodes, setEdges, showToast]
+  );
 
   // Duplicate node
-  const handleDuplicateNode = useCallback((nodeId) => {
-    const nodeToDuplicate = nodes.find((n) => n.id === nodeId);
-    if (!nodeToDuplicate) return;
+  const handleDuplicateNode = useCallback(
+    nodeId => {
+      const nodeToDuplicate = nodes.find(n => n.id === nodeId);
+      if (!nodeToDuplicate) return;
 
-    const newNodeId = `${nodeToDuplicate.type}-${Date.now()}`;
-    const newNode = {
-      ...nodeToDuplicate,
-      id: newNodeId,
-      position: {
-        x: nodeToDuplicate.position.x + 50,
-        y: nodeToDuplicate.position.y + 50,
-      },
-      data: {
-        ...nodeToDuplicate.data,
-        onDelete: () => handleDeleteNode(newNodeId),
-        onDuplicate: () => handleDuplicateNode(newNodeId),
-      },
-    };
+      const newNodeId = `${nodeToDuplicate.type}-${Date.now()}`;
+      const newNode = {
+        ...nodeToDuplicate,
+        id: newNodeId,
+        position: {
+          x: nodeToDuplicate.position.x + 50,
+          y: nodeToDuplicate.position.y + 50,
+        },
+        data: {
+          ...nodeToDuplicate.data,
+          onDelete: () => handleDeleteNode(newNodeId),
+          onDuplicate: () => handleDuplicateNode(newNodeId),
+        },
+      };
 
-    setNodes((nds) => [...nds, newNode]);
-    showToast('Node duplicated', 'success');
-  }, [nodes, setNodes, showToast]);
+      setNodes(nds => [...nds, newNode]);
+      showToast('Node duplicated', 'success');
+    },
+    [nodes, setNodes, showToast]
+  );
 
   // Update node data
-  const handleNodeDataChange = useCallback((nodeId, newData) => {
-    setNodes((nds) =>
-      nds.map((node) =>
-        node.id === nodeId ? { ...node, data: { ...node.data, ...newData } } : node
-      )
-    );
-  }, [setNodes]);
+  const handleNodeDataChange = useCallback(
+    (nodeId, newData) => {
+      setNodes(nds =>
+        nds.map(node =>
+          node.id === nodeId ? { ...node, data: { ...node.data, ...newData } } : node
+        )
+      );
+    },
+    [setNodes]
+  );
 
   // Handle node selection
   const onNodeClick = useCallback((event, node) => {
@@ -217,7 +226,7 @@ const WorkflowCanvas = ({
 
     // Simulate execution through nodes
     const executeNodes = async () => {
-      const triggerNode = nodes.find((n) => n.type === 'trigger');
+      const triggerNode = nodes.find(n => n.type === 'trigger');
       if (!triggerNode) {
         showToast('Workflow must start with a trigger', 'error');
         setIsExecuting(false);
@@ -233,17 +242,17 @@ const WorkflowCanvas = ({
         visited.add(currentId);
 
         // Update status to running
-        setExecutionStatus((prev) => ({ ...prev, [currentId]: 'running' }));
-        
+        setExecutionStatus(prev => ({ ...prev, [currentId]: 'running' }));
+
         // Simulate execution time
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
         // Update status to completed
-        setExecutionStatus((prev) => ({ ...prev, [currentId]: 'completed' }));
+        setExecutionStatus(prev => ({ ...prev, [currentId]: 'completed' }));
 
         // Find connected nodes
-        const connectedEdges = edges.filter((e) => e.source === currentId);
-        connectedEdges.forEach((edge) => queue.push(edge.target));
+        const connectedEdges = edges.filter(e => e.source === currentId);
+        connectedEdges.forEach(edge => queue.push(edge.target));
       }
 
       setIsExecuting(false);
@@ -268,7 +277,7 @@ const WorkflowCanvas = ({
   }, [nodes, setNodes, showToast]);
 
   // Minimap node color
-  const nodeColor = (node) => {
+  const nodeColor = node => {
     const colors = {
       trigger: '#22c55e',
       email: '#3b82f6',
@@ -285,17 +294,17 @@ const WorkflowCanvas = ({
   return (
     <div className="h-full w-full relative bg-gray-50 dark:bg-gray-900">
       <ReactFlow
-        nodes={nodes.map((node) => ({
+        nodes={nodes.map(node => ({
           ...node,
           data: {
             ...node.data,
             executionStatus: executionStatus[node.id],
             onDelete: () => handleDeleteNode(node.id),
             onDuplicate: () => handleDuplicateNode(node.id),
-            onChange: (data) => handleNodeDataChange(node.id, data),
+            onChange: data => handleNodeDataChange(node.id, data),
           },
         }))}
-        edges={edges.map((edge) => ({
+        edges={edges.map(edge => ({
           ...edge,
           animated: executionStatus[edge.source] === 'running',
         }))}
@@ -313,7 +322,7 @@ const WorkflowCanvas = ({
       >
         <Background color="#94a3b8" gap={16} size={1} />
         <Controls className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg" />
-        <MiniMap 
+        <MiniMap
           nodeColor={nodeColor}
           className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg"
           maskColor="rgba(0, 0, 0, 0.1)"
@@ -335,19 +344,14 @@ const WorkflowCanvas = ({
         {/* Campaign Name */}
         <Panel position="top-center">
           <div className="bg-white dark:bg-gray-800 px-4 py-2 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-              {campaignName}
-            </h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{campaignName}</h2>
           </div>
         </Panel>
 
         {/* Execution Status */}
         {isExecuting && (
           <Panel position="top-right">
-            <ExecutionOverlay 
-              status={executionStatus}
-              nodes={nodes}
-            />
+            <ExecutionOverlay status={executionStatus} nodes={nodes} />
           </Panel>
         )}
       </ReactFlow>
@@ -360,6 +364,18 @@ const WorkflowCanvas = ({
       />
     </div>
   );
+};
+
+WorkflowCanvas.propTypes = {
+  onSave: PropTypes.func.isRequired,
+  onExecute: PropTypes.func.isRequired,
+  campaignName: PropTypes.string,
+  readOnly: PropTypes.bool,
+  initialWorkflow: PropTypes.shape({
+    nodes: PropTypes.array,
+    edges: PropTypes.array,
+  }),
+  executionData: PropTypes.object,
 };
 
 export default WorkflowCanvas;

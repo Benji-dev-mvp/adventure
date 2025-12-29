@@ -28,14 +28,11 @@ export const StatsCard = ({
             <p className="text-3xl font-bold text-gray-900 mb-2">{value}</p>
             {trend !== undefined && (
               <div className="flex items-center gap-1">
-                <TrendIcon 
-                  size={16} 
-                  className={cn(
-                    'flex-shrink-0',
-                    isPositive ? 'text-green-600' : 'text-red-600'
-                  )} 
+                <TrendIcon
+                  size={16}
+                  className={cn('flex-shrink-0', isPositive ? 'text-green-600' : 'text-red-600')}
                 />
-                <span 
+                <span
                   className={cn(
                     'text-sm font-medium',
                     isPositive ? 'text-green-600' : 'text-red-600'
@@ -48,7 +45,12 @@ export const StatsCard = ({
             )}
           </div>
           {Icon && (
-            <div className={cn('w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0', bgColor)}>
+            <div
+              className={cn(
+                'w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0',
+                bgColor
+              )}
+            >
               <Icon size={24} className={color} />
             </div>
           )}

@@ -20,7 +20,7 @@ class ErrorBoundary extends React.Component {
     // Log to console with timestamp
     const timestamp = new Date().toISOString();
     console.error(`[${timestamp}] Error caught by boundary:`, error, errorInfo);
-    
+
     // Log error details for debugging
     const errorLog = {
       timestamp,
@@ -31,7 +31,7 @@ class ErrorBoundary extends React.Component {
       url: window.location.href,
       errorCount: this.state.errorCount + 1,
     };
-    
+
     // Store error in sessionStorage for debugging
     try {
       const errors = JSON.parse(sessionStorage.getItem('artisan_errors') || '[]');
@@ -41,19 +41,19 @@ class ErrorBoundary extends React.Component {
     } catch (e) {
       console.warn('Failed to store error in sessionStorage:', e);
     }
-    
+
     // Report to error tracking service (e.g., Sentry, LogRocket)
     if (window.reportError) {
       window.reportError(error, errorInfo);
     }
-    
+
     // Future: Send to backend logging endpoint
     // fetch('/api/logs/error', {
     //   method: 'POST',
     //   headers: { 'Content-Type': 'application/json' },
     //   body: JSON.stringify(errorLog),
     // }).catch(e => console.warn('Failed to send error to server:', e));
-    
+
     this.setState(prev => ({
       errorInfo,
       errorCount: prev.errorCount + 1,
@@ -75,8 +75,18 @@ class ErrorBoundary extends React.Component {
           <div className="max-w-2xl w-full bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-8 border border-gray-200 dark:border-slate-700">
             <div className="flex items-start gap-4 mb-6">
               <div className="p-3 bg-red-100 dark:bg-red-900/30 rounded-full flex-shrink-0">
-                <svg className="w-8 h-8 text-red-600 dark:text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                <svg
+                  className="w-8 h-8 text-red-600 dark:text-red-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                  />
                 </svg>
               </div>
               <div className="flex-1">

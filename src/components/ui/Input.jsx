@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { cn } from '../../lib/utils';
 
 export const Input = React.forwardRef(
@@ -34,6 +35,14 @@ export const Input = React.forwardRef(
 
 Input.displayName = 'Input';
 
+Input.propTypes = {
+  className: PropTypes.string,
+  type: PropTypes.string,
+  label: PropTypes.string,
+  error: PropTypes.string,
+  disabled: PropTypes.bool,
+};
+
 export const Textarea = React.forwardRef(
   ({ className, label, error, rows = 4, ...props }, ref) => {
     const generatedId = React.useId();
@@ -66,6 +75,13 @@ export const Textarea = React.forwardRef(
 );
 
 Textarea.displayName = 'Textarea';
+
+Textarea.propTypes = {
+  className: PropTypes.string,
+  label: PropTypes.string,
+  error: PropTypes.string,
+  rows: PropTypes.number,
+};
 
 export const Select = React.forwardRef(
   ({ className, label, error, children, ...props }, ref) => {
@@ -100,3 +116,10 @@ export const Select = React.forwardRef(
 );
 
 Select.displayName = 'Select';
+
+Select.propTypes = {
+  className: PropTypes.string,
+  label: PropTypes.string,
+  error: PropTypes.string,
+  children: PropTypes.node,
+};

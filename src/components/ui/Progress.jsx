@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { cn } from '../../lib/utils';
 
 export const Progress = ({ value = 0, max = 100, className, indicatorClassName }) => {
@@ -20,4 +21,11 @@ export const Progress = ({ value = 0, max = 100, className, indicatorClassName }
       />
     </div>
   );
+};
+
+Progress.propTypes = {
+  value: PropTypes.number,
+  max: PropTypes.number,
+  className: PropTypes.string,
+  indicatorClassName: PropTypes.string
 };

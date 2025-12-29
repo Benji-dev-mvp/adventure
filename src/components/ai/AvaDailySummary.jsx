@@ -21,11 +21,7 @@ import {
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
-import { 
-  AreaChart, 
-  Area, 
-  ResponsiveContainer,
-} from 'recharts';
+import { AreaChart, Area, ResponsiveContainer } from 'recharts';
 
 // Mock data for Ava's daily activity
 const MOCK_AVA_SUMMARY = {
@@ -33,7 +29,14 @@ const MOCK_AVA_SUMMARY = {
   highlights: [
     { id: 1, metric: 'Leads Scored', value: 156, change: '+23', trend: 'up', icon: Target },
     { id: 2, metric: 'Emails Drafted', value: 89, change: '+12', trend: 'up', icon: Mail },
-    { id: 3, metric: 'Sequences Optimized', value: 3, change: '0', trend: 'neutral', icon: TrendingUp },
+    {
+      id: 3,
+      metric: 'Sequences Optimized',
+      value: 3,
+      change: '0',
+      trend: 'neutral',
+      icon: TrendingUp,
+    },
     { id: 4, metric: 'Insights Generated', value: 12, change: '+4', trend: 'up', icon: Brain },
   ],
   actions: [
@@ -87,9 +90,18 @@ const MOCK_AVA_SUMMARY = {
     },
   ],
   sparklineData: [
-    { value: 45 }, { value: 52 }, { value: 48 }, { value: 61 },
-    { value: 55 }, { value: 67 }, { value: 72 }, { value: 68 },
-    { value: 82 }, { value: 78 }, { value: 91 }, { value: 89 },
+    { value: 45 },
+    { value: 52 },
+    { value: 48 },
+    { value: 61 },
+    { value: 55 },
+    { value: 67 },
+    { value: 72 },
+    { value: 68 },
+    { value: 82 },
+    { value: 78 },
+    { value: 91 },
+    { value: 89 },
   ],
   weeklyStats: {
     leadsScored: 847,
@@ -105,8 +117,8 @@ const MiniSparkline = ({ data, color = '#06b6d4' }) => (
       <AreaChart data={data} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
         <defs>
           <linearGradient id="sparklineGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor={color} stopOpacity={0.4}/>
-            <stop offset="95%" stopColor={color} stopOpacity={0}/>
+            <stop offset="5%" stopColor={color} stopOpacity={0.4} />
+            <stop offset="95%" stopColor={color} stopOpacity={0} />
           </linearGradient>
         </defs>
         <Area
@@ -133,7 +145,7 @@ const ActionItem = ({ action, onAction }) => {
 
   return (
     <div className="flex items-start gap-3 py-3 border-b border-gray-100 dark:border-white/5 last:border-0">
-      <div className={cn("p-2 rounded-lg shrink-0", typeColors[action.type])}>
+      <div className={cn('p-2 rounded-lg shrink-0', typeColors[action.type])}>
         <CheckCircle2 className="h-4 w-4" />
       </div>
       <div className="flex-1 min-w-0">
@@ -161,13 +173,18 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
   const navigate = useNavigate();
   const summary = MOCK_AVA_SUMMARY;
 
-  const handleAction = (route) => {
+  const handleAction = route => {
     navigate(route);
   };
 
   if (variant === 'compact') {
     return (
-      <div className={cn("bg-gradient-to-br from-purple-500/10 via-pink-500/5 to-cyan-500/10 rounded-2xl border border-purple-500/20 p-4", className)}>
+      <div
+        className={cn(
+          'bg-gradient-to-br from-purple-500/10 via-pink-500/5 to-cyan-500/10 rounded-2xl border border-purple-500/20 p-4',
+          className
+        )}
+      >
         <div className="flex items-center gap-3 mb-4">
           <div className="p-2 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl">
             <Bot className="h-5 w-5 text-white" />
@@ -177,21 +194,25 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
             <p className="text-xs text-gray-500 dark:text-gray-400">{summary.date}</p>
           </div>
         </div>
-        
+
         <div className="grid grid-cols-2 gap-3">
-          {summary.highlights.slice(0, 4).map((highlight) => (
+          {summary.highlights.slice(0, 4).map(highlight => (
             <div key={highlight.id} className="bg-white/50 dark:bg-white/5 rounded-lg p-3">
               <div className="flex items-center gap-2">
                 <highlight.icon className="h-4 w-4 text-gray-400" />
                 <span className="text-xs text-gray-500 dark:text-gray-400">{highlight.metric}</span>
               </div>
               <div className="flex items-baseline gap-1 mt-1">
-                <span className="text-xl font-bold text-gray-900 dark:text-white">{highlight.value}</span>
+                <span className="text-xl font-bold text-gray-900 dark:text-white">
+                  {highlight.value}
+                </span>
                 {highlight.change !== '0' && (
-                  <span className={cn(
-                    "text-xs font-medium",
-                    highlight.trend === 'up' ? 'text-green-500' : 'text-red-500'
-                  )}>
+                  <span
+                    className={cn(
+                      'text-xs font-medium',
+                      highlight.trend === 'up' ? 'text-green-500' : 'text-red-500'
+                    )}
+                  >
                     {highlight.change}
                   </span>
                 )}
@@ -199,13 +220,8 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
             </div>
           ))}
         </div>
-        
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          className="w-full mt-3"
-          onClick={() => navigate('/ava')}
-        >
+
+        <Button variant="ghost" size="sm" className="w-full mt-3" onClick={() => navigate('/ava')}>
           View Full Summary
           <ChevronRight className="h-4 w-4 ml-1" />
         </Button>
@@ -218,7 +234,7 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className={cn(
-        "bg-gradient-to-br from-purple-500/10 via-pink-500/5 to-cyan-500/10 rounded-2xl border border-purple-500/20",
+        'bg-gradient-to-br from-purple-500/10 via-pink-500/5 to-cyan-500/10 rounded-2xl border border-purple-500/20',
         className
       )}
     >
@@ -250,7 +266,7 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
 
         {/* Quick Stats */}
         <div className="grid grid-cols-4 gap-4 mt-6">
-          {summary.highlights.map((highlight) => (
+          {summary.highlights.map(highlight => (
             <div key={highlight.id} className="bg-white/50 dark:bg-white/5 rounded-xl p-4">
               <div className="flex items-center justify-between mb-2">
                 <highlight.icon className="h-5 w-5 text-gray-400" />
@@ -260,10 +276,12 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
               <div className="flex items-center gap-2 mt-1">
                 <span className="text-xs text-gray-500 dark:text-gray-400">{highlight.metric}</span>
                 {highlight.change !== '0' && (
-                  <span className={cn(
-                    "text-xs font-medium",
-                    highlight.trend === 'up' ? 'text-green-500' : 'text-red-500'
-                  )}>
+                  <span
+                    className={cn(
+                      'text-xs font-medium',
+                      highlight.trend === 'up' ? 'text-green-500' : 'text-red-500'
+                    )}
+                  >
                     {highlight.change} today
                   </span>
                 )}
@@ -290,7 +308,7 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
                 Today's Actions
               </h3>
               <div className="max-h-64 overflow-y-auto">
-                {summary.actions.map((action) => (
+                {summary.actions.map(action => (
                   <ActionItem key={action.id} action={action} onAction={handleAction} />
                 ))}
               </div>
@@ -304,19 +322,27 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
               </h3>
               <div className="grid grid-cols-4 gap-4">
                 <div>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">{summary.weeklyStats.leadsScored}</p>
+                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                    {summary.weeklyStats.leadsScored}
+                  </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Leads Scored</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">{summary.weeklyStats.emailsDrafted}</p>
+                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                    {summary.weeklyStats.emailsDrafted}
+                  </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Emails Drafted</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">{summary.weeklyStats.meetingsInfluenced}</p>
+                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                    {summary.weeklyStats.meetingsInfluenced}
+                  </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Meetings Influenced</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-green-500">{summary.weeklyStats.revenueInfluenced}</p>
+                  <p className="text-2xl font-bold text-green-500">
+                    {summary.weeklyStats.revenueInfluenced}
+                  </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Revenue Influenced</p>
                 </div>
               </div>
@@ -325,7 +351,13 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
             {/* Footer CTA */}
             <div className="p-4 flex items-center justify-between">
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Want Ava to do more? <button onClick={() => navigate('/ava/playbooks')} className="text-accent-500 hover:underline">Configure playbooks →</button>
+                Want Ava to do more?{' '}
+                <button
+                  onClick={() => navigate('/ava/playbooks')}
+                  className="text-accent-500 hover:underline"
+                >
+                  Configure playbooks →
+                </button>
               </p>
               <Button onClick={() => navigate('/ava')}>
                 <Sparkles className="h-4 w-4 mr-2" />
@@ -340,9 +372,11 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
 };
 
 MiniSparkline.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.number,
-  })).isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.number,
+    })
+  ).isRequired,
   color: PropTypes.string,
 };
 

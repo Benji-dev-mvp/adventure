@@ -183,7 +183,7 @@ const VisualOutcomesShowcase = () => {
                     <div className={`flex items-center justify-center gap-1 px-3 py-2 rounded-lg font-bold text-sm ${
                       result.increase.startsWith('+')
                         ? 'bg-green-500 text-white'
-                        : 'bg-green-500 text-white'
+                        : 'bg-red-500 text-white'
                     }`}>
                       <TrendingUp className="w-4 h-4" />
                       {result.increase}

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { cn } from '../../lib/utils';
 import { X } from 'lucide-react';
 
@@ -15,8 +16,16 @@ export const Modal = ({ isOpen, onClose, children, className, size = 'md' }) => 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
+        role="button"
+        tabIndex={0}
         className="fixed inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onClose();
+          }
+        }}
       />
       <div
         className={cn(
@@ -29,6 +38,14 @@ export const Modal = ({ isOpen, onClose, children, className, size = 'md' }) => 
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  size: PropTypes.oneOf(['sm', 'md', 'lg', 'xl'])
 };
 
 export const ModalHeader = ({ children, onClose, className }) => {
@@ -69,4 +86,25 @@ export const ModalFooter = ({ children, className }) => {
       {children}
     </div>
   );
+};
+
+ModalHeader.propTypes = {
+  children: PropTypes.node,
+  onClose: PropTypes.func,
+  className: PropTypes.string
+};
+
+ModalTitle.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string
+};
+
+ModalContent.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string
+};
+
+ModalFooter.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string
 };

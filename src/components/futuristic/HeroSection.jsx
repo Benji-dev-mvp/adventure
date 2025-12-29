@@ -2,19 +2,12 @@
  * HeroSection - Futuristic hero component with all effects combined
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ParticleBackground, FloatingParticles, MouseFollowGlow } from './ParticleBackground';
 import { GlowButton, GlowButtonOutline } from './GlowButton';
 import { GlassCard } from './GlassCard';
-import {
-  TypewriterText,
-  GradientText,
-  SplitText,
-  RevealText,
-} from './AnimatedText';
-import {
-  useIntersectionAnimation,
-  usePrefersReducedMotion,
-} from '../../hooks/useAnimations';
+import { TypewriterText, GradientText, SplitText, RevealText } from './AnimatedText';
+import { useIntersectionAnimation, usePrefersReducedMotion } from '../../hooks/useAnimations';
 import { ArrowRight, Sparkles, Play } from 'lucide-react';
 
 /**
@@ -96,9 +89,7 @@ export function HeroSection({
 
           {/* Description */}
           <RevealText delay={600}>
-            <p className="text-lg text-white/60 max-w-2xl mx-auto mb-12">
-              {description}
-            </p>
+            <p className="text-lg text-white/60 max-w-2xl mx-auto mb-12">{description}</p>
           </RevealText>
 
           {/* CTA Buttons */}
@@ -114,11 +105,7 @@ export function HeroSection({
                 {primaryCTA.label}
               </GlowButton>
 
-              <GlowButtonOutline
-                variant="secondary"
-                size="lg"
-                onClick={secondaryCTA.onClick}
-              >
+              <GlowButtonOutline variant="secondary" size="lg" onClick={secondaryCTA.onClick}>
                 <Play className="w-5 h-5 mr-2" />
                 {secondaryCTA.label}
               </GlowButtonOutline>
@@ -127,11 +114,7 @@ export function HeroSection({
         </div>
 
         {/* Optional children for additional content */}
-        {children && (
-          <div className="mt-16 w-full max-w-6xl mx-auto">
-            {children}
-          </div>
-        )}
+        {children && <div className="mt-16 w-full max-w-6xl mx-auto">{children}</div>}
       </div>
 
       {/* Bottom gradient fade */}
@@ -140,16 +123,30 @@ export function HeroSection({
   );
 }
 
+HeroSection.propTypes = {
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  description: PropTypes.string,
+  primaryCTA: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+  }),
+  secondaryCTA: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+  }),
+  badge: PropTypes.string,
+  backgroundVariant: PropTypes.string,
+  showFloatingParticles: PropTypes.bool,
+  showMouseGlow: PropTypes.bool,
+  className: PropTypes.string,
+  children: PropTypes.node,
+};
+
 /**
  * HeroWithCards - Hero section with feature cards
  */
-export function HeroWithCards({
-  title,
-  subtitle,
-  description,
-  features = [],
-  ...heroProps
-}) {
+export function HeroWithCards({ title, subtitle, description, features = [], ...heroProps }) {
   return (
     <HeroSection title={title} subtitle={subtitle} description={description} {...heroProps}>
       {features.length > 0 && (
@@ -173,25 +170,36 @@ export function HeroWithCards({
   );
 }
 
+HeroWithCards.propTypes = {
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  description: PropTypes.string,
+  features: PropTypes.arrayOf(
+    PropTypes.shape({
+      icon: PropTypes.node,
+      title: PropTypes.string,
+      description: PropTypes.string,
+    })
+  ),
+};
+
 /**
  * HeroMinimal - Minimal hero for landing pages
  */
-export function HeroMinimal({
-  title,
-  subtitle,
-  cta,
-  className = '',
-}) {
+export function HeroMinimal({ title, subtitle, cta, className = '' }) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
-    <div className={`relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-[#030712] ${className}`}>
+    <div
+      className={`relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-[#030712] ${className}`}
+    >
       {/* Background glow */}
       <div className="absolute inset-0">
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-20"
           style={{
-            background: 'radial-gradient(circle, rgba(168,85,247,0.3) 0%, rgba(0,245,255,0.1) 50%, transparent 70%)',
+            background:
+              'radial-gradient(circle, rgba(168,85,247,0.3) 0%, rgba(0,245,255,0.1) 50%, transparent 70%)',
           }}
         />
       </div>
@@ -205,9 +213,7 @@ export function HeroMinimal({
         </RevealText>
 
         <RevealText delay={300}>
-          <p className="text-xl text-white/60 max-w-xl mx-auto mb-8">
-            {subtitle}
-          </p>
+          <p className="text-xl text-white/60 max-w-xl mx-auto mb-8">{subtitle}</p>
         </RevealText>
 
         {cta && (
@@ -228,6 +234,16 @@ export function HeroMinimal({
   );
 }
 
+HeroMinimal.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  cta: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+  }),
+  className: PropTypes.string,
+};
+
 /**
  * HeroSplit - Split layout hero with image/visual on one side
  */
@@ -244,7 +260,9 @@ export function HeroSplit({
   return (
     <ParticleBackground variant="minimal" className={`min-h-screen ${className}`}>
       <div className="relative z-10 container mx-auto px-4 py-20 min-h-screen flex items-center">
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${reversed ? 'lg:flex-row-reverse' : ''}`}>
+        <div
+          className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${reversed ? 'lg:flex-row-reverse' : ''}`}
+        >
           {/* Text content */}
           <div className={`space-y-8 ${reversed ? 'lg:order-2' : ''}`}>
             <RevealText delay={100}>
@@ -287,7 +305,11 @@ export function HeroSplit({
           <div className={`${reversed ? 'lg:order-1' : ''}`}>
             <RevealText delay={400} direction="scale">
               {visual || (
-                <GlassCard variant="gradient" className="aspect-square flex items-center justify-center" tilt>
+                <GlassCard
+                  variant="gradient"
+                  className="aspect-square flex items-center justify-center"
+                  tilt
+                >
                   <div className="text-6xl">🚀</div>
                 </GlassCard>
               )}
@@ -298,5 +320,22 @@ export function HeroSplit({
     </ParticleBackground>
   );
 }
+
+HeroSplit.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  primaryCTA: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+  }),
+  secondaryCTA: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+  }),
+  visual: PropTypes.node,
+  reversed: PropTypes.bool,
+  className: PropTypes.string,
+};
 
 export default HeroSection;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { cn } from '@/lib/utils';
 
 const Spinner = ({ 
@@ -61,6 +62,10 @@ const LoadingDots = ({ className, ...props }) => {
   );
 };
 
+LoadingDots.propTypes = {
+  className: PropTypes.string,
+};
+
 const LoadingBar = ({ progress, className, ...props }) => {
   return (
     <div className={cn("w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden", className)} {...props}>
@@ -76,8 +81,27 @@ const LoadingBar = ({ progress, className, ...props }) => {
   );
 };
 
+LoadingBar.propTypes = {
+  progress: PropTypes.number.isRequired,
+  className: PropTypes.string,
+};
+
 Spinner.displayName = 'Spinner';
+
+Spinner.propTypes = {
+  size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+  variant: PropTypes.oneOf(['primary', 'white', 'gray']),
+  className: PropTypes.string,
+};
+
 LoadingOverlay.displayName = 'LoadingOverlay';
+
+LoadingOverlay.propTypes = {
+  children: PropTypes.node,
+  loading: PropTypes.bool,
+  spinnerSize: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+  className: PropTypes.string,
+};
 LoadingDots.displayName = 'LoadingDots';
 LoadingBar.displayName = 'LoadingBar';
 

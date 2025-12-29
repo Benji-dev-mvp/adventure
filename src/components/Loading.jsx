@@ -10,9 +10,7 @@ export const LoadingSpinner = ({ size = 'md', className = '' }) => {
     xl: 'w-16 h-16',
   };
 
-  return (
-    <Loader2 className={`animate-spin text-accent-500 ${sizes[size]} ${className}`} />
-  );
+  return <Loader2 className={`animate-spin text-accent-500 ${sizes[size]} ${className}`} />;
 };
 
 export const PageLoader = ({ message = 'Loading...' }) => {

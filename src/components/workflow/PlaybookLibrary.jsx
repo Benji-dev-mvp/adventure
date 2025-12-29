@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { 
-  BookOpen, 
-  Search, 
-  Star, 
-  Clock, 
-  Users, 
+import {
+  BookOpen,
+  Search,
+  Star,
+  Clock,
+  Users,
   TrendingUp,
   ChevronRight,
   Plus,
@@ -13,8 +13,9 @@ import {
   Mail,
   Linkedin,
   Phone,
-  Target
+  Target,
 } from 'lucide-react';
+import PropTypes from 'prop-types';
 
 // Pre-built campaign playbooks
 const playbooks = [
@@ -40,14 +41,59 @@ const playbooks = [
     ],
     workflow: {
       nodes: [
-        { id: 'trigger-1', type: 'trigger', position: { x: 250, y: 0 }, data: { label: 'Campaign Start', triggerType: 'manual' } },
-        { id: 'email-1', type: 'email', position: { x: 250, y: 120 }, data: { label: 'Initial Outreach', subject: 'Partnership opportunity with {{company}}' } },
-        { id: 'delay-1', type: 'delay', position: { x: 250, y: 260 }, data: { label: 'Wait', days: 3, hours: 0 } },
-        { id: 'linkedin-1', type: 'linkedin', position: { x: 250, y: 400 }, data: { label: 'LinkedIn Connect', connectionRequest: true } },
-        { id: 'delay-2', type: 'delay', position: { x: 250, y: 540 }, data: { label: 'Wait', days: 2, hours: 0 } },
-        { id: 'condition-1', type: 'condition', position: { x: 250, y: 680 }, data: { label: 'Email Opened?', field: 'email_opened', operator: 'equals', value: 'true' } },
-        { id: 'email-2', type: 'email', position: { x: 100, y: 850 }, data: { label: 'Warm Follow-up', subject: 'Re: Partnership opportunity' } },
-        { id: 'call-1', type: 'call', position: { x: 400, y: 850 }, data: { label: 'Cold Call', script: 'Hi {{firstName}}, I sent you an email about...' } },
+        {
+          id: 'trigger-1',
+          type: 'trigger',
+          position: { x: 250, y: 0 },
+          data: { label: 'Campaign Start', triggerType: 'manual' },
+        },
+        {
+          id: 'email-1',
+          type: 'email',
+          position: { x: 250, y: 120 },
+          data: { label: 'Initial Outreach', subject: 'Partnership opportunity with {{company}}' },
+        },
+        {
+          id: 'delay-1',
+          type: 'delay',
+          position: { x: 250, y: 260 },
+          data: { label: 'Wait', days: 3, hours: 0 },
+        },
+        {
+          id: 'linkedin-1',
+          type: 'linkedin',
+          position: { x: 250, y: 400 },
+          data: { label: 'LinkedIn Connect', connectionRequest: true },
+        },
+        {
+          id: 'delay-2',
+          type: 'delay',
+          position: { x: 250, y: 540 },
+          data: { label: 'Wait', days: 2, hours: 0 },
+        },
+        {
+          id: 'condition-1',
+          type: 'condition',
+          position: { x: 250, y: 680 },
+          data: {
+            label: 'Email Opened?',
+            field: 'email_opened',
+            operator: 'equals',
+            value: 'true',
+          },
+        },
+        {
+          id: 'email-2',
+          type: 'email',
+          position: { x: 100, y: 850 },
+          data: { label: 'Warm Follow-up', subject: 'Re: Partnership opportunity' },
+        },
+        {
+          id: 'call-1',
+          type: 'call',
+          position: { x: 400, y: 850 },
+          data: { label: 'Cold Call', script: 'Hi {{firstName}}, I sent you an email about...' },
+        },
       ],
       edges: [
         { id: 'e1-2', source: 'trigger-1', target: 'email-1' },
@@ -78,10 +124,30 @@ const playbooks = [
     ],
     workflow: {
       nodes: [
-        { id: 'trigger-1', type: 'trigger', position: { x: 250, y: 0 }, data: { label: 'Campaign Start', triggerType: 'manual' } },
-        { id: 'email-1', type: 'email', position: { x: 250, y: 120 }, data: { label: 'Follow-up #1', subject: 'Following up on our conversation' } },
-        { id: 'delay-1', type: 'delay', position: { x: 250, y: 260 }, data: { label: 'Wait', days: 3, hours: 0 } },
-        { id: 'email-2', type: 'email', position: { x: 250, y: 400 }, data: { label: 'Follow-up #2', subject: 'Quick question' } },
+        {
+          id: 'trigger-1',
+          type: 'trigger',
+          position: { x: 250, y: 0 },
+          data: { label: 'Campaign Start', triggerType: 'manual' },
+        },
+        {
+          id: 'email-1',
+          type: 'email',
+          position: { x: 250, y: 120 },
+          data: { label: 'Follow-up #1', subject: 'Following up on our conversation' },
+        },
+        {
+          id: 'delay-1',
+          type: 'delay',
+          position: { x: 250, y: 260 },
+          data: { label: 'Wait', days: 3, hours: 0 },
+        },
+        {
+          id: 'email-2',
+          type: 'email',
+          position: { x: 250, y: 400 },
+          data: { label: 'Follow-up #2', subject: 'Quick question' },
+        },
       ],
       edges: [
         { id: 'e1-2', source: 'trigger-1', target: 'email-1' },
@@ -110,12 +176,47 @@ const playbooks = [
     ],
     workflow: {
       nodes: [
-        { id: 'trigger-1', type: 'trigger', position: { x: 250, y: 0 }, data: { label: 'Campaign Start', triggerType: 'manual' } },
-        { id: 'linkedin-1', type: 'linkedin', position: { x: 250, y: 120 }, data: { label: 'Connection Request', connectionRequest: true } },
-        { id: 'delay-1', type: 'delay', position: { x: 250, y: 260 }, data: { label: 'Wait', days: 2, hours: 0 } },
-        { id: 'condition-1', type: 'condition', position: { x: 250, y: 400 }, data: { label: 'Connection Accepted?', field: 'linkedin_accepted', operator: 'equals', value: 'true' } },
-        { id: 'linkedin-2', type: 'linkedin', position: { x: 100, y: 570 }, data: { label: 'LinkedIn Message', content: 'Thanks for connecting!' } },
-        { id: 'email-1', type: 'email', position: { x: 400, y: 570 }, data: { label: 'Email Introduction', subject: 'Connecting from LinkedIn' } },
+        {
+          id: 'trigger-1',
+          type: 'trigger',
+          position: { x: 250, y: 0 },
+          data: { label: 'Campaign Start', triggerType: 'manual' },
+        },
+        {
+          id: 'linkedin-1',
+          type: 'linkedin',
+          position: { x: 250, y: 120 },
+          data: { label: 'Connection Request', connectionRequest: true },
+        },
+        {
+          id: 'delay-1',
+          type: 'delay',
+          position: { x: 250, y: 260 },
+          data: { label: 'Wait', days: 2, hours: 0 },
+        },
+        {
+          id: 'condition-1',
+          type: 'condition',
+          position: { x: 250, y: 400 },
+          data: {
+            label: 'Connection Accepted?',
+            field: 'linkedin_accepted',
+            operator: 'equals',
+            value: 'true',
+          },
+        },
+        {
+          id: 'linkedin-2',
+          type: 'linkedin',
+          position: { x: 100, y: 570 },
+          data: { label: 'LinkedIn Message', content: 'Thanks for connecting!' },
+        },
+        {
+          id: 'email-1',
+          type: 'email',
+          position: { x: 400, y: 570 },
+          data: { label: 'Email Introduction', subject: 'Connecting from LinkedIn' },
+        },
       ],
       edges: [
         { id: 'e1-2', source: 'trigger-1', target: 'linkedin-1' },
@@ -145,10 +246,35 @@ const playbooks = [
     ],
     workflow: {
       nodes: [
-        { id: 'trigger-1', type: 'trigger', position: { x: 250, y: 0 }, data: { label: 'Campaign Start', triggerType: 'manual' } },
-        { id: 'abtest-1', type: 'abtest', position: { x: 250, y: 120 }, data: { label: 'A/B Split', splitRatio: 50, variantAName: 'Direct', variantBName: 'Question' } },
-        { id: 'email-1', type: 'email', position: { x: 100, y: 300 }, data: { label: 'Direct Approach', subject: 'Boost your sales by 30%' } },
-        { id: 'email-2', type: 'email', position: { x: 400, y: 300 }, data: { label: 'Question Approach', subject: 'Quick question about {{company}}' } },
+        {
+          id: 'trigger-1',
+          type: 'trigger',
+          position: { x: 250, y: 0 },
+          data: { label: 'Campaign Start', triggerType: 'manual' },
+        },
+        {
+          id: 'abtest-1',
+          type: 'abtest',
+          position: { x: 250, y: 120 },
+          data: {
+            label: 'A/B Split',
+            splitRatio: 50,
+            variantAName: 'Direct',
+            variantBName: 'Question',
+          },
+        },
+        {
+          id: 'email-1',
+          type: 'email',
+          position: { x: 100, y: 300 },
+          data: { label: 'Direct Approach', subject: 'Boost your sales by 30%' },
+        },
+        {
+          id: 'email-2',
+          type: 'email',
+          position: { x: 400, y: 300 },
+          data: { label: 'Question Approach', subject: 'Quick question about {{company}}' },
+        },
       ],
       edges: [
         { id: 'e1-2', source: 'trigger-1', target: 'abtest-1' },
@@ -166,16 +292,17 @@ const PlaybookLibrary = ({ isOpen, onClose, onSelectPlaybook }) => {
   const categories = ['all', 'Outbound', 'Follow-up', 'Social Selling', 'Testing'];
 
   const filteredPlaybooks = playbooks.filter(p => {
-    const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          p.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch =
+      p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || p.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
   const difficultyColors = {
-    'Beginner': 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
-    'Intermediate': 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400',
-    'Advanced': 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+    Beginner: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
+    Intermediate: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400',
+    Advanced: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
   };
 
   const nodeIcons = {
@@ -188,14 +315,29 @@ const PlaybookLibrary = ({ isOpen, onClose, onSelectPlaybook }) => {
     abtest: TrendingUp,
   };
 
+  const handleClose = event => {
+    if (event.type === 'click' || event.key === 'Enter' || event.key === ' ') {
+      onClose();
+    }
+  };
+
+  const handleSelect = playbook => {
+    onSelectPlaybook(playbook);
+    onClose();
+  };
+
   if (!isOpen) return null;
 
   return (
     <>
       {/* Backdrop */}
-      <div 
+      <div
         className="fixed inset-0 bg-black/50 z-40"
-        onClick={onClose}
+        role="button"
+        tabIndex={0}
+        aria-label="Close playbook library"
+        onClick={handleClose}
+        onKeyDown={handleClose}
       />
 
       {/* Modal */}
@@ -207,15 +349,13 @@ const PlaybookLibrary = ({ isOpen, onClose, onSelectPlaybook }) => {
               <BookOpen className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                Playbook Library
-              </h2>
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">Playbook Library</h2>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 Pre-built campaign templates to get started quickly
               </p>
             </div>
           </div>
-          <button 
+          <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-gray-500"
           >
@@ -231,7 +371,7 @@ const PlaybookLibrary = ({ isOpen, onClose, onSelectPlaybook }) => {
               <input
                 type="text"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={e => setSearchTerm(e.target.value)}
                 placeholder="Search playbooks..."
                 className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white"
               />
@@ -261,9 +401,14 @@ const PlaybookLibrary = ({ isOpen, onClose, onSelectPlaybook }) => {
               <div
                 key={playbook.id}
                 className="group bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl overflow-hidden hover:shadow-lg transition-all cursor-pointer"
-                onClick={() => {
-                  onSelectPlaybook(playbook);
-                  onClose();
+                role="button"
+                tabIndex={0}
+                aria-label={`Select ${playbook.name}`}
+                onClick={() => handleSelect(playbook)}
+                onKeyDown={event => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    handleSelect(playbook);
+                  }
                 }}
               >
                 {/* Card Header */}
@@ -290,7 +435,7 @@ const PlaybookLibrary = ({ isOpen, onClose, onSelectPlaybook }) => {
                       const Icon = nodeIcons[node.type] || Zap;
                       return (
                         <React.Fragment key={idx}>
-                          <div 
+                          <div
                             className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-white dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600"
                             title={node.label}
                           >
@@ -319,7 +464,9 @@ const PlaybookLibrary = ({ isOpen, onClose, onSelectPlaybook }) => {
                         <TrendingUp className="w-3 h-3" /> {playbook.avgConversion} conv.
                       </span>
                     </div>
-                    <span className={`px-2 py-0.5 rounded-full ${difficultyColors[playbook.difficulty]}`}>
+                    <span
+                      className={`px-2 py-0.5 rounded-full ${difficultyColors[playbook.difficulty]}`}
+                    >
                       {playbook.difficulty}
                     </span>
                   </div>
@@ -361,6 +508,12 @@ const PlaybookLibrary = ({ isOpen, onClose, onSelectPlaybook }) => {
       </div>
     </>
   );
+};
+
+PlaybookLibrary.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSelectPlaybook: PropTypes.func.isRequired,
 };
 
 export default PlaybookLibrary;

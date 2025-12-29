@@ -1,10 +1,10 @@
 /**
  * PlaybookAttributionMatrix.jsx
- * 
- * Matrix visualization showing what works where across segments, channels, 
+ *
+ * Matrix visualization showing what works where across segments, channels,
  * and outcomes. Enables drill-down into specific combinations to understand
  * attribution and performance drivers.
- * 
+ *
  * Features:
  * - Multi-dimensional matrix view (segment × channel × metric)
  * - Color-coded performance cells
@@ -15,9 +15,21 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Grid3X3, ArrowUpRight, ArrowDownRight, Minus,
-  Filter, Download, Maximize2, ChevronDown, Info,
-  Users, Mail, MessageSquare, Calendar, Target, TrendingUp
+  Grid3X3,
+  ArrowUpRight,
+  ArrowDownRight,
+  Minus,
+  Filter,
+  Download,
+  Maximize2,
+  ChevronDown,
+  Info,
+  Users,
+  Mail,
+  MessageSquare,
+  Calendar,
+  Target,
+  TrendingUp,
 } from 'lucide-react';
 import { AnimatedCounter } from '../../ui/AnimatedComponents';
 
@@ -29,14 +41,14 @@ const metricConfig = {
   meetings: { label: 'Meetings', icon: Calendar, format: 'number' },
   response_rate: { label: 'Response %', icon: TrendingUp, format: 'percent' },
   meeting_rate: { label: 'Meeting %', icon: Target, format: 'percent' },
-  roi: { label: 'ROI', icon: ArrowUpRight, format: 'currency' }
+  roi: { label: 'ROI', icon: ArrowUpRight, format: 'currency' },
 };
 
 // Performance color scale
 const getPerformanceColor = (value, benchmark, inverse = false) => {
   const ratio = value / benchmark;
   const adjusted = inverse ? 1 / ratio : ratio;
-  
+
   if (adjusted >= 1.2) return { bg: 'bg-green-500', text: 'text-white', label: 'Excellent' };
   if (adjusted >= 1.0) return { bg: 'bg-green-400', text: 'text-white', label: 'Good' };
   if (adjusted >= 0.8) return { bg: 'bg-yellow-400', text: 'text-gray-900', label: 'Average' };
@@ -92,7 +104,7 @@ const MatrixCell = ({ value, benchmark, format, trend, isSelected, onClick, size
   const sizeClasses = {
     sm: 'w-16 h-12 text-xs',
     md: 'w-24 h-16 text-sm',
-    lg: 'w-32 h-20 text-base'
+    lg: 'w-32 h-20 text-base',
   };
 
   return (
@@ -109,7 +121,7 @@ const MatrixCell = ({ value, benchmark, format, trend, isSelected, onClick, size
     >
       <span className="font-bold">{formatValue(value, format)}</span>
       {trend !== undefined && <TrendIndicator trend={trend} />}
-      
+
       {/* Tooltip */}
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-20">
         <div>{perf.label} Performance</div>
@@ -183,7 +195,7 @@ const AttributionDetail = ({ segment, channel, metric, data, onClose }) => {
             Detailed attribution analysis
           </p>
         </div>
-        <button 
+        <button
           onClick={onClose}
           className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
         >
@@ -207,13 +219,17 @@ const AttributionDetail = ({ segment, channel, metric, data, onClose }) => {
         </div>
         <div className="bg-white dark:bg-gray-700 rounded-lg p-4">
           <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">vs. Benchmark</div>
-          <div className={`text-2xl font-bold ${data.value >= data.benchmark ? 'text-green-600' : 'text-red-600'}`}>
+          <div
+            className={`text-2xl font-bold ${data.value >= data.benchmark ? 'text-green-600' : 'text-red-600'}`}
+          >
             {((data.value / data.benchmark - 1) * 100).toFixed(1)}%
           </div>
         </div>
         <div className="bg-white dark:bg-gray-700 rounded-lg p-4">
           <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">Week-over-Week</div>
-          <div className={`text-2xl font-bold flex items-center gap-1 ${data.trend >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+          <div
+            className={`text-2xl font-bold flex items-center gap-1 ${data.trend >= 0 ? 'text-green-600' : 'text-red-600'}`}
+          >
             {data.trend >= 0 ? <ArrowUpRight size={20} /> : <ArrowDownRight size={20} />}
             {Math.abs(data.trend)}%
           </div>
@@ -226,20 +242,24 @@ const AttributionDetail = ({ segment, channel, metric, data, onClose }) => {
           Key Attribution Factors
         </h5>
         <div className="space-y-3">
-          {(data.factors || [
-            { label: 'Personalization quality', contribution: 35 },
-            { label: 'Send time optimization', contribution: 25 },
-            { label: 'ICP targeting accuracy', contribution: 22 },
-            { label: 'Subject line relevance', contribution: 18 }
-          ]).map((factor, i) => (
+          {(
+            data.factors || [
+              { label: 'Personalization quality', contribution: 35 },
+              { label: 'Send time optimization', contribution: 25 },
+              { label: 'ICP targeting accuracy', contribution: 22 },
+              { label: 'Subject line relevance', contribution: 18 },
+            ]
+          ).map((factor, i) => (
             <div key={i} className="flex items-center gap-3">
               <div className="flex-1">
                 <div className="flex justify-between text-sm mb-1">
                   <span className="text-gray-700 dark:text-gray-300">{factor.label}</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{factor.contribution}%</span>
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    {factor.contribution}%
+                  </span>
                 </div>
                 <div className="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
-                  <div 
+                  <div
                     className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
                     style={{ width: `${factor.contribution}%` }}
                   />
@@ -261,10 +281,12 @@ AttributionDetail.propTypes = {
     value: PropTypes.number,
     benchmark: PropTypes.number,
     trend: PropTypes.number,
-    factors: PropTypes.arrayOf(PropTypes.shape({
-      label: PropTypes.string,
-      contribution: PropTypes.number,
-    })),
+    factors: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string,
+        contribution: PropTypes.number,
+      })
+    ),
   }),
   onClose: PropTypes.func.isRequired,
 };
@@ -300,7 +322,7 @@ export const PlaybookAttributionMatrix = ({ playbooks = [], onDrillDown }) => {
   // Generate matrix data
   const matrixData = useMemo(() => {
     const data = {};
-    
+
     segments.forEach(segment => {
       data[segment] = {};
       channels.forEach(channel => {
@@ -308,17 +330,17 @@ export const PlaybookAttributionMatrix = ({ playbooks = [], onDrillDown }) => {
         const baseRates = {
           startup: { email: 22, linkedin: 28, phone: 15 },
           midmarket: { email: 26, linkedin: 32, phone: 18 },
-          enterprise: { email: 24, linkedin: 38, phone: 14 }
+          enterprise: { email: 24, linkedin: 38, phone: 14 },
         };
-        
+
         const baseMeetingRates = {
           startup: { email: 3.2, linkedin: 4.1, phone: 2.8 },
           midmarket: { email: 4.5, linkedin: 5.8, phone: 3.5 },
-          enterprise: { email: 5.1, linkedin: 7.2, phone: 4.2 }
+          enterprise: { email: 5.1, linkedin: 7.2, phone: 4.2 },
         };
 
         const variance = (Math.random() - 0.5) * 10;
-        
+
         data[segment][channel] = {
           leads_targeted: Math.floor(Math.random() * 500 + 200),
           emails_sent: Math.floor(Math.random() * 400 + 150),
@@ -327,17 +349,17 @@ export const PlaybookAttributionMatrix = ({ playbooks = [], onDrillDown }) => {
           response_rate: baseRates[segment][channel] + variance,
           meeting_rate: baseMeetingRates[segment][channel] + variance / 5,
           roi: Math.floor(Math.random() * 50000 + 10000),
-          trend: Math.floor(Math.random() * 40 - 15)
+          trend: Math.floor(Math.random() * 40 - 15),
         };
       });
     });
-    
+
     return data;
   }, [playbooks]);
 
   // Calculate benchmarks for the selected metric
   const benchmark = useMemo(() => {
-    const allValues = segments.flatMap(s => 
+    const allValues = segments.flatMap(s =>
       channels.map(c => matrixData[s]?.[c]?.[selectedMetric] || 0)
     );
     return allValues.reduce((a, b) => a + b, 0) / allValues.length;
@@ -353,8 +375,8 @@ export const PlaybookAttributionMatrix = ({ playbooks = [], onDrillDown }) => {
         data: {
           value: data[selectedMetric],
           benchmark,
-          trend: data.trend
-        }
+          trend: data.trend,
+        },
       });
     }
   };
@@ -382,17 +404,19 @@ export const PlaybookAttributionMatrix = ({ playbooks = [], onDrillDown }) => {
             {/* Metric Selector */}
             <select
               value={selectedMetric}
-              onChange={(e) => setSelectedMetric(e.target.value)}
+              onChange={e => setSelectedMetric(e.target.value)}
               className="px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 border-0 rounded-lg text-gray-700 dark:text-gray-300"
             >
               {Object.entries(metricConfig).map(([key, { label }]) => (
-                <option key={key} value={key}>{label}</option>
+                <option key={key} value={key}>
+                  {label}
+                </option>
               ))}
             </select>
 
             {/* View Mode Toggle */}
             <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
-              {['standard', 'comparison'].map((mode) => (
+              {['standard', 'comparison'].map(mode => (
                 <button
                   key={mode}
                   onClick={() => setViewMode(mode)}
@@ -422,10 +446,12 @@ export const PlaybookAttributionMatrix = ({ playbooks = [], onDrillDown }) => {
           <div className="flex items-end mb-3">
             <div className="min-w-32" /> {/* Spacer for row headers */}
             {channels.map(channel => (
-              <ColumnHeader 
-                key={channel} 
+              <ColumnHeader
+                key={channel}
                 label={channel}
-                icon={channel === 'email' ? Mail : channel === 'linkedin' ? MessageSquare : Calendar}
+                icon={
+                  channel === 'email' ? Mail : channel === 'linkedin' ? MessageSquare : Calendar
+                }
               />
             ))}
             <div className="min-w-24 text-center">
@@ -437,21 +463,24 @@ export const PlaybookAttributionMatrix = ({ playbooks = [], onDrillDown }) => {
           <div className="space-y-2">
             {segments.map(segment => {
               const rowData = matrixData[segment];
-              const rowAvg = channels.reduce((sum, ch) => 
-                sum + (rowData?.[ch]?.[selectedMetric] || 0), 0
-              ) / channels.length;
+              const rowAvg =
+                channels.reduce((sum, ch) => sum + (rowData?.[ch]?.[selectedMetric] || 0), 0) /
+                channels.length;
 
               return (
                 <div key={segment} className="flex items-center gap-2">
-                  <RowHeader 
+                  <RowHeader
                     label={segment}
                     sublabel={
-                      segment === 'startup' ? '1-50 emp' :
-                      segment === 'midmarket' ? '51-500 emp' : '500+ emp'
+                      segment === 'startup'
+                        ? '1-50 emp'
+                        : segment === 'midmarket'
+                          ? '51-500 emp'
+                          : '500+ emp'
                     }
                     icon={Users}
                   />
-                  
+
                   {channels.map(channel => (
                     <MatrixCell
                       key={channel}
@@ -459,11 +488,13 @@ export const PlaybookAttributionMatrix = ({ playbooks = [], onDrillDown }) => {
                       benchmark={benchmark}
                       format={metricInfo.format}
                       trend={rowData?.[channel]?.trend}
-                      isSelected={selectedCell?.segment === segment && selectedCell?.channel === channel}
+                      isSelected={
+                        selectedCell?.segment === segment && selectedCell?.channel === channel
+                      }
                       onClick={() => handleCellClick(segment, channel)}
                     />
                   ))}
-                  
+
                   {/* Row Average */}
                   <div className="min-w-24 h-16 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-lg">
                     <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -477,15 +508,19 @@ export const PlaybookAttributionMatrix = ({ playbooks = [], onDrillDown }) => {
             {/* Column Averages */}
             <div className="flex items-center gap-2 pt-2 border-t border-gray-200 dark:border-gray-700">
               <div className="min-w-32 text-right pr-4">
-                <span className="text-xs font-medium text-gray-500 dark:text-gray-400">Column Avg</span>
+                <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                  Column Avg
+                </span>
               </div>
               {channels.map(channel => {
-                const colAvg = segments.reduce((sum, seg) => 
-                  sum + (matrixData[seg]?.[channel]?.[selectedMetric] || 0), 0
-                ) / segments.length;
+                const colAvg =
+                  segments.reduce(
+                    (sum, seg) => sum + (matrixData[seg]?.[channel]?.[selectedMetric] || 0),
+                    0
+                  ) / segments.length;
 
                 return (
-                  <div 
+                  <div
                     key={channel}
                     className="w-24 h-12 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-lg"
                   >
@@ -513,7 +548,7 @@ export const PlaybookAttributionMatrix = ({ playbooks = [], onDrillDown }) => {
       {/* Selected Cell Detail */}
       {selectedCell && (
         <div className="px-5 pb-5">
-          <AttributionDetail 
+          <AttributionDetail
             segment={selectedCell.segment}
             channel={selectedCell.channel}
             metric={selectedMetric}

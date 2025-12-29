@@ -2,6 +2,7 @@
  * GlassCard - Glassmorphism card with blur and border effects
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useTilt, usePrefersReducedMotion } from '../../hooks/useAnimations';
 
 const variants = {
@@ -119,6 +120,21 @@ export function GlassCard({
   );
 }
 
+GlassCard.propTypes = {
+  children: PropTypes.node.isRequired,
+  variant: PropTypes.oneOf(['default', 'light', 'dark', 'gradient', 'neon']),
+  blur: PropTypes.oneOf(['none', 'sm', 'md', 'lg', 'xl', '2xl']),
+  radius: PropTypes.oneOf(['none', 'sm', 'md', 'lg', 'xl', 'full']),
+  padding: PropTypes.string,
+  className: PropTypes.string,
+  hover: PropTypes.bool,
+  tilt: PropTypes.bool,
+  glow: PropTypes.bool,
+  glowColor: PropTypes.oneOf(['cyan', 'purple', 'pink']),
+  onClick: PropTypes.func,
+  as: PropTypes.elementType,
+};
+
 /**
  * GlassCardHeader - Header section for glass cards
  */
@@ -130,19 +146,27 @@ export function GlassCardHeader({ children, className = '', ...props }) {
   );
 }
 
+GlassCardHeader.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
+
 /**
  * GlassCardTitle - Title for glass cards
  */
 export function GlassCardTitle({ children, className = '', as: Component = 'h3', ...props }) {
   return (
-    <Component
-      className={`text-xl font-semibold text-white ${className}`}
-      {...props}
-    >
+    <Component className={`text-xl font-semibold text-white ${className}`} {...props}>
       {children}
     </Component>
   );
 }
+
+GlassCardTitle.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  as: PropTypes.elementType,
+};
 
 /**
  * GlassCardDescription - Description text for glass cards
@@ -155,6 +179,11 @@ export function GlassCardDescription({ children, className = '', ...props }) {
   );
 }
 
+GlassCardDescription.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
+
 /**
  * GlassCardContent - Main content area
  */
@@ -166,19 +195,26 @@ export function GlassCardContent({ children, className = '', ...props }) {
   );
 }
 
+GlassCardContent.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
+
 /**
  * GlassCardFooter - Footer section
  */
 export function GlassCardFooter({ children, className = '', ...props }) {
   return (
-    <div
-      className={`mt-6 pt-4 border-t border-white/10 ${className}`}
-      {...props}
-    >
+    <div className={`mt-6 pt-4 border-t border-white/10 ${className}`} {...props}>
       {children}
     </div>
   );
 }
+
+GlassCardFooter.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
 
 /**
  * FeatureCard - Pre-styled feature card with icon
@@ -192,13 +228,7 @@ export function FeatureCard({
   ...props
 }) {
   return (
-    <GlassCard
-      variant={variant}
-      hover
-      glow
-      className={`group ${className}`}
-      {...props}
-    >
+    <GlassCard variant={variant} hover glow className={`group ${className}`} {...props}>
       {/* Icon container */}
       {icon && (
         <div className="mb-4 w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform duration-300">
@@ -212,12 +242,18 @@ export function FeatureCard({
       </h3>
 
       {/* Description */}
-      <p className="text-sm text-white/60 leading-relaxed">
-        {description}
-      </p>
+      <p className="text-sm text-white/60 leading-relaxed">{description}</p>
     </GlassCard>
   );
 }
+
+FeatureCard.propTypes = {
+  icon: PropTypes.node,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  variant: PropTypes.oneOf(['default', 'light', 'dark', 'gradient', 'neon']),
+};
 
 /**
  * StatCard - Card for displaying statistics
@@ -260,25 +296,54 @@ export function StatCard({
   );
 }
 
+StatCard.propTypes = {
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  label: PropTypes.string.isRequired,
+  icon: PropTypes.node,
+  trend: PropTypes.string,
+  trendDirection: PropTypes.oneOf(['up', 'down', 'neutral']),
+  className: PropTypes.string,
+};
+
 /**
  * GlassModal - Modal with glass effect
  */
-export function GlassModal({
-  isOpen,
-  onClose,
-  children,
-  title,
-  className = '',
-  ...props
-}) {
+export function GlassModal({ isOpen, onClose, children, title, className = '', ...props }) {
   if (!isOpen) return null;
 
+  const handleKeyDown = e => {
+    if (e.key === 'Escape') {
+      onClose();
+    }
+  };
+
+  const handleBackdropClick = e => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      onKeyDown={handleKeyDown}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={title ? 'modal-title' : undefined}
+    >
       {/* Backdrop */}
       <div
+        role="button"
+        tabIndex={-1}
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-        onClick={onClose}
+        onClick={handleBackdropClick}
+        onKeyDown={e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onClose();
+          }
+        }}
+        aria-label="Close modal"
       />
 
       {/* Modal */}
@@ -291,10 +356,13 @@ export function GlassModal({
         {/* Header */}
         {title && (
           <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/10">
-            <h2 className="text-xl font-semibold text-white">{title}</h2>
+            <h2 id="modal-title" className="text-xl font-semibold text-white">
+              {title}
+            </h2>
             <button
               onClick={onClose}
               className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
+              aria-label="Close modal"
             >
               ✕
             </button>
@@ -306,5 +374,13 @@ export function GlassModal({
     </div>
   );
 }
+
+GlassModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node,
+  title: PropTypes.string,
+  className: PropTypes.string,
+};
 
 export default GlassCard;

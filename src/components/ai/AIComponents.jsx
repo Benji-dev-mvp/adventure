@@ -35,7 +35,7 @@ export const SentimentAnalysis = ({ text }) => {
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
-          {sentiments.map((s) => {
+          {sentiments.map(s => {
             const Icon = s.icon;
             return (
               <div key={s.label} className="flex items-center gap-3">
@@ -44,9 +44,11 @@ export const SentimentAnalysis = ({ text }) => {
                 <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                   <div
                     className={`h-2 rounded-full bg-gradient-to-r ${
-                      s.label === 'Positive' ? 'from-green-400 to-green-600' :
-                      s.label === 'Neutral' ? 'from-yellow-400 to-yellow-600' :
-                      'from-red-400 to-red-600'
+                      s.label === 'Positive'
+                        ? 'from-green-400 to-green-600'
+                        : s.label === 'Neutral'
+                          ? 'from-yellow-400 to-yellow-600'
+                          : 'from-red-400 to-red-600'
                     }`}
                     style={{ width: `${s.score}%` }}
                   ></div>
@@ -65,17 +67,20 @@ export const ObjectionHandling = () => {
   const objections = [
     {
       objection: "We're already using a competitor",
-      response: "That's great! Many of our best customers switched from [Competitor]. What's missing in your current setup?",
+      response:
+        "That's great! Many of our best customers switched from [Competitor]. What's missing in your current setup?",
       category: 'Competition',
     },
     {
-      objection: "The price is too high",
-      response: "I understand budget is important. Let me show you the ROI - our customers see 3x return in the first quarter.",
+      objection: 'The price is too high',
+      response:
+        'I understand budget is important. Let me show you the ROI - our customers see 3x return in the first quarter.',
       category: 'Pricing',
     },
     {
-      objection: "Not the right time",
-      response: "I hear you. When would be a better time? Let's schedule a quick 15-min call for [future date].",
+      objection: 'Not the right time',
+      response:
+        "I hear you. When would be a better time? Let's schedule a quick 15-min call for [future date].",
       category: 'Timing',
     },
   ];
@@ -93,10 +98,10 @@ export const ObjectionHandling = () => {
           {objections.map((obj, i) => (
             <div key={i} className="p-4 border border-gray-200 dark:border-white/10 rounded-lg">
               <div className="flex items-start justify-between mb-2">
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  "{obj.objection}"
-                </h4>
-                <Badge variant="secondary" className="text-xs">{obj.category}</Badge>
+                <h4 className="font-semibold text-gray-900 dark:text-white">"{obj.objection}"</h4>
+                <Badge variant="secondary" className="text-xs">
+                  {obj.category}
+                </Badge>
               </div>
               <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded">
                 <p className="text-sm text-gray-700 dark:text-gray-300">{obj.response}</p>
@@ -111,9 +116,18 @@ export const ObjectionHandling = () => {
 
 export const FollowUpSuggestions = () => {
   const suggestions = [
-    { when: 'In 2 days', message: 'Just following up on my previous email. Did you get a chance to review?' },
-    { when: 'After no response', message: 'I know you\'re busy. Should I reach out next quarter instead?' },
-    { when: 'After meeting', message: 'Thanks for the great conversation! Here\'s the demo link we discussed.' },
+    {
+      when: 'In 2 days',
+      message: 'Just following up on my previous email. Did you get a chance to review?',
+    },
+    {
+      when: 'After no response',
+      message: "I know you're busy. Should I reach out next quarter instead?",
+    },
+    {
+      when: 'After meeting',
+      message: "Thanks for the great conversation! Here's the demo link we discussed.",
+    },
   ];
 
   return (
@@ -127,8 +141,13 @@ export const FollowUpSuggestions = () => {
       <CardContent>
         <div className="space-y-3">
           {suggestions.map((s, i) => (
-            <div key={i} className="p-3 border border-gray-200 dark:border-white/10 rounded-lg hover:border-primary-300 cursor-pointer">
-              <Badge variant="accent" className="text-xs mb-2">{s.when}</Badge>
+            <div
+              key={i}
+              className="p-3 border border-gray-200 dark:border-white/10 rounded-lg hover:border-primary-300 cursor-pointer"
+            >
+              <Badge variant="accent" className="text-xs mb-2">
+                {s.when}
+              </Badge>
               <p className="text-sm text-gray-700 dark:text-gray-300">{s.message}</p>
             </div>
           ))}

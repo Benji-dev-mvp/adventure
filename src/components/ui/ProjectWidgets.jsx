@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { cn } from '../../lib/utils';
 import { 
   CheckCircle, Circle, Calendar, Clock, Users, Tag,
@@ -134,6 +135,8 @@ export const ProjectCard = ({
 
   return (
     <div
+      role="button"
+      tabIndex={0}
       className={cn(
         'group relative',
         'bg-white dark:bg-gray-800',
@@ -144,6 +147,12 @@ export const ProjectCard = ({
         className
       )}
       onClick={onView}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onView?.();
+        }
+      }}
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
@@ -430,4 +439,68 @@ export const StatusBadge = ({ status, size = 'md', className }) => {
       {status}
     </span>
   );
+};
+
+TaskList.propTypes = {
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      completed: PropTypes.bool,
+      createdAt: PropTypes.instanceOf(Date),
+      dueDate: PropTypes.string
+    })
+  ),
+  onUpdate: PropTypes.func,
+  onDelete: PropTypes.func,
+  onAdd: PropTypes.func,
+  className: PropTypes.string
+};
+
+ProjectCard.propTypes = {
+  project: PropTypes.shape({
+    totalTasks: PropTypes.number,
+    completedTasks: PropTypes.number,
+    color: PropTypes.string,
+    iconColor: PropTypes.string,
+    name: PropTypes.string,
+    category: PropTypes.string,
+    description: PropTypes.string,
+    members: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    dueDate: PropTypes.string,
+    priority: PropTypes.oneOf(['high', 'medium', 'low'])
+  }).isRequired,
+  onView: PropTypes.func,
+  onEdit: PropTypes.func,
+  onDelete: PropTypes.func,
+  className: PropTypes.string
+};
+
+CalendarWidget.propTypes = {
+  events: PropTypes.arrayOf(
+    PropTypes.shape({
+      date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+      title: PropTypes.string,
+      color: PropTypes.string
+    })
+  ),
+  className: PropTypes.string
+};
+
+ActivityLog.propTypes = {
+  activities: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      description: PropTypes.string,
+      time: PropTypes.string,
+      color: PropTypes.string,
+      icon: PropTypes.elementType
+    })
+  ),
+  className: PropTypes.string
+};
+
+StatusBadge.propTypes = {
+  status: PropTypes.string,
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  className: PropTypes.string
 };

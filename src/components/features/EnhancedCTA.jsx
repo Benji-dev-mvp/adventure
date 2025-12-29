@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { 
-  Sparkles, 
-  ArrowRight, 
-  Zap, 
-  Shield, 
-  Clock, 
-  Users, 
+import {
+  Sparkles,
+  ArrowRight,
+  Zap,
+  Shield,
+  Clock,
+  Users,
   BarChart3,
   CheckCircle2,
   Play,
@@ -32,14 +33,14 @@ import {
 // Animated benefit card
 const BenefitCard = ({ icon: Icon, title, description, delay = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  
+
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), delay);
     return () => clearTimeout(timer);
   }, [delay]);
 
   return (
-    <div 
+    <div
       className={`transform transition-all duration-700 ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
       }`}
@@ -61,7 +62,7 @@ const BenefitCard = ({ icon: Icon, title, description, delay = 0 }) => {
 // Animated trust badge
 const TrustBadge = ({ icon: Icon, label, value, delay = 0 }) => {
   return (
-    <div 
+    <div
       className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 animate-fadeIn"
       style={{ animationDelay: `${delay}ms` }}
     >
@@ -73,14 +74,21 @@ const TrustBadge = ({ icon: Icon, label, value, delay = 0 }) => {
   );
 };
 
+TrustBadge.propTypes = {
+  icon: PropTypes.elementType.isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  delay: PropTypes.number,
+};
+
 // Floating testimonial bubble
 const TestimonialBubble = ({ quote, author, role, company, avatar, position, delay = 0 }) => {
   return (
-    <div 
+    <div
       className={`absolute ${position} max-w-xs animate-float opacity-0`}
-      style={{ 
+      style={{
         animationDelay: `${delay}ms`,
-        animation: `fadeIn 0.5s ease-out ${delay}ms forwards, float 6s ease-in-out infinite ${delay}ms`
+        animation: `fadeIn 0.5s ease-out ${delay}ms forwards, float 6s ease-in-out infinite ${delay}ms`,
       }}
     >
       <GlassCard variant="default" className="p-4" blur="xl">
@@ -92,13 +100,36 @@ const TestimonialBubble = ({ quote, author, role, company, avatar, position, del
             <p className="text-sm text-gray-300 italic mb-2">"{quote}"</p>
             <div className="text-xs">
               <span className="text-white font-medium">{author}</span>
-              <span className="text-gray-500"> • {role} at {company}</span>
+              <span className="text-gray-500">
+                {' '}
+                • {role} at {company}
+              </span>
             </div>
           </div>
         </div>
       </GlassCard>
     </div>
   );
+};
+
+TestimonialBubble.propTypes = {
+  quote: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  role: PropTypes.string.isRequired,
+  company: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
+  position: PropTypes.string.isRequired,
+  delay: PropTypes.number,
+};
+
+TestimonialBubble.propTypes = {
+  quote: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  role: PropTypes.string.isRequired,
+  company: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
+  position: PropTypes.string.isRequired,
+  delay: PropTypes.number,
 };
 
 // Main CTA component
@@ -158,74 +189,76 @@ const EnhancedCTA = () => {
 
   const testimonials = [
     {
-      quote: "Ava booked 47 meetings in our first month. Game changer.",
-      author: "Sarah Chen",
-      role: "VP Sales",
-      company: "TechCorp",
-      position: "top-0 left-0 -translate-x-1/2 -translate-y-1/4",
+      quote: 'Ava booked 47 meetings in our first month. Game changer.',
+      author: 'Sarah Chen',
+      role: 'VP Sales',
+      company: 'TechCorp',
+      position: 'top-0 left-0 -translate-x-1/2 -translate-y-1/4',
     },
     {
-      quote: "Finally, enterprise-grade AI that our security team approves.",
-      author: "Michael Ross",
-      role: "CISO",
-      company: "FinanceHub",
-      position: "top-1/4 right-0 translate-x-1/3",
+      quote: 'Finally, enterprise-grade AI that our security team approves.',
+      author: 'Michael Ross',
+      role: 'CISO',
+      company: 'FinanceHub',
+      position: 'top-1/4 right-0 translate-x-1/3',
     },
     {
-      quote: "Cut our CAC by 60% while tripling qualified pipeline.",
-      author: "Emma Watson",
-      role: "CRO",
-      company: "ScaleUp",
-      position: "bottom-0 left-1/4 translate-y-1/4",
+      quote: 'Cut our CAC by 60% while tripling qualified pipeline.',
+      author: 'Emma Watson',
+      role: 'CRO',
+      company: 'ScaleUp',
+      position: 'bottom-0 left-1/4 translate-y-1/4',
     },
   ];
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      id="enhanced-cta" 
+      id="enhanced-cta"
       className="py-24 px-6 relative overflow-hidden bg-[#030712]"
     >
       {/* Background effects */}
       <ParticleBackground variant="aurora" className="absolute inset-0" />
-      
+
       {/* Gradient orbs */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-gradient-radial from-purple-900/30 via-purple-900/10 to-transparent blur-3xl" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-radial from-cyan-900/20 to-transparent blur-3xl" />
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-gradient-radial from-pink-900/20 to-transparent blur-3xl" />
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Floating testimonials - desktop only */}
         <div className="hidden xl:block">
           {testimonials.map((testimonial, index) => (
-            <TestimonialBubble 
-              key={index} 
-              {...testimonial} 
-              delay={1000 + index * 500} 
-            />
+            <TestimonialBubble key={index} {...testimonial} delay={1000 + index * 500} />
           ))}
         </div>
 
         {/* Main CTA card */}
         <RevealText>
-          <div 
+          <div
             className="relative"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            onFocus={() => setIsHovered(true)}
+            onBlur={() => setIsHovered(false)}
+            role="region"
+            aria-label="Call to action"
           >
             {/* Animated border */}
-            <div className={`absolute -inset-[2px] bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl opacity-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : ''}`} />
+            <div
+              className={`absolute -inset-[2px] bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl opacity-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : ''}`}
+            />
             <div className="absolute -inset-[2px] bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl animate-pulse opacity-30" />
-            
-            <GlassCard 
-              variant="gradient" 
-              blur="2xl" 
+
+            <GlassCard
+              variant="gradient"
+              blur="2xl"
               radius="3xl"
               className="relative p-12 md:p-16 lg:p-20 overflow-hidden"
             >
               {/* Floating particles inside */}
               <FloatingParticles count={25} color="mixed" />
-              
+
               {/* Decorative elements */}
               <div className="absolute top-10 left-10 w-20 h-20 border border-cyan-500/20 rounded-full animate-ping-slow" />
               <div className="absolute bottom-10 right-10 w-32 h-32 border border-purple-500/20 rounded-full animate-ping-slow animation-delay-1000" />
@@ -269,15 +302,15 @@ const EnhancedCTA = () => {
                       <input
                         type="email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={e => setEmail(e.target.value)}
                         placeholder="Enter your work email"
                         className="w-full px-6 py-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300"
                       />
                       <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500/0 via-cyan-500/5 to-purple-500/0 pointer-events-none" />
                     </div>
                     <Link to="/onboarding">
-                      <GlowButton 
-                        variant="primary" 
+                      <GlowButton
+                        variant="primary"
                         size="lg"
                         icon={<ArrowRight size={20} />}
                         iconPosition="right"
@@ -306,10 +339,10 @@ const EnhancedCTA = () => {
                 {/* Right: Benefits */}
                 <div className="space-y-4">
                   {benefits.map((benefit, index) => (
-                    <BenefitCard 
-                      key={index} 
-                      {...benefit} 
-                      delay={isVisible ? 300 + index * 150 : 0} 
+                    <BenefitCard
+                      key={index}
+                      {...benefit}
+                      delay={isVisible ? 300 + index * 150 : 0}
                     />
                   ))}
 
@@ -317,24 +350,25 @@ const EnhancedCTA = () => {
                   <div className="mt-8 p-6 rounded-xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20">
                     <div className="flex items-center gap-4 mb-4">
                       <div className="flex -space-x-3">
-                        {[1, 2, 3, 4, 5].map((i) => (
-                          <div 
+                        {[1, 2, 3, 4, 5].map(i => (
+                          <div
                             key={i}
                             className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 border-2 border-[#0f0f23] flex items-center justify-center text-white text-xs font-bold"
                           >
-                            {String.fromCharCode(64 + i)}
+                            {String.fromCodePoint(64 + i)}
                           </div>
                         ))}
                       </div>
                       <div className="flex items-center gap-1">
-                        {[1, 2, 3, 4, 5].map((i) => (
+                        {[1, 2, 3, 4, 5].map(i => (
                           <Star key={i} size={16} className="text-yellow-400 fill-yellow-400" />
                         ))}
                       </div>
                     </div>
                     <p className="text-sm text-gray-300">
-                      <span className="font-semibold text-white">2,500+ teams</span> trust Ava to power their outbound. 
-                      Rated <span className="font-semibold text-white">4.9/5</span> on G2.
+                      <span className="font-semibold text-white">2,500+ teams</span> trust Ava to
+                      power their outbound. Rated{' '}
+                      <span className="font-semibold text-white">4.9/5</span> on G2.
                     </p>
                   </div>
 
@@ -344,8 +378,8 @@ const EnhancedCTA = () => {
                       <Play size={16} className="mr-2" />
                       Watch 2-min Demo
                     </GlowButtonOutline>
-                    <a 
-                      href="#security" 
+                    <a
+                      href="#security"
                       className="text-sm text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-1"
                     >
                       Talk to Sales <ArrowRight size={14} />
@@ -370,8 +404,8 @@ const EnhancedCTA = () => {
                 <div className="text-3xl md:text-4xl font-bold mb-2 font-space-grotesk">
                   <GradientText gradient="cyber">
                     {stat.prefix}
-                    <CountUpText 
-                      end={isVisible ? stat.value : 0} 
+                    <CountUpText
+                      end={isVisible ? stat.value : 0}
                       duration={2000}
                       delay={index * 200}
                       decimals={stat.value < 100 ? 1 : 0}

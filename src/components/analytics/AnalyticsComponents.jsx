@@ -18,7 +18,7 @@ export const AttributionModel = () => {
         <CardTitle>Attribution Modeling</CardTitle>
         <select
           value={model}
-          onChange={(e) => setModel(e.target.value)}
+          onChange={e => setModel(e.target.value)}
           className="mt-2 px-3 py-2 border rounded-lg"
         >
           <option value="firstTouch">First Touch</option>
@@ -106,7 +106,10 @@ export const CustomReportBuilder = () => {
         </p>
         <div className="grid grid-cols-3 gap-4">
           {['Reply Rate', 'Open Rate', 'Meetings', 'Pipeline', 'ROI', 'Conversion'].map(metric => (
-            <div key={metric} className="p-3 border rounded-lg cursor-move hover:border-primary-500">
+            <div
+              key={metric}
+              className="p-3 border rounded-lg cursor-move hover:border-primary-500"
+            >
               {metric}
             </div>
           ))}
@@ -126,12 +129,26 @@ export const ROICalculator = () => {
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="total-spend" className="text-sm font-medium">Total Spend</label>
-              <input id="total-spend" type="number" className="w-full mt-1 px-3 py-2 border rounded-lg" placeholder="10000" />
+              <label htmlFor="total-spend" className="text-sm font-medium">
+                Total Spend
+              </label>
+              <input
+                id="total-spend"
+                type="number"
+                className="w-full mt-1 px-3 py-2 border rounded-lg"
+                placeholder="10000"
+              />
             </div>
             <div>
-              <label htmlFor="revenue-generated" className="text-sm font-medium">Revenue Generated</label>
-              <input id="revenue-generated" type="number" className="w-full mt-1 px-3 py-2 border rounded-lg" placeholder="45000" />
+              <label htmlFor="revenue-generated" className="text-sm font-medium">
+                Revenue Generated
+              </label>
+              <input
+                id="revenue-generated"
+                type="number"
+                className="w-full mt-1 px-3 py-2 border rounded-lg"
+                placeholder="45000"
+              />
             </div>
           </div>
           <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg text-center">

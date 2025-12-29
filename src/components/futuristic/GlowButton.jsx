@@ -2,6 +2,7 @@
  * GlowButton - Futuristic button with glow effects
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { usePrefersReducedMotion } from '../../hooks/useAnimations';
 
 const variants = {
@@ -137,6 +138,19 @@ export function GlowButton({
   );
 }
 
+GlowButton.propTypes = {
+  children: PropTypes.node.isRequired,
+  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'ghost']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  loading: PropTypes.bool,
+  icon: PropTypes.node,
+  iconPosition: PropTypes.oneOf(['left', 'right']),
+  fullWidth: PropTypes.bool,
+  onClick: PropTypes.func,
+};
+
 /**
  * GlowButtonOutline - Outlined variant with gradient border
  */
@@ -180,9 +194,7 @@ export function GlowButtonOutline({
       </span>
 
       {/* Content */}
-      <span className="relative z-10 flex items-center gap-2">
-        {children}
-      </span>
+      <span className="relative z-10 flex items-center gap-2">{children}</span>
 
       {/* Hover glow */}
       <span
@@ -196,6 +208,15 @@ export function GlowButtonOutline({
     </button>
   );
 }
+
+GlowButtonOutline.propTypes = {
+  children: PropTypes.node.isRequired,
+  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'ghost']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+};
 
 /**
  * IconButton - Circular icon button with glow
@@ -252,5 +273,15 @@ export function IconButton({
     </button>
   );
 }
+
+IconButton.propTypes = {
+  icon: PropTypes.node.isRequired,
+  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'ghost']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  ariaLabel: PropTypes.string,
+};
 
 export default GlowButton;

@@ -11,6 +11,7 @@
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import type { AgentRole } from '../autonomy/agents/types';
+import { sanitizeColor, addAlpha, adjustBrightness } from '../utils/colorUtils';
 
 // === Types ===
 
@@ -284,62 +285,70 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
     if (!ctx) return;
 
     const animate = () => {
-      timeRef.current += 0.016; // ~60fps
-      
-      // Clear canvas
-      ctx.fillStyle = '#0f172a'; // Dark blue-gray
-      ctx.fillRect(0, 0, width, height);
+      try {
+        timeRef.current += 0.016; // ~60fps
+        
+        // Clear canvas
+        ctx.fillStyle = sanitizeColor('#0f172a'); // Dark blue-gray
+        ctx.fillRect(0, 0, width, height);
 
-      // Draw background grid
-      drawGrid(ctx);
+        // Draw background grid
+        drawGrid(ctx);
 
-      // Update and draw edges
-      edges.forEach(edge => {
-        const sourceNode = nodes.find(n => n.id === edge.source);
-        const targetNode = nodes.find(n => n.id === edge.target);
-        if (sourceNode && targetNode) {
-          // Update particles
-          edge.particles.forEach(particle => {
-            particle.progress += particle.speed;
-            if (particle.progress > 1) {
-              particle.progress = 0;
-            }
-          });
+        // Update and draw edges
+        edges.forEach(edge => {
+          const sourceNode = nodes.find(n => n.id === edge.source);
+          const targetNode = nodes.find(n => n.id === edge.target);
+          if (sourceNode && targetNode) {
+            // Update particles
+            edge.particles.forEach(particle => {
+              particle.progress += particle.speed;
+              if (particle.progress > 1) {
+                particle.progress = 0;
+              }
+            });
+            
+            drawEdge(ctx, sourceNode, targetNode, edge);
+          }
+        });
+
+        // Update and draw nodes
+        nodes.forEach(node => {
+          // Apply gentle physics
+          node.x += node.vx;
+          node.y += node.vy;
           
-          drawEdge(ctx, sourceNode, targetNode, edge);
-        }
-      });
+          // Boundary constraints with dampening
+          if (node.x < node.radius || node.x > width - node.radius) {
+            node.vx *= -0.8;
+            node.x = Math.max(node.radius, Math.min(width - node.radius, node.x));
+          }
+          if (node.y < node.radius || node.y > height - node.radius) {
+            node.vy *= -0.8;
+            node.y = Math.max(node.radius, Math.min(height - node.radius, node.y));
+          }
+          
+          // Friction
+          node.vx *= 0.99;
+          node.vy *= 0.99;
+          
+          // Pulse animation
+          const pulse = Math.sin(timeRef.current * 3 + node.activity * 10) * 0.1 + 1;
+          
+          drawNode(ctx, node, pulse, hoveredNode === node.id);
+        });
 
-      // Update and draw nodes
-      nodes.forEach(node => {
-        // Apply gentle physics
-        node.x += node.vx;
-        node.y += node.vy;
-        
-        // Boundary constraints with dampening
-        if (node.x < node.radius || node.x > width - node.radius) {
-          node.vx *= -0.8;
-          node.x = Math.max(node.radius, Math.min(width - node.radius, node.x));
-        }
-        if (node.y < node.radius || node.y > height - node.radius) {
-          node.vy *= -0.8;
-          node.y = Math.max(node.radius, Math.min(height - node.radius, node.y));
-        }
-        
-        // Friction
-        node.vx *= 0.99;
-        node.vy *= 0.99;
-        
-        // Pulse animation
-        const pulse = Math.sin(timeRef.current * 3 + node.activity * 10) * 0.1 + 1;
-        
-        drawNode(ctx, node, pulse, hoveredNode === node.id);
-      });
+        // Draw overlay info
+        drawOverlay(ctx);
 
-      // Draw overlay info
-      drawOverlay(ctx);
-
-      animationRef.current = requestAnimationFrame(animate);
+        animationRef.current = requestAnimationFrame(animate);
+      } catch (error) {
+        console.error('Canvas rendering error:', error);
+        // Stop animation on error to prevent crash loop
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current);
+        }
+      }
     };
 
     animate();
@@ -353,23 +362,27 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
 
   // Draw functions
   const drawGrid = (ctx: CanvasRenderingContext2D) => {
-    ctx.strokeStyle = 'rgba(99, 102, 241, 0.1)';
-    ctx.lineWidth = 1;
-    
-    const gridSize = 40;
-    
-    for (let x = 0; x < width; x += gridSize) {
-      ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, height);
-      ctx.stroke();
-    }
-    
-    for (let y = 0; y < height; y += gridSize) {
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(width, y);
-      ctx.stroke();
+    try {
+      ctx.strokeStyle = addAlpha('#6366F1', 0.1);
+      ctx.lineWidth = 1;
+      
+      const gridSize = 40;
+      
+      for (let x = 0; x < width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      
+      for (let y = 0; y < height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+    } catch (error) {
+      console.error('Grid drawing error:', error);
     }
   };
 
@@ -379,37 +392,41 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
     target: CanvasNode,
     edge: CanvasEdge
   ) => {
-    const gradient = ctx.createLinearGradient(source.x, source.y, target.x, target.y);
-    gradient.addColorStop(0, source.color + '40');
-    gradient.addColorStop(1, target.color + '40');
-    
-    // Draw edge line
-    ctx.strokeStyle = gradient;
-    ctx.lineWidth = 1 + edge.traffic * 3;
-    ctx.beginPath();
-    ctx.moveTo(source.x, source.y);
-    ctx.lineTo(target.x, target.y);
-    ctx.stroke();
-    
-    // Draw particles
-    edge.particles.forEach(particle => {
-      const x = source.x + (target.x - source.x) * particle.progress;
-      const y = source.y + (target.y - source.y) * particle.progress;
+    try {
+      const gradient = ctx.createLinearGradient(source.x, source.y, target.x, target.y);
+      gradient.addColorStop(0, addAlpha(sanitizeColor(source.color), 0.25));
+      gradient.addColorStop(1, addAlpha(sanitizeColor(target.color), 0.25));
       
+      // Draw edge line
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = 1 + edge.traffic * 3;
       ctx.beginPath();
-      ctx.arc(x, y, particle.size, 0, Math.PI * 2);
-      ctx.fillStyle = particle.color;
-      ctx.fill();
+      ctx.moveTo(source.x, source.y);
+      ctx.lineTo(target.x, target.y);
+      ctx.stroke();
       
-      // Glow effect
-      const glowGradient = ctx.createRadialGradient(x, y, 0, x, y, particle.size * 3);
-      glowGradient.addColorStop(0, particle.color + '80');
-      glowGradient.addColorStop(1, particle.color + '00');
-      ctx.beginPath();
-      ctx.arc(x, y, particle.size * 3, 0, Math.PI * 2);
-      ctx.fillStyle = glowGradient;
-      ctx.fill();
-    });
+      // Draw particles
+      edge.particles.forEach(particle => {
+        const x = source.x + (target.x - source.x) * particle.progress;
+        const y = source.y + (target.y - source.y) * particle.progress;
+        
+        ctx.beginPath();
+        ctx.arc(x, y, particle.size, 0, Math.PI * 2);
+        ctx.fillStyle = sanitizeColor(particle.color);
+        ctx.fill();
+        
+        // Glow effect
+        const glowGradient = ctx.createRadialGradient(x, y, 0, x, y, particle.size * 3);
+        glowGradient.addColorStop(0, addAlpha(sanitizeColor(particle.color), 0.5));
+        glowGradient.addColorStop(1, addAlpha(sanitizeColor(particle.color), 0));
+        ctx.beginPath();
+        ctx.arc(x, y, particle.size * 3, 0, Math.PI * 2);
+        ctx.fillStyle = glowGradient;
+        ctx.fill();
+      });
+    } catch (error) {
+      console.error('Edge drawing error:', error);
+    }
   };
 
   const drawNode = (
@@ -418,58 +435,63 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
     pulse: number,
     isHovered: boolean
   ) => {
-    const radius = node.radius * pulse * (isHovered ? 1.1 : 1);
-    
-    // Outer glow
-    const glowRadius = radius * 2;
-    const glowGradient = ctx.createRadialGradient(
-      node.x, node.y, radius * 0.5,
-      node.x, node.y, glowRadius
-    );
-    glowGradient.addColorStop(0, node.color + Math.floor(node.pulseIntensity * 60).toString(16).padStart(2, '0'));
-    glowGradient.addColorStop(1, node.color + '00');
-    
-    ctx.beginPath();
-    ctx.arc(node.x, node.y, glowRadius, 0, Math.PI * 2);
-    ctx.fillStyle = glowGradient;
-    ctx.fill();
-    
-    // Node body
-    const bodyGradient = ctx.createRadialGradient(
-      node.x - radius * 0.3, node.y - radius * 0.3, 0,
-      node.x, node.y, radius
-    );
-    bodyGradient.addColorStop(0, node.color);
-    bodyGradient.addColorStop(1, adjustColor(node.color, -40));
-    
-    ctx.beginPath();
-    ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
-    ctx.fillStyle = bodyGradient;
-    ctx.fill();
-    
-    // Status indicator
-    const statusColor = STATUS_COLORS[node.status];
-    ctx.beginPath();
-    ctx.arc(node.x + radius * 0.7, node.y - radius * 0.7, 6, 0, Math.PI * 2);
-    ctx.fillStyle = statusColor;
-    ctx.fill();
-    
-    // Node label
-    ctx.fillStyle = '#fff';
-    ctx.font = `${isHovered ? 'bold ' : ''}11px Inter, system-ui, sans-serif`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    
-    // Role icon/letter
-    const roleInitial = node.role ? node.role[0].toUpperCase() : 'O';
-    ctx.font = 'bold 16px Inter, system-ui, sans-serif';
-    ctx.fillText(roleInitial, node.x, node.y);
-    
-    // Label below
-    if (isHovered) {
-      ctx.font = '10px Inter, system-ui, sans-serif';
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-      ctx.fillText(node.label, node.x, node.y + radius + 15);
+    try {
+      const radius = node.radius * pulse * (isHovered ? 1.1 : 1);
+      const safeNodeColor = sanitizeColor(node.color);
+      
+      // Outer glow
+      const glowRadius = radius * 2;
+      const glowGradient = ctx.createRadialGradient(
+        node.x, node.y, radius * 0.5,
+        node.x, node.y, glowRadius
+      );
+      glowGradient.addColorStop(0, addAlpha(safeNodeColor, node.pulseIntensity * 0.4));
+      glowGradient.addColorStop(1, addAlpha(safeNodeColor, 0));
+      
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, glowRadius, 0, Math.PI * 2);
+      ctx.fillStyle = glowGradient;
+      ctx.fill();
+      
+      // Node body
+      const bodyGradient = ctx.createRadialGradient(
+        node.x - radius * 0.3, node.y - radius * 0.3, 0,
+        node.x, node.y, radius
+      );
+      bodyGradient.addColorStop(0, safeNodeColor);
+      bodyGradient.addColorStop(1, adjustBrightness(safeNodeColor, -40));
+      
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = bodyGradient;
+      ctx.fill();
+      
+      // Status indicator
+      const statusColor = sanitizeColor(STATUS_COLORS[node.status]);
+      ctx.beginPath();
+      ctx.arc(node.x + radius * 0.7, node.y - radius * 0.7, 6, 0, Math.PI * 2);
+      ctx.fillStyle = statusColor;
+      ctx.fill();
+      
+      // Node label
+      ctx.fillStyle = '#fff';
+      ctx.font = `${isHovered ? 'bold ' : ''}11px Inter, system-ui, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      
+      // Role icon/letter
+      const roleInitial = node.role ? node.role[0].toUpperCase() : 'O';
+      ctx.font = 'bold 16px Inter, system-ui, sans-serif';
+      ctx.fillText(roleInitial, node.x, node.y);
+      
+      // Label below
+      if (isHovered) {
+        ctx.font = '10px Inter, system-ui, sans-serif';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.fillText(node.label, node.x, node.y + radius + 15);
+      }
+    } catch (error) {
+      console.error('Node drawing error:', error);
     }
   };
 
@@ -575,15 +597,5 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
     </div>
   );
 };
-
-// === Utility Functions ===
-
-function adjustColor(color: string, amount: number): string {
-  const hex = color.replace('#', '');
-  const r = Math.max(0, Math.min(255, parseInt(hex.slice(0, 2), 16) + amount));
-  const g = Math.max(0, Math.min(255, parseInt(hex.slice(2, 4), 16) + amount));
-  const b = Math.max(0, Math.min(255, parseInt(hex.slice(4, 6), 16) + amount));
-  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
-}
 
 export default NeuroCanvas;

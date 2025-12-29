@@ -3,17 +3,61 @@ import { storage } from './storage';
 // Default API base: use env override if provided, else local backend on 8000
 const API_BASE = import.meta?.env?.VITE_API_URL || 'http://localhost:8000/api';
 
+/**
+ * Make HTTP request with error handling and response parsing
+ * @param {string} path - API endpoint path
+ * @param {object} options - Fetch options (method, body, headers, etc.)
+ * @returns {Promise<any>} Parsed JSON response
+ * @throws {Error} Network, HTTP, or parsing errors
+ */
 const request = async (path, options = {}) => {
-  const url = `${API_BASE}${path}`;
-  const res = await fetch(url, {
-    headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
-    ...options,
-  });
-  if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`Request failed ${res.status}: ${body}`);
+  if (!path || typeof path !== 'string') {
+    throw new Error('Request path must be a non-empty string');
   }
-  return res.json();
+
+  const url = `${API_BASE}${path}`;
+
+  try {
+    const res = await fetch(url, {
+      headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
+      ...options,
+    });
+
+    // Handle HTTP error responses
+    if (!res.ok) {
+      const contentType = res.headers?.get('content-type');
+      const body = contentType?.includes('application/json')
+        ? await res.json().catch(() => ({ error: res.statusText }))
+        : await res.text();
+
+      const errorMsg = body?.message || body?.error || res.statusText || 'Unknown error';
+      const error = new Error(`HTTP ${res.status}: ${errorMsg}`);
+      error.status = res.status;
+      error.response = body;
+      throw error;
+    }
+
+    // Handle response parsing
+    const contentType = res.headers?.get('content-type');
+    if (contentType?.includes('application/json')) {
+      return await res.json();
+    }
+
+    return await res.text();
+  } catch (error) {
+    // Re-throw if already our custom error
+    if (error instanceof Error && error.status !== undefined) {
+      throw error;
+    }
+
+    // Handle network errors
+    if (error instanceof TypeError) {
+      throw new Error(`Network error: ${error.message}`);
+    }
+
+    // Fallback for other errors
+    throw new Error(`Request failed: ${error?.message || 'Unknown error'}`);
+  }
 };
 
 const STORAGE_KEY = 'app_state_v1';
@@ -267,30 +311,56 @@ const saveState = nextState => {
   storage.set(STORAGE_KEY, nextState);
 };
 
+/**
+ * Get aggregated dashboard statistics
+ * @returns {Object} Dashboard metrics with safe defaults
+ */
 export const getDashboardStats = () => {
   const state = loadState();
-  const campaigns = state.campaigns || [];
-  const leads = state.leads || [];
-  const emailsSent = campaigns.reduce((sum, campaign) => sum + (campaign.sent || 0), 0);
-  return {
-    totalCampaigns: campaigns.length,
-    totalLeads: leads.length,
-    emailsSent,
-    responseRate: 25,
-  };
+  const campaigns = Array.isArray(state?.campaigns) ? state.campaigns : [];
+  const leads = Array.isArray(state?.leads) ? state.leads : [];
+
+  try {
+    const emailsSent = campaigns.reduce((sum, campaign) => sum + (campaign?.sent || 0), 0);
+    return {
+      totalCampaigns: campaigns.length,
+      totalLeads: leads.length,
+      emailsSent: Math.max(0, emailsSent),
+      responseRate: 25,
+    };
+  } catch (error) {
+    console.error('Failed to compute dashboard stats:', error);
+    return { totalCampaigns: 0, totalLeads: 0, emailsSent: 0, responseRate: 0 };
+  }
 };
 
-export const getLeads = () => loadState().leads;
+/**
+ * Get all leads from app state
+ * @returns {Array} Array of leads or empty array
+ */
+export const getLeads = () => {
+  const state = loadState();
+  return Array.isArray(state?.leads) ? state.leads : [];
+};
 
+/**
+ * Search leads by query string
+ * @param {string} query - Search query
+ * @returns {Array} Filtered leads matching query
+ */
 export const searchLeads = query => {
   const leads = getLeads();
-  if (!query) return leads;
-  const q = query.toLowerCase();
-  return leads.filter(lead =>
-    [lead.name, lead.company, lead.title, lead.industry, lead.location].some(
-      field => field && field.toLowerCase().includes(q)
-    )
-  );
+  if (!query || typeof query !== 'string') return leads;
+
+  const q = query.toLowerCase().trim();
+  if (q.length === 0) return leads;
+
+  return leads.filter(lead => {
+    if (!lead) return false;
+    return [lead.name, lead.company, lead.title, lead.industry, lead.location].some(
+      field => field && String(field).toLowerCase().includes(q)
+    );
+  });
 };
 
 export const updateLeadStatus = (leadId, status) => {

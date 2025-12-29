@@ -271,6 +271,7 @@ All documentation has been organized for easy access:
 - **[Production Checklist](docs/deployment/PRODUCTION_CHECKLIST.md)** - Pre-launch checklist
 
 ## 🚀 CI/CD Pipeline
+
 This repository ships with automated CI/CD tailored for a deterministic, two-tier stack.
 
 ### CI (`.github/workflows/ci.yml`)

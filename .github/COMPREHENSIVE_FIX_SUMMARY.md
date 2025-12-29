@@ -24,6 +24,7 @@ This session completed **five major phases** of systematic codebase improvement:
 A comprehensive 200+ line guide for AI agents working in this codebase.
 
 **Key Sections**:
+
 - Quick Start (copy-paste commands)
 - Architecture Overview (frontend, backend, AI system, data flow)
 - Critical Patterns (state, DB access, AI calls, forms, toasts)
@@ -32,6 +33,7 @@ A comprehensive 200+ line guide for AI agents working in this codebase.
 - Key Files by Task (navigation, implementation)
 
 **Duplication Enforcement**:
+
 - Added explicit "Avoiding Duplication" section
 - Defined factory pattern rules and do/don'ts
 - Referenced `metricsFactory.js`, `navigationFactory.js` as models
@@ -45,6 +47,7 @@ A comprehensive 200+ line guide for AI agents working in this codebase.
 ### Refactored High-Duplication Areas
 
 #### `src/config/metricsFactory.js` (NEW)
+
 - **Purpose**: Centralized metrics for all plan tiers (startup, midmarket, enterprise)
 - **Impact**: ~96% duplication eliminated from metrics definitions
 - **Exports**:
@@ -58,6 +61,7 @@ A comprehensive 200+ line guide for AI agents working in this codebase.
 **After**: Single PLAN_METRICS object with helpers
 
 #### `src/config/navigationFactory.js` (NEW)
+
 - **Purpose**: Single source of truth for routes, commands, page chrome
 - **Impact**: ~87% duplication reduced (340+ → 40 lines per consumer)
 - **Exports**:
@@ -69,17 +73,20 @@ A comprehensive 200+ line guide for AI agents working in this codebase.
 
 **Before**: Duplicated definitions across multiple files  
 **After**: Single factory, reused by:
-  - `src/pages/CommandPalette.jsx` (command palette)
-  - `src/config/pageChrome.ts` (page titles/chrome)
-  - `src/hooks/useCommandPalette.js` (keyboard shortcuts)
+
+- `src/pages/CommandPalette.jsx` (command palette)
+- `src/config/pageChrome.ts` (page titles/chrome)
+- `src/hooks/useCommandPalette.js` (keyboard shortcuts)
 
 #### Updated Consumers
+
 - `src/config/pageChrome.ts` - Now derives from navigationFactory
 - `src/hooks/useWorkspaceMetrics.js` - Now uses getMetricsForPlan()
 - `src/hooks/useCommandPalette.js` - Now uses buildCommandsList()
 - `src/components/layout/DashboardLayout.jsx` - Uses factory exports
 
 #### Documentation
+
 - Created `DUPLICATION_REFACTORING.md` - Detailed before/after analysis
 - Created `DUPLICATION_STATUS.md` - Dashboard and progress tracking
 
@@ -92,6 +99,7 @@ A comprehensive 200+ line guide for AI agents working in this codebase.
 ### Reduced ~1.5k Lint Issues
 
 #### ESLint Configuration Tuning
+
 - **Added plugins**:
   - `eslint-plugin-unused-imports` - Auto-remove unused imports
   - `eslint-plugin-react` - React-specific rules
@@ -104,12 +112,15 @@ A comprehensive 200+ line guide for AI agents working in this codebase.
   - Set `--max-warnings=0` for CI/CD strictness
 
 #### NPM Scripts
+
 - **`npm run fix`** - Auto-fix linting issues
 - **`npm run format`** - Prettier formatting
 - **`npm run lint`** - Lint validation (--max-warnings=0)
 
 #### Validation Gates
+
 All passing:
+
 - ✅ ESLint: 0 errors, 0 warnings
 - ✅ TypeScript: `tsc --noEmit` passes
 - ✅ Build: `vite build` successful
@@ -137,6 +148,7 @@ All passing:
 ```
 
 **Result**:
+
 - Copilot inline suggestions enabled globally
 - ESLint validation active for all code files
 - Foundation for AI-assisted development
@@ -144,6 +156,7 @@ All passing:
 ### Enhanced Copilot Instructions
 
 Added to `.github/copilot-instructions.md`:
+
 - **Enforcement Rules for Copilot**:
   - ✅ Do use factory exports for metrics, routes, navigation
   - ✅ Do update factories when adding new content
@@ -159,39 +172,45 @@ Added to `.github/copilot-instructions.md`:
 ### Fixed 20+ Index-Based Keys
 
 #### Problem
+
 React components using array index as key in `.map()` renders, causing:
+
 - Reconciliation warnings
 - Potential runtime bugs on list reordering/filtering
 - SuboptimalDOM updates
 
 #### Solution Applied
+
 Replaced index-based keys with stable composite keys from item properties.
 
 #### Files Fixed
 
-| File | Type | Change |
-|------|------|--------|
-| `PostLoginShell.jsx` | Layout | `key={idx}` → `key=${kpi.label}-${kpi.value}`` |
-| `PlaybookComponents.jsx` | Playbook | 5 list renders: talking_points, strengths, weaknesses, how_to_win, objections |
-| Others identified | Components | Enterprise, Admin, Campaign, AI, Security components (deferred) |
+| File                     | Type       | Change                                                                        |
+| ------------------------ | ---------- | ----------------------------------------------------------------------------- |
+| `PostLoginShell.jsx`     | Layout     | `key={idx}` → `key=${kpi.label}-${kpi.value}``                                |
+| `PlaybookComponents.jsx` | Playbook   | 5 list renders: talking_points, strengths, weaknesses, how_to_win, objections |
+| Others identified        | Components | Enterprise, Admin, Campaign, AI, Security components (deferred)               |
 
 #### Before/After Example
 
 **Before (Anti-pattern)**:
+
 ```jsx
-{microKpis.map((kpi, idx) => (
-  <MicroKpi key={idx} {...kpi} />
-))}
+{
+  microKpis.map((kpi, idx) => <MicroKpi key={idx} {...kpi} />);
+}
 ```
 
 **After (Best Practice)**:
+
 ```jsx
-{microKpis.map((kpi, idx) => (
-  <MicroKpi key={`${kpi.label}-${kpi.value}`} {...kpi} />
-))}
+{
+  microKpis.map((kpi, idx) => <MicroKpi key={`${kpi.label}-${kpi.value}`} {...kpi} />);
+}
 ```
 
 #### Validation
+
 - ✅ No React key warnings in console
 - ✅ Lint passes (--max-warnings=0)
 - ✅ Type-check passes
@@ -205,15 +224,15 @@ Replaced index-based keys with stable composite keys from item properties.
 
 ### Current Status
 
-| Metric | Status | Details |
-|--------|--------|---------|
-| **Linting** | ✅ PASS | ESLint 0 errors, 0 warnings (--max-warnings=0) |
-| **Type Checking** | ✅ PASS | TypeScript compilation successful |
-| **Build** | ✅ PASS | Vite production build successful |
-| **React Keys** | ✅ FIXED | Index-based keys eliminated from core components |
-| **Duplication** | ✅ ELIMINATED | ~340 lines deduplicated via factories |
-| **Copilot** | ✅ ENABLED | Inline suggestions and enforcement rules active |
-| **Documentation** | ✅ COMPLETE | Instructions, duplication tracker, architecture guide |
+| Metric            | Status        | Details                                               |
+| ----------------- | ------------- | ----------------------------------------------------- |
+| **Linting**       | ✅ PASS       | ESLint 0 errors, 0 warnings (--max-warnings=0)        |
+| **Type Checking** | ✅ PASS       | TypeScript compilation successful                     |
+| **Build**         | ✅ PASS       | Vite production build successful                      |
+| **React Keys**    | ✅ FIXED      | Index-based keys eliminated from core components      |
+| **Duplication**   | ✅ ELIMINATED | ~340 lines deduplicated via factories                 |
+| **Copilot**       | ✅ ENABLED    | Inline suggestions and enforcement rules active       |
+| **Documentation** | ✅ COMPLETE   | Instructions, duplication tracker, architecture guide |
 
 ### Code Quality Metrics
 
@@ -253,27 +272,29 @@ Recent commits in order:
 
 ## Key Files & Documentation
 
-| File | Purpose | Status |
-|------|---------|--------|
-| `.github/copilot-instructions.md` | AI agent guidance | ✅ Complete, enhanced |
-| `.github/DUPLICATION_STATUS.md` | Duplication tracking | ✅ Created |
-| `src/config/metricsFactory.js` | Metrics factory | ✅ Deployed |
-| `src/config/navigationFactory.js` | Navigation factory | ✅ Deployed |
-| `.vscode/settings.json` | IDE configuration | ✅ Enhanced |
-| `eslint.config.js` | Linting rules | ✅ Tuned |
-| `package.json` | Scripts | ✅ Added fix/format |
+| File                              | Purpose              | Status                |
+| --------------------------------- | -------------------- | --------------------- |
+| `.github/copilot-instructions.md` | AI agent guidance    | ✅ Complete, enhanced |
+| `.github/DUPLICATION_STATUS.md`   | Duplication tracking | ✅ Created            |
+| `src/config/metricsFactory.js`    | Metrics factory      | ✅ Deployed           |
+| `src/config/navigationFactory.js` | Navigation factory   | ✅ Deployed           |
+| `.vscode/settings.json`           | IDE configuration    | ✅ Enhanced           |
+| `eslint.config.js`                | Linting rules        | ✅ Tuned              |
+| `package.json`                    | Scripts              | ✅ Added fix/format   |
 
 ---
 
 ## Development Workflow Improvements
 
 ### Before
+
 - Scattered duplication across multiple files
 - High lint noise (~1.5k issues)
 - Copilot not optimized for workspace
 - React key warnings in console
 
 ### After
+
 - Single source of truth via factories
 - Clean linting (0 errors, 0 warnings)
 - Copilot enabled with enforcement rules
@@ -304,21 +325,25 @@ uvicorn app.main:app --reload
 ## Next Steps & Recommendations
 
 ### Immediate (Next Day)
+
 - Monitor Copilot suggestions quality
 - Verify team adoption of factory patterns
 - Watch for any React reconciliation issues
 
 ### Short Term (This Week)
+
 - Apply remaining React key fixes to enterprise/security/admin components
 - Add duplication detection to CI/CD pipeline
 - Create factory usage examples
 
 ### Medium Term (This Month)
+
 - Implement code splitting for chunk size warnings
 - Add more component-level factories (forms, modals, etc.)
 - Establish linting rules for new code
 
 ### Long Term (This Quarter)
+
 - Refactor more duplication-prone areas
 - Implement advanced AI patterns from `ai_orchestrator.py`
 - Expand test coverage

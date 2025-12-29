@@ -169,7 +169,10 @@ export const SalesPlaybooks = () => {
                   <p className="text-sm font-semibold mb-1">Talking Points:</p>
                   <ul className="text-sm space-y-1">
                     {step.talking_points.map((point, idx) => (
-                      <li key={`talking-point-${idx}-${point.substring(0, 10)}`} className="flex items-center gap-2">
+                      <li
+                        key={`talking-point-${idx}-${point.substring(0, 10)}`}
+                        className="flex items-center gap-2"
+                      >
                         <CheckCircle size={14} className="text-green-600" />
                         {point}
                       </li>
@@ -326,7 +329,10 @@ export const BattleCards = () => {
                 <p className="font-bold mb-3">🎯 How to Win This Deal</p>
                 <ol className="space-y-2">
                   {selectedCompetitor.how_to_win.map((tactic, idx) => (
-                    <li key={`tactic-${idx}-${tactic.substring(0, 10)}`} className="flex items-start gap-2 text-sm">
+                    <li
+                      key={`tactic-${idx}-${tactic.substring(0, 10)}`}
+                      className="flex items-start gap-2 text-sm"
+                    >
                       <span className="font-bold text-purple-600">{idx + 1}.</span>
                       <span>{tactic}</span>
                     </li>
@@ -442,7 +448,10 @@ export const ObjectionHandlers = () => {
       <CardContent>
         <div className="space-y-3">
           {objections.map((obj, idx) => (
-            <div key={`objection-${idx}-${obj.objection?.substring(0, 10)}`} className="border-2 border-gray-300 dark:border-gray-600 rounded-lg p-4">
+            <div
+              key={`objection-${idx}-${obj.objection?.substring(0, 10)}`}
+              className="border-2 border-gray-300 dark:border-gray-600 rounded-lg p-4"
+            >
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <Badge variant="warning" className="text-xs mb-2">

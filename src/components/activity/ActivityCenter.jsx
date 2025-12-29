@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/layout/DashboardLayout';
@@ -360,6 +361,27 @@ const ActivityCenter = () => {
       </div>
     </DashboardLayout>
   );
+};
+
+ActivityCard.propTypes = {
+  activity: PropTypes.shape({
+    icon: PropTypes.string,
+    color: PropTypes.string,
+    read: PropTypes.bool,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    timestamp: PropTypes.string,
+    type: PropTypes.string,
+    entityId: PropTypes.string,
+  }).isRequired,
+  onNavigate: PropTypes.func.isRequired,
+};
+
+FilterPill.propTypes = {
+  active: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+  count: PropTypes.number,
 };
 
 export default ActivityCenter;

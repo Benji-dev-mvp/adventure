@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -336,6 +337,31 @@ const AvaDailySummary = ({ className, variant = 'full' }) => {
       </AnimatePresence>
     </motion.div>
   );
+};
+
+MiniSparkline.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.number,
+  })).isRequired,
+  color: PropTypes.string,
+};
+
+ActionItem.propTypes = {
+  action: PropTypes.shape({
+    type: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    time: PropTypes.string,
+    actionable: PropTypes.bool,
+    actionLabel: PropTypes.string,
+    actionRoute: PropTypes.string,
+  }).isRequired,
+  onAction: PropTypes.func.isRequired,
+};
+
+AvaDailySummary.propTypes = {
+  className: PropTypes.string,
+  variant: PropTypes.oneOf(['full', 'compact']),
 };
 
 export default AvaDailySummary;

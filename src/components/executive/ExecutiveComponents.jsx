@@ -346,7 +346,7 @@ export const WhatIfScenarioPlanner = () => {
                 min="0" 
                 max="50" 
                 value={scenario.winRateIncrease}
-                onChange={(e) => setScenario({...scenario, winRateIncrease: parseInt(e.target.value)})}
+                onChange={(e) => setScenario({...scenario, winRateIncrease: Number.parseInt(e.target.value, 10)})}
                 className="w-full"
               />
               <p className="text-xs text-gray-600 mt-1">
@@ -364,11 +364,11 @@ export const WhatIfScenarioPlanner = () => {
                 min="0" 
                 max="50" 
                 value={scenario.dealSizeIncrease}
-                onChange={(e) => setScenario({...scenario, dealSizeIncrease: parseInt(e.target.value)})}
+                onChange={(e) => setScenario({...scenario, dealSizeIncrease: Number.parseInt(e.target.value, 10)})}
                 className="w-full"
               />
               <p className="text-xs text-gray-600 mt-1">
-                ${baseMetrics.avgDealSize.toLocaleString()} → ${parseInt(impact.newDealSize).toLocaleString()}
+                ${baseMetrics.avgDealSize.toLocaleString()} → ${Number.parseInt(impact.newDealSize, 10).toLocaleString()}
               </p>
             </div>
 
@@ -382,7 +382,7 @@ export const WhatIfScenarioPlanner = () => {
                 min="0" 
                 max="50" 
                 value={scenario.velocityImprovement}
-                onChange={(e) => setScenario({...scenario, velocityImprovement: parseInt(e.target.value)})}
+                onChange={(e) => setScenario({...scenario, velocityImprovement: Number.parseInt(e.target.value, 10)})}
                 className="w-full"
               />
               <p className="text-xs text-gray-600 mt-1">

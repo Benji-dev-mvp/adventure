@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ArrowRight, X } from 'lucide-react';
 
 const AnnouncementBanner = ({ onClose }) => {
@@ -28,6 +29,10 @@ const AnnouncementBanner = ({ onClose }) => {
       </div>
     </div>
   );
+};
+
+AnnouncementBanner.propTypes = {
+  onClose: PropTypes.func,
 };
 
 export default AnnouncementBanner;

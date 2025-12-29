@@ -116,8 +116,8 @@ export const RevenueAttribution = () => {
           </BarChart>
         </ResponsiveContainer>
         <div className="mt-4">
-          <label className="text-sm font-medium">Select Attribution Model</label>
-          <select className="w-full mt-1 px-3 py-2 border rounded-lg">
+          <label htmlFor="attribution-model" className="text-sm font-medium">Select Attribution Model</label>
+          <select id="attribution-model" className="w-full mt-1 px-3 py-2 border rounded-lg">
             {attributionData.map(model => (
               <option key={model.model}>{model.model}</option>
             ))}
@@ -328,8 +328,9 @@ export const CustomSQLQueryBuilder = () => {
       <CardContent>
         <div className="space-y-4">
           <div>
-            <label className="text-sm font-medium">SQL Query</label>
+            <label htmlFor="sql-query" className="text-sm font-medium">SQL Query</label>
             <textarea 
+              id="sql-query"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="w-full mt-1 p-3 border rounded-lg font-mono text-sm"

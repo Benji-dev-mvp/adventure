@@ -11,6 +11,7 @@
  */
 
 import React, { useState, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/Card';
 import { Button } from '../ui/Button';
@@ -181,6 +182,23 @@ export const AccessMatrix = ({
   );
 };
 
+AccessMatrix.propTypes = {
+  roles: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    color: PropTypes.string,
+    description: PropTypes.string,
+  })).isRequired,
+  scopes: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  })).isRequired,
+  capabilities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  getPermissionMatrix: PropTypes.func.isRequired,
+  onPermissionChange: PropTypes.func,
+  readOnly: PropTypes.bool,
+};
+
 // ============================================================================
 // SECURITY STATUS CARD
 // ============================================================================
@@ -283,6 +301,28 @@ export const SecurityStatusCard = ({ status, securityScore, compact = false }) =
   );
 };
 
+SecurityStatusCard.propTypes = {
+  status: PropTypes.shape({
+    sso: PropTypes.shape({
+      enabled: PropTypes.bool,
+      provider: PropTypes.string,
+    }),
+    mfa: PropTypes.shape({
+      enabled: PropTypes.bool,
+      adoptionPercent: PropTypes.number,
+    }),
+    scim: PropTypes.shape({
+      enabled: PropTypes.bool,
+    }),
+    dataResidency: PropTypes.shape({
+      compliant: PropTypes.bool,
+      region: PropTypes.string,
+    }),
+  }),
+  securityScore: PropTypes.number,
+  compact: PropTypes.bool,
+};
+
 // ============================================================================
 // USAGE BAR
 // ============================================================================
@@ -358,6 +398,15 @@ export const UsageBar = ({
   );
 };
 
+UsageBar.propTypes = {
+  label: PropTypes.string.isRequired,
+  used: PropTypes.number.isRequired,
+  limit: PropTypes.number.isRequired,
+  trend: PropTypes.arrayOf(PropTypes.number),
+  unit: PropTypes.string,
+  showTrend: PropTypes.bool,
+};
+
 // ============================================================================
 // SYSTEM HEALTH CARD
 // ============================================================================
@@ -426,6 +475,17 @@ export const SystemHealthCard = ({ services, overallHealth }) => {
   );
 };
 
+SystemHealthCard.propTypes = {
+  services: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    status: PropTypes.oneOf(['healthy', 'degraded', 'unhealthy']).isRequired,
+    latencyMs: PropTypes.number,
+    errorRate: PropTypes.number,
+  })).isRequired,
+  overallHealth: PropTypes.oneOf(['healthy', 'degraded', 'unhealthy']).isRequired,
+};
+
 // ============================================================================
 // FEATURE FLAG ROW
 // ============================================================================
@@ -446,8 +506,16 @@ export const FeatureFlagRow = ({
   return (
     <div className="border border-slate-700 rounded-lg overflow-hidden">
       <div 
+        role="button"
+        tabIndex={0}
         className="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-800/50"
         onClick={() => setShowDetails(!showDetails)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setShowDetails(!showDetails);
+          }
+        }}
       >
         <div className="flex items-center gap-4">
           <button
@@ -499,15 +567,15 @@ export const FeatureFlagRow = ({
             <div className="p-4 border-t border-slate-700 bg-slate-800/30 space-y-4">
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <label className="text-xs text-slate-400 block mb-1">Owner</label>
+                  <div className="text-xs text-slate-400 block mb-1">Owner</div>
                   <span className="text-sm text-white">{flag.owner}</span>
                 </div>
                 <div>
-                  <label className="text-xs text-slate-400 block mb-1">Key</label>
+                  <div className="text-xs text-slate-400 block mb-1">Key</div>
                   <code className="text-sm text-cyan-400 bg-slate-900 px-2 py-0.5 rounded">{flag.key}</code>
                 </div>
                 <div>
-                  <label className="text-xs text-slate-400 block mb-1">Environment</label>
+                  <div className="text-xs text-slate-400 block mb-1">Environment</div>
                   <div className="flex gap-2">
                     <span className={`text-xs px-2 py-0.5 rounded ${
                       flag.environment?.production ? 'bg-green-500/20 text-green-400' : 'bg-slate-700 text-slate-400'
@@ -520,14 +588,15 @@ export const FeatureFlagRow = ({
               </div>
 
               <div>
-                <label className="text-xs text-slate-400 block mb-2">Rollout Percentage</label>
+                <label htmlFor={`rollout-${flag.key}`} className="text-xs text-slate-400 block mb-2">Rollout Percentage</label>
                 <div className="flex items-center gap-4">
                   <input
+                    id={`rollout-${flag.key}`}
                     type="range"
                     min="0"
                     max="100"
                     value={flag.rolloutPercent}
-                    onChange={(e) => onRolloutChange?.(flag.key, parseInt(e.target.value))}
+                    onChange={(e) => onRolloutChange?.(flag.key, Number.parseInt(e.target.value, 10))}
                     className="flex-1 h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-500"
                   />
                   <span className="text-sm text-white w-12 text-right">{flag.rolloutPercent}%</span>
@@ -550,6 +619,26 @@ export const FeatureFlagRow = ({
       </AnimatePresence>
     </div>
   );
+};
+
+FeatureFlagRow.propTypes = {
+  flag: PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    enabled: PropTypes.bool,
+    isKillSwitch: PropTypes.bool,
+    owner: PropTypes.string,
+    rolloutPercent: PropTypes.number,
+    environment: PropTypes.shape({
+      production: PropTypes.bool,
+      sandbox: PropTypes.bool,
+    }),
+  }).isRequired,
+  onToggle: PropTypes.func,
+  onKillSwitch: PropTypes.func,
+  onRolloutChange: PropTypes.func,
+  environment: PropTypes.oneOf(['production', 'sandbox', 'staging']),
 };
 
 // ============================================================================
@@ -832,6 +921,133 @@ export const WorkspaceSwitcher = ({
   }
 
   return null; // Full version would be a page component
+};
+
+// ============================================================================
+// PROP TYPES
+// ============================================================================
+
+SecurityStatusCard.propTypes = {
+  status: PropTypes.shape({
+    sso: PropTypes.shape({
+      enabled: PropTypes.bool,
+      provider: PropTypes.string,
+    }),
+    mfa: PropTypes.shape({
+      enabled: PropTypes.bool,
+      adoptionPercent: PropTypes.number,
+    }),
+    scim: PropTypes.shape({
+      enabled: PropTypes.bool,
+    }),
+    dataResidency: PropTypes.shape({
+      compliant: PropTypes.bool,
+      region: PropTypes.string,
+    }),
+  }),
+  securityScore: PropTypes.number,
+  compact: PropTypes.bool,
+};
+
+UsageBar.propTypes = {
+  label: PropTypes.string.isRequired,
+  used: PropTypes.number.isRequired,
+  limit: PropTypes.number.isRequired,
+  trend: PropTypes.arrayOf(PropTypes.number),
+  unit: PropTypes.string,
+  showTrend: PropTypes.bool,
+};
+
+SystemHealthCard.propTypes = {
+  services: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    status: PropTypes.oneOf(['healthy', 'degraded', 'unhealthy']).isRequired,
+    latencyMs: PropTypes.number,
+    errorRate: PropTypes.number,
+  })).isRequired,
+  overallHealth: PropTypes.oneOf(['healthy', 'degraded', 'unhealthy']).isRequired,
+};
+
+FeatureFlagRow.propTypes = {
+  flag: PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    enabled: PropTypes.bool,
+    isKillSwitch: PropTypes.bool,
+    owner: PropTypes.string,
+    rolloutPercent: PropTypes.number,
+    environment: PropTypes.shape({
+      production: PropTypes.bool,
+      sandbox: PropTypes.bool,
+    }),
+  }).isRequired,
+  onToggle: PropTypes.func,
+  onKillSwitch: PropTypes.func,
+  onRolloutChange: PropTypes.func,
+  environment: PropTypes.oneOf(['production', 'sandbox', 'staging']),
+};
+
+EnterpriseReadinessMeter.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    score: PropTypes.number.isRequired,
+    items: PropTypes.arrayOf(PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      done: PropTypes.bool,
+      link: PropTypes.string,
+    })),
+  })).isRequired,
+  overallScore: PropTypes.number.isRequired,
+};
+
+AuditLogTable.propTypes = {
+  logs: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    time: PropTypes.string,
+    actor: PropTypes.string,
+    actorEmail: PropTypes.string,
+    action: PropTypes.string,
+    resourceType: PropTypes.string,
+    resourceId: PropTypes.string,
+    result: PropTypes.oneOf(['success', 'failure', 'pending']),
+    ip: PropTypes.string,
+    location: PropTypes.string,
+  })),
+  onExport: PropTypes.func,
+  onInspect: PropTypes.func,
+  loading: PropTypes.bool,
+};
+
+AIDecisionCard.propTypes = {
+  decision: PropTypes.shape({
+    action: PropTypes.string.isRequired,
+    timestamp: PropTypes.string,
+    risk: PropTypes.oneOf(['low', 'medium', 'high']),
+    explanation: PropTypes.string,
+    model: PropTypes.string,
+    confidence: PropTypes.number,
+  }).isRequired,
+};
+
+WorkspaceSwitcher.propTypes = {
+  workspaces: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    environment: PropTypes.oneOf(['production', 'sandbox']).isRequired,
+    isActive: PropTypes.bool,
+    region: PropTypes.string,
+  })).isRequired,
+  activeWorkspace: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    environment: PropTypes.string,
+  }),
+  onSwitch: PropTypes.func.isRequired,
+  compact: PropTypes.bool,
 };
 
 export default {

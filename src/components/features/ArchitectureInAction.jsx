@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { 
   Users, 
   Brain, 
@@ -48,6 +49,11 @@ const AnimatedPath = ({ isActive, delay = 0 }) => {
   );
 };
 
+AnimatedPath.propTypes = {
+  isActive: PropTypes.bool.isRequired,
+  delay: PropTypes.number,
+};
+
 // Pulsing data packet animation
 const DataPacket = ({ isActive, delay = 0, color = 'cyan' }) => {
   const colors = {
@@ -68,6 +74,12 @@ const DataPacket = ({ isActive, delay = 0, color = 'cyan' }) => {
       }}
     />
   );
+};
+
+DataPacket.propTypes = {
+  isActive: PropTypes.bool.isRequired,
+  delay: PropTypes.number,
+  color: PropTypes.oneOf(['cyan', 'purple', 'pink', 'green']),
 };
 
 // Workflow step node
@@ -142,6 +154,19 @@ const WorkflowNode = ({
       </GlassCard>
     </div>
   );
+};
+
+WorkflowNode.propTypes = {
+  icon: PropTypes.elementType.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  isComplete: PropTypes.bool.isRequired,
+  stats: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  })),
+  delay: PropTypes.number,
 };
 
 // Main component

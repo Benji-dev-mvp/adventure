@@ -3,6 +3,7 @@
  * Provides ⌘+K quick access to navigation, actions, and search
  */
 import React, { useState, useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import {
   Command,
@@ -262,5 +263,11 @@ export function useCommandPalette() {
     openPalette,
   };
 }
+
+CommandPalette.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onOpenChange: PropTypes.func.isRequired,
+  onAction: PropTypes.func,
+};
 
 export default CommandPalette;

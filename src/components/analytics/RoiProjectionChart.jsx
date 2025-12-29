@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { 
   AreaChart, 
@@ -28,6 +29,16 @@ const CustomTooltip = ({ active, payload, label }) => {
     );
   }
   return null;
+};
+
+CustomTooltip.propTypes = {
+  active: PropTypes.bool,
+  payload: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.number,
+    name: PropTypes.string,
+    color: PropTypes.string,
+  })),
+  label: PropTypes.string,
 };
 
 const RoiProjectionChart = ({ 
@@ -183,6 +194,15 @@ const RoiProjectionChart = ({
       </GlassCard>
     </motion.div>
   );
+};
+
+RoiProjectionChart.propTypes = {
+  seats: PropTypes.number,
+  avgAcv: PropTypes.number,
+  currentMeetingsPerRep: PropTypes.number,
+  currentReplyRate: PropTypes.number,
+  title: PropTypes.string,
+  animate: PropTypes.bool,
 };
 
 export default RoiProjectionChart;

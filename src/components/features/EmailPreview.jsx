@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { Mail, Eye } from 'lucide-react';
@@ -77,4 +78,10 @@ export const EmailPreview = ({ subject, content, variables = [] }) => {
       </CardContent>
     </Card>
   );
+};
+
+EmailPreview.propTypes = {
+  subject: PropTypes.string,
+  content: PropTypes.string,
+  variables: PropTypes.arrayOf(PropTypes.string),
 };

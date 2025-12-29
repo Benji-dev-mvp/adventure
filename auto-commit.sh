@@ -30,8 +30,8 @@ BRANCH_NAME="auto-update-${TIMESTAMP}"
 echo -e "${GREEN}✓${NC} Creating branch: ${BRANCH_NAME}"
 git checkout -b ${BRANCH_NAME}
 
-echo -e "${GREEN}✓${NC} Staging all changes..."
-git add .
+echo -e "${GREEN}✓${NC} Staging all changes (new, modified, deleted)..."
+git add -A .
 
 echo -e "${GREEN}✓${NC} Committing with message: ${COMMIT_MSG}"
 git commit -m "${COMMIT_MSG}"

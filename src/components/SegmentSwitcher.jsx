@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Building2, Rocket, Crown, CheckCircle } from 'lucide-react';
 import { useTenant } from '@/contexts/TenantContext';
 import { cn } from '@/lib/utils';
@@ -51,10 +52,11 @@ export function SegmentSwitcher({ compact = false }) {
   if (compact) {
     return (
       <div className="flex items-center gap-2">
-        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label htmlFor="segment-selector" className="text-sm font-medium text-gray-700 dark:text-gray-300">
           Demo Segment:
         </label>
         <select
+          id="segment-selector"
           value={plan}
           onChange={(e) => setPlan(e.target.value)}
           className="rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -139,5 +141,9 @@ export function SegmentSwitcher({ compact = false }) {
     </div>
   );
 }
+
+SegmentSwitcher.propTypes = {
+  compact: PropTypes.bool,
+};
 
 export default SegmentSwitcher;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { 
   AreaChart, 
@@ -148,6 +149,16 @@ const KpiFunnelChart = ({
       </GlassCard>
     </motion.div>
   );
+};
+
+KpiFunnelChart.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    stage: PropTypes.string,
+    value: PropTypes.number,
+    color: PropTypes.string,
+  })),
+  title: PropTypes.string,
+  animate: PropTypes.bool,
 };
 
 export default KpiFunnelChart;

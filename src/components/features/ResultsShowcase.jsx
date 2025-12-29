@@ -12,6 +12,7 @@
  */
 
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import {
   TrendingUp,
   TrendingDown,
@@ -191,11 +192,33 @@ const MetricCard = ({ metric, isVisible, delay }) => {
   );
 };
 
+MetricCard.propTypes = {
+  metric: PropTypes.shape({
+    before: PropTypes.number.isRequired,
+    after: PropTypes.number.isRequired,
+    format: PropTypes.string,
+    inverse: PropTypes.bool,
+    metric: PropTypes.string.isRequired,
+  }).isRequired,
+  isVisible: PropTypes.bool.isRequired,
+  delay: PropTypes.number.isRequired,
+};
+
 // Customer result card
 const CustomerCard = ({ customer, isActive, onClick }) => {
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
   return (
     <div
+      role="button"
+      tabIndex={0}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
       className={`cursor-pointer p-4 rounded-xl border transition-all duration-500 ${
         isActive 
           ? `bg-gradient-to-br from-${customer.color}-500/20 to-${customer.color}-600/10 border-${customer.color}-500/50 shadow-lg shadow-${customer.color}-500/10`
@@ -220,6 +243,18 @@ const CustomerCard = ({ customer, isActive, onClick }) => {
       </div>
     </div>
   );
+};
+
+CustomerCard.propTypes = {
+  customer: PropTypes.shape({
+    company: PropTypes.string.isRequired,
+    industry: PropTypes.string.isRequired,
+    logo: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    timeline: PropTypes.string,
+  }).isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 // Aggregate stat card
@@ -258,6 +293,21 @@ const StatCard = ({ stat, isVisible, delay }) => {
       </div>
     </div>
   );
+};
+
+StatCard.propTypes = {
+  stat: PropTypes.shape({
+    icon: PropTypes.elementType.isRequired,
+    value: PropTypes.number.isRequired,
+    label: PropTypes.string.isRequired,
+    trend: PropTypes.string,
+    trendUp: PropTypes.bool,
+    prefix: PropTypes.string,
+    suffix: PropTypes.string,
+    color: PropTypes.string,
+  }).isRequired,
+  isVisible: PropTypes.bool.isRequired,
+  delay: PropTypes.number.isRequired,
 };
 
 // ============================================================================

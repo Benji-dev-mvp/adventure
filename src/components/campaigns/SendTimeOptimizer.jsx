@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { Clock, Sparkles, Calendar, TrendingUp } from 'lucide-react';
@@ -61,9 +62,10 @@ export const SendTimeOptimizer = ({ leads = [], industry = null }) => {
           ) : (
             <div className="space-y-3">
               {optimalTimes.map((slot, index) => (
-                <div
+                <button
                   key={slot.day}
-                  className={`p-4 rounded-lg border transition-all cursor-pointer ${
+                  type="button"
+                  className={`p-4 rounded-lg border transition-all cursor-pointer w-full text-left ${
                     slot.recommended
                       ? 'border-green-300 dark:border-green-600 bg-green-50 dark:bg-green-900/20'
                       : selectedDay === slot.day
@@ -71,6 +73,7 @@ export const SendTimeOptimizer = ({ leads = [], industry = null }) => {
                       : 'border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20'
                   }`}
                   onClick={() => setSelectedDay(slot.day)}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedDay(slot.day); } }}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
@@ -122,7 +125,7 @@ export const SendTimeOptimizer = ({ leads = [], industry = null }) => {
                       </Badge>
                     </div>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           )}
@@ -177,4 +180,9 @@ export const SendTimeOptimizer = ({ leads = [], industry = null }) => {
       </CardContent>
     </Card>
   );
+};
+
+SendTimeOptimizer.propTypes = {
+  leads: PropTypes.array,
+  industry: PropTypes.string
 };

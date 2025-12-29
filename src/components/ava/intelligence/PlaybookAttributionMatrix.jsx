@@ -13,6 +13,7 @@
  */
 
 import React, { useState, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import {
   Grid3X3, ArrowUpRight, ArrowDownRight, Minus,
   Filter, Download, Maximize2, ChevronDown, Info,
@@ -81,6 +82,10 @@ const TrendIndicator = ({ trend }) => {
   );
 };
 
+TrendIndicator.propTypes = {
+  trend: PropTypes.number,
+};
+
 // Matrix Cell
 const MatrixCell = ({ value, benchmark, format, trend, isSelected, onClick, size = 'md' }) => {
   const perf = getPerformanceColor(value, benchmark);
@@ -115,6 +120,16 @@ const MatrixCell = ({ value, benchmark, format, trend, isSelected, onClick, size
   );
 };
 
+MatrixCell.propTypes = {
+  value: PropTypes.number.isRequired,
+  benchmark: PropTypes.number.isRequired,
+  format: PropTypes.string.isRequired,
+  trend: PropTypes.number,
+  isSelected: PropTypes.bool,
+  onClick: PropTypes.func,
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+};
+
 // Row Header
 const RowHeader = ({ label, sublabel, icon: Icon }) => (
   <div className="flex items-center gap-2 pr-4 min-w-32">
@@ -130,6 +145,12 @@ const RowHeader = ({ label, sublabel, icon: Icon }) => (
   </div>
 );
 
+RowHeader.propTypes = {
+  label: PropTypes.string.isRequired,
+  sublabel: PropTypes.string,
+  icon: PropTypes.elementType,
+};
+
 // Column Header
 const ColumnHeader = ({ label, icon: Icon }) => (
   <div className="flex flex-col items-center gap-1 px-2 min-w-24">
@@ -137,6 +158,11 @@ const ColumnHeader = ({ label, icon: Icon }) => (
     <span className="text-xs font-medium text-gray-600 dark:text-gray-400 capitalize">{label}</span>
   </div>
 );
+
+ColumnHeader.propTypes = {
+  label: PropTypes.string.isRequired,
+  icon: PropTypes.elementType,
+};
 
 // Attribution Detail Panel
 const AttributionDetail = ({ segment, channel, metric, data, onClose }) => {
@@ -225,6 +251,22 @@ const AttributionDetail = ({ segment, channel, metric, data, onClose }) => {
       </div>
     </div>
   );
+};
+
+AttributionDetail.propTypes = {
+  segment: PropTypes.string.isRequired,
+  channel: PropTypes.string.isRequired,
+  metric: PropTypes.string.isRequired,
+  data: PropTypes.shape({
+    value: PropTypes.number,
+    benchmark: PropTypes.number,
+    trend: PropTypes.number,
+    factors: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string,
+      contribution: PropTypes.number,
+    })),
+  }),
+  onClose: PropTypes.func.isRequired,
 };
 
 // Legend
@@ -482,6 +524,11 @@ export const PlaybookAttributionMatrix = ({ playbooks = [], onDrillDown }) => {
       )}
     </div>
   );
+};
+
+PlaybookAttributionMatrix.propTypes = {
+  playbooks: PropTypes.array,
+  onDrillDown: PropTypes.func,
 };
 
 export default PlaybookAttributionMatrix;

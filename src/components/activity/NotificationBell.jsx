@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -199,8 +200,17 @@ export const NotificationBell = ({ className }) => {
           <>
             {/* Backdrop */}
             <div
+              role="button"
+              tabIndex={0}
               className="fixed inset-0 z-40"
               onClick={() => setIsOpen(false)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') {
+                  e.preventDefault();
+                  setIsOpen(false);
+                }
+              }}
+              aria-label="Close notifications"
             />
 
             {/* Panel */}
@@ -364,6 +374,32 @@ export const NotificationBell = ({ className }) => {
       </AnimatePresence>
     </div>
   );
+};
+
+ActivityItem.propTypes = {
+  activity: PropTypes.shape({
+    id: PropTypes.string,
+    icon: PropTypes.string,
+    color: PropTypes.string,
+    read: PropTypes.bool,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    timestamp: PropTypes.string,
+    entityId: PropTypes.string,
+  }).isRequired,
+  onMarkAsRead: PropTypes.func.isRequired,
+  onNavigate: PropTypes.func.isRequired,
+};
+
+FilterButton.propTypes = {
+  active: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+  count: PropTypes.number,
+};
+
+NotificationBell.propTypes = {
+  className: PropTypes.string,
 };
 
 export default NotificationBell;

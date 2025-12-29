@@ -1,5 +1,6 @@
 // Command Palette - Universal search and command execution (Cmd+K)
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { Search, Command, ArrowRight, Clock, Star, Hash, User, Settings, BarChart, Database, Zap, Mail, Calendar } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -162,14 +163,17 @@ const CommandPalette = ({ isOpen, onClose }) => {
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1">
                 <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-900 rounded border border-gray-200 dark:border-gray-700">↑↓</kbd>
+                {' '}
                 Navigate
               </span>
               <span className="flex items-center gap-1">
                 <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-900 rounded border border-gray-200 dark:border-gray-700">↵</kbd>
+                {' '}
                 Select
               </span>
               <span className="flex items-center gap-1">
                 <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-900 rounded border border-gray-200 dark:border-gray-700">esc</kbd>
+                {' '}
                 Close
               </span>
             </div>
@@ -182,6 +186,11 @@ const CommandPalette = ({ isOpen, onClose }) => {
       </div>
     </div>
   );
+};
+
+CommandPalette.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
 export default CommandPalette;

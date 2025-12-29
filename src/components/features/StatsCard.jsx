@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardContent } from '../ui/Card';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 import { cn } from '../../lib/utils';
@@ -55,6 +56,16 @@ export const StatsCard = ({
       </CardContent>
     </Card>
   );
+};
+
+StatsCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  change: PropTypes.string,
+  trend: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  icon: PropTypes.elementType,
+  color: PropTypes.string,
+  bgColor: PropTypes.string,
 };
 
 export default StatsCard;

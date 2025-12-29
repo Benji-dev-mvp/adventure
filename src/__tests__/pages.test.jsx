@@ -2,6 +2,7 @@ import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Dashboard from '../pages/Dashboard';
 import CampaignBuilder from '../pages/CampaignBuilder';
 import Analytics from '../pages/Analytics';
@@ -9,8 +10,13 @@ import { TenantProvider } from '../contexts/TenantContext';
 
 const mockShowToast = vi.fn();
 
+const ToastProviderMock = ({ children }) => <div>{children}</div>;
+ToastProviderMock.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 vi.mock('../components/Toast', () => ({
-  ToastProvider: ({ children }) => <div>{children}</div>,
+  ToastProvider: ToastProviderMock,
   useToast: () => ({
     showToast: mockShowToast,
     success: mockShowToast,
@@ -20,13 +26,20 @@ vi.mock('../components/Toast', () => ({
   }),
 }));
 
+const ResponsiveContainerMock = ({ width = 800, height = 400, children }) => (
+  <div style={{ width, height }}>{children}</div>
+);
+ResponsiveContainerMock.propTypes = {
+  width: PropTypes.number,
+  height: PropTypes.number,
+  children: PropTypes.node,
+};
+
 vi.mock('recharts', async () => {
   const actual = await vi.importActual('recharts');
   return {
     ...actual,
-    ResponsiveContainer: ({ width = 800, height = 400, children }) => (
-      <div style={{ width, height }}>{children}</div>
-    ),
+    ResponsiveContainer: ResponsiveContainerMock,
   };
 });
 
@@ -51,6 +64,9 @@ const TestWrapper = ({ children }) => (
     </TenantProvider>
   </BrowserRouter>
 );
+TestWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 describe('Dashboard Component', () => {
   beforeEach(() => {

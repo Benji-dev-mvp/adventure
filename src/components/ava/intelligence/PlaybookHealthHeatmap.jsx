@@ -12,6 +12,7 @@
  */
 
 import React, { useState, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { 
   Activity, TrendingUp, TrendingDown, AlertTriangle, 
   ChevronDown, Filter, Maximize2, Info, Zap
@@ -76,6 +77,15 @@ const HeatmapCell = ({ value, label, sublabel, onClick, isSelected, size = 'md' 
   );
 };
 
+HeatmapCell.propTypes = {
+  value: PropTypes.number.isRequired,
+  label: PropTypes.string,
+  sublabel: PropTypes.string,
+  onClick: PropTypes.func,
+  isSelected: PropTypes.bool,
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+};
+
 // Segment Row in Heatmap
 const SegmentRow = ({ segment, channels, onCellClick, selectedCell }) => {
   const avgHealth = Math.round(
@@ -105,6 +115,16 @@ const SegmentRow = ({ segment, channels, onCellClick, selectedCell }) => {
       </div>
     </div>
   );
+};
+
+SegmentRow.propTypes = {
+  segment: PropTypes.string.isRequired,
+  channels: PropTypes.object.isRequired,
+  onCellClick: PropTypes.func.isRequired,
+  selectedCell: PropTypes.shape({
+    segment: PropTypes.string,
+    channel: PropTypes.string,
+  }),
 };
 
 // Time Period Heatmap
@@ -146,6 +166,15 @@ const TimeHeatmap = ({ data, onCellClick, selectedCell }) => {
       ))}
     </div>
   );
+};
+
+TimeHeatmap.propTypes = {
+  data: PropTypes.object.isRequired,
+  onCellClick: PropTypes.func.isRequired,
+  selectedCell: PropTypes.shape({
+    metric: PropTypes.string,
+    period: PropTypes.string,
+  }),
 };
 
 // Health Legend
@@ -255,6 +284,19 @@ const CellDetailPanel = ({ cell, onClose }) => {
       )}
     </div>
   );
+};
+
+CellDetailPanel.propTypes = {
+  cell: PropTypes.shape({
+    segment: PropTypes.string,
+    channel: PropTypes.string,
+    health: PropTypes.number,
+    leads: PropTypes.number,
+    responses: PropTypes.number,
+    meetings: PropTypes.number,
+    trend: PropTypes.number,
+  }),
+  onClose: PropTypes.func.isRequired,
 };
 
 // Main Component
@@ -402,6 +444,11 @@ export const PlaybookHealthHeatmap = ({ playbooks = [], onDrillDown }) => {
       )}
     </div>
   );
+};
+
+PlaybookHealthHeatmap.propTypes = {
+  playbooks: PropTypes.array,
+  onDrillDown: PropTypes.func,
 };
 
 export default PlaybookHealthHeatmap;

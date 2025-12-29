@@ -13,6 +13,7 @@
  */
 
 import React, { useState, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import {
   BarChart3, TrendingUp, TrendingDown, Download, Filter, 
   RefreshCw, Maximize2, ChevronDown, ArrowRight,
@@ -68,6 +69,18 @@ const FunnelStage = ({ stage, value, previousValue, color, isLast }) => {
   );
 };
 
+FunnelStage.propTypes = {
+  stage: PropTypes.shape({
+    key: PropTypes.string,
+    label: PropTypes.string.isRequired,
+    color: PropTypes.string,
+  }).isRequired,
+  value: PropTypes.number.isRequired,
+  previousValue: PropTypes.number,
+  color: PropTypes.string.isRequired,
+  isLast: PropTypes.bool,
+};
+
 // Full Funnel Visualization
 const FunnelVisualization = ({ data }) => {
   const stages = [
@@ -99,6 +112,16 @@ const FunnelVisualization = ({ data }) => {
       </div>
     </div>
   );
+};
+
+FunnelVisualization.propTypes = {
+  data: PropTypes.shape({
+    leads: PropTypes.number.isRequired,
+    contacted: PropTypes.number,
+    engaged: PropTypes.number,
+    responded: PropTypes.number,
+    meetings: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 // Channel Performance Bars
@@ -185,6 +208,15 @@ const KPICard = ({ label, value, format, trend, icon: Icon, color }) => {
   );
 };
 
+KPICard.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  format: PropTypes.oneOf(['number', 'percent', 'currency']).isRequired,
+  trend: PropTypes.number,
+  icon: PropTypes.elementType.isRequired,
+  color: PropTypes.string.isRequired,
+};
+
 // Segment Breakdown
 const SegmentBreakdown = ({ data }) => {
   const segments = [
@@ -226,6 +258,14 @@ const SegmentBreakdown = ({ data }) => {
   );
 };
 
+SegmentBreakdown.propTypes = {
+  data: PropTypes.objectOf(PropTypes.shape({
+    leads: PropTypes.number,
+    meetings: PropTypes.number,
+    pipeline: PropTypes.number,
+  })).isRequired,
+};
+
 // Time Series Mini Chart
 const TrendMiniChart = ({ data, label }) => {
   const max = Math.max(...data);
@@ -252,6 +292,11 @@ const TrendMiniChart = ({ data, label }) => {
       </div>
     </div>
   );
+};
+
+TrendMiniChart.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.number).isRequired,
+  label: PropTypes.string.isRequired,
 };
 
 // Main Component
@@ -489,6 +534,12 @@ export const PlaybookAnalyticsPanel = ({ playbooks = [], runs = [], dateRange = 
       </div>
     </div>
   );
+};
+
+PlaybookAnalyticsPanel.propTypes = {
+  playbooks: PropTypes.arrayOf(PropTypes.object),
+  runs: PropTypes.arrayOf(PropTypes.object),
+  dateRange: PropTypes.string,
 };
 
 export default PlaybookAnalyticsPanel;

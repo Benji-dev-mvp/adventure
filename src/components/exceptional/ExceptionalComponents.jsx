@@ -134,13 +134,16 @@ export const AdvancedSequenceBuilder = () => {
               <div key={step.id} className="relative">
                 {/* Indentation for conditional branches */}
                 <div className={step.condition === 'yes' || step.condition === 'no' ? 'ml-8' : ''}>
-                  <div 
+                  <button 
                     onClick={() => setSelectedStep(step.id)}
-                    className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedStep(step.id); } }}
+                    className={`w-full p-4 rounded-lg border-2 cursor-pointer transition-all text-left ${
                       selectedStep === step.id 
                         ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/20' 
                         : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 hover:border-purple-300'
                     }`}
+                    aria-label={`Select ${step.type} step`}
+                    aria-pressed={selectedStep === step.id}
                   >
                     <div className="flex items-center gap-3">
                       {step.type === 'email' && <Mail size={20} className="text-blue-500" />}
@@ -354,8 +357,9 @@ export const PredictiveAnalytics = () => {
         <div className="grid grid-cols-2 gap-4 mb-4">
           {/* Left: Email Input */}
           <div>
-            <label className="text-sm font-semibold mb-2 block">Email Content</label>
+            <label htmlFor="email-content-input" className="text-sm font-semibold mb-2 block">Email Content</label>
             <Textarea 
+              id="email-content-input"
               value={emailContent}
               onChange={(e) => setEmailContent(e.target.value)}
               rows={10}
@@ -365,7 +369,7 @@ export const PredictiveAnalytics = () => {
 
           {/* Right: Predictions */}
           <div>
-            <label className="text-sm font-semibold mb-2 block">Predicted Performance</label>
+            <label className="text-sm font-semibold mb-2 block" aria-label="Predicted Performance">Predicted Performance</label>
             <div className="grid grid-cols-2 gap-3 mb-4">
               <div className="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
                 <Eye className="mx-auto text-green-600 mb-1" size={20} />

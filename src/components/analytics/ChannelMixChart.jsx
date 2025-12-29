@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import { Mail, Linkedin, Phone, MessageSquare } from 'lucide-react';
@@ -159,6 +160,25 @@ const ChannelMixChart = ({
       </GlassCard>
     </motion.div>
   );
+};
+
+CustomTooltip.propTypes = {
+  active: PropTypes.bool,
+  payload: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    value: PropTypes.number,
+  })),
+};
+
+ChannelMixChart.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    value: PropTypes.number,
+    color: PropTypes.string,
+    icon: PropTypes.elementType,
+  })),
+  title: PropTypes.string,
+  showLegend: PropTypes.bool,
 };
 
 export default ChannelMixChart;

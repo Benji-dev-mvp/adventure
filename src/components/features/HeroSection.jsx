@@ -245,15 +245,15 @@ const HeroSection = () => {
                 <ul className="space-y-2 text-sm text-gray-300">
                   <li className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
-                    SOC 2 controls enforced across mailboxes
+                    <span>SOC 2 controls enforced across mailboxes</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.6)]" />
-                    SSO, SCIM, and RBAC with audit trails
+                    <span>SSO, SCIM, and RBAC with audit trails</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
-                    Consent, geo, and sending policy automation
+                    <span>Consent, geo, and sending policy automation</span>
                   </li>
                 </ul>
               </div>

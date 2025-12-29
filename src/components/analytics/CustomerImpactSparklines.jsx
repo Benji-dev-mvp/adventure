@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { 
   AreaChart, 
@@ -200,6 +201,39 @@ const CustomerImpactSparklines = ({
       </div>
     </motion.div>
   );
+};
+
+MiniSparkline.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.number,
+  })).isRequired,
+  color: PropTypes.string.isRequired,
+  height: PropTypes.number,
+  trend: PropTypes.oneOf(['up', 'down', 'neutral']),
+};
+
+MiniBarChart.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.number,
+  })).isRequired,
+  color: PropTypes.string.isRequired,
+  height: PropTypes.number,
+};
+
+CustomerImpactSparklines.propTypes = {
+  metrics: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    label: PropTypes.string,
+    value: PropTypes.string,
+    change: PropTypes.string,
+    trend: PropTypes.string,
+    icon: PropTypes.elementType,
+    color: PropTypes.string,
+    chartType: PropTypes.oneOf(['area', 'bar']),
+    data: PropTypes.array,
+  })),
+  title: PropTypes.string,
+  columns: PropTypes.number,
 };
 
 export default CustomerImpactSparklines;

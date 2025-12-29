@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Command, X } from 'lucide-react';
 
 // Keyboard Shortcuts Manager
@@ -119,9 +120,12 @@ const KeyboardShortcuts = ({ commandPaletteOpen, setCommandPaletteOpen }) => {
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
       {/* Backdrop */}
-      <div 
+      <button
+        type="button" 
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={() => setShowHelp(false)}
+        onKeyDown={(e) => { if (e.key === 'Escape') { e.preventDefault(); setShowHelp(false); } }}
+        aria-label="Close keyboard shortcuts"
       />
       
       {/* Shortcuts Panel */}
@@ -184,6 +188,11 @@ const KeyboardShortcuts = ({ commandPaletteOpen, setCommandPaletteOpen }) => {
       </div>
     </div>
   );
+};
+
+KeyboardShortcuts.propTypes = {
+  commandPaletteOpen: PropTypes.bool,
+  setCommandPaletteOpen: PropTypes.func
 };
 
 export default KeyboardShortcuts;

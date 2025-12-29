@@ -1,0 +1,31 @@
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+	autoSquash = false
+[merge]
+	# Auto-resolve conflicts by keeping incoming changes
+	conflictstyle = merge
+	tool = theirs
+[mergetool "theirs"]
+	cmd = "git checkout --theirs -- \"$MERGED\""
+	trustExitCode = true
+[core]
+	# Auto-stage updated files
+	autocrlf = input
+	fileMode = false
+[push]
+	default = simple
+	autoSetupRemote = true
+[commit]
+	# Verbose commit messages
+	verbose = true
+[diff]
+	# Better diff algorithm
+	algorithm = histogram
+[fetch]
+	# Auto-prune deleted remote branches
+	prune = true
+[branch]
+	# Auto-setup tracking for new branches
+	autoSetupMerge = always

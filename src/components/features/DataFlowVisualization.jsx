@@ -13,6 +13,7 @@
  */
 
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import {
   Search,
   Database,
@@ -177,6 +178,12 @@ const DataPacket = ({ isActive, color, delay = 0 }) => {
   );
 };
 
+DataPacket.propTypes = {
+  isActive: PropTypes.bool.isRequired,
+  color: PropTypes.oneOf(['cyan', 'blue', 'purple', 'pink', 'orange', 'emerald', 'teal', 'green']).isRequired,
+  delay: PropTypes.number,
+};
+
 // Single flow stage node
 const FlowNode = ({ 
   stage, 
@@ -295,6 +302,29 @@ const FlowNode = ({
   );
 };
 
+FlowNode.propTypes = {
+  stage: PropTypes.shape({
+    icon: PropTypes.elementType.isRequired,
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string,
+    color: PropTypes.string,
+    gradient: PropTypes.string,
+    metrics: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      unit: PropTypes.string,
+    })),
+    dataPoints: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+  index: PropTypes.number.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  isComplete: PropTypes.bool.isRequired,
+  isHovered: PropTypes.bool.isRequired,
+  onHover: PropTypes.func.isRequired,
+  onLeave: PropTypes.func.isRequired,
+  totalStages: PropTypes.number.isRequired,
+};
+
 // Channel activity card
 const ChannelCard = ({ channel, isActive, delay }) => {
   const Icon = channel.icon;
@@ -322,6 +352,18 @@ const ChannelCard = ({ channel, isActive, delay }) => {
       </div>
     </div>
   );
+};
+
+ChannelCard.propTypes = {
+  channel: PropTypes.shape({
+    icon: PropTypes.elementType.isRequired,
+    label: PropTypes.string.isRequired,
+    value: PropTypes.number.isRequired,
+    color: PropTypes.string.isRequired,
+    trend: PropTypes.string,
+  }).isRequired,
+  isActive: PropTypes.bool.isRequired,
+  delay: PropTypes.number.isRequired,
 };
 
 // ============================================================================

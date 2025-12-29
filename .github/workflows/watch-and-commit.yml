@@ -36,8 +36,8 @@ jobs:
         run: |
           # Check for changes in specific folders (customize as needed)
           WATCH_PATHS="src/ backend/ .github/ public/ docs/"
-          
-          # Check all paths
+
+          # Check all paths (including updated files)
           if [[ -n $(git status --porcelain $WATCH_PATHS 2>/dev/null) ]]; then
             echo "has_changes=true" >> $GITHUB_OUTPUT
             echo "✅ Changes detected in monitored folders"
@@ -49,16 +49,27 @@ jobs:
       - name: Commit and push directly to main
         if: steps.check_changes.outputs.has_changes == 'true'
         run: |
-          git add src/ backend/ .github/ public/ docs/ 2>/dev/null || true
-          
+          # Configure git to auto-resolve conflicts by keeping incoming changes
+          git config pull.rebase true
+          git config rebase.autoStash true
+
+          # Stage ALL changes in monitored folders (new, modified, deleted)
+          git add -A src/ backend/ .github/ public/ docs/ 2>/dev/null || true
+
           COMMIT_MSG="${{ github.event.inputs.commit_message }}"
           if [ -z "$COMMIT_MSG" ]; then
             COMMIT_MSG="🤖 Auto-commit: $(date '+%Y-%m-%d %H:%M:%S UTC')"
           fi
-          
-          git commit -m "$COMMIT_MSG" || exit 0
-          git pull --rebase origin main || true
-          git push origin main
-          
-          echo "✅ Changes committed and pushed to main"
 
+          # Commit all staged changes
+          git commit -m "$COMMIT_MSG" || exit 0
+
+          # Pull with auto-merge strategy (keep incoming changes on conflict)
+          git pull --rebase --strategy-option=theirs origin main || {
+            # If conflicts occur, resolve by keeping our changes
+            git checkout --ours .
+            git add -A
+            git rebase --continue || true
+          }
+
+          # Push to main

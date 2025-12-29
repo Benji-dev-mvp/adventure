@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
@@ -120,10 +121,12 @@ export const CampaignTemplatesLibrary = ({ onSelect }) => {
         {/* Templates Grid */}
         <div className="grid md:grid-cols-2 gap-4">
           {filteredTemplates.map((template) => (
-            <div
+            <button
               key={template.id}
-              className="p-4 border border-gray-200 dark:border-white/10 rounded-lg hover:border-primary-300 dark:hover:border-primary-500 transition-all group cursor-pointer"
+              type="button"
+              className="p-4 border border-gray-200 dark:border-white/10 rounded-lg hover:border-primary-300 dark:hover:border-primary-500 transition-all group cursor-pointer text-left w-full"
               onClick={() => onSelect?.(template)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect?.(template); } }}
             >
               <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
@@ -162,10 +165,16 @@ export const CampaignTemplatesLibrary = ({ onSelect }) => {
               >
                 Use Template
               </Button>
-            </div>
+            </button>
           ))}
         </div>
       </CardContent>
     </Card>
+  );
+};
+
+CampaignTemplatesLibrary.propTypes = {
+  onSelect: PropTypes.func
+};
   );
 };

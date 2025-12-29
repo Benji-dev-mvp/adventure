@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Loader2 } from 'lucide-react';
 
 export const LoadingSpinner = ({ size = 'md', className = '' }) => {
@@ -32,4 +33,17 @@ export const InlineLoader = ({ message }) => {
       {message && <span className="text-gray-600">{message}</span>}
     </div>
   );
+};
+
+LoadingSpinner.propTypes = {
+  size: PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
+  className: PropTypes.string,
+};
+
+PageLoader.propTypes = {
+  message: PropTypes.string,
+};
+
+InlineLoader.propTypes = {
+  message: PropTypes.string,
 };

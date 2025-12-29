@@ -281,8 +281,16 @@ export const DataMinerDashboard = () => {
           {dataSourcesActivity.map((source, idx) => (
             <div 
               key={idx} 
+              role="button"
+              tabIndex={0}
               className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer transition-all hover:scale-102 hover:shadow-md"
               onClick={() => handleSourceClick(source)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleSourceClick(source);
+                }
+              }}
             >
               <div className="flex items-center gap-3">
                 <span className="text-2xl">{source.icon}</span>
@@ -577,7 +585,7 @@ export const AvaTrainingInterface = () => {
       <CardContent>
         <div className="space-y-4">
           <div>
-            <label className="text-sm font-semibold mb-2 block">Writing Style Preferences</label>
+            <div className="text-sm font-semibold mb-2 block" role="heading" aria-level="3">Writing Style Preferences</div>
             <div className="grid grid-cols-2 gap-2">
               <Button variant="outline" size="sm">More Professional</Button>
               <Button variant="outline" size="sm">More Casual</Button>
@@ -587,8 +595,9 @@ export const AvaTrainingInterface = () => {
           </div>
           
           <div>
-            <label className="text-sm font-semibold mb-2 block">Custom Feedback</label>
-            <Textarea 
+            <label htmlFor="ava-feedback" className="text-sm font-semibold mb-2 block">Custom Feedback</label>
+            <Textarea
+              id="ava-feedback"
               placeholder="Tell Ava what to improve... (e.g., 'Be more specific about ROI in emails')"
               value={feedback}
               onChange={(e) => setFeedback(e.target.value)}

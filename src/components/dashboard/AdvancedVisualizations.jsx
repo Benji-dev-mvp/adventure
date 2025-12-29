@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { TrendingUp, TrendingDown, Activity, DollarSign, Target, Zap } from 'lucide-react';
 import { LineChart, Line, AreaChart, Area, BarChart, Bar, ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, PieChart, Pie, Cell } from 'recharts';
@@ -83,12 +84,12 @@ export const AdvancedMetricCard = ({
           <div className="mt-3 pt-3 border-t border-white/20">
             <div className="flex items-center justify-between text-xs opacity-90 mb-1">
               <span>{targetLabel}</span>
-              <span className="font-semibold">{Math.round((parseFloat(value.toString().replace(/[^0-9.]/g, '')) / target) * 100)}%</span>
+              <span className="font-semibold">{Math.round((Number.parseFloat(value.toString().replace(/[^0-9.]/g, '')) / target) * 100)}%</span>
             </div>
             <div className="w-full bg-black/20 rounded-full h-1.5">
               <div 
                 className="bg-white rounded-full h-1.5 transition-all duration-500"
-                style={{ width: `${Math.min((parseFloat(value.toString().replace(/[^0-9.]/g, '')) / target) * 100, 100)}%` }}
+                style={{ width: `${Math.min((Number.parseFloat(value.toString().replace(/[^0-9.]/g, '')) / target) * 100, 100)}%` }}
               />
             </div>
           </div>
@@ -100,6 +101,19 @@ export const AdvancedMetricCard = ({
       <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full -ml-12 -mb-12"></div>
     </Card>
   );
+};
+
+AdvancedMetricCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  change: PropTypes.string,
+  changeType: PropTypes.oneOf(['increase', 'decrease']),
+  icon: PropTypes.elementType,
+  gradient: PropTypes.oneOf(['blue', 'green', 'purple', 'orange', 'pink', 'cyan']),
+  sparklineData: PropTypes.array,
+  subtitle: PropTypes.string,
+  target: PropTypes.number,
+  targetLabel: PropTypes.string
 };
 
 // Real-time Activity Stream
@@ -176,6 +190,10 @@ export const RealTimeActivityStream = ({ activities = [] }) => {
   );
 };
 
+RealTimeActivityStream.propTypes = {
+  activities: PropTypes.array
+};
+
 // Advanced Performance Chart with Multiple Metrics
 export const AdvancedPerformanceChart = ({ data = [], title = 'Performance Overview' }) => {
   const COLORS = ['#06b6d4', '#8b5cf6', '#ec4899', '#f59e0b'];
@@ -246,6 +264,11 @@ export const AdvancedPerformanceChart = ({ data = [], title = 'Performance Overv
   );
 };
 
+AdvancedPerformanceChart.propTypes = {
+  data: PropTypes.array,
+  title: PropTypes.string
+};
+
 // Conversion Funnel Visualization
 export const ConversionFunnel = ({ data = [] }) => {
   return (
@@ -293,6 +316,10 @@ export const ConversionFunnel = ({ data = [] }) => {
       </CardContent>
     </Card>
   );
+};
+
+ConversionFunnel.propTypes = {
+  data: PropTypes.array
 };
 
 // AI Insights Card with Recommendations
@@ -348,6 +375,10 @@ export const AIInsightsCard = ({ insights = [] }) => {
       </CardContent>
     </Card>
   );
+};
+
+AIInsightsCard.propTypes = {
+  insights: PropTypes.array
 };
 
 // Revenue Pipeline Visualization
@@ -414,6 +445,10 @@ export const RevenuePipelineChart = ({ data = [] }) => {
       </CardContent>
     </Card>
   );
+};
+
+RevenuePipelineChart.propTypes = {
+  data: PropTypes.array
 };
 
 export default {

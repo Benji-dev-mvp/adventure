@@ -184,27 +184,40 @@ export const useActivityFeed = (options = {}) => {
     return () => clearInterval(interval);
   }, [autoRefresh, refreshInterval, refresh]);
 
-  // Group by time
+  // Helper functions for date filtering (reduces nesting)
+  const getTodayMidnight = () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return today;
+  };
+
+  const getYesterdayMidnight = () => {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    yesterday.setHours(0, 0, 0, 0);
+    return yesterday;
+  };
+
+  const isToday = (timestamp) => {
+    return new Date(timestamp) >= getTodayMidnight();
+  };
+
+  const isYesterday = (timestamp) => {
+    const today = getTodayMidnight();
+    const yesterday = getYesterdayMidnight();
+    const activityDate = new Date(timestamp);
+    return activityDate >= yesterday && activityDate < today;
+  };
+
+  const isOlder = (timestamp) => {
+    return new Date(timestamp) < getYesterdayMidnight();
+  };
+
+  // Group by time with extracted helpers (max 2 levels of nesting)
   const groupedActivities = {
-    today: filteredActivities.filter(a => {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      return new Date(a.timestamp) >= today;
-    }),
-    yesterday: filteredActivities.filter(a => {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const yesterday = new Date(today);
-      yesterday.setDate(yesterday.getDate() - 1);
-      const activityDate = new Date(a.timestamp);
-      return activityDate >= yesterday && activityDate < today;
-    }),
-    older: filteredActivities.filter(a => {
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      yesterday.setHours(0, 0, 0, 0);
-      return new Date(a.timestamp) < yesterday;
-    }),
+    today: filteredActivities.filter(a => isToday(a.timestamp)),
+    yesterday: filteredActivities.filter(a => isYesterday(a.timestamp)),
+    older: filteredActivities.filter(a => isOlder(a.timestamp)),
   };
 
   return {

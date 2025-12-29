@@ -6,6 +6,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { 
   Play, Pause, Plus, Edit2, Trash2, ChevronRight, 
   Target, Mail, Linkedin, Phone, Calendar, TrendingUp,
@@ -32,6 +33,10 @@ const StatusBadge = ({ status }) => {
   );
 };
 
+StatusBadge.propTypes = {
+  status: PropTypes.string.isRequired,
+};
+
 // Goal icons
 const GoalIcon = ({ goal }) => {
   const icons = {
@@ -42,6 +47,10 @@ const GoalIcon = ({ goal }) => {
   };
   const Icon = icons[goal] || Target;
   return <Icon size={16} />;
+};
+
+GoalIcon.propTypes = {
+  goal: PropTypes.string.isRequired,
 };
 
 // Channel mix indicator
@@ -71,6 +80,10 @@ const ChannelMix = ({ channels = {} }) => {
       })}
     </div>
   );
+};
+
+ChannelMix.propTypes = {
+  channels: PropTypes.objectOf(PropTypes.number),
 };
 
 // Create/Edit Playbook Modal
@@ -118,10 +131,11 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
           {/* Basic Info */}
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label htmlFor="playbook-name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Playbook Name
               </label>
               <input
+                id="playbook-name"
                 type="text"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -132,10 +146,11 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label htmlFor="playbook-description" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Description
               </label>
               <textarea
+                id="playbook-description"
                 value={form.description}
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
@@ -148,10 +163,11 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
           {/* Segment & Goal */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label htmlFor="playbook-segment" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Target Segment
               </label>
               <select
+                id="playbook-segment"
                 value={form.segment}
                 onChange={(e) => setForm({ ...form, segment: e.target.value })}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
@@ -163,10 +179,11 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label htmlFor="playbook-goal" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Primary Goal
               </label>
               <select
+                id="playbook-goal"
                 value={form.goal}
                 onChange={(e) => setForm({ ...form, goal: e.target.value })}
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
@@ -199,7 +216,7 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
                       ...form,
                       channel_mix: {
                         ...form.channel_mix,
-                        [channel]: parseInt(e.target.value)
+                        [channel]: Number.parseInt(e.target.value, 10)
                       }
                     })}
                     className="flex-1"
@@ -214,10 +231,11 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
 
           {/* Schedule */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label htmlFor="playbook-frequency" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Run Frequency
             </label>
             <select
+              id="playbook-frequency"
               value={form.schedule_frequency}
               onChange={(e) => setForm({ ...form, schedule_frequency: e.target.value })}
               className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
@@ -252,6 +270,21 @@ const PlaybookModal = ({ playbook, onSave, onClose }) => {
       </div>
     </div>
   );
+};
+
+PlaybookModal.propTypes = {
+  playbook: PropTypes.shape({
+    name: PropTypes.string,
+    description: PropTypes.string,
+    segment: PropTypes.string,
+    goal: PropTypes.string,
+    target_metric: PropTypes.number,
+    icp_filters: PropTypes.object,
+    channel_mix: PropTypes.object,
+    schedule_frequency: PropTypes.string,
+  }),
+  onSave: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 // Run History Modal
@@ -315,6 +348,22 @@ const RunHistoryModal = ({ playbook, runs, onClose }) => {
       </div>
     </div>
   );
+};
+
+RunHistoryModal.propTypes = {
+  playbook: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  runs: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    status: PropTypes.string,
+    started_at: PropTypes.string,
+    leads_targeted: PropTypes.number,
+    emails_sent: PropTypes.number,
+    responses: PropTypes.number,
+    meetings_booked: PropTypes.number,
+  })).isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 // Playbook Card
@@ -453,6 +502,29 @@ const PlaybookCard = ({ playbook, onRun, onEdit, onPause, onActivate, onDelete, 
   );
 };
 
+PlaybookCard.propTypes = {
+  playbook: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    segment: PropTypes.string,
+    goal: PropTypes.string,
+    status: PropTypes.string,
+    total_runs: PropTypes.number,
+    total_leads_targeted: PropTypes.number,
+    total_responses: PropTypes.number,
+    total_meetings: PropTypes.number,
+    channel_mix: PropTypes.object,
+    schedule_frequency: PropTypes.string,
+  }).isRequired,
+  onRun: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  onPause: PropTypes.func.isRequired,
+  onActivate: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onViewRuns: PropTypes.func.isRequired,
+};
+
 // Summary Stats
 const PlaybooksSummary = ({ stats }) => {
   if (!stats) return null;
@@ -500,6 +572,16 @@ const PlaybooksSummary = ({ stats }) => {
       </div>
     </div>
   );
+};
+
+PlaybooksSummary.propTypes = {
+  stats: PropTypes.shape({
+    active_playbooks: PropTypes.number,
+    total_playbooks: PropTypes.number,
+    total_leads_targeted: PropTypes.number,
+    response_rate: PropTypes.number,
+    total_meetings: PropTypes.number,
+  }),
 };
 
 // Main Playbooks Manager Component

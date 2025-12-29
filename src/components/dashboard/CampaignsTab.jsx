@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
@@ -247,6 +248,10 @@ export const CampaignsTab = ({ onNavigateToCampaign }) => {
       </div>
     </div>
   );
+};
+
+CampaignsTab.propTypes = {
+  onNavigateToCampaign: PropTypes.func
 };
 
 export default CampaignsTab;

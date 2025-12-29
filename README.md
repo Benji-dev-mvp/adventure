@@ -12,7 +12,14 @@ This repository automatically commits changes to `main` every 5 minutes! No manu
 
 **Monitored Folders:** `src/`, `backend/`, `.github/`, `public/`, `docs/`
 
+**Features:**
+- ✅ **Auto-stages ALL changes** - New, modified, and deleted files
+- ✅ **Auto-resolves conflicts** - Keeps your changes automatically
+- ✅ **Auto-approves "keep"** - No manual intervention needed
+- ✅ **Handles updates** - Modified files automatically committed
+
 **Quick Commands:**
+
 ```bash
 # Manual commit (if needed)
 ./auto-commit.sh
@@ -21,23 +28,26 @@ This repository automatically commits changes to `main` every 5 minutes! No manu
 nano .autocommit.config
 ```
 
-📚 **[Full Documentation](./AUTO_COMMIT_GUIDE.md)** | ⚙️ **[Configuration](.autocommit.config)**
+📚 **[Full Documentation](./AUTO_COMMIT_GUIDE.md)** | ⚙️ **[Configuration](.autocommit.config)** | 🔄 **[Auto-Update Guide](./AUTO_UPDATE_KEEP.md)**
 
 ## Features
 
 ### 🤖 AI Assistant - Ava
+
 - Intelligent conversational AI assistant
 - Real-time chat interface with prompt templates
 - Multi-tone content generation (Professional, Casual, Enthusiastic)
 - Smart lead personalization based on company data
 
 ### 📧 Multi-Channel Outreach
+
 - **Email**: Personalized email campaigns with A/B testing
 - **LinkedIn**: Direct message sequences with engagement tracking
 - **SMS**: Short-form messaging with character optimization
 - **Calls**: Automated call scripts with tone guidance
 
 ### 🎯 Campaign Builder (Production Ready)
+
 - Drag-and-drop sequence builder
 - Multi-channel campaign orchestration
 - AI-powered content generation
@@ -47,6 +57,7 @@ nano .autocommit.config
 - **Real-time campaign launch with success notifications**
 
 ### 👥 Lead Management
+
 - 300M+ B2B database integration simulation
 - Advanced lead scoring (0-100 scale)
 - Intent signal detection (hot/warm/cold status)
@@ -57,6 +68,7 @@ nano .autocommit.config
 - Engagement history monitoring
 
 ### 📊 Analytics & Reporting
+
 - Email open rates and click tracking
 - Campaign performance trends
 - Multi-channel distribution analytics
@@ -65,6 +77,7 @@ nano .autocommit.config
 - Real-time dashboard updates
 
 ### ⚙️ Smart Settings
+
 - Email configuration (SMTP, OAuth)
 - CRM & tool integrations
 - Team management with role-based access
@@ -73,6 +86,7 @@ nano .autocommit.config
 - Notification preferences
 
 ### 🎓 Onboarding Wizard (Production Ready)
+
 - 5-step guided setup process
 - Email account connection
 - ICP (Ideal Customer Profile) definition
@@ -83,12 +97,14 @@ nano .autocommit.config
 ## Production-Ready Features ✨
 
 ### Dark Mode Support 🌓
+
 - **Theme Toggle**: Sun/Moon icon in header for easy switching
 - **Persistent Preference**: Theme saved to localStorage
 - **System Integration**: Respects user's system preferences
 - **Comprehensive Coverage**: All components support dark mode styling
 
 ### Error Handling
+
 - **ErrorBoundary Component**: Catches React errors and displays user-friendly fallback UI
 - **Enhanced Logging**: Detailed error tracking with timestamps and stack traces
 - **SessionStorage Tracking**: Stores last 10 errors for debugging
@@ -97,6 +113,7 @@ nano .autocommit.config
 - Graceful degradation for failed operations
 
 ### User Notifications (Toast System)
+
 - Context-based notifications with auto-dismiss
 - 4 notification types: success, error, warning, info
 - Non-intrusive slide-in animations
@@ -104,6 +121,7 @@ nano .autocommit.config
 - Used throughout: Campaign saves, lead actions, form submissions
 
 ### Form Validation
+
 - Email validation with regex patterns
 - Required field validation
 - URL and phone number validation
@@ -113,6 +131,7 @@ nano .autocommit.config
 - Integrated in Campaign Builder and Onboarding
 
 ### Loading States
+
 - **Skeleton Components**: Multiple pre-built skeleton layouts (cards, tables, lists, dashboards)
 - Page-level loading spinner with messaging
 - Inline loading indicators for async actions
@@ -121,6 +140,7 @@ nano .autocommit.config
 - Implemented in: Leads page (800ms delay), export functionality, campaign launch
 
 ### Data Persistence
+
 - Campaign draft auto-save every 30 seconds
 - User preferences stored in localStorage
 - Persistent ICP definitions
@@ -129,6 +149,7 @@ nano .autocommit.config
 - Automatic recovery on page reload
 
 ### Performance Monitoring 🚀
+
 - **Web Vitals Tracking**: Monitors CLS, FID, FCP, LCP, TTFB
 - **Operation Metrics**: Tracks function execution times
 - **Performance Summary**: Debug tools for identifying slow operations
@@ -137,6 +158,7 @@ nano .autocommit.config
 - **Development Logging**: Warns about slow operations (>1000ms)
 
 ### 404 Page & Error Pages
+
 - Custom 404 error page with navigation
 - Quick links to main sections
 - Helpful suggestions for users
@@ -156,11 +178,13 @@ nano .autocommit.config
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js 20.x (see `.nvmrc`)
 - Python 3.11.x (for backend)
 - npm or yarn
 
 ### Installation
+
 ```bash
 # Frontend
 npm install
@@ -171,6 +195,7 @@ pip install -r requirements.txt
 ```
 
 ### Development Server
+
 ```bash
 # Frontend (runs on http://localhost:3004)
 npm run dev
@@ -183,17 +208,21 @@ uvicorn app.main:app --reload --port 8000
 Backend API runs on `http://localhost:8000` (proxy configured in Vite)
 
 ### Production Build
+
 ```bash
 npm run build
 ```
+
 Built files are in `dist/` directory
 
 ### Preview Production Build
+
 ```bash
 npm run preview
 ```
 
 ### Run Tests
+
 ```bash
 # Frontend tests
 npm test            # Watch mode
@@ -209,6 +238,7 @@ npm run test:e2e:ci      # CI mode
 ```
 
 ### Linting & Type Checking
+
 ```bash
 # Frontend
 npm run lint        # ESLint
@@ -241,12 +271,14 @@ This repository implements comprehensive continuous integration and deployment w
 Runs on every pull request and push to `main`/`develop`:
 
 **Frontend Checks:**
+
 - ✅ ESLint (zero warnings enforced)
 - ✅ TypeScript type checking
 - ✅ Vitest unit tests with coverage
 - ✅ Production build validation
 
 **Backend Checks:**
+
 - ✅ Flake8 linting (strict error mode)
 - ✅ Black formatting validation
 - ✅ isort import order checking
@@ -254,9 +286,11 @@ Runs on every pull request and push to `main`/`develop`:
 - ✅ Import smoke test
 
 **E2E Tests:**
+
 - ✅ Playwright browser tests against built artifacts
 
 **Kubernetes:**
+
 - ⚠️ Helm chart validation (informational)
 - ⚠️ K8s manifest validation with kubeval
 
@@ -265,6 +299,7 @@ Runs on every pull request and push to `main`/`develop`:
 Triggers on push to `main` or version tags (`v*.*.*`):
 
 **Docker Image Build & Push:**
+
 - 🐳 Backend image → `ghcr.io/<repo>/backend`
 - 🐳 Frontend image → `ghcr.io/<repo>/frontend`
 - 📦 Multi-arch support (linux/amd64)
@@ -316,11 +351,13 @@ Recommended GitHub branch protection rules for `main`:
 ### Troubleshooting CI Failures
 
 **Frontend lint fails:**
+
 ```bash
 npm run lint:fix  # Auto-fix ESLint issues
 ```
 
 **Backend formatting fails:**
+
 ```bash
 cd backend
 black app        # Auto-format with black
@@ -328,6 +365,7 @@ isort app        # Auto-sort imports
 ```
 
 **Tests fail:**
+
 - Check that you're using the correct Node/Python versions
 - Clear caches: `npm ci` (frontend) or `pip install --force-reinstall -r requirements.txt` (backend)
 - Run tests locally with same environment variables as CI
@@ -384,41 +422,44 @@ isort app        # Auto-sort imports
 ## Key Integration Examples
 
 ### Using Toast Notifications
+
 ```jsx
 import { useToast } from './components/Toast';
 
 function MyComponent() {
-	const { showToast } = useToast();
-  
-	const handleSave = async () => {
-		try {
-			// Save logic
-			showToast('Saved successfully!', 'success');
-		} catch (error) {
-			showToast('Failed to save', 'error');
-		}
-	};
+  const { showToast } = useToast();
+
+  const handleSave = async () => {
+    try {
+      // Save logic
+      showToast('Saved successfully!', 'success');
+    } catch (error) {
+      showToast('Failed to save', 'error');
+    }
+  };
 }
 ```
 
 ### Using Form Validation
+
 ```jsx
 import { useFormValidation, validateEmail } from './lib/validation';
 
 function MyForm() {
-	const { errors, validate, clearError } = useFormValidation();
-	const [email, setEmail] = useState('');
-  
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		if (!validateEmail(email)) {
-			// Show error
-		}
-	};
+  const { errors, validate, clearError } = useFormValidation();
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!validateEmail(email)) {
+      // Show error
+    }
+  };
 }
 ```
 
 ### Using Data Persistence
+
 ```jsx
 import { saveCampaignDraft, getCampaignDraft } from './lib/storage';
 
@@ -440,6 +481,7 @@ const draft = getCampaignDraft();
 ## Build Output
 
 Production build produces optimized bundles:
+
 - Main bundle: ~191 KB gzipped
 - Pages: 2-27 KB each (gzipped)
 - Total: ~650 KB gzipped
@@ -454,6 +496,7 @@ Production build produces optimized bundles:
 ## Deployment Ready
 
 The application is ready for deployment to:
+
 - Vercel
 - Netlify
 - AWS S3 + CloudFront
@@ -463,6 +506,7 @@ The application is ready for deployment to:
 ## Environment Variables
 
 Create `.env.local` for configuration:
+
 ```
 VITE_API_URL=https://api.example.com
 VITE_APP_NAME=Artisan

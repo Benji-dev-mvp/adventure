@@ -338,7 +338,7 @@ export const SlackTeamsBot = () => {
           {notifications.map((notif, idx) => (
             <div key={idx} className="flex justify-between items-center p-2 border rounded">
               <div>
-                <p className="text-sm font-medium">{notif.type.replace(/_/g, ' ')}</p>
+                <p className="text-sm font-medium">{notif.type.replaceAll('_', ' ')}</p>
                 <p className="text-xs text-gray-600">{notif.channel}</p>
               </div>
               <Badge variant={notif.enabled ? 'success' : 'secondary'}>

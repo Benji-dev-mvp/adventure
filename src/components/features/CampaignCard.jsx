@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardContent } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { Play, Pause, MoreVertical } from 'lucide-react';
@@ -75,6 +76,17 @@ export const CampaignCard = ({ campaign }) => {
       </CardContent>
     </Card>
   );
+};
+
+CampaignCard.propTypes = {
+  campaign: PropTypes.shape({
+    name: PropTypes.string,
+    status: PropTypes.string,
+    leads: PropTypes.number,
+    sent: PropTypes.number,
+    replies: PropTypes.number,
+    replyRate: PropTypes.number,
+  }),
 };
 
 export default CampaignCard;

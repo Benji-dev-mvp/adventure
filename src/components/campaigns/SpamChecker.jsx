@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { AlertCircle, CheckCircle2, AlertTriangle, Shield } from 'lucide-react';
@@ -155,4 +156,9 @@ export const SpamChecker = ({ subject, content }) => {
       </CardContent>
     </Card>
   );
+};
+
+SpamChecker.propTypes = {
+  subject: PropTypes.string,
+  content: PropTypes.string
 };

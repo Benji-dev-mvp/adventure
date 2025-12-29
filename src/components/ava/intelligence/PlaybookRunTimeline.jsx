@@ -12,6 +12,7 @@
  */
 
 import React, { useState, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import {
   Clock, Play, CheckCircle, XCircle, AlertCircle, Pause,
   ChevronLeft, ChevronRight, Calendar, TrendingUp, Filter,
@@ -116,6 +117,19 @@ const RunMarker = ({ run, isSelected, onClick, position }) => {
   );
 };
 
+RunMarker.propTypes = {
+  run: PropTypes.shape({
+    status: PropTypes.string,
+    leads_targeted: PropTypes.number,
+    playbook_name: PropTypes.string,
+    started_at: PropTypes.string,
+    meetings_booked: PropTypes.number,
+  }).isRequired,
+  isSelected: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
+  position: PropTypes.number.isRequired,
+};
+
 // Timeline Track
 const TimelineTrack = ({ runs, selectedRun, onRunClick, dateRange }) => {
   const sortedRuns = useMemo(() => {
@@ -195,6 +209,18 @@ const TimelineTrack = ({ runs, selectedRun, onRunClick, dateRange }) => {
       </div>
     </div>
   );
+};
+
+TimelineTrack.propTypes = {
+  runs: PropTypes.array.isRequired,
+  selectedRun: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  }),
+  onRunClick: PropTypes.func.isRequired,
+  dateRange: PropTypes.shape({
+    start: PropTypes.instanceOf(Date).isRequired,
+    end: PropTypes.instanceOf(Date).isRequired,
+  }).isRequired,
 };
 
 // Run Detail Panel
@@ -303,6 +329,20 @@ const RunDetailPanel = ({ run, onClose }) => {
   );
 };
 
+RunDetailPanel.propTypes = {
+  run: PropTypes.shape({
+    status: PropTypes.string,
+    completed_at: PropTypes.string,
+    started_at: PropTypes.string,
+    playbook_name: PropTypes.string,
+    leads_targeted: PropTypes.number,
+    emails_sent: PropTypes.number,
+    responses: PropTypes.number,
+    meetings_booked: PropTypes.number,
+  }),
+  onClose: PropTypes.func.isRequired,
+};
+
 // Summary Stats
 const TimelineSummary = ({ runs }) => {
   const stats = useMemo(() => {
@@ -335,6 +375,10 @@ const TimelineSummary = ({ runs }) => {
       ))}
     </div>
   );
+};
+
+TimelineSummary.propTypes = {
+  runs: PropTypes.array.isRequired,
 };
 
 // Main Component
@@ -462,6 +506,11 @@ export const PlaybookRunTimeline = ({ runs = [], playbooks = [] }) => {
       </div>
     </div>
   );
+};
+
+PlaybookRunTimeline.propTypes = {
+  runs: PropTypes.array,
+  playbooks: PropTypes.array,
 };
 
 export default PlaybookRunTimeline;

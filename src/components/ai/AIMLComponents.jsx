@@ -94,8 +94,19 @@ export const ConversationIntelligence = () => {
       <CardContent>
         <div className="space-y-3">
           {conversations.map(conv => (
-            <div key={conv.id} className="p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
-                 onClick={() => setSelectedConv(conv)}>
+            <div 
+              key={conv.id} 
+              role="button"
+              tabIndex={0}
+              className="p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
+              onClick={() => setSelectedConv(conv)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setSelectedConv(conv);
+                }
+              }}
+            >
               <div className="flex justify-between items-start mb-2">
                 <h4 className="font-semibold text-sm">{conv.contact}</h4>
                 <Badge variant={conv.sentiment === 'positive' ? 'success' : conv.sentiment === 'neutral' ? 'warning' : 'error'}>
@@ -370,8 +381,9 @@ export const SmartReplyGenerator = () => {
       <CardContent>
         <div className="space-y-4">
           <div>
-            <label className="text-sm font-medium">Context</label>
+            <label htmlFor="reply-context" className="text-sm font-medium">Context</label>
             <Input 
+              id="reply-context"
               value={context}
               onChange={(e) => setContext(e.target.value)}
               placeholder="Describe the conversation context..."

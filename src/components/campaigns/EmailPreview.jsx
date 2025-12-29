@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
@@ -22,11 +23,11 @@ export const EmailPreview = ({ subject, content, from }) => {
     if (!text) return '';
     // Replace merge tags with sample data
     return text
-      .replace(/\{\{firstName\}\}/g, 'John')
-      .replace(/\{\{lastName\}\}/g, 'Doe')
-      .replace(/\{\{company\}\}/g, 'Acme Corp')
-      .replace(/\{\{title\}\}/g, 'VP of Sales')
-      .replace(/\{\{industry\}\}/g, 'Technology');
+      .replaceAll('{{firstName}}', 'John')
+      .replaceAll('{{lastName}}', 'Doe')
+      .replaceAll('{{company}}', 'Acme Corp')
+      .replaceAll('{{title}}', 'VP of Sales')
+      .replaceAll('{{industry}}', 'Technology');
   };
 
   return (
@@ -165,4 +166,10 @@ export const EmailPreview = ({ subject, content, from }) => {
       </CardContent>
     </Card>
   );
+};
+
+EmailPreview.propTypes = {
+  subject: PropTypes.string,
+  content: PropTypes.string,
+  from: PropTypes.string
 };

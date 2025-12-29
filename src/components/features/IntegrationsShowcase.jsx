@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const integrations = [
   { name: 'HubSpot', short: 'HS', gradient: 'from-orange-400 to-red-400' },
@@ -36,6 +37,14 @@ const Tile = ({ item }) => (
     <span className="sr-only">{item.name}</span>
   </div>
 );
+
+Tile.propTypes = {
+  item: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    short: PropTypes.string.isRequired,
+    gradient: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 const IntegrationsShowcase = () => {
   return (

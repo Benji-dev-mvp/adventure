@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Input, Textarea } from '../ui/Input';
@@ -15,7 +16,7 @@ export const ABTestingModule = ({ onSave }) => {
   const [winMetric, setWinMetric] = useState('open_rate');
 
   const addVariant = () => {
-    const nextLetter = String.fromCharCode(65 + variants.length);
+    const nextLetter = String.fromCodePoint(65 + variants.length);
     const newAllocation = Math.floor(100 / (variants.length + 1));
     
     setVariants([
@@ -155,4 +156,8 @@ export const ABTestingModule = ({ onSave }) => {
       </CardContent>
     </Card>
   );
+};
+
+ABTestingModule.propTypes = {
+  onSave: PropTypes.func
 };

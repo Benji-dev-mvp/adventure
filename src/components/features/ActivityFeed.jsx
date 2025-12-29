@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/Card';
 import { Clock, CheckCircle2, AlertCircle, Mail, MousePointerClick } from 'lucide-react';
 
@@ -74,4 +75,15 @@ export const ActivityFeed = ({ activities = [] }) => {
       </CardContent>
     </Card>
   );
+};
+
+ActivityFeed.propTypes = {
+  activities: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    type: PropTypes.string,
+    message: PropTypes.string,
+    time: PropTypes.string,
+    icon: PropTypes.elementType,
+    color: PropTypes.string,
+  })),
 };

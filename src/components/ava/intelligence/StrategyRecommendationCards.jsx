@@ -12,6 +12,7 @@
  */
 
 import React, { useState, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import {
   Lightbulb, TrendingUp, TrendingDown, AlertTriangle, CheckCircle,
   ArrowRight, Zap, Target, Users, Mail, Clock, Sparkles,
@@ -72,6 +73,10 @@ const PriorityBadge = ({ priority }) => {
   );
 };
 
+PriorityBadge.propTypes = {
+  priority: PropTypes.oneOf(['high', 'medium', 'low']).isRequired
+};
+
 // Impact indicator
 const ImpactIndicator = ({ impact }) => {
   const getBarWidth = () => {
@@ -95,6 +100,10 @@ const ImpactIndicator = ({ impact }) => {
   );
 };
 
+ImpactIndicator.propTypes = {
+  impact: PropTypes.number.isRequired
+};
+
 // Individual Insight Card
 const InsightCard = ({ insight, onAction, onFeedback, expanded, onToggle }) => {
   const config = insightTypes[insight.type] || insightTypes.optimization;
@@ -109,9 +118,12 @@ const InsightCard = ({ insight, onAction, onFeedback, expanded, onToggle }) => {
       `}
     >
       {/* Header */}
-      <div 
-        className="p-4 cursor-pointer"
+      <button 
+        type="button"
+        className="p-4 cursor-pointer w-full text-left"
         onClick={onToggle}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onToggle(); } }}
+        aria-expanded={expanded}
       >
         <div className="flex items-start gap-3">
           <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${config.color} flex items-center justify-center flex-shrink-0`}>
@@ -161,7 +173,7 @@ const InsightCard = ({ insight, onAction, onFeedback, expanded, onToggle }) => {
             </div>
           )}
         </div>
-      </div>
+      </button>
 
       {/* Expanded Content */}
       {expanded && (
@@ -242,6 +254,31 @@ const InsightCard = ({ insight, onAction, onFeedback, expanded, onToggle }) => {
       )}
     </div>
   );
+};
+
+InsightCard.propTypes = {
+  insight: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    type: PropTypes.string.isRequired,
+    priority: PropTypes.oneOf(['high', 'medium', 'low']).isRequired,
+    title: PropTypes.string.isRequired,
+    summary: PropTypes.string.isRequired,
+    analysis: PropTypes.string,
+    impact: PropTypes.number.isRequired,
+    effort: PropTypes.string.isRequired,
+    metric: PropTypes.string,
+    metricTrend: PropTypes.number,
+    evidence: PropTypes.arrayOf(PropTypes.string),
+    actions: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired
+    }))
+  }).isRequired,
+  onAction: PropTypes.func.isRequired,
+  onFeedback: PropTypes.func.isRequired,
+  expanded: PropTypes.bool.isRequired,
+  onToggle: PropTypes.func.isRequired
 };
 
 // Main Component
@@ -463,6 +500,12 @@ export const StrategyRecommendationCards = ({ playbooks = [], runs = [], onApply
       </div>
     </div>
   );
+};
+
+StrategyRecommendationCards.propTypes = {
+  playbooks: PropTypes.array,
+  runs: PropTypes.array,
+  onApplyRecommendation: PropTypes.func
 };
 
 export default StrategyRecommendationCards;

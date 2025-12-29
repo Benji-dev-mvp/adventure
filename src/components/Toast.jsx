@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { X, CheckCircle2, AlertCircle, Info, AlertTriangle } from 'lucide-react';
 
 const ToastContext = createContext({
@@ -81,4 +82,14 @@ const Toast = ({ message, type, onClose }) => {
       </button>
     </div>
   );
+};
+
+ToastProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+Toast.propTypes = {
+  message: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['success', 'error', 'warning', 'info']).isRequired,
+  onClose: PropTypes.func.isRequired,
 };

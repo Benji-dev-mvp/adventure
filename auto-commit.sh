@@ -42,7 +42,9 @@ git push origin ${BRANCH_NAME}
 # Try to create PR using GitHub CLI if available
 if command -v gh &> /dev/null; then
     echo -e "${GREEN}✓${NC} Creating pull request..."
-    gh pr create \
+    
+    # Create PR without labels (labels might not exist in repo)
+    PR_URL=$(gh pr create \
         --title "🤖 Auto-generated PR: Updates from $(date '+%Y-%m-%d')" \
         --body "## Automated Changes
 
@@ -61,10 +63,15 @@ $(git diff HEAD~1 --stat)
 
 ---
 *This PR was created automatically*" \
-        --label "automated,auto-pr" \
-        --base main
+        --base main 2>&1)
     
-    echo -e "${GREEN}✅ Pull request created successfully!${NC}"
+    if [[ $? -eq 0 ]]; then
+        echo -e "${GREEN}✅ Pull request created successfully!${NC}"
+        echo -e "${BLUE}ℹ️  PR URL: ${PR_URL}${NC}"
+    else
+        echo -e "${YELLOW}⚠️  PR creation encountered an issue but branch was pushed${NC}"
+        echo -e "${BLUE}ℹ️  ${PR_URL}${NC}"
+    fi
 else
     echo -e "${YELLOW}⚠️  GitHub CLI (gh) not found. Branch pushed but PR not created.${NC}"
     echo -e "${BLUE}ℹ️  Install GitHub CLI: https://cli.github.com/${NC}"

@@ -36,15 +36,13 @@ import {
   Clock,
 } from 'lucide-react';
 import { GlassCard, GlassCardContent, GradientText, GlowButton } from '../components/futuristic';
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts';
+import { AreaChart } from 'recharts/es6/chart/AreaChart.js';
+import { Area } from 'recharts/es6/cartesian/Area.js';
+import { XAxis } from 'recharts/es6/cartesian/XAxis.js';
+import { YAxis } from 'recharts/es6/cartesian/YAxis.js';
+import { CartesianGrid } from 'recharts/es6/cartesian/CartesianGrid.js';
+import { Tooltip } from 'recharts/es6/component/Tooltip.js';
+import { ResponsiveContainer } from 'recharts/es6/component/ResponsiveContainer.js';
 
 // Mock usage history
 const USAGE_HISTORY = {

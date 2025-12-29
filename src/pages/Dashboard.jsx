@@ -35,17 +35,15 @@ import {
   Crown,
   ChevronRight,
 } from 'lucide-react';
-import {
-  LineChart,
-  Line,
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts';
+import { LineChart } from 'recharts/es6/chart/LineChart.js';
+import { Line } from 'recharts/es6/cartesian/Line.js';
+import { AreaChart } from 'recharts/es6/chart/AreaChart.js';
+import { Area } from 'recharts/es6/cartesian/Area.js';
+import { XAxis } from 'recharts/es6/cartesian/XAxis.js';
+import { YAxis } from 'recharts/es6/cartesian/YAxis.js';
+import { CartesianGrid } from 'recharts/es6/cartesian/CartesianGrid.js';
+import { Tooltip } from 'recharts/es6/component/Tooltip.js';
+import { ResponsiveContainer } from 'recharts/es6/component/ResponsiveContainer.js';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../components/Toast';
 import { getDashboardStats } from '../lib/dataService';

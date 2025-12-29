@@ -14,20 +14,18 @@ import {
   BarChart3,
   MessageSquare,
 } from 'lucide-react';
-import {
-  LineChart,
-  Line,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  ScatterChart,
-  Scatter,
-} from 'recharts';
+import { LineChart } from 'recharts/es6/chart/LineChart.js';
+import { Line } from 'recharts/es6/cartesian/Line.js';
+import { BarChart } from 'recharts/es6/chart/BarChart.js';
+import { Bar } from 'recharts/es6/cartesian/Bar.js';
+import { XAxis } from 'recharts/es6/cartesian/XAxis.js';
+import { YAxis } from 'recharts/es6/cartesian/YAxis.js';
+import { CartesianGrid } from 'recharts/es6/cartesian/CartesianGrid.js';
+import { Tooltip } from 'recharts/es6/component/Tooltip.js';
+import { Legend } from 'recharts/es6/component/Legend.js';
+import { ResponsiveContainer } from 'recharts/es6/component/ResponsiveContainer.js';
+import { ScatterChart } from 'recharts/es6/chart/ScatterChart.js';
+import { Scatter } from 'recharts/es6/cartesian/Scatter.js';
 
 export const AILeadScoringTrainer = () => {
   const [trainingData, setTrainingData] = useState({ closedWon: 245, closedLost: 189 });

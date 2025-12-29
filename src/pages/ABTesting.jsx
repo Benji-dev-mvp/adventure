@@ -16,16 +16,14 @@ import {
   TabsTriggerRadix,
   TabsContentRadix,
 } from '../components/ui/TabsRadix';
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Legend,
-} from 'recharts';
+import { LineChart } from 'recharts/es6/chart/LineChart.js';
+import { Line } from 'recharts/es6/cartesian/Line.js';
+import { XAxis } from 'recharts/es6/cartesian/XAxis.js';
+import { YAxis } from 'recharts/es6/cartesian/YAxis.js';
+import { CartesianGrid } from 'recharts/es6/cartesian/CartesianGrid.js';
+import { Tooltip } from 'recharts/es6/component/Tooltip.js';
+import { ResponsiveContainer } from 'recharts/es6/component/ResponsiveContainer.js';
+import { Legend } from 'recharts/es6/component/Legend.js';
 import {
   Trophy,
   TrendingUp,

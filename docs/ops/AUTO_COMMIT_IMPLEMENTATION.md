@@ -29,7 +29,7 @@
   - Configurable check interval (default: 5 minutes)
   - Calls auto-commit.sh when changes detected
 
-- **`scripts/auto-commit-quickstart.sh`** - Interactive helper
+- **`auto-commit-quickstart.sh`** - Interactive helper
   - Shows available commands
   - Displays current git status
   - Offers to run auto-commit if changes exist
@@ -55,19 +55,19 @@
 
 ```bash
 # Interactive helper
-./scripts/auto-commit-quickstart.sh
+./auto-commit-quickstart.sh
 
 # Manual commit and PR
-./scripts/auto-commit.sh
+./auto-commit.sh
 
 # Custom commit message
-./scripts/auto-commit.sh "feat: Add new feature"
+./auto-commit.sh "feat: Add new feature"
 
 # Watch mode (checks every 5 min)
-./scripts/watch-and-commit.sh
+./watch-and-commit.sh
 
 # Watch specific directory every 2 min
-./scripts/watch-and-commit.sh ./src 120
+./watch-and-commit.sh ./src 120
 ```
 
 ### GitHub Actions
@@ -145,7 +145,7 @@ git commit -m "Remove auto-commit" && git push
 
 auto-commit.sh                  # Manual auto-commit script
 watch-and-commit.sh             # Continuous watch script
-scripts/auto-commit-quickstart.sh       # Interactive helper
+auto-commit-quickstart.sh       # Interactive helper
 AUTO_COMMIT_GUIDE.md           # Full documentation
 ```
 
@@ -155,7 +155,7 @@ AUTO_COMMIT_GUIDE.md           # Full documentation
 
 ```bash
 # Start watch mode while developing
-./scripts/watch-and-commit.sh
+./watch-and-commit.sh
 
 # Make changes...
 # Every 5 minutes: auto-commit → auto-PR
@@ -165,7 +165,7 @@ AUTO_COMMIT_GUIDE.md           # Full documentation
 
 ```bash
 # Save work quickly
-./scripts/auto-commit.sh "WIP: Experimenting with new approach"
+./auto-commit.sh "WIP: Experimenting with new approach"
 ```
 
 ### Automated Backups
@@ -193,7 +193,7 @@ AUTO_COMMIT_GUIDE.md           # Full documentation
 
 ## 📈 Next Steps
 
-1. **Test the system**: Make a change and run `./scripts/auto-commit.sh`
+1. **Test the system**: Make a change and run `./auto-commit.sh`
 2. **Review PR #20**: Check the auto-generated PR
 3. **Enable scheduled workflow**: Let it run automatically
 4. **Customize**: Adjust schedule and commit messages as needed

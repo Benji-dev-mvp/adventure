@@ -26,23 +26,21 @@ import {
   XCircle,
   AlertTriangle,
 } from 'lucide-react';
-import {
-  LineChart,
-  Line,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  Radar,
-} from 'recharts';
+import { LineChart } from 'recharts/es6/chart/LineChart.js';
+import { Line } from 'recharts/es6/cartesian/Line.js';
+import { BarChart } from 'recharts/es6/chart/BarChart.js';
+import { Bar } from 'recharts/es6/cartesian/Bar.js';
+import { XAxis } from 'recharts/es6/cartesian/XAxis.js';
+import { YAxis } from 'recharts/es6/cartesian/YAxis.js';
+import { CartesianGrid } from 'recharts/es6/cartesian/CartesianGrid.js';
+import { Tooltip } from 'recharts/es6/component/Tooltip.js';
+import { Legend } from 'recharts/es6/component/Legend.js';
+import { ResponsiveContainer } from 'recharts/es6/component/ResponsiveContainer.js';
+import { RadarChart } from 'recharts/es6/chart/RadarChart.js';
+import { PolarGrid } from 'recharts/es6/polar/PolarGrid.js';
+import { PolarAngleAxis } from 'recharts/es6/polar/PolarAngleAxis.js';
+import { PolarRadiusAxis } from 'recharts/es6/polar/PolarRadiusAxis.js';
+import { Radar } from 'recharts/es6/polar/Radar.js';
 
 // REAL-TIME ACTIVITY FEED
 export const RealTimeActivityFeed = () => {

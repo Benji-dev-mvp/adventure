@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart } from 'recharts/es6/chart/BarChart.js';
+import { Bar } from 'recharts/es6/cartesian/Bar.js';
+import { XAxis } from 'recharts/es6/cartesian/XAxis.js';
+import { YAxis } from 'recharts/es6/cartesian/YAxis.js';
+import { Tooltip } from 'recharts/es6/component/Tooltip.js';
+import { ResponsiveContainer } from 'recharts/es6/component/ResponsiveContainer.js';
 
 export const AttributionModel = () => {
   const data = [

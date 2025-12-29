@@ -14,21 +14,19 @@ import {
   ArrowUpRight,
   Filter,
 } from 'lucide-react';
-import {
-  BarChart,
-  Bar,
-  LineChart,
-  Line,
-  AreaChart,
-  Area,
-  ComposedChart,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Legend,
-} from 'recharts';
+import { BarChart } from 'recharts/es6/chart/BarChart.js';
+import { Bar } from 'recharts/es6/cartesian/Bar.js';
+import { LineChart } from 'recharts/es6/chart/LineChart.js';
+import { Line } from 'recharts/es6/cartesian/Line.js';
+import { AreaChart } from 'recharts/es6/chart/AreaChart.js';
+import { Area } from 'recharts/es6/cartesian/Area.js';
+import { ComposedChart } from 'recharts/es6/chart/ComposedChart.js';
+import { XAxis } from 'recharts/es6/cartesian/XAxis.js';
+import { YAxis } from 'recharts/es6/cartesian/YAxis.js';
+import { CartesianGrid } from 'recharts/es6/cartesian/CartesianGrid.js';
+import { Tooltip } from 'recharts/es6/component/Tooltip.js';
+import { ResponsiveContainer } from 'recharts/es6/component/ResponsiveContainer.js';
+import { Legend } from 'recharts/es6/component/Legend.js';
 
 export const AnalyticsTab = () => {
   const [timeRange, setTimeRange] = useState('7d');

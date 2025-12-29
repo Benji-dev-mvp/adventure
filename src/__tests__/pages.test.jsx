@@ -3,47 +3,45 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Dashboard from '../pages/Dashboard';
-import CampaignBuilder from '../pages/CampaignBuilder';
-import Analytics from '../pages/Analytics';
-import { TenantProvider } from '../contexts/TenantContext';
 
-const mockShowToast = vi.fn();
+// ============= ALL MOCKS MUST BE BEFORE IMPORTS =============
+// Mock Toast (uses variable in factory - needs inline)
+vi.mock('../components/Toast', () => {
+  const mockShowToast = vi.fn();
+  const ToastProviderMock = ({ children }) => <div>{children}</div>;
+  ToastProviderMock.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+  return {
+    ToastProvider: ToastProviderMock,
+    useToast: () => ({
+      showToast: mockShowToast,
+      success: mockShowToast,
+      error: mockShowToast,
+      info: mockShowToast,
+      warning: mockShowToast,
+    }),
+  };
+});
 
-const ToastProviderMock = ({ children }) => <div>{children}</div>;
-ToastProviderMock.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-vi.mock('../components/Toast', () => ({
-  ToastProvider: ToastProviderMock,
-  useToast: () => ({
-    showToast: mockShowToast,
-    success: mockShowToast,
-    error: mockShowToast,
-    info: mockShowToast,
-    warning: mockShowToast,
-  }),
-}));
-
-const ResponsiveContainerMock = ({ width = 800, height = 400, children }) => (
-  <div style={{ width, height }}>{children}</div>
-);
-ResponsiveContainerMock.propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
-  children: PropTypes.node,
-};
-
+// Mock Recharts with ResponsiveContainer
 vi.mock('recharts', async () => {
   const actual = await vi.importActual('recharts');
+  const ResponsiveContainerMock = ({ width = 800, height = 400, children }) => (
+    <div style={{ width, height }}>{children}</div>
+  );
+  ResponsiveContainerMock.propTypes = {
+    width: PropTypes.number,
+    height: PropTypes.number,
+    children: PropTypes.node,
+  };
   return {
     ...actual,
     ResponsiveContainer: ResponsiveContainerMock,
   };
 });
 
-// Mock the data service
+// Mock Data Service
 vi.mock('../lib/dataService', () => ({
   getDashboardStats: vi.fn(() =>
     Promise.resolve({
@@ -57,6 +55,14 @@ vi.mock('../lib/dataService', () => ({
   getLeads: vi.fn(() => Promise.resolve([])),
   getAnalytics: vi.fn(() => Promise.resolve({})),
 }));
+
+// ============= NOW IMPORT COMPONENTS =============
+import Dashboard from '../pages/Dashboard';
+import CampaignBuilder from '../pages/CampaignBuilder';
+import Analytics from '../pages/Analytics';
+import { TenantProvider } from '../contexts/TenantContext';
+
+const mockShowToast = vi.fn();
 
 // Test wrapper with all required providers
 const TestWrapper = ({ children }) => (

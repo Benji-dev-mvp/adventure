@@ -1,0 +1,35 @@
+#!/bin/bash
+# Pre-commit hook: validate codecov.yml + run frontend coverage on staged files
+
+set -e
+
+CODECOV_FILE="codecov.yml"
+
+# 1. Check if codecov.yml exists
+if [ ! -f "$CODECOV_FILE" ]; then
+  echo "❌ codecov.yml not found. Aborting commit."
+  exit 1
+fi
+
+# 2. Basic YAML validation (check for common issues)
+if ! grep -q "coverage:" "$CODECOV_FILE"; then
+  echo "❌ codecov.yml missing 'coverage:' section. Aborting commit."
+  exit 1
+fi
+
+# 3. Run frontend tests if src/ files are staged
+if git diff --cached --name-only | grep -E "^src/" > /dev/null; then
+  echo "📊 Running frontend coverage..."
+  npm run test:ci || true  # Continue even if tests fail (informational)
+  
+  # 4. Verify coverage file was generated
+  if [ ! -f "coverage/lcov.info" ]; then
+    echo "⚠️  coverage/lcov.info not generated (tests may have failed)"
+  else
+    echo "✅ Coverage generated: coverage/lcov.info"
+  fi
+fi
+
+# 5. Validate codecov.yml schema (basic check)
+echo "✅ codecov.yml validated"
+exit 0

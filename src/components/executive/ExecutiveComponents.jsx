@@ -14,23 +14,21 @@ import {
   BarChart3,
   Zap,
 } from 'lucide-react';
-import {
-  LineChart,
-  Line,
-  BarChart,
-  Bar,
-  AreaChart,
-  Area,
-  PieChart,
-  Pie,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts';
+import { LineChart } from 'recharts/es6/chart/LineChart.js';
+import { Line } from 'recharts/es6/cartesian/Line.js';
+import { BarChart } from 'recharts/es6/chart/BarChart.js';
+import { Bar } from 'recharts/es6/cartesian/Bar.js';
+import { AreaChart } from 'recharts/es6/chart/AreaChart.js';
+import { Area } from 'recharts/es6/cartesian/Area.js';
+import { PieChart } from 'recharts/es6/chart/PieChart.js';
+import { Pie } from 'recharts/es6/polar/Pie.js';
+import { Cell } from 'recharts/es6/component/Cell.js';
+import { XAxis } from 'recharts/es6/cartesian/XAxis.js';
+import { YAxis } from 'recharts/es6/cartesian/YAxis.js';
+import { CartesianGrid } from 'recharts/es6/cartesian/CartesianGrid.js';
+import { Tooltip } from 'recharts/es6/component/Tooltip.js';
+import { Legend } from 'recharts/es6/component/Legend.js';
+import { ResponsiveContainer } from 'recharts/es6/component/ResponsiveContainer.js';
 
 // CEO EXECUTIVE DASHBOARD
 export const CEOExecutiveDashboard = () => {

@@ -127,7 +127,7 @@ const LANGUAGES = [
 
 const STARTUP_STATS = [
   { value: '3', suffix: ' days', label: 'To go live' },
-  { value: '\$450K', label: 'Saved vs. hiring' },
+  { value: '$450K', label: 'Saved vs. hiring' },
   { value: '80%', label: 'Tasks automated' },
   { value: '10x', label: 'More meetings/month' },
 ];

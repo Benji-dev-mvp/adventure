@@ -1,0 +1,32 @@
+name: Validate Codecov Config
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate-codecov:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate codecov.yml structure
+        run: |
+          if [ ! -f "codecov.yml" ]; then
+            echo "❌ codecov.yml not found"
+            exit 1
+          fi
+
+          if ! grep -q "coverage:" codecov.yml; then
+            echo "❌ codecov.yml missing 'coverage:' section"
+            exit 1
+          fi
+
+          echo "✅ codecov.yml structure valid"
+
+      - name: Check codecov.yml configuration
+        run: |
+          echo "codecov.yml configuration:"
+          cat codecov.yml

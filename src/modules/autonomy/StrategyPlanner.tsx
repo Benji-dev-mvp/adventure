@@ -62,7 +62,7 @@ const StrategyPlanner: React.FC<StrategyPlannerProps> = ({ onStrategyChange }) =
 
   // Mock data for demonstration
   useEffect(() => {
-    const mockStrategies = [
+    const mockStrategies: Strategy[] = [
       {
         id: 'strat-1',
         name: 'Enterprise SaaS Expansion',
@@ -70,7 +70,7 @@ const StrategyPlanner: React.FC<StrategyPlannerProps> = ({ onStrategyChange }) =
         targetMetric: 50,
         currentMetric: 23,
         confidence: 87,
-        status: 'active',
+        status: 'active' as const,
         channelMix: ['email', 'linkedin'],
         icp: {
           name: 'Enterprise SaaS',
@@ -101,7 +101,7 @@ const StrategyPlanner: React.FC<StrategyPlannerProps> = ({ onStrategyChange }) =
       },
     ];
 
-    const mockRecommendations = [
+    const mockRecommendations: Recommendation[] = [
       {
         id: 'rec-1',
         type: 'channel',
@@ -126,7 +126,7 @@ const StrategyPlanner: React.FC<StrategyPlannerProps> = ({ onStrategyChange }) =
         impact: 'high',
         confidence: 82,
       },
-    ];
+    ] as Recommendation[];
 
     setStrategies(mockStrategies);
     setActiveStrategy(mockStrategies[0]);

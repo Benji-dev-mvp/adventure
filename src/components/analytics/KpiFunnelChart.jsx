@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Cell,
-} from 'recharts';
+import { AreaChart } from 'recharts/es6/chart/AreaChart.js';
+import { Area } from 'recharts/es6/cartesian/Area.js';
+import { XAxis } from 'recharts/es6/cartesian/XAxis.js';
+import { YAxis } from 'recharts/es6/cartesian/YAxis.js';
+import { CartesianGrid } from 'recharts/es6/cartesian/CartesianGrid.js';
+import { Tooltip } from 'recharts/es6/component/Tooltip.js';
+import { ResponsiveContainer } from 'recharts/es6/component/ResponsiveContainer.js';
+import { Cell } from 'recharts/es6/component/Cell.js';
 import { useReducedMotion, viewportSettings } from '../../hooks/useMotion';
 import { GlassCard, GlassCardContent, GradientText } from '../futuristic';
 

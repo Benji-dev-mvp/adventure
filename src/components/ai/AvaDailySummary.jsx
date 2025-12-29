@@ -20,7 +20,9 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
-import { AreaChart, Area, ResponsiveContainer } from 'recharts';
+import { AreaChart } from 'recharts/es6/chart/AreaChart.js';
+import { Area } from 'recharts/es6/cartesian/Area.js';
+import { ResponsiveContainer } from 'recharts/es6/component/ResponsiveContainer.js';
 
 // Mock data for Ava's daily activity
 const MOCK_AVA_SUMMARY = {

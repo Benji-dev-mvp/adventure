@@ -18,22 +18,22 @@ coverage:
 
 # Optional PR comment settings
 comment:
-  layout: "reach, diff, flags, files"
+  layout: 'reach, diff, flags, files'
   behavior: default
   require_changes: false
 
 # Ignore paths that should not affect coverage gates
 ignore:
-  - "e2e/**"
-  - "infra/**"
-  - "helm/**"
-  - "k8s/**"
-  - "docs/**"
-  - "public/**"
-  - "scripts/**"
+  - 'e2e/**'
+  - 'infra/**'
+  - 'helm/**'
+  - 'k8s/**'
+  - 'docs/**'
+  - 'public/**'
+  - 'scripts/**'
 
 # Flags allow per-suite stats (e.g., frontend, backend later)
 flags:
   frontend:
     paths:
-      - "src/"
+      - 'src/'

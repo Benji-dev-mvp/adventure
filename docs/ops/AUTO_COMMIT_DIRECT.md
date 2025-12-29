@@ -89,10 +89,10 @@ schedule:
 
 ```bash
 # Commit all changes now
-./scripts/auto-commit.sh
+./auto-commit.sh
 
 # With custom message
-./scripts/auto-commit.sh "feat: Add new feature"
+./auto-commit.sh "feat: Add new feature"
 ```
 
 ### Trigger Workflow Manually
@@ -236,7 +236,7 @@ cron: '*/10 * * * *'  # Every 10 minutes instead
 | ----------------------- | ---------------------------------------------------- |
 | **Change schedule**     | Edit `.github/workflows/watch-and-commit.yml` line 5 |
 | **Change folders**      | Edit `.autocommit.config` or workflow line 37        |
-| **Manual commit**       | `./scripts/auto-commit.sh`                                   |
+| **Manual commit**       | `./auto-commit.sh`                                   |
 | **Disable auto-commit** | GitHub → Actions → Disable workflow                  |
 | **View logs**           | GitHub → Actions → Latest run                        |
 | **Config file**         | `.autocommit.config`                                 |

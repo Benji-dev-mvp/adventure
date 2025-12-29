@@ -185,7 +185,7 @@ git push origin main
 
 ```bash
 # Automatically stages with -A flag
-./scripts/auto-commit.sh
+./auto-commit.sh
 ```
 
 ## ⚠️ Important Notes
@@ -207,7 +207,7 @@ git push origin main
 
 - Every 5 minutes (scheduled)
 - Manual trigger (GitHub Actions UI)
-- Manual script (`./scripts/auto-commit.sh`)
+- Manual script (`./auto-commit.sh`)
 
 ## 🔒 Safety Features
 

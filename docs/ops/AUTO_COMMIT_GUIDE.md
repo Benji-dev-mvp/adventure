@@ -30,20 +30,20 @@ This project now has automatic commit and pull request creation configured.
 
 ```bash
 # Commit with auto-generated message
-./scripts/auto-commit.sh
+./auto-commit.sh
 
 # Commit with custom message
-./scripts/auto-commit.sh "feat: Add new feature"
+./auto-commit.sh "feat: Add new feature"
 ```
 
 #### **Continuous Watch** (`watch-and-commit.sh`)
 
 ```bash
 # Watch current directory (checks every 5 minutes)
-./scripts/watch-and-commit.sh
+./watch-and-commit.sh
 
 # Watch specific directory with custom interval (in seconds)
-./scripts/watch-and-commit.sh ./src 120
+./watch-and-commit.sh ./src 120
 ```
 
 ## 📋 Setup Instructions
@@ -129,7 +129,7 @@ You're actively developing and want changes auto-committed:
 
 ```bash
 # Start the file watcher in a background terminal
-./scripts/watch-and-commit.sh
+./watch-and-commit.sh
 
 # Make your changes...
 # Every 5 minutes, changes are auto-committed and PR created
@@ -140,7 +140,7 @@ You're actively developing and want changes auto-committed:
 You want to quickly save your work:
 
 ```bash
-./scripts/auto-commit.sh "WIP: Working on new feature"
+./auto-commit.sh "WIP: Working on new feature"
 ```
 
 ### Scenario 3: Let GitHub Handle It

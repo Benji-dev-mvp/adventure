@@ -129,14 +129,120 @@ export const INTEGRATION_ROUTES = {
  */
 export const AI_DECISION_ROUTES = {
   /**
-   * List AI decisions
+   * List AI decisions with filtering
    * GET /api/ai/decisions
+   * Query params: segment, status, riskLevel, decisionType, entityId, startDate, endDate, limit, cursor
+   * Response: { items: AIDecision[], total: number, nextCursor?: string }
    */
   LIST: `${API_BASE_URL}/ai/decisions`,
   
   /**
    * Get AI decision by ID
    * GET /api/ai/decisions/:id
+   * Response: AIDecision
    */
   GET: (id: string) => `${API_BASE_URL}/ai/decisions/${id}`,
+  
+  /**
+   * Get explanation for an AI decision (Why? drawer)
+   * GET /api/ai/decisions/:id/explanation
+   * Response: AIExplanation
+   */
+  EXPLANATION: (id: string) => `${API_BASE_URL}/ai/decisions/${id}/explanation`,
+  
+  /**
+   * Approve an AI decision
+   * POST /api/ai/decisions/:id/approve
+   * Response: { success: boolean, message: string }
+   */
+  APPROVE: (id: string) => `${API_BASE_URL}/ai/decisions/${id}/approve`,
+  
+  /**
+   * Revert an AI decision
+   * POST /api/ai/decisions/:id/revert
+   * Body: { reason: string }
+   * Response: { success: boolean, message: string }
+   */
+  REVERT: (id: string) => `${API_BASE_URL}/ai/decisions/${id}/revert`,
+};
+
+/**
+ * AI Recommendation Endpoints
+ */
+export const AI_RECOMMENDATION_ROUTES = {
+  /**
+   * List AI recommendations
+   * GET /api/ai/recommendations
+   * Query params: segment, priority, category, entityId, limit, cursor
+   * Response: { items: AIRecommendation[], total: number, nextCursor?: string }
+   */
+  LIST: `${API_BASE_URL}/ai/recommendations`,
+  
+  /**
+   * Get recommendation by ID
+   * GET /api/ai/recommendations/:id
+   * Response: AIRecommendation
+   */
+  GET: (id: string) => `${API_BASE_URL}/ai/recommendations/${id}`,
+  
+  /**
+   * Apply a recommendation
+   * POST /api/ai/recommendations/:id/apply
+   * Response: { success: boolean, message: string, decisionId?: string }
+   */
+  APPLY: (id: string) => `${API_BASE_URL}/ai/recommendations/${id}/apply`,
+  
+  /**
+   * Dismiss a recommendation
+   * POST /api/ai/recommendations/:id/dismiss
+   * Response: { success: boolean }
+   */
+  DISMISS: (id: string) => `${API_BASE_URL}/ai/recommendations/${id}/dismiss`,
+};
+
+/**
+ * AI Insight Endpoints (real-time signals)
+ */
+export const AI_INSIGHT_ROUTES = {
+  /**
+   * List AI insights
+   * GET /api/ai/insights
+   * Query params: segment, type, severity, entityId, limit
+   * Response: { items: AIInsight[], total: number }
+   */
+  LIST: `${API_BASE_URL}/ai/insights`,
+  
+  /**
+   * Get insight by ID
+   * GET /api/ai/insights/:id
+   * Response: AIInsight
+   */
+  GET: (id: string) => `${API_BASE_URL}/ai/insights/${id}`,
+  
+  /**
+   * Dismiss an insight
+   * POST /api/ai/insights/:id/dismiss
+   * Response: { success: boolean }
+   */
+  DISMISS: (id: string) => `${API_BASE_URL}/ai/insights/${id}/dismiss`,
+};
+
+/**
+ * AI Capabilities Endpoints (segment-based config)
+ */
+export const AI_CAPABILITIES_ROUTES = {
+  /**
+   * Get AI capabilities for current tenant/plan
+   * GET /api/ai/capabilities
+   * Response: AICapabilities
+   */
+  GET: `${API_BASE_URL}/ai/capabilities`,
+  
+  /**
+   * Update AI settings (Enterprise only)
+   * PATCH /api/ai/capabilities
+   * Body: Partial<AICapabilities>
+   * Response: AICapabilities
+   */
+  UPDATE: `${API_BASE_URL}/ai/capabilities`,
 };

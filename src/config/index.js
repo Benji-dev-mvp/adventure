@@ -61,9 +61,7 @@ export { marketingContent } from './marketingContent';
 export function getRouteMetadata(path, config = {}) {
   const allRoutes = Object.values(ROUTE_DEFINITIONS);
 
-  const route = allRoutes.find(
-    r => r.path === path || (r.altPaths && r.altPaths.includes(path))
-  );
+  const route = allRoutes.find(r => r.path === path || (r.altPaths && r.altPaths.includes(path)));
 
   const chrome = resolvePageChrome(path);
 

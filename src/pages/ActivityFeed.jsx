@@ -31,7 +31,7 @@ const ActivityFeed = () => {
   }, [activities]);
 
   // Helper to format timestamp as "time ago"
-  function formatTimeAgo(timestamp: string): string {
+  function formatTimeAgo(timestamp) {
     const now = new Date();
     const then = new Date(timestamp);
     const diffMs = now.getTime() - then.getTime();
@@ -45,14 +45,14 @@ const ActivityFeed = () => {
     return 'Just now';
   }
 
-  const getActivityIcon = (type: string) => {
+  const getActivityIcon = (type) => {
     if (type === 'ai') return <MessageCircle className="w-5 h-5 text-cyan-600" />;
     if (type === 'human') return <User className="w-5 h-5 text-purple-600" />;
     if (type === 'system') return <ActivityIcon className="w-5 h-5 text-slate-600" />;
     return <Clock className="w-5 h-5 text-gray-600" />;
   };
 
-  const getActivityColor = (type: string, importance: string) => {
+  const getActivityColor = (type, importance) => {
     if (importance === 'high') return 'bg-red-100 dark:bg-red-500/20 border-red-500/30';
     if (importance === 'medium') return 'bg-amber-100 dark:bg-amber-500/20 border-amber-500/30';
     
@@ -76,44 +76,44 @@ const ActivityFeed = () => {
     human: mappedActivities.filter(a => a.type === 'human').length,
     system: mappedActivities.filter(a => a.type === 'system').length,
   };
-    meetings: activities.filter(a => a.type === 'meeting_booked').length,
-    calls: activities.filter(a => a.type === 'call_completed').length
-  };
 
   return (
-    <DashboardLayout title="Activity Feed" subtitle="Real-time team activity across all channels">
+    <PageScaffold
+      title="Activity Feed"
+      subtitle="Real-time team activity across all channels"
+    >
       <div className="space-y-6">
         {/* Stats Bar */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-gray-900 dark:text-white">{stats.total}</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Total Activities</p>
+                <p className="text-3xl font-bold text-white">{stats.total}</p>
+                <p className="text-sm text-slate-400">Total Activities</p>
               </div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-blue-600">{stats.emails}</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Email Events</p>
+                <p className="text-3xl font-bold text-cyan-500">{stats.ai}</p>
+                <p className="text-sm text-slate-400">AI Events</p>
               </div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-pink-600">{stats.meetings}</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Meetings Booked</p>
+                <p className="text-3xl font-bold text-purple-500">{stats.human}</p>
+                <p className="text-sm text-slate-400">Human Actions</p>
               </div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <p className="text-3xl font-bold text-indigo-600">{stats.calls}</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Calls Completed</p>
+                <p className="text-3xl font-bold text-slate-400">{stats.system}</p>
+                <p className="text-sm text-slate-400">System Events</p>
               </div>
             </CardContent>
           </Card>
@@ -133,14 +133,10 @@ const ActivityFeed = () => {
                     </div>
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Activities</SelectItem>
-                    <SelectItem value="email_sent">Email Sent</SelectItem>
-                    <SelectItem value="email_opened">Email Opened</SelectItem>
-                    <SelectItem value="email_replied">Email Replied</SelectItem>
-                    <SelectItem value="email_clicked">Link Clicked</SelectItem>
-                    <SelectItem value="meeting_booked">Meeting Booked</SelectItem>
-                    <SelectItem value="call_completed">Call Completed</SelectItem>
-                    <SelectItem value="lead_scored">Lead Scored</SelectItem>
+                    <SelectItem value="all">All Types</SelectItem>
+                    <SelectItem value="ai">AI</SelectItem>
+                    <SelectItem value="human">Human</SelectItem>
+                    <SelectItem value="system">System</SelectItem>
                   </SelectContent>
                 </Select>
                 <Select value={userFilter} onValueChange={setUserFilter}>
@@ -166,7 +162,10 @@ const ActivityFeed = () => {
               {filteredActivities.map((activity) => (
                 <div
                   key={activity.id}
-                  className={`p-4 rounded-lg ${getActivityColor(activity.type)} border border-gray-200 dark:border-white/10 transition-all hover:shadow-md`}
+                  className={cn(
+                    'p-4 rounded-lg border transition-all hover:shadow-md',
+                    getActivityColor(activity.type, activity.importance)
+                  )}
                 >
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 mt-1">
@@ -175,21 +174,21 @@ const ActivityFeed = () => {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <Badge variant="secondary" size="sm">
-                            {getActivityLabel(activity.type)}
-                          </Badge>
-                          <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                          <BadgePill variant="default" className="text-xs">
+                            {activity.type.toUpperCase()}
+                          </BadgePill>
+                          <span className="text-sm font-semibold text-white">
                             {activity.user}
                           </span>
                         </div>
-                        <span className="text-xs text-gray-500 whitespace-nowrap ml-2">
-                          {activity.time}
+                        <span className="text-xs text-slate-500 whitespace-nowrap ml-2">
+                          {activity.timeAgo}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-700 dark:text-gray-300 mb-1">
-                        <span className="font-medium">{activity.lead}</span> • {activity.campaign}
+                      <p className="text-sm text-slate-300 mb-1">
+                        {activity.action} <span className="font-medium text-white">{activity.target}</span>
                       </p>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">
+                      <p className="text-xs text-slate-400">
                         {activity.details}
                       </p>
                     </div>
@@ -200,50 +199,14 @@ const ActivityFeed = () => {
 
             {filteredActivities.length === 0 && (
               <div className="text-center py-12">
-                <Clock className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                <p className="text-gray-600 dark:text-gray-400">No activities match your filters</p>
+                <Clock className="w-12 h-12 text-slate-500 mx-auto mb-3" />
+                <p className="text-slate-400">No activities match your filters</p>
               </div>
             )}
           </CardContent>
         </Card>
-
-        {/* Activity Heatmap */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Activity Heatmap - Today</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-12 gap-2">
-              {Array.from({ length: 24 }, (_, i) => {
-                const hour = i;
-                const count = Math.floor(Math.random() * 50);
-                const intensity = count > 30 ? 'bg-green-500' : count > 15 ? 'bg-green-400' : count > 5 ? 'bg-green-300' : 'bg-gray-200 dark:bg-gray-700';
-                return (
-                  <div key={i} className="text-center">
-                    <div className={`h-16 ${intensity} rounded transition-colors hover:opacity-80 cursor-pointer flex items-center justify-center`}>
-                      <span className="text-xs font-semibold">{count}</span>
-                    </div>
-                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                      {hour}:00
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="flex justify-center items-center gap-4 mt-4">
-              <span className="text-xs text-gray-600">Less</span>
-              <div className="flex gap-1">
-                <div className="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                <div className="w-4 h-4 bg-green-300 rounded"></div>
-                <div className="w-4 h-4 bg-green-400 rounded"></div>
-                <div className="w-4 h-4 bg-green-500 rounded"></div>
-              </div>
-              <span className="text-xs text-gray-600">More</span>
-            </div>
-          </CardContent>
-        </Card>
       </div>
-    </DashboardLayout>
+    </PageScaffold>
   );
 };
 

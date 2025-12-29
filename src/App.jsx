@@ -90,6 +90,7 @@ const AdminEnterpriseReadiness = lazy(() => import('./pages/AdminEnterpriseReadi
 const FeatureFlags = lazy(() => import('./pages/FeatureFlags'));
 const AIPolicies = lazy(() => import('./pages/AIPolicies'));
 const SettingsUsage = lazy(() => import('./pages/SettingsUsage'));
+const UsageQuotasPage = lazy(() => import('./pages/UsageQuotasPage'));
 
 // Onboarding & Setup
 const SetupWizard = lazy(() => import('./pages/SetupWizard'));
@@ -124,6 +125,9 @@ const SimulatePage = lazy(() => import('./pages/SimulatePage'));
 const IntelligenceGridPage = lazy(() => import('./pages/IntelligenceGridPage'));
 const BoardroomPage = lazy(() => import('./pages/BoardroomPage'));
 const ImmersivePage = lazy(() => import('./pages/ImmersivePage'));
+
+// ===== DEV TOOLS =====
+const RouteHealthPage = lazy(() => import('./pages/RouteHealthPage'));
 
 function App() {
   return (
@@ -219,6 +223,7 @@ function App() {
                   <Route path="/admin/feature-flags" element={<FeatureFlags />} />
                   <Route path="/admin/ai-policies" element={<AIPolicies />} />
                   <Route path="/settings/usage" element={<SettingsUsage />} />
+                  <Route path="/usage-quotas" element={<UsageQuotasPage />} />
                 
                   {/* Setup & Onboarding */}
                   <Route path="/setup" element={<SetupWizard />} />
@@ -253,6 +258,9 @@ function App() {
                   <Route path="/intelligence-grid" element={<IntelligenceGridPage />} />
                   <Route path="/boardroom" element={<BoardroomPage />} />
                   <Route path="/immersive" element={<ImmersivePage />} />
+                  
+                  {/* ===== DEV TOOLS ===== */}
+                  <Route path="/health/routes" element={<RouteHealthPage />} />
                 </Route>
                 
                 {/* 404 - outside shell */}

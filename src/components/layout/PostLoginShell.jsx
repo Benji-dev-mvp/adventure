@@ -6,6 +6,7 @@
  * - Top: Slim header with workspace switcher, search, user menu
  * - Center: Main content area
  * - Context strip showing current section, plan, and environment
+ * - Global EntityDrawer for lead/account details
  */
 
 import React, { useState, useMemo } from 'react';
@@ -30,6 +31,7 @@ import {
 } from 'lucide-react';
 import CommandPalette from '../CommandPalette';
 import WorkspaceSwitcher from './WorkspaceSwitcher';
+import EntityDrawer from '@/components/drawer/EntityDrawer';
 
 /**
  * Micro-KPI for context strip
@@ -443,6 +445,9 @@ const PostLoginShell = ({ children }) => {
         isOpen={commandPaletteOpen} 
         onClose={() => setCommandPaletteOpen(false)} 
       />
+
+      {/* Global Entity Drawer */}
+      <EntityDrawer />
     </div>
   );
 };

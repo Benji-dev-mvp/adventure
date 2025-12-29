@@ -1,9 +1,9 @@
-name: Watch and Auto-Commit
+name: Auto-Commit to Main (Every 5 Min)
 
 on:
-  # Run on schedule (every 30 minutes)
+  # Run every 5 minutes
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '*/5 * * * *'
 
   # Allow manual triggering
   workflow_dispatch:
@@ -11,82 +11,54 @@ on:
       commit_message:
         description: 'Custom commit message (optional)'
         required: false
-        default: 'Auto-commit: Scheduled update'
+        default: '🤖 Auto-commit: Scheduled update'
 
 jobs:
-  watch-and-commit:
+  auto-commit-to-main:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Check for changes
+      - name: Check for changes in monitored folders
         id: check_changes
         run: |
-          git fetch origin main
-          if [[ -n $(git status --porcelain) ]]; then
-            echo "has_local_changes=true" >> $GITHUB_OUTPUT
+          # Check for changes in specific folders (customize as needed)
+          WATCH_PATHS="src/ backend/ .github/ public/ docs/"
+          
+          # Check all paths
+          if [[ -n $(git status --porcelain $WATCH_PATHS 2>/dev/null) ]]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "✅ Changes detected in monitored folders"
           else
-            echo "has_local_changes=false" >> $GITHUB_OUTPUT
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "ℹ️  No changes in monitored folders"
           fi
 
-      - name: Create PR branch
-        if: steps.check_changes.outputs.has_local_changes == 'true'
-        id: create_branch
+      - name: Commit and push directly to main
+        if: steps.check_changes.outputs.has_changes == 'true'
         run: |
-          TIMESTAMP=$(date +%Y%m%d-%H%M%S)
-          BRANCH_NAME="auto-scheduled-${TIMESTAMP}"
-          echo "branch_name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
-          git checkout -b ${BRANCH_NAME}
-
-      - name: Commit and push
-        if: steps.check_changes.outputs.has_local_changes == 'true'
-        run: |
-          git add .
+          git add src/ backend/ .github/ public/ docs/ 2>/dev/null || true
+          
           COMMIT_MSG="${{ github.event.inputs.commit_message }}"
           if [ -z "$COMMIT_MSG" ]; then
-            COMMIT_MSG="🤖 Scheduled auto-commit: $(date '+%Y-%m-%d %H:%M:%S')"
+            COMMIT_MSG="🤖 Auto-commit: $(date '+%Y-%m-%d %H:%M:%S UTC')"
           fi
-          git commit -m "$COMMIT_MSG"
-          git push origin ${{ steps.create_branch.outputs.branch_name }}
-
-      - name: Create Pull Request
-        if: steps.check_changes.outputs.has_local_changes == 'true'
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ steps.create_branch.outputs.branch_name }}
-          title: "🤖 Scheduled Auto-commit: $(date '+%Y-%m-%d %H:%M')"
-          body: |
-            ## Scheduled Automated Changes
-
-            This PR was automatically created by the scheduled watch workflow.
-
-            **Run Time:** $(date '+%Y-%m-%d %H:%M:%S UTC')
-            **Trigger:** ${{ github.event_name }}
-
-            ### What happened?
-            The workflow detected uncommitted changes and automatically:
-            1. Created a new branch
-            2. Committed all changes
-            3. Opened this PR for review
-
-            ### Next Steps
-            - Review the changes in the Files tab
-            - Run any necessary tests
-            - Merge or request changes as needed
-
-            ---
-            *Automated by GitHub Actions - Schedule: Every 30 minutes*
+          
+          git commit -m "$COMMIT_MSG" || exit 0
+          git pull --rebase origin main || true
+          git push origin main
+          
+          echo "✅ Changes committed and pushed to main"
 

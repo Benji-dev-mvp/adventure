@@ -2,8 +2,26 @@
 
 ![CI Status](https://github.com/Benji-dev-mvp/adventure/actions/workflows/ci.yml/badge.svg)
 ![CD Status](https://github.com/Benji-dev-mvp/adventure/actions/workflows/cd.yml/badge.svg)
+[![Auto-Commit](https://img.shields.io/badge/auto--commit-every%205min-brightgreen)](./AUTO_COMMIT_GUIDE.md)
 
 A production-ready AI Business Development Representative (BDR) platform built with React, featuring Ava - an intelligent AI assistant that automates outbound sales workflows.
+
+## 🤖 Auto-Commit System (Every 5 Minutes)
+
+This repository automatically commits changes to `main` every 5 minutes! No manual commits needed.
+
+**Monitored Folders:** `src/`, `backend/`, `.github/`, `public/`, `docs/`
+
+**Quick Commands:**
+```bash
+# Manual commit (if needed)
+./auto-commit.sh
+
+# Customize folders
+nano .autocommit.config
+```
+
+📚 **[Full Documentation](./AUTO_COMMIT_GUIDE.md)** | ⚙️ **[Configuration](.autocommit.config)**
 
 ## Features
 

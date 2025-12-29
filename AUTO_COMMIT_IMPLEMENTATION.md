@@ -8,11 +8,12 @@
      - Automatically commits any uncommitted changes
      - Creates timestamped branch and opens PR
    
-   - **Scheduled Auto-Commit** ([.github/workflows/watch-and-commit.yml](.github/workflows/watch-and-commit.yml))
-     - Runs every 30 minutes
-     - Checks for uncommitted changes
-     - Auto-commits and creates PR if changes found
+   - **Auto-Commit to Main** ([.github/workflows/watch-and-commit.yml](.github/workflows/watch-and-commit.yml))
+     - Runs every 5 minutes automatically
+     - Monitors specific folders: `src/`, `backend/`, `.github/`, `public/`, `docs/`
+     - Commits directly to `main` branch (no PRs)
      - Can be manually triggered from GitHub Actions UI
+     - Configurable via `.autocommit.config` file
 
 ### 2. **Manual Scripts**
    - **`auto-commit.sh`** - One-time auto-commit with PR creation

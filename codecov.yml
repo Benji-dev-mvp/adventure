@@ -1,0 +1,39 @@
+# Codecov configuration for combined frontend coverage reporting
+# Validated by Codecov VS Code extension and Codecov servers
+
+coverage:
+  # Coverage gates: informational only (non-blocking)
+  # Hard gates enabled later after lint/typecheck/build are stable + smoke tests in place
+  status:
+    project:
+      default:
+        informational: true
+        target: auto
+        threshold: 10%
+    patch:
+      default:
+        informational: true
+        target: auto
+        threshold: 10%
+
+# Optional PR comment settings
+comment:
+  layout: "reach, diff, flags, files"
+  behavior: default
+  require_changes: false
+
+# Ignore paths that should not affect coverage gates
+ignore:
+  - "e2e/**"
+  - "infra/**"
+  - "helm/**"
+  - "k8s/**"
+  - "docs/**"
+  - "public/**"
+  - "scripts/**"
+
+# Flags allow per-suite stats (e.g., frontend, backend later)
+flags:
+  frontend:
+    paths:
+      - "src/"

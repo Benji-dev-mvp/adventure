@@ -6,7 +6,7 @@
  * based on real-world outcomes and reinforcement signals.
  */
 
-import type { MessagePattern, EmotionalTone, PersuasionTechnique, VectorEntry } from './types';
+import type { MessagePattern, EmotionalTone, PersuasionTechnique } from './types';
 
 interface PatternMatch {
   pattern: MessagePattern;

@@ -406,7 +406,7 @@ class ReinforcementEngine {
     if (samples.length < this.BATCH_SIZE) return;
 
     // Update each policy with relevant samples
-    for (const [sequenceType, policy] of this.policies) {
+    for (const [_sequenceType, policy] of this.policies) {
       this.updatePolicy(policy, samples);
 
       // Decay exploration rate

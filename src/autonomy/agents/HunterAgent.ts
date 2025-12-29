@@ -89,7 +89,7 @@ export class HunterAgent extends BaseAgent {
     ];
   }
 
-  protected async executeTask(task: Task, context: AgentContext): Promise<ExecutionResult> {
+  protected async executeTask(task: Task, _context: AgentContext): Promise<ExecutionResult> {
     switch (task.type) {
       case 'find-accounts':
         return this.findAccounts(task);
@@ -301,7 +301,7 @@ export class HunterAgent extends BaseAgent {
     };
   }
 
-  private async scanForSignals(accountId: {
+  private async scanForSignals(_accountId: {
     accountId: string;
   }): Promise<Array<{ type: string; strength: number; source: string }>> {
     await this.simulateLatency(600);
@@ -431,7 +431,7 @@ export class HunterAgent extends BaseAgent {
     return new Promise(resolve => setTimeout(resolve, ms * 0.1)); // Speed up for development
   }
 
-  protected describeStrategy(task: Task): string {
+  protected describeStrategy(_task: Task): string {
     return `Hunter will scan ${this.huntingPatterns.size} learned patterns to find high-match accounts`;
   }
 }

@@ -17,6 +17,7 @@ from sqlmodel import Session
 from ...core.db import get_session
 from ...core.ai_orchestrator import UnifiedAIOrchestrator
 from ...core.security import get_current_user
+from ...core.error_handling import handle_api_errors, handle_not_found
 from ...models.user import User
 import os
 
@@ -137,6 +138,7 @@ def get_orchestrator() -> UnifiedAIOrchestrator:
 # ============================================================================
 
 @router.post("/lead/score", response_model=LeadScoreResponse)
+@handle_api_errors(error_prefix="Lead scoring failed")
 async def score_lead(
     request: LeadScoreRequest,
     current_user: User = Depends(get_current_user),
@@ -151,20 +153,15 @@ async def score_lead(
     - Provides type-safe scoring
     - Remembers scoring decision
     """
-    try:
-        result = await orchestrator.intelligent_lead_scoring(
-            user_id=str(current_user.id),
-            lead_data=request.lead_data,
-        )
-        return LeadScoreResponse(**result)
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Lead scoring failed: {str(e)}"
-        )
+    result = await orchestrator.intelligent_lead_scoring(
+        user_id=str(current_user.id),
+        lead_data=request.lead_data,
+    )
+    return LeadScoreResponse(**result)
 
 
 @router.post("/email/generate", response_model=EmailGenerationResponse)
+@handle_api_errors(error_prefix="Email generation failed")
 async def generate_email(
     request: EmailGenerationRequest,
     current_user: User = Depends(get_current_user),
@@ -180,22 +177,17 @@ async def generate_email(
     - Type-safe output validation
     - Remembers generated emails
     """
-    try:
-        result = await orchestrator.personalized_email_generation(
-            user_id=str(current_user.id),
-            lead_data=request.lead_data,
-            campaign_objective=request.campaign_objective,
-            tone=request.tone,
-        )
-        return EmailGenerationResponse(**result)
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Email generation failed: {str(e)}"
-        )
+    result = await orchestrator.personalized_email_generation(
+        user_id=str(current_user.id),
+        lead_data=request.lead_data,
+        campaign_objective=request.campaign_objective,
+        tone=request.tone,
+    )
+    return EmailGenerationResponse(**result)
 
 
 @router.post("/campaign/strategy", response_model=CampaignStrategyResponse)
+@handle_api_errors(error_prefix="Campaign strategy creation failed")
 async def create_campaign_strategy(
     request: CampaignStrategyRequest,
     current_user: User = Depends(get_current_user),
@@ -211,22 +203,17 @@ async def create_campaign_strategy(
     - Generates tactical recommendations
     - Remembers strategy for future reference
     """
-    try:
-        result = await orchestrator.strategic_campaign_planning(
-            user_id=str(current_user.id),
-            objective=request.objective,
-            target_audience=request.target_audience,
-            budget_range=request.budget_range,
-        )
-        return CampaignStrategyResponse(**result)
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Campaign strategy creation failed: {str(e)}"
-        )
+    result = await orchestrator.strategic_campaign_planning(
+        user_id=str(current_user.id),
+        objective=request.objective,
+        target_audience=request.target_audience,
+        budget_range=request.budget_range,
+    )
+    return CampaignStrategyResponse(**result)
 
 
 @router.post("/conversation", response_model=ConversationResponse)
+@handle_api_errors(error_prefix="Conversation failed")
 async def conversational_assistance(
     request: ConversationRequest,
     current_user: User = Depends(get_current_user),
@@ -241,21 +228,16 @@ async def conversational_assistance(
     - Executes agent tools as needed
     - Remembers conversation
     """
-    try:
-        result = await orchestrator.conversational_assistance(
-            user_id=str(current_user.id),
-            message=request.message,
-            conversation_context=request.context,
-        )
-        return ConversationResponse(**result)
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Conversation failed: {str(e)}"
-        )
+    result = await orchestrator.conversational_assistance(
+        user_id=str(current_user.id),
+        message=request.message,
+        conversation_context=request.context,
+    )
+    return ConversationResponse(**result)
 
 
 @router.post("/lead/batch-analyze")
+@handle_api_errors(error_prefix="Batch analysis failed")
 async def batch_analyze_leads(
     request: BatchLeadAnalysisRequest,
     current_user: User = Depends(get_current_user),
@@ -270,21 +252,15 @@ async def batch_analyze_leads(
     - Uses similarity for comparison
     - Returns sorted list
     """
-    try:
-        result = await orchestrator.batch_lead_analysis(
-            user_id=str(current_user.id),
-            leads=request.leads,
-        )
-        return {
-            "success": True,
-            "analyzed_count": len(result),
-            "results": result,
-        }
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Batch analysis failed: {str(e)}"
-        )
+    result = await orchestrator.batch_lead_analysis(
+        user_id=str(current_user.id),
+        leads=request.leads,
+    )
+    return {
+        "success": True,
+        "analyzed_count": len(result),
+        "results": result,
+    }
 
 
 # ============================================================================
@@ -292,92 +268,72 @@ async def batch_analyze_leads(
 # ============================================================================
 
 @router.post("/memory/add")
+@handle_api_errors(error_prefix="Memory add failed")
 async def add_memory(
     request: MemoryAddRequest,
     current_user: User = Depends(get_current_user),
     orchestrator: UnifiedAIOrchestrator = Depends(get_orchestrator),
 ):
     """Add a memory to the user's memory store"""
-    try:
-        metadata = request.metadata or {}
-        metadata["category"] = request.category
-        
-        result = await orchestrator.memory.add_memory(
-            messages=request.content,
-            user_id=str(current_user.id),
-            agent_id="ava",
-            app_id="artisan",
-            metadata=metadata,
-        )
-        return {"success": True, "result": result}
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Memory add failed: {str(e)}"
-        )
+    metadata = request.metadata or {}
+    metadata["category"] = request.category
+    
+    result = await orchestrator.memory.add_memory(
+        messages=request.content,
+        user_id=str(current_user.id),
+        agent_id="ava",
+        app_id="artisan",
+        metadata=metadata,
+    )
+    return {"success": True, "result": result}
 
 
 @router.post("/memory/search")
+@handle_api_errors(error_prefix="Memory search failed")
 async def search_memory(
     request: MemorySearchRequest,
     current_user: User = Depends(get_current_user),
     orchestrator: UnifiedAIOrchestrator = Depends(get_orchestrator),
 ):
     """Search user's memories"""
-    try:
-        filters = {"category": request.category} if request.category else None
-        
-        results = await orchestrator.memory.search_memory(
-            query=request.query,
-            user_id=str(current_user.id),
-            agent_id="ava",
-            app_id="artisan",
-            limit=request.limit,
-            filters=filters,
-        )
-        return {"success": True, "count": len(results), "results": results}
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Memory search failed: {str(e)}"
-        )
+    filters = {"category": request.category} if request.category else None
+    
+    results = await orchestrator.memory.search_memory(
+        query=request.query,
+        user_id=str(current_user.id),
+        agent_id="ava",
+        app_id="artisan",
+        limit=request.limit,
+        filters=filters,
+    )
+    return {"success": True, "count": len(results), "results": results}
 
 
 @router.get("/memory/all")
+@handle_api_errors(error_prefix="Memory retrieval failed")
 async def get_all_memories(
     current_user: User = Depends(get_current_user),
     orchestrator: UnifiedAIOrchestrator = Depends(get_orchestrator),
 ):
     """Get all memories for the user"""
-    try:
-        results = await orchestrator.memory.get_all_memories(
-            user_id=str(current_user.id),
-            agent_id="ava",
-            app_id="artisan",
-        )
-        return {"success": True, "count": len(results), "results": results}
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Memory retrieval failed: {str(e)}"
-        )
+    results = await orchestrator.memory.get_all_memories(
+        user_id=str(current_user.id),
+        agent_id="ava",
+        app_id="artisan",
+    )
+    return {"success": True, "count": len(results), "results": results}
 
 
 @router.delete("/memory/{memory_id}")
+@handle_api_errors(error_prefix="Memory deletion failed")
 async def delete_memory(
     memory_id: str,
     current_user: User = Depends(get_current_user),
     orchestrator: UnifiedAIOrchestrator = Depends(get_orchestrator),
 ):
     """Delete a specific memory"""
-    try:
-        result = await orchestrator.memory.delete_memory(memory_id=memory_id)
-        return {"success": True, "result": result}
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Memory deletion failed: {str(e)}"
-        )
+    result = await orchestrator.memory.delete_memory(memory_id=memory_id)
+    return {"success": True, "result": result}
 
 
 # ============================================================================
@@ -385,75 +341,60 @@ async def delete_memory(
 # ============================================================================
 
 @router.post("/rag/ingest")
+@handle_api_errors(error_prefix="Document ingestion failed")
 async def ingest_documents(
     request: RAGIngestRequest,
     current_user: User = Depends(get_current_user),
     orchestrator: UnifiedAIOrchestrator = Depends(get_orchestrator),
 ):
     """Ingest documents into RAG system"""
-    try:
-        # Create user-specific index name
-        index_name = f"{request.index_name}_{current_user.id}"
-        
-        result = await orchestrator.rag.ingest_structured_data(
-            data=request.documents,
-            text_field="content",
-            index_name=index_name,
-        )
-        return {"success": True, "index_name": index_name, "document_count": len(request.documents)}
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Document ingestion failed: {str(e)}"
-        )
+    # Create user-specific index name
+    index_name = f"{request.index_name}_{current_user.id}"
+    
+    result = await orchestrator.rag.ingest_structured_data(
+        data=request.documents,
+        text_field="content",
+        index_name=index_name,
+    )
+    return {"success": True, "index_name": index_name, "document_count": len(request.documents)}
 
 
 @router.post("/rag/query")
+@handle_api_errors(error_prefix="RAG query failed")
 async def query_documents(
     request: RAGQueryRequest,
     current_user: User = Depends(get_current_user),
     orchestrator: UnifiedAIOrchestrator = Depends(get_orchestrator),
 ):
     """Query RAG system for relevant documents"""
-    try:
-        # Use user-specific index
-        index_name = f"{request.index_name}_{current_user.id}"
-        
-        result = await orchestrator.rag.query(
-            query=request.query,
-            index_name=index_name,
-            similarity_top_k=request.top_k,
-        )
-        return {"success": True, "result": result}
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"RAG query failed: {str(e)}"
-        )
+    # Use user-specific index
+    index_name = f"{request.index_name}_{current_user.id}"
+    
+    result = await orchestrator.rag.query(
+        query=request.query,
+        index_name=index_name,
+        similarity_top_k=request.top_k,
+    )
+    return {"success": True, "result": result}
 
 
 @router.post("/rag/chat")
+@handle_api_errors(error_prefix="RAG chat failed")
 async def chat_with_documents(
     request: RAGQueryRequest,
     current_user: User = Depends(get_current_user),
     orchestrator: UnifiedAIOrchestrator = Depends(get_orchestrator),
 ):
     """Chat with documents using RAG"""
-    try:
-        # Use user-specific index
-        index_name = f"{request.index_name}_{current_user.id}"
-        
-        result = await orchestrator.rag.chat(
-            message=request.query,
-            index_name=index_name,
-            session_id=str(current_user.id),
-        )
-        return {"success": True, "result": result}
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"RAG chat failed: {str(e)}"
-        )
+    # Use user-specific index
+    index_name = f"{request.index_name}_{current_user.id}"
+    
+    result = await orchestrator.rag.chat(
+        message=request.query,
+        index_name=index_name,
+        session_id=str(current_user.id),
+    )
+    return {"success": True, "result": result}
 
 
 # ============================================================================
@@ -461,16 +402,11 @@ async def chat_with_documents(
 # ============================================================================
 
 @router.get("/status")
+@handle_api_errors(error_prefix="Status check failed")
 async def get_system_status(
     current_user: User = Depends(get_current_user),
     orchestrator: UnifiedAIOrchestrator = Depends(get_orchestrator),
 ):
     """Get status of all AI systems"""
-    try:
-        status = await orchestrator.get_system_status()
-        return {"success": True, "status": status}
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Status check failed: {str(e)}"
-        )
+    status = await orchestrator.get_system_status()
+    return {"success": True, "status": status}

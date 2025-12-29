@@ -11,6 +11,11 @@
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import type { AgentRole } from '../autonomy/agents/types';
+import { 
+  getSafeCanvasContext, 
+  safeNumber, 
+  safeColor
+} from '../lib/renderSafety';
 
 // === Types ===
 
@@ -278,17 +283,15 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
   // Animation loop
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const ctx = getSafeCanvasContext(canvas);
+    if (!ctx || !canvas) return;
 
     const animate = () => {
       timeRef.current += 0.016; // ~60fps
       
-      // Clear canvas
-      ctx.fillStyle = '#0f172a'; // Dark blue-gray
-      ctx.fillRect(0, 0, width, height);
+      // Clear canvas with safe values
+      ctx.fillStyle = safeColor('#0f172a', '#0f172a'); // Dark blue-gray
+      ctx.fillRect(0, 0, safeNumber(width, 800), safeNumber(height, 600));
 
       // Draw background grid
       drawGrid(ctx);
@@ -298,10 +301,10 @@ export const NeuroCanvas: React.FC<NeuroCanvasProps> = ({
         const sourceNode = nodes.find(n => n.id === edge.source);
         const targetNode = nodes.find(n => n.id === edge.target);
         if (sourceNode && targetNode) {
-          // Update particles
+          // Update particles with safe progress
           edge.particles.forEach(particle => {
-            particle.progress += particle.speed;
-            if (particle.progress > 1) {
+            particle.progress = safeNumber(particle.progress + particle.speed, 0, 0, 1);
+            if (particle.progress >= 1) {
               particle.progress = 0;
             }
           });

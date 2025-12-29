@@ -20,12 +20,12 @@ const rules: PageChromeRule[] = [
     },
   },
   // Generate rules from PAGE_ROUTES
-  ...Object.entries(PAGE_ROUTES).map(([, route]) => ({
-    paths: route.paths,
+  ...Object.entries(PAGE_ROUTES).map(([, route]: [string, any]) => ({
+    paths: route.paths as string[],
     config: {
-      title: route.title,
-      subtitle: route.subtitle,
-      badges: [route.badge],
+      title: route.title as string,
+      subtitle: route.subtitle as string,
+      badges: route.badge ? [route.badge] : undefined,
     },
   })),
   // Advanced AI features

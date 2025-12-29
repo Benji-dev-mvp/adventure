@@ -1,78 +1,26 @@
 /**
  * Navigation & Page Configuration Factory
  *
- * Centralized definitions for routes, chrome, and commands.
- * Eliminates duplication across page chrome and command palette.
+ * Consolidated with routeDefinitions.js to eliminate duplication.
+ * This file now focuses on command palette and navigation-specific structures.
+ * All route metadata comes from routeDefinitions.js
  */
 
-export const PAGE_ROUTES = {
-  dashboard: {
-    paths: ['/dashboard'],
-    title: 'Dashboard',
-    subtitle: 'Executive signal and KPI pulse',
-    badge: { label: 'AI', color: 'cyan' },
-  },
-  campaigns: {
-    paths: ['/campaigns'],
-    title: 'Campaigns',
-    subtitle: 'Campaign builder and orchestration',
-    badge: { label: 'Ops', color: 'blue' },
-  },
-  leads: {
-    paths: ['/leads'],
-    title: 'Leads',
-    subtitle: 'Lead workbench and queues',
-    badge: { label: 'Ops', color: 'blue' },
-  },
-  leadDatabase: {
-    paths: ['/lead-database', '/advanced-lead-database'],
-    title: 'Lead Database',
-    subtitle: 'Unified lead intelligence',
-    badge: { label: 'AI', color: 'cyan' },
-  },
-  templates: {
-    paths: ['/templates', '/email-templates'],
-    title: 'Templates',
-    subtitle: 'Reusable assets and playbooks',
-    badge: { label: 'AI', color: 'cyan' },
-  },
-  analytics: {
-    paths: ['/analytics'],
-    title: 'Analytics',
-    subtitle: 'Full-funnel performance analytics',
-    badge: { label: 'AI', color: 'cyan' },
-  },
-  ai: {
-    paths: ['/ai-assistant', '/ai-assistant-advanced'],
-    title: 'AI Assistant',
-    subtitle: 'Operator copilot and actions',
-    badge: { label: 'AI', color: 'cyan' },
-  },
-  ava: {
-    paths: ['/ava'],
-    title: 'Ava AI BDR',
-    subtitle: 'Autonomous BDR control surface',
-    badge: { label: 'Pro', color: 'blue' },
-  },
-  integrations: {
-    paths: ['/integrations'],
-    title: 'Integrations',
-    subtitle: 'Connected systems and sync status',
-    badge: { label: 'Live', color: 'green' },
-  },
-  settings: {
-    paths: ['/settings'],
-    title: 'Settings',
-    subtitle: 'Workspace configuration',
-    badge: { label: 'Admin', color: 'purple' },
-  },
-  admin: {
-    paths: ['/admin'],
-    title: 'Enterprise Admin',
-    subtitle: 'Access, audit, and controls',
-    badge: { label: 'Enterprise', color: 'amber' },
-  },
-};
+import { ROUTE_DEFINITIONS } from './routeDefinitions';
+
+/**
+ * PAGE_ROUTES - Auto-generated from ROUTE_DEFINITIONS
+ * Maintains backward compatibility with existing imports
+ */
+export const PAGE_ROUTES = Object.entries(ROUTE_DEFINITIONS).reduce((acc, [key, route]) => {
+  acc[key] = {
+    paths: [route.path, ...(route.altPaths || [])],
+    title: route.label,
+    subtitle: route.description,
+    badge: route.badge,
+  };
+  return acc;
+}, {});
 
 export const NAVIGATION_ITEMS = [
   {

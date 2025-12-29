@@ -36,6 +36,14 @@ from app.api.routes.playbooks import router as playbooks_router  # New enhanced 
 from app.api.routes.tasks import router as tasks_router  # NEW
 from app.api.routes.campaign_intelligence import router as campaign_intelligence_router  # Campaign business logic
 from app.api.routes.ai_advanced import router as ai_advanced_router  # Advanced AI integrations
+
+# Import new platform layer routers
+from app.api.routes.admin_api_keys import router as admin_api_keys_router
+from app.api.routes.admin_webhooks import router as admin_webhooks_router
+from app.api.routes.admin_audit_log import router as admin_audit_log_router
+from app.api.routes.kapa import router as kapa_router
+from app.api.routes.llm_workflows import router as llm_workflows_router
+
 from app.core.db import init_db, seed_if_empty, engine
 from app.core.security import SecurityHeadersMiddleware, RequestSizeLimitMiddleware, RequestIDMiddleware, RateLimitMiddleware
 from app.core.cache import cache
@@ -154,6 +162,7 @@ def on_startup():
     logger.info("✅ Application ready to serve requests")
 
 
+
 @app.on_event("shutdown")
 def on_shutdown():
     logger.info("🔄 Application shutting down gracefully...")
@@ -182,6 +191,13 @@ app.include_router(backup_router, tags=["backup"])
 app.include_router(compliance_router, tags=["compliance"])
 app.include_router(deliverability_router, prefix="/api/deliverability", tags=["deliverability"])
 app.include_router(autonomous_router, prefix="/api/autonomous", tags=["autonomous-ai"])
+
+# Include new platform layer routers
+app.include_router(admin_api_keys_router)  # Admin API key management
+app.include_router(admin_webhooks_router)  # Admin webhook management
+app.include_router(admin_audit_log_router)  # Admin audit log access
+app.include_router(kapa_router)  # Kapa.ai AI assistant
+app.include_router(llm_workflows_router)  # LLM workflow orchestration
 
 # Include new feature routers
 app.include_router(multichannel_router, tags=["multichannel"])

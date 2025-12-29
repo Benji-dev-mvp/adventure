@@ -517,7 +517,7 @@ const Dashboard = () => {
                   <div className="space-y-3">
                     {recentActivity.map((activity, index) => (
                       <div
-                        key={index}
+                        key={`${activity.lead}-${activity.company}-${activity.time}`}
                         className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                       >
                         <div
@@ -570,7 +570,7 @@ const Dashboard = () => {
                 <div className="space-y-3">
                   {activeCampaigns.map((campaign, index) => (
                     <div
-                      key={index}
+                      key={`${campaign.name}-${campaign.status}-${campaign.leads}`}
                       className="p-4 rounded-lg border border-gray-200 dark:border-white/10 dark:bg-white/5 hover:border-accent-300 transition-colors"
                     >
                       <div className="flex items-start justify-between mb-3">
@@ -719,7 +719,7 @@ const Dashboard = () => {
                 <div className="space-y-3">
                   {aiRecommendations.map((rec, index) => (
                     <div
-                      key={index}
+                      key={`${rec.title}-${rec.action}`}
                       className="p-4 rounded-lg border border-gray-200 dark:border-white/10 dark:bg-white/5"
                     >
                       <div className="flex items-start justify-between mb-2">

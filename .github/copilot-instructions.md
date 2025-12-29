@@ -201,6 +201,22 @@ const metrics = getMetricsForPlan(plan); // Fully structured metrics
 2. **New navigation route?** → Add to `PAGE_ROUTES` in navigationFactory (auto-generates commands + chrome)
 3. **New command/action?** → Add to `QUICK_ACTIONS` in navigationFactory (shared across palette)
 
+### Enforcement Rules for Copilot (Do/Don’t)
+
+- ✅ Do use factory exports: `getMetricsForPlan`, `PAGE_ROUTES`, `buildCommandsList`.
+- ✅ Do update only the factory file when adding metrics/routes/actions.
+- ❌ Don’t hardcode repeated structures in pages/hooks/components.
+- ❌ Don’t diverge definitions between files; factories are the single source.
+
+### Navigation Model Guidance
+
+- Sidebar/nav sections live in [src/config/navConfig.js](../src/config/navConfig.js) for plan/admin gating and grouping.
+- Commands + page chrome live in [src/config/navigationFactory.js](../src/config/navigationFactory.js); this is authoritative for palette/chrome.
+- When adding a new page:
+  - Add route metadata in `PAGE_ROUTES` (factory).
+  - If it needs to appear in sidebar, add it to `navSections` in `navConfig.js` once.
+- Copilot: prefer reusing `PAGE_ROUTES`/`NAVIGATION_ITEMS` in new code; avoid duplicating text labels/paths.
+
 ## 🧪 Testing
 
 ```bash

@@ -252,6 +252,13 @@ black app           # Format code
 isort app           # Sort imports
 ```
 
+### GitHub Copilot Setup
+
+- Ensure the GitHub Copilot and Copilot Chat extensions are installed and you’re signed in.
+- Workspace settings enable inline suggestions (see `.vscode/settings.json`).
+- Recommended: turn on Inline Suggestions and accept with Tab.
+- For repo-specific guidance, see `.github/copilot-instructions.md`.
+
 ## 📚 Documentation
 
 All documentation has been organized for easy access:

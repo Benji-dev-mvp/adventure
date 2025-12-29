@@ -57,7 +57,7 @@ export function GlassCard({
   blur = 'xl',
   radius = 'lg',
   padding = 'p-6',
-  className='',
+  className = '',
   hover = true,
   tilt = false,
   glow = false,
@@ -138,7 +138,7 @@ GlassCard.propTypes = {
 /**
  * GlassCardHeader - Header section for glass cards
  */
-export function GlassCardHeader({ children, className='', ...props }) {
+export function GlassCardHeader({ children, className = '', ...props }) {
   return (
     <div className={`mb-4 ${className}`} {...props}>
       {children}
@@ -154,7 +154,7 @@ GlassCardHeader.propTypes = {
 /**
  * GlassCardTitle - Title for glass cards
  */
-export function GlassCardTitle({ children, className='', as: Component = 'h3', ...props }) {
+export function GlassCardTitle({ children, className = '', as: Component = 'h3', ...props }) {
   return (
     <Component className={`text-lg font-semibold text-white ${className}`} {...props}>
       {children}
@@ -171,7 +171,7 @@ GlassCardTitle.propTypes = {
 /**
  * GlassCardDescription - Description text for glass cards
  */
-export function GlassCardDescription({ children, className='', ...props }) {
+export function GlassCardDescription({ children, className = '', ...props }) {
   return (
     <p className={`text-sm text-white/60 mt-1 ${className}`} {...props}>
       {children}
@@ -187,7 +187,7 @@ GlassCardDescription.propTypes = {
 /**
  * GlassCardContent - Main content area
  */
-export function GlassCardContent({ children, className='', ...props }) {
+export function GlassCardContent({ children, className = '', ...props }) {
   return (
     <div className={className} {...props}>
       {children}
@@ -203,7 +203,7 @@ GlassCardContent.propTypes = {
 /**
  * GlassCardFooter - Footer section
  */
-export function GlassCardFooter({ children, className='', ...props }) {
+export function GlassCardFooter({ children, className = '', ...props }) {
   return (
     <div className={`mt-6 pt-4 border-t border-white/10 ${className}`} {...props}>
       {children}
@@ -223,7 +223,7 @@ export function FeatureCard({
   icon,
   title,
   description,
-  className='',
+  className = '',
   variant = 'default',
   ...props
 }) {
@@ -264,7 +264,7 @@ export function StatCard({
   icon,
   trend,
   trendDirection = 'up',
-  className='',
+  className = '',
   ...props
 }) {
   const trendColors = {
@@ -308,7 +308,7 @@ StatCard.propTypes = {
 /**
  * GlassModal - Modal with glass effect
  */
-export function GlassModal({ isOpen, onClose, children, title, className='', ...props }) {
+export function GlassModal({ isOpen, onClose, children, title, className = '', ...props }) {
   if (!isOpen) return null;
 
   const handleKeyDown = e => {

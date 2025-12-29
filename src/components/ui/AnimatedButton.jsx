@@ -5,7 +5,7 @@ const AnimatedButton = ({
   children,
   onClick,
   variant = 'gradient',
-  className='',
+  className = '',
   disabled = false,
   ...props
 }) => {

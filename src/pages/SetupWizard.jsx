@@ -305,9 +305,7 @@ const Step3Solution = ({ selectedSolution, onSelect }) => (
     className="max-w-4xl mx-auto"
   >
     <div className="text-center mb-8">
-      <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-        Choose Your Solution
-      </h2>
+      <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Choose Your Solution</h2>
       <p className="text-gray-500 dark:text-gray-400">Select the plan that best fits your team</p>
     </div>
 

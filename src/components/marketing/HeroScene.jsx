@@ -274,7 +274,7 @@ const AnalyticsPreview = () => (
 /**
  * FloatingMetric Component
  */
-const FloatingMetric = ({ icon: Icon, label, value, className='' }) => (
+const FloatingMetric = ({ icon: Icon, label, value, className = '' }) => (
   <div
     className={`bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-gray-700 animate-float ${className}`}
   >

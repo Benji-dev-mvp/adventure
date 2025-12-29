@@ -263,9 +263,7 @@ const VisualOutcomesShowcase = () => {
             </div>
           </div>
           <div className="text-center p-4 bg-white dark:bg-slate-800 rounded-lg border-2 border-slate-200 dark:border-slate-700">
-            <div className="text-lg font-bold text-orange-600 dark:text-orange-400 mb-1">
-              98.4%
-            </div>
+            <div className="text-lg font-bold text-orange-600 dark:text-orange-400 mb-1">98.4%</div>
             <div className="text-sm text-slate-600 dark:text-slate-400">Customer Satisfaction</div>
           </div>
         </div>

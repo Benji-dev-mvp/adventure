@@ -308,9 +308,7 @@ export const PipelineHealthScore = () => {
                   </div>
                   <p className="text-sm text-gray-600">{item.description}</p>
                 </div>
-                <div className={`text-lg font-bold ${getScoreColor(item.score)}`}>
-                  {item.score}
-                </div>
+                <div className={`text-lg font-bold ${getScoreColor(item.score)}`}>{item.score}</div>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div

@@ -20,7 +20,7 @@ export function TypewriterText({
   loop = false,
   cursor = true,
   cursorChar = '|',
-  className='',
+  className = '',
   as: Component = 'span',
   ...props
 }) {
@@ -74,7 +74,7 @@ export function GradientText({
   children,
   gradient = 'cyber',
   animate = true,
-  className='',
+  className = '',
   as: Component = 'span',
   ...props
 }) {
@@ -122,7 +122,7 @@ export function GlowText({
   color = 'cyan',
   intensity = 1,
   pulse = false,
-  className='',
+  className = '',
   as: Component = 'span',
   ...props
 }) {
@@ -184,7 +184,7 @@ export function RevealText({
   direction = 'up',
   delay = 0,
   duration = 500,
-  className='',
+  className = '',
   as: Component = 'div',
   ...props
 }) {
@@ -258,7 +258,7 @@ export function SplitText({
   text,
   staggerDelay = 50,
   delay = 0,
-  className='',
+  className = '',
   wordClassName = '',
   as: Component = 'div',
   ...props
@@ -322,7 +322,7 @@ export function CountUpText({
   decimals = 0,
   prefix = '',
   suffix = '',
-  className='',
+  className = '',
   as: Component = 'span',
   ...props
 }) {
@@ -367,7 +367,7 @@ export function HighlightText({
   children,
   color = 'cyan',
   active = true,
-  className='',
+  className = '',
   as: Component = 'span',
   ...props
 }) {
@@ -419,7 +419,7 @@ HighlightText.propTypes = {
 export function HeadingWithLine({
   children,
   lineColor = 'gradient',
-  className='',
+  className = '',
   as: Component = 'h2',
   ...props
 }) {

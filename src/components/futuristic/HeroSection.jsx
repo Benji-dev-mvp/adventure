@@ -23,7 +23,7 @@ export function HeroSection({
   backgroundVariant = 'default',
   showFloatingParticles = true,
   showMouseGlow = true,
-  className='',
+  className = '',
   children,
 }) {
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -186,7 +186,7 @@ HeroWithCards.propTypes = {
 /**
  * HeroMinimal - Minimal hero for landing pages
  */
-export function HeroMinimal({ title, subtitle, cta, className='' }) {
+export function HeroMinimal({ title, subtitle, cta, className = '' }) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
@@ -255,7 +255,7 @@ export function HeroSplit({
   secondaryCTA,
   visual,
   reversed = false,
-  className='',
+  className = '',
 }) {
   return (
     <ParticleBackground variant="minimal" className={`min-h-screen ${className}`}>

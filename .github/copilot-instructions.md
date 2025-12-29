@@ -159,17 +159,17 @@ clean_email = sanitize_text(user_email_input)
 
 ## 📝 Conventions & Patterns
 
-| Pattern          | Location                                                          | Example                                                     |
-| ---------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- |
-| **Storage**      | [src/lib/storage.js](../src/lib/storage.js)                       | `storage.set('artisan_campaign_draft', data)`               |
-| **API Routes**   | [backend/app/api/routes/](../backend/app/api/routes/)             | Domain-per-file: `campaigns.py`, `leads.py`, `ai.py`        |
-| **Lazy Pages**   | [src/App.jsx](../src/App.jsx)                                     | `const Dashboard = lazy(() => import('./pages/Dashboard'))` |
-| **Path Aliases** | [vite.config.js](../vite.config.js#L8-L16)                        | `@/lib`, `@components`, `@pages`, `@hooks`                  |
-| **Query Keys**   | [src/lib/queryClient.js](../src/lib/queryClient.js)               | `queryKeys.campaigns.detail(id)` for cache invalidation     |
-| **Models**       | [backend/app/models/schemas.py](../backend/app/models/schemas.py) | SQLModel + Pydantic (table=True for DB, False for schemas)  |
-| **Logging**      | [backend/app/core/config.py](../backend/app/core/config.py)       | Structured JSON via JsonFormatter; set `LOG_LEVEL` env var  |
-| **Metrics** | [src/config/metricsFactory.js](../src/config/metricsFactory.js) | Plan-based metrics + reusable sparkline templates |
-| **Navigation** | [src/config/navigationFactory.js](../src/config/navigationFactory.js) | Routes, commands, page chrome (single source of truth) |
+| Pattern          | Location                                                              | Example                                                     |
+| ---------------- | --------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **Storage**      | [src/lib/storage.js](../src/lib/storage.js)                           | `storage.set('artisan_campaign_draft', data)`               |
+| **API Routes**   | [backend/app/api/routes/](../backend/app/api/routes/)                 | Domain-per-file: `campaigns.py`, `leads.py`, `ai.py`        |
+| **Lazy Pages**   | [src/App.jsx](../src/App.jsx)                                         | `const Dashboard = lazy(() => import('./pages/Dashboard'))` |
+| **Path Aliases** | [vite.config.js](../vite.config.js#L8-L16)                            | `@/lib`, `@components`, `@pages`, `@hooks`                  |
+| **Query Keys**   | [src/lib/queryClient.js](../src/lib/queryClient.js)                   | `queryKeys.campaigns.detail(id)` for cache invalidation     |
+| **Models**       | [backend/app/models/schemas.py](../backend/app/models/schemas.py)     | SQLModel + Pydantic (table=True for DB, False for schemas)  |
+| **Logging**      | [backend/app/core/config.py](../backend/app/core/config.py)           | Structured JSON via JsonFormatter; set `LOG_LEVEL` env var  |
+| **Metrics**      | [src/config/metricsFactory.js](../src/config/metricsFactory.js)       | Plan-based metrics + reusable sparkline templates           |
+| **Navigation**   | [src/config/navigationFactory.js](../src/config/navigationFactory.js) | Routes, commands, page chrome (single source of truth)      |
 
 ## 🚫 Avoiding Duplication (Critical!)
 
@@ -190,11 +190,13 @@ const metrics = getMetricsForPlan(plan); // Fully structured metrics
 ```
 
 **Key Factory Modules:**
+
 - [src/config/metricsFactory.js](../src/config/metricsFactory.js) — Unified `PLAN_METRICS` object + template helpers → ~96% duplication eliminated
 - [src/config/navigationFactory.js](../src/config/navigationFactory.js) — Single `PAGE_ROUTES`, `NAVIGATION_ITEMS`, `QUICK_ACTIONS` → powers command palette + page chrome
 - [src/config/pageChrome.ts](../src/config/pageChrome.ts) — Now imports from navigationFactory → reduced duplication
 
 **When Adding New Content:**
+
 1. **New plan-specific metric?** → Add to `PLAN_METRICS[plan]` in metricsFactory
 2. **New navigation route?** → Add to `PAGE_ROUTES` in navigationFactory (auto-generates commands + chrome)
 3. **New command/action?** → Add to `QUICK_ACTIONS` in navigationFactory (shared across palette)

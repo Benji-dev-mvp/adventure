@@ -17,7 +17,7 @@ function Orb({
   opacity = 0.3,
   animate = true,
   duration = 20,
-  className='',
+  className = '',
 }) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -74,7 +74,7 @@ Orb.propTypes = {
 export function ParticleBackground({
   variant = 'default',
   children,
-  className='',
+  className = '',
   overlay = true,
   noise = true,
   ...props
@@ -174,7 +174,7 @@ export function FloatingParticles({
   color = 'white',
   minSize = 1,
   maxSize = 3,
-  className='',
+  className = '',
 }) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -239,7 +239,7 @@ export function MouseFollowGlow({
   color = 'cyan',
   opacity = 0.15,
   blur = 100,
-  className='',
+  className = '',
 }) {
   const containerRef = useRef(null);
   const { position } = useMousePosition();
@@ -297,7 +297,7 @@ MouseFollowGlow.propTypes = {
 /**
  * GradientMesh - Animated mesh gradient background
  */
-export function GradientMesh({ className='' }) {
+export function GradientMesh({ className = '' }) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
@@ -330,7 +330,7 @@ GradientMesh.propTypes = {
 /**
  * StarField - Animated star background
  */
-export function StarField({ count = 100, className='' }) {
+export function StarField({ count = 100, className = '' }) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   const stars = useMemo(() => {

@@ -219,9 +219,7 @@ export const CampaignsTab = ({ onNavigateToCampaign }) => {
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs text-gray-600 dark:text-gray-400">Sent</p>
-                  <p className="text-lg font-bold text-gray-900 dark:text-white">
-                    {campaign.sent}
-                  </p>
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">{campaign.sent}</p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs text-gray-600 dark:text-gray-400">Open Rate</p>

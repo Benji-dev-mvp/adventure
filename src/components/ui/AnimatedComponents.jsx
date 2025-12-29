@@ -75,7 +75,7 @@ export const LiveIndicator = ({ label = 'LIVE', color = 'red' }) => {
 };
 
 // Animated Progress Bar
-export const AnimatedProgress = ({ value, color = 'cyan', label, className='' }) => {
+export const AnimatedProgress = ({ value, color = 'cyan', label, className = '' }) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -192,7 +192,7 @@ export const AnimatedStatCard = ({
   value,
   trend,
   gradient = 'from-cyan-500 to-blue-600',
-  className='',
+  className = '',
 }) => {
   return (
     <div

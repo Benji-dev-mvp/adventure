@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
@@ -130,7 +130,7 @@ export default function HealthRoutesPage() {
       </div>
 
       <div className="grid grid-cols-4 gap-4 mb-6">
-        <Card>
+        <Card className="">
           <CardContent className="pt-6">
             <div className="text-center">
               <div className="text-3xl font-bold text-gray-900 dark:text-white">{stats.total}</div>
@@ -139,7 +139,7 @@ export default function HealthRoutesPage() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="">
           <CardContent className="pt-6">
             <div className="text-center">
               <div className="text-3xl font-bold text-green-600">{stats.success}</div>
@@ -148,7 +148,7 @@ export default function HealthRoutesPage() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="">
           <CardContent className="pt-6">
             <div className="text-center">
               <div className="text-3xl font-bold text-red-600">{stats.error}</div>
@@ -157,7 +157,7 @@ export default function HealthRoutesPage() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="">
           <CardContent className="pt-6">
             <div className="text-center">
               <div className="text-3xl font-bold text-gray-400">{stats.pending}</div>
@@ -168,9 +168,9 @@ export default function HealthRoutesPage() {
       </div>
 
       <Card className="mb-6">
-        <CardHeader>
+        <CardHeader className="">
           <div className="flex items-center justify-between">
-            <CardTitle>Actions</CardTitle>
+            <CardTitle className="">Actions</CardTitle>
             <button
               onClick={runAllTests}
               disabled={testing}
@@ -182,13 +182,13 @@ export default function HealthRoutesPage() {
         </CardHeader>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Route Status</CardTitle>
+      <Card className="">
+        <CardHeader className="">
+          <CardTitle className="">Route Status</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="">
           <div className="space-y-2">
-            {routes.map((route, idx) => (
+            {routes.map(route => (
               <div
                 key={route.path}
                 className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"

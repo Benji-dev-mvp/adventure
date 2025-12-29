@@ -12,6 +12,9 @@ import React, { useState, useMemo } from 'react';
 import { Outlet, useLocation, NavLink } from 'react-router-dom';
 import { cn } from '../../lib/utils';
 import { getFilteredSections, getEmphasizedSections, navSections } from '@/config/navConfig';
+import { resolvePageChrome } from '@/config/pageChrome';
+import { OperatorShell } from '@/components/layout/OperatorShell';
+import { colors } from '@/theme/tokens';
 import { useTenant } from '@/contexts/TenantContext';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useNavAnalytics } from '@/hooks/useNavAnalytics';
@@ -36,13 +39,20 @@ import WorkspaceSwitcher from './WorkspaceSwitcher';
  */
 const MicroKpi = ({ label, value, trend }) => (
   <div className="flex items-center gap-1.5 text-xs">
-    <span className="text-slate-500">{label}:</span>
-    <span className="font-medium text-white">{value}</span>
+    <span style={{ color: colors.text.tertiary }}>{label}:</span>
+    <span className="font-medium" style={{ color: colors.text.primary }}>
+      {value}
+    </span>
     {trend && (
       <span
-        className={
-          trend === 'up' ? 'text-emerald-400' : trend === 'down' ? 'text-red-400' : 'text-slate-500'
-        }
+        style={{
+          color:
+            trend === 'up'
+              ? colors.semantic.success
+              : trend === 'down'
+                ? colors.semantic.danger
+                : colors.text.tertiary,
+        }}
       >
         {trend === 'up' ? '↑' : trend === 'down' ? '↓' : '–'}
       </span>
@@ -96,13 +106,18 @@ const ContextStrip = ({ currentSection, currentItem }) => {
   }, [currentSection]);
 
   return (
-    <div className="h-10 border-b border-slate-800 bg-slate-950/50 backdrop-blur-sm flex items-center px-6 gap-3">
+    <div
+      className="h-10 border-b backdrop-blur-sm flex items-center px-6 gap-3"
+      style={{ borderColor: colors.border.primary, backgroundColor: colors.bg.secondary }}
+    >
       {/* Demo Org indicator */}
       {isDemo && (
         <div className="flex items-center gap-2 text-xs">
-          <span className="text-slate-500">Demo:</span>
-          <span className="font-medium text-white">{tenant?.name || 'Demo Organization'}</span>
-          <span className="text-slate-600">—</span>
+          <span style={{ color: colors.text.tertiary }}>Demo:</span>
+          <span className="font-medium" style={{ color: colors.text.primary }}>
+            {tenant?.name || 'Demo Organization'}
+          </span>
+          <span style={{ color: colors.text.tertiary }}>—</span>
         </div>
       )}
 
@@ -110,11 +125,13 @@ const ContextStrip = ({ currentSection, currentItem }) => {
       <div className="flex items-center gap-2 text-sm">
         {currentSection && (
           <>
-            <span className="text-slate-500">{currentSection.label}</span>
+            <span style={{ color: colors.text.tertiary }}>{currentSection.label}</span>
             {currentItem && (
               <>
-                <ChevronRight size={14} className="text-slate-600" />
-                <span className="text-slate-300 font-medium">{currentItem.label}</span>
+                <ChevronRight size={14} style={{ color: colors.text.secondary }} />
+                <span className="font-medium" style={{ color: colors.text.primary }}>
+                  {currentItem.label}
+                </span>
               </>
             )}
           </>
@@ -123,7 +140,10 @@ const ContextStrip = ({ currentSection, currentItem }) => {
 
       {/* Micro-KPIs */}
       {microKpis.length > 0 && (
-        <div className="hidden md:flex items-center gap-4 ml-4 pl-4 border-l border-slate-800">
+        <div
+          className="hidden md:flex items-center gap-4 ml-4 pl-4 border-l"
+          style={{ borderColor: colors.border.primary }}
+        >
           {microKpis.map((kpi, idx) => (
             <MicroKpi key={idx} {...kpi} />
           ))}
@@ -250,23 +270,48 @@ const PostLoginShell = ({ children }) => {
     return { currentSection: null, currentItem: null };
   }, [location.pathname]);
 
+  const pageChrome = useMemo(
+    () => resolvePageChrome(location.pathname, currentItem?.label),
+    [location.pathname, currentItem?.label]
+  );
+
+  const outletContent = children || <Outlet />;
+  const content =
+    pageChrome.mode === 'plain' ? (
+      outletContent
+    ) : (
+      <OperatorShell scaffold={pageChrome.scaffold} className="min-h-full">
+        {outletContent}
+      </OperatorShell>
+    );
+
   const handleNavClick = (item, sectionId) => {
     trackNavClick(item.id, sectionId, item.path);
     setMobileMenuOpen(false);
   };
 
   return (
-    <div className="h-screen flex bg-slate-950 text-slate-100 overflow-hidden">
+    <div
+      className="h-screen flex overflow-hidden"
+      style={{ backgroundColor: colors.bg.primary, color: colors.text.primary }}
+    >
       {/* Sidebar */}
       <aside
         className={cn(
-          'hidden md:flex flex-col border-r border-slate-800 bg-slate-950/80 backdrop-blur-xl',
+          'hidden md:flex flex-col backdrop-blur-xl',
           !prefersReducedMotion && 'transition-all duration-300',
           sidebarCollapsed ? 'w-16' : 'w-64'
         )}
+        style={{
+          backgroundColor: colors.bg.secondary,
+          borderColor: colors.border.primary,
+        }}
       >
         {/* Brand Header */}
-        <div className="h-14 px-4 flex items-center gap-3 border-b border-slate-800">
+        <div
+          className="h-14 px-4 flex items-center gap-3 border-b"
+          style={{ borderColor: colors.border.primary }}
+        >
           <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-cyan-500 to-violet-500 flex items-center justify-center flex-shrink-0">
             <Sparkles className="text-white" size={16} />
           </div>
@@ -317,7 +362,11 @@ const PostLoginShell = ({ children }) => {
         {/* Collapse Toggle */}
         <button
           onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-          className="h-10 border-t border-slate-800 flex items-center justify-center text-slate-500 hover:text-white hover:bg-slate-900/50 transition-colors"
+          className="h-10 border-t flex items-center justify-center transition-colors"
+          style={{
+            borderColor: colors.border.primary,
+            color: colors.text.secondary,
+          }}
         >
           <ChevronRight
             className={cn(
@@ -330,13 +379,20 @@ const PostLoginShell = ({ children }) => {
       </aside>
 
       {/* Main Area */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div
+        className="flex-1 flex flex-col overflow-hidden"
+        style={{ backgroundColor: colors.bg.primary }}
+      >
         {/* Header */}
-        <header className="h-14 border-b border-slate-800 bg-slate-950/80 backdrop-blur-xl flex items-center px-4 gap-4">
+        <header
+          className="h-14 border-b backdrop-blur-xl flex items-center px-4 gap-4"
+          style={{ borderColor: colors.border.primary, backgroundColor: colors.bg.secondary }}
+        >
           {/* Mobile menu toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-slate-800 transition-colors"
+            className="md:hidden p-2 rounded-lg transition-colors"
+            style={{ backgroundColor: colors.bg.surface, color: colors.text.secondary }}
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -351,31 +407,43 @@ const PostLoginShell = ({ children }) => {
           {/* Search / Command Palette */}
           <button
             onClick={() => setCommandPaletteOpen(true)}
-            className="flex items-center gap-2 px-3 py-1.5 text-sm text-slate-400 bg-slate-900/50 hover:bg-slate-900 border border-slate-800 rounded-lg transition-colors"
+            className="flex items-center gap-2 px-3 py-1.5 text-sm border rounded-lg transition-colors"
+            style={{
+              color: colors.text.secondary,
+              backgroundColor: colors.bg.surface,
+              borderColor: colors.border.secondary,
+            }}
           >
             <Search size={14} />
             <span className="hidden sm:inline">Search...</span>
-            <kbd className="hidden sm:flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium bg-slate-800 border border-slate-700 rounded">
+            <kbd
+              className="hidden sm:flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium border rounded"
+              style={{
+                backgroundColor: colors.bg.tertiary,
+                borderColor: colors.border.secondary,
+                color: colors.text.secondary,
+              }}
+            >
               <Command size={10} />K
             </kbd>
           </button>
 
           {/* Notifications */}
-          <button className="p-2 rounded-lg hover:bg-slate-800 transition-colors relative">
-            <Bell size={18} className="text-slate-400" />
+          <button
+            className="p-2 rounded-lg transition-colors relative"
+            style={{ color: colors.text.secondary, backgroundColor: colors.bg.surface }}
+          >
+            <Bell size={18} />
             <span className="absolute top-1 right-1 w-2 h-2 bg-cyan-500 rounded-full" />
           </button>
 
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg hover:bg-slate-800 transition-colors"
+            className="p-2 rounded-lg transition-colors"
+            style={{ color: colors.text.secondary, backgroundColor: colors.bg.surface }}
           >
-            {theme === 'dark' ? (
-              <Sun size={18} className="text-slate-400" />
-            ) : (
-              <Moon size={18} className="text-slate-400" />
-            )}
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
           {/* User */}
@@ -386,7 +454,10 @@ const PostLoginShell = ({ children }) => {
 
         {/* Optional Top Bar (section tabs) */}
         {showTopBar && (
-          <div className="h-12 border-b border-slate-800 bg-slate-950/60 backdrop-blur-sm flex items-center px-6 gap-1 overflow-x-auto">
+          <div
+            className="h-12 border-b backdrop-blur-sm flex items-center px-6 gap-1 overflow-x-auto"
+            style={{ borderColor: colors.border.primary, backgroundColor: colors.bg.secondary }}
+          >
             {sections.map(section => {
               const isActive = section.items.some(
                 item =>
@@ -403,12 +474,14 @@ const PostLoginShell = ({ children }) => {
                     }
                   }}
                   className={cn(
-                    'px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap',
-                    !prefersReducedMotion && 'transition-all',
-                    isActive
-                      ? 'bg-slate-800 text-white border border-slate-700'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/50'
+                    'px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap border',
+                    !prefersReducedMotion && 'transition-all'
                   )}
+                  style={{
+                    backgroundColor: isActive ? colors.bg.surface : colors.bg.primary,
+                    color: isActive ? colors.text.primary : colors.text.secondary,
+                    borderColor: colors.border.primary,
+                  }}
                 >
                   {section.label}
                 </button>
@@ -421,7 +494,9 @@ const PostLoginShell = ({ children }) => {
         <ContextStrip currentSection={currentSection} currentItem={currentItem} />
 
         {/* Content */}
-        <main className="flex-1 overflow-auto">{children || <Outlet />}</main>
+        <main className="flex-1 overflow-auto" style={{ backgroundColor: colors.bg.primary }}>
+          {content}
+        </main>
       </div>
 
       {/* Mobile Menu Overlay */}

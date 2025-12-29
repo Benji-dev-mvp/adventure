@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import DashboardLayout from '../components/layout/DashboardLayout';
+import { PageScaffold } from '../components/layout/OperatorShell';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
@@ -84,7 +84,15 @@ const LeadDatabase = () => {
   ];
 
   return (
-    <DashboardLayout title="Lead Database" subtitle="Access 300M+ verified B2B contacts">
+    <PageScaffold
+      config={{
+        title: 'Lead Database',
+        subtitle: 'Access 300M+ verified B2B contacts',
+        badges: [{ label: 'Database', color: 'blue' }],
+        showInspector: true,
+        showActivityPanel: false,
+      }}
+    >
       <Tabs defaultValue="search" className="space-y-6">
         <TabsList className="w-full flex-wrap">
           <TabsTrigger value="search">Search Leads</TabsTrigger>
@@ -387,7 +395,7 @@ const LeadDatabase = () => {
           <ContactWaterfall />
         </div>
       </div>
-    </DashboardLayout>
+    </PageScaffold>
   );
 };
 

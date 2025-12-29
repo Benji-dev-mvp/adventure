@@ -413,14 +413,32 @@ const NodeDetailPanel: React.FC<{ node: DataNode | null; onClose: () => void }> 
 // === Main Page ===
 
 export const ImmersivePage: React.FC = () => {
-  const [nodes] = useState<DataNode[]>(() => generateNodes());
-  const [dimensions, setDimensions] = useState(DIMENSIONS);
+  const [nodes] = useState<DataNode[]>(() => {
+    try {
+      const generated = generateNodes();
+      return Array.isArray(generated) ? generated : [];
+    } catch {
+      return [];
+    }
+  });
+  const [dimensions, setDimensions] = useState<Dimension[]>(DIMENSIONS || []);
   const [focusedNode, setFocusedNode] = useState<DataNode | null>(null);
   const [ambientMode, setAmbientMode] = useState(true);
-  const [insights] = useState(AMBIENT_INSIGHTS);
+  const [insights] = useState<Insight[]>(AMBIENT_INSIGHTS || []);
+
+  // Safe data checks
+  const safeNodes = Array.isArray(nodes) ? nodes : [];
+  const safeDimensions = Array.isArray(dimensions) ? dimensions : [];
+  const safeInsights = Array.isArray(insights) ? insights : [];
 
   const toggleDimension = (id: string) => {
-    setDimensions(dims => dims.map(d => (d.id === id ? { ...d, active: !d.active } : d)));
+    setDimensions(dims => {
+      if (!Array.isArray(dims)) return [];
+      return dims.map(d => {
+        if (!d || !d.id) return d;
+        return d.id === id ? { ...d, active: !d.active } : d;
+      });
+    });
   };
 
   return (
@@ -457,16 +475,35 @@ export const ImmersivePage: React.FC = () => {
 
       {/* Dimension Controls */}
       <div className="relative z-10 flex items-center justify-center gap-3 mb-6">
-        {dimensions.map(dim => (
-          <DimensionToggle key={dim.id} dimension={dim} onToggle={() => toggleDimension(dim.id)} />
-        ))}
+        {safeDimensions.map(dim => {
+          if (!dim || !dim.id) return null;
+          return (
+            <DimensionToggle
+              key={dim.id}
+              dimension={dim}
+              onToggle={() => toggleDimension(dim.id)}
+            />
+          );
+        })}
       </div>
 
       {/* Main Visualization */}
       <div className="relative z-10 flex justify-center">
         <div className="relative">
-          <ImmersiveCanvas nodes={nodes} focusedNode={focusedNode} onNodeClick={setFocusedNode} />
-          <NodeDetailPanel node={focusedNode} onClose={() => setFocusedNode(null)} />
+          {safeNodes.length > 0 ? (
+            <>
+              <ImmersiveCanvas
+                nodes={safeNodes}
+                focusedNode={focusedNode}
+                onNodeClick={setFocusedNode}
+              />
+              <NodeDetailPanel node={focusedNode} onClose={() => setFocusedNode(null)} />
+            </>
+          ) : (
+            <div className="w-[800px] h-[600px] rounded-xl border border-gray-700 bg-gray-800 flex items-center justify-center text-gray-400">
+              No data available
+            </div>
+          )}
         </div>
       </div>
 
@@ -475,42 +512,43 @@ export const ImmersivePage: React.FC = () => {
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-green-500" />
           <span className="text-gray-400">
-            Deals: {nodes.filter(n => n.type === 'deal').length}
+            Deals: {safeNodes.filter(n => n && n.type === 'deal').length}
           </span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-blue-500" />
           <span className="text-gray-400">
-            Contacts: {nodes.filter(n => n.type === 'contact').length}
+            Contacts: {safeNodes.filter(n => n && n.type === 'contact').length}
           </span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-purple-500" />
           <span className="text-gray-400">
-            Companies: {nodes.filter(n => n.type === 'company').length}
+            Companies: {safeNodes.filter(n => n && n.type === 'company').length}
           </span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-yellow-500" />
           <span className="text-gray-400">
-            Events: {nodes.filter(n => n.type === 'event').length}
+            Events: {safeNodes.filter(n => n && n.type === 'event').length}
           </span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-pink-500" />
           <span className="text-gray-400">
-            Insights: {nodes.filter(n => n.type === 'insight').length}
+            Insights: {safeNodes.filter(n => n && n.type === 'insight').length}
           </span>
         </div>
       </div>
 
       {/* Ambient Insights Sidebar */}
-      {ambientMode && (
+      {ambientMode && safeInsights.length > 0 && (
         <div className="fixed right-6 top-1/2 -translate-y-1/2 w-72 space-y-3 z-20">
           <div className="text-sm text-gray-400 mb-2">Ambient Intelligence</div>
-          {insights.map(insight => (
-            <InsightCard key={insight.id} insight={insight} />
-          ))}
+          {safeInsights.map(insight => {
+            if (!insight || !insight.id) return null;
+            return <InsightCard key={insight.id} insight={insight} />;
+          })}
         </div>
       )}
 
@@ -524,19 +562,22 @@ export const ImmersivePage: React.FC = () => {
       {/* Minimap */}
       <div className="fixed bottom-6 right-6 w-32 h-32 bg-gray-900/80 backdrop-blur rounded-lg border border-gray-700 z-20 p-2">
         <div className="relative w-full h-full">
-          {nodes.slice(0, 20).map(node => (
-            <div
-              key={node.id}
-              className="absolute rounded-full"
-              style={{
-                width: 4,
-                height: 4,
-                backgroundColor: node.color,
-                left: `${(node.x / 800 + 0.5) * 100}%`,
-                top: `${(node.y / 600 + 0.5) * 100}%`,
-              }}
-            />
-          ))}
+          {safeNodes.slice(0, 20).map(node => {
+            if (!node || !node.id || !node.color) return null;
+            return (
+              <div
+                key={node.id}
+                className="absolute rounded-full"
+                style={{
+                  width: 4,
+                  height: 4,
+                  backgroundColor: node.color,
+                  left: `${((node.x || 0) / 800 + 0.5) * 100}%`,
+                  top: `${((node.y || 0) / 600 + 0.5) * 100}%`,
+                }}
+              />
+            );
+          })}
           <div className="absolute inset-1/4 w-1/2 h-1/2 border border-blue-500 rounded" />
         </div>
       </div>

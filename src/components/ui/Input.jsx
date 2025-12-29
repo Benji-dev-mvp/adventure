@@ -12,7 +12,8 @@ export const Input = React.forwardRef(
         {label && (
           <label
             htmlFor={inputId}
-            className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1.5"
+            className="block font-medium text-gray-700 dark:text-gray-300"
+            style={{ fontSize: 'var(--font-xs)', marginBottom: 'var(--space-2)' }}
           >
             {label}
           </label>
@@ -22,7 +23,8 @@ export const Input = React.forwardRef(
           ref={ref}
           id={inputId}
           className={cn(
-            'w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 text-gray-900 dark:text-white text-sm',
+            'w-full rounded-[var(--radius-md)] border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 text-gray-900 dark:text-white',
+            'h-[var(--control-h-md)] px-[var(--space-3)] text-[var(--font-sm)]',
             'placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent',
             'disabled:bg-gray-50 dark:disabled:bg-white/5 disabled:cursor-not-allowed',
             error && 'border-red-500 focus:ring-red-500',
@@ -30,7 +32,14 @@ export const Input = React.forwardRef(
           )}
           {...props}
         />
-        {error && <p className="mt-1 text-xs text-red-600 dark:text-red-400">{error}</p>}
+        {error && (
+          <p
+            className="text-red-600 dark:text-red-400"
+            style={{ marginTop: 'var(--space-1)', fontSize: 'var(--font-xs)' }}
+          >
+            {error}
+          </p>
+        )}
       </div>
     );
   }
@@ -55,7 +64,8 @@ export const Textarea = React.forwardRef(({ className, label, error, rows = 4, .
       {label && (
         <label
           htmlFor={textareaId}
-          className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1.5"
+          className="block font-medium text-gray-700 dark:text-gray-300"
+          style={{ fontSize: 'var(--font-xs)', marginBottom: 'var(--space-2)' }}
         >
           {label}
         </label>
@@ -65,7 +75,8 @@ export const Textarea = React.forwardRef(({ className, label, error, rows = 4, .
         id={textareaId}
         rows={rows}
         className={cn(
-          'w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 text-gray-900 dark:text-white text-sm',
+          'w-full rounded-[var(--radius-md)] border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 text-gray-900 dark:text-white',
+          'px-[var(--space-3)] py-[var(--space-2)] text-[var(--font-sm)]',
           'placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent',
           'disabled:bg-gray-50 dark:disabled:bg-white/5 disabled:cursor-not-allowed resize-none',
           error && 'border-red-500 focus:ring-red-500',
@@ -73,7 +84,14 @@ export const Textarea = React.forwardRef(({ className, label, error, rows = 4, .
         )}
         {...props}
       />
-      {error && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{error}</p>}
+      {error && (
+        <p
+          className="text-red-600 dark:text-red-400"
+          style={{ marginTop: 'var(--space-1)', fontSize: 'var(--font-xs)' }}
+        >
+          {error}
+        </p>
+      )}
     </div>
   );
 });
@@ -96,7 +114,8 @@ export const Select = React.forwardRef(({ className, label, error, children, ...
       {label && (
         <label
           htmlFor={selectId}
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+          className="block font-medium text-gray-700 dark:text-gray-300"
+          style={{ fontSize: 'var(--font-sm)', marginBottom: 'var(--space-2)' }}
         >
           {label}
         </label>
@@ -105,7 +124,8 @@ export const Select = React.forwardRef(({ className, label, error, children, ...
         ref={ref}
         id={selectId}
         className={cn(
-          'w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 text-gray-900 dark:text-white',
+          'w-full rounded-[var(--radius-lg)] border border-gray-300 dark:border-white/20 bg-white dark:bg-white/10 text-gray-900 dark:text-white',
+          'h-[var(--control-h-md)] px-[var(--space-4)] text-[var(--font-sm)]',
           'focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent',
           'disabled:bg-gray-50 dark:disabled:bg-white/5 disabled:cursor-not-allowed',
           error && 'border-red-500 focus:ring-red-500',
@@ -115,7 +135,14 @@ export const Select = React.forwardRef(({ className, label, error, children, ...
       >
         {children}
       </select>
-      {error && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{error}</p>}
+      {error && (
+        <p
+          className="text-red-600 dark:text-red-400"
+          style={{ marginTop: 'var(--space-1)', fontSize: 'var(--font-xs)' }}
+        >
+          {error}
+        </p>
+      )}
     </div>
   );
 });

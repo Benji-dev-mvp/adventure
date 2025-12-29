@@ -23,11 +23,16 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('artisan_theme', theme);
 
+    const root = document.documentElement;
+
     if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
+      root.classList.add('dark');
     } else {
-      document.documentElement.classList.remove('dark');
+      root.classList.remove('dark');
     }
+
+    root.setAttribute('data-theme', theme);
+    document.body?.setAttribute('data-theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {

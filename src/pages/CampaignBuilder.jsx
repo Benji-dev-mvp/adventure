@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import DashboardLayout from '../components/layout/DashboardLayout';
+import { PageScaffold } from '../components/layout/OperatorShell';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Input, Textarea, Select } from '../components/ui/Input';
@@ -208,16 +208,14 @@ const CampaignBuilder = () => {
   };
 
   return (
-    <DashboardLayout
-      title="Campaign Builder"
-      subtitle="Create multi-channel sequences with AI-powered personalization"
-      action={
-        lastSaved && (
-          <span className="text-sm text-gray-500">
-            Last saved: {lastSaved.toLocaleTimeString()}
-          </span>
-        )
-      }
+    <PageScaffold
+      config={{
+        title: 'Campaign Builder',
+        subtitle: 'Create multi-channel sequences with AI-powered personalization',
+        badges: [{ label: 'Builder', color: 'cyan' }],
+        showInspector: true,
+        showActivityPanel: false,
+      }}
     >
       <form onSubmit={handleSubmit} className="grid lg:grid-cols-3 gap-4">
         {/* Campaign Setup */}
@@ -577,7 +575,7 @@ const CampaignBuilder = () => {
           </Card>
         </div>
       </form>
-    </DashboardLayout>
+    </PageScaffold>
   );
 };
 

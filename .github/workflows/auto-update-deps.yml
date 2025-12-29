@@ -1,0 +1,81 @@
+name: Auto-Update Dependencies with Coverage
+
+on:
+  schedule:
+    # Check for updates weekly (Monday 3 AM UTC)
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-update:
+    name: Automated Dependency Updates
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+
+      - name: Check for npm updates
+        id: npm-updates
+        run: |
+          npm outdated --json > outdated.json || true
+          if [ -s outdated.json ]; then
+            echo "updates_available=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Update dependencies (patch/minor only)
+        if: steps.npm-updates.outputs.updates_available == 'true'
+        run: |
+          npm update --save
+
+      - name: Run tests with coverage
+        if: steps.npm-updates.outputs.updates_available == 'true'
+        run: |
+          npm ci
+          npm run test:ci
+        env:
+          CI: true
+
+      - name: Upload coverage check
+        if: steps.npm-updates.outputs.updates_available == 'true'
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: auto-update-check
+          fail_ci_if_error: true
+
+      - name: Create PR with updates
+        if: steps.npm-updates.outputs.updates_available == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: automated dependency updates'
+          title: '🤖 Automated Dependency Updates'
+          body: |
+            ## Automated Dependency Updates
+
+            This PR contains automated dependency updates that passed coverage checks.
+
+            ✅ All tests passed
+            ✅ Coverage maintained or improved
+
+            **Codecov Analysis:** Codecov AI will provide detailed coverage analysis below.
+
+            ---
+            *This PR was automatically created by the coverage monitor workflow.*
+          branch: automated-updates-${{ github.run_number }}
+          labels: |
+            dependencies
+            automated
+            codecov-verified

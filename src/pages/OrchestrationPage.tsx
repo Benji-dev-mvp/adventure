@@ -194,27 +194,54 @@ const TaskQueue: React.FC<{ tasks: Array<{ id: string; type: string; priority: s
 // === Main Page ===
 
 export const OrchestrationPage: React.FC = () => {
-  const [agents, setAgents] = useState<AgentStatus[]>(MOCK_AGENTS);
-  const [metrics, setMetrics] = useState<SystemMetrics>(INITIAL_METRICS);
+  const [agents, setAgents] = useState<AgentStatus[]>(MOCK_AGENTS || []);
+  const [metrics, setMetrics] = useState<SystemMetrics>(
+    INITIAL_METRICS || {
+      activeAgents: 0,
+      tasksInQueue: 0,
+      tasksCompleted: 0,
+      avgLatency: 0,
+      errorRate: 0,
+      throughput: 0,
+    }
+  );
   const [showCanvas, setShowCanvas] = useState(true);
+
+  // Validate state
+  const safeAgents = Array.isArray(agents) ? agents : [];
+  const safeMetrics = metrics || {
+    activeAgents: 0,
+    tasksInQueue: 0,
+    tasksCompleted: 0,
+    avgLatency: 0,
+    errorRate: 0,
+    throughput: 0,
+  };
 
   // Simulate real-time updates
   useEffect(() => {
     const interval = setInterval(() => {
-      setMetrics(prev => ({
-        ...prev,
-        tasksCompleted: prev.tasksCompleted + Math.floor(Math.random() * 3),
-        tasksInQueue: Math.max(0, prev.tasksInQueue + Math.floor(Math.random() * 5) - 2),
-        throughput: prev.throughput + (Math.random() - 0.5) * 5,
-      }));
+      setMetrics(prev => {
+        const safePrev = prev || INITIAL_METRICS;
+        return {
+          ...safePrev,
+          tasksCompleted: (safePrev.tasksCompleted || 0) + Math.floor(Math.random() * 3),
+          tasksInQueue: Math.max(
+            0,
+            (safePrev.tasksInQueue || 0) + Math.floor(Math.random() * 5) - 2
+          ),
+          throughput: (safePrev.throughput || 0) + (Math.random() - 0.5) * 5,
+        };
+      });
 
       // Update agent statuses
-      setAgents(prev =>
-        prev.map(agent => ({
+      setAgents(prev => {
+        const safePrev = Array.isArray(prev) ? prev : [];
+        return safePrev.map(agent => ({
           ...agent,
-          status: Math.random() > 0.7 ? 'working' : agent.status,
-        }))
-      );
+          status: Math.random() > 0.7 ? 'working' : agent.status || 'idle',
+        }));
+      });
     }, 2000);
 
     return () => clearInterval(interval);
@@ -254,18 +281,18 @@ export const OrchestrationPage: React.FC = () => {
 
       {/* Metrics Row */}
       <div className="grid grid-cols-6 gap-4 mb-6">
-        <MetricCard label="Active Agents" value={metrics.activeAgents} change={5} />
-        <MetricCard label="Tasks in Queue" value={metrics.tasksInQueue} />
-        <MetricCard label="Tasks Completed" value={metrics.tasksCompleted} change={12} />
-        <MetricCard label="Avg Latency" value={metrics.avgLatency} unit="ms" />
+        <MetricCard label="Active Agents" value={safeMetrics.activeAgents || 0} change={5} />
+        <MetricCard label="Tasks in Queue" value={safeMetrics.tasksInQueue || 0} />
+        <MetricCard label="Tasks Completed" value={safeMetrics.tasksCompleted || 0} change={12} />
+        <MetricCard label="Avg Latency" value={safeMetrics.avgLatency || 0} unit="ms" />
         <MetricCard
           label="Error Rate"
-          value={`${(metrics.errorRate * 100).toFixed(1)}%`}
+          value={`${((safeMetrics.errorRate || 0) * 100).toFixed(1)}%`}
           change={-15}
         />
         <MetricCard
           label="Throughput"
-          value={metrics.throughput.toFixed(1)}
+          value={(safeMetrics.throughput || 0).toFixed(1)}
           unit="/min"
           change={8}
         />
@@ -288,7 +315,7 @@ export const OrchestrationPage: React.FC = () => {
               </span>
             </div>
           </div>
-          <NeuroCanvas width={1200} height={400} />
+          {typeof NeuroCanvas !== 'undefined' && <NeuroCanvas width={1200} height={400} />}
         </div>
       )}
 
@@ -298,15 +325,20 @@ export const OrchestrationPage: React.FC = () => {
         <div className="col-span-3">
           <h3 className="text-lg font-semibold mb-4">Agent Fleet</h3>
           <div className="grid grid-cols-3 gap-4">
-            {agents.map(agent => (
-              <AgentCard key={agent.id} agent={agent} />
-            ))}
+            {safeAgents.length > 0 ? (
+              safeAgents.map(agent => {
+                if (!agent || !agent.id) return null;
+                return <AgentCard key={agent.id} agent={agent} />;
+              })
+            ) : (
+              <div className="col-span-3 text-center py-8 text-gray-400">No agents available</div>
+            )}
           </div>
         </div>
 
         {/* Task Queue */}
         <div>
-          <TaskQueue tasks={mockTasks} />
+          <TaskQueue tasks={mockTasks || []} />
 
           {/* Quick Actions */}
           <div className="mt-4 bg-gray-800 rounded-xl p-4 border border-gray-700">

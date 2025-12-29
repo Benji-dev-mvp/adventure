@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority';
 import { cn } from '../../lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center font-medium rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95',
+  'inline-flex items-center justify-center font-medium rounded-[var(--radius-md)] transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95',
   {
     variants: {
       variant: {
@@ -23,15 +23,15 @@ const buttonVariants = cva(
           'bg-gradient-purple-coral text-white hover:opacity-90 focus:ring-artisan-purple shadow-lg',
       },
       size: {
-        sm: 'text-xs px-2.5 py-1.5 h-7',
-        md: 'text-sm px-4 py-2 h-9',
-        lg: 'text-base px-5 py-2.5 h-10',
-        xl: 'text-lg px-6 py-3 h-12',
+        sm: 'text-[var(--font-xs)] h-[var(--control-h-sm)] px-[var(--space-3)] gap-[var(--space-2)]',
+        md: 'text-[var(--font-sm)] h-[var(--control-h-md)] px-[var(--space-4)] gap-[var(--space-2)]',
+        lg: 'text-[var(--font-base)] h-[calc(var(--control-h-md)+4px)] px-[var(--space-5)] gap-[var(--space-2)]',
+        xl: 'text-[calc(var(--font-base)+1px)] h-[calc(var(--control-h-md)+8px)] px-[var(--space-6)] gap-[var(--space-2)]',
       },
     },
     defaultVariants: {
       variant: 'primary',
-      size: 'md',
+      size: 'sm',
     },
   }
 );

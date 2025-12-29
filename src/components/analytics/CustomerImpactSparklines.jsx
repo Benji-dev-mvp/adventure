@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
-import { AreaChart } from 'recharts/es6/chart/AreaChart.js';
-import { Area } from 'recharts/es6/cartesian/Area.js';
-import { BarChart } from 'recharts/es6/chart/BarChart.js';
-import { Bar } from 'recharts/es6/cartesian/Bar.js';
-import { ResponsiveContainer } from 'recharts/es6/component/ResponsiveContainer.js';
+import { AreaChart, Area, BarChart, Bar, ResponsiveContainer } from 'recharts';
 import { TrendingUp, Users, Mail, Clock, ArrowUp } from 'lucide-react';
 import { useReducedMotion, viewportSettings } from '../../hooks/useMotion';
-import { GlassCard, GlassCardContent, GradientText } from '../futuristic';
+import { GlassCard, GlassCardContent, GradientText } from '../futuristic/index';
 
 // Generate sparkline data
 const generateSparklineData = (trend = 'up', points = 12, variance = 20) => {

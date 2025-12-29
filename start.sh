@@ -1,10 +1,11 @@
 #!/bin/bash
 # Startup script for Artisan platform in Codespaces
-# This ensures backend and frontend start properly without conflicts
+# Consolidated single port setup: Everything accessible via port 3004
+# Backend runs on 8000 internally, proxied through frontend
 
 set -e  # Exit on error
 
-echo "🚀 Starting Artisan Platform..."
+echo "🚀 Starting Artisan Platform (Consolidated on port 3004)..."
 
 # Colors for output
 GREEN='\033[0;32m'
@@ -24,14 +25,15 @@ else
     echo -e "${GREEN}✅ Python packages already installed${NC}"
 fi
 
-# Kill any existing processes on ports 3004 and 8000
+# Kill any existing processes on all ports
 echo -e "${YELLOW}🔧 Cleaning up existing processes...${NC}"
-pkill -f "vite.*3004" || true
-pkill -f "uvicorn.*8000" || true
+pkill -f "vite" || true
+pkill -f "uvicorn" || true
+pkill -f "npm run" || true
 sleep 2
 
-# Start backend
-echo -e "${YELLOW}🔄 Starting FastAPI backend on port 8000...${NC}"
+# Start backend (internal only, not exposed)
+echo -e "${YELLOW}🔄 Starting FastAPI backend on port 8000 (internal only)...${NC}"
 cd /workspaces/codespaces-react/backend
 nohup python3 -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000 > /tmp/backend.log 2>&1 &
 BACKEND_PID=$!
@@ -52,8 +54,8 @@ for i in {1..30}; do
     sleep 1
 done
 
-# Start frontend
-echo -e "${YELLOW}🔄 Starting React frontend on port 3004...${NC}"
+# Start frontend (single entry point on 3004)
+echo -e "${YELLOW}🔄 Starting React frontend on port 3004 (with API proxy)...${NC}"
 cd /workspaces/codespaces-react
 npm run dev > /tmp/frontend.log 2>&1 &
 FRONTEND_PID=$!
@@ -79,9 +81,11 @@ echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━
 echo -e "${GREEN}✨ Artisan Platform is running!${NC}"
 echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
-echo -e "📊 Frontend:  ${YELLOW}http://localhost:3004${NC}"
-echo -e "🔧 Backend:   ${YELLOW}http://localhost:8000${NC}"
-echo -e "📖 API Docs:  ${YELLOW}http://localhost:8000/docs${NC}"
+echo -e "🌐 Main App:  ${YELLOW}http://localhost:3004${NC}"
+echo -e "   All requests (app + API) go through this single port"
+echo -e "   API calls are proxied to backend automatically"
+echo ""
+echo -e "📖 API Docs:  ${YELLOW}http://localhost:3004/api/docs${NC}"
 echo ""
 echo -e "📝 Logs:"
 echo -e "   Backend:  tail -f /tmp/backend.log"

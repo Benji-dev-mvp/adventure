@@ -14,7 +14,7 @@ import {
   ExternalLink,
   CheckCircle2,
 } from 'lucide-react';
-import DashboardLayout from '../components/layout/DashboardLayout';
+import { PageScaffold } from '../components/layout/OperatorShell';
 import { Card, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
@@ -137,7 +137,14 @@ const Leads = () => {
   }
 
   return (
-    <DashboardLayout title="Leads" subtitle="All leads found by Ava and uploaded by your team">
+    <PageScaffold
+      config={{
+        title: 'Leads',
+        subtitle: 'All leads found by Ava and uploaded by your team',
+        badges: [{ label: 'CRM', color: 'green' }],
+        showInspector: true,
+      }}
+    >
       <div className="grid lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2 space-y-4">
           <Card>
@@ -691,7 +698,7 @@ const Leads = () => {
           </>
         )}
       </Modal>
-    </DashboardLayout>
+    </PageScaffold>
   );
 };
 

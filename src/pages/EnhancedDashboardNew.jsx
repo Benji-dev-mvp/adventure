@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import DashboardLayout from '../components/layout/DashboardLayout';
+import { OperatorShell, PageScaffold } from '../components/layout/OperatorShell';
 import { Card, CardContent } from '../components/ui/Card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/Tabs';
 import { Button } from '../components/ui/Button';
@@ -326,7 +326,14 @@ const EnhancedDashboardPage = () => {
   ];
 
   return (
-    <DashboardLayout>
+    <PageScaffold
+      config={{
+        title: 'Sales Dashboard',
+        subtitle: 'Real-time performance metrics and insights',
+        badges: [{ label: segmentExperience.label, color: plan }],
+        showInspector: true,
+      }}
+    >
       <div className="space-y-6">
         {/* Segment-aware Header */}
         <div className="flex items-center justify-between">
@@ -586,7 +593,7 @@ const EnhancedDashboardPage = () => {
           </TabsContent>
         </Tabs>
       </div>
-    </DashboardLayout>
+    </PageScaffold>
   );
 };
 

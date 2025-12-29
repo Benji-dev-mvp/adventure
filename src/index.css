@@ -28,6 +28,67 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 221 83% 53%;
     --radius: 0.5rem;
+
+    /* Operator theme tokens (light) */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #eef2f7;
+    --bg-tertiary: #e2e8f0;
+    --bg-surface: #ffffff;
+    --bg-surface-hover: #f3f6fb;
+    --bg-surface-active: #e7edf5;
+    --bg-overlay: rgba(15, 23, 42, 0.32);
+    --text-primary: #0f172a;
+    --text-secondary: #1e293b;
+    --text-tertiary: #475569;
+    --text-muted: #64748b;
+    --border-primary: rgba(15, 23, 42, 0.12);
+    --border-secondary: rgba(15, 23, 42, 0.08);
+    --border-tertiary: rgba(15, 23, 42, 0.04);
+    --border-hover: rgba(15, 23, 42, 0.16);
+    --border-focus: #3b82f6;
+    --interactive-hover: rgba(15, 23, 42, 0.04);
+    --interactive-active: rgba(15, 23, 42, 0.08);
+    --interactive-disabled: rgba(15, 23, 42, 0.03);
+    --interactive-focus-ring: rgba(59, 130, 246, 0.35);
+    --semantic-success: #16a34a;
+    --semantic-success-light: #dcfce7;
+    --semantic-success-dark: #166534;
+    --semantic-warning: #f59e0b;
+    --semantic-warning-light: #fef3c7;
+    --semantic-warning-dark: #b45309;
+    --semantic-danger: #ef4444;
+    --semantic-danger-light: #fee2e2;
+    --semantic-danger-dark: #b91c1c;
+    --semantic-info: #2563eb;
+    --semantic-info-light: #dbeafe;
+    --semantic-info-dark: #1d4ed8;
+    --accent-cyan: #06b6d4;
+    --accent-purple: #a855f7;
+    --accent-pink: #ec4899;
+    --accent-blue: #3b82f6;
+    --accent-green: #10b981;
+    --accent-amber: #f59e0b;
+    --accent-red: #ef4444;
+
+    /* Density tokens (comfortable default) */
+    --font-base: 15px;
+    --font-sm: 14px;
+    --font-xs: 13px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-7: 2rem;
+    --space-8: 2.5rem;
+    --control-h-sm: 34px;
+    --control-h-md: 40px;
+    --card-pad-sm: 0.9rem;
+    --card-pad-md: 1.25rem;
   }
 
   .dark {
@@ -50,6 +111,89 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 263 85% 61%;
+
+    /* Operator theme tokens (dark) */
+    --bg-primary: #030712;
+    --bg-secondary: #0a0f1a;
+    --bg-tertiary: #0f172a;
+    --bg-surface: #1a1f2e;
+    --bg-surface-hover: #212839;
+    --bg-surface-active: #2a3341;
+    --bg-overlay: rgba(0, 0, 0, 0.5);
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #94a3b8;
+    --text-muted: #64748b;
+    --border-primary: rgba(255, 255, 255, 0.1);
+    --border-secondary: rgba(255, 255, 255, 0.06);
+    --border-tertiary: rgba(255, 255, 255, 0.03);
+    --border-hover: rgba(255, 255, 255, 0.2);
+    --border-focus: #3b82f6;
+    --interactive-hover: rgba(255, 255, 255, 0.05);
+    --interactive-active: rgba(255, 255, 255, 0.1);
+    --interactive-disabled: rgba(255, 255, 255, 0.02);
+    --interactive-focus-ring: rgba(59, 130, 246, 0.5);
+    --semantic-success: #10b981;
+    --semantic-success-light: #064e3b;
+    --semantic-success-dark: #34d399;
+    --semantic-warning: #f59e0b;
+    --semantic-warning-light: #78350f;
+    --semantic-warning-dark: #fbbf24;
+    --semantic-danger: #ef4444;
+    --semantic-danger-light: #7f1d1d;
+    --semantic-danger-dark: #f87171;
+    --semantic-info: #38bdf8;
+    --semantic-info-light: #0ea5e9;
+    --semantic-info-dark: #22d3ee;
+    --accent-cyan: #22d3ee;
+    --accent-purple: #a855f7;
+    --accent-pink: #ec4899;
+    --accent-blue: #3b82f6;
+    --accent-green: #10b981;
+    --accent-amber: #f59e0b;
+    --accent-red: #ef4444;
+
+    /* Density tokens (dark comfortable) */
+    --font-base: 15px;
+    --font-sm: 14px;
+    --font-xs: 13px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-7: 2rem;
+    --space-8: 2.5rem;
+    --control-h-sm: 34px;
+    --control-h-md: 40px;
+    --card-pad-sm: 0.9rem;
+    --card-pad-md: 1.25rem;
+  }
+
+  /* Compact density overrides */
+  [data-density='compact'] {
+    --font-base: 14px;
+    --font-sm: 13px;
+    --font-xs: 12px;
+    --radius-sm: 5px;
+    --radius-md: 7px;
+    --radius-lg: 10px;
+    --space-1: 0.22rem;
+    --space-2: 0.42rem;
+    --space-3: 0.64rem;
+    --space-4: 0.85rem;
+    --space-5: 1.05rem;
+    --space-6: 1.28rem;
+    --space-7: 1.7rem;
+    --space-8: 2.1rem;
+    --control-h-sm: 30px;
+    --control-h-md: 34px;
+    --card-pad-sm: 0.75rem;
+    --card-pad-md: 1rem;
   }
 
   html {

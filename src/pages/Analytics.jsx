@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import DashboardLayout from '../components/layout/DashboardLayout';
+import { PageScaffold } from '../components/layout/OperatorShell';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { useTenant } from '../contexts/TenantContext';
@@ -144,13 +144,15 @@ const Analytics = () => {
   ];
 
   return (
-    <DashboardLayout
-      title="Analytics & Insights"
-      subtitle={
-        isEnterprise
+    <PageScaffold
+      config={{
+        title: 'Analytics & Insights',
+        subtitle: isEnterprise
           ? 'Enterprise analytics and compliance reporting'
-          : 'Track performance and get AI-powered recommendations'
-      }
+          : 'Track performance and get AI-powered recommendations',
+        badges: [{ label: 'Analytics', color: 'purple' }],
+        showInspector: true,
+      }}
     >
       {/* Actions Bar - Ops-grade styling */}
       <div className="flex items-center justify-between mb-6 p-3 bg-slate-800/50 rounded-lg border border-slate-700">
@@ -471,7 +473,7 @@ const Analytics = () => {
           </motion.div>
         ))}
       </div>
-    </DashboardLayout>
+    </PageScaffold>
   );
 };
 

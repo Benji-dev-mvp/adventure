@@ -39,7 +39,8 @@ export const TabsList = ({ children, activeTab, onTabChange, className }) => {
   return (
     <div
       className={cn(
-        'flex flex-wrap items-center justify-start gap-1.5 rounded-lg border px-2 py-1',
+        'flex flex-wrap items-center justify-start rounded-[var(--radius-md)] border',
+        'gap-[var(--space-1)] px-[var(--space-2)] py-[var(--space-1)]',
         'bg-gray-100 border-gray-200',
         'dark:bg-white/10 dark:border-white/15',
         className
@@ -67,7 +68,8 @@ export const TabsTrigger = ({ children, value, activeTab, onTabChange, className
     <button
       onClick={() => onTabChange(value)}
       className={cn(
-        'inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium',
+        'inline-flex items-center justify-center whitespace-nowrap rounded-[var(--radius-sm)] font-medium',
+        'px-[var(--space-3)] py-[var(--space-1)] text-[var(--font-sm)]',
         'transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500',
         'focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900',
         'disabled:pointer-events-none disabled:opacity-50',
@@ -96,7 +98,8 @@ export const TabsContent = ({ children, value, activeTab, className }) => {
   return (
     <div
       className={cn(
-        'mt-2 ring-offset-white focus-visible:outline-none focus-visible:ring-2',
+        'ring-offset-white focus-visible:outline-none focus-visible:ring-2',
+        'mt-[var(--space-2)]',
         'focus-visible:ring-accent-500 focus-visible:ring-offset-2',
         className
       )}

@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Rocket, Sparkles, Play } from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import StartupsFlowOrchestration from '../components/solutions/StartupsFlowOrchestration';
 import { SOLUTIONS_DATA } from '../config/solutionsDataFactory';
 import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
-import {
-  RoiProjectionChart,
-  KpiFunnelChart,
-} from '../components/analytics';
+import { RoiProjectionChart, KpiFunnelChart } from '../components/analytics';
 import {
   GlassCard,
   GlassCardContent,
@@ -20,7 +18,12 @@ import {
   ParticleBackground,
 } from '../components/futuristic';
 
-const { features: FEATURES, benefits: BENEFITS, languages: LANGUAGES, stats: STARTUP_STATS } = SOLUTIONS_DATA.startup;
+const {
+  features: FEATURES,
+  benefits: BENEFITS,
+  languages: LANGUAGES,
+  stats: STARTUP_STATS,
+} = SOLUTIONS_DATA.startup;
 
 const SolutionsStartups = () => {
   const prefersReducedMotion = useReducedMotion();

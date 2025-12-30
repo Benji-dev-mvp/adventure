@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Building2, Sparkles, Play } from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import MidMarketFlowOrchestration from '../components/solutions/MidMarketFlowOrchestration';
 import { SOLUTIONS_DATA } from '../config/solutionsDataFactory';

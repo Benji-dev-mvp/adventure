@@ -1,10 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'class',
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -49,44 +46,51 @@ export default {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
       borderRadius: {
-        'xl': '12px',
+        xl: '12px',
       },
       boxShadow: {
-        'soft': '0 2px 8px rgba(0, 0, 0, 0.08)',
-        'card': '0 4px 16px rgba(0, 0, 0, 0.06)',
+        soft: '0 2px 8px rgba(0, 0, 0, 0.08)',
+        card: '0 4px 16px rgba(0, 0, 0, 0.06)',
+      },
+      keyframes: {
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
+      animation: {
+        shimmer: 'shimmer 2s ease-in-out infinite',
       },
     },
   },
-  plugins: [
-    require('daisyui'),
-  ],
+  plugins: [require('daisyui')],
   daisyui: {
     themes: [
       {
         artisan: {
-          "primary": "#0F2540",
-          "secondary": "#3B82F6",
-          "accent": "#7D37FF",
-          "neutral": "#1F2937",
-          "base-100": "#FFFFFF",
-          "base-200": "#F3F4F6",
-          "base-300": "#E5E7EB",
-          "info": "#3ABFF8",
-          "success": "#36D399",
-          "warning": "#FBBD23",
-          "error": "#F87272",
+          primary: '#0F2540',
+          secondary: '#3B82F6',
+          accent: '#7D37FF',
+          neutral: '#1F2937',
+          'base-100': '#FFFFFF',
+          'base-200': '#F3F4F6',
+          'base-300': '#E5E7EB',
+          info: '#3ABFF8',
+          success: '#36D399',
+          warning: '#FBBD23',
+          error: '#F87272',
         },
       },
-      "light",
-      "dark",
-      "cupcake",
+      'light',
+      'dark',
+      'cupcake',
     ],
-    darkTheme: "dark",
+    darkTheme: 'dark',
     base: true,
     styled: true,
     utils: true,
-    prefix: "daisy-",
+    prefix: 'daisy-',
     logs: false,
-    themeRoot: ":root",
+    themeRoot: ':root',
   },
-}
+};

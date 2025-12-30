@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Building, Phone, Shield, CheckCircle, Lock, Key, FileCheck, Users } from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import EnterpriseFlowOrchestration from '../components/solutions/EnterpriseFlowOrchestration';
 import { SOLUTIONS_DATA } from '../config/solutionsDataFactory';
@@ -22,6 +23,43 @@ import {
 } from '../components/futuristic';
 
 const { features: FEATURES, benefits: BENEFITS, languages: LANGUAGES, stats: ENTERPRISE_STATS } = SOLUTIONS_DATA.enterprise;
+
+// Enterprise-specific data
+const COMPLIANCE_BADGES = [
+  { icon: Shield, name: 'SOC 2 Type II' },
+  { icon: Lock, name: 'GDPR Compliant' },
+  { icon: FileCheck, name: 'HIPAA Ready' },
+  { icon: Key, name: 'SSO/SAML' },
+];
+
+const SECURITY_FEATURES = [
+  {
+    icon: Lock,
+    title: 'SOC 2 Type II Certified',
+    description: 'Independently audited security controls and data protection practices',
+    gradient: 'from-emerald-500 to-teal-500',
+  },
+  {
+    icon: Key,
+    title: 'SSO & SCIM',
+    description: 'Enterprise SSO with Okta, Azure AD, and automatic user provisioning',
+    gradient: 'from-blue-500 to-cyan-500',
+  },
+  {
+    icon: Shield,
+    title: 'Role-Based Access',
+    description: 'Granular permissions and audit trails for complete visibility',
+    gradient: 'from-purple-500 to-pink-500',
+  },
+  {
+    icon: FileCheck,
+    title: 'Data Residency',
+    description: 'Choose your data location and ensure compliance with regional regulations',
+    gradient: 'from-orange-500 to-amber-500',
+  },
+];
+
+const ENTERPRISE_BENEFITS = BENEFITS;
 
 const SolutionsEnterprise = () => {
   const prefersReducedMotion = useReducedMotion();

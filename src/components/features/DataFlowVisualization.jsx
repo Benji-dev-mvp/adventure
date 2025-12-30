@@ -396,7 +396,7 @@ const DataFlowVisualization = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Autonomous animation
+  // Autonomous animation - smooth organic transitions
   useEffect(() => {
     if (!isVisible || !isPlaying) return;
 
@@ -404,13 +404,14 @@ const DataFlowVisualization = () => {
       setActiveStage(prev => {
         const next = (prev + 1) % FLOW_STAGES.length;
         if (next === 0) {
-          setCompletedStages([]);
+          // Smooth reset with slight delay before restarting
+          setTimeout(() => setCompletedStages([]), 300);
         } else {
           setCompletedStages(curr => [...new Set([...curr, prev])]);
         }
         return next;
       });
-    }, 2500);
+    }, 3000); // Slightly longer for more comfortable viewing
 
     return () => clearInterval(interval);
   }, [isVisible, isPlaying]);
@@ -437,32 +438,72 @@ const DataFlowVisualization = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <RevealText>
-          <div className="text-center mb-12 lg:mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
-              <Activity size={16} className="text-cyan-400 animate-pulse" />
-              <span className="text-sm text-cyan-400 font-medium">Live Data Flow</span>
+          <div className="max-w-5xl mx-auto mb-12 lg:mb-16">
+            {/* Status Badge with Live Metrics */}
+            <div className="flex items-center justify-center gap-4 mb-6 flex-wrap">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
+                <Activity size={16} className="text-cyan-400 animate-pulse" />
+                <span className="text-sm text-cyan-400 font-medium">Live Data Flow</span>
+              </div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30">
+                <div className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </div>
+                <span className="text-sm text-emerald-400 font-medium">Auto-Syncing</span>
+              </div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30">
+                <Zap size={14} className="text-purple-400" />
+                <span className="text-xs text-purple-400 font-semibold">4.2K/day</span>
+              </div>
             </div>
 
-            <h2 className="text-lg lg:text-5xl xl:text-6xl font-bold mb-4 font-space-grotesk">
+            <h2 className="text-3xl lg:text-5xl xl:text-6xl font-bold mb-4 font-space-grotesk text-center">
               <GradientText gradient="aurora" animate>
                 Watch Your Pipeline in Action
               </GradientText>
             </h2>
 
-            <p className="text-lg lg:text-lg text-gray-400 max-w-3xl mx-auto">
-              From lead discovery to booked meeting — see how Ava orchestrates every step
+            <p className="text-base lg:text-xl text-gray-400 max-w-3xl mx-auto text-center leading-relaxed">
+              From lead discovery to booked meeting — see how Ava autonomously orchestrates every
+              step in real-time
             </p>
+
+            {/* Real-time Stats Bar */}
+            <div className="grid grid-cols-3 gap-3 mt-8 max-w-2xl mx-auto">
+              <div className="text-center p-3 rounded-lg bg-white/5 border border-white/10">
+                <div className="text-2xl font-bold text-cyan-400 mb-1">
+                  <CountUpText end={847} duration={2000} />
+                </div>
+                <div className="text-xs text-gray-400">Leads/Hour</div>
+              </div>
+              <div className="text-center p-3 rounded-lg bg-white/5 border border-white/10">
+                <div className="text-2xl font-bold text-purple-400 mb-1">
+                  <CountUpText end={94} suffix="%" duration={2000} />
+                </div>
+                <div className="text-xs text-gray-400">AI Accuracy</div>
+              </div>
+              <div className="text-center p-3 rounded-lg bg-white/5 border border-white/10">
+                <div className="text-2xl font-bold text-emerald-400 mb-1">
+                  <CountUpText end={67} suffix="%" duration={2000} />
+                </div>
+                <div className="text-xs text-gray-400">Open Rate</div>
+              </div>
+            </div>
           </div>
         </RevealText>
 
         {/* Flow visualization */}
         <div className="mb-12 lg:mb-16">
-          {/* Progress bar */}
-          <div className="relative h-1 bg-white/5 rounded-full mb-8 lg:mb-12 overflow-hidden">
+          {/* Progress bar - Smooth gradient flow */}
+          <div className="relative h-1.5 bg-white/5 rounded-full mb-8 lg:mb-12 overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full transition-all duration-700"
+              className="h-full bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full transition-all duration-1000 ease-out"
               style={{ width: `${((activeStage + 1) / FLOW_STAGES.length) * 100}%` }}
-            />
+            >
+              {/* Animated shimmer effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
+            </div>
           </div>
 
           {/* Flow nodes - horizontal scroll on mobile */}

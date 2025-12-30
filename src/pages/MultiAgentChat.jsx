@@ -13,7 +13,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { PageScaffold } from '../components/layout/OperatorShell';
 import { Button } from '../components/ui/Button';
 import { Input, Textarea } from '../components/ui/Input';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { useToast } from '../components/Toast';
 import {
   MessageSquare,
@@ -34,7 +33,6 @@ import {
   Settings,
   CheckCircle2,
   Circle,
-  Minus,
   X,
 } from 'lucide-react';
 

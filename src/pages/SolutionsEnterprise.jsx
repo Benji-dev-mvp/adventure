@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Building, Phone, Shield, CheckCircle, Lock, Key, FileCheck, Users } from 'lucide-react';
+import { Building, Phone, Shield, CheckCircle, Lock, Key, FileCheck } from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import EnterpriseFlowOrchestration from '../components/solutions/EnterpriseFlowOrchestration';
 import { SOLUTIONS_DATA } from '../config/solutionsDataFactory';

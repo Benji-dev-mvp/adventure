@@ -28,9 +28,8 @@ import {
   GlowButton,
   GlowButtonOutline,
   RevealText,
-  FloatingParticles,
-  ParticleBackground,
 } from '../components/futuristic';
+import { FloatingParticles, ParticleBackground } from '../components/futuristic/ParticleBackground';
 
 const TRUST_STATS = [
   { value: '99.95%', label: 'Platform Uptime (90d)' },

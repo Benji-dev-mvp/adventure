@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { ParticleBackground, FloatingParticles, MouseFollowGlow } from '../futuristic';
+import { ParticleBackground, FloatingParticles, MouseFollowGlow } from '../futuristic/ParticleBackground';
 import { GradientText, GlowText, RevealText, TypewriterText } from '../futuristic/AnimatedText';
 import { GlowButton } from '../futuristic/GlowButton';
 import { GlassCard } from '../futuristic/GlassCard';

@@ -17,6 +17,7 @@ import {
   GradientText,
   RevealText,
   FloatingParticles,
+  ParticleBackground,
 } from '../components/futuristic';
 
 const {

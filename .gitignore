@@ -167,4 +167,3 @@ test-results/
 
 # SonarQube analysis cache
 .scannerwork/
-backend/.scannerwork/

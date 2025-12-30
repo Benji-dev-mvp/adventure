@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Building2 } from 'lucide-react';
+import { Building2, TrendingUp } from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import MidMarketFlowOrchestration from '../components/solutions/MidMarketFlowOrchestration';
 import SolutionHero from '../components/solutions/SolutionHero';

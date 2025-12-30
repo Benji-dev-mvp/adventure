@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Sparkles, Play } from 'lucide-react';
+import { ParticleBackground } from '../futuristic/ParticleBackground';
 import {
-  ParticleBackground,
   GlassCard,
   GradientText,
   GlowButton,

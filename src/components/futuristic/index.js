@@ -32,13 +32,11 @@ export {
 } from './AnimatedText';
 
 // Backgrounds & Effects
-export {
-  ParticleBackground,
-  FloatingParticles,
-  MouseFollowGlow,
-  GradientMesh,
-  StarField,
-} from './ParticleBackground';
+export { ParticleBackground } from './ParticleBackground';
+export { FloatingParticles } from './ParticleBackground';
+export { MouseFollowGlow } from './ParticleBackground';
+export { GradientMesh } from './ParticleBackground';
+export { StarField } from './ParticleBackground';
 
 // Hero Sections
 export { HeroSection, HeroWithCards, HeroMinimal, HeroSplit } from './HeroSection';

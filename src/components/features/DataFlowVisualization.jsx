@@ -184,6 +184,29 @@ const FlowNode = ({
 }) => {
   const Icon = stage.icon;
 
+  // Color mapping for Tailwind classes (must be complete strings)
+  const colorClasses = {
+    cyan: 'text-cyan-400',
+    blue: 'text-blue-400',
+    purple: 'text-purple-400',
+    pink: 'text-pink-400',
+    orange: 'text-orange-400',
+    emerald: 'text-emerald-400',
+    teal: 'text-teal-400',
+    green: 'text-green-400',
+  };
+
+  const bgColorClasses = {
+    cyan: 'bg-cyan-400',
+    blue: 'bg-blue-400',
+    purple: 'bg-purple-400',
+    pink: 'bg-pink-400',
+    orange: 'bg-orange-400',
+    emerald: 'bg-emerald-400',
+    teal: 'bg-teal-400',
+    green: 'bg-green-400',
+  };
+
   return (
     <div
       className="relative group"
@@ -253,7 +276,7 @@ const FlowNode = ({
             isActive ? 'bg-white/20' : `bg-gradient-to-br ${stage.gradient} bg-opacity-20`
           }`}
         >
-          <Icon size={24} className={isActive ? 'text-white' : `text-${stage.color}-400`} />
+          <Icon size={24} className={isActive ? 'text-white' : colorClasses[stage.color]} />
         </div>
 
         {/* Title */}
@@ -288,7 +311,7 @@ const FlowNode = ({
             <ul className="space-y-1.5">
               {stage.dataPoints.map((point, i) => (
                 <li key={i} className="flex items-center gap-2 text-xs text-gray-300">
-                  <span className={`w-1.5 h-1.5 rounded-full bg-${stage.color}-400`} />
+                  <span className={`w-1.5 h-1.5 rounded-full ${bgColorClasses[stage.color]}`} />
                   {point}
                 </li>
               ))}
@@ -307,13 +330,11 @@ FlowNode.propTypes = {
     subtitle: PropTypes.string,
     color: PropTypes.string,
     gradient: PropTypes.string,
-    metrics: PropTypes.arrayOf(
-      PropTypes.shape({
-        label: PropTypes.string,
-        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        unit: PropTypes.string,
-      })
-    ),
+    metrics: PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      unit: PropTypes.string,
+    }),
     dataPoints: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   index: PropTypes.number.isRequired,
@@ -329,6 +350,18 @@ FlowNode.propTypes = {
 const ChannelCard = ({ channel, isActive, delay }) => {
   const Icon = channel.icon;
 
+  // Color mapping for Tailwind classes
+  const colorClasses = {
+    cyan: 'text-cyan-400',
+    blue: 'text-blue-400',
+    purple: 'text-purple-400',
+    pink: 'text-pink-400',
+    orange: 'text-orange-400',
+    emerald: 'text-emerald-400',
+    teal: 'text-teal-400',
+    green: 'text-green-400',
+  };
+
   return (
     <div
       className={`relative p-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-500 ${
@@ -340,7 +373,7 @@ const ChannelCard = ({ channel, isActive, delay }) => {
         <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
       )}
 
-      <Icon size={20} className={`text-${channel.color}-400 mb-2`} />
+      <Icon size={20} className={colorClasses[channel.color] || 'text-cyan-400'} />
 
       <div className="text-lg lg:text-lg font-bold text-white">
         <CountUpText end={channel.value} duration={1500} />

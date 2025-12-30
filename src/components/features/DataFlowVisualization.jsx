@@ -407,7 +407,7 @@ const DataFlowVisualization = () => {
             <ChannelCard
               key={channel.label}
               channel={channel}
-              isActive={activeStage === index}
+              isActive={true}
               delay={index * 100}
             />
           ))}

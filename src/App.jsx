@@ -27,6 +27,7 @@ const CampaignBuilder = lazy(() => import('./pages/CampaignBuilder'));
 const Leads = lazy(() => import('./pages/Leads'));
 const LeadDatabase = lazy(() => import('./pages/LeadDatabase'));
 const AIAssistant = lazy(() => import('./pages/AIAssistant'));
+const AvaChat = lazy(() => import('./pages/AvaChat'));
 const Analytics = lazy(() => import('./pages/Analytics'));
 
 // Advanced AI Features
@@ -162,7 +163,8 @@ function App() {
                 <Route path="/campaigns" element={<CampaignBuilder />} />
                 <Route path="/leads" element={<Leads />} />
                 <Route path="/lead-database" element={<LeadDatabase />} />
-                <Route path="/ai-assistant" element={<AIAssistant />} />
+                <Route path="/ai-assistant" element={<AvaChat />} />
+                <Route path="/ai-assistant-legacy" element={<AIAssistant />} />
                 <Route path="/analytics" element={<Analytics />} />
                 <Route path="/integrations" element={<Integrations />} />
                 <Route path="/settings" element={<Settings />} />

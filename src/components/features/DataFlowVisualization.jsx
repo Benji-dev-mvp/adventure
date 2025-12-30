@@ -284,25 +284,38 @@ const StageCard = ({ stage, index, isActive, isComplete, totalStages, delay }) =
 
           {/* Metrics grid - data-rich */}
           <div className="grid grid-cols-3 gap-3 mb-5">
-            {stage.metrics.map((metric, idx) => (
-              <div
-                key={idx}
-                className={`p-3 rounded-lg transition-all ${isActive ? 'bg-white/10' : 'bg-white/5'}`}
-                style={{
-                  animation: isActive ? `slideInUp 0.4s ease-out ${idx * 100}ms backwards` : 'none',
-                }}
-              >
-                <div className={`text-xs text-gray-400 mb-1 font-medium`}>{metric.label}</div>
-                <div className={`text-lg font-bold flex items-baseline gap-1`}>
-                  <CountUpText
-                    end={metric.value}
-                    duration={1000}
-                    className={`text-${metric.color}-300`}
-                  />
-                  <span className="text-xs text-gray-500">{metric.unit}</span>
+            {stage.metrics.map((metric, idx) => {
+              const colorMap = {
+                cyan: 'text-cyan-300',
+                blue: 'text-blue-300',
+                purple: 'text-purple-300',
+                pink: 'text-pink-300',
+                orange: 'text-orange-300',
+                emerald: 'text-emerald-300',
+                teal: 'text-teal-300',
+                green: 'text-green-300',
+              };
+              
+              return (
+                <div
+                  key={idx}
+                  className={`p-3 rounded-lg transition-all ${isActive ? 'bg-white/10' : 'bg-white/5'}`}
+                  style={{
+                    animation: isActive ? `slideInUp 0.4s ease-out ${idx * 100}ms backwards` : 'none',
+                  }}
+                >
+                  <div className={`text-xs text-gray-400 mb-1 font-medium`}>{metric.label}</div>
+                  <div className={`text-lg font-bold flex items-baseline gap-1`}>
+                    <CountUpText
+                      end={metric.value}
+                      duration={1000}
+                      className={colorMap[metric.color]}
+                    />
+                    <span className="text-xs text-gray-500">{metric.unit}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Sparkline chart */}
@@ -313,16 +326,29 @@ const StageCard = ({ stage, index, isActive, isComplete, totalStages, delay }) =
                 <TrendingUp size={14} className="text-emerald-400" />
               </div>
               <div className="flex items-end h-16 justify-between gap-1">
-                {stage.sparkline.map((value, idx) => (
-                  <div
-                    key={idx}
-                    className={`flex-1 rounded-t-sm bg-gradient-to-t from-${stage.color}-500 to-${stage.color}-400 opacity-60 hover:opacity-100 transition-opacity`}
-                    style={{
-                      height: `${(value / Math.max(...stage.sparkline)) * 100}%`,
-                      minHeight: '2px',
-                    }}
-                  />
-                ))}
+                {stage.sparkline.map((value, idx) => {
+                  const gradientMap = {
+                    cyan: 'from-cyan-500 to-cyan-400',
+                    blue: 'from-blue-500 to-blue-400',
+                    purple: 'from-purple-500 to-purple-400',
+                    pink: 'from-pink-500 to-pink-400',
+                    orange: 'from-orange-500 to-orange-400',
+                    emerald: 'from-emerald-500 to-emerald-400',
+                    teal: 'from-teal-500 to-teal-400',
+                    green: 'from-green-500 to-green-400',
+                  };
+                  
+                  return (
+                    <div
+                      key={idx}
+                      className={`flex-1 rounded-t-sm bg-gradient-to-t ${gradientMap[stage.color]} opacity-60 hover:opacity-100 transition-opacity`}
+                      style={{
+                        height: `${(value / Math.max(...stage.sparkline)) * 100}%`,
+                        minHeight: '2px',
+                      }}
+                    />
+                  );
+                })}
               </div>
             </div>
           )}

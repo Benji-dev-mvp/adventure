@@ -1,99 +1,0 @@
-
-1.0PythonFrontend"1767052079603*py2.B∞
-
-imports1
-
-extends2
-
-returns3
-
-	has param4
-
-module5
-
-
-class6
-
-function7
-(
-#backend/tests/test_api_endpoints.py9
-
-tests.test_api_endpoints11
-#
-fastapi.testclient.TestClient12
-
-fastapi.testclient14
-5
-/tests.test_api_endpoints.TestAnalyticsEndpoints16
-V
-Ptests.test_api_endpoints.TestAnalyticsEndpoints.test_get_analytics_requires_auth18
-R
-Ltests.test_api_endpoints.TestAnalyticsEndpoints.test_get_analytics_with_auth20
-4
-.tests.test_api_endpoints.TestCampaignEndpoints22
-]
-Wtests.test_api_endpoints.TestCampaignEndpoints.test_create_campaign_requires_permission24
-U
-Otests.test_api_endpoints.TestCampaignEndpoints.test_get_campaigns_requires_auth26
-Q
-Ktests.test_api_endpoints.TestCampaignEndpoints.test_get_campaigns_with_auth28
-U
-Otests.test_api_endpoints.TestCampaignEndpoints.test_manager_can_create_campaign30
-0
-*tests.test_api_endpoints.TestLeadEndpoints32
-I
-Ctests.test_api_endpoints.TestLeadEndpoints.test_get_leads_with_auth34
-M
-Gtests.test_api_endpoints.TestLeadEndpoints.test_get_leads_requires_auth36J
-
-8
-89j€
- 
-10
-10115 *
-8 (
-
-13
-13125
-
-15
-15145
-
-17
-17166 210
-
-19
-19187 217
-
-21
-21207 217
-
-23
-23226 210
-
-25
-25247 223
-
-27
-27267 223
-
-29
-29287 223
-
-31
-31307 223
-
-33
-33326 210
-
-35
-35347 233
-
-37
-37367 233r4
-
-10131*
-8  (*
-
-10151*
-8 (*

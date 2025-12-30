@@ -1,57 +1,0 @@
-
-) "Index '{index_name}' not found"str
-Š€"
-        Create query engine for retrieval
-
-        Args:
-            index_name: Name of index to query
-            similarity_top_k: Number of results to retrieve
-            filters: Metadata filters
-
-        Returns:
-            Query engine
-        "strself
-² ²(
-index_name
-³ ³(# similarity_top_k
-´ ´(!filters
-µ µ(1"„*
-(
-
-Â Â()"#get-field# indices:4
-2
-
-Â Â()"#binop not in#2not in:Bbool "
-
-Â Â() *
-Â Â(
-"F0
-.
-
-Ã Ã(?	"
-ValueError*:B
-ValueError2
-
-Ã Ã(?	"²*
-(
-
-Å Å(
-"#get-field# indices:+
-)
-
-Å Å((index"#array-read#:
-3
-1
-
-È Ì(		retriever"#unknown-value#:4
-2
-
-Ï Ï(@query_engine"#unknown-value#:0
-.
-
-Ò Ò("#get-field# query_engines:&
-$
-
-Ò Ò(5"#array-write#:
-
-Ô Ô(*G/workspaces/codespaces-react/backend/app/integrations/llamaindex_rag.py

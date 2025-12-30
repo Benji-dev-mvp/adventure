@@ -1,48 +1,0 @@
-
-öê"You are an expert lead scoring AI for B2B sales.
-
-Analyze leads based on:
-1. Company size and industry fit
-2. Budget indicators and decision-making authority
-3. Engagement signals (website visits, email opens, content downloads)
-4. Timing indicators (hiring, funding, technology changes)
-5. Historical campaign performance
-
-Provide a score 0-100 where:
-- 0-30: Low priority (poor fit or low engagement)
-- 31-60: Medium priority (moderate fit or engagement)
-- 61-85: High priority (good fit and engagement)
-- 86-100: Urgent priority (ideal customer profile + high intent)
-
-Include specific factors that influenced the score and actionable recommendations."str
-.%"Create type-safe lead scoring agent"strself
-ò ò( -)app.integrations.pydantic_agent.LeadScore"˘(
-&
-
-ú ú("#get-field# model:/
--
-
-õ Æ(	agent"#unknown-value#:*
-(
-
-∞ ∏(%closure"#new-object#)
-'
-
-∞ ∏("#set-field# agent:-
-+
-
-∞ ∏(	"?python-partial-apply?:*
-(
-
-∏ æ(
-%closure"#new-object#)
-'
-
-∏ æ("#set-field# agent:
--
-+
-
-∏ æ("?python-partial-apply?:
-
-
-æ æ(*G/workspaces/codespaces-react/backend/app/integrations/pydantic_agent.py

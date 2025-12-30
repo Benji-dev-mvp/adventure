@@ -1,109 +1,0 @@
-
-"common_industries"str
-"common_titles"str
-500int
-	"Manager"str
-"VP"str
-"SaaS"str
-*0.75float
-
-"Director"str
-"tech_stack"str
-!	"HubSpot"str
-	"Technology"str
-"avg_company_size"str
-)"avg_engagement_score"str
-5,"Create aggregate profile from source leads"str
- "Salesforce"str
-
-0intlead_ids
-æ æ(+list"ª&
-$
-
-é ï(	"#new-object#Bdict"
- 
-
-ê ê(#"	#map-set#:)
-'
-
-ë! ë(7
-"#unknown-value#Blist(
-&
-
-ë! ë(7"
-#is-exact#:
-Bbool
-
-
-ë! ë(7"
-#assume#::
-8
-
-ë! ë(7"#set-field# __collection_size:
-Bint(
-&
-
-ë! ë(7"#array-add-last#:
-(
-&
-
-ë! ë(7"#array-add-last#:
-	"
- 
-
-ë ë(7"	#map-set#:
-)
-'
-
-ì ì(:"#unknown-value#Blist(
-&
-
-ì ì(:"
-#is-exact#:Bbool
-
-
-ì ì(:"
-#assume#::
-8
-
-ì ì(:"#set-field# __collection_size:Bint(
-&
-
-ì ì(:"#array-add-last#:(
-&
-
-ì ì(:"#array-add-last#:(
-&
-
-ì ì(:"#array-add-last#:"
- 
-
-ì ì(:"	#map-set#:)
-'
-
-í í(3""#unknown-value#Blist(
-&
-
-í í(3#"
-#is-exact#:"Bbool
-
-
-í í(3$"
-#assume#:#:
-8
-
-í í(3%"#set-field# __collection_size:"Bint(
-&
-
-í í(3&"#array-add-last#:" (
-&
-
-í í(3'"#array-add-last#:"!"
- 
-
-í í(3("	#map-set#:""
- 
-
-î î((+"	#map-set#:)*
-
-é ï(	*</workspaces/codespaces-react/backend/app/core/ml_advanced.py

@@ -1,12 +1,0 @@
-
-1app.core.websocket.ConnectionManager.send_to_roleD
-:/workspaces/codespaces-react/backend/app/core/websocket.py2 2("3*0
-3
-websocket.py"
-7 7
-implicit return:
-2! 2(.	
-message:
-20 2(9
-roleB(&
-$app.core.websocket.ConnectionManagerH

@@ -1,37 +1,0 @@
-
-Vapp.integrations.langchain_agent.LangChainOrchestrator._create_tools.schedule_followupT
-H/workspaces/codespaces-react/backend/app/integrations/langchain_agent.py¸ ¸(#"2*Ü
-2
-¹ ¹(+´
-±
-
-» »(K
-%1"__concat*/
-
-» »(2!
-Scheduled follow-up for lead *
-
-»3 »(:
-	
-lead_id*
-
-»; »(?
- in *
-
-»@ »(D
-
-days*
-
-»E »(J	
- days"
-
-» »(K
-
-%1:
-
-¸$ ¸(0	
-lead_id:
-
-¸2 ¸(?
-daysB:8
-6app.integrations.langchain_agent.LangChainOrchestratorH

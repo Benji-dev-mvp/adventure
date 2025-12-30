@@ -1,16 +1,0 @@
-
-#"Research company details"str
-ðæ"
-**{company} - Company Overview**
-
-â€¢ Industry: Enterprise SaaS
-â€¢ Size: 500-1000 employees
-â€¢ Funding: Series C, $50M raised
-â€¢ Growth: 120% YoY revenue growth
-â€¢ Key Challenges: Scaling sales team, international expansion
-â€¢ Tech Stack: Salesforce, HubSpot, Slack (no current email automation)
-â€¢ Recent News: Announced European expansion Q1 2026
-"strcompany
-½ ½(("
-
-¿ É(*C/workspaces/codespaces-react/backend/app/api/routes/meeting_prep.py

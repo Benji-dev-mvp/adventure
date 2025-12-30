@@ -1,24 +1,0 @@
-
-ÏÅ"
-    Decorator to add self-healing to any function
-
-    Usage:
-    @with_self_healing(error_category=ErrorCategory.API_RATE_LIMIT)
-    async def call_external_api():
-        # Your code here
-    "strerror_category
-Ý Ý(M"Æ#
-!
-
-ö ö("#unknown-value#*
-(
-
-ç ö(%closure"#new-object#2
-0
-
-ç ö("#set-field# error_category:-
-+
-
-ç ö("?python-partial-apply?:
-
-ö ö(*?/workspaces/codespaces-react/backend/app/core/error_recovery.py

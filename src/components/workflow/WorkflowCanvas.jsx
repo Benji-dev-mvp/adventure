@@ -127,17 +127,19 @@ const WorkflowCanvas = ({
 
   // Get default data for each node type
   const getNodeDefaults = type => {
-    const defaults = {
-      trigger: { label: 'Campaign Trigger', triggerType: 'manual', description: 'Start campaign' },
-      email: { label: 'Send Email', subject: '', content: '', tone: 'professional' },
-      linkedin: { label: 'LinkedIn Message', content: '', connectionRequest: false },
-      call: { label: 'Phone Call', script: '', duration: 5 },
-      sms: { label: 'Send SMS', content: '', maxLength: 160 },
-      delay: { label: 'Wait', days: 2, hours: 0, description: 'Wait before next step' },
-      condition: { label: 'Condition', field: 'email_opened', operator: 'equals', value: 'true' },
-      abtest: { label: 'A/B Test', variants: ['A', 'B'], splitRatio: 50 },
+    const nodeConfig = {
+      trigger: ['Campaign Trigger', { triggerType: 'manual', description: 'Start campaign' }],
+      email: ['Send Email', { subject: '', content: '', tone: 'professional' }],
+      linkedin: ['LinkedIn Message', { content: '', connectionRequest: false }],
+      call: ['Phone Call', { script: '', duration: 5 }],
+      sms: ['Send SMS', { content: '', maxLength: 160 }],
+      delay: ['Wait', { days: 2, hours: 0, description: 'Wait before next step' }],
+      condition: ['Condition', { field: 'email_opened', operator: 'equals', value: 'true' }],
+      abtest: ['A/B Test', { variants: ['A', 'B'], splitRatio: 50 }],
     };
-    return defaults[type] || { label: 'Unknown Node' };
+    
+    const [label, props] = nodeConfig[type] || ['Unknown Node', {}];
+    return { label, ...props };
   };
 
   // Delete node
@@ -276,20 +278,19 @@ const WorkflowCanvas = ({
     showToast('Layout applied', 'success');
   }, [nodes, setNodes, showToast]);
 
-  // Minimap node color
-  const nodeColor = node => {
-    const colors = {
-      trigger: '#22c55e',
-      email: '#3b82f6',
-      linkedin: '#1d4ed8',
-      call: '#10b981',
-      sms: '#8b5cf6',
-      delay: '#f59e0b',
-      condition: '#ec4899',
-      abtest: '#6366f1',
-    };
-    return colors[node.type] || '#6b7280';
+  // Minimap node color configuration
+  const nodeColorMap = {
+    trigger: '#22c55e',
+    email: '#3b82f6',
+    linkedin: '#1d4ed8',
+    call: '#10b981',
+    sms: '#8b5cf6',
+    delay: '#f59e0b',
+    condition: '#ec4899',
+    abtest: '#6366f1',
   };
+  
+  const nodeColor = node => nodeColorMap[node.type] || '#6b7280';
 
   return (
     <div className="h-full w-full relative bg-gray-50 dark:bg-gray-900">

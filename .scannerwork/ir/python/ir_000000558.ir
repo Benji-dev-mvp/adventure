@@ -1,78 +1,0 @@
-
-"division by zero"bool
-
-"hit_rate"str
-
-0int
- "utilization"str
-"S3518"bool
-"a"bool
-"hits"str
-"size"str
-
-"max_size"str
-"Get cache statistics"str
-"misses"strself= =("Ê%
-#
-? ?("#get-field# hits:'
-%
-? ?('"#get-field# misses:)
-'
-? ?('total"	#binop +#2+:$
-"
-@ G(	"#new-object#Bdict&
-$
-A A(""#get-field# cache:*
-(
-A A(#	"
-builtinslen*:Bint 
-
-A A(#
-"	#map-set#:	)
-'
-B B(%"#get-field# max_size: 
-
-B B(%"	#map-set#:%
-#
-C C("#get-field# hits: 
-
-C C("	#map-set#:'
-%
-D D(!"#get-field# misses: 
-
-D D(!"	#map-set#:(
-&
-E- E(6"	#binop >#2>:Bbool&"$
-E- E(6 *E* E(,2E7 E(;"³%
-#
-E E(!"#get-field# hits:*
-(
-E E()"
-#binop !=#2!=:Bbool 
-
-E E()"
-#assert#:*
-(
-E E()"#dependent-value#*:
-E E(="
-E E(="á* 
-
-E E(="	#map-set#:&
-$
-F F()!"#get-field# cache:*
-(
-F F(*""
-builtinslen*:!Bint)
-'
-F- F(:#"#get-field# max_size:*
-(
-F F(:$"
-#binop !=#2!=:#Bbool 
-
-F F(:%"
-#assert#:$*
-(
-F F(:&"#dependent-value#*:"# 
-
-F F(:'"	#map-set#: &
-@ G(	*A/workspaces/codespaces-react/backend/app/core/multi_tier_cache.py

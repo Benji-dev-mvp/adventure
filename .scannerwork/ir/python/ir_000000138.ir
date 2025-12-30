@@ -1,59 +1,0 @@
-
-
-0int
-5,"Scrape competitor website for intelligence"str
-"target_market"str
-"recent_changes"str
-90"All-in-one sales platform with CRM integration"str
-
-"overview"str
-%"Acquired competitor TechCo"str
-
-"positioning"str
-.%"Launched AI features (3 months ago)"str
-""Raised Series D funding"str
-1("Mid-market to Enterprise B2B companies"str
-KB"{competitor} is a B2B sales engagement platform founded in 2015."str
-competitor
-€% €(4list"ú&
-$
-
-ƒ Œ("#new-object#Bdict"
- 
-
-„ „(W"	#map-set#:"
- 
-
-… …(A	"	#map-set#:"
- 
-
-† †(G"	#map-set#:
-)
-'
-
-‡ ‹(	"#unknown-value#Blist(
-&
-
-‡ ‹(	"
-#is-exact#:Bbool
-
-
-‡ ‹(	"
-#assume#::
-8
-
-‡ ‹(	"#set-field# __collection_size:Bint(
-&
-
-‡ ‹(	"#array-add-last#:(
-&
-
-‡ ‹(	"#array-add-last#:(
-&
-
-‡ ‹(	"#array-add-last#:"
- 
-
-‡ ‹(	"	#map-set#:
-
-ƒ Œ(*C/workspaces/codespaces-react/backend/app/api/routes/battle_cards.py

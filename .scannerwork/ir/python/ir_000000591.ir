@@ -1,170 +1,0 @@
-
-
-0int
-"tokens_remaining"str
-"tokens_limit"str
-æÜ"
-        Get remaining budget for user and org
-
-        Args:
-            user_id: User ID
-            org_id: Organization ID
-
-        Returns:
-            Dict with remaining tokens and cost for user and org
-        "str
-"cost_used"str
-
-"user"str
-"tokens"str
-"cost"str
-("org"str
-"tokens_used"str
-"cost_remaining"str
-$"cost_limit"strself
-œ œ(user_id
- (org_id
-ž ž("Ù#
-!
-
-ª ª(C"#unknown-value#/
--
-
-ª ª(C
-user_usage"#unknown-value##
-!
-
-« «(@"#unknown-value#.
-,
-
-« «(@	org_usage"#unknown-value#&
-$
-
-­ Ä(		"#new-object#Bdict&
-$
-
-® ¹("#new-object#Bdict$
-"
-
-¯ ¯(3"#array-read#:"
- 
-
-¯ ¯(3"	#map-set#:E
-C
-
-± ±(>"0.#get-field# default_daily_token_limit_per_user:$
-"
-
-±A ±(U"#array-read#:'
-%
-
-± ±(U"	#binop -#*2-:(
-&
-
-°$ ²("
-builtinsmax*:"
- 
-
-° ²("	#map-set#:E
-C
-
-³  ³(G"0.#get-field# default_daily_token_limit_per_user:"
- 
-
-³ ³(G"	#map-set#:$
-"
-
-´ ´(/"#array-read#:"
- 
-
-´ ´(/"	#map-set#:D
-B
-
-¶ ¶(="/-#get-field# default_daily_cost_limit_per_user:$
-"
-
-¶@ ¶(R "#array-read#:'
-%
-
-¶ ¶(R!"	#binop -#*2-: (
-&
-
-µ" ·(""
-builtinsmax*:!"
- 
-
-µ ·(#"	#map-set#:"D
-B
-
-¸ ¸(D%"/-#get-field# default_daily_cost_limit_per_user:"
- 
-
-¸ ¸(D&"	#map-set#:$%"
- 
-
-® ¹('"	#map-set#:	
-&
-$
-
-º Ã()"#new-object#Bdict$
-"
-
-» »(2*"#array-read#:"
- 
-
-» »(2+"	#map-set#:)*D
-B
-
-½ ½(=,"/-#get-field# default_daily_token_limit_per_org:$
-"
-
-½@ ½(S-"#array-read#:'
-%
-
-½ ½(S."	#binop -#*2-:,-(
-&
-
-¼$ ¾(/"
-builtinsmax*:."
- 
-
-¼ ¾(0"	#map-set#:)/D
-B
-
-¿  ¿(F1"/-#get-field# default_daily_token_limit_per_org:"
- 
-
-¿ ¿(F2"	#map-set#:)1$
-"
-
-À À(.3"#array-read#:"
- 
-
-À À(.4"	#map-set#:)3C
-A
-
-Á) Á(N5".,#get-field# default_daily_cost_limit_per_org:$
-"
-
-ÁQ Á(b6"#array-read#:'
-%
-
-Á) Á(b7"	#binop -#*2-:56(
-&
-
-Á" Á(c8"
-builtinsmax*:7"
- 
-
-Á Á(c9"	#map-set#:)8C
-A
-
-Â Â(C:".,#get-field# default_daily_cost_limit_per_org:"
- 
-
-Â Â(C;"	#map-set#:)$:"
- 
-
-º Ã(<"	#map-set#:	()
-
-­ Ä(		*G/workspaces/codespaces-react/backend/app/integrations/budget_manager.py

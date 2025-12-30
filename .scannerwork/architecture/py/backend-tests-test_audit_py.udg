@@ -1,78 +1,0 @@
-
-1.0PythonFrontend"1767052069860*py2.BÏ
-
-imports1
-
-extends2
-
-returns3
-
-	has param4
-
-module5
-
-
-class6
-
-function7
- 
-backend/tests/test_audit.py9
-
-tests.test_audit11
-
-app.models.audit12
-
-app.core.audit14
-'
-!tests.test_audit.TestAuditLogging16
-C
-=tests.test_audit.TestAuditLogging.test_audit_log_without_user18
-
-typing.Coroutine20
-=
-7tests.test_audit.TestAuditLogging.test_create_audit_log22
->
-8tests.test_audit.TestAuditLogging.test_audit_log_failure24J
-
-8
-89j¿
- 
-10
-10115 *
-8 (
-
-13
-13125
-
-15
-15145
-
-17
-17166 210
-
-19
-19187 217
-
-21
-21206
-
-23
-23227 217
-
-25
-25247 217r‚
-
-10131*
-8 ()
-
-10151*
-8 (,
-
-19213*
-80 0(*
-
-23213*
-8 ($
-
-25213*
-8" "(%

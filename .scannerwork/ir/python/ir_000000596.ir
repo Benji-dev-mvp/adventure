@@ -1,20 +1,0 @@
-
-ìâ"
-    Decorator to automatically log actions to audit trail.
-
-    Usage:
-        @audit_action("campaign.delete", resource_type="campaign")
-        async def delete_campaign(campaign_id: int, user: User):
-            ...
-    "straction (resource_type (A"å!
-
-U U("#unknown-value#(
-&
- U(%closure"#new-object#(
-&
- U("#set-field# action:/
--
- U("#set-field# resource_type:+
-)
- U("?python-partial-apply?:
-U U(*?/workspaces/codespaces-react/backend/app/core/audit_enhanced.py

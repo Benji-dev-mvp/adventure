@@ -1,159 +1,0 @@
-
-1.0PythonFrontend"1767052067831*py2.B½
-
-imports1
-
-extends2
-
-returns3
-
-	has param4
-
-module5
-
-
-class6
-
-function7
-"
-backend/app/api/versioning.py9
-
-app.api.versioning11
-
-logging12
-
-	functools14
-
-typing16
-
-starlette.status18
-
-fastapi20
-+
-%app.api.versioning.versioned_endpoint22
-
-
-dict24
-#
-app.api.versioning.APIVersion26
-0
-*app.api.versioning.APIVersion.is_supported28
-
-
-bool30
-	
-str32
-(
-"app.api.versioning.get_api_version34
- 
-starlette.requests.Request36
-+
-%app.api.versioning.DeprecationWarning38
-6
-0app.api.versioning.DeprecationWarning.add_header40
-*
-$app.api.versioning.list_campaigns_v142
-
-typing.Coroutine44
-*
-$app.api.versioning.list_campaigns_v246J
-
-8
-89j¨
- 
-10
-10115 *
-8 (
-
-13
-13125
-
-15
-15145
-
-17
-17165
-
-19
-19185
-
-21
-21205
-
-23
-23227 210
-
-25
-25246
-
-27
-27266 210
-
-29
-29287 227
-
-31
-31306
-
-33
-33326
-
-35
-35347 210
-
-37
-37366
-
-39
-39386 210
-
-41
-41407 239
-
-43
-43427 210
-
-45
-45446
-
-47
-47467 210rÒ
-
-10131*
-8 (
-
-10151*
-8 (
-
-10171*
-8 (&
-
-10191*
-8	8 	(>
-
-10211*
-8	 	(>
-
-23254*
-8/ /(
-
-29313*
-8	 (
-
-29334*
-8	 (
-
-35333*
-8 (
-
-35374*
-8 (
-
-41334*
-8T	 T(
-
-43453*
-8d d(
-
-47453*
-8j j(

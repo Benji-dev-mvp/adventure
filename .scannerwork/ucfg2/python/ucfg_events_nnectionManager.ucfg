@@ -1,99 +1,0 @@
-
-!app.core.events.ConnectionManagerA
-7/workspaces/codespaces-react/backend/app/core/events.py ("2*”
-2 (	
-= (	
-%2"dict
- (
-%3"setè
-å
- (
-%4"__mapSet*"
-
-__unknown_file (
-
-%2*(
-
-__unknown_file (
-
-campaign*"
-
-__unknown_file (
-
-%3
- (
-%5"setå
-â
- (
-%6"__mapSet*"
-
-__unknown_file (
-
-%2*%
-
-__unknown_file (	
-leads*"
-
-__unknown_file (
-
-%5
- (
-%7"setç
-ä
- (
-%8"__mapSet*"
-
-__unknown_file (
-
-%2*&
-
-__unknown_file (
-
-system*"
-
-__unknown_file (
-
-%7
- (
-%9"setã
-à
- (
-%10"__mapSet*"
-
-__unknown_file (
-
-%2*#
-
-__unknown_file (
-all*"
-
-__unknown_file (
-
-%9s
-q
- (	;#
-!app.core.events.ConnectionManager"
-active_connections"__id*"
-
-__unknown_file (
-
-%2
-; (=
-%11"dictr
-p
- (=9#
-!app.core.events.ConnectionManager"
-user_connections"__id*#
-
-__unknown_file (
-
-%11*
-3*W
-3
-	events.py31
- (
-%1"!app.core.events.ConnectionManager"
- (
-
-%1B%#
-!app.core.events.ConnectionManagerH

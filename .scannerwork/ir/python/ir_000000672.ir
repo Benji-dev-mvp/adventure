@@ -1,430 +1,0 @@
-
-5W,"Generate multi-channel campaign strategies"str
-
-5int
-7~."Interactive AI assistant conversations (Ava)"str
-	"summary"str
--3600int
-1500int
-\"best_practices"str
-MD"Score leads based on firmographic, behavioral, and engagement data"str
-4"Email Generation v1"str
-?"email_templates"str
-Ö"faq"str
-"Lead Scoring v1"str
-8800int
-05'"Generate personalized outbound emails"str
-ñ"send_email"str
-v1800int
-500int
-6"gpt-4"str
-d10int
-ÂO€"Generate an email for:
-Recipient: {recipient_name} at {company_name}
-Role: {job_title}
-Context: {context}
-Tone: {tone}
-Goal: {objective}
-
-Personalization data:
-{personalization_data}
-
-Reference material:
-{rag_context}"str
-0.3float
-A"product_info"str
-<Å2"org_{org_id}:user_{user_id}:session_{session_id}"str
-)0.05float
-∏Æ"
-AI Orchestration Policies
-
-Defines explicit policies per use case: lead scoring, email, campaign, chat
-Each policy specifies model, temperature, tools, memory + RAG usage
-"str
-X3000int
-Z"campaign_playbooks"str
-Ìu„"Design a campaign for:
-Objective: {objective}
-Target audience: {target_description}
-Budget: {budget}
-Timeline: {timeline}
-Constraints: {constraints}
-
-Historical performance:
-{historical_data}
-
-Industry insights:
-{rag_context}"str
-""ideal_customer_profiles"str
-è0.65float
-!f"analyze_past_campaigns"str
-î"generate_report"str
-$g"fetch_industry_benchmarks"str
-
-%3int
-≤+®"You are an expert B2B lead scoring AI. Analyze leads based on:
-- Company size, industry, revenue
-- Engagement signals (website visits, email opens, content downloads)
-- Fit with ideal customer profile
-- Buying signals and intent
-
-Provide scores 0-100 with confidence levels and clear reasoning."str
-°100000int
-‘t "You are an expert B2B marketing strategist. Design comprehensive campaign strategies including:
-- Target audience segmentation
-- Channel mix (email, LinkedIn, calls, ads)
-- Sequence timing and cadence
-- Messaging themes per segment
-- Success metrics and KPIs
-- Budget allocation
-
-Base recommendations on data and proven tactics."str
-NoneNoneType
-ê8int
-30int
-’,À"Score this lead:
-Company: {company_name}
-Industry: {industry}
-Size: {company_size}
-Engagement: {engagement_summary}
-Signals: {buying_signals}
-
-Context from similar successful conversions:
-{rag_context}"str
-1000int
-truebool
-Ç15int
-@"successful_campaigns"str
-Ü"user_data"str
-
-;7int
-I0.7float
-9"buffer"str
-ì"get_campaign_stats"str
-)§"{user_message}
-
-{rag_context}"str
-:2000int
-r0.25float
-70.8float
-
- 0int
-}"AI Assistant Chat v1"str
-í"search_leads"str
-$0.75float
-ï"schedule_meeting"str
-Ñ"documentation"str
-L0.10float
-h"calculate_roi"str
-Ä4000int
-"gpt-4.1-mini"str
-q5000int
-V"Campaign Strategy v1"str
-["industry_benchmarks"str
-,=#"org_{org_id}:account_{account_id}"str
-'falsebool
-‚Nÿ"You are an expert B2B email copywriter. Write personalized, engaging emails that:
-- Hook readers in the subject line
-- Demonstrate understanding of their business
-- Provide clear value proposition
-- Include compelling CTA
-- Match the specified tone (professional/casual/enthusiastic)
-
-Avoid: Generic templates, excessive length, hard selling."str
-Æ££"You are Ava, an AI assistant for B2B sales automation. Help users with:
-- Campaign planning and execution
-- Lead research and scoring
-- Email generation and optimization
-- Analytics and reporting
-- Strategy recommendations
-
-Be helpful, conversational, and proactive. Use tools when needed."str
-86400int
-!"historical_conversions"strlist"ü%#
-!
-
-è è({"#unknown-value##
-!
-
-é é(y"#unknown-value##
-!
-
-‘ ‘(T"#unknown-value##
-!
-
-” ”(R"#unknown-value##
-!
-
-¢ ¢(2"#unknown-value##
-!
-
-° °(0"#unknown-value#!
-
-t t("#unknown-value#!
-
-s s(	"#unknown-value#&
-$
- (Enum"?python-unknown?&
-$
-	 	('Dict"?python-unknown?&
-$
-	 	('List"?python-unknown?*
-(
-	 	('Optional"?python-unknown?+
-)
- (%	BaseModel"?python-unknown?'
-%
- (%Field"?python-unknown?7
-5
-	r0 √(DEFAULT_POLICIES"#new-object#Bdict-
-+
-s s(
-"#get-field# LEAD_SCORING:	-
-+
-t t()"#get-field# LEAD_SCORING:%
-#
-~ ~(""	#binop *#*2*:O
-M
-	z Å(	"MemoryConfig:B&app.integrations.policies.MemoryConfig)
-'
-
-Ñ Ñ(M"#unknown-value#Blist(
-&
-
-Ñ Ñ(M"
-#is-exact#:Bbool
-
-
-Ñ Ñ(M"
-#assume#::
-8
-
-Ñ Ñ(M!"#set-field# __collection_size: Bint(
-&
-
-Ñ Ñ(M""#array-add-last#:(
-&
-
-Ñ Ñ(M#"#array-add-last#:I
-G
-
-Ç à(	&"	RAGConfig:$%B#app.integrations.policies.RAGConfigG
-E
-
-â â('("
-ToolConfig:'B$app.integrations.policies.ToolConfigL
-J
-
-ä ç(	*"BudgetConfig:)B&app.integrations.policies.BudgetConfigO
-M
-	s †(."
-AIPolicy:&(*+,-B"app.integrations.policies.AIPolicy!
-
-	s †(/"	#map-set#:
-.3
-1
-
-° °( 1"#get-field# EMAIL_GENERATION:03
-1
-
-¢ ¢(-3"#get-field# EMAIL_GENERATION:2'
-%
-
-¨ ¨(!<"	#binop *#*2*:;P
-N
-
-® Ø(	>"MemoryConfig:9:<=B&app.integrations.policies.MemoryConfig)
-'
-
-≤ ≤(SB"#unknown-value#Blist(
-&
-
-≤ ≤(SC"
-#is-exact#:BBbool
-
-
-≤ ≤(SD"
-#assume#:C:
-8
-
-≤ ≤(SE"#set-field# __collection_size:B Bint(
-&
-
-≤ ≤(SF"#array-add-last#:B?(
-&
-
-≤ ≤(SG"#array-add-last#:B@(
-&
-
-≤ ≤(SH"#array-add-last#:BAJ
-H
-
-∞ ∑(	J"	RAGConfig:BIB#app.integrations.policies.RAGConfigG
-E
-
-∏ ∏('K"
-ToolConfig:'B$app.integrations.policies.ToolConfigL
-J
-
-π º(	M"BudgetConfig::LB&app.integrations.policies.BudgetConfigO
-M
-
-°" “(P"
-AIPolicy:345678>JKMNO'B"app.integrations.policies.AIPolicy"
- 
-
-° “(Q"	#map-set#:1P4
-2
-
-” ”(!S"#get-field# CAMPAIGN_STRATEGY:R4
-2
-
-‘ ‘(.U"#get-field# CAMPAIGN_STRATEGY:TO
-M
-
-⁄ ‡(	Y"MemoryConfig:X%B&app.integrations.policies.MemoryConfig)
-'
-
-„ „(W]"#unknown-value#Blist(
-&
-
-„ „(W^"
-#is-exact#:]Bbool
-
-
-„ „(W_"
-#assume#:^:
-8
-
-„ „(W`"#set-field# __collection_size:] Bint(
-&
-
-„ „(Wa"#array-add-last#:]Z(
-&
-
-„ „(Wb"#array-add-last#:][(
-&
-
-„ „(Wc"#array-add-last#:]\I
-G
-
-· Á(	e"	RAGConfig:]IdB#app.integrations.policies.RAGConfig)
-'
-
-Í Ó(i"#unknown-value#Blist(
-&
-
-Í Ó(j"
-#is-exact#:iBbool
-
-
-Í Ó(k"
-#assume#:j:
-8
-
-Í Ó(l"#set-field# __collection_size:i Bint(
-&
-
-Í Ó(m"#array-add-last#:if(
-&
-
-Í Ó(n"#array-add-last#:ig(
-&
-
-Í Ó(o"#array-add-last#:ihI
-G
-
-Ë (	p"
-ToolConfig:i%B$app.integrations.policies.ToolConfigL
-J
-
-Ò Ù(	s"BudgetConfig:qrB&app.integrations.policies.BudgetConfigQ
-O
-
-”# ç(w"
-AIPolicy:UVW6I:YepstuvB"app.integrations.policies.AIPolicy"
- 
-
-” ç(x"	#map-set#:Sw/
--
-
-é é(z"#get-field# CONVERSATION:y/
--
-
-è è()|"#get-field# CONVERSATION:{U
-S
-
-ï ù(	É"MemoryConfig:
-9Ä-ÅÇB&app.integrations.policies.MemoryConfig*
-(
-
-† †(Má"#unknown-value#Blist*
-(
-
-† †(Mà"
-#is-exact#:áBbool!
-
-
-† †(Mâ"
-#assume#:à<
-:
-
-† †(Mä"#set-field# __collection_size:á Bint+
-)
-
-† †(Mã"#array-add-last#:áÑ+
-)
-
-† †(Må"#array-add-last#:áÖ*
-(
-
-† †(Mç"#array-add-last#:áA+
-)
-
-† †(Mé"#array-add-last#:áÜN
-L
-
-û •(	ë"	RAGConfig:	áèêB#app.integrations.policies.RAGConfig*
-(
-
-® Æ(ó"#unknown-value#Blist*
-(
-
-® Æ(ò"
-#is-exact#:óBbool!
-
-
-® Æ(ô"
-#assume#:ò<
-:
-
-® Æ(ö"#set-field# __collection_size:ó Bint+
-)
-
-® Æ(õ"#array-add-last#:óí+
-)
-
-® Æ(ú"#array-add-last#:óì+
-)
-
-® Æ(ù"#array-add-last#:óî+
-)
-
-® Æ(û"#array-add-last#:óï+
-)
-
-® Æ(ü"#array-add-last#:óñK
-I
-
-¶ ∞(	†"
-ToolConfig:óB$app.integrations.policies.ToolConfigN
-L
-
-± ¥(	¢"BudgetConfig:X°B&app.integrations.policies.BudgetConfigW
-U
-
-é ¬(•"
-AIPolicy:|}~6IÉë†¢£§'B"app.integrations.policies.AIPolicy$
-"
-
-é ¬(¶"	#map-set#:z• *A/workspaces/codespaces-react/backend/app/integrations/policies.py

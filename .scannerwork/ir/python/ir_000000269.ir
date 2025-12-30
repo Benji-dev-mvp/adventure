@@ -1,35 +1,0 @@
-
-xo"User Preference:
-Type: {preference_type}
-Value: {preference_value}
-Context: {context or 'General preference'}"str
-“»"
-        Remember user preferences and patterns
-
-        Args:
-            user_id: Artisan user ID
-            preference_type: Type of preference (tone, channel, timing, etc.)
-            preference_value: Preference value
-            context: Additional context
-
-        Returns:
-            Memory creation result
-        "strself
-Å Å(user_id
-Ç Ç(preference_type
-É É( preference_value
-Ñ Ñ(context
-Ö Ö(%"ã-
-+
-
-ì ñ(-memory_text"#id#:Bstr#
-!
-
-ò ¢(		"#unknown-value##
-!
-
-ò ¢(	
-"#unknown-value#
-
-ò ¢(	
-*D/workspaces/codespaces-react/backend/app/integrations/mem0_memory.py

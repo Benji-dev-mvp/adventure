@@ -1,109 +1,0 @@
-
-1.0PythonFrontend"1767052067980*py2.Bò	
-
-imports1
-
-extends2
-
-returns3
-
-	has param4
-
-module5
-
-
-class6
-
-function7
-#
-backend/tests/test_api_auth.py9
-
-tests.test_api_auth11
-#
-fastapi.testclient.TestClient12
-
-fastapi.testclient14
-+
-%tests.test_api_auth.TestAuthEndpoints16
-G
-Atests.test_api_auth.TestAuthEndpoints.test_login_nonexistent_user18
-O
-Itests.test_api_auth.TestAuthEndpoints.test_get_current_user_without_token20
-E
-?tests.test_api_auth.TestAuthEndpoints.test_login_wrong_password22
-B
-<tests.test_api_auth.TestAuthEndpoints.test_register_new_user24
-A
-;tests.test_api_auth.TestAuthEndpoints.test_get_current_user26
-O
-Itests.test_api_auth.TestAuthEndpoints.test_get_current_user_invalid_token28
-I
-Ctests.test_api_auth.TestAuthEndpoints.test_register_duplicate_email30
->
-8tests.test_api_auth.TestAuthEndpoints.test_login_success32
-4
-.tests.test_api_auth.TestAuthorizationEndpoints34
-Y
-Stests.test_api_auth.TestAuthorizationEndpoints.test_admin_can_access_admin_endpoint36
-[
-Utests.test_api_auth.TestAuthorizationEndpoints.test_user_cannot_access_admin_endpoint38
-V
-Ptests.test_api_auth.TestAuthorizationEndpoints.test_manager_can_access_campaigns40J
-
-8
-89jç
- 
-10
-10115 *
-8 (
-
-13
-13125
-
-15
-15145
-
-17
-17166 210
-
-19
-19187 217
-
-21
-21207 217
-
-23
-23227 217
-
-25
-25247 217
-
-27
-27267 217
-
-29
-29287 217
-
-31
-31307 217
-
-33
-33327 217
-
-35
-35346 210
-
-37
-37367 235
-
-39
-39387 235
-
-41
-41407 235r4
-
-10131*
-8  (*
-
-10151*
-8 (*

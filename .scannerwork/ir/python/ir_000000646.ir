@@ -1,19 +1,0 @@
-
-
-4int
-–Œ"
-        Approximate token count for Anthropic
-        Using rough approximation since Anthropic doesn't provide public tokenizer
-        "strself
-¨ ¨(text
-¨ ¨($"k,
-*
-
-® ®("
-builtinslen*:Bint)
-'
-
-® ®("
-#binop //#*2//:
-
-® ®(*U/workspaces/codespaces-react/backend/app/integrations/providers/anthropic_provider.py

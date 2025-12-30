@@ -1,56 +1,0 @@
-
-
-truebool
-%"Enrich a company by domain"str
-""domain:{domain.lower()}"strselfo o(!domaino# o(."û)
-'
-q q(.	cache_key"#id#:Bstr'
-%
-r r(#"#get-field# _cache:*
-(
-r r(#"
-#binop in#2in:Bbool"
-r r(# *r r(
-"ë'
-%
-s s( "#get-field# _cache:*
-(
-s s(+	result"#array-read#:(
-&
-t t("#set-field# cached:	
-
-u u(	"z-
-+
-x x("#get-field# clearbit_key:)
-'
-x x("
-__bool__*:BboolH"
-x x( *x x(
-"√!
-
-y y(@"#unknown-value#)
-'
-y y(@result"#unknown-value#(
-&
-z z("#get-field# success:)
-'
-z z("
-__bool__*:BboolH"
-z z( *z z("µ!
-
- (8"#unknown-value#)
-'
- (8result"#unknown-value#)
-'
-
-Ä Ä("#get-field# _cache:&
-$
-
-Ä Ä('"#array-write#:
-
-Å Å("a'
-%
-{ {("#get-field# _cache:$
-"
-{ {(/"#array-write#:
-| |("*G/workspaces/codespaces-react/backend/app/services/enrichment_service.py

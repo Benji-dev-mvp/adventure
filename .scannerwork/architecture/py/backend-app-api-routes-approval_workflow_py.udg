@@ -1,270 +1,0 @@
-
-1.0PythonFrontend"1767052065205*py2.Bì
-
-imports1
-
-extends2
-
-returns3
-
-	has param4
-
-module5
-
-
-class6
-
-function7
-0
-+backend/app/api/routes/approval_workflow.py9
-&
- app.api.routes.approval_workflow11
-
-datetime12
-
-
-enum14
-
-typing16
-
-fastapi18
-
-pydantic20
-
-app.core.security22
-
-app.models.user24
-6
-0app.api.routes.approval_workflow.ApprovalRequest26
-
-pydantic.main.BaseModel28
-9
-3app.api.routes.approval_workflow.get_approval_stats30
-
-typing.Coroutine32
-
-app.models.user.User34
-3
--app.api.routes.approval_workflow.get_approval36
-	
-int38
-8
-2app.api.routes.approval_workflow._extract_insights40
-
-
-list42
-
-
-dict44
-5
-/app.api.routes.approval_workflow.ApprovalStatus46
-	
-str48
-
-	enum.Enum50
-3
--app.api.routes.approval_workflow.fast_approve52
-7
-1app.api.routes.approval_workflow.ApprovalResponse54
-<
-6app.api.routes.approval_workflow.get_pending_approvals56
-:
-4app.api.routes.approval_workflow.submit_for_approval58
-6
-0app.api.routes.approval_workflow.review_approval60
-5
-/app.api.routes.approval_workflow._analyze_edits62
-3
--app.api.routes.approval_workflow.ApprovalItem64J
-
-8
-89jë
- 
-10
-10115 *
-8 (
-
-13
-13125
-
-15
-15145
-
-17
-17165
-
-19
-19185
-
-21
-21205
-
-23
-23225
-
-25
-25245
-
-27
-27266 210
-
-29
-29286
-
-31
-31307 210
-
-33
-33326
-
-35
-35346
-
-37
-37367 210
-
-39
-39386
-
-41
-41407 210
-
-43
-43426
-
-45
-45446
-
-47
-47466 210
-
-49
-49486
-
-51
-51506
-
-53
-53527 210
-
-55
-55546 210
-
-57
-57567 210
-
-59
-59587 210
-
-61
-61607 210
-
-63
-63627 210
-
-65
-65646 210r
-
-10131*
-8 (
-
-10151*
-8 (
-
-10171*
-8 (-
-
-10191*
-8
- 
-(6
-
-10211*
-8 (
-
-10231*
-8 (/
-
-10251*
-8 (!
-
-27292*
-8 (
-
-31333*
-8² ²(
-
-31354*
-8² ²(
-
-37333*
-8 (
-
-37394*
-8 (
-
-37354*
-8 (
-
-41433*
-8” ”(
-
-41454*
-8” ”(
-
-47492*
-8 (
-
-47512*
-8 (
-
-53333*
-8Ý Ý(
-
-53394*
-8Ý Ý(
-
-53354*
-8Ý Ý(
-
-55292*
-8% %(
-
-57333*
-8r r( 
-
-57354*
-8r r( 
-
-59333*
-8F F(
-
-59274*
-8F F(
-
-59354*
-8F F(
-
-61333*
-8‰ ‰(
-
-61394*
-8‰ ‰(
-
-61554*
-8‰ ‰(
-
-61354*
-8‰ ‰(
-
-63333*
-8õ õ(
-
-63454*
-8õ õ(
-
-63454*
-8õ õ(
-
-65292*
-8. .(

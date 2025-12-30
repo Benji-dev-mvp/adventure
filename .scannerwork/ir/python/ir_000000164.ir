@@ -1,7 +1,0 @@
-
-@7"Scheduled follow-up for lead {lead_id} in {days} days"str
-$"Schedule a follow-up task"strlead_id
-¸$ ¸(0days
-¸2 ¸(?"
-
-» »(K*H/workspaces/codespaces-react/backend/app/integrations/langchain_agent.py

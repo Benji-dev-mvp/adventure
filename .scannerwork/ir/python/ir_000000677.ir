@@ -1,84 +1,0 @@
-
--1int
-2)"Get prompt template by name and version"str
-
-1int
-$"Template {name} not found"str
-
-"template"str
-"{name}_v{version}"strname
-ò ò(version
-ò  ò(=.*app.core.agent_orchestrator.PromptTemplate"O+
-)
-
-ö ö("
-__bool__*:BboolH "
-
-ö ö( *
-ö ö(
-"ß%
-#
-
-õ õ(&key"#id#:Bstr,
-*
-
-ú ú(."#get-field# TEMPLATES:,
-*
-
-ú ú(.	"
-#binop in#2in:Bbool "
-
-ú ú(.	 *
-ú ú("∑7
-5
-
-† †(Umatching"?python-unknown?:Blist+
-)
-
-° °("
-__bool__*:BboolH+
-)
-
-° °("#unaryop !#2!:Bbool "
-
-° °( *
-° °(
-"é,
-*
-
-ù ù(/
-"#get-field# TEMPLATES:$
-"
-
-ù ù(4"#array-read#:
-$
-"
-
-ù ù(@"#array-read#:
-
-ù ù(@""F0
-.
-
-¢ ¢(:"
-ValueError*:B
-ValueError2
-
-¢ ¢(:"Ó0
-.
-
-§ §(!"
-builtinssorted*:Blist,
-*
-
-§ §(%latest"#array-read#:,
-*
-
-• •('"#get-field# TEMPLATES:$
-"
-
-• •(/"#array-read#:$
-"
-
-• •(;"#array-read#:
-
-• •(;*C/workspaces/codespaces-react/backend/app/core/agent_orchestrator.py

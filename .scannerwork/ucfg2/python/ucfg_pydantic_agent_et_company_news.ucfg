@@ -1,30 +1,0 @@
-
-Xapp.integrations.pydantic_agent.PydanticAIAgent._create_email_generator.get_company_newsS
-G/workspaces/codespaces-react/backend/app/integrations/pydantic_agent.pyÚ Ú(""2*Ù
-2
-Û Û(1±
-®
-
-Ý Ý(n
-%1"__concat*"
-
-Ý Ý(%
-Recent news for *
-
-Ý& Ý(2
-
-company_name*L
-
-Ý3 Ý(m><
-:: Announced Series B funding, expanding to European market"
-
-Ý Ý(n
-
-%1:
-
-Ú# Ú(@
-ctx:
-
-ÚB Ú(S
-company_nameB31
-/app.integrations.pydantic_agent.PydanticAIAgentH

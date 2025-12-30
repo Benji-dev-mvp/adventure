@@ -1,11 +1,0 @@
-
-*app.core.oauth.OAuthProvider.get_user_info@
-6/workspaces/codespaces-react/backend/app/core/oauth.py< <("3*,
-3
-
-oauth.py"
-A A
-implicit return:
-<" <(7
-tokenB 
-app.core.oauth.OAuthProviderH

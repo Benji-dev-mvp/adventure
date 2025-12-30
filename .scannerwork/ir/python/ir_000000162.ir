@@ -1,7 +1,0 @@
-
-_V"Campaign {campaign_id} analysis: Open rate 45%, Reply rate 12%, Conversion rate 3.5%"str
-'"Analyze campaign performance"strcampaign_id
-¬# ¬(3metrics
-¬5 ¬(G"
-
-¯ ¯(j*H/workspaces/codespaces-react/backend/app/integrations/langchain_agent.py

@@ -1,86 +1,0 @@
-
-1.0PythonFrontend"1767052072387*py2.Bî
-
-imports1
-
-extends2
-
-returns3
-
-	has param4
-
-module5
-
-
-class6
-
-function7
-(
-#backend/app/api/routes/analytics.py9
-
-app.api.routes.analytics11
-
-fastapi12
-
-sqlmodel.Session14
-
-sqlmodel.select16
-
-sqlmodel18
-
-app.core.db20
-
-app.models.schemas22
-5
-/app.api.routes.analytics.get_dashboard_snapshot24
-4
-.app.api.routes.analytics.get_analytics_summary26J
-
-8
-89j∆
- 
-10
-10115 *
-8 (
-
-13
-13125
-
-15
-15145
-
-17
-17165
-
-19
-19185
-
-21
-21205
-
-23
-23225
-
-25
-25247 210
-
-27
-27267 210rú
-
-10131*
-8 ('
-
-10151*
-8 (
-
-10171*
-8 (%
-
-10191*
-8 (%
-
-10211*
-8 ($
-
-10231*
-8 (S

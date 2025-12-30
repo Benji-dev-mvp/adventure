@@ -16,6 +16,15 @@ import {
 } from 'lucide-react';
 import PropTypes from 'prop-types';
 
+// Helper factories to reduce duplication
+const createNode = (id, type, position, data) => ({ id, type, position, data });
+const createEdge = (id, source, target, sourceHandle) => {
+  const edge = { id, source, target };
+  if (sourceHandle) edge.sourceHandle = sourceHandle;
+  return edge;
+};
+const nodePos = (y, x = 250) => ({ x, y });
+
 // Pre-built campaign playbooks
 const playbooks = [
   {
@@ -40,68 +49,23 @@ const playbooks = [
     ],
     workflow: {
       nodes: [
-        {
-          id: 'trigger-1',
-          type: 'trigger',
-          position: { x: 250, y: 0 },
-          data: { label: 'Campaign Start', triggerType: 'manual' },
-        },
-        {
-          id: 'email-1',
-          type: 'email',
-          position: { x: 250, y: 120 },
-          data: { label: 'Initial Outreach', subject: 'Partnership opportunity with {{company}}' },
-        },
-        {
-          id: 'delay-1',
-          type: 'delay',
-          position: { x: 250, y: 260 },
-          data: { label: 'Wait', days: 3, hours: 0 },
-        },
-        {
-          id: 'linkedin-1',
-          type: 'linkedin',
-          position: { x: 250, y: 400 },
-          data: { label: 'LinkedIn Connect', connectionRequest: true },
-        },
-        {
-          id: 'delay-2',
-          type: 'delay',
-          position: { x: 250, y: 540 },
-          data: { label: 'Wait', days: 2, hours: 0 },
-        },
-        {
-          id: 'condition-1',
-          type: 'condition',
-          position: { x: 250, y: 680 },
-          data: {
-            label: 'Email Opened?',
-            field: 'email_opened',
-            operator: 'equals',
-            value: 'true',
-          },
-        },
-        {
-          id: 'email-2',
-          type: 'email',
-          position: { x: 100, y: 850 },
-          data: { label: 'Warm Follow-up', subject: 'Re: Partnership opportunity' },
-        },
-        {
-          id: 'call-1',
-          type: 'call',
-          position: { x: 400, y: 850 },
-          data: { label: 'Cold Call', script: 'Hi {{firstName}}, I sent you an email about...' },
-        },
+        createNode('trigger-1', 'trigger', nodePos(0), { label: 'Campaign Start', triggerType: 'manual' }),
+        createNode('email-1', 'email', nodePos(120), { label: 'Initial Outreach', subject: 'Partnership opportunity with {{company}}' }),
+        createNode('delay-1', 'delay', nodePos(260), { label: 'Wait', days: 3, hours: 0 }),
+        createNode('linkedin-1', 'linkedin', nodePos(400), { label: 'LinkedIn Connect', connectionRequest: true }),
+        createNode('delay-2', 'delay', nodePos(540), { label: 'Wait', days: 2, hours: 0 }),
+        createNode('condition-1', 'condition', nodePos(680), { label: 'Email Opened?', field: 'email_opened', operator: 'equals', value: 'true' }),
+        createNode('email-2', 'email', nodePos(850, 100), { label: 'Warm Follow-up', subject: 'Re: Partnership opportunity' }),
+        createNode('call-1', 'call', nodePos(850, 400), { label: 'Cold Call', script: 'Hi {{firstName}}, I sent you an email about...' }),
       ],
       edges: [
-        { id: 'e1-2', source: 'trigger-1', target: 'email-1' },
-        { id: 'e2-3', source: 'email-1', target: 'delay-1' },
-        { id: 'e3-4', source: 'delay-1', target: 'linkedin-1' },
-        { id: 'e4-5', source: 'linkedin-1', target: 'delay-2' },
-        { id: 'e5-6', source: 'delay-2', target: 'condition-1' },
-        { id: 'e6-7', source: 'condition-1', sourceHandle: 'yes', target: 'email-2' },
-        { id: 'e6-8', source: 'condition-1', sourceHandle: 'no', target: 'call-1' },
+        createEdge('e1-2', 'trigger-1', 'email-1'),
+        createEdge('e2-3', 'email-1', 'delay-1'),
+        createEdge('e3-4', 'delay-1', 'linkedin-1'),
+        createEdge('e4-5', 'linkedin-1', 'delay-2'),
+        createEdge('e5-6', 'delay-2', 'condition-1'),
+        createEdge('e6-7', 'condition-1', 'email-2', 'yes'),
+        createEdge('e6-8', 'condition-1', 'call-1', 'no'),
       ],
     },
   },
@@ -123,35 +87,15 @@ const playbooks = [
     ],
     workflow: {
       nodes: [
-        {
-          id: 'trigger-1',
-          type: 'trigger',
-          position: { x: 250, y: 0 },
-          data: { label: 'Campaign Start', triggerType: 'manual' },
-        },
-        {
-          id: 'email-1',
-          type: 'email',
-          position: { x: 250, y: 120 },
-          data: { label: 'Follow-up #1', subject: 'Following up on our conversation' },
-        },
-        {
-          id: 'delay-1',
-          type: 'delay',
-          position: { x: 250, y: 260 },
-          data: { label: 'Wait', days: 3, hours: 0 },
-        },
-        {
-          id: 'email-2',
-          type: 'email',
-          position: { x: 250, y: 400 },
-          data: { label: 'Follow-up #2', subject: 'Quick question' },
-        },
+        createNode('trigger-1', 'trigger', nodePos(0), { label: 'Campaign Start', triggerType: 'manual' }),
+        createNode('email-1', 'email', nodePos(120), { label: 'Follow-up #1', subject: 'Following up on our conversation' }),
+        createNode('delay-1', 'delay', nodePos(260), { label: 'Wait', days: 3, hours: 0 }),
+        createNode('email-2', 'email', nodePos(400), { label: 'Follow-up #2', subject: 'Quick question' }),
       ],
       edges: [
-        { id: 'e1-2', source: 'trigger-1', target: 'email-1' },
-        { id: 'e2-3', source: 'email-1', target: 'delay-1' },
-        { id: 'e3-4', source: 'delay-1', target: 'email-2' },
+        createEdge('e1-2', 'trigger-1', 'email-1'),
+        createEdge('e2-3', 'email-1', 'delay-1'),
+        createEdge('e3-4', 'delay-1', 'email-2'),
       ],
     },
   },
@@ -175,54 +119,19 @@ const playbooks = [
     ],
     workflow: {
       nodes: [
-        {
-          id: 'trigger-1',
-          type: 'trigger',
-          position: { x: 250, y: 0 },
-          data: { label: 'Campaign Start', triggerType: 'manual' },
-        },
-        {
-          id: 'linkedin-1',
-          type: 'linkedin',
-          position: { x: 250, y: 120 },
-          data: { label: 'Connection Request', connectionRequest: true },
-        },
-        {
-          id: 'delay-1',
-          type: 'delay',
-          position: { x: 250, y: 260 },
-          data: { label: 'Wait', days: 2, hours: 0 },
-        },
-        {
-          id: 'condition-1',
-          type: 'condition',
-          position: { x: 250, y: 400 },
-          data: {
-            label: 'Connection Accepted?',
-            field: 'linkedin_accepted',
-            operator: 'equals',
-            value: 'true',
-          },
-        },
-        {
-          id: 'linkedin-2',
-          type: 'linkedin',
-          position: { x: 100, y: 570 },
-          data: { label: 'LinkedIn Message', content: 'Thanks for connecting!' },
-        },
-        {
-          id: 'email-1',
-          type: 'email',
-          position: { x: 400, y: 570 },
-          data: { label: 'Email Introduction', subject: 'Connecting from LinkedIn' },
-        },
+        createNode('trigger-1', 'trigger', nodePos(0), { label: 'Campaign Start', triggerType: 'manual' }),
+        createNode('linkedin-1', 'linkedin', nodePos(120), { label: 'Connection Request', connectionRequest: true }),
+        createNode('delay-1', 'delay', nodePos(260), { label: 'Wait', days: 2, hours: 0 }),
+        createNode('condition-1', 'condition', nodePos(400), { label: 'Connection Accepted?', field: 'linkedin_accepted', operator: 'equals', value: 'true' }),
+        createNode('linkedin-2', 'linkedin', nodePos(570, 100), { label: 'LinkedIn Message', content: 'Thanks for connecting!' }),
+        createNode('email-1', 'email', nodePos(570, 400), { label: 'Email Introduction', subject: 'Connecting from LinkedIn' }),
       ],
       edges: [
-        { id: 'e1-2', source: 'trigger-1', target: 'linkedin-1' },
-        { id: 'e2-3', source: 'linkedin-1', target: 'delay-1' },
-        { id: 'e3-4', source: 'delay-1', target: 'condition-1' },
-        { id: 'e4-5', source: 'condition-1', sourceHandle: 'yes', target: 'linkedin-2' },
-        { id: 'e4-6', source: 'condition-1', sourceHandle: 'no', target: 'email-1' },
+        createEdge('e1-2', 'trigger-1', 'linkedin-1'),
+        createEdge('e2-3', 'linkedin-1', 'delay-1'),
+        createEdge('e3-4', 'delay-1', 'condition-1'),
+        createEdge('e4-5', 'condition-1', 'linkedin-2', 'yes'),
+        createEdge('e4-6', 'condition-1', 'email-1', 'no'),
       ],
     },
   },
@@ -245,40 +154,15 @@ const playbooks = [
     ],
     workflow: {
       nodes: [
-        {
-          id: 'trigger-1',
-          type: 'trigger',
-          position: { x: 250, y: 0 },
-          data: { label: 'Campaign Start', triggerType: 'manual' },
-        },
-        {
-          id: 'abtest-1',
-          type: 'abtest',
-          position: { x: 250, y: 120 },
-          data: {
-            label: 'A/B Split',
-            splitRatio: 50,
-            variantAName: 'Direct',
-            variantBName: 'Question',
-          },
-        },
-        {
-          id: 'email-1',
-          type: 'email',
-          position: { x: 100, y: 300 },
-          data: { label: 'Direct Approach', subject: 'Boost your sales by 30%' },
-        },
-        {
-          id: 'email-2',
-          type: 'email',
-          position: { x: 400, y: 300 },
-          data: { label: 'Question Approach', subject: 'Quick question about {{company}}' },
-        },
+        createNode('trigger-1', 'trigger', nodePos(0), { label: 'Campaign Start', triggerType: 'manual' }),
+        createNode('abtest-1', 'abtest', nodePos(120), { label: 'A/B Split', splitRatio: 50, variantAName: 'Direct', variantBName: 'Question' }),
+        createNode('email-1', 'email', nodePos(300, 100), { label: 'Direct Approach', subject: 'Boost your sales by 30%' }),
+        createNode('email-2', 'email', nodePos(300, 400), { label: 'Question Approach', subject: 'Quick question about {{company}}' }),
       ],
       edges: [
-        { id: 'e1-2', source: 'trigger-1', target: 'abtest-1' },
-        { id: 'e2-3', source: 'abtest-1', sourceHandle: 'yes', target: 'email-1' },
-        { id: 'e2-4', source: 'abtest-1', sourceHandle: 'no', target: 'email-2' },
+        createEdge('e1-2', 'trigger-1', 'abtest-1'),
+        createEdge('e2-3', 'abtest-1', 'email-1', 'yes'),
+        createEdge('e2-4', 'abtest-1', 'email-2', 'no'),
       ],
     },
   },

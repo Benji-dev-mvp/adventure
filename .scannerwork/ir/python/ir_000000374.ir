@@ -1,80 +1,0 @@
-
-$"We need to think about it"str
-
-"response"str
-º°"We handle the heavy lifting - setup takes 2 hours of your time max. Our team migrates your data, sets up workflows, and trains your SDRs. Most teams are fully live in 7 days."str
-©Ÿ"Great! What's working well? What would you change? Many customers came to us because they needed more AI-driven personalization and multi-agent capabilities."str
-"objection"str
-"This seems expensive"str
-µ«"Let's look at the math - if we help your 20 SDRs each book 3 more meetings per month at your average deal size, what's that worth? Most customers see 10x ROI in 90 days."str
-
-0int
-•‹"Absolutely. What specific concerns should we address? Would it help to see how [similar company] implemented this during their expansion?"str
-&"We already use [competitor]"str
-2)"Our team is too busy for implementation"str
-3*"Generate common objections and responses"strmeeting_type
-´( ´(9list"°&
-$
-
-· º(	"#new-object#Bdict"
- 
-
-¸ ¸(6"	#map-set#:#
-!
-¹ ¹(·	"	#map-set#:&
-$
-
-» ¾(	
-"#new-object#Bdict"
- 
-
-¼ ¼(/"	#map-set#:
-#
-!
-½ ½(Ã"	#map-set#:
-&
-$
-
-¿ Â(	"#new-object#Bdict"
- 
-
-À À(4"	#map-set#:#
-!
-Á Á(£"	#map-set#:&
-$
-
-Ã Æ(	"#new-object#Bdict"
- 
-
-Ä Ä(B"	#map-set#:#
-!
-Å Å(È"	#map-set#:)
-'
-
-¶ Ç("#unknown-value#Blist(
-&
-
-¶ Ç("
-#is-exact#:Bbool
-
-
-¶ Ç("
-#assume#::
-8
-
-¶ Ç("#set-field# __collection_size:Bint(
-&
-
-¶ Ç("#array-add-last#:(
-&
-
-¶ Ç( "#array-add-last#:
-(
-&
-
-¶ Ç(!"#array-add-last#:(
-&
-
-¶ Ç(""#array-add-last#:
-
-¶ Ç(*C/workspaces/codespaces-react/backend/app/api/routes/meeting_prep.py

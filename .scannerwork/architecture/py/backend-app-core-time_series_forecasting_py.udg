@@ -1,391 +1,0 @@
-
-1.0PythonFrontend"1767052076763*py2.BÔ
-
-imports1
-
-extends2
-
-returns3
-
-	has param4
-
-module5
-
-
-class6
-
-function7
-0
-+backend/app/core/time_series_forecasting.py9
-&
- app.core.time_series_forecasting11
-
-logging12
-
-
-math14
-
-collections16
-
-dataclasses18
-
-datetime20
-
-typing22
-
-scipy.stats24
-
-scipy26
-
-scipy.signal.find_peaks28
-
-scipy.signal30
-4
-.app.core.time_series_forecasting.TrendAnalyzer32
-G
-Aapp.core.time_series_forecasting.TrendAnalyzer.calculate_momentum34
-
-
-list36
-	
-int38
-A
-;app.core.time_series_forecasting.TrendAnalyzer.detect_trend40
-
-
-dict42
-I
-Capp.core.time_series_forecasting.TrendAnalyzer.detect_change_points44
-
-float46
-8
-2app.core.time_series_forecasting.RevenueForecaster48
-A
-;app.core.time_series_forecasting.RevenueForecaster.__init__50
-R
-Lapp.core.time_series_forecasting.RevenueForecaster._generate_recommendations52
-G
-Aapp.core.time_series_forecasting.RevenueForecaster.add_data_point54
-
-datetime.datetime56
-@
-:app.core.time_series_forecasting.RevenueForecaster.analyze58
-E
-?app.core.time_series_forecasting.ExponentialSmoothingForecaster60
-N
-Happ.core.time_series_forecasting.ExponentialSmoothingForecaster.forecast62
-^
-Xapp.core.time_series_forecasting.ExponentialSmoothingForecaster.forecast_with_confidence64
-I
-Capp.core.time_series_forecasting.ExponentialSmoothingForecaster.fit66
-N
-Happ.core.time_series_forecasting.ExponentialSmoothingForecaster.__init__68
-M
-Gapp.core.time_series_forecasting.ExponentialSmoothingForecaster._update70
-=
-7app.core.time_series_forecasting.detect_best_send_times72
-;
-5app.core.time_series_forecasting.TimeSeriesDecomposer74
-J
-Dapp.core.time_series_forecasting.TimeSeriesDecomposer._extract_trend76
-D
->app.core.time_series_forecasting.TimeSeriesDecomposer.__init__78
-J
-Dapp.core.time_series_forecasting.TimeSeriesDecomposer._detect_period80
-E
-?app.core.time_series_forecasting.TimeSeriesDecomposer.decompose82
-M
-Gapp.core.time_series_forecasting.TimeSeriesDecomposer._extract_seasonal84
-6
-0app.core.time_series_forecasting.TimeSeriesPoint86
-/
-)app.core.time_series_forecasting.Forecast88
-@
-:app.core.time_series_forecasting.forecast_campaign_revenue90
-
-typing.Coroutine92
-9
-3app.core.time_series_forecasting.SeasonalityPattern94J
-
-8
-89j‹
- 
-10
-10115 *
-8 (
-
-13
-13125
-
-15
-15145
-
-17
-17165
-
-19
-19185
-
-21
-21205
-
-23
-23225
-
-25
-25245
-
-27
-27265
-
-29
-29285
-
-31
-31305
-
-33
-33326 210
-
-35
-35347 233
-
-37
-37366
-
-39
-39386
-
-41
-41407 233
-
-43
-43426
-
-45
-45447 233
-
-47
-47466
-
-49
-49486 210
-
-51
-51507 249
-
-53
-53527 249
-
-55
-55547 249
-
-57
-57566
-
-59
-59587 249
-
-61
-61606 210
-
-63
-63627 261
-
-65
-65647 261
-
-67
-67667 261
-
-69
-69687 261
-
-71
-71707 261
-
-73
-73727 210
-
-75
-75746 210
-
-77
-77767 275
-
-79
-79787 275
-
-81
-81807 275
-
-83
-83827 275
-
-85
-85847 275
-
-87
-87866 210
-
-89
-89886 210
-
-91
-91907 210
-
-93
-93926
-
-95
-95946 210r∫
-
-
-10131*
-8 (
-
-10151*
-8 (
-
-10171*
-8 ($
-
-10191*
-8	 	("
-
-10211*
-8
- 
-()
-
-10231*
-8 (4
-
-10251*
-8 (
-
-10271*
-8 (
-
-10291*
-8 ($
-
-10311*
-8 ($
-
-35373*
-8Œ	 Œ(
-
-35374*
-8Œ	 Œ(
-
-35394*
-8Œ	 Œ(
-
-41433*
-8ê	 ê(
-
-41374*
-8ê	 ê(
-
-45373*
-8±	 ±(
-
-45374*
-8±	 ±(
-
-45474*
-8±	 ±(
-
-53373*
-8Ø	 Ø("
-
-53434*
-8Ø	 Ø("
-
-53474*
-8Ø	 Ø("
-
-53374*
-8Ø	 Ø("
-
-55574*
-8Ó	 Ó(
-
-55474*
-8Ó	 Ó(
-
-59433*
-8Ú	 Ú(
-
-63373*
-8Â	 Â(
-
-63394*
-8Â	 Â(
-
-65373*
-8	 (!
-
-65394*
-8	 (!
-
-65474*
-8	 (!
-
-67374*
-8∏	 ∏(
-
-67394*
-8∏	 ∏(
-
-69474*
-8®	 ®(
-
-69474*
-8®	 ®(
-
-69474*
-8®	 ®(
-
-71474*
-8–	 –(
-
-71394*
-8–	 –(
-
-73433*
-8Ë Ë(
-
-73374*
-8Ë Ë(
-
-77373*
-8a	 a(
-
-77374*
-8a	 a(
-
-81374*
-8ã	 ã(
-
-83433*
-8@	 @(
-
-83374*
-8@	 @(
-
-85373*
-8r	 r(
-
-85374*
-8r	 r(
-
-85394*
-8r	 r(
-
-91933*
-8‘ ‘($
-
-91394*
-8‘ ‘($

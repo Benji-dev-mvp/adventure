@@ -1,26 +1,0 @@
-
-2app.core.oauth.OAuthProvider.get_authorization_url@
-6/workspaces/codespaces-react/backend/app/core/oauth.py3 3(#"2*ù
-24 4(4b
-`
-5 5( 
-%1"__id*H
-
-__unknown_file (,**
-app.core.oauth.OAuthProvider"
-clientrp
-5 5(T
-%2*"
-
-__unknown_file (
-
-%12create_authorization_url: 
-redirect_uri
-
-redirect_uri"
-5 5(T
-
-%2:
-3* 3(;
-redirect_uriB 
-app.core.oauth.OAuthProviderH

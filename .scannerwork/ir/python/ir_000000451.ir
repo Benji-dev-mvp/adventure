@@ -1,31 +1,0 @@
-
-TK"
-    Convenience function that returns a complete PaginatedResponse.
-    "str
-
-2int
-
-0int
-
-
-1intsession
-¶ ¶(query
-¶ ¶(#params
-¶% ¶(=model_class
-¶? ¶(W"Ž@
->
-
-» »(Fresults"
-app.core.paginationpaginate:1
-/
-
-» »(F	results"#python-unpack#:3
-1
-
-» »(F	page_info"#python-unpack#:
-P
-N
-
-¼ ¼(?"PaginatedResponse:	B%app.core.pagination.PaginatedResponse
-
-¼ ¼(?*;/workspaces/codespaces-react/backend/app/core/pagination.py

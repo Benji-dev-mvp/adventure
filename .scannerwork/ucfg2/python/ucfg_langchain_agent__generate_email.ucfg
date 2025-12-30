@@ -1,79 +1,0 @@
-
-Sapp.integrations.langchain_agent.LangChainOrchestrator._create_tools.generate_emailT
-H/workspaces/codespaces-react/backend/app/integrations/langchain_agent.py± ±( "2*¯
-2
-² ²(5’
-
-´ ´(1
-%1*)
-
-__unknown_file (
-
-	lead_data*$
-
-__unknown_file (
-name*%
-
-__unknown_file (	
-there2get@
->
-
-´ ´(1
-name"__id*"
-
-__unknown_file (
-
-%1œ™
-
-µ µ(>
-%2*)
-
-__unknown_file (
-
-	lead_data*'
-
-__unknown_file (	
-company*,
-
-__unknown_file (
-your company2getC
-A
-
-µ µ(>	
-company"__id*"
-
-__unknown_file (
-
-%2Ì
-É
-
-¶ ¶(c
-%3"__concat*
-
-¶ ¶(
-Hi *
-
-¶ ¶(
-
-name*
-
-¶ ¶(*
-, I noticed *
-
-¶+ ¶(2
-	
-company*A
-
-¶3 ¶(b31
-/ is expanding. Let's discuss how we can help..."
-
-¶ ¶(c
-
-%3:
-
-±! ±(:
-	lead_data:
-
-±< ±(V
-toneB:8
-6app.integrations.langchain_agent.LangChainOrchestratorH

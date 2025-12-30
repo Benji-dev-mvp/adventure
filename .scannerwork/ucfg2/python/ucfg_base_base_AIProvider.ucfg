@@ -1,57 +1,0 @@
-
-*app.integrations.providers.base.AIProviderQ
-G/workspaces/codespaces-react/backend/app/integrations/providers/base.py ("2*€
-2! !(r
-p
-! !(7,
-*app.integrations.providers.base.AIProvider"
-model"__id*%
-
-__unknown_file (	
-
-model~
-|
-" "(&=,
-*app.integrations.providers.base.AIProvider"
-temperature"__id*+
-
-__unknown_file (
-
-temperature|
-z
-# #($<,
-*app.integrations.providers.base.AIProvider"
-
-max_tokens"__id**
-
-__unknown_file (
-
-
-max_tokensz
-x
-$ $(">,
-*app.integrations.providers.base.AIProvider"
-extra_params"__id*&
-
-__unknown_file (
-
-
-kwargs*
-3*^
-3	
-base.py<:
-& &(
-%1"*app.integrations.providers.base.AIProvider"
-& &(
-
-%1:
- (
-model:
- (2
-temperature:
-4 (T
-
-max_tokens:
-V (^
-kwargsB.,
-*app.integrations.providers.base.AIProviderH

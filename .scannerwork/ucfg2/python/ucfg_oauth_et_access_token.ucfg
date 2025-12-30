@@ -1,35 +1,0 @@
-
--app.core.oauth.OAuthProvider.get_access_token@
-6/workspaces/codespaces-react/backend/app/core/oauth.py7 7("2*«
-28 8(;b
-`
-9 9(!
-%1"__id*H
-
-__unknown_file (,**
-app.core.oauth.OAuthProvider"
-client`^
-9 9(C
-%2*"
-
-__unknown_file (
-
-%12authorize_access_token:
-code
-
-code?
-=
-9 9(C
-token"__id*"
-
-__unknown_file (
-
-%2"
-: :(	
-
-token:
-7% 7(.
-code:
-70 7(A
-redirect_uriB 
-app.core.oauth.OAuthProviderH

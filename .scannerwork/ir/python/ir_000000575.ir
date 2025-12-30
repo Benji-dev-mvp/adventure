@@ -1,24 +1,0 @@
-
-Äº"
-    Decorator to invalidate cache on write operations.
-
-    Usage:
-        @invalidate_on_write("user:*")
-        async def update_user(user_id: int, data: dict):
-            ...
-    "strkey_pattern
-È È(("Ã#
-!
-
-Þ Þ("#unknown-value#*
-(
-
-Ò Þ(%closure"#new-object#/
--
-
-Ò Þ("#set-field# key_pattern:-
-+
-
-Ò Þ("?python-partial-apply?:
-
-Þ Þ(*A/workspaces/codespaces-react/backend/app/core/multi_tier_cache.py

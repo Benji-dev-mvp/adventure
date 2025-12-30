@@ -1,37 +1,0 @@
-
-	"email"str
-!"Parse channel mix JSON"str
-
-100intself
-Å Å(".
-,
-
-É É("#get-field# channel_mix:+
-)
-
-É É("
-__bool__*:BboolH "
-
-É É( *
-É É(
-"ì.
-,
-
-Ñ Ñ(."#get-field# channel_mix:#
-!
-
-Ñ Ñ("#unknown-value#(
-&
-
-Ñ Ñ(/"?python-unknown?:
-
-Ñ Ñ(/"`&
-$
-
-Ö Ö("#new-object#Bdict"
- 
-
-Ö Ö("	#map-set#:	
-
-
-Ö Ö(*;/workspaces/codespaces-react/backend/app/models/playbook.py

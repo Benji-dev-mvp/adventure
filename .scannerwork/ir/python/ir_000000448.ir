@@ -1,14 +1,0 @@
-
-'"Create from query parameters"str
-
-1intcls (page (limit (sort_by (%
-sort_order ("…%
-#
-! !("	#binop -#*2-:-
-+
-! !(#	offset"	#binop *#*2*:
-
-" ((	
-"cls:	
-" ((	
-*;/workspaces/codespaces-react/backend/app/core/pagination.py

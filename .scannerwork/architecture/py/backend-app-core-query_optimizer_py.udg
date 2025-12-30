@@ -1,322 +1,0 @@
-
-1.0PythonFrontend"1767052070988*py2.B¬
-
-imports1
-
-extends2
-
-returns3
-
-	has param4
-
-module5
-
-
-class6
-
-function7
-(
-#backend/app/core/query_optimizer.py9
-
-app.core.query_optimizer11
-
-hashlib12
-
-
-json14
-
-logging16
-
-	functools18
-
-
-time20
-
-typing22
-
-
-sqlalchemy24
-
-sqlalchemy.orm.joinedload26
-!
-sqlalchemy.orm.selectinload28
-
-sqlalchemy.orm30
-
-sqlmodel.Select32
-
-sqlmodel.Session34
-
-sqlmodel.select36
-
-sqlmodel38
-
-app.core.cache40
-)
-#app.core.query_optimizer.QueryCache42
-4
-.app.core.query_optimizer.QueryCache.invalidate44
-	
-str46
-<
-6app.core.query_optimizer.QueryCache.generate_cache_key48
-
-
-dict50
-6
-0app.core.query_optimizer.QueryCache.cached_query52
-	
-int54
--
-'app.core.query_optimizer.QueryCache.get56
--
-'app.core.query_optimizer.QueryCache.set58
-6
-0app.core.query_optimizer.track_query_performance60
--
-'app.core.query_optimizer.QueryOptimizer62
-@
-:app.core.query_optimizer.QueryOptimizer.with_relationships64
-
-tuple66
-;
-5app.core.query_optimizer.QueryOptimizer.explain_query68
->
-8app.core.query_optimizer.QueryOptimizer.with_joined_load70
->
-8app.core.query_optimizer.QueryOptimizer._analyze_explain72
-
-
-list74
-/
-)app.core.query_optimizer.IndexRecommender76
-8
-2app.core.query_optimizer.IndexRecommender.__init__78
-C
-=app.core.query_optimizer.IndexRecommender.get_recommendations80
->
-8app.core.query_optimizer.IndexRecommender.log_slow_query82
-
-float84J
-
-8
-89jÁ
- 
-10
-10115 *
-8 (
-
-13
-13125
-
-15
-15145
-
-17
-17165
-
-19
-19185
-
-21
-21205
-
-23
-23225
-
-25
-25245
-
-27
-27265
-
-29
-29285
-
-31
-31305
-
-33
-33325
-
-35
-35345
-
-37
-37365
-
-39
-39385
-
-41
-41405
-
-43
-43426 210
-
-45
-45447 243
-
-47
-47466
-
-49
-49487 243
-
-51
-51506
-
-53
-53527 243
-
-55
-55546
-
-57
-57567 243
-
-59
-59587 243
-
-61
-61607 210
-
-63
-63626 210
-
-65
-65647 263
-
-67
-67666
-
-69
-69687 263
-
-71
-71707 263
-
-73
-73727 263
-
-75
-75746
-
-77
-77766 210
-
-79
-79787 277
-
-81
-81807 277
-
-83
-83827 277
-
-85
-85846rþ
-
-10131*
-8 (
-
-10151*
-8 (
-
-10171*
-8 (
-
-10191*
-8	 	(
-
-10211*
-8
- 
-(
-
-10231*
-8 (-
-
-10251*
-8 (
-
-10271*
-8 (&
-
-10291*
-8( (4
-
-10311*
-8 (4
-
-10331*
-8 (
-
-10351*
-8 (%
-
-10371*
-8' (-
-
-10391*
-8 (-
-
-10411*
-8 (!
-
-45474*
-8r	 r(
-
-49473*
-8_	 _(
-
-49474*
-8_	 _(
-
-49514*
-8_	 _(
-
-53474*
-8y	 y(
-
-53554*
-8y	 y(
-
-57474*
-8h	 h(
-
-59474*
-8m	 m(
-
-59554*
-8m	 m(
-
-61474*
-8ä ä(
-
-65674*
-8	 (
-
-69513*
-81	 1(
-
-71674*
-8'	 '(
-
-73513*
-8I	 I(
-
-73754*
-8I	 I(
-
-81753*
-8³	 ³(
-
-83474*
-8­	 ­(
-
-83854*
-8­	 ­(
-
-83474*
-8­	 ­(

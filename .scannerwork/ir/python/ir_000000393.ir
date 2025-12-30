@@ -1,55 +1,0 @@
-
-
-0int
-"a"bool
-"utilization"str
- "Get buffer statistics"str
-"S3518"bool
-
-"max_size"str
-"dropped_count"str
-"current_size"str
-"division by zero"boolselfI I("¹$
-"
-K P(	"#new-object#Bdict'
-%
-L  L(+"#get-field# buffer:*
-(
-L L(,"
-builtinslen*:Bint 
-
-L L(,"	#map-set#:)
-'
-M M(%	"#get-field# max_size: 
-
-M M(%
-"	#map-set#:	.
-,
-N N(/"#get-field# dropped_count: 
-
-N N(/"	#map-set#:)
-'
-O? O(L"#get-field# max_size:(
-&
-O? O(P"	#binop >#2>:Bbool&"$
-O? O(P *O< O(>2OQ O(U"Œ'
-%
-O O(*"#get-field# buffer:*
-(
-O O(+"
-builtinslen*:Bint)
-'
-O. O(;"#get-field# max_size:*
-(
-O O(;"
-#binop !=#2!=:Bbool 
-
-O O(;"
-#assert#:*
-(
-O O(;"#dependent-value#*:
-O O(W"
-O O(W"F* 
-
-O O(W"	#map-set#:
-K P(	*B/workspaces/codespaces-react/backend/app/core/stream_processing.py

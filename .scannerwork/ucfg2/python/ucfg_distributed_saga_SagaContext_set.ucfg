@@ -1,35 +1,0 @@
-
-)app.core.distributed_saga.SagaContext.setK
-A/workspaces/codespaces-react/backend/app/core/distributed_saga.pyI I("2*¢
-2J J(#i
-g
-K K(
-%2"__id*O
-
-__unknown_file (3*1'
-%app.core.distributed_saga.SagaContext"
-data¢Ÿ
-K K(
-%1"dict.__setitem__*"
-
-__unknown_file (
-
-%2*#
-
-__unknown_file (
-
-key*%
-
-__unknown_file (	
-
-value2__setitem__*
-3*9
-3
-distributed_saga.py"
-M M(
-implicit return:
-I I(
-key:
-I I(&
-valueB)'
-%app.core.distributed_saga.SagaContextH

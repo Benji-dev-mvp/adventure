@@ -161,13 +161,10 @@ export const marketingContent = {
         'Plug',
         'Native Integrations',
         'Connect your CRM, calendar, and tools in seconds. Data flows automatically.',
-        expanded: {
-          description:
-            'Two-way sync with Salesforce, HubSpot, Outlook, and more. Leads, activities, and outcomes update in real-time across your stack.',
-          capabilities: ['CRM sync', 'Calendar booking', 'Slack alerts', 'Webhook API'],
-          benefit: 'One source of truth, zero manual data entry',
-        },
-      },
+        'Two-way sync with Salesforce, HubSpot, Outlook, and more. Leads, activities, and outcomes update in real-time across your stack.',
+        ['CRM sync', 'Calendar booking', 'Slack alerts', 'Webhook API'],
+        'One source of truth, zero manual data entry'
+      ),
     ],
   },
 

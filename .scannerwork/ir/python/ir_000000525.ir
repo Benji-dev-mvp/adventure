@@ -1,24 +1,0 @@
-
-ñç"
-    Decorator to require specific permission(s) for an endpoint.
-
-    Usage:
-        @require_permission(Permission.CAMPAIGN_DELETE)
-        async def delete_campaign(user: User = Depends(get_current_user)):
-            ...
-    "strpermissions
-· ·(/"Ã#
-!
-
-Í Í("#unknown-value#*
-(
-
-Á Í(%closure"#new-object#/
--
-
-Á Í("#set-field# permissions:-
-+
-
-Á Í("?python-partial-apply?:
-
-Í Í(*9/workspaces/codespaces-react/backend/app/core/security.py

@@ -1,27 +1,0 @@
-
-truebool
-"Delete a sequence"str
-	falseboolself
-Å Å(sequence_id
-Å Å(."-
-+
-
-Ç Ç()"#get-field# _sequences:,
-*
-
-Ç Ç()"
-#binop in#2in:Bbool "
-
-Ç Ç() *
-Ç Ç(
-"o-
-+
-
-È È("#get-field# _sequences:*
-(
-
-È È(,"#python-array-del#:
-
-É É("
-
-Ê Ê(	*E/workspaces/codespaces-react/backend/app/services/sequence_service.py

@@ -1,110 +1,0 @@
-
-DeprecationWarning.add_headerD
-:/workspaces/codespaces-react/backend/app/api/versioning.pyT T("2*Ÿ
-2U U(,O
-M
-V V(
-%6"__id*5
-
-__unknown_file (*
-
-
-response"	
-headers¨¥
-V V(/
-%5"dict.__setitem__*"
-
-__unknown_file (
-
-%6**
-
-__unknown_file (
-
-Deprecated*$
-
-__unknown_file (
-true2__setitem__O
-M
-W W(
-%8"__id*5
-
-__unknown_file (*
-
-
-response"	
-headersº·
-W W(?
-%7"dict.__setitem__*"
-
-__unknown_file (
-
-%8*9
-
-__unknown_file (
-X-API-Deprecation-Version*'
-
-__unknown_file (
-	
-version2__setitem__*
-4
-5*1
-3
-versioning.py"
-^ ^
-implicit return*¿
-4Z Z(`O
-M
-Z Z(
-%2"__id*5
-
-__unknown_file (*
-
-
-response"	
-headersÙÖ
-Z Z(`
-%1"dict.__setitem__*"
-
-__unknown_file (
-
-%2*$
-
-__unknown_file (
-Link*[
-
-__unknown_file (?=
-;<https://docs.example.com/api/migration>; rel="deprecation"2__setitem__*
-3*‘
-5Y Y(4O
-M
-Y Y(
-%4"__id*5
-
-__unknown_file (*
-
-
-response"	
-headers«¨
-Y Y(4
-%3"dict.__setitem__*"
-
-__unknown_file (
-
-%4*&
-
-__unknown_file (
-
-Sunset*+
-
-__unknown_file (
-
-sunset_date2__setitem__*
-4:
-T T(
-
-response:
-T T()	
-version:
-T+ T(L
-sunset_dateB
-DeprecationWarningH

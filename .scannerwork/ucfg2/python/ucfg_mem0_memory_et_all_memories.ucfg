@@ -1,63 +1,0 @@
-
-?app.integrations.mem0_memory.Mem0MemoryManager.get_all_memoriesP
-D/workspaces/codespaces-react/backend/app/integrations/mem0_memory.py³ ³("2*Œ
-2
-º Å(v
-t
-
-Æ Æ(
-%1"__id*Z
-
-__unknown_file (>*<0
-.app.integrations.mem0_memory.Mem0MemoryManager"
-client 
-
-Æ Ë(	
-%2*"
-
-__unknown_file (
-
-%12get_all:
-user_id
-	
-user_id:
-agent_id
-
-
-agent_id:
-app_id
-
-
-app_id:
-run_id
-
-
-run_idD
-B
-
-Æ Ë(	
-
-memories"__id*"
-
-__unknown_file (
-
-%2"
-
-Í Í(
-
-
-memories:
-
-µ µ(%	
-user_id:
-
-¶ ¶(&
-
-agent_id:
-
-· ·($
-app_id:
-
-¸ ¸($
-run_idB20
-.app.integrations.mem0_memory.Mem0MemoryManagerH

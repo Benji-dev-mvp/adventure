@@ -30,6 +30,11 @@ import {
   Volume2,
   Maximize2,
   Minimize2,
+  Phone,
+  Video,
+  MoreVertical,
+  Paperclip,
+  Smile,
 } from 'lucide-react';
 
 // ============================================================================

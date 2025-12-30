@@ -204,7 +204,10 @@ const Sparkline = ({ data, color, height = 20 }) => {
         </linearGradient>
       </defs>
       <path d={pathData} stroke={colorMap[color]} strokeWidth="1.5" fill="none" />
-      <path d={`${pathData} L ${points[points.length - 1].x} ${height} L 0 ${height} Z`} fill={`url(#sparkline-${color})`} />
+      <path
+        d={`${pathData} L ${points[points.length - 1].x} ${height} L 0 ${height} Z`}
+        fill={`url(#sparkline-${color})`}
+      />
     </svg>
   );
 };
@@ -216,18 +219,20 @@ const StageCard = ({ stage, index, isActive, isComplete, totalStages, delay }) =
 
   return (
     <div
-      className="relative group flex-shrink-0 w-full md:w-80 transition-all duration-500 animate-fadeIn"
+      className="relative group transition-all duration-500 animate-fadeIn"
       style={{
-        opacity: isActive ? 1 : 0.6,
-        transform: isActive ? 'scale(1)' : 'scale(0.95)',
+        opacity: isActive ? 1 : 0.7,
+        transform: isActive ? 'scale(1.02)' : 'scale(1)',
         animationDelay: `${delay}ms`,
       }}
     >
-      {/* Connection arrow to next */}
-      {!isLast && (
-        <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
-          <ArrowRight size={20} className={`text-gray-600 rotate-90 ${isComplete ? 'text-emerald-400' : ''}`} />
-          <div className={`w-0.5 h-6 transition-colors ${isComplete ? 'bg-emerald-400' : 'bg-gray-700'}`} />
+      {/* Connection arrow to next (right arrow for horizontal flow) */}
+      {!isLast && (index + 1) % 4 !== 0 && (
+        <div className="hidden lg:block absolute -right-8 top-1/2 -translate-y-1/2 z-10">
+          <ArrowRight
+            size={24}
+            className={`${isComplete ? 'text-emerald-400' : 'text-gray-600'} transition-colors`}
+          />
         </div>
       )}
 
@@ -246,7 +251,8 @@ const StageCard = ({ stage, index, isActive, isComplete, totalStages, delay }) =
           <div
             className="absolute inset-0 opacity-20 animate-pulse"
             style={{
-              backgroundImage: 'radial-gradient(circle at 1px 1px,currentColor 1px,transparent 1px)',
+              backgroundImage:
+                'radial-gradient(circle at 1px 1px,currentColor 1px,transparent 1px)',
               backgroundSize: '20px 20px',
             }}
           />
@@ -259,12 +265,16 @@ const StageCard = ({ stage, index, isActive, isComplete, totalStages, delay }) =
               <div className="text-xs font-bold tracking-widest text-gray-400 mb-2 uppercase">
                 Step {index + 1} of {totalStages}
               </div>
-              <h3 className={`text-lg lg:text-xl font-bold transition-colors ${isActive ? 'text-white' : 'text-gray-200'}`}>
+              <h3
+                className={`text-lg lg:text-xl font-bold transition-colors ${isActive ? 'text-white' : 'text-gray-200'}`}
+              >
                 {stage.title}
               </h3>
-              <p className={`text-xs mt-1 ${isActive ? 'text-white/70' : 'text-gray-400'}`}>{stage.subtitle}</p>
+              <p className={`text-xs mt-1 ${isActive ? 'text-white/70' : 'text-gray-400'}`}>
+                {stage.subtitle}
+              </p>
             </div>
-            
+
             <div className={`p-3 rounded-xl ${isActive ? 'bg-white/20' : 'bg-white/10'}`}>
               <Icon size={20} className={isActive ? 'text-white' : stage.iconColor} />
             </div>
@@ -279,7 +289,9 @@ const StageCard = ({ stage, index, isActive, isComplete, totalStages, delay }) =
           )}
 
           {/* Description */}
-          <p className={`text-sm mb-5 leading-relaxed ${isActive ? 'text-white/80' : 'text-gray-400'}`}>
+          <p
+            className={`text-sm mb-5 leading-relaxed ${isActive ? 'text-white/80' : 'text-gray-400'}`}
+          >
             {stage.description}
           </p>
 
@@ -296,13 +308,15 @@ const StageCard = ({ stage, index, isActive, isComplete, totalStages, delay }) =
                 teal: 'text-teal-300',
                 green: 'text-green-300',
               };
-              
+
               return (
                 <div
                   key={idx}
                   className={`p-3 rounded-lg transition-all ${isActive ? 'bg-white/10' : 'bg-white/5'}`}
                   style={{
-                    animation: isActive ? `slideInUp 0.4s ease-out ${idx * 100}ms backwards` : 'none',
+                    animation: isActive
+                      ? `slideInUp 0.4s ease-out ${idx * 100}ms backwards`
+                      : 'none',
                   }}
                 >
                   <div className={`text-xs text-gray-400 mb-1 font-medium`}>{metric.label}</div>
@@ -338,7 +352,7 @@ const StageCard = ({ stage, index, isActive, isComplete, totalStages, delay }) =
                     teal: 'from-teal-500 to-teal-400',
                     green: 'from-green-500 to-green-400',
                   };
-                  
+
                   return (
                     <div
                       key={idx}
@@ -358,7 +372,9 @@ const StageCard = ({ stage, index, isActive, isComplete, totalStages, delay }) =
           <div className="mt-auto pt-4 border-t border-white/10">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs text-gray-400 font-medium">Flow Conversion</span>
-              <span className={`text-xs font-bold ${stage.flowPercent > 50 ? 'text-emerald-400' : 'text-orange-400'}`}>
+              <span
+                className={`text-xs font-bold ${stage.flowPercent > 50 ? 'text-emerald-400' : 'text-orange-400'}`}
+              >
                 {stage.flowPercent.toFixed(1)}%
               </span>
             </div>
@@ -388,9 +404,12 @@ const DataFlowVisualization = () => {
 
   // Intersection observer
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) setIsVisible(true);
-    }, { threshold: 0.2 });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      { threshold: 0.2 }
+    );
 
     if (containerRef.current) observer.observe(containerRef.current);
     return () => observer.disconnect();
@@ -438,12 +457,14 @@ const DataFlowVisualization = () => {
             <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-2">
               Watch as Ava orchestrates every stage from discovery to closed deal
             </p>
-            <p className="text-sm text-gray-500">Data updates in real-time • See exactly what's happening at each stage</p>
+            <p className="text-sm text-gray-500">
+              Data updates in real-time • See exactly what's happening at each stage
+            </p>
           </div>
         </RevealText>
 
-        {/* Timeline view - vertical card stack */}
-        <div className="space-y-4 lg:space-y-6">
+        {/* Pipeline flow - horizontal grid with wrapping */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
           {FLOW_STAGES.map((stage, index) => (
             <StageCard
               key={stage.id}
@@ -467,12 +488,15 @@ const DataFlowVisualization = () => {
                 : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10'
             }`}
           >
-            <div className={`w-2 h-2 rounded-full ${isPlaying ? 'animate-pulse bg-emerald-400' : 'bg-gray-600'}`} />
+            <div
+              className={`w-2 h-2 rounded-full ${isPlaying ? 'animate-pulse bg-emerald-400' : 'bg-gray-600'}`}
+            />
             {isPlaying ? 'Auto-playing (4s per stage)' : 'Paused'}
           </button>
-          
+
           <div className="text-sm text-gray-500">
-            Stage <span className="text-white font-bold">{activeStage + 1}</span> of <span className="font-bold">{FLOW_STAGES.length}</span>
+            Stage <span className="text-white font-bold">{activeStage + 1}</span> of{' '}
+            <span className="font-bold">{FLOW_STAGES.length}</span>
           </div>
         </div>
       </div>

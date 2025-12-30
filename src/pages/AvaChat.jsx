@@ -1,20 +1,17 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DashboardLayout from '../components/layout/DashboardLayout';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
-import { Input } from '../components/ui/Input';
 import {
   getAIMessages,
   addAIMessage,
   askAva,
-  getLeads,
   getSavedPrompts,
   addSavedPrompt,
   removeSavedPrompt,
 } from '../lib/dataService';
 import { useToast } from '../components/Toast';
-import { useTheme } from '../contexts/ThemeContext';
+import '../styles/ava-chat.css';
 import {
   Sparkles,
   Send,
@@ -27,15 +24,12 @@ import {
   Lightbulb,
   Bookmark,
   Trash2,
-  Plus,
-  Settings,
   Copy,
   Check,
   ChevronRight,
   Volume2,
   Maximize2,
   Minimize2,
-  MoreVertical,
 } from 'lucide-react';
 
 // ============================================================================
@@ -141,12 +135,12 @@ const SuggestionChips = ({ suggestions, onSelect, isLoading }) => {
     >
       <p className="text-xs text-slate-400 font-semibold tracking-wide">QUICK ACTIONS</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        {suggestions.slice(0, 4).map((suggestion, idx) => (
+        {suggestions.slice(0, 4).map(suggestion => (
           <motion.button
-            key={idx}
+            key={suggestion}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: idx * 0.1 }}
+            transition={{ delay: 0.1 }}
             onClick={() => onSelect(suggestion)}
             className="text-left p-3 rounded-xl bg-slate-800/50 border border-white/10 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all group"
           >
@@ -262,9 +256,7 @@ const PromptTemplates = ({ onSelect }) => {
 // ============================================================================
 // SAVED PROMPTS SIDEBAR
 // ============================================================================
-const SavedPromptsSidebar = ({ savedPrompts, onSelect, onDelete, onAdd, isOpen }) => {
-  const [newPromptTitle, setNewPromptTitle] = useState('');
-
+const SavedPromptsSidebar = ({ savedPrompts, onSelect, onDelete, isOpen }) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -282,12 +274,12 @@ const SavedPromptsSidebar = ({ savedPrompts, onSelect, onDelete, onAdd, isOpen }
             </div>
 
             <div className="space-y-3">
-              {savedPrompts.map((prompt, idx) => (
+              {savedPrompts.map(prompt => (
                 <motion.div
                   key={prompt.id}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.05 }}
+                  transition={{ delay: 0.05 }}
                   className="p-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-500/30 transition-all group cursor-pointer"
                   onClick={() => onSelect(prompt.prompt)}
                 >
@@ -326,9 +318,13 @@ const AvaChat = () => {
   const [savedPrompts, setSavedPrompts] = useState(getSavedPrompts());
   const [showSavedPrompts, setShowSavedPrompts] = useState(false);
   const [showFullscreen, setShowFullscreen] = useState(false);
+  const [liveStats, setLiveStats] = useState({
+    responsesGenerated: 342,
+    avgResponseTime: 2.3,
+    satisfaction: 96,
+  });
   const messagesEndRef = useRef(null);
   const { toast } = useToast();
-  const { theme } = useTheme();
 
   // Auto-scroll to bottom
   const scrollToBottom = () => {
@@ -338,6 +334,22 @@ const AvaChat = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isLoading]);
+
+  // Simulate live stats updates
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLiveStats(prev => ({
+        responsesGenerated: prev.responsesGenerated + Math.floor(Math.random() * 2),
+        avgResponseTime: Math.max(
+          1.5,
+          Math.min(3.5, prev.avgResponseTime + (Math.random() * 0.4 - 0.2))
+        ),
+        satisfaction: Math.max(94, Math.min(98, prev.satisfaction + (Math.random() * 2 - 1))),
+      }));
+    }, 8000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleSend = useCallback(
     async (text = null) => {
@@ -365,6 +377,7 @@ const AvaChat = () => {
         addAIMessage(assistantMessage);
       } catch (error) {
         setIsLoading(false);
+        console.error('Failed to get response from Ava:', error);
         toast.error('Failed to get response from Ava');
       }
     },
@@ -449,7 +462,7 @@ const AvaChat = () => {
           </motion.div>
 
           {/* MESSAGES AREA */}
-          <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
+          <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4 custom-scrollbar">
             <AnimatePresence>
               {messages.length === 0 ? (
                 <motion.div
@@ -514,11 +527,23 @@ const AvaChat = () => {
             className="border-t border-white/10 bg-slate-900/50 backdrop-blur-xl p-6 space-y-4"
           >
             {/* CONTEXT BAR */}
-            <div className="flex items-center gap-2 text-xs text-slate-400">
-              <Clock size={14} />
-              <span>Avg response time: 2.3s</span>
+            <div className="flex items-center gap-4 text-xs text-slate-400">
+              <div className="flex items-center gap-2">
+                <Clock size={14} />
+                <span>Avg response: {liveStats.avgResponseTime.toFixed(1)}s</span>
+              </div>
               <span className="text-slate-600">•</span>
-              <span>Messages: {messages.length}</span>
+              <div className="flex items-center gap-2">
+                <Zap size={14} />
+                <span>Responses: {liveStats.responsesGenerated}</span>
+              </div>
+              <span className="text-slate-600">•</span>
+              <div className="flex items-center gap-2">
+                <Sparkles size={14} />
+                <span>Satisfaction: {liveStats.satisfaction.toFixed(0)}%</span>
+              </div>
+              <span className="text-slate-600">•</span>
+              <span>Session: {messages.length} messages</span>
             </div>
 
             {/* INPUT FIELD */}

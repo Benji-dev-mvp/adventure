@@ -22,7 +22,12 @@ import {
   ParticleBackground,
 } from '../components/futuristic';
 
-const { features: FEATURES, benefits: BENEFITS, languages: LANGUAGES, stats: ENTERPRISE_STATS } = SOLUTIONS_DATA.enterprise;
+const {
+  features: FEATURES,
+  benefits: BENEFITS,
+  languages: LANGUAGES,
+  stats: ENTERPRISE_STATS,
+} = SOLUTIONS_DATA.enterprise;
 
 // Enterprise-specific data
 const COMPLIANCE_BADGES = [

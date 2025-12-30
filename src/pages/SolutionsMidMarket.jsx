@@ -22,7 +22,12 @@ import {
   ParticleBackground,
 } from '../components/futuristic';
 
-const { features: FEATURES, benefits: BENEFITS, languages: LANGUAGES, stats: MIDMARKET_STATS } = SOLUTIONS_DATA.midmarket;
+const {
+  features: FEATURES,
+  benefits: BENEFITS,
+  languages: LANGUAGES,
+  stats: MIDMARKET_STATS,
+} = SOLUTIONS_DATA.midmarket;
 
 const SolutionsMidMarket = () => {
   const prefersReducedMotion = useReducedMotion();

@@ -18,11 +18,6 @@ import {
   Paperclip,
   Smile,
   Circle,
-  Copy,
-  Download,
-  Share2,
-  Settings,
-  Plus,
 } from 'lucide-react';
 
 // Sample agents
@@ -85,10 +80,13 @@ const AGENTS = [
 ];
 
 const StatusIndicator = ({ status }) => {
-  if (status === 'available') {
-    return <Circle size={12} className="fill-emerald-500 text-emerald-500" />;
-  }
-  return <Circle size={12} className="fill-slate-600 text-slate-600" />;
+  const colorClass = status === 'available' 
+    ? 'fill-emerald-500 text-emerald-500'
+    : status === 'dnd'
+    ? 'fill-yellow-500 text-yellow-500'
+    : 'fill-slate-600 text-slate-600';
+  
+  return <Circle size={12} className={colorClass} />;
 };
 
 const AgentListItem = ({ agent, isActive, onClick }) => (
@@ -294,7 +292,7 @@ const AvaChat = () => {
                   <button 
                     onClick={() => setShowStatusMenu(!showStatusMenu)}
                     className="flex items-center gap-1 text-xs text-slate-400 hover:text-cyan-400 transition-colors">
-                    <Circle size={6} className={`fill-${userStatus === 'available' ? 'emerald' : userStatus === 'dnd' ? 'yellow' : 'slate'}-500 text-${userStatus === 'available' ? 'emerald' : userStatus === 'dnd' ? 'yellow' : 'slate'}-500`} />
+                    <Circle size={6} className={userStatus === 'available' ? 'fill-emerald-500 text-emerald-500' : userStatus === 'dnd' ? 'fill-yellow-500 text-yellow-500' : 'fill-slate-600 text-slate-600'} />
                     {userStatus === 'available' ? 'Available' : userStatus === 'dnd' ? 'DND' : 'Offline'}
                   </button>
                 </div>
@@ -420,9 +418,9 @@ const AvaChat = () => {
           {/* MESSAGES AREA */}
           <div className="flex-1 overflow-y-auto p-6 space-y-1 bg-gradient-to-b from-slate-900 to-slate-800">
             <AnimatePresence>
-              {messages.map((msg, idx) => (
+              {messages.map((msg) => (
                 <MessageBubble
-                  key={idx}
+                  key={`${msg.timestamp}-${msg.role}`}
                   message={msg}
                   isUser={msg.role === 'user'}
                 />

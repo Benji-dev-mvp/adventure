@@ -1,23 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import {
-  Target,
-  Zap,
-  Globe,
-  Clock,
-  DollarSign,
-  Brain,
-  Sparkles,
-  CheckCircle,
-  Database,
-  BarChart3,
-  Rocket,
-  Phone,
-  Play,
-} from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import StartupsFlowOrchestration from '../components/solutions/StartupsFlowOrchestration';
+import { SOLUTIONS_DATA } from '../config/solutionsDataFactory';
 import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
 import {
   RoiProjectionChart,
@@ -34,97 +20,7 @@ import {
   ParticleBackground,
 } from '../components/futuristic';
 
-const FEATURES = [
-  {
-    icon: Database,
-    title: '300M+ B2B Contacts Across 200+ Countries',
-    description:
-      "Finding the right people to reach out to as a startup can be daunting. Once you've defined your ICP, Ava will automatically prospect, research and enrich leads for you.",
-    gradient: 'from-blue-500 to-cyan-500',
-  },
-  {
-    icon: BarChart3,
-    title: 'A/B Test Your ICP and Messaging',
-    description:
-      'Our platform provides a robust testing ground to hone in on your ICP and messaging. Set up multiple campaigns to A/B test different strategies and analyze results.',
-    gradient: 'from-purple-500 to-pink-500',
-  },
-  {
-    icon: Brain,
-    title: 'AI Playbooks — Instant Outbound Expertise',
-    description:
-      'Replicate and automate top-performing outbound strategies without any expertise or industry knowledge. Save yourself countless hours of research.',
-    gradient: 'from-orange-500 to-red-500',
-  },
-  {
-    icon: Clock,
-    title: '80% of Outbound Tasks — Automated',
-    description:
-      'Concentrate on growth and customer relationships. Ava handles everything from finding leads and researching them to writing emails and following up.',
-    gradient: 'from-green-500 to-teal-500',
-  },
-];
-
-const BENEFITS = [
-  {
-    icon: DollarSign,
-    title: '$450K Saved vs. Hiring',
-    description:
-      "Skip hiring your first BDR. With Ava, 80% of your outbound team's tasks are automated — reach more people without growing headcount.",
-    gradient: 'from-green-400 to-emerald-500',
-  },
-  {
-    icon: Brain,
-    title: 'Self-Optimizing AI',
-    description:
-      "Ava isn't your average AI. She learns from your feedback over time, continuously improving results like a top-performing rep would.",
-    gradient: 'from-purple-400 to-pink-500',
-  },
-  {
-    icon: Rocket,
-    title: 'Live in 3 Days',
-    description:
-      "Learning Artisan takes minutes. With our dedicated support team, you'll be onboarded and live within days — not weeks.",
-    gradient: 'from-cyan-400 to-blue-500',
-  },
-  {
-    icon: Sparkles,
-    title: 'Replicate Your Top Performers',
-    description:
-      'Using AI Playbooks, automate your top-performing outbound research and writing workflows across your entire team.',
-    gradient: 'from-orange-400 to-red-500',
-  },
-  {
-    icon: Target,
-    title: 'Intent-Driven Outbound',
-    description:
-      'Harness behavioral, firmographic, technographic, and social intent signals to reach prospects at the perfect moment.',
-    gradient: 'from-pink-400 to-rose-500',
-  },
-  {
-    icon: Zap,
-    title: 'All-In-One Platform',
-    description:
-      'From email deliverability to B2B data — everything you need for outbound success, consolidated into one subscription.',
-    gradient: 'from-yellow-400 to-orange-500',
-  },
-];
-
-const LANGUAGES = [
-  { flag: '🇺🇸', name: 'English' },
-  { flag: '🇪🇸', name: 'Spanish' },
-  { flag: '🇫🇷', name: 'French' },
-  { flag: '🇩🇪', name: 'German' },
-  { flag: '🇮🇹', name: 'Italian' },
-  { flag: '🌍', name: '+35 more' },
-];
-
-const STARTUP_STATS = [
-  { value: '3', suffix: ' days', label: 'To go live' },
-  { value: '$450K', label: 'Saved vs. hiring' },
-  { value: '80%', label: 'Tasks automated' },
-  { value: '10x', label: 'More meetings/month' },
-];
+const { features: FEATURES, benefits: BENEFITS, languages: LANGUAGES, stats: STARTUP_STATS } = SOLUTIONS_DATA.startup;
 
 const SolutionsStartups = () => {
   const prefersReducedMotion = useReducedMotion();

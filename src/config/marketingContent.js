@@ -3,6 +3,15 @@
  * All copy, metrics, features, and testimonials for the marketing experience
  */
 
+// Utility function to create feature objects
+const createFeature = (icon, title, preview, description, capabilities, benefit) => ({
+  id: title.toLowerCase().replace(/\s+/g, '-').replace(/[()]/g, ''),
+  icon,
+  title,
+  preview,
+  expanded: { description, capabilities, benefit },
+});
+
 export const marketingContent = {
   hero: {
     badge: 'AI-First Outbound OS',
@@ -108,96 +117,50 @@ export const marketingContent = {
     title: 'Everything you need to dominate outbound',
     subtitle: 'Enterprise-grade capabilities, startup-friendly interface',
     grid: [
-      {
-        id: 'multichannel',
-        icon: 'MessageSquare',
-        title: 'Multi-Channel Orchestration',
-        preview: 'Coordinate email, LinkedIn, calls, and SMS in perfect sequence',
-        expanded: {
-          description:
-            'Build campaigns that reach prospects where they are. Smart delays and behavior-based triggers ensure every touchpoint lands at the right moment.',
-          capabilities: [
-            'Email sequences',
-            'LinkedIn automation',
-            'SMS cadences',
-            'Call scripts & tracking',
-          ],
-          benefit: '3.5x higher response rates than single-channel outreach',
-        },
-      },
-      {
-        id: 'aiassistant',
-        icon: 'Sparkles',
-        title: 'AI-Powered Assistant (Ava)',
-        preview: 'Your 24/7 AI teammate that writes, sends, and optimizes every message',
-        expanded: {
-          description:
-            'Ava learns your voice, understands your ICP, and crafts personalized messages at scale. Professional, casual, or enthusiastic—she adapts to your brand.',
-          capabilities: [
-            'Message generation',
-            'Personalization',
-            'Tone control',
-            'Auto-optimization',
-          ],
-          benefit: 'Save 15+ hours per week on copywriting and manual outreach',
-        },
-      },
-      {
-        id: 'enrichment',
-        icon: 'Database',
-        title: 'Automatic Lead Enrichment',
-        preview: 'Every contact arrives complete with company data, intent signals, and fit scores',
-        expanded: {
-          description:
-            'No more hunting for emails or checking LinkedIn profiles. Our enrichment engine fills in missing data, validates contacts, and scores every lead.',
-          capabilities: [
-            'Email finding',
-            'Company intelligence',
-            'Technology stack',
-            'Funding & signals',
-          ],
-          benefit: '95%+ contact accuracy, zero manual data entry',
-        },
-      },
-      {
-        id: 'analytics',
-        icon: 'LineChart',
-        title: 'Real-Time Analytics',
-        preview: "Surface insights, not just data. Know what's working and why.",
-        expanded: {
-          description:
-            'Dashboards that tell stories. Track opens, clicks, replies, and conversions across every channel. AI-powered recommendations guide optimization.',
-          capabilities: [
-            'Campaign performance',
-            'A/B test results',
-            'Conversion funnels',
-            'Predictive insights',
-          ],
-          benefit: 'Make decisions in minutes, not days',
-        },
-      },
-      {
-        id: 'compliance',
-        icon: 'ShieldCheck',
-        title: 'Enterprise Compliance',
-        preview: 'SOC 2, GDPR, and approval workflows built in. Sleep well at night.',
-        expanded: {
-          description:
-            'Policy-driven sending with human-in-the-loop safeguards. DLP, PII scrubbing, and audit logs for every action. Governance without friction.',
-          capabilities: [
-            'Approval workflows',
-            'DLP & PII detection',
-            'Audit trails',
-            'Role-based access',
-          ],
-          benefit: 'Enterprise-ready security with zero configuration',
-        },
-      },
-      {
-        id: 'integrations',
-        icon: 'Plug',
-        title: 'Native Integrations',
-        preview: 'Connect your CRM, calendar, and tools in seconds. Data flows automatically.',
+      createFeature(
+        'MessageSquare',
+        'Multi-Channel Orchestration',
+        'Coordinate email, LinkedIn, calls, and SMS in perfect sequence',
+        'Build campaigns that reach prospects where they are. Smart delays and behavior-based triggers ensure every touchpoint lands at the right moment.',
+        ['Email sequences', 'LinkedIn automation', 'SMS cadences', 'Call scripts & tracking'],
+        '3.5x higher response rates than single-channel outreach'
+      ),
+      createFeature(
+        'Sparkles',
+        'AI-Powered Assistant (Ava)',
+        'Your 24/7 AI teammate that writes, sends, and optimizes every message',
+        'Ava learns your voice, understands your ICP, and crafts personalized messages at scale. Professional, casual, or enthusiastic—she adapts to your brand.',
+        ['Message generation', 'Personalization', 'Tone control', 'Auto-optimization'],
+        'Save 15+ hours per week on copywriting and manual outreach'
+      ),
+      createFeature(
+        'Database',
+        'Automatic Lead Enrichment',
+        'Every contact arrives complete with company data, intent signals, and fit scores',
+        'No more hunting for emails or checking LinkedIn profiles. Our enrichment engine fills in missing data, validates contacts, and scores every lead.',
+        ['Email finding', 'Company intelligence', 'Technology stack', 'Funding & signals'],
+        '95%+ contact accuracy, zero manual data entry'
+      ),
+      createFeature(
+        'LineChart',
+        'Real-Time Analytics',
+        "Surface insights, not just data. Know what's working and why.",
+        'Dashboards that tell stories. Track opens, clicks, replies, and conversions across every channel. AI-powered recommendations guide optimization.',
+        ['Campaign performance', 'A/B test results', 'Conversion funnels', 'Predictive insights'],
+        'Make decisions in minutes, not days'
+      ),
+      createFeature(
+        'ShieldCheck',
+        'Enterprise Compliance',
+        'SOC 2, GDPR, and approval workflows built in. Sleep well at night.',
+        'Policy-driven sending with human-in-the-loop safeguards. DLP, PII scrubbing, and audit logs for every action. Governance without friction.',
+        ['Approval workflows', 'DLP & PII detection', 'Audit trails', 'Role-based access'],
+        'Enterprise-ready security with zero configuration'
+      ),
+      createFeature(
+        'Plug',
+        'Native Integrations',
+        'Connect your CRM, calendar, and tools in seconds. Data flows automatically.',
         expanded: {
           description:
             'Two-way sync with Salesforce, HubSpot, Outlook, and more. Leads, activities, and outcomes update in real-time across your stack.',

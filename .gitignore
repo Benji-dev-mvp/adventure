@@ -164,3 +164,7 @@ backend/.ruff_cache/
 playwright-report/
 test-results/
 **/.playwright-cache/
+
+# SonarQube analysis cache
+.scannerwork/
+backend/.scannerwork/

@@ -24,6 +24,7 @@ import {
   TrendingUp,
   Users,
   BarChart3,
+  ArrowRight,
 } from 'lucide-react';
 import { GradientText, RevealText, CountUpText } from '../futuristic';
 

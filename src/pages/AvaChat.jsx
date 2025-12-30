@@ -79,8 +79,8 @@ const MessageBubble = ({ message, isUser, index }) => {
       <div
         className={`max-w-xl lg:max-w-2xl group ${
           isUser
-            ? 'bg-gradient-to-br from-cyan-500 to-purple-600 text-white rounded-3xl rounded-tr-lg px-5 py-3'
-            : 'bg-slate-800/50 border border-white/10 text-slate-100 rounded-3xl rounded-tl-lg px-5 py-3 backdrop-blur-md'
+            ? 'bg-indigo-500/90 text-white rounded-2xl rounded-br-md px-5 py-3'
+            : 'bg-slate-700/80 border border-white/10 text-slate-100 rounded-2xl rounded-bl-md px-5 py-3 backdrop-blur-md'
         }`}
       >
         <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>

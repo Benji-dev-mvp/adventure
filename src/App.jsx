@@ -28,6 +28,7 @@ const Leads = lazy(() => import('./pages/Leads'));
 const LeadDatabase = lazy(() => import('./pages/LeadDatabase'));
 const AIAssistant = lazy(() => import('./pages/AIAssistant'));
 const AvaChat = lazy(() => import('./pages/AvaChat'));
+const MultiAgentChat = lazy(() => import('./pages/MultiAgentChat'));
 const Analytics = lazy(() => import('./pages/Analytics'));
 
 // Advanced AI Features
@@ -164,6 +165,7 @@ function App() {
                 <Route path="/leads" element={<Leads />} />
                 <Route path="/lead-database" element={<LeadDatabase />} />
                 <Route path="/ai-assistant" element={<AvaChat />} />
+                <Route path="/multi-agent" element={<MultiAgentChat />} />
                 <Route path="/ai-assistant-legacy" element={<AIAssistant />} />
                 <Route path="/analytics" element={<Analytics />} />
                 <Route path="/integrations" element={<Integrations />} />

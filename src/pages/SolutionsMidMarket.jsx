@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Building2, TrendingUp } from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import MidMarketFlowOrchestration from '../components/solutions/MidMarketFlowOrchestration';

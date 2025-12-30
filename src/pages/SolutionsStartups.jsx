@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Rocket, TrendingUp, Globe, DollarSign } from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import StartupsFlowOrchestration from '../components/solutions/StartupsFlowOrchestration';

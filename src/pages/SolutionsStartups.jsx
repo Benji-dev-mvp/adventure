@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Rocket, TrendingUp } from 'lucide-react';
+import { Rocket, TrendingUp, Globe } from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import StartupsFlowOrchestration from '../components/solutions/StartupsFlowOrchestration';
 import SolutionHero from '../components/solutions/SolutionHero';

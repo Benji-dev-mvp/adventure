@@ -1,8 +1,8 @@
 /**
- * DataFlowVisualization.jsx - PROFESSIONAL REDESIGN
+ * DataFlowVisualization.jsx - DATA-DRIVEN STORYTELLING
  *
- * Premium data visualization pipeline inspired by Figma & Webflow design patterns
- * with glassmorphism, real-time metrics, and smooth animations
+ * Premium narrative-driven pipeline visualization with rich data cards,
+ * micro-sparklines, and sequential animations that tell the conversion story
  */
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -22,80 +22,117 @@ import {
   Phone,
   MessageSquare,
   TrendingUp,
-  ArrowRight,
+  Users,
+  BarChart3,
 } from 'lucide-react';
 import { GradientText, RevealText, CountUpText } from '../futuristic';
 
 // ============================================================================
-// CONSTANTS
+// DATA-RICH STAGE DEFINITIONS
 // ============================================================================
 
 const FLOW_STAGES = [
   {
     id: 'discover',
     title: 'Lead Discovery',
-    subtitle: '300M+ Contacts',
+    subtitle: '300M+ Database',
     icon: Search,
     color: 'cyan',
     iconColor: 'text-cyan-400',
-    dotColor: 'bg-cyan-400',
     gradient: 'from-cyan-500 to-blue-500',
-    metrics: { value: 12847, label: 'Leads Found', unit: '' },
+    metrics: [
+      { label: 'Found Today', value: 12847, unit: '', color: 'cyan' },
+      { label: 'Database Size', value: 300, unit: 'M+', color: 'cyan' },
+      { label: 'Accuracy', value: 98, unit: '%', color: 'cyan' },
+    ],
+    sparkline: [2, 4, 3, 6, 5, 8, 7, 9, 8, 10, 12, 11],
+    description: 'AI scans 300M+ verified B2B contacts',
+    flowPercent: 100,
   },
   {
     id: 'enrich',
     title: 'AI Enrichment',
-    subtitle: 'Deep Research',
+    subtitle: 'Data Validation',
     icon: Database,
     color: 'blue',
     iconColor: 'text-blue-400',
-    dotColor: 'bg-blue-400',
     gradient: 'from-blue-500 to-indigo-500',
-    metrics: { value: 98.7, label: 'Data Accuracy', unit: '%' },
+    metrics: [
+      { label: 'Enriched', value: 98.7, unit: '%', color: 'blue' },
+      { label: 'Datapoints', value: 127, unit: 'avg', color: 'blue' },
+      { label: 'Speed', value: 2.3, unit: 's', color: 'blue' },
+    ],
+    sparkline: [3, 5, 4, 7, 6, 9, 8, 10, 9, 11, 13, 12],
+    description: 'Deep research adds 127 data points per lead',
+    flowPercent: 98.7,
   },
   {
     id: 'personalize',
     title: 'Personalization',
-    subtitle: 'AI Engine',
+    subtitle: 'Content Generation',
     icon: Brain,
     color: 'purple',
     iconColor: 'text-purple-400',
-    dotColor: 'bg-purple-400',
     gradient: 'from-purple-500 to-pink-500',
-    metrics: { value: 847, label: 'Emails Crafted', unit: '/hr' },
+    metrics: [
+      { label: 'Generated', value: 847, unit: '/hr', color: 'purple' },
+      { label: 'Variants', value: 4.2, unit: 'avg', color: 'purple' },
+      { label: 'Uniqueness', value: 99, unit: '%', color: 'purple' },
+    ],
+    sparkline: [4, 6, 5, 8, 7, 10, 9, 11, 10, 12, 14, 13],
+    description: 'AI crafts 4.2 unique variations per lead',
+    flowPercent: 95.3,
   },
   {
     id: 'score',
     title: 'Lead Scoring',
-    subtitle: 'Predictive AI',
+    subtitle: 'ML Prediction',
     icon: Target,
     color: 'pink',
     iconColor: 'text-pink-400',
-    dotColor: 'bg-pink-400',
     gradient: 'from-pink-500 to-rose-500',
-    metrics: { value: 94, label: 'Accuracy Rate', unit: '%' },
+    metrics: [
+      { label: 'Accuracy', value: 94, unit: '%', color: 'pink' },
+      { label: 'Hot Leads', value: 342, unit: '', color: 'pink' },
+      { label: 'Speed', value: 47, unit: 'ms', color: 'pink' },
+    ],
+    sparkline: [5, 7, 6, 9, 8, 11, 10, 12, 11, 13, 15, 14],
+    description: 'Predictive ML scores leads in real-time',
+    flowPercent: 89.2,
   },
   {
     id: 'outreach',
     title: 'Multi-Channel',
-    subtitle: 'Orchestration',
+    subtitle: 'Campaign Execution',
     icon: Send,
     color: 'orange',
     iconColor: 'text-orange-400',
-    dotColor: 'bg-orange-400',
     gradient: 'from-orange-500 to-amber-500',
-    metrics: { value: 4200, label: 'Touches/Day', unit: '' },
+    metrics: [
+      { label: 'Daily Touches', value: 4200, unit: '', color: 'orange' },
+      { label: 'Channels', value: 4, unit: '', color: 'orange' },
+      { label: 'Cadence', value: 8, unit: 'steps', color: 'orange' },
+    ],
+    sparkline: [6, 8, 7, 10, 9, 12, 11, 13, 12, 14, 16, 15],
+    description: 'Orchestrates 4,200 touches across 4 channels',
+    flowPercent: 76.4,
   },
   {
     id: 'engage',
     title: 'Engagement',
-    subtitle: 'Tracking',
+    subtitle: 'Interaction Tracking',
     icon: Eye,
     color: 'emerald',
     iconColor: 'text-emerald-400',
-    dotColor: 'bg-emerald-400',
     gradient: 'from-emerald-500 to-teal-500',
-    metrics: { value: 67, label: 'Open Rate', unit: '%' },
+    metrics: [
+      { label: 'Open Rate', value: 67, unit: '%', color: 'emerald' },
+      { label: 'Click Rate', value: 34, unit: '%', color: 'emerald' },
+      { label: 'Engaged', value: 1289, unit: '', color: 'emerald' },
+    ],
+    sparkline: [7, 9, 8, 11, 10, 13, 12, 14, 13, 15, 17, 16],
+    description: '67% open rate across all channels',
+    flowPercent: 51.2,
   },
   {
     id: 'qualify',
@@ -104,212 +141,206 @@ const FLOW_STAGES = [
     icon: CheckCircle2,
     color: 'teal',
     iconColor: 'text-teal-400',
-    dotColor: 'bg-teal-400',
     gradient: 'from-teal-500 to-cyan-500',
-    metrics: { value: 23, label: 'SQLs Today', unit: '' },
+    metrics: [
+      { label: 'SQLs Created', value: 23, unit: '', color: 'teal' },
+      { label: 'Conversion', value: 18, unit: '%', color: 'teal' },
+      { label: 'Quality Score', value: 8.7, unit: '/10', color: 'teal' },
+    ],
+    sparkline: [8, 10, 9, 12, 11, 14, 13, 15, 14, 16, 18, 17],
+    description: 'AI triages and qualifies top prospects',
+    flowPercent: 9.2,
   },
   {
     id: 'book',
     title: 'Meeting Booked',
-    subtitle: 'Calendar Sync',
+    subtitle: 'Sales Handoff',
     icon: Calendar,
     color: 'green',
     iconColor: 'text-green-400',
-    dotColor: 'bg-green-400',
     gradient: 'from-green-500 to-emerald-500',
-    metrics: { value: 8, label: 'Meetings Today', unit: '' },
+    metrics: [
+      { label: 'Meetings Today', value: 8, unit: '', color: 'green' },
+      { label: 'Success Rate', value: 34, unit: '%', color: 'green' },
+      { label: 'Value Pipeline', value: 2.4, unit: 'M$', color: 'green' },
+    ],
+    sparkline: [9, 11, 10, 13, 12, 15, 14, 16, 15, 17, 19, 18],
+    description: 'Booked 8 qualified meetings with decision makers',
+    flowPercent: 1.8,
   },
 ];
 
-const CHANNEL_METRICS = [
-  { icon: Mail, label: 'Emails', value: 2400, iconColor: 'text-cyan-400', trend: '+12%' },
-  { icon: Linkedin, label: 'LinkedIn', value: 1200, iconColor: 'text-blue-400', trend: '+8%' },
-  { icon: Phone, label: 'Calls', value: 600, iconColor: 'text-purple-400', trend: '+15%' },
-  { icon: MessageSquare, label: 'SMS', value: 400, iconColor: 'text-pink-400', trend: '+22%' },
-];
+// Micro-sparkline component
+const Sparkline = ({ data, color, height = 20 }) => {
+  const max = Math.max(...data);
+  const width = 60;
+  const pointWidth = width / (data.length - 1);
 
-// ============================================================================
-// SUB-COMPONENTS
-// ============================================================================
+  const points = data.map((value, i) => ({
+    x: i * pointWidth,
+    y: height - (value / max) * height * 0.8,
+  }));
 
-const FlowNode = ({ stage, index, isActive, isComplete, totalStages }) => {
+  const pathData = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+
+  const colorMap = {
+    cyan: '#06b6d4',
+    blue: '#3b82f6',
+    purple: '#a855f7',
+    pink: '#ec4899',
+    orange: '#f97316',
+    emerald: '#10b981',
+    teal: '#14b8a6',
+    green: '#22c55e',
+  };
+
+  return (
+    <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="flex-shrink-0">
+      <defs>
+        <linearGradient id={`sparkline-${color}`} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor={colorMap[color]} stopOpacity="0.4" />
+          <stop offset="100%" stopColor={colorMap[color]} stopOpacity="0.05" />
+        </linearGradient>
+      </defs>
+      <path d={pathData} stroke={colorMap[color]} strokeWidth="1.5" fill="none" />
+      <path d={`${pathData} L ${points[points.length - 1].x} ${height} L 0 ${height} Z`} fill={`url(#sparkline-${color})`} />
+    </svg>
+  );
+};
+
+// Data-driven stage card
+const StageCard = ({ stage, index, isActive, isComplete, totalStages, delay }) => {
   const Icon = stage.icon;
   const isLast = index === totalStages - 1;
 
   return (
-    <div className="relative group">
-      {/* Connection line to next node - Premium style */}
+    <div
+      className="relative group flex-shrink-0 w-full md:w-80 transition-all duration-500 animate-fadeIn"
+      style={{
+        opacity: isActive ? 1 : 0.6,
+        transform: isActive ? 'scale(1)' : 'scale(0.95)',
+        animationDelay: `${delay}ms`,
+      }}
+    >
+      {/* Connection arrow to next */}
       {!isLast && (
-        <svg
-          className="absolute -right-4 lg:-right-8 top-1/2 -translate-y-1/2 w-8 lg:w-16 h-1 z-0"
-          viewBox="0 0 64 4"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <linearGradient id={`grad-${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor={isComplete || isActive ? 'currentColor' : 'rgba(255,255,255,0.1)'} />
-              <stop offset="100%" stopColor={isComplete || isActive ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.05)'} />
-            </linearGradient>
-          </defs>
-          <line
-            x1="0" y1="2" x2="64" y2="2"
-            stroke={`url(#grad-${index})`}
-            strokeWidth="2"
-            className="transition-all duration-700"
-          />
-          {(isComplete || isActive) && (
-            <circle cx="60" cy="2" r="2" fill="currentColor" className={isActive ? 'text-cyan-400' : 'text-emerald-400'} />
-          )}
-        </svg>
+        <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
+          <ArrowRight size={20} className={`text-gray-600 rotate-90 ${isComplete ? 'text-emerald-400' : ''}`} />
+          <div className={`w-0.5 h-6 transition-colors ${isComplete ? 'bg-emerald-400' : 'bg-gray-700'}`} />
+        </div>
       )}
 
-      {/* Glow effect - enhanced for active state */}
-      {isActive && (
-        <>
-          <div
-            className={`absolute -inset-3 rounded-xl bg-gradient-to-r ${stage.gradient} blur-2xl opacity-40 transition-opacity duration-500`}
-          />
-          <div className="absolute -inset-0.5 rounded-xl border border-white/20 opacity-0 animate-pulse" />
-        </>
-      )}
-
-      {/* Node container - Figma/Webflow style card */}
+      {/* Premium card container */}
       <div
-        className={`relative w-40 lg:w-48 transition-all duration-500 overflow-hidden rounded-xl border backdrop-blur-md ${
+        className={`relative overflow-hidden rounded-2xl border backdrop-blur-xl transition-all duration-500 h-full ${
           isActive
-            ? `bg-gradient-to-br ${stage.gradient} border-white/40 shadow-2xl shadow-cyan-500/20 scale-110`
+            ? `bg-gradient-to-br ${stage.gradient} bg-opacity-20 border-white/40 shadow-2xl shadow-current/30`
             : isComplete
-              ? 'bg-white/8 border-white/15 hover:bg-white/12 hover:border-white/20'
+              ? 'bg-white/8 border-white/15 hover:bg-white/10'
               : 'bg-white/5 border-white/10 hover:bg-white/8'
         }`}
       >
-        {/* Background pattern overlay for premium feel */}
-        {isActive && <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_1px)] bg-[length:16px_16px]" />}
+        {/* Animated background pattern */}
+        {isActive && (
+          <div
+            className="absolute inset-0 opacity-20 animate-pulse"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 1px 1px,currentColor 1px,transparent 1px)',
+              backgroundSize: '20px 20px',
+            }}
+          />
+        )}
 
-        {/* Content wrapper */}
-        <div className="relative p-4 lg:p-5 flex flex-col h-full">
+        <div className="relative p-6 lg:p-7 flex flex-col h-full">
+          {/* Header */}
+          <div className="flex items-start justify-between mb-5">
+            <div>
+              <div className="text-xs font-bold tracking-widest text-gray-400 mb-2 uppercase">
+                Step {index + 1} of {totalStages}
+              </div>
+              <h3 className={`text-lg lg:text-xl font-bold transition-colors ${isActive ? 'text-white' : 'text-gray-200'}`}>
+                {stage.title}
+              </h3>
+              <p className={`text-xs mt-1 ${isActive ? 'text-white/70' : 'text-gray-400'}`}>{stage.subtitle}</p>
+            </div>
+            
+            <div className={`p-3 rounded-xl ${isActive ? 'bg-white/20' : 'bg-white/10'}`}>
+              <Icon size={20} className={isActive ? 'text-white' : stage.iconColor} />
+            </div>
+          </div>
+
           {/* Completion badge */}
           {isComplete && !isActive && (
-            <div className="absolute top-3 right-3 flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/30 border border-emerald-500/50">
+            <div className="inline-flex items-center gap-2 w-fit px-3 py-1.5 rounded-full bg-emerald-500/30 border border-emerald-500/50 mb-4">
               <CheckCircle2 size={14} className="text-emerald-400" />
-              <span className="text-xs font-medium text-emerald-300">Done</span>
+              <span className="text-xs font-semibold text-emerald-300">Complete</span>
             </div>
           )}
 
-          {/* Step counter */}
-          <div className={`text-xs font-bold tracking-wider mb-3 transition-colors ${
-            isActive ? 'text-white/70' : 'text-gray-500'
-          }`}>
-            STEP {index + 1}
-          </div>
-
-          {/* Icon with enhanced styling */}
-          <div
-            className={`w-12 h-12 lg:w-14 lg:h-14 rounded-lg flex items-center justify-center mb-3 transition-all ${
-              isActive
-                ? 'bg-white/20 shadow-lg'
-                : 'bg-white/8 group-hover:bg-white/12'
-            }`}
-          >
-            <Icon size={24} className={isActive ? 'text-white' : stage.iconColor} />
-          </div>
-
-          {/* Title - improved typography */}
-          <h4
-            className={`font-bold text-sm lg:text-base mb-1 leading-tight transition-colors ${
-              isActive ? 'text-white' : 'text-gray-200'
-            }`}
-          >
-            {stage.title}
-          </h4>
-
-          {/* Subtitle */}
-          <p className={`text-xs mb-4 transition-colors ${
-            isActive ? 'text-white/70' : 'text-gray-400'
-          }`}>
-            {stage.subtitle}
+          {/* Description */}
+          <p className={`text-sm mb-5 leading-relaxed ${isActive ? 'text-white/80' : 'text-gray-400'}`}>
+            {stage.description}
           </p>
 
-          {/* Metric display - only when active */}
-          {isActive && (
-            <div className="mt-auto pt-3 border-t border-white/20 animate-fadeIn">
-              <div className="text-2xl lg:text-3xl font-bold text-white mb-1">
-                {stage.metrics.value}
-                <span className="text-lg text-white/60">{stage.metrics.unit}</span>
+          {/* Metrics grid - data-rich */}
+          <div className="grid grid-cols-3 gap-3 mb-5">
+            {stage.metrics.map((metric, idx) => (
+              <div
+                key={idx}
+                className={`p-3 rounded-lg transition-all ${isActive ? 'bg-white/10' : 'bg-white/5'}`}
+                style={{
+                  animation: isActive ? `slideInUp 0.4s ease-out ${idx * 100}ms backwards` : 'none',
+                }}
+              >
+                <div className={`text-xs text-gray-400 mb-1 font-medium`}>{metric.label}</div>
+                <div className={`text-lg font-bold flex items-baseline gap-1`}>
+                  <CountUpText
+                    end={metric.value}
+                    duration={1000}
+                    className={`text-${metric.color}-300`}
+                  />
+                  <span className="text-xs text-gray-500">{metric.unit}</span>
+                </div>
               </div>
-              <div className="text-xs text-white/60 font-medium">{stage.metrics.label}</div>
+            ))}
+          </div>
+
+          {/* Sparkline chart */}
+          {isActive && (
+            <div className="mb-5 p-3 rounded-lg bg-white/5 border border-white/10">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs text-gray-400 font-medium">Trend (24h)</span>
+                <TrendingUp size={14} className="text-emerald-400" />
+              </div>
+              <div className="flex items-end h-16 justify-between gap-1">
+                {stage.sparkline.map((value, idx) => (
+                  <div
+                    key={idx}
+                    className={`flex-1 rounded-t-sm bg-gradient-to-t from-${stage.color}-500 to-${stage.color}-400 opacity-60 hover:opacity-100 transition-opacity`}
+                    style={{
+                      height: `${(value / Math.max(...stage.sparkline)) * 100}%`,
+                      minHeight: '2px',
+                    }}
+                  />
+                ))}
+              </div>
             </div>
           )}
 
-          {/* Idle state info */}
-          {!isActive && (
-            <div className="mt-auto text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">
-              {stage.metrics.value} {stage.metrics.label}
+          {/* Conversion funnel indicator */}
+          <div className="mt-auto pt-4 border-t border-white/10">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs text-gray-400 font-medium">Flow Conversion</span>
+              <span className={`text-xs font-bold ${stage.flowPercent > 50 ? 'text-emerald-400' : 'text-orange-400'}`}>
+                {stage.flowPercent.toFixed(1)}%
+              </span>
             </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ChannelCard = ({ channel, isActive, delay }) => {
-  const Icon = channel.icon;
-
-  return (
-    <div
-      className={`relative group overflow-hidden rounded-xl border backdrop-blur-md transition-all duration-500 h-full ${
-        'bg-white/5 border-white/10 hover:bg-white/8 hover:border-white/15'
-      }`}
-      style={{ animationDelay: `${delay}ms` }}
-    >
-      {/* Premium background gradient for hover */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-5 bg-gradient-to-br from-white to-transparent transition-opacity duration-500" />
-
-      {/* Content */}
-      <div className="relative p-5 lg:p-6 h-full flex flex-col">
-        {/* Header with icon and trend */}
-        <div className="flex items-start justify-between mb-4">
-          <div
-            className={`p-3 rounded-lg transition-all ${
-              'bg-white/10 group-hover:bg-white/15'
-            }`}
-          >
-            <Icon size={20} className={`${channel.iconColor}`} />
-          </div>
-          <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40">
-            <TrendingUp size={12} className="text-emerald-400" />
-            <span className="text-xs font-bold text-emerald-400">{channel.trend}</span>
-          </div>
-        </div>
-
-        {/* Metrics */}
-        <div className="mb-4">
-          <div className="text-3xl lg:text-4xl font-bold text-white mb-1">
-            <CountUpText end={channel.value} duration={2000} />
-          </div>
-          <p className="text-xs text-gray-400 font-medium tracking-wide">{channel.label.toUpperCase()}</p>
-        </div>
-
-        {/* Progress bar */}
-        <div className="mt-auto pt-4 border-t border-white/10">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-gray-400">Daily Volume</span>
-            <span className="text-xs font-bold text-gray-300">{Math.round(channel.value / 30)}%</span>
-          </div>
-          <div className="h-1 rounded-full bg-white/10 overflow-hidden">
-            <div
-              className={`h-full bg-gradient-to-r ${
-                channel.label === 'Emails'
-                  ? 'from-cyan-500 to-blue-500'
-                  : channel.label === 'LinkedIn'
-                    ? 'from-blue-500 to-indigo-500'
-                    : channel.label === 'Calls'
-                      ? 'from-purple-500 to-pink-500'
-                      : 'from-pink-500 to-rose-500'
-              } transition-all duration-1000`}
-              style={{ width: `${Math.round(channel.value / 30)}%` }}
-            />
+            <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
+              <div
+                className={`h-full bg-gradient-to-r ${stage.gradient} transition-all duration-1000`}
+                style={{ width: `${stage.flowPercent}%` }}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -330,23 +361,15 @@ const DataFlowVisualization = () => {
 
   // Intersection observer
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setIsVisible(true);
+    }, { threshold: 0.2 });
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
+    if (containerRef.current) observer.observe(containerRef.current);
     return () => observer.disconnect();
   }, []);
 
-  // Autonomous animation
+  // Story-driven autonomous animation
   useEffect(() => {
     if (!isVisible || !isPlaying) return;
 
@@ -354,13 +377,13 @@ const DataFlowVisualization = () => {
       setActiveStage(prev => {
         const next = (prev + 1) % FLOW_STAGES.length;
         if (next === 0) {
-          setTimeout(() => setCompletedStages([]), 300);
+          setCompletedStages([]);
         } else {
           setCompletedStages(curr => [...new Set([...curr, prev])]);
         }
         return next;
       });
-    }, 3000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [isVisible, isPlaying]);
@@ -368,173 +391,86 @@ const DataFlowVisualization = () => {
   return (
     <section
       ref={containerRef}
-      id="data-flow-viz"
       className="py-24 lg:py-32 px-4 relative overflow-hidden bg-gradient-to-b from-[#030712] via-[#0a0817] to-[#030712]"
     >
       {/* Enhanced background effects */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-radial from-cyan-900/30 to-transparent blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-radial from-purple-900/30 to-transparent blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-gradient-radial from-pink-900/20 to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-radial from-cyan-900/30 to-transparent blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-radial from-purple-900/30 to-transparent blur-3xl" />
+      </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Premium Header Section */}
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Header */}
         <RevealText>
-          <div className="max-w-5xl mx-auto mb-16 lg:mb-20 text-center">
-            {/* Status badges - Figma style */}
-            <div className="flex items-center justify-center gap-3 mb-8 flex-wrap">
-              <div className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/8 hover:border-white/15 transition-all backdrop-blur-sm cursor-default">
-                <div className="relative flex h-2 w-2">
-                  <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
-                </div>
-                <span className="text-sm text-cyan-300 font-semibold">Live Pipeline</span>
-              </div>
-              
-              <div className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/15 border border-emerald-500/30 hover:bg-emerald-500/20 transition-all backdrop-blur-sm">
-                <div className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </div>
-                <span className="text-sm text-emerald-300 font-semibold">Auto-Syncing</span>
-              </div>
-              
-              <div className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/15 border border-purple-500/30 hover:bg-purple-500/20 transition-all backdrop-blur-sm">
-                <Activity size={14} className="text-purple-400 animate-pulse" />
-                <span className="text-sm text-purple-300 font-semibold">4.2K/day</span>
-              </div>
-            </div>
-
-            {/* Main heading */}
-            <h2 className="text-4xl lg:text-6xl xl:text-7xl font-bold mb-6 font-space-grotesk leading-tight">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-6xl font-bold mb-4">
               <GradientText gradient="aurora" animate>
-                Your Pipeline,
-              </GradientText>
-              <br />
-              <GradientText gradient="aurora" animate>
-                Visualized in Real-Time
+                Your Sales Pipeline—Visualized in Real-Time
               </GradientText>
             </h2>
-
-            <p className="text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-2">
-              Watch Ava orchestrate your entire sales funnel—from lead discovery to closed deals—with unprecedented visibility and control.
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-2">
+              Watch as Ava orchestrates every stage from discovery to closed deal
             </p>
-            <p className="text-sm text-gray-500">AI-powered automation that works transparently at every stage</p>
-
-            {/* Enhanced stats grid */}
-            <div className="grid grid-cols-3 gap-4 mt-10 max-w-2xl mx-auto">
-              <div className="group relative rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/8 hover:border-white/15 transition-all backdrop-blur-sm cursor-default overflow-hidden">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-5 bg-gradient-to-br from-cyan-500 to-transparent transition-opacity" />
-                <div className="relative">
-                  <div className="text-xs uppercase tracking-widest text-gray-500 mb-2 font-bold">Leads/Hour</div>
-                  <div className="text-3xl lg:text-4xl font-bold text-cyan-300 mb-1">
-                    <CountUpText end={847} duration={2500} />
-                  </div>
-                  <div className="inline-block px-2 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 mt-2">
-                    <span className="text-xs text-emerald-300 font-semibold">↑ +18% today</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="group relative rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/8 hover:border-white/15 transition-all backdrop-blur-sm cursor-default overflow-hidden">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-5 bg-gradient-to-br from-purple-500 to-transparent transition-opacity" />
-                <div className="relative">
-                  <div className="text-xs uppercase tracking-widest text-gray-500 mb-2 font-bold">AI Accuracy</div>
-                  <div className="text-3xl lg:text-4xl font-bold text-purple-300 mb-1">
-                    <CountUpText end={94} suffix="%" duration={2500} />
-                  </div>
-                  <div className="inline-block px-2 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 mt-2">
-                    <span className="text-xs text-emerald-300 font-semibold">↑ Best-in-class</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="group relative rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/8 hover:border-white/15 transition-all backdrop-blur-sm cursor-default overflow-hidden">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-5 bg-gradient-to-br from-emerald-500 to-transparent transition-opacity" />
-                <div className="relative">
-                  <div className="text-xs uppercase tracking-widest text-gray-500 mb-2 font-bold">Open Rate</div>
-                  <div className="text-3xl lg:text-4xl font-bold text-emerald-300 mb-1">
-                    <CountUpText end={67} suffix="%" duration={2500} />
-                  </div>
-                  <div className="inline-block px-2 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 mt-2">
-                    <span className="text-xs text-emerald-300 font-semibold">↑ +24% MoM</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <p className="text-sm text-gray-500">Data updates in real-time • See exactly what's happening at each stage</p>
           </div>
         </RevealText>
 
-        {/* Flow Visualization - Premium Section */}
-        <div className="mb-16 lg:mb-20">
-          {/* Progress indicator */}
-          <div className="mb-10 lg:mb-14">
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-xs uppercase tracking-widest text-gray-400 font-bold">Pipeline Progress</div>
-              <div className="text-sm text-gray-400">
-                <span className="text-white font-bold">{activeStage + 1}</span>
-                <span className="text-gray-600"> / {FLOW_STAGES.length}</span>
-              </div>
-            </div>
-            <div className="relative h-2 bg-white/5 rounded-full overflow-hidden border border-white/10">
-              <div
-                className="h-full bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full transition-all duration-1000 ease-out relative shadow-lg shadow-cyan-500/30"
-                style={{ width: `${((activeStage + 1) / FLOW_STAGES.length) * 100}%` }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer" />
-              </div>
-            </div>
-          </div>
-
-          {/* Flow nodes - Premium layout */}
-          <div className="overflow-hidden pb-6">
-            <div className="flex items-center justify-center flex-wrap gap-4 lg:gap-6">
-              {FLOW_STAGES.map((stage, index) => (
-                <FlowNode
-                  key={stage.id}
-                  stage={stage}
-                  index={index}
-                  isActive={activeStage === index}
-                  isComplete={completedStages.includes(index)}
-                  totalStages={FLOW_STAGES.length}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Control bar */}
-          <div className="flex items-center justify-center gap-4 mt-8">
-            <button
-              onClick={() => setIsPlaying(!isPlaying)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all backdrop-blur-sm border ${
-                isPlaying
-                  ? 'bg-white/10 border-white/20 text-white hover:bg-white/15'
-                  : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10'
-              }`}
-            >
-              <div className={`w-2 h-2 rounded-full ${isPlaying ? 'animate-pulse bg-emerald-400' : 'bg-gray-600'}`} />
-              {isPlaying ? 'Auto-playing' : 'Paused'}
-            </button>
-          </div>
+        {/* Timeline view - vertical card stack */}
+        <div className="space-y-4 lg:space-y-6">
+          {FLOW_STAGES.map((stage, index) => (
+            <StageCard
+              key={stage.id}
+              stage={stage}
+              index={index}
+              isActive={activeStage === index}
+              isComplete={completedStages.includes(index)}
+              totalStages={FLOW_STAGES.length}
+              delay={index * 50}
+            />
+          ))}
         </div>
 
-        {/* Channel Metrics - Premium Grid */}
-        <div className="mt-20 lg:mt-24">
-          <div className="mb-8">
-            <h3 className="text-xl lg:text-2xl font-bold text-white mb-2">Channel Performance</h3>
-            <p className="text-gray-400">Real-time metrics across your outreach channels</p>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-            {CHANNEL_METRICS.map((channel, index) => (
-              <ChannelCard
-                key={channel.label}
-                channel={channel}
-                isActive={true}
-                delay={index * 100}
-              />
-            ))}
+        {/* Control bar */}
+        <div className="flex items-center justify-center gap-4 mt-12">
+          <button
+            onClick={() => setIsPlaying(!isPlaying)}
+            className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all backdrop-blur-sm border ${
+              isPlaying
+                ? 'bg-white/10 border-white/20 text-white hover:bg-white/15'
+                : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10'
+            }`}
+          >
+            <div className={`w-2 h-2 rounded-full ${isPlaying ? 'animate-pulse bg-emerald-400' : 'bg-gray-600'}`} />
+            {isPlaying ? 'Auto-playing (4s per stage)' : 'Paused'}
+          </button>
+          
+          <div className="text-sm text-gray-500">
+            Stage <span className="text-white font-bold">{activeStage + 1}</span> of <span className="font-bold">{FLOW_STAGES.length}</span>
           </div>
         </div>
       </div>
+
+      {/* Add animations */}
+      <style jsx>{`
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+      `}</style>
     </section>
   );
 };

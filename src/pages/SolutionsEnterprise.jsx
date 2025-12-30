@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Building, Phone, Shield, CheckCircle, Lock, Key, FileCheck } from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import EnterpriseFlowOrchestration from '../components/solutions/EnterpriseFlowOrchestration';
+import SolutionHero from '../components/solutions/SolutionHero';
 import { SOLUTIONS_DATA } from '../config/solutionsDataFactory';
 import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
 import {
@@ -15,11 +15,8 @@ import {
   GlassCard,
   GlassCardContent,
   GradientText,
-  GlowButton,
-  GlowButtonOutline,
   RevealText,
   FloatingParticles,
-  ParticleBackground,
 } from '../components/futuristic';
 
 const {
@@ -74,64 +71,14 @@ const SolutionsEnterprise = () => {
 
   return (
     <AppShell>
-      {/* Hero Section */}
-      <section className="relative pt-20 pb-24 px-4 overflow-hidden">
-        <ParticleBackground variant="default" className="absolute inset-0" />
-        <div className="absolute inset-0 bg-gradient-to-b from-orange-900/20 via-transparent to-transparent" />
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div {...fadeIn} className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/20 border border-orange-500/30 text-orange-300 text-sm font-semibold mb-6">
-              <Building className="w-4 h-4" />
-              For Enterprise
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-space-grotesk">
-              <GradientText gradient="aurora">Power Meets Governance</GradientText>
-            </h1>
-            <p className="text-lg text-gray-300 mb-4 font-space-grotesk">
-              Top-Tier Tools + AI Colleague
-            </p>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
-              Equip your team with best-in-class tools for each stage of the outbound cycle,
-              including an AI colleague to keep everything on track. SOC 2 certified, SSO/SCIM
-              enabled, with dedicated support.
-            </p>
-
-            {/* Enterprise Stats */}
-            <motion.div
-              {...staggerContainer}
-              className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto mb-10"
-            >
-              {ENTERPRISE_STATS.map((stat, index) => (
-                <motion.div key={index} {...staggerItem}>
-                  <GlassCard variant="default" hover className="text-center">
-                    <div className="text-lg md:text-lg font-bold font-space-grotesk mb-1">
-                      <GradientText gradient="cyber">{stat.value}</GradientText>
-                    </div>
-                    <div className="text-sm text-gray-400">{stat.label}</div>
-                  </GlassCard>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link to="/pricing#contact-sales">
-                <GlowButton variant="primary" size="lg" glow className="gap-2">
-                  <Phone size={18} />
-                  Talk to Enterprise Sales
-                </GlowButton>
-              </Link>
-              <Link to="/security">
-                <GlowButtonOutline variant="secondary" size="lg" className="gap-2">
-                  <Shield size={18} />
-                  Security & Compliance
-                </GlowButtonOutline>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <SolutionHero
+        icon={Building}
+        segment="For Enterprise"
+        title="Power Meets Governance"
+        subtitle="Top-Tier Tools + AI Colleague"
+        description="Equip your team with best-in-class tools for each stage of the outbound cycle, including an AI colleague to keep everything on track. SOC 2 certified, SSO/SCIM enabled, with dedicated support."
+        stats={ENTERPRISE_STATS}
+      />
 
       {/* Compliance Badges */}
       <section className="py-12 px-4 border-y border-white/10 bg-slate-950/50">

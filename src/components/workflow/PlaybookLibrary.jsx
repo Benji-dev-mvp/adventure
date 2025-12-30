@@ -49,14 +49,34 @@ const playbooks = [
     ],
     workflow: {
       nodes: [
-        createNode('trigger-1', 'trigger', nodePos(0), { label: 'Campaign Start', triggerType: 'manual' }),
-        createNode('email-1', 'email', nodePos(120), { label: 'Initial Outreach', subject: 'Partnership opportunity with {{company}}' }),
+        createNode('trigger-1', 'trigger', nodePos(0), {
+          label: 'Campaign Start',
+          triggerType: 'manual',
+        }),
+        createNode('email-1', 'email', nodePos(120), {
+          label: 'Initial Outreach',
+          subject: 'Partnership opportunity with {{company}}',
+        }),
         createNode('delay-1', 'delay', nodePos(260), { label: 'Wait', days: 3, hours: 0 }),
-        createNode('linkedin-1', 'linkedin', nodePos(400), { label: 'LinkedIn Connect', connectionRequest: true }),
+        createNode('linkedin-1', 'linkedin', nodePos(400), {
+          label: 'LinkedIn Connect',
+          connectionRequest: true,
+        }),
         createNode('delay-2', 'delay', nodePos(540), { label: 'Wait', days: 2, hours: 0 }),
-        createNode('condition-1', 'condition', nodePos(680), { label: 'Email Opened?', field: 'email_opened', operator: 'equals', value: 'true' }),
-        createNode('email-2', 'email', nodePos(850, 100), { label: 'Warm Follow-up', subject: 'Re: Partnership opportunity' }),
-        createNode('call-1', 'call', nodePos(850, 400), { label: 'Cold Call', script: 'Hi {{firstName}}, I sent you an email about...' }),
+        createNode('condition-1', 'condition', nodePos(680), {
+          label: 'Email Opened?',
+          field: 'email_opened',
+          operator: 'equals',
+          value: 'true',
+        }),
+        createNode('email-2', 'email', nodePos(850, 100), {
+          label: 'Warm Follow-up',
+          subject: 'Re: Partnership opportunity',
+        }),
+        createNode('call-1', 'call', nodePos(850, 400), {
+          label: 'Cold Call',
+          script: 'Hi {{firstName}}, I sent you an email about...',
+        }),
       ],
       edges: [
         createEdge('e1-2', 'trigger-1', 'email-1'),
@@ -87,10 +107,19 @@ const playbooks = [
     ],
     workflow: {
       nodes: [
-        createNode('trigger-1', 'trigger', nodePos(0), { label: 'Campaign Start', triggerType: 'manual' }),
-        createNode('email-1', 'email', nodePos(120), { label: 'Follow-up #1', subject: 'Following up on our conversation' }),
+        createNode('trigger-1', 'trigger', nodePos(0), {
+          label: 'Campaign Start',
+          triggerType: 'manual',
+        }),
+        createNode('email-1', 'email', nodePos(120), {
+          label: 'Follow-up #1',
+          subject: 'Following up on our conversation',
+        }),
         createNode('delay-1', 'delay', nodePos(260), { label: 'Wait', days: 3, hours: 0 }),
-        createNode('email-2', 'email', nodePos(400), { label: 'Follow-up #2', subject: 'Quick question' }),
+        createNode('email-2', 'email', nodePos(400), {
+          label: 'Follow-up #2',
+          subject: 'Quick question',
+        }),
       ],
       edges: [
         createEdge('e1-2', 'trigger-1', 'email-1'),
@@ -119,12 +148,29 @@ const playbooks = [
     ],
     workflow: {
       nodes: [
-        createNode('trigger-1', 'trigger', nodePos(0), { label: 'Campaign Start', triggerType: 'manual' }),
-        createNode('linkedin-1', 'linkedin', nodePos(120), { label: 'Connection Request', connectionRequest: true }),
+        createNode('trigger-1', 'trigger', nodePos(0), {
+          label: 'Campaign Start',
+          triggerType: 'manual',
+        }),
+        createNode('linkedin-1', 'linkedin', nodePos(120), {
+          label: 'Connection Request',
+          connectionRequest: true,
+        }),
         createNode('delay-1', 'delay', nodePos(260), { label: 'Wait', days: 2, hours: 0 }),
-        createNode('condition-1', 'condition', nodePos(400), { label: 'Connection Accepted?', field: 'linkedin_accepted', operator: 'equals', value: 'true' }),
-        createNode('linkedin-2', 'linkedin', nodePos(570, 100), { label: 'LinkedIn Message', content: 'Thanks for connecting!' }),
-        createNode('email-1', 'email', nodePos(570, 400), { label: 'Email Introduction', subject: 'Connecting from LinkedIn' }),
+        createNode('condition-1', 'condition', nodePos(400), {
+          label: 'Connection Accepted?',
+          field: 'linkedin_accepted',
+          operator: 'equals',
+          value: 'true',
+        }),
+        createNode('linkedin-2', 'linkedin', nodePos(570, 100), {
+          label: 'LinkedIn Message',
+          content: 'Thanks for connecting!',
+        }),
+        createNode('email-1', 'email', nodePos(570, 400), {
+          label: 'Email Introduction',
+          subject: 'Connecting from LinkedIn',
+        }),
       ],
       edges: [
         createEdge('e1-2', 'trigger-1', 'linkedin-1'),
@@ -154,10 +200,24 @@ const playbooks = [
     ],
     workflow: {
       nodes: [
-        createNode('trigger-1', 'trigger', nodePos(0), { label: 'Campaign Start', triggerType: 'manual' }),
-        createNode('abtest-1', 'abtest', nodePos(120), { label: 'A/B Split', splitRatio: 50, variantAName: 'Direct', variantBName: 'Question' }),
-        createNode('email-1', 'email', nodePos(300, 100), { label: 'Direct Approach', subject: 'Boost your sales by 30%' }),
-        createNode('email-2', 'email', nodePos(300, 400), { label: 'Question Approach', subject: 'Quick question about {{company}}' }),
+        createNode('trigger-1', 'trigger', nodePos(0), {
+          label: 'Campaign Start',
+          triggerType: 'manual',
+        }),
+        createNode('abtest-1', 'abtest', nodePos(120), {
+          label: 'A/B Split',
+          splitRatio: 50,
+          variantAName: 'Direct',
+          variantBName: 'Question',
+        }),
+        createNode('email-1', 'email', nodePos(300, 100), {
+          label: 'Direct Approach',
+          subject: 'Boost your sales by 30%',
+        }),
+        createNode('email-2', 'email', nodePos(300, 400), {
+          label: 'Question Approach',
+          subject: 'Quick question about {{company}}',
+        }),
       ],
       edges: [
         createEdge('e1-2', 'trigger-1', 'abtest-1'),

@@ -75,12 +75,42 @@ export const SOLUTIONS_DATA = {
       ),
     ],
     benefits: [
-      createFeature(DollarSign, '$450K Saved vs. Hiring', "Skip hiring your first BDR. With Ava, 80% of your outbound team's tasks are automated — reach more people without growing headcount.", 'emerald'),
-      createFeature(Brain, 'Self-Optimizing AI', "Ava isn't your average AI. She learns from your feedback over time, continuously improving results like a top-performing rep would.", 'purple'),
-      createFeature(Rocket, 'Live in 3 Days', "Learning Artisan takes minutes. With our dedicated support team, you'll be onboarded and live within days — not weeks.", 'cyan'),
-      createFeature(Sparkles, 'Replicate Your Top Performers', 'Using AI Playbooks, automate your top-performing outbound research and writing workflows across your entire team.', 'orange'),
-      createFeature(Target, 'Intent-Driven Outbound', 'Harness behavioral, firmographic, technographic, and social intent signals to reach prospects at the perfect moment.', 'pink'),
-      createFeature(Zap, 'All-In-One Platform', 'From email deliverability to B2B data — everything you need for outbound success, consolidated into one subscription.', 'yellow'),
+      createFeature(
+        DollarSign,
+        '$450K Saved vs. Hiring',
+        "Skip hiring your first BDR. With Ava, 80% of your outbound team's tasks are automated — reach more people without growing headcount.",
+        'emerald'
+      ),
+      createFeature(
+        Brain,
+        'Self-Optimizing AI',
+        "Ava isn't your average AI. She learns from your feedback over time, continuously improving results like a top-performing rep would.",
+        'purple'
+      ),
+      createFeature(
+        Rocket,
+        'Live in 3 Days',
+        "Learning Artisan takes minutes. With our dedicated support team, you'll be onboarded and live within days — not weeks.",
+        'cyan'
+      ),
+      createFeature(
+        Sparkles,
+        'Replicate Your Top Performers',
+        'Using AI Playbooks, automate your top-performing outbound research and writing workflows across your entire team.',
+        'orange'
+      ),
+      createFeature(
+        Target,
+        'Intent-Driven Outbound',
+        'Harness behavioral, firmographic, technographic, and social intent signals to reach prospects at the perfect moment.',
+        'pink'
+      ),
+      createFeature(
+        Zap,
+        'All-In-One Platform',
+        'From email deliverability to B2B data — everything you need for outbound success, consolidated into one subscription.',
+        'yellow'
+      ),
     ],
     stats: [
       { value: '3', suffix: ' days', label: 'To go live' },
@@ -92,18 +122,68 @@ export const SOLUTIONS_DATA = {
   },
   midmarket: {
     features: [
-      createFeature(Database, '300M+ B2B Contacts with Advanced Filtering', 'Built-in ICP matching with ML-powered firmographic and technographic filters. Match 3x more accurately to your target accounts.', 'blue'),
-      createFeature(Brain, 'AI-Powered Account Strategy', 'Ava analyzes every target account and creates a custom go-to-market strategy. Multi-threading, intent signals, and stakeholder mapping included.', 'purple'),
-      createFeature(BarChart3, 'Real-Time Analytics & Insights', 'Get instant feedback on every campaign. Understand what works with drill-down analytics by channel, segment, and rep.', 'orange'),
-      createFeature(Zap, 'Enterprise Integrations', 'Seamless integration with Salesforce, HubSpot, Outreach, and 50+ other platforms. Bi-directional sync of all activity.', 'green'),
+      createFeature(
+        Database,
+        '300M+ B2B Contacts with Advanced Filtering',
+        'Built-in ICP matching with ML-powered firmographic and technographic filters. Match 3x more accurately to your target accounts.',
+        'blue'
+      ),
+      createFeature(
+        Brain,
+        'AI-Powered Account Strategy',
+        'Ava analyzes every target account and creates a custom go-to-market strategy. Multi-threading, intent signals, and stakeholder mapping included.',
+        'purple'
+      ),
+      createFeature(
+        BarChart3,
+        'Real-Time Analytics & Insights',
+        'Get instant feedback on every campaign. Understand what works with drill-down analytics by channel, segment, and rep.',
+        'orange'
+      ),
+      createFeature(
+        Zap,
+        'Enterprise Integrations',
+        'Seamless integration with Salesforce, HubSpot, Outreach, and 50+ other platforms. Bi-directional sync of all activity.',
+        'green'
+      ),
     ],
     benefits: [
-      createFeature(Rocket, '2-3x Pipeline Acceleration', 'Automated account research and multi-threading reduce sales cycles by 40%. Your team closes deals faster.', 'pink'),
-      createFeature(Brain, 'Full Team Enablement', 'Equip every rep with AI-assisted prospecting, calling, and follow-up. No more bottlenecks on top performers.', 'purple'),
-      createFeature(BarChart3, 'Predictive Forecasting', 'AI forecasts pipeline based on activity patterns. Make data-driven hiring and investment decisions.', 'cyan'),
-      createFeature(DollarSign, 'ROI in 30 Days', 'See measurable pipeline growth within weeks. Most customers hit 3-5x ROI within 6 months.', 'emerald'),
-      createFeature(Target, 'Real-Time Territory Optimization', 'Ava auto-assigns leads and balances territories to maximize coverage and prevent leakage.', 'rose'),
-      createFeature(Sparkles, 'Rep Coaching & Insights', 'Call intelligence and activity analysis identify top performers so you can replicate their success at scale.', 'yellow'),
+      createFeature(
+        Rocket,
+        '2-3x Pipeline Acceleration',
+        'Automated account research and multi-threading reduce sales cycles by 40%. Your team closes deals faster.',
+        'pink'
+      ),
+      createFeature(
+        Brain,
+        'Full Team Enablement',
+        'Equip every rep with AI-assisted prospecting, calling, and follow-up. No more bottlenecks on top performers.',
+        'purple'
+      ),
+      createFeature(
+        BarChart3,
+        'Predictive Forecasting',
+        'AI forecasts pipeline based on activity patterns. Make data-driven hiring and investment decisions.',
+        'cyan'
+      ),
+      createFeature(
+        DollarSign,
+        'ROI in 30 Days',
+        'See measurable pipeline growth within weeks. Most customers hit 3-5x ROI within 6 months.',
+        'emerald'
+      ),
+      createFeature(
+        Target,
+        'Real-Time Territory Optimization',
+        'Ava auto-assigns leads and balances territories to maximize coverage and prevent leakage.',
+        'rose'
+      ),
+      createFeature(
+        Sparkles,
+        'Rep Coaching & Insights',
+        'Call intelligence and activity analysis identify top performers so you can replicate their success at scale.',
+        'yellow'
+      ),
     ],
     stats: [
       { value: '2-3x', label: 'Pipeline acceleration' },
@@ -124,18 +204,68 @@ export const SOLUTIONS_DATA = {
   },
   enterprise: {
     features: [
-      createFeature(Database, 'Global Coverage with Custom Data Blending', 'Access 300M+ B2B contacts + your proprietary data. Seamless blending with Clearbit, ZoomInfo, Apollo, and custom data sources.', 'blue'),
-      createFeature(Brain, 'Enterprise-Grade AI Governance', 'Full audit logs, explainability dashboards, and governance controls. Comply with GDPR, CCPA, HIPAA with AI-specific compliance.', 'purple'),
-      createFeature(BarChart3, 'Custom Analytics & Reporting', 'Build unlimited custom dashboards. Role-based views for reps, managers, and executives. White-label for partners.', 'orange'),
-      createFeature(Zap, 'Full API Access & Custom Workflows', 'Full REST/GraphQL API + webhooks. Build custom AI workflows using Zapier, Make, or your internal system.', 'green'),
+      createFeature(
+        Database,
+        'Global Coverage with Custom Data Blending',
+        'Access 300M+ B2B contacts + your proprietary data. Seamless blending with Clearbit, ZoomInfo, Apollo, and custom data sources.',
+        'blue'
+      ),
+      createFeature(
+        Brain,
+        'Enterprise-Grade AI Governance',
+        'Full audit logs, explainability dashboards, and governance controls. Comply with GDPR, CCPA, HIPAA with AI-specific compliance.',
+        'purple'
+      ),
+      createFeature(
+        BarChart3,
+        'Custom Analytics & Reporting',
+        'Build unlimited custom dashboards. Role-based views for reps, managers, and executives. White-label for partners.',
+        'orange'
+      ),
+      createFeature(
+        Zap,
+        'Full API Access & Custom Workflows',
+        'Full REST/GraphQL API + webhooks. Build custom AI workflows using Zapier, Make, or your internal system.',
+        'green'
+      ),
     ],
     benefits: [
-      createFeature(Rocket, '10x Scale with Consistency', 'Maintain quality as you scale to 100+ reps. Enforce standards, reduce variance, ensure repeatable success.', 'pink'),
-      createFeature(Brain, 'Autonomous Revenue Operations', 'Full autonomous GTM: prospecting, research, outreach, calling, closing follow-up. Remove human bottlenecks.', 'purple'),
-      createFeature(BarChart3, 'Predictive Revenue Intelligence', 'AI-powered deal intelligence. Forecast revenue with 95%+ accuracy. Predict churn and expansion.', 'cyan'),
-      createFeature(DollarSign, '$5M+ Annual Savings', 'Save on hiring, tools, and time. Typical enterprise customer generates $5M+ ARR impact annually.', 'emerald'),
-      createFeature(Target, 'Board-Level Reporting', 'Executive dashboards with AR trends, pipeline forecasting, and AI performance metrics. Ready for board presentations.', 'rose'),
-      createFeature(Sparkles, 'Dedicated AI Operations Team', 'White-glove onboarding, custom training, and ongoing AI optimization. Your dedicated AI CRO.', 'yellow'),
+      createFeature(
+        Rocket,
+        '10x Scale with Consistency',
+        'Maintain quality as you scale to 100+ reps. Enforce standards, reduce variance, ensure repeatable success.',
+        'pink'
+      ),
+      createFeature(
+        Brain,
+        'Autonomous Revenue Operations',
+        'Full autonomous GTM: prospecting, research, outreach, calling, closing follow-up. Remove human bottlenecks.',
+        'purple'
+      ),
+      createFeature(
+        BarChart3,
+        'Predictive Revenue Intelligence',
+        'AI-powered deal intelligence. Forecast revenue with 95%+ accuracy. Predict churn and expansion.',
+        'cyan'
+      ),
+      createFeature(
+        DollarSign,
+        '$5M+ Annual Savings',
+        'Save on hiring, tools, and time. Typical enterprise customer generates $5M+ ARR impact annually.',
+        'emerald'
+      ),
+      createFeature(
+        Target,
+        'Board-Level Reporting',
+        'Executive dashboards with AR trends, pipeline forecasting, and AI performance metrics. Ready for board presentations.',
+        'rose'
+      ),
+      createFeature(
+        Sparkles,
+        'Dedicated AI Operations Team',
+        'White-glove onboarding, custom training, and ongoing AI optimization. Your dedicated AI CRO.',
+        'yellow'
+      ),
     ],
     stats: [
       { value: '10x', label: 'Scale without variance' },

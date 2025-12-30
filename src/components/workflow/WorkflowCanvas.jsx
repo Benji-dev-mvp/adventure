@@ -137,7 +137,7 @@ const WorkflowCanvas = ({
       condition: ['Condition', { field: 'email_opened', operator: 'equals', value: 'true' }],
       abtest: ['A/B Test', { variants: ['A', 'B'], splitRatio: 50 }],
     };
-    
+
     const [label, props] = nodeConfig[type] || ['Unknown Node', {}];
     return { label, ...props };
   };
@@ -289,7 +289,7 @@ const WorkflowCanvas = ({
     condition: '#ec4899',
     abtest: '#6366f1',
   };
-  
+
   const nodeColor = node => nodeColorMap[node.type] || '#6b7280';
 
   return (

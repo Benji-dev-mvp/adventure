@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Building2, Sparkles, Play } from 'lucide-react';
+import { Building2 } from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import MidMarketFlowOrchestration from '../components/solutions/MidMarketFlowOrchestration';
+import SolutionHero from '../components/solutions/SolutionHero';
 import { SOLUTIONS_DATA } from '../config/solutionsDataFactory';
 import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
 import {
@@ -15,11 +15,8 @@ import {
   GlassCard,
   GlassCardContent,
   GradientText,
-  GlowButton,
-  GlowButtonOutline,
   RevealText,
   FloatingParticles,
-  ParticleBackground,
 } from '../components/futuristic';
 
 const {
@@ -37,64 +34,14 @@ const SolutionsMidMarket = () => {
 
   return (
     <AppShell>
-      {/* Hero Section */}
-      <section className="relative pt-20 pb-24 px-4 overflow-hidden">
-        <ParticleBackground variant="default" className="absolute inset-0" />
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-transparent" />
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div {...fadeIn} className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300 text-sm font-semibold mb-6">
-              <Building2 className="w-4 h-4" />
-              For Midmarket
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-space-grotesk">
-              <GradientText gradient="aurora">Scale Without Chaos</GradientText>
-            </h1>
-            <p className="text-lg text-gray-300 mb-4 font-space-grotesk">
-              Automate 80% of Manual Tasks
-            </p>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
-              Streamline your existing outbound workflow while keeping your team in control. Boost
-              rep efficiency 3x, eliminate data entry, and orchestrate multichannel sequences from
-              one platform.
-            </p>
-
-            {/* Quick Stats */}
-            <motion.div
-              {...staggerContainer}
-              className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto mb-10"
-            >
-              {MIDMARKET_STATS.map((stat, index) => (
-                <motion.div key={index} {...staggerItem}>
-                  <GlassCard variant="default" hover className="text-center">
-                    <div className="text-lg font-bold font-space-grotesk mb-1">
-                      <GradientText gradient="cyber">{stat.value}</GradientText>
-                    </div>
-                    <div className="text-sm text-gray-400">{stat.label}</div>
-                  </GlassCard>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link to="/pricing#start">
-                <GlowButton variant="primary" size="lg" glow className="gap-2">
-                  <Sparkles size={18} />
-                  Start Free Trial
-                </GlowButton>
-              </Link>
-              <Link to="/ai-tour">
-                <GlowButtonOutline variant="secondary" size="lg" className="gap-2">
-                  <Play size={18} />
-                  Watch Ava in Action
-                </GlowButtonOutline>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <SolutionHero
+        icon={Building2}
+        segment="For Midmarket"
+        title="Scale Without Chaos"
+        subtitle="Automate 80% of Manual Tasks"
+        description="Streamline your existing outbound workflow while keeping your team in control. Boost rep efficiency 3x, eliminate data entry, and orchestrate multichannel sequences from one platform."
+        stats={MIDMARKET_STATS}
+      />
 
       {/* Channel Mix Section */}
       <section className="py-16 px-4 relative overflow-hidden">

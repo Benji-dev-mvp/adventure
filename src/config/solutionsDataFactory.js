@@ -7,17 +7,13 @@
 import {
   Target,
   Zap,
-  Globe,
   Clock,
   DollarSign,
   Brain,
   Sparkles,
-  CheckCircle,
   Database,
   BarChart3,
   Rocket,
-  Phone,
-  Play,
 } from 'lucide-react';
 
 export const SOLUTIONS_DATA = {

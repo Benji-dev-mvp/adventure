@@ -1,23 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import {
-  TrendingUp,
-  Shield,
-  Brain,
-  CheckCircle,
-  Building,
-  Phone,
-  Lock,
-  Server,
-  Key,
-  FileCheck,
-  Headphones,
-  Globe,
-  Settings,
-} from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import EnterpriseFlowOrchestration from '../components/solutions/EnterpriseFlowOrchestration';
+import { SOLUTIONS_DATA } from '../config/solutionsDataFactory';
 import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
 import {
   KpiFunnelChart,
@@ -35,94 +21,7 @@ import {
   ParticleBackground,
 } from '../components/futuristic';
 
-const SECURITY_FEATURES = [
-  {
-    icon: Shield,
-    title: 'SOC 2 Type II Certified',
-    description:
-      'Annual third-party audits verify our security controls. Your data is protected by enterprise-grade infrastructure.',
-    gradient: 'from-emerald-500 to-green-500',
-  },
-  {
-    icon: Lock,
-    title: 'SSO/SAML + SCIM',
-    description:
-      'Enterprise identity management with single sign-on. Automated user provisioning and deprovisioning through SCIM.',
-    gradient: 'from-cyan-500 to-blue-500',
-  },
-  {
-    icon: Key,
-    title: 'Role-Based Access Control',
-    description:
-      'Granular permissions at team, campaign, and data levels. Full audit logs for compliance reporting.',
-    gradient: 'from-purple-500 to-pink-500',
-  },
-  {
-    icon: FileCheck,
-    title: 'GDPR & CCPA Compliant',
-    description:
-      'Built-in privacy controls, data residency options, and consent management for global compliance.',
-    gradient: 'from-orange-500 to-red-500',
-  },
-];
-
-const ENTERPRISE_BENEFITS = [
-  {
-    icon: Headphones,
-    title: 'Dedicated CSM',
-    description:
-      'Your own Customer Success Manager ensuring maximum ROI and adoption across your organization.',
-    gradient: 'from-cyan-400 to-blue-500',
-  },
-  {
-    icon: Server,
-    title: '99.95% Uptime SLA',
-    description:
-      'Enterprise-grade reliability with financial guarantees. Your outbound never stops.',
-    gradient: 'from-green-400 to-emerald-500',
-  },
-  {
-    icon: Settings,
-    title: 'Custom Integrations',
-    description:
-      'Deep integrations with your existing tech stack. Custom API access and webhook support.',
-    gradient: 'from-purple-400 to-pink-500',
-  },
-  {
-    icon: Globe,
-    title: 'Global Data Coverage',
-    description:
-      '300M+ contacts across 200+ countries. Multi-language support for global outbound campaigns.',
-    gradient: 'from-orange-400 to-red-500',
-  },
-  {
-    icon: Brain,
-    title: 'AI Governance Controls',
-    description: 'Human-in-the-loop approvals, content guardrails, and brand voice enforcement.',
-    gradient: 'from-pink-400 to-rose-500',
-  },
-  {
-    icon: TrendingUp,
-    title: 'Advanced Analytics',
-    description:
-      'Custom dashboards, attribution modeling, and executive reporting for full pipeline visibility.',
-    gradient: 'from-indigo-400 to-purple-500',
-  },
-];
-
-const ENTERPRISE_STATS = [
-  { value: '99.95%', label: 'Uptime SLA' },
-  { value: 'SOC 2', label: 'Type II Certified' },
-  { value: 'SSO/SCIM', label: 'Identity & Provisioning' },
-  { value: '24/7', label: 'Priority Support' },
-];
-
-const COMPLIANCE_BADGES = [
-  { name: 'SOC 2', icon: Shield },
-  { name: 'GDPR', icon: Lock },
-  { name: 'CCPA', icon: FileCheck },
-  { name: 'ISO 27001', icon: Key },
-];
+const { features: FEATURES, benefits: BENEFITS, languages: LANGUAGES, stats: ENTERPRISE_STATS } = SOLUTIONS_DATA.enterprise;
 
 const SolutionsEnterprise = () => {
   const prefersReducedMotion = useReducedMotion();

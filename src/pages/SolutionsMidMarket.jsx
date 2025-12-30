@@ -1,25 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import {
-  Target,
-  Zap,
-  TrendingUp,
-  Clock,
-  Brain,
-  Sparkles,
-  CheckCircle,
-  Building2,
-  Phone,
-  Play,
-  Settings,
-  Layers,
-  RefreshCcw,
-  LineChart,
-  Database,
-} from 'lucide-react';
 import AppShell from '../components/layout/AppShell';
 import MidMarketFlowOrchestration from '../components/solutions/MidMarketFlowOrchestration';
+import { SOLUTIONS_DATA } from '../config/solutionsDataFactory';
 import { useReducedMotion, getMotionConfig } from '../hooks/useMotion';
 import {
   ChannelMixChart,
@@ -37,88 +21,7 @@ import {
   ParticleBackground,
 } from '../components/futuristic';
 
-const FEATURES = [
-  {
-    icon: RefreshCcw,
-    title: 'Automate 80% of Repetitive Tasks',
-    description:
-      'Free your reps from manual data entry, follow-up scheduling, and CRM updates. Ava handles the busywork so your team can focus on closing.',
-    gradient: 'from-purple-500 to-pink-500',
-  },
-  {
-    icon: Layers,
-    title: 'Unified Multichannel Orchestration',
-    description:
-      'Coordinate email, LinkedIn, phone, and SMS sequences from a single platform. No more juggling multiple tools or losing context.',
-    gradient: 'from-cyan-500 to-blue-500',
-  },
-  {
-    icon: LineChart,
-    title: 'Analytics That Drive Action',
-    description:
-      'Get real-time insights into campaign performance, rep productivity, and pipeline health. Make data-driven decisions that move the needle.',
-    gradient: 'from-orange-500 to-red-500',
-  },
-  {
-    icon: Database,
-    title: '300M+ Enriched B2B Contacts',
-    description:
-      'Access comprehensive firmographic, technographic, and intent data. Find the right prospects at the right moment with precision targeting.',
-    gradient: 'from-green-500 to-teal-500',
-  },
-];
-
-const BENEFITS = [
-  {
-    icon: Zap,
-    title: '3x Rep Efficiency',
-    description:
-      'Your existing team becomes 3x more productive when freed from manual tasks. Do more with the team you have.',
-    gradient: 'from-yellow-400 to-orange-500',
-  },
-  {
-    icon: Clock,
-    title: '80% Time Savings',
-    description:
-      'Eliminate hours of daily busywork. Ava handles prospecting, research, personalization, and follow-ups automatically.',
-    gradient: 'from-purple-400 to-pink-500',
-  },
-  {
-    icon: Target,
-    title: 'Precision Targeting',
-    description:
-      'Reach the right buyers at the right time with intent-driven outbound. No more spray and pray.',
-    gradient: 'from-cyan-400 to-blue-500',
-  },
-  {
-    icon: Settings,
-    title: 'CRM Integration',
-    description:
-      'Seamless two-way sync with Salesforce, HubSpot, and all major CRMs. Keep your data clean and up-to-date.',
-    gradient: 'from-emerald-400 to-green-500',
-  },
-  {
-    icon: Brain,
-    title: 'AI That Learns',
-    description:
-      'Ava continuously optimizes based on results. The more she works, the better she gets at engaging your ICP.',
-    gradient: 'from-pink-400 to-rose-500',
-  },
-  {
-    icon: TrendingUp,
-    title: 'Predictable Pipeline',
-    description:
-      'Turn outbound from a guessing game into a predictable revenue engine with consistent meeting flow.',
-    gradient: 'from-indigo-400 to-purple-500',
-  },
-];
-
-const MIDMARKET_STATS = [
-  { value: '80%', label: 'Tasks automated' },
-  { value: '3x', label: 'Rep efficiency' },
-  { value: '45%', label: 'More meetings' },
-  { value: '2 weeks', label: 'To full deployment' },
-];
+const { features: FEATURES, benefits: BENEFITS, languages: LANGUAGES, stats: MIDMARKET_STATS } = SOLUTIONS_DATA.midmarket;
 
 const SolutionsMidMarket = () => {
   const prefersReducedMotion = useReducedMotion();

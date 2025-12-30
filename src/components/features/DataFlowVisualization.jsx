@@ -1,6 +1,6 @@
 /**
  * DataFlowVisualization.jsx - REBUILT
- * 
+ *
  * Clean, working implementation of the data flow pipeline visualization
  * with auto-syncing animation and real-time metrics
  */
@@ -148,7 +148,7 @@ const FlowNode = ({ stage, index, isActive, isComplete, totalStages }) => {
       )}
 
       {/* Glow effect when active */}
-      {(isActive) && (
+      {isActive && (
         <div
           className={`absolute -inset-2 rounded-lg bg-gradient-to-r ${stage.gradient} blur-xl opacity-30 transition-opacity duration-500`}
         />
@@ -365,8 +365,8 @@ const DataFlowVisualization = () => {
           </div>
 
           {/* Flow nodes */}
-          <div className="overflow-x-auto pb-4 -mx-4 px-4 lg:mx-0 lg:px-0">
-            <div className="flex items-center justify-start lg:justify-center gap-3 lg:gap-4 min-w-max lg:min-w-0">
+          <div className="overflow-hidden pb-4">
+            <div className="flex items-center justify-center flex-wrap gap-3 lg:gap-4">
               {FLOW_STAGES.map((stage, index) => (
                 <FlowNode
                   key={stage.id}

@@ -173,6 +173,8 @@ const TypingIndicator = () => (
 const AvaChat = () => {
   const [agents] = useState(AGENTS);
   const [activeAgent, setActiveAgent] = useState(AGENTS[0]);
+  const [userStatus, setUserStatus] = useState('available');
+  const [showStatusMenu, setShowStatusMenu] = useState(false);
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -280,67 +282,63 @@ const AvaChat = () => {
     <div className="w-full h-screen flex bg-slate-900 overflow-hidden">
       {/* LEFT SIDEBAR - AGENT LIST */}
       <div className="w-96 border-r border-white/10 flex flex-col bg-slate-800/50">
-          {/* User Profile Header */}
-          <div className="p-4 border-b border-white/10">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold">
+          {/* User Profile Header - Compact */}
+          <div className="px-3 py-2 border-b border-white/10">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 flex-1">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-xs">
                   JU
                 </div>
-                <div>
-                  <h3 className="font-semibold text-white text-sm">JWT User</h3>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-semibold text-white text-xs truncate">JWT User</h3>
                   <button 
-                    onClick={() => {
-                      const statuses = ['Available', 'Do not disturb', 'Offline'];
-                      const current = statuses[Math.floor(Math.random() * statuses.length)];
-                      showToast(`Status set to ${current}`, 'success');
-                    }}
+                    onClick={() => setShowStatusMenu(!showStatusMenu)}
                     className="flex items-center gap-1 text-xs text-slate-400 hover:text-cyan-400 transition-colors">
-                    <Circle size={8} className="fill-emerald-500 text-emerald-500" />
-                    Available
+                    <Circle size={6} className={`fill-${userStatus === 'available' ? 'emerald' : userStatus === 'dnd' ? 'yellow' : 'slate'}-500 text-${userStatus === 'available' ? 'emerald' : userStatus === 'dnd' ? 'yellow' : 'slate'}-500`} />
+                    {userStatus === 'available' ? 'Available' : userStatus === 'dnd' ? 'DND' : 'Offline'}
                   </button>
                 </div>
               </div>
               <button 
-                onClick={() => showToast('Opening menu...', 'success')}
-                className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
-                <MoreVertical size={18} className="text-slate-400 hover:text-cyan-400" />
+                onClick={() => showToast('Opening menu...', 'info')}
+                className="p-1.5 hover:bg-slate-700 rounded transition-colors ml-1">
+                <MoreVertical size={16} className="text-slate-400 hover:text-cyan-400" />
               </button>
             </div>
-
-            {/* Search */}
-            <div className="relative">
-              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
-              <input
-                type="text"
-                placeholder="Search Mail"
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-lg bg-slate-700/50 border border-white/10 text-white text-sm placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-              />
-            </div>
+            {showStatusMenu && (
+              <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mt-2 space-y-1">
+                <button 
+                  onClick={() => { setUserStatus('available'); setShowStatusMenu(false); showToast('Status: Available ✓', 'success'); }}
+                  className="w-full text-left px-2 py-1 text-xs rounded hover:bg-slate-700 transition-colors flex items-center gap-2">
+                  <Circle size={6} className="fill-emerald-500 text-emerald-500" />
+                  <span>Available</span>
+                </button>
+                <button 
+                  onClick={() => { setUserStatus('dnd'); setShowStatusMenu(false); showToast('Status: Do Not Disturb 🔕', 'warning'); }}
+                  className="w-full text-left px-2 py-1 text-xs rounded hover:bg-slate-700 transition-colors flex items-center gap-2">
+                  <Circle size={6} className="fill-yellow-500 text-yellow-500" />
+                  <span>Do not disturb</span>
+                </button>
+                <button 
+                  onClick={() => { setUserStatus('offline'); setShowStatusMenu(false); showToast('Status: Offline ⭕', 'info'); }}
+                  className="w-full text-left px-2 py-1 text-xs rounded hover:bg-slate-700 transition-colors flex items-center gap-2">
+                  <Circle size={6} className="fill-slate-600 text-slate-600" />
+                  <span>Offline</span>
+                </button>
+              </motion.div>
+            )}
           </div>
 
-          {/* Status Options */}
-          <div className="px-4 py-2 text-xs text-slate-400 space-y-1">
-            <button 
-              onClick={() => showToast('Status: Available', 'success')}
-              className="w-full flex items-center gap-2 py-1.5 hover:text-cyan-400 cursor-pointer transition-colors text-left">
-              <Circle size={8} className="fill-emerald-500 text-emerald-500" />
-              <span>Available</span>
-            </button>
-            <button 
-              onClick={() => showToast('Status: Do not disturb', 'success')}
-              className="w-full flex items-center gap-2 py-1.5 hover:text-cyan-400 cursor-pointer transition-colors text-left">
-              <Circle size={8} className="fill-yellow-500 text-yellow-500" />
-              <span>Do not disturb</span>
-            </button>
-            <button 
-              onClick={() => showToast('Status: Offline', 'success')}
-              className="w-full flex items-center gap-2 py-1.5 hover:text-cyan-400 cursor-pointer transition-colors text-left">
-              <Circle size={8} className="fill-slate-600 text-slate-600" />
-              <span>Offline</span>
-            </button>
+          {/* Search */}
+          <div className="relative px-3 py-2 border-b border-white/10">
+            <Search size={14} className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-500" />
+            <input
+              type="text"
+              placeholder="Search Mail"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-slate-700/50 border border-white/10 text-white text-xs placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            />
           </div>
 
           {/* Agent List */}
@@ -385,26 +383,37 @@ const AvaChat = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <button onClick={() => showToast('Calling ' + activeAgent.name + '...', 'success')} className="p-2 hover:bg-slate-700 rounded-lg transition-colors" title="Start Call">
+              <motion.button 
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => showToast('📞 Calling ' + activeAgent.name + '...', 'info')} 
+                className="p-2 hover:bg-slate-700 rounded-lg transition-colors" title="Start Call">
                 <Phone size={20} className="text-slate-400 hover:text-cyan-400" />
-              </button>
-              <button onClick={() => showToast('Starting video call with ' + activeAgent.name + '...', 'success')} className="p-2 hover:bg-slate-700 rounded-lg transition-colors" title="Start Video">
+              </motion.button>
+              <motion.button 
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => showToast('📹 Starting video call with ' + activeAgent.name + '...', 'info')} 
+                className="p-2 hover:bg-slate-700 rounded-lg transition-colors" title="Start Video">
                 <Video size={20} className="text-slate-400 hover:text-cyan-400" />
-              </button>
-              <button 
+              </motion.button>
+              <motion.button 
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   const actions = [
-                    { label: 'Copy chat', action: () => showToast('Chat copied to clipboard', 'success') },
-                    { label: 'Export chat', action: () => showToast('Exporting chat...', 'success') },
-                    { label: 'Clear history', action: () => { setMessages([]); showToast('Chat history cleared', 'success'); } },
-                    { label: 'Settings', action: () => showToast('Opening settings...', 'success') },
+                    { label: '📋 Copy chat', toast: 'Chat copied to clipboard', type: 'success' },
+                    { label: '📥 Export chat', toast: 'Exporting chat...', type: 'info' },
+                    { label: '🗑️ Clear history', toast: 'Chat history cleared', type: 'warning', action: () => { setMessages([]); } },
+                    { label: '⚙️ Settings', toast: 'Opening settings...', type: 'info' },
                   ];
                   const selected = actions[Math.floor(Math.random() * actions.length)];
-                  selected.action();
+                  if (selected.action) selected.action();
+                  showToast(selected.toast, selected.type);
                 }}
                 className="p-2 hover:bg-slate-700 rounded-lg transition-colors" title="More options">
                 <MoreVertical size={20} className="text-slate-400 hover:text-cyan-400" />
-              </button>
+              </motion.button>
             </div>
           </div>
 
@@ -424,13 +433,15 @@ const AvaChat = () => {
           </div>
 
           {/* INPUT AREA */}
-          <div className="px-6 py-4 border-t border-white/10 bg-slate-800/50">
-            <div className="flex items-center gap-3">
-              <button 
-                onClick={() => showToast('Opening file picker...', 'success')}
-                className="p-2 hover:bg-slate-700 rounded-lg transition-colors" title="Attach file">
-                <Paperclip size={20} className="text-slate-400 hover:text-cyan-400" />
-              </button>
+          <div className="px-4 py-3 border-t border-white/10 bg-slate-800/50">
+            <div className="flex items-center gap-2">
+              <motion.button 
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => showToast('📎 File picker opened', 'info')}
+                className="p-2 hover:bg-slate-700 rounded transition-colors" title="Attach file">
+                <Paperclip size={18} className="text-slate-400 hover:text-cyan-400 transition-colors" />
+              </motion.button>
 
               <input
                 type="text"
@@ -438,21 +449,25 @@ const AvaChat = () => {
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Type a Message"
-                className="flex-1 px-4 py-3 rounded-lg bg-slate-700/50 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
+                className="flex-1 px-3 py-2 rounded-lg bg-slate-700/50 border border-white/10 text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
               />
 
-              <button 
-                onClick={() => showToast('Emoji picker opened', 'success')}
-                className="p-2 hover:bg-slate-700 rounded-lg transition-colors" title="Add emoji">
-                <Smile size={20} className="text-slate-400 hover:text-cyan-400" />
-              </button>
+              <motion.button 
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => showToast('😊 Emoji picker opened', 'info')}
+                className="p-2 hover:bg-slate-700 rounded transition-colors" title="Add emoji">
+                <Smile size={18} className="text-slate-400 hover:text-cyan-400 transition-colors" />
+              </motion.button>
 
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={handleSend}
                 disabled={!input.trim()}
-                className="p-3 bg-cyan-500 hover:bg-cyan-600 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed" title="Send message">
-                <Send size={20} className="text-white" />
-              </button>
+                className="p-2 bg-cyan-500 hover:bg-cyan-600 disabled:bg-slate-600 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed" title="Send message">
+                <Send size={18} className="text-white" />
+              </motion.button>
             </div>
           </div>
         </div>

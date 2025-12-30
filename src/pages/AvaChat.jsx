@@ -8,7 +8,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import DashboardLayout from '../components/layout/DashboardLayout';
 import { useToast } from '../components/Toast';
 import {
   Search,
@@ -19,6 +18,11 @@ import {
   Paperclip,
   Smile,
   Circle,
+  Copy,
+  Download,
+  Share2,
+  Settings,
+  Plus,
 } from 'lucide-react';
 
 // Sample agents
@@ -273,10 +277,9 @@ const AvaChat = () => {
   );
 
   return (
-    <DashboardLayout>
-      <div className="h-[calc(100vh-120px)] flex bg-slate-900 rounded-2xl border border-white/10 overflow-hidden">
-        {/* LEFT SIDEBAR - AGENT LIST */}
-        <div className="w-96 border-r border-white/10 flex flex-col bg-slate-800/50">
+    <div className="w-full h-screen flex bg-slate-900 overflow-hidden">
+      {/* LEFT SIDEBAR - AGENT LIST */}
+      <div className="w-96 border-r border-white/10 flex flex-col bg-slate-800/50">
           {/* User Profile Header */}
           <div className="p-4 border-b border-white/10">
             <div className="flex items-center justify-between mb-4">
@@ -286,14 +289,22 @@ const AvaChat = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-white text-sm">JWT User</h3>
-                  <button className="flex items-center gap-1 text-xs text-slate-400 hover:text-white transition-colors">
+                  <button 
+                    onClick={() => {
+                      const statuses = ['Available', 'Do not disturb', 'Offline'];
+                      const current = statuses[Math.floor(Math.random() * statuses.length)];
+                      showToast(`Status set to ${current}`, 'success');
+                    }}
+                    className="flex items-center gap-1 text-xs text-slate-400 hover:text-cyan-400 transition-colors">
                     <Circle size={8} className="fill-emerald-500 text-emerald-500" />
                     Available
                   </button>
                 </div>
               </div>
-              <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
-                <MoreVertical size={18} className="text-slate-400" />
+              <button 
+                onClick={() => showToast('Opening menu...', 'success')}
+                className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
+                <MoreVertical size={18} className="text-slate-400 hover:text-cyan-400" />
               </button>
             </div>
 
@@ -312,18 +323,24 @@ const AvaChat = () => {
 
           {/* Status Options */}
           <div className="px-4 py-2 text-xs text-slate-400 space-y-1">
-            <div className="flex items-center gap-2 py-1.5 hover:text-white cursor-pointer transition-colors">
+            <button 
+              onClick={() => showToast('Status: Available', 'success')}
+              className="w-full flex items-center gap-2 py-1.5 hover:text-cyan-400 cursor-pointer transition-colors text-left">
               <Circle size={8} className="fill-emerald-500 text-emerald-500" />
               <span>Available</span>
-            </div>
-            <div className="flex items-center gap-2 py-1.5 hover:text-white cursor-pointer transition-colors">
+            </button>
+            <button 
+              onClick={() => showToast('Status: Do not disturb', 'success')}
+              className="w-full flex items-center gap-2 py-1.5 hover:text-cyan-400 cursor-pointer transition-colors text-left">
               <Circle size={8} className="fill-yellow-500 text-yellow-500" />
               <span>Do not disturb</span>
-            </div>
-            <div className="flex items-center gap-2 py-1.5 hover:text-white cursor-pointer transition-colors">
+            </button>
+            <button 
+              onClick={() => showToast('Status: Offline', 'success')}
+              className="w-full flex items-center gap-2 py-1.5 hover:text-cyan-400 cursor-pointer transition-colors text-left">
               <Circle size={8} className="fill-slate-600 text-slate-600" />
               <span>Offline</span>
-            </div>
+            </button>
           </div>
 
           {/* Agent List */}
@@ -368,14 +385,25 @@ const AvaChat = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
-                <Phone size={20} className="text-slate-400" />
+              <button onClick={() => showToast('Calling ' + activeAgent.name + '...', 'success')} className="p-2 hover:bg-slate-700 rounded-lg transition-colors" title="Start Call">
+                <Phone size={20} className="text-slate-400 hover:text-cyan-400" />
               </button>
-              <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
-                <Video size={20} className="text-slate-400" />
+              <button onClick={() => showToast('Starting video call with ' + activeAgent.name + '...', 'success')} className="p-2 hover:bg-slate-700 rounded-lg transition-colors" title="Start Video">
+                <Video size={20} className="text-slate-400 hover:text-cyan-400" />
               </button>
-              <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
-                <MoreVertical size={20} className="text-slate-400" />
+              <button 
+                onClick={() => {
+                  const actions = [
+                    { label: 'Copy chat', action: () => showToast('Chat copied to clipboard', 'success') },
+                    { label: 'Export chat', action: () => showToast('Exporting chat...', 'success') },
+                    { label: 'Clear history', action: () => { setMessages([]); showToast('Chat history cleared', 'success'); } },
+                    { label: 'Settings', action: () => showToast('Opening settings...', 'success') },
+                  ];
+                  const selected = actions[Math.floor(Math.random() * actions.length)];
+                  selected.action();
+                }}
+                className="p-2 hover:bg-slate-700 rounded-lg transition-colors" title="More options">
+                <MoreVertical size={20} className="text-slate-400 hover:text-cyan-400" />
               </button>
             </div>
           </div>
@@ -398,8 +426,10 @@ const AvaChat = () => {
           {/* INPUT AREA */}
           <div className="px-6 py-4 border-t border-white/10 bg-slate-800/50">
             <div className="flex items-center gap-3">
-              <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
-                <Paperclip size={20} className="text-slate-400" />
+              <button 
+                onClick={() => showToast('Opening file picker...', 'success')}
+                className="p-2 hover:bg-slate-700 rounded-lg transition-colors" title="Attach file">
+                <Paperclip size={20} className="text-slate-400 hover:text-cyan-400" />
               </button>
 
               <input
@@ -411,22 +441,23 @@ const AvaChat = () => {
                 className="flex-1 px-4 py-3 rounded-lg bg-slate-700/50 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
               />
 
-              <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
-                <Smile size={20} className="text-slate-400" />
+              <button 
+                onClick={() => showToast('Emoji picker opened', 'success')}
+                className="p-2 hover:bg-slate-700 rounded-lg transition-colors" title="Add emoji">
+                <Smile size={20} className="text-slate-400 hover:text-cyan-400" />
               </button>
 
               <button
                 onClick={handleSend}
                 disabled={!input.trim()}
-                className="p-3 bg-cyan-500 hover:bg-cyan-600 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
+                className="p-3 bg-cyan-500 hover:bg-cyan-600 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed" title="Send message">
                 <Send size={20} className="text-white" />
               </button>
             </div>
           </div>
         </div>
       </div>
-    </DashboardLayout>
+    </div>
   );
 };
 

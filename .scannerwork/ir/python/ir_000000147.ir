@@ -1,0 +1,85 @@
+
+2)"You're more expensive than {competitor}"str
+ÍÃ"Actually, when you include their add-on fees for AI ($50/month), implementation ($5K-15K), and training costs, we're typically 40-60% less expensive. Should I show you the total cost breakdown?"str
+
+"response"str
+"objection"str
+
+0int
+) "{competitor} has more features"str
+0'"{competitor} is the industry standard"str
+ÊÀ"That's great - what's working well? Many customers came to us from {competitor} because they needed [specific advantage]. Would it help to see how we complement or can replace what you have?"str
+Æ¼"It's true they've been around longer, but most customers only use 20% of those features. We focus on the features that actually drive revenue. Which specific features matter most to you?"str
+2)"Generate responses to common objections"str
+ÐÆ"They were the standard - but the market is shifting to AI-first automation. Being 'standard' often means legacy technology. Companies like [customer examples] are winning with our modern approach."str
++""We're already using {competitor}"str
+competitor
+å" å(1list"¬&
+$
+
+è í(	"#new-object#Bdict"
+ 
+
+é é(<"	#map-set#:"
+ 
+
+ê ì(,	"	#map-set#:&
+$
+
+î ò(	
+"#new-object#Bdict"
+ 
+
+ï ï(:"	#map-set#:
+"
+ 
+
+ð ñ(p"	#map-set#:
+&
+$
+
+ó ø(	"#new-object#Bdict"
+ 
+
+ô ô(A"	#map-set#:"
+ 
+
+õ ÷(4"	#map-set#:&
+$
+
+ù ý(	"#new-object#Bdict"
+ 
+
+ú ú(C"	#map-set#:"
+ 
+
+û ü(u"	#map-set#:)
+'
+
+ç þ("#unknown-value#Blist(
+&
+
+ç þ("
+#is-exact#:Bbool
+
+
+ç þ("
+#assume#::
+8
+
+ç þ("#set-field# __collection_size:Bint(
+&
+
+ç þ("#array-add-last#:(
+&
+
+ç þ( "#array-add-last#:
+(
+&
+
+ç þ(!"#array-add-last#:(
+&
+
+ç þ(""#array-add-last#:
+
+ç þ(*C/workspaces/codespaces-react/backend/app/api/routes/battle_cards.py

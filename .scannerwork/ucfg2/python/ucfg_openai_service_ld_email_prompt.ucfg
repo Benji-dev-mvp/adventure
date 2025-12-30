@@ -1,0 +1,112 @@
+
+=app.services.openai_service.OpenAIService._build_email_promptO
+C/workspaces/codespaces-react/backend/app/services/openai_service.pyá á("2*’
+2
+ä ä(3´
+±
+
+å ð('
+%3"__concat*
+
+å å(
+
+Write a *
+
+å å("
+
+tone*#
+
+å# å(4
+ cold email to a *
+
+å5 å(<
+	
+persona*'
+
+å= å(R
+ who is dealing with *
+
+åS å(]
+
+
+pain_point*×
+
+å^ ð($ÈÅ
+Â.
+
+The email should:
+- Start with a hook that shows you understand their situation
+- Briefly mention how you can help
+- End with a soft call to action
+
+Tone guidelines:
+- professional: formal but approachable
+- casual: conversational, like a colleague
+- friendly: warm and personable  
+- urgent: emphasize time-sensitivityB
+@
+
+å ð('
+prompt"__id*"
+
+__unknown_file (
+
+%3*
+4
+5*)
+4
+õ õ("
+
+õ õ(
+
+
+prompt*
+5
+ó ó(:e
+c
+
+ó ó(:
+%1"__concat**
+
+ó ó(0
+\n\nAdditional context: *
+
+ó1 ó(8
+	
+contextN
+L
+
+ó ó(:
+%2"__concat*
+
+ó ó(
+
+
+prompt*
+
+ó ó(:
+
+%1B
+@
+
+ó ó(:
+prompt"__id*"
+
+__unknown_file (
+
+%2*
+4:
+
+â â(	
+persona:
+
+â â(+
+
+pain_point:
+
+â- â(6
+tone:
+
+â8 â(U	
+contextB-+
+)app.services.openai_service.OpenAIServiceH

@@ -1,0 +1,53 @@
+
+"$99/user/month"str
+'	"Training: $1,500 per session"str
+
+"per seat"str
+"$299/user/month"str
+("Data migration: $2,000-$8,000"str
+%"Analyze competitor pricing"str
+-$"Implementation fee: $5,000-$15,000"str
+
+0int
+/&"Additional $50/month for AI features"str
+competitor
+õ õ(*list"È)
+'
+
+û €(	
+"#unknown-value#Blist(
+&
+
+û €(	"
+#is-exact#:
+Bbool
+
+
+û €(	"
+#assume#::
+8
+
+û €(	"#set-field# __collection_size:
+Bint(
+&
+
+û €(	"#array-add-last#:
+(
+&
+
+û €(	"#array-add-last#:
+(
+&
+
+û €(	"#array-add-last#:
+(
+&
+
+û €(	"#array-add-last#:
+	Z
+X
+
+÷ ("CompetitorPricing:
+B-app.api.routes.battle_cards.CompetitorPricing
+
+÷ (*C/workspaces/codespaces-react/backend/app/api/routes/battle_cards.py

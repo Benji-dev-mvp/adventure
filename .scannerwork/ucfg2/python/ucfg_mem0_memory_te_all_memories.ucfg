@@ -1,0 +1,63 @@
+
+Bapp.integrations.mem0_memory.Mem0MemoryManager.delete_all_memoriesP
+D/workspaces/codespaces-react/backend/app/integrations/mem0_memory.py„ „(!"2*‹
+2
+‹ –(v
+t
+
+— —(
+%1"__id*Z
+
+__unknown_file (>*<0
+.app.integrations.mem0_memory.Mem0MemoryManager"
+client£ 
+
+— œ(	
+%2*"
+
+__unknown_file (
+
+%12
+delete_all:
+user_id
+	
+user_id:
+agent_id
+
+
+agent_id:
+app_id
+
+
+app_id:
+run_id
+
+
+run_idB
+@
+
+— œ(	
+result"__id*"
+
+__unknown_file (
+
+%2"
+
+ (
+
+
+result:
+
+† †(%	
+user_id:
+
+‡ ‡(&
+
+agent_id:
+
+ˆ ˆ($
+app_id:
+
+‰ ‰($
+run_idB20
+.app.integrations.mem0_memory.Mem0MemoryManagerH

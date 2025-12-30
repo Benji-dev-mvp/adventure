@@ -1,0 +1,44 @@
+
+[R"I saw you're hiring 20+ SDRs - what's the biggest bottleneck in ramping them up?"str
+) "Generate conversation starters"str
+XO"You mentioned scaling challenges on LinkedIn - what's working and what's not?"str
+RI"Congrats on the Series C! How is the European expansion planning going?"str
+
+0int
+YP"Your CRO's background with sales automation - is that a priority for the team?"str
+QH"With 120% growth, how are you maintaining quality in outbound motions?"strmeeting_info
+‹ ‹(sections
+‹ ‹(=
+list"–)
+'
+
+Ž ”(	"#unknown-value#Blist(
+&
+
+Ž ”("
+#is-exact#:	
+Bbool
+
+
+Ž ”("
+#assume#::
+8
+
+Ž ”("#set-field# __collection_size:	Bint(
+&
+
+Ž ”("#array-add-last#:	(
+&
+
+Ž ”("#array-add-last#:	(
+&
+
+Ž ”("#array-add-last#:	(
+&
+
+Ž ”("#array-add-last#:	(
+&
+
+Ž ”("#array-add-last#:	
+
+Ž ”(	*C/workspaces/codespaces-react/backend/app/api/routes/meeting_prep.py

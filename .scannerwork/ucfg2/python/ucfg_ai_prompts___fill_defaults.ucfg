@@ -1,0 +1,594 @@
+
+0app.core.ai_prompts.PromptBuilder._fill_defaultsG
+;/workspaces/codespaces-react/backend/app/core/ai_prompts.pyë ë("2*£3
+2
+í í(7
+
+ì ª(	
+%1"dictï
+í
+
+î î( 
+%2"__mapSet*"
+
+__unknown_file (
+
+%1*)
+
+__unknown_file (
+	lead_name*%
+
+__unknown_file (	
+thereü
+ú
+
+ï ï(*
+%3"__mapSet*"
+
+__unknown_file (
+
+%1**
+
+__unknown_file (
+
+lead_title*.
+
+__unknown_file (
+Decision Makerõ
+ò
+
+ñ ñ(&
+%4"__mapSet*"
+
+__unknown_file (
+
+%1*'
+
+__unknown_file (	
+company*-
+
+__unknown_file (
+their companyô
+ñ
+
+ó ó($
+%5"__mapSet*"
+
+__unknown_file (
+
+%1*(
+
+__unknown_file (
+
+industry**
+
+__unknown_file (
+
+Technology£
+†
+
+ò ò(.
+%6"__mapSet*"
+
+__unknown_file (
+
+%1*,
+
+__unknown_file (
+company_size*0
+
+__unknown_file (
+50-200 employees´
+®
+
+ô ô(6
+%7"__mapSet*"
+
+__unknown_file (
+
+%1**
+
+__unknown_file (
+
+pain_point*:
+
+__unknown_file (
+improving sales efficiency¨
+©
+
+ö ö(7
+%8"__mapSet*"
+
+__unknown_file (
+
+%1*(
+
+__unknown_file (
+
+solution*=
+
+__unknown_file (!
+our sales automation platformó
+î
+
+õ õ("
+%9"__mapSet*"
+
+__unknown_file (
+
+%1*$
+
+__unknown_file (
+tone*,
+
+__unknown_file (
+professionalî
+ë
+
+ú ú(
+%10"__mapSet*"
+
+__unknown_file (
+
+%1*&
+
+__unknown_file (
+
+length*&
+
+__unknown_file (
+
+medium£
+†
+
+ù ù(-
+%11"__mapSet*"
+
+__unknown_file (
+
+%1**
+
+__unknown_file (
+
+engagement*1
+
+__unknown_file (
+no engagement yetü
+ú
+
+û û()
+%12"__mapSet*"
+
+__unknown_file (
+
+%1*(
+
+__unknown_file (
+
+channels*/
+
+__unknown_file (
+email, LinkedInö
+ó
+
+ü ü($
+%13"__mapSet*"
+
+__unknown_file (
+
+%1*$
+
+__unknown_file (
+goal*.
+
+__unknown_file (
+book a meetingí
+è
+
+† †(
+%14"__mapSet*"
+
+__unknown_file (
+
+%1*(
+
+__unknown_file (
+
+duration*"
+
+__unknown_file (
+15ö
+ó
+
+° °($
+%15"__mapSet*"
+
+__unknown_file (
+
+%1*)
+
+__unknown_file (
+	call_type*)
+
+__unknown_file (
+	discovery¢
+ü
+
+¢ ¢(,
+%16"__mapSet*"
+
+__unknown_file (
+
+%1*-
+
+__unknown_file (
+campaign_type*-
+
+__unknown_file (
+cold outreach£
+†
+
+£ £(-
+%17"__mapSet*"
+
+__unknown_file (
+
+%1*(
+
+__unknown_file (
+
+audience*3
+
+__unknown_file (
+B2B decision makers±
+Æ
+
+§ §(;
+%18"__mapSet*"
+
+__unknown_file (
+
+%1*'
+
+__unknown_file (	
+benefit*B
+
+__unknown_file (&$
+"save time and increase conversionsü
+ú
+
+• •()
+%19"__mapSet*"
+
+__unknown_file (
+
+%1*'
+
+__unknown_file (	
+context*0
+
+__unknown_file (
+initial outreach≤
+Ø
+
+¶ ¶(<
+%20"__mapSet*"
+
+__unknown_file (
+
+%1*)
+
+__unknown_file (
+	objective*A
+
+__unknown_file (%#
+!qualify and schedule next meeting∂
+≥
+
+ß ß(@
+%21"__mapSet*"
+
+__unknown_file (
+
+%1**
+
+__unknown_file (
+
+key_points*D
+
+__unknown_file ((&
+$product value, their needs, timelineì
+ê
+
+® ®(
+%22"__mapSet*"
+
+__unknown_file (
+
+%1**
+
+__unknown_file (
+
+days_since*!
+
+__unknown_file (
+3¶
+£
+
+© ©(0
+%23"__mapSet*"
+
+__unknown_file (
+
+%1*0
+
+__unknown_file (
+original_subject*.
+
+__unknown_file (
+previous email•
+¢
+
+™ ™(/
+%24"__mapSet*"
+
+__unknown_file (
+
+%1*.
+
+__unknown_file (
+desired_action*/
+
+__unknown_file (
+schedule a call±
+Æ
+
+´ ´(;
+%25"__mapSet*"
+
+__unknown_file (
+
+%1*&
+
+__unknown_file (
+
+reason*C
+
+__unknown_file ('%
+#shared interest in sales automationÆ
+´
+
+¨ ¨(8
+%26"__mapSet*"
+
+__unknown_file (
+
+%1*0
+
+__unknown_file (
+mutual_interests*6
+
+__unknown_file (
+B2B sales optimizationØ
+¨
+
+≠ ≠(9
+%27"__mapSet*"
+
+__unknown_file (
+
+%1**
+
+__unknown_file (
+
+value_prop*=
+
+__unknown_file (!
+help improve sales efficiencyØ
+¨
+
+Æ Æ(9
+%28"__mapSet*"
+
+__unknown_file (
+
+%1*(
+
+__unknown_file (
+
+activity*?
+
+__unknown_file (#!
+opened 2 emails, clicked 1 linkî
+ë
+
+Ø Ø(
+%29"__mapSet*"
+
+__unknown_file (
+
+%1*+
+
+__unknown_file (
+email_opens*!
+
+__unknown_file (
+2î
+ë
+
+∞ ∞(
+%30"__mapSet*"
+
+__unknown_file (
+
+%1*+
+
+__unknown_file (
+link_clicks*!
+
+__unknown_file (
+1ê
+ç
+
+± ±(
+%31"__mapSet*"
+
+__unknown_file (
+
+%1*'
+
+__unknown_file (	
+replies*!
+
+__unknown_file (
+0ñ
+ì
+
+≤ ≤( 
+%32"__mapSet*"
+
+__unknown_file (
+
+%1*&
+
+__unknown_file (
+
+budget*(
+
+__unknown_file (
+
+standardó
+î
+
+≥ ≥(!
+%33"__mapSet*"
+
+__unknown_file (
+
+%1*(
+
+__unknown_file (
+
+timeline*'
+
+__unknown_file (	
+30 daysò
+ï
+
+¥ ¥("
+%34"__mapSet*"
+
+__unknown_file (
+
+%1*)
+
+__unknown_file (
+	objection*'
+
+__unknown_file (	
+unknown±
+Æ
+
+µ µ(;
+%35"__mapSet*"
+
+__unknown_file (
+
+%1*,
+
+__unknown_file (
+product_info*=
+
+__unknown_file (!
+B2B sales automation platform®
+•
+
+∂ ∂(2
+%36"__mapSet*"
+
+__unknown_file (
+
+%1**
+
+__unknown_file (
+
+competitor*6
+
+__unknown_file (
+traditional approaches†
+ù
+
+∑ ∑(*
+%37"__mapSet*"
+
+__unknown_file (
+
+%1*)
+
+__unknown_file (
+	attendees*/
+
+__unknown_file (
+decision makersò
+ï
+
+∏ ∏("
+%38"__mapSet*"
+
+__unknown_file (
+
+%1*'
+
+__unknown_file (	
+purpose*)
+
+__unknown_file (
+	discovery±
+Æ
+
+π π(;
+%39"__mapSet*"
+
+__unknown_file (
+
+%1*+
+
+__unknown_file (
+pain_points*>
+
+__unknown_file (" 
+current process inefficienciesù
+ö
+
+∫ ∫('
+%40"__mapSet*"
+
+__unknown_file (
+
+%1*.
+
+__unknown_file (
+employee_count*'
+
+__unknown_file (	
+100-500D
+B
+
+ì ª(	
+
+defaults"__id*"
+
+__unknown_file (
+
+%1
+
+æ æ(&
+%41"dict"
+
+æ æ(&
+
+%41:
+
+ë ë(4	
+contextB%#
+!app.core.ai_prompts.PromptBuilderH

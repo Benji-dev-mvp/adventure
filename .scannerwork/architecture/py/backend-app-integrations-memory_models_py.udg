@@ -1,0 +1,225 @@
+
+1.0PythonFrontend"1767052075919*py2.BÂ
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+.
+)backend/app/integrations/memory_models.py9
+$
+app.integrations.memory_models11
+
+logging12
+
+re14
+
+datetime16
+
+
+enum18
+
+typing20
+
+pydantic22
+4
+.app.integrations.memory_models.MemoryNamespace24
+:
+4app.integrations.memory_models.MemoryNamespace.build26
+	
+str28
+E
+?app.integrations.memory_models.MemoryNamespace.validate_tenancy30
+
+
+bool32
+9
+3app.integrations.memory_models.CampaignResultMemory34
+/
+)app.integrations.memory_models.BaseMemory36
+4
+.app.integrations.memory_models.RetentionPolicy38
+
+	enum.Enum40
+9
+3app.integrations.memory_models.MeetingSummaryMemory42
+;
+5app.integrations.memory_models.ChatConversationMemory44
+6
+0app.integrations.memory_models.EmailThreadMemory46
+
+pydantic.main.BaseModel48
+:
+4app.integrations.memory_models.LeadInteractionMemory50
+0
+*app.integrations.memory_models.PIIRedactor52
+7
+1app.integrations.memory_models.PIIRedactor.redact54
+
+tuple56
+/
+)app.integrations.memory_models.MemoryType58J
+
+8
+89j¸
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21205
+
+23
+23225
+
+25
+25246 210
+
+27
+27267 225
+
+29
+29286
+
+31
+31307 225
+
+33
+33326
+
+35
+35346 210
+
+37
+37366 210
+
+39
+39386 210
+
+41
+41406
+
+43
+43426 210
+
+45
+45446 210
+
+47
+47466 210
+
+49
+49486
+
+51
+51506 210
+
+53
+53526 210
+
+55
+55547 253
+
+57
+57566
+
+59
+59586 210r†
+
+10131*
+8 (
+
+10151*
+8	 	(
+
+
+10171*
+8
+ 
+(
+
+10191*
+8 (
+
+10211*
+8 (-
+
+10231*
+8 (&
+
+27293*
+8Ö	 Ö(
+
+27294*
+8Ö	 Ö(
+
+31333*
+8û	 û(
+
+31294*
+8û	 û(
+
+31294*
+8û	 û(
+
+35372*
+8¼ ¼(
+
+39292*
+8# #(
+
+39412*
+8# #(
+
+43372*
+8˜ ˜(
+
+45372*
+8ä ä(
+
+47372*
+8y y(
+
+37492*
+81 1(
+
+51372*
+8Y Y(
+
+55573*
+8²	 ²(
+
+55294*
+8²	 ²(
+
+55334*
+8²	 ²(
+
+59292*
+8 (
+
+59412*
+8 (

@@ -8,6 +8,8 @@
 
 import { ROUTE_DEFINITIONS } from './routeDefinitions';
 
+const ROUTE_LOOKUP = ROUTE_DEFINITIONS;
+
 /**
  * PAGE_ROUTES - Auto-generated from ROUTE_DEFINITIONS
  * Maintains backward compatibility with existing imports
@@ -21,147 +23,71 @@ export const PAGE_ROUTES = Object.entries(ROUTE_DEFINITIONS).reduce((acc, [key, 
   };
   return acc;
 }, {});
-
-export const NAVIGATION_ITEMS = [
-  {
-    id: 'nav-dashboard',
-    label: 'Go to Dashboard',
-    path: '/dashboard',
-    icon: 'LayoutDashboard',
-  },
-  {
-    id: 'nav-campaigns',
-    label: 'Go to Campaigns',
-    path: '/campaigns',
-    icon: 'Megaphone',
-  },
-  {
-    id: 'nav-leads',
-    label: 'Go to Leads',
-    path: '/leads',
-    icon: 'Users',
-  },
-  {
-    id: 'nav-lead-database',
-    label: 'Go to Lead Database',
-    path: '/lead-database',
-    icon: 'Database',
-  },
-  {
-    id: 'nav-analytics',
-    label: 'Go to Analytics',
-    path: '/analytics',
-    icon: 'BarChart3',
-  },
-  {
-    id: 'nav-ava',
-    label: 'Go to Ava (AI Assistant)',
-    path: '/ava',
-    icon: 'Bot',
-  },
-  {
-    id: 'nav-playbooks',
-    label: 'Go to Ava Playbooks',
-    path: '/ava/playbooks',
-    icon: 'BookOpen',
-  },
-  {
-    id: 'nav-integrations',
-    label: 'Go to Integrations',
-    path: '/integrations',
-    icon: 'Plug',
-  },
-  {
-    id: 'nav-settings',
-    label: 'Go to Settings',
-    path: '/settings',
-    icon: 'Settings',
-  },
-  {
-    id: 'nav-templates',
-    label: 'Go to Templates',
-    path: '/templates',
-    icon: 'FileText',
-  },
-  {
-    id: 'nav-activity',
-    label: 'Go to Activity Feed',
-    path: '/activity',
-    icon: 'Activity',
-  },
-  {
-    id: 'nav-workflow',
-    label: 'Go to Workflow Orchestrator',
-    path: '/workflow-orchestrator',
-    icon: 'GitBranch',
-  },
-  {
-    id: 'nav-admin',
-    label: 'Go to Admin',
-    path: '/admin',
-    icon: 'Shield',
-  },
+const NAV_KEYS = [
+  'dashboard',
+  'campaigns',
+  'leads',
+  'leadDatabase',
+  'analytics',
+  'avaBdr',
+  'integrations',
+  'settings',
+  'templates',
+  'activityFeed',
+  'workflowOrchestrator',
+  'admin',
 ];
 
-export const QUICK_ACTIONS = [
-  {
-    id: 'action-create-campaign',
-    label: 'Create New Campaign',
-    path: '/campaigns?action=create',
-    icon: 'Plus',
-  },
-  {
-    id: 'action-add-lead',
-    label: 'Add New Lead',
-    path: '/leads?action=create',
-    icon: 'UserPlus',
-  },
-  {
-    id: 'action-ask-ava',
-    label: 'Ask Ava about this week',
-    path: '/ava?prompt=summarize-week',
-    icon: 'MessageSquare',
-  },
-  {
-    id: 'action-optimize',
-    label: 'Run Campaign Optimization',
-    path: '/ava?action=optimize',
-    icon: 'Zap',
-  },
-  {
-    id: 'action-score-leads',
-    label: 'Score All Leads',
-    path: '/lead-scoring?action=run',
-    icon: 'Target',
-  },
-  {
-    id: 'action-generate-report',
-    label: 'Generate Weekly Report',
-    path: '/analytics?action=report',
-    icon: 'FileBarChart',
-  },
+export const NAVIGATION_ITEMS = NAV_KEYS.map(key => {
+  const route = ROUTE_LOOKUP[key];
+  if (!route) return null;
+  return {
+    id: `nav-${key}`,
+    label: `Go to ${route.label}`,
+    path: route.path,
+    icon: route.iconName || 'Circle',
+  };
+}).filter(Boolean);
+
+const QUICK_ACTION_CONFIG = [
+  { id: 'create-campaign', routeKey: 'campaigns', label: 'Create New Campaign', icon: 'Plus', suffix: '?action=create' },
+  { id: 'add-lead', routeKey: 'leads', label: 'Add New Lead', icon: 'UserPlus', suffix: '?action=create' },
+  { id: 'ask-ava', routeKey: 'avaBdr', label: 'Ask Ava about this week', icon: 'MessageSquare', suffix: '?prompt=summarize-week' },
+  { id: 'optimize', routeKey: 'avaBdr', label: 'Run Campaign Optimization', icon: 'Zap', suffix: '?action=optimize' },
+  { id: 'score-leads', routeKey: 'leadScoring', label: 'Score All Leads', icon: 'Target', suffix: '?action=run' },
+  { id: 'generate-report', routeKey: 'analytics', label: 'Generate Weekly Report', icon: 'FileBarChart', suffix: '?action=report' },
 ];
 
-export const SETTINGS_ITEMS = [
-  {
-    id: 'settings-notifications',
-    label: 'Notification Preferences',
-    path: '/settings?tab=notifications',
-    icon: 'Bell',
-  },
-  {
-    id: 'settings-integrations',
-    label: 'Manage Integrations',
-    path: '/integrations',
-    icon: 'Link',
-  },
-  {
-    id: 'settings-api-keys',
-    label: 'Manage API Keys',
-    path: '/admin/api-keys',
-    icon: 'Key',
-  },
+export const QUICK_ACTIONS = QUICK_ACTION_CONFIG.map(action => {
+  const route = ROUTE_LOOKUP[action.routeKey];
+  if (!route) return null;
+  return {
+    id: `action-${action.id}`,
+    label: action.label,
+    path: `${route.path}${action.suffix || ''}`,
+    icon: action.icon,
+  };
+}).filter(Boolean);
+
+const SETTINGS_CONFIG = [
+  { id: 'notifications', label: 'Notification Preferences', routeKey: 'settings', suffix: '?tab=notifications', icon: 'Bell' },
+  { id: 'integrations', label: 'Manage Integrations', routeKey: 'integrations', icon: 'Link' },
+  { id: 'api-keys', label: 'Manage API Keys', routeKey: 'admin', suffix: '/api-keys', icon: 'Key' },
 ];
+
+export const SETTINGS_ITEMS = SETTINGS_CONFIG.map(setting => {
+  const route = ROUTE_LOOKUP[setting.routeKey];
+  if (!route) return null;
+  const path = setting.suffix?.startsWith('/')
+    ? `${route.path}${setting.suffix}`
+    : `${route.path}${setting.suffix || ''}`;
+  return {
+    id: `settings-${setting.id}`,
+    label: setting.label,
+    path,
+    icon: setting.icon,
+  };
+}).filter(Boolean);
 
 // Build categorized commands for command palette
 export function buildCommandsList(navigate) {

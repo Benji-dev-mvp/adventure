@@ -1,0 +1,249 @@
+
+1.0PythonFrontend"1767052069734*py2.Bõ
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+
+backend/app/core/pdf.py9
+
+app.core.pdf11
+
+datetime12
+
+io14
+
+typing16
+
+reportlab.lib.colors18
+
+reportlab.lib20
+ 
+reportlab.lib.pagesizes.A422
+$
+reportlab.lib.pagesizes.letter24
+
+reportlab.lib.pagesizes26
+)
+#reportlab.lib.styles.ParagraphStyle28
+.
+(reportlab.lib.styles.getSampleStyleSheet30
+
+reportlab.lib.styles32
+
+reportlab.lib.units.inch34
+
+reportlab.lib.units36
+"
+reportlab.platypus.PageBreak38
+"
+reportlab.platypus.Paragraph40
+*
+$reportlab.platypus.SimpleDocTemplate42
+
+reportlab.platypus.Spacer44
+
+reportlab.platypus.Table46
+#
+reportlab.platypus.TableStyle48
+
+reportlab.platypus50
+
+app.core.pdf.PDFGenerator52
+8
+2app.core.pdf.PDFGenerator.generate_campaign_report54
+
+
+io.BytesIO56
+
+
+dict58
+9
+3app.core.pdf.PDFGenerator.generate_analytics_report60
+9
+3app.core.pdf.PDFGenerator.generate_audit_log_report62
+
+
+list64J
+
+8
+89j»
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21205
+
+23
+23225
+
+25
+25245
+
+27
+27265
+
+29
+29285
+
+31
+31305
+
+33
+33325
+
+35
+35345
+
+37
+37365
+
+39
+39385
+
+41
+41405
+
+43
+43425
+
+45
+45445
+
+47
+47465
+
+49
+49485
+
+51
+51505
+
+53
+53526 210
+
+55
+55547 253
+
+57
+57566
+
+59
+59586
+
+61
+61607 253
+
+63
+63627 253
+
+65
+65646r¨
+
+10131*
+8 (
+
+10151*
+8 (
+
+10171*
+8 (#
+
+10191*
+8 (!
+
+10211*
+8 (!
+
+10231*
+8% ('
+
+10251*
+8) (/
+
+10271*
+8 (/
+
+10291*
+8	" 	(0
+
+10311*
+8	2 	(E
+
+10331*
+8	 	(E
+
+10351*
+8
+! 
+(%
+
+10371*
+8
+ 
+(%
+
+10391*
+8 (
+
+10411*
+8 (
+
+10431*
+8 (
+
+10451*
+8 (
+
+10471*
+8 (
+
+
+10491*
+8 (
+
+10511*
+8 (
+
+55573*
+8	 (!
+
+55594*
+8	 (!
+
+61573*
+8~	 ~("
+
+61594*
+8~	 ~("
+
+63573*
+8¨	 ¨("
+
+63654*
+8¨	 ¨("

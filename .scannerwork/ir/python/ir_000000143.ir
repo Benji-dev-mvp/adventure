@@ -1,0 +1,20 @@
+
+*!"Calculate our pricing advantage"str
+³©"
+**Our Pricing Advantage:**
+
+â€¢ 30% lower starting price ($69/user vs their $99/user)
+â€¢ AI features included (they charge $50/month extra)
+â€¢ Free implementation and migration
+â€¢ Unlimited training included
+â€¢ No seat minimums (they require 10+ seats)
+
+**Total Cost Comparison (Year 1, 10 users):**
+â€¢ Us: $8,280
+â€¢ Them: $17,880 + $5,000 implementation + $2,000 training = $24,880
+
+**Savings: $16,600 (67% less)**
+"str"competitor_pricing
+„! „(F"
+
+† ”(*C/workspaces/codespaces-react/backend/app/api/routes/battle_cards.py

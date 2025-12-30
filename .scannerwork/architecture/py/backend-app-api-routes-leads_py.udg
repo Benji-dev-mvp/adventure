@@ -1,0 +1,65 @@
+
+1.0PythonFrontend"1767052072408*py2.Bš
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+$
+backend/app/api/routes/leads.py9
+
+app.api.routes.leads11
+
+typing12
+
+fastapi14
+
+app.models.schemas16
+%
+app.api.routes.leads.list_leads18
+
+typing.Coroutine20J
+
+8
+89j‡
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19187 210
+
+21
+21206rh
+
+10131*
+8 (
+
+10151*
+8 (
+
+10171*
+8 ($
+
+19213*
+8 (

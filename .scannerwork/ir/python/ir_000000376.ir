@@ -1,0 +1,40 @@
+
+Ô	Ê	"
+**Recommended Approach for {meeting_info.meeting_type.title()} Call**
+
+1. **Opening (2 min):**
+   - Reference Series C and expansion plans
+   - Acknowledge their growth trajectory
+   - Set agenda: understand challenges, explore fit
+
+2. **Discovery (15 min):**
+   - Focus on SDR ramp-up challenges
+   - Probe on manual vs. automated workflows
+   - Uncover pain points around scaling
+
+3. **Solution Alignment (20 min):**
+   - Show how AI BDR handles what their 20 SDRs will do
+   - Demo multi-agent research + personalization
+   - Compare to their current Salesforce + HubSpot setup
+
+4. **Social Proof (5 min):**
+   - Case study: Similar company, 3x pipeline in 60 days
+   - Reference mutual connection endorsement
+   - Show competitor gap they can exploit
+
+5. **Next Steps (3 min):**
+   - {"Propose demo with their data" if meeting_info.meeting_type == "discovery" else "Review implementation timeline"}
+   - Get decision-maker meeting if needed
+   - Set follow-up within 48 hours
+
+**Key Success Factors:**
+â€¢ Lead with their expansion goals, not our features
+â€¢ Quantify impact: "3x more meetings with same team size"
+â€¢ Address CRO's automation background directly
+â€¢ Create urgency: competitors are automating faster
+"str
+0'"Generate recommended meeting approach"strmeeting_info
+Ô Ô(6sections
+Ô8 Ô(V"
+
+Ö ÷(*C/workspaces/codespaces-react/backend/app/api/routes/meeting_prep.py

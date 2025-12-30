@@ -1,0 +1,131 @@
+
+Capp.core.integrations.WebhookHandler._handle_subscription_cancelledI
+=/workspaces/codespaces-react/backend/app/core/integrations.py“ “(,"2*Ç	
+2
+” ”(+
+
+•+ •(-
+%1"dict—”
+
+• •(.
+%2"dict.get*'
+
+__unknown_file (
+	
+payload*$
+
+__unknown_file (
+data*"
+
+__unknown_file (
+
+%12get
+
+•= •(?
+%3"dictŠ‡
+
+• •(@
+%4*"
+
+__unknown_file (
+
+%2*&
+
+__unknown_file (
+
+object*"
+
+__unknown_file (
+
+%32getH
+F
+
+• •(@
+subscription"__id*"
+
+__unknown_file (
+
+%4qo
+
+– –(2
+%5*,
+
+__unknown_file (
+
+subscription*(
+
+__unknown_file (
+
+customer2getG
+E
+
+– –(2
+customer_id"__id*"
+
+__unknown_file (
+
+%5u
+s
+
+˜ ˜(H
+%6"__concat*6
+
+˜ ˜(:(&
+$Subscription cancelled for customer *
+
+˜; ˜(F
+
+customer_idfd
+
+˜ ˜(I
+%7*&
+
+__unknown_file (
+
+
+logger*"
+
+__unknown_file (
+
+%62info
+
+› ›(L
+%8"dict–
+“
+
+› ›(%
+%9"__mapSet*"
+
+__unknown_file (
+
+%8*&
+
+__unknown_file (
+
+status*)
+
+__unknown_file (
+	processed¦
+£
+
+›' ›(K
+%10"__mapSet*"
+
+__unknown_file (
+
+%8*&
+
+__unknown_file (
+
+action*8
+
+__unknown_file (
+subscription_deactivated"
+
+› ›(L
+
+%8:
+
+“- “(:	
+payloadB(&
+$app.core.integrations.WebhookHandlerH

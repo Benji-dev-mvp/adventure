@@ -1,0 +1,35 @@
+
+ßÕ"
+    Decorator for caching function results.
+
+    Usage:
+        @cached(ttl=600, key_prefix="user_profile")
+        async def get_user_profile(user_id: int):
+            return await fetch_from_db(user_id)
+    "strttl
+¡ ¡(
+key_prefix
+¡ ¡(/skip_cache_if
+¡1 ¡(Y"ž#
+!
+
+Å Å(
+"#unknown-value#*
+(
+
+« Å(%closure"#new-object#.
+,
+
+« Å("#set-field# key_prefix:1
+/
+
+« Å("#set-field# skip_cache_if:'
+%
+
+« Å("#set-field# ttl:-
++
+
+« Å(	"?python-partial-apply?:
+
+Å Å(
+*A/workspaces/codespaces-react/backend/app/core/multi_tier_cache.py

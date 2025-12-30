@@ -1,0 +1,352 @@
+
+1.0PythonFrontend"1767052071549*py2.BÁ
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+,
+'backend/app/integrations/mem0_memory.py9
+"
+app.integrations.mem0_memory11
+
+
+json12
+
+logging14
+
+os16
+
+datetime18
+
+typing20
+
+mem0.Memory22
+
+mem0.MemoryClient24
+
+
+mem026
+
+asyncio28
+0
+*app.integrations.mem0_memory.example_usage30
+
+typing.Coroutine32
+4
+.app.integrations.mem0_memory.Mem0MemoryManager34
+=
+7app.integrations.mem0_memory.Mem0MemoryManager.__init__36
+
+
+bool38
+E
+?app.integrations.mem0_memory.Mem0MemoryManager.get_all_memories40
+M
+Gapp.integrations.mem0_memory.Mem0MemoryManager.remember_user_preference42
+	
+str44
+H
+Bapp.integrations.mem0_memory.Mem0MemoryManager.recall_lead_history46
+	
+int48
+N
+Happ.integrations.mem0_memory.Mem0MemoryManager.remember_campaign_insight50
+
+
+dict52
+N
+Happ.integrations.mem0_memory.Mem0MemoryManager.recall_campaign_learnings54
+Q
+Kapp.integrations.mem0_memory.Mem0MemoryManager.get_context_for_conversation56
+B
+<app.integrations.mem0_memory.Mem0MemoryManager.delete_memory58
+?
+9app.integrations.mem0_memory.Mem0MemoryManager.add_memory60
+B
+<app.integrations.mem0_memory.Mem0MemoryManager.search_memory62
+
+float64
+H
+Bapp.integrations.mem0_memory.Mem0MemoryManager.delete_all_memories66
+B
+<app.integrations.mem0_memory.Mem0MemoryManager.update_memory68
+L
+Fapp.integrations.mem0_memory.Mem0MemoryManager.recall_user_preferences70
+?
+9app.integrations.mem0_memory.Mem0MemoryManager.get_memory72
+N
+Happ.integrations.mem0_memory.Mem0MemoryManager.remember_lead_interaction74J
+
+8
+89jè
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21205
+
+23
+23225
+
+25
+25245
+
+27
+27265
+
+29
+29285
+
+31
+31307 210
+
+33
+33326
+
+35
+35346 210
+
+37
+37367 235
+
+39
+39386
+
+41
+41407 235
+
+43
+43427 235
+
+45
+45446
+
+47
+47467 235
+
+49
+49486
+
+51
+51507 235
+
+53
+53526
+
+55
+55547 235
+
+57
+57567 235
+
+59
+59587 235
+
+61
+61607 235
+
+63
+63627 235
+
+65
+65646
+
+67
+67667 235
+
+69
+69687 235
+
+71
+71707 235
+
+73
+73727 235
+
+75
+75747 235r¸
+
+10131*
+8 (
+
+10151*
+8 (
+
+10171*
+8 (
+
+
+10191*
+8 (
+
+10211*
+8 (-
+
+10231*
+8 (
+
+10251*
+8 (&
+
+10271*
+8 (&
+
+10291*
+8ä ä(
+
+31333*
+8 (
+
+37394*
+8(	 ((
+
+41333*
+8³ ³(
+
+43333*
+8€ €('
+
+43454*
+8€ €('
+
+43454*
+8€ €('
+
+47333*
+8¤ ¤("
+
+47454*
+8¤ ¤("
+
+47454*
+8¤ ¤("
+
+47494*
+8¤ ¤("
+
+51333*
+8Ô Ô((
+
+51454*
+8Ô Ô((
+
+51454*
+8Ô Ô((
+
+51454*
+8Ô Ô((
+
+51534*
+8Ô Ô((
+
+55333*
+8¿ ¿((
+
+55454*
+8¿ ¿((
+
+55454*
+8¿ ¿((
+
+55494*
+8¿ ¿((
+
+57333*
+8÷ ÷(+
+
+57454*
+8÷ ÷(+
+
+57454*
+8÷ ÷(+
+
+57494*
+8÷ ÷(+
+
+59333*
+8ô ô(
+
+59454*
+8ô ô(
+
+61333*
+8` `(
+
+63333*
+8‹ ‹(
+
+63454*
+8‹ ‹(
+
+63494*
+8‹ ‹(
+
+63654*
+8‹ ‹(
+
+67333*
+8„ „("
+
+69333*
+8ß ß(
+
+69454*
+8ß ß(
+
+69534*
+8ß ß(
+
+71333*
+8Ú Ú(&
+
+71454*
+8Ú Ú(&
+
+73333*
+8Ï Ï(
+
+73454*
+8Ï Ï(
+
+75333*
+8£ £((
+
+75454*
+8£ £((
+
+75454*
+8£ £((
+
+75454*
+8£ £((
+
+75454*
+8£ £((
+
+75454*
+8£ £((

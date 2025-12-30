@@ -1,0 +1,306 @@
+
+1.0PythonFrontend"1767052078009*py2.B§
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+$
+backend/app/core/performance.py9
+
+app.core.performance11
+
+asyncio12
+
+logging14
+
+
+time16
+
+collections18
+
+
+contextlib20
+
+datetime22
+
+typing24
+
+psutil26
+
+fastapi28
+
+starlette.middleware.base30
+)
+#app.core.performance.QueryOptimizer32
+5
+/app.core.performance.QueryOptimizer.track_query34
+
+typing.Coroutine36
+	
+str38
+2
+,app.core.performance.QueryOptimizer.__init__40
+9
+3app.core.performance.QueryOptimizer.get_query_stats42
+
+
+list44
+*
+$app.core.performance.ResourceMonitor46
+7
+1app.core.performance.ResourceMonitor.check_health48
+
+
+dict50
+>
+8app.core.performance.ResourceMonitor.get_process_metrics52
+=
+7app.core.performance.ResourceMonitor.get_system_metrics54
+0
+*app.core.performance.PerformanceMiddleware56
+2
+,starlette.middleware.base.BaseHTTPMiddleware58
+9
+3app.core.performance.PerformanceMiddleware.dispatch60
+ 
+starlette.requests.Request62
+9
+3app.core.performance.PerformanceMiddleware.__init__64
+-
+'app.core.performance.PerformanceMonitor66
+,
+&app.core.performance.track_performance68
+<
+6app.core.performance.PerformanceMonitor.record_request70
+
+float72
+	
+int74
+@
+:app.core.performance.PerformanceMonitor.get_endpoint_stats76
+A
+;app.core.performance.PerformanceMonitor.get_recommendations78
+7
+1app.core.performance.PerformanceMonitor.get_stats80
+6
+0app.core.performance.PerformanceMonitor.__init__82
+?
+9app.core.performance.PerformanceMonitor.get_slow_requests84J
+
+8
+89jÓ
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21205
+
+23
+23225
+
+25
+25245
+
+27
+27265
+
+29
+29285
+
+31
+31305
+
+33
+33326 210
+
+35
+35347 233
+
+37
+37366
+
+39
+39386
+
+41
+41407 233
+
+43
+43427 233
+
+45
+45446
+
+47
+47466 210
+
+49
+49487 247
+
+51
+51506
+
+53
+53527 247
+
+55
+55547 247
+
+57
+57566 210
+
+59
+59586
+
+61
+61607 257
+
+63
+63626
+
+65
+65647 257
+
+67
+67666 210
+
+69
+69687 210
+
+71
+71707 267
+
+73
+73726
+
+75
+75746
+
+77
+77767 267
+
+79
+79787 267
+
+81
+81807 267
+
+83
+83827 267
+
+85
+85847 267r†
+
+10131*
+8 (
+
+10151*
+8 (
+
+10171*
+8 (
+
+10191*
+8	 	(+
+
+10211*
+8
+ 
+(+
+
+10231*
+8 (
+
+10251*
+8 (7
+
+10271*
+8 (
+
+10291*
+8 (&
+
+10311*
+8 (9
+
+35373*
+8œ œ(
+
+35394*
+8œ œ(
+
+43453*
+8ª	 ª(
+
+49513*
+8Ú	 Ú(
+
+53513*
+8Í	 Í(
+
+55513*
+8Á	 Á(
+
+57592*
+8ï ï(
+
+61373*
+8ö ö(
+
+61634*
+8ö ö(
+
+65674*
+8ò	 ò(
+
+71394*
+8'	 '(
+
+71394*
+8'	 '(
+
+71734*
+8'	 '(
+
+71754*
+8'	 '(
+
+77453*
+8[	 [(
+
+79453*
+8s	 s(
+
+81513*
+8C	 C(
+
+83754*
+8	 (
+
+85453*
+8o	 o(

@@ -1,0 +1,25 @@
+
+&"Get recent company activity"str
+¸®"
+**Recent Activity (Last 30 Days)**
+
+1. **Funding Announcement** (2 weeks ago)
+   - Closed $50M Series C
+   - Focus: Sales team expansion + international growth
+
+2. **Leadership Change** (1 week ago)
+   - Hired new Chief Revenue Officer from competitor
+   - Known for aggressive sales automation adoption
+
+3. **Product Launch** (3 days ago)
+   - New product tier for enterprise
+   - Mentions need for "scalable outbound strategy"
+
+4. **Job Postings**
+   - Hiring 20+ SDRs
+   - Multiple sales operations roles
+   - Signal: Building out sales infrastructure
+"strcompany
+Û Û(+"
+
+Ý ð(*C/workspaces/codespaces-react/backend/app/api/routes/meeting_prep.py

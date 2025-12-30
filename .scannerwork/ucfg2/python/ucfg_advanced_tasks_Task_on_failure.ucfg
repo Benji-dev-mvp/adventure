@@ -1,0 +1,71 @@
+
+1app.tasks.advanced_tasks.MonitoredTask.on_failureL
+@/workspaces/codespaces-react/backend/app/tasks/advanced_tasks.pyé é("2*¢
+2
+ê ê(Cl
+j
+
+ê/ ê(8
+%1"__id*P
+
+__unknown_file (4*2(
+&app.tasks.advanced_tasks.MonitoredTask"
+name´
+±
+
+ê ê(B
+%2"__concat*
+
+ê ê(	
+Task *
+
+ê ê($
+	
+task_id*
+
+ê% ê(.
+	 failed: *
+
+ê/ ê(8
+
+%1*
+
+ê9 ê(<
+ - *
+
+ê= ê(@
+
+excge
+
+ê ê(C
+%3*&
+
+__unknown_file (
+
+
+logger*"
+
+__unknown_file (
+
+%22error*
+3*9
+3
+advanced_tasks.py"
+ì ì(
+implicit return:
+
+é é(
+exc:
+
+é é(%	
+task_id:
+
+é' é(+
+args:
+
+é- é(3
+kwargs:
+
+é5 é(:
+einfoB*(
+&app.tasks.advanced_tasks.MonitoredTaskH

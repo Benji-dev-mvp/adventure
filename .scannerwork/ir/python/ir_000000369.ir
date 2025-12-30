@@ -1,0 +1,17 @@
+
+$"Research prospect profile"str
+ãÅ"
+**{name} - Prospect Profile**
+
+‚Ä¢ Title: VP of Sales
+‚Ä¢ Tenure: 2 years at current company
+‚Ä¢ Background: 10+ years in B2B sales leadership
+‚Ä¢ LinkedIn Activity: Recently posted about scaling challenges
+‚Ä¢ Pain Points: Manual prospecting, low SDR productivity
+‚Ä¢ Recent Engagement: Downloaded "Sales Automation Guide" 3 days ago
+‚Ä¢ Buying Signals: High intent score (88/100)
+"strname
+Ã Ã(&email
+Ã( Ã(2"
+
+Œ ÿ(*C/workspaces/codespaces-react/backend/app/api/routes/meeting_prep.py

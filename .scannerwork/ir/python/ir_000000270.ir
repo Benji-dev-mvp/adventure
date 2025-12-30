@@ -1,0 +1,24 @@
+
+’ˆ"
+        Recall all interactions with a specific lead
+
+        Args:
+            user_id: Artisan user ID
+            lead_name: Lead's name to search for
+            limit: Maximum results
+
+        Returns:
+            List of lead interaction memories
+        "strself
+¥ ¥(user_id
+¦ ¦(	lead_name
+§ §(limit
+¨ ¨("e#
+!
+
+µ ¼(	"#unknown-value#,
+*
+
+µ ¼(	results"#unknown-value#
+
+½ ½(*D/workspaces/codespaces-react/backend/app/integrations/mem0_memory.py

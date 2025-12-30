@@ -1,0 +1,27 @@
+
+/&"Get status of all agents in the team"str
+"team_size"str
+"agents"strself
+³ ³("Š&
+$
+
+µ À(	"#new-object#Bdict)
+'
+
+¶ ¶(("#get-field# agents:,
+*
+
+¶ ¶()"
+builtinslen*:Bint"
+ 
+
+¶ ¶()"	#map-set#:-
++
+
+· ¿(	"?python-unknown?:Bdict"
+ 
+
+· ¿(
+"	#map-set#:	
+
+µ À(	*</workspaces/codespaces-react/backend/app/core/multi_agent.py

@@ -1,0 +1,24 @@
+
+š"
+    Decorator to track query performance and recommend indexes.
+
+    Example:
+        @track_query_performance("leads")
+        def get_leads_by_status(session: Session, status: str):
+            return session.exec(select(Lead).where(Lead.status == status)).all()
+    "strtable
+ä ä(&"½#
+!
+
+ÿ ÿ("#unknown-value#*
+(
+
+î ÿ(%closure"#new-object#)
+'
+
+î ÿ("#set-field# table:-
++
+
+î ÿ("?python-partial-apply?:
+
+ÿ ÿ(*@/workspaces/codespaces-react/backend/app/core/query_optimizer.py

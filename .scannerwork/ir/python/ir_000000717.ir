@@ -1,0 +1,695 @@
+
+â"enthusiastic"str
+å"consultative"str
+P†F"AI-powered B2B sales automation platform with multi-channel outreach"str
+;ä1"Be energetic and excited about the opportunity."str
+ÙÍ"Prepare me for this meeting:
+
+Attendees: {attendees}
+Company: {company}
+Meeting Purpose: {purpose}
+Their Pain Points: {pain_points}
+Our Solution: {solution}
+Meeting Duration: {duration}
+
+Provide:
+1. Pre-meeting research checklist
+2. Opening strategy
+3. Key questions to ask
+4. Demo/presentation outline
+5. Potential objections and responses
+6. Closing strategy"str
+"system"str
+åCÇ"Analyze this lead:
+
+Name: {lead_name}
+Title: {lead_title}
+Company: {company}
+Industry: {industry}
+Employee Count: {employee_count}
+Recent Activity: {activity}
+Email Opens: {email_opens}
+Link Clicks: {link_clicks}
+Replies: {replies}
+
+Provide:
+1. Lead Score (0-100) with rationale
+2. Tier (Hot/Warm/Cold)
+3. Recommended next action
+4. Key insights
+5. Potential objections to prepare for"str
+#§"AI-powered lead scoring"str
+∆"CRM integration"str
+âˇ"You are a data-driven B2B sales analyst specializing in performance metrics and optimization.
+
+Your focus:
+- Statistical analysis of campaign performance
+- Lead scoring algorithms and conversion funnels
+- A/B test design and interpretation
+- ROI calculations and forecasting
+- Identifying patterns in sales data
+
+Your approach:
+- Lead with numbers and data
+- Provide confidence intervals when estimating
+- Recommend data-driven experiments
+- Explain statistical significance
+- Visualize findings when possible"str
+ù	"Artisan"str
+Gñ="Create appropriate sense of timeliness without being pushy."str
+’	À"You are Ava, an expert AI sales assistant for the Artisan B2B sales automation platform.
+
+Your expertise includes:
+- Multi-channel outbound campaigns (email, LinkedIn, SMS, calls)
+- Lead scoring and qualification
+- Sales copywriting and personalization
+- Campaign optimization and A/B testing
+- Reply rate and conversion optimization
+
+Your personality:
+- Professional yet approachable
+- Data-driven and strategic
+- Action-oriented with specific recommendations
+- Empathetic to sales challenges
+
+Guidelines:
+- Provide specific, actionable advice
+- Reference data and best practices when available
+- Keep responses concise but comprehensive
+- Use examples from B2B sales context
+- Always consider ROI and efficiency"str
+A•7"Multi-channel campaigns (email, LinkedIn, SMS, calls)"str
+¬k∏"Create a call script for:
+
+Call Type: {call_type}
+Prospect: {lead_name} at {company}
+Call Objective: {objective}
+Time Available: {duration} minutes
+Key Points to Cover: {key_points}
+
+Include:
+1. Opening (first 30 seconds)
+2. Discovery questions
+3. Value proposition
+4. Objection responses
+5. Closing/next steps"str
+‰/⁄"Write a follow-up email for:
+
+Original Email: {original_subject}
+Recipient: {lead_name} at {company}
+Days Since Last Email: {days_since}
+Previous Engagement: {engagement}
+Next Step: {desired_action}
+Tone: {tone}
+
+Requirements:
+- Reference previous email naturally
+- Add new value or insight
+- Non-pushy but clear CTA
+- Keep brief (75-100 words)"str
+∏	"Finance"str
+!≈"Automated A/B testing"str
+0¶&"Real-time analytics and optimization"str
+Ü"casual"str
+9ç/"Take an advisory, expert consultant approach."str
+É"professional"str
+è"direct"str
+?Ñ5"Maintain a professional, business-appropriate tone."str
+ü"product_description"str
+Îu·"Write an SMS message for:
+
+Recipient: {lead_name}
+Context: {context}
+Goal: {goal}
+Tone: {tone}
+
+Requirements:
+- Under 160 characters
+- Include name
+- Clear CTA
+- Professional but conversational
+- No links (unless requested)"str
+í"empathetic"str
+¬"unique_features"str
+¥"target_industries"str
+ﬂ’"You are a sales coach helping teams improve their B2B outreach and conversion skills.
+
+Your role:
+- Teach best practices step-by-step
+- Explain the "why" behind strategies
+- Provide feedback on current approaches
+- Help build systematic processes
+- Encourage continuous improvement
+
+Your method:
+- Ask questions to understand context
+- Break complex topics into steps
+- Share frameworks and models
+- Celebrate progress and learning
+- Adapt explanations to skill level"str
+KáA"Use a friendly, conversational tone while staying professional."str
+$ß"Personalization at scale"str
+™a†"Generate 10 email subject lines for:
+
+Campaign Type: {campaign_type}
+Target Audience: {audience}
+Main Benefit: {benefit}
+Tone: {tone}
+Goal: {goal}
+
+Requirements:
+- Mix of approaches (question, curiosity, value, urgency)
+- Under 50 characters
+- No spam trigger words
+- A/B testable pairs"str
+µ"SaaS"str
+ÎM·"Design a multi-channel campaign strategy for:
+
+Target Audience: {audience}
+Industry: {industry}
+Goal: {goal}
+Budget: {budget}
+Timeline: {timeline}
+Channels Available: {channels}
+
+Provide:
+1. Channel mix recommendation
+2. Sequence structure (touchpoints & timing)
+3. Messaging themes per channel
+4. Expected metrics and KPIs
+5. A/B test recommendations"str
+.£$"Automate repetitive outreach tasks"str
+NoneNoneType
+Ê9‹"Write a LinkedIn connection/message for:
+
+Target: {lead_name} - {lead_title} at {company}
+Connection Reason: {reason}
+Mutual Interests: {mutual_interests}
+Our Value: {value_prop}
+Tone: {tone}
+
+Requirements:
+- Conversational, not salesy
+- Mention specific mutual connection or interest
+- Under 150 characters (LinkedIn limits)
+- Clear but soft CTA"str
+ï"urgent"str
+#ƒ"Predictive lead scoring"str
+:ê0"Be straightforward and to-the-point, no fluff."str
+¢"key_benefits"str
+$"user_template"str
+ÛÈ"
+Custom AI prompts tailored for Artisan B2B sales automation platform.
+
+Provides domain-specific system prompts, templates, and context injection
+for different use cases like email generation, lead analysis, campaign optimization.
+"str
+ú"company_name"str
+Ëﬁ"You are a creative B2B sales copywriter with a track record of high-converting campaigns.
+
+Your strengths:
+- Compelling subject lines that get opened
+- Personalized email copy that drives replies
+- Clear value propositions
+- Overcoming objections through copy
+- Multi-channel messaging consistency
+
+Your style:
+- Creative but professional
+- Benefit-focused, not feature-focused
+- Uses storytelling and social proof
+- Tests multiple angles
+- Writes for the reader, not yourself"str
+§Wö"Help handle this sales objection:
+
+Objection: "{objection}"
+Context: {context}
+Our Product: {product_info}
+Competitor: {competitor}
+
+Provide:
+1. Empathetic acknowledgment
+2. Clarifying questions to ask
+3. Response framework
+4. Proof points or social proof to share
+5. Path forward"str
+∂"Technology"str
+‚%ÿ"Write a cold outreach email for:
+
+Target: {lead_name} - {lead_title} at {company}
+Industry: {industry}
+Company Size: {company_size}
+Pain Point: {pain_point}
+Our Solution: {solution}
+Tone: {tone}
+Length: {length}
+
+Requirements:
+- Compelling subject line
+- Personalized opening
+- Clear value proposition
+- Specific CTA
+- Keep it under 150 words"str
+„Ÿ"You are Ava, a friendly AI sales assistant who helps teams crush their B2B sales goals.
+
+You're like a smart colleague who:
+- Gets excited about wins and optimizations
+- Speaks naturally, not like a robot
+- Shares practical tips from the trenches
+- Celebrates progress and encourages experimentation
+
+Your style:
+- Conversational and relatable
+- Uses modern sales lingo (but not too much)
+- Occasionally uses emojis to emphasize points
+- Tells it straight but stays positive
+
+You still bring the same expertise - lead scoring, multi-channel campaigns, copy optimization - just with more personality!"str
+¨0int
+Cì9"Show understanding of their challenges and pain points."str
+3√)"Ava AI assistant for real-time guidance"str
+!∑"Professional Services"str	©list"µ1#
+!
+
+ö! ö(.{"#unknown-value##
+!
+
+ô ô(x"#unknown-value##
+!
+
+ä! ä(.q"#unknown-value##
+!
+
+â â(n"#unknown-value##
+!
+
+˘! ˘(.g"#unknown-value##
+!
+
+¯ ¯(d"#unknown-value##
+!
+
+È! È(.]"#unknown-value##
+!
+
+Ë Ë(Z"#unknown-value##
+!
+
+Ÿ! Ÿ(.S"#unknown-value##
+!
+
+ÿ ÿ(P"#unknown-value##
+!
+
+«! «(.I"#unknown-value##
+!
+
+∆ ∆(F"#unknown-value##
+!
+
+≤! ≤(.?"#unknown-value##
+!
+
+± ±(<"#unknown-value##
+!
+
+¢! ¢(.5"#unknown-value##
+!
+
+° °(2"#unknown-value##
+!
+
+ë! ë(.+"#unknown-value##
+!
+
+ê ê(("#unknown-value#!
+
+~! ~(. "#unknown-value#!
+
+} }("#unknown-value#!
+
+i i("#unknown-value#!
+
+Z Z("#unknown-value#!
+
+K K("#unknown-value#!
+
+< <("#unknown-value#!
+
+' '("#unknown-value#&
+$
+ (Enum"?python-unknown?%
+#
+	 	("Any"?python-unknown?&
+$
+	 	("Dict"?python-unknown?&
+$
+	 	("List"?python-unknown?4
+2
+& x(SYSTEM_PROMPTS"#new-object#Bdict1
+/
+' '(""#get-field# AVA_PROFESSIONAL:!
+
+	' '(Û
+"	#map-set#:	+
+)
+< <("#get-field# AVA_CASUAL:!
+
+	< <(˚"	#map-set#:(
+&
+K K("#get-field# ANALYST:!
+
+	K K(û"	#map-set#:+
+)
+Z Z("#get-field# COPYWRITER:!
+
+	Z Z(Ä"	#map-set#:&
+$
+i i("#get-field# COACH:!
+
+	i i(Ú"	#map-set#:7
+5
+	| ¨(PROMPT_TEMPLATES"#new-object#Bdict4
+2
+} }(&"!#get-field# EMAIL_COLD_OUTREACH:%
+#
+	}( è("#new-object#Bdict1
+/
+~! ~(?!"#get-field# AVA_PROFESSIONAL: "
+ 
+~ ~(@""#array-read#:! 
+
+~ ~(@#"	#map-set#:"!
+
+	 (ı&"	#map-set#:$%!
+
+	} è('"	#map-set#:2
+0
+
+ê ê(")"#get-field# EMAIL_FOLLOW_UP:(&
+$
+
+ê$ †(*"#new-object#Bdict3
+1
+
+ë! ë(?,"#get-field# AVA_PROFESSIONAL:+$
+"
+
+ë ë(@-"#array-read#:,"
+ 
+
+ë ë(@."	#map-set#:*-#
+!
+í í(˜0"	#map-set#:*$/"
+ 
+
+ê †(1"	#map-set#:)*3
+1
+
+° °(#3"#get-field# LINKEDIN_MESSAGE:2&
+$
+
+°% ∞(4"#new-object#Bdict-
++
+
+¢! ¢(96"#get-field# AVA_CASUAL:5$
+"
+
+¢ ¢(:7"#array-read#:6"
+ 
+
+¢ ¢(:8"	#map-set#:47#
+!
+£ £(˘:"	#map-set#:4$9"
+ 
+
+° ∞(;"	#map-set#:340
+.
+
+± ±( ="#get-field# LEAD_ANALYSIS:<&
+$
+
+±" ≈(>"#new-object#Bdict*
+(
+
+≤! ≤(6@"#get-field# ANALYST:?$
+"
+
+≤ ≤(7A"#array-read#:@"
+ 
+
+≤ ≤(7B"	#map-set#:>A#
+!
+≥ ≥(üD"	#map-set#:>$C"
+ 
+
+± ≈(E"	#map-set#:=>4
+2
+
+∆ ∆($G"#get-field# CAMPAIGN_STRATEGY:F&
+$
+
+∆& ◊(H"#new-object#Bdict3
+1
+
+«! «(?J"#get-field# AVA_PROFESSIONAL:I$
+"
+
+« «(@K"#array-read#:J"
+ 
+
+« «(@L"	#map-set#:HK#
+!
+» »(˛N"	#map-set#:H$M"
+ 
+
+∆ ◊(O"	#map-set#:GH5
+3
+
+ÿ ÿ(%Q" #get-field# OBJECTION_HANDLING:P&
+$
+
+ÿ' Á(R"#new-object#Bdict(
+&
+
+Ÿ! Ÿ(4T"#get-field# COACH:S$
+"
+
+Ÿ Ÿ(5U"#array-read#:T"
+ 
+
+Ÿ Ÿ(5V"	#map-set#:RU#
+!
+⁄ ⁄(∑X"	#map-set#:R$W"
+ 
+
+ÿ Á(Y"	#map-set#:QR5
+3
+
+Ë Ë(%[" #get-field# EMAIL_SUBJECT_LINE:Z&
+$
+
+Ë' ˜(\"#new-object#Bdict-
++
+
+È! È(9^"#get-field# COPYWRITER:]$
+"
+
+È È(:_"#array-read#:^"
+ 
+
+È È(:`"	#map-set#:\_#
+!
+Í Í(Ωb"	#map-set#:\$a"
+ 
+
+Ë ˜(c"	#map-set#:[\.
+,
+
+¯ ¯(e"#get-field# CALL_SCRIPT:d&
+$
+
+¯  à(f"#new-object#Bdict3
+1
+
+˘! ˘(?h"#get-field# AVA_PROFESSIONAL:g$
+"
+
+˘ ˘(@i"#array-read#:h"
+ 
+
+˘ ˘(@j"	#map-set#:fi#
+!
+˙ ˙(’l"	#map-set#:f$k"
+ 
+
+¯ à(m"	#map-set#:ef.
+,
+
+â â(o"#get-field# SMS_MESSAGE:n&
+$
+
+â  ò(p"#new-object#Bdict-
++
+
+ä! ä(9r"#get-field# AVA_CASUAL:q$
+"
+
+ä ä(:s"#array-read#:r"
+ 
+
+ä ä(:t"	#map-set#:ps#
+!
+ã ã(˛v"	#map-set#:p$u"
+ 
+
+â ò(w"	#map-set#:op/
+-
+
+ô ô(y"#get-field# MEETING_PREP:x&
+$
+
+ô! ´(z"#new-object#Bdict(
+&
+
+ö! ö(4|"#get-field# COACH:{$
+"
+
+ö ö(5}"#array-read#:|"
+ 
+
+ö ö(5~"	#map-set#:z}$
+"
+õ õ(áÄ"	#map-set#:z$#
+!
+
+ô ´(Å"	#map-set#:yz7
+5
+
+¬  (ÇTONE_MODIFIERS"#new-object#Bdict&
+$
+
+√ √(IÖ"	#map-set#:ÇÉÑ&
+$
+
+ƒ ƒ(Oà"	#map-set#:ÇÜá&
+$
+
+≈ ≈(Eã"	#map-set#:Çâä&
+$
+
+∆ ∆(Cé"	#map-set#:Çåç&
+$
+
+« «(>ë"	#map-set#:Çèê&
+$
+
+» »(Kî"	#map-set#:Çíì&
+$
+
+… …(Kó"	#map-set#:Çïñ'
+%
+Õ ”ò%closure"#new-object#1
+/
+Õ ”ô"#set-field# TONE_MODIFIERS:òÇ+
+)
+Õ ”ö"?python-partial-apply?:ò9
+7
+
+” ‰(õPLATFORM_CONTEXT"#new-object#Bdict&
+$
+
+‘ ‘(û"	#map-set#:õúù&
+$
+
+’ ’(a°"	#map-set#:õü†*
+(
+
+÷ ‹(®"#unknown-value#Blist+
+)
+
+÷ ‹(™"
+#is-exact#:®©Bbool!
+
+
+÷ ‹(´"
+#assume#:™=
+;
+
+÷ ‹(≠"#set-field# __collection_size:®¨Bint+
+)
+
+÷ ‹(Æ"#array-add-last#:®£+
+)
+
+÷ ‹(Ø"#array-add-last#:®§+
+)
+
+÷ ‹(∞"#array-add-last#:®•+
+)
+
+÷ ‹(±"#array-add-last#:®¶+
+)
+
+÷ ‹(≤"#array-add-last#:®ß&
+$
+
+÷ ‹(≥"	#map-set#:õ¢®*
+(
+
+› ›(Sπ"#unknown-value#Blist+
+)
+
+› ›(S∫"
+#is-exact#:π©Bbool!
+
+
+› ›(Sª"
+#assume#:∫=
+;
+
+› ›(Sº"#set-field# __collection_size:π¨Bint+
+)
+
+› ›(SΩ"#array-add-last#:πµ+
+)
+
+› ›(Sæ"#array-add-last#:π∂+
+)
+
+› ›(Sø"#array-add-last#:π∑+
+)
+
+› ›(S¿"#array-add-last#:π∏&
+$
+
+› ›(S¡"	#map-set#:õ¥π*
+(
+
+ﬁ „(«"#unknown-value#Blist+
+)
+
+ﬁ „(»"
+#is-exact#:«©Bbool!
+
+
+ﬁ „(…"
+#assume#:»=
+;
+
+ﬁ „( "#set-field# __collection_size:«¨Bint+
+)
+
+ﬁ „(À"#array-add-last#:«√+
+)
+
+ﬁ „(Ã"#array-add-last#:«ƒ+
+)
+
+ﬁ „(Õ"#array-add-last#:«≈+
+)
+
+ﬁ „(Œ"#array-add-last#:«∆&
+$
+
+ﬁ „(œ"	#map-set#:õ¬« *;/workspaces/codespaces-react/backend/app/core/ai_prompts.py

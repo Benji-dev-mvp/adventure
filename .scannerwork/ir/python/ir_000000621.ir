@@ -1,0 +1,102 @@
+
+""network_connections"str
+"memory_percent"str
+"cpu_count"str
+"a"bool
+
+0int
+0.1float
+"memory_available_mb"str
+"disk_percent"str
+"division by zero"bool
+,#"Get current system resource usage"str
+"cpu_percent"str
+"S3518"bool
+"/"str
+1024int"§&
+$
+
+Ã Ê(	"#new-object#Bdict)
+'
+
+Ä Ä(;"#unknown-value#Bbool2
+0
+
+Ä Ä(;"
+psutilcpu_percent:Bfloat"
+ 
+
+Ä Ä(;"	#map-set#:)
+'
+
+Å Å(+	"#unknown-value#Bbool-
++
+
+Å Å(+
+"
+psutil	cpu_count:	Bint"
+ 
+
+Å Å(+"	#map-set#:
+1
+/
+
+Æ Æ(5"
+psutilvirtual_memoryBtuple*
+(
+
+Æ Æ(="#get-field# percent:"
+ 
+
+Æ Æ(="	#map-set#:1
+/
+
+Ç# Ç(:"
+psutilvirtual_memoryBtuple,
+*
+
+Ç# Ç(D"#get-field# available:'
+%
+
+ÇH Ç(S"	#binop *#*2*:,
+*
+
+Ç# Ç(T"
+#binop !=#2!=:Bbool"
+ 
+
+Ç# Ç(T"
+#assert#:3
+1
+
+Ç# Ç(T"#dependent-value#*:Bfloat"
+ 
+
+Ç Ç(T"	#map-set#:0
+.
+
+È È(2"
+psutil
+disk_usage:Btuple*
+(
+
+È È(: "#get-field# percent:"
+ 
+
+È È(:!"	#map-set#: (
+&
+
+É' É(?#"#unknown-value#Bstr4
+2
+
+É' É(?$"
+psutilnet_connections:#Blist,
+*
+
+É# É(@%"
+builtinslen*:$Bint"
+ 
+
+É É(@&"	#map-set#:"%
+
+Ã Ê(	*</workspaces/codespaces-react/backend/app/core/performance.py

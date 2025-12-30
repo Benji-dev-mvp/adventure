@@ -1,0 +1,16 @@
+
+>app.integrations.providers.base.AIProvider.generate_structuredQ
+G/workspaces/codespaces-react/backend/app/integrations/providers/base.py7 7(!"3*-
+3	
+base.py"
+K K(
+implicit return:
+9 9(
+prompt:
+: :('
+response_model:
+; ;(+
+system_prompt:
+< <(
+kwargsB.,
+*app.integrations.providers.base.AIProviderH

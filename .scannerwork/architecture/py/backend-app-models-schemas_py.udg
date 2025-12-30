@@ -1,0 +1,131 @@
+
+1.0PythonFrontend"1767052075188*py2.Bµ
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+"
+backend/app/models/schemas.py9
+
+app.models.schemas11
+
+typing12
+
+app.models.user14
+
+pydantic16
+
+sqlmodel.Field18
+
+sqlmodel.SQLModel20
+
+sqlmodel22
+%
+app.models.schemas.SystemStatus24
+#
+app.models.schemas.LeadCreate26
+
+app.models.schemas.Token28
+%
+app.models.schemas.LoginRequest30
+*
+$app.models.schemas.DashboardSnapshot32
+!
+app.models.schemas.Campaign34
+'
+!app.models.schemas.CampaignCreate36
+)
+#app.models.schemas.AnalyticsSummary38
+&
+ app.models.schemas.ServiceStatus40
+
+app.models.schemas.Lead42
+"
+app.models.schemas.AuthToken44J
+
+8
+89j§
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21205
+
+23
+23225
+
+25
+25246 210
+
+27
+27266 210
+
+29
+29286 210
+
+31
+31306 210
+
+33
+33326 210
+
+35
+35346 210
+
+37
+37366 210
+
+39
+39386 210
+
+41
+41406 210
+
+43
+43426 210
+
+45
+45446 210rœ
+
+10131*
+8 ((
+
+10151*
+8 (5
+
+10171*
+8 (
+
+10191*
+8 (
+
+10211*
+8 (%
+
+10231*
+8 (%

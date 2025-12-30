@@ -1,0 +1,30 @@
+
+
+
+"provider"str
+"Create state token"str
+"created_at"str
+32int
+	"user_id"strself] ](user_id] ]('provider]) ](6"ş7
+5
+_ _()state"
+secretstoken_urlsafe:Bstr$
+"
+` d(	"#new-object#Bdict 
+
+a a(	"	#map-set#: 
+
+b b( "	#map-set#:
+'
+%
+c c(+"#unknown-value#Btype.
+,
+c c(+"
+datetime.datetimeutcnow: 
+
+c c(+"	#map-set#:(
+&
+` `("#get-field# _states:$
+"
+` d(	"#array-write#:
+e e(*</workspaces/codespaces-react/backend/app/api/routes/oauth.py

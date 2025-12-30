@@ -1,0 +1,82 @@
+
+1250int
+("Strong Salesforce integration"str
+$"Good reporting dashboards"str
+"Steep learning curve"str
+$"Comprehensive feature set"str
+4.3float
+$"Expensive for small teams"str
+/&"Poor customer support response times"str
+&	"Frequent bugs in mobile app"str
+ "Limited customization"str
+%"Scrape G2/Capterra reviews"str
+
+0int
+competitor
+è è()list"†)
+'
+
+î ö(	
+"#unknown-value#Blist(
+&
+
+î ö(	"
+#is-exact#:
+Bbool
+
+
+î ö(	"
+#assume#::
+8
+
+î ö(	"#set-field# __collection_size:
+Bint(
+&
+
+î ö(	"#array-add-last#:
+(
+&
+
+î ö(	"#array-add-last#:
+(
+&
+
+î ö(	"#array-add-last#:
+(
+&
+
+î ö(	"#array-add-last#:
+(
+&
+
+î ö(	"#array-add-last#:
+	)
+'
+
+õ ü(	"#unknown-value#Blist(
+&
+
+õ ü(	"
+#is-exact#:Bbool
+
+
+õ ü(	"
+#assume#::
+8
+
+õ ü(	"#set-field# __collection_size:Bint(
+&
+
+õ ü(	"#array-add-last#:(
+&
+
+õ ü(	"#array-add-last#:(
+&
+
+õ ü(	"#array-add-last#:X
+V
+
+ë †("CompetitorReview:
+B,app.api.routes.battle_cards.CompetitorReview
+
+ë †(*C/workspaces/codespaces-react/backend/app/api/routes/battle_cards.py

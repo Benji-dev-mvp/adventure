@@ -1,0 +1,14 @@
+
+3app.integrations.providers.base.AIProvider.generateQ
+G/workspaces/codespaces-react/backend/app/integrations/providers/base.py' '("3*-
+3	
+base.py"
+6 6(
+implicit return:
+( ((
+prompt:
+( ((>
+system_prompt:
+(@ ((H
+kwargsB.,
+*app.integrations.providers.base.AIProviderH

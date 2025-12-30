@@ -1,0 +1,50 @@
+
+.app.core.query_optimizer.QueryCache.invalidateJ
+@/workspaces/codespaces-react/backend/app/core/query_optimizer.pyr r("2*‚
+2s s(7`
+^
+t t(%
+%1"__concat*
+t t(
+
+query:*
+t t(!
+
+
+prefix*
+t" t($
+:*A
+?
+t t(%	
+pattern"__id*"
+
+__unknown_file (
+
+%1c
+a
+v v(<
+%2"__concat*,
+v v(2 
+Invalidating cache pattern: *
+v3 v(:
+	
+patterndb
+v v(=
+%3*&
+
+__unknown_file (
+
+
+logger*"
+
+__unknown_file (
+
+%22info*
+3*8
+3
+query_optimizer.py"
+x x(
+implicit return:
+r r(
+prefixB'%
+#app.core.query_optimizer.QueryCacheH

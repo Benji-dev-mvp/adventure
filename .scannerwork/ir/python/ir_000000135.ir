@@ -1,0 +1,44 @@
+
+.%"Redis connection not yet configured"str
+$"Email service operational"str
+
+"database"str
+md"
+    Check status of dependent services
+    TODO: Add actual checks for database, redis, etc.
+    "str
+"status"str
+	"message"str
+"not_configured"str
+"redis"str
+1	("Database connection not yet configured"str
+	"healthy"str
+"email"str"ä.
+,
+X b(services"#new-object#Bdict$
+"
+Y \(	"#new-object#Bdict 
+
+Z Z(&"	#map-set#: 
+
+[ [(?
+"	#map-set#:	 
+
+Y \(	"	#map-set#:$
+"
+] `(	"#new-object#Bdict 
+
+^ ^(&"	#map-set#: 
+
+_ _(<"	#map-set#: 
+
+] `(	"	#map-set#:$
+"
+a a(N"#new-object#Bdict 
+
+a a(%"	#map-set#: 
+
+a' a(M"	#map-set#: 
+
+a a(N"	#map-set#:
+m m(*=/workspaces/codespaces-react/backend/app/api/routes/health.py

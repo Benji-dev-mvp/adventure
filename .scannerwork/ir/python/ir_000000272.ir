@@ -1,0 +1,45 @@
+
+
+"category"str
+
+"preference_type"str
+"user_preference"str
+èÞ"
+        Recall user preferences
+
+        Args:
+            user_id: Artisan user ID
+            preference_type: Specific preference type to filter
+
+        Returns:
+            List of user preference memories
+        "strself
+Û Û(user_id
+Ü Ü(preference_type
+Ý Ý(-"¤/
+-
+
+é é(1filters"#new-object#Bdict"
+ 
+
+é é(0"	#map-set#:+
+)
+
+ê ê(	"
+__bool__*:BboolH "
+
+ê ê(	 *
+ê ê(
+"0&
+$
+
+ë ë(8"#array-write#:
+"g#
+!
+
+í ô(	"#unknown-value#,
+*
+
+í ô(	results"#unknown-value#
+
+õ õ(*D/workspaces/codespaces-react/backend/app/integrations/mem0_memory.py

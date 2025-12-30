@@ -1,0 +1,181 @@
+
+>app.integrations.pydantic_agent.PydanticAIAgent.generate_emailS
+G/workspaces/codespaces-react/backend/app/integrations/pydantic_agent.pyÃ Ã("2*Ö
+2
+” ﬁ(íè
+
+‡ ‡(%
+%1*)
+
+__unknown_file (
+
+	lead_data*$
+
+__unknown_file (
+name*%
+
+__unknown_file (	
+there2getùö
+
+‡+ ‡(T
+%2*)
+
+__unknown_file (
+
+	lead_data*'
+
+__unknown_file (	
+company*-
+
+__unknown_file (
+their company2getòï
+
+· ·(/
+%3*)
+
+__unknown_file (
+
+	lead_data*(
+
+__unknown_file (
+
+industry*'
+
+__unknown_file (	
+Unknown2get†ù
+
+‰
+ ‰(6
+%4*)
+
+__unknown_file (
+
+	lead_data*'
+
+__unknown_file (	
+context*0
+
+__unknown_file (
+Initial outreach2getï
+í
+
+ﬂ Â(
+%5"__concat*;
+
+ﬂ ‡(-+
+)Generate a personalized email for:
+Lead: *
+
+‡ ‡(%
+
+%1*
+
+‡& ‡(*
+ at *
+
+‡+ ‡(T
+
+%2*
+
+‡U ·(
+
+
+Industry: *
+
+· ·(/
+
+%3*
+
+·0 ‚(
+
+Objective: *$
+
+‚ ‚(
+
+campaign_objective*
+
+‚ „(	
+
+Tone: *
+
+„ „(
+
+tone*
+
+„ ‰(	
+
+
+Context: *
+
+‰
+ ‰(6
+
+%4*
+‰7 Â
+
+B
+@
+
+ﬂ Â(
+prompt"__id*"
+
+__unknown_file (
+
+%5Ä
+~
+
+Á Á(+
+%6"__id*d
+
+__unknown_file (H*F1
+/app.integrations.pydantic_agent.PydanticAIAgent"
+email_generatorzx
+
+Á Á(E
+%7*"
+
+__unknown_file (
+
+%6*&
+
+__unknown_file (
+
+
+prompt2run:
+deps
+	
+contextB
+@
+
+Á Á(E
+result"__id*"
+
+__unknown_file (
+
+%7L
+J
+
+Ë Ë(
+%8"__id*0
+
+__unknown_file (*
+
+result"
+data"
+
+Ë Ë(
+
+%8:
+
+Œ Œ(!
+	lead_data:"
+
+œ œ(
+campaign_objective:
+
+– –(
+tone:
+
+— —(	
+contextB31
+/app.integrations.pydantic_agent.PydanticAIAgentH

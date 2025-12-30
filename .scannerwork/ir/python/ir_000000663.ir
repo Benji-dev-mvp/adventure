@@ -1,0 +1,107 @@
+
+ "{flag_name}:{user_id}"str
+5,"Check if feature flag is enabled for user."str
+truebool
+100int
+falsebool	flag_namee e(!user_ide# e(@,	(app.core.feature_flags.FeatureFlagStatus"ÄN
+L
+g g(5flag"5
+)app.core.feature_flags.FeatureFlagServiceget_flag:)
+'
+i i("
+__bool__*:BboolH)
+'
+i i("#unaryop !#2!:Bbool"
+i i( *i i(
+"
+j j("Ÿ'
+%
+l l("#get-field# status:(
+&
+l l(3
+"#get-field# ENABLED:	*
+(
+l l(3"
+#binop ==#2==:
+Bbool"
+l l(3 *l l(
+"
+m m(" '
+%
+o o("#get-field# status:)
+'
+o o(4"#get-field# DISABLED:	*
+(
+o o(4"
+#binop ==#2==:Bbool"
+o o(4 *o o(
+"
+p p("—'
+%
+r r("#get-field# status:*
+(
+r r(5"#get-field# USER_LIST:	*
+(
+r r(5"
+#binop ==#2==:Bbool"
+r r(5 "
+r r(A"]*)
+'
+r r(A"
+__bool__*:BboolH"
+r r(A	 
+*r r(
+"i	)
+'
+s s(+"#get-field# user_ids:*
+(
+s s(+"
+#binop in#2in:Bbool
+s s(+"˜
+'
+%
+u u("#get-field# status:+
+)
+u u(6"#get-field# PERCENTAGE:	*
+(
+u u(6"
+#binop ==#2==:Bbool"
+u u(6 "
+u u(B"]*
+)
+'
+u u(B"
+__bool__*:BboolH"
+u u(B *u u(
+"È+
+)
+w w(6"
+builtinshash*:Bint0
+.
+w w(<	user_hash"	#binop %#*2%:+
+)
+x x(. "#get-field# percentage:(
+&
+x x(.!"	#binop <#2<: Bbool
+x x(.!"’'
+%
+z z(""#get-field# status:%
+#
+z z(0#"#get-field# BETA:	*
+(
+z z(0$"
+#binop ==#2==:"#Bbool"
+z z(0$ "
+z z(<"]*%$)
+'
+z z(<&"
+__bool__*:%BboolH"
+z z(<& *z z(
+"i)
+'
+| |(+'"#get-field# user_ids:*
+(
+| |(+("
+#binop in#2in:'Bbool
+| |(+("
+~ ~(*>/workspaces/codespaces-react/backend/app/core/feature_flags.py

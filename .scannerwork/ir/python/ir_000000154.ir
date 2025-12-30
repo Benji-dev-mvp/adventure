@@ -1,0 +1,17 @@
+
+ "Setup MFA for a user."str
+10int
+"Enterprise App"stremailB B("ªB
+@
+D D(-secret"*
+app.core.mfa.MFAServicegenerate_secretI
+G
+E E(<qr_code"+
+app.core.mfa.MFAServicegenerate_qr_code:Q
+O
+F F(9backup_codes"0
+app.core.mfa.MFAServicegenerate_backup_codes:6
+4
+H H(R"
+MFASetup:Bapp.core.mfa.MFASetup
+H H(R*4/workspaces/codespaces-react/backend/app/core/mfa.py

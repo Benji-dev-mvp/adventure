@@ -1,0 +1,93 @@
+
+"wins"str
+34int
+
+0int
+12int
+;2"Superior customer support (mentioned in 19 wins)"str
+"win_reasons"str
+A8"Need for specific integration we don't have (3 losses)"str
+"losses"str
+;2"Existing relationship with competitor (8 losses)"str
+6-"Faster time to value (mentioned in 22 wins)"str
+
+
+"win_rate"str
+' "Lower price point (4 losses)"str
+;2"Better AI personalization (mentioned in 28 wins)"str
+"loss_reasons"str
+73.9float
+8/"Get internal win/loss data against competitor"str
+7."More flexible pricing (mentioned in 15 wins)"str
+competitor
+£  £(/list"ø&
+$
+
+¥ ´("#new-object#Bdict"
+ 
+
+¦ ¦("	#map-set#:"
+ 
+
+§ §(	"	#map-set#:"
+ 
+
+¨ ¨("	#map-set#:
+)
+'
+
+© ®(	"#unknown-value#Blist(
+&
+
+© ®(	"
+#is-exact#:Bbool
+
+
+© ®(	"
+#assume#::
+8
+
+© ®(	"#set-field# __collection_size:Bint(
+&
+
+© ®(	"#array-add-last#:(
+&
+
+© ®(	"#array-add-last#:(
+&
+
+© ®(	"#array-add-last#:(
+&
+
+© ®(	"#array-add-last#:"
+ 
+
+© ®(	"	#map-set#:)
+'
+
+¯ ³(	!"#unknown-value#Blist(
+&
+
+¯ ³(	""
+#is-exact#:!Bbool
+
+
+¯ ³(	#"
+#assume#:":
+8
+
+¯ ³(	$"#set-field# __collection_size:!Bint(
+&
+
+¯ ³(	%"#array-add-last#:!(
+&
+
+¯ ³(	&"#array-add-last#:!(
+&
+
+¯ ³(	'"#array-add-last#:! "
+ 
+
+¯ ³(	("	#map-set#:!
+
+¥ ´(*C/workspaces/codespaces-react/backend/app/api/routes/battle_cards.py

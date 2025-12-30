@@ -1,0 +1,49 @@
+
+3*"Create type-safe campaign strategy agent"str
+óé"You are an expert B2B campaign strategist.
+
+Design multi-channel campaigns that:
+1. Align with business objectives (brand awareness, lead generation, conversion)
+2. Target the right audience segments with precision
+3. Use appropriate channels (email, LinkedIn, calls, ads)
+4. Follow proven sequence patterns (touch points 3-10)
+5. Estimate realistic ROI based on industry benchmarks
+6. Set achievable timelines (1 week to 3 months)
+7. Provide accurate budget estimates
+
+Consider:
+- Target market characteristics
+- Product/service complexity
+- Sales cycle length
+- Competitive landscape
+- Historical performance data"strself
+ë$ ë((40app.integrations.pydantic_agent.CampaignStrategy"ù(
+&
+
+ï ï("#get-field# model:/
+-
+
+î ‚(	agent"#unknown-value#:*
+(
+
+„ Ž(%closure"#new-object#)
+'
+
+„ Ž("#set-field# agent:-
++
+
+„ Ž(	"?python-partial-apply?:*
+(
+
+Ž ›(
+%closure"#new-object#)
+'
+
+Ž ›("#set-field# agent:
+-
++
+
+Ž ›("?python-partial-apply?:
+
+
+› ›(*G/workspaces/codespaces-react/backend/app/integrations/pydantic_agent.py

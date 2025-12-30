@@ -1,0 +1,354 @@
+
+1.0PythonFrontend"1767052069007*py2.BÈ
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+0
++backend/app/integrations/langchain_agent.py9
+&
+ app.integrations.langchain_agent11
+
+logging12
+
+os14
+
+typing16
+
+pydantic18
+4
+.langchain.agents.create_openai_functions_agent20
+
+langchain.agents22
+
+langchain.chains.LLMChain24
+&
+ langchain.chains.SequentialChain26
+
+langchain.chains28
+/
+)langchain.memory.ConversationBufferMemory30
+
+langchain.memory32
+*
+$langchain.prompts.ChatPromptTemplate34
++
+%langchain.prompts.MessagesPlaceholder36
+
+langchain.prompts38
+$
+langchain.schema.SystemMessage40
+
+langchain.schema42
+$
+langchain.tools.StructuredTool44
+
+langchain.tools.Tool46
+
+langchain.tools48
+'
+!langchain_anthropic.ChatAnthropic50
+
+langchain_anthropic52
+
+langchain_openai54
+
+asyncio56
+<
+6app.integrations.langchain_agent.CampaignAnalysisInput58
+
+pydantic.main.BaseModel60
+8
+2app.integrations.langchain_agent.LeadResearchInput62
+4
+.app.integrations.langchain_agent.example_usage64
+
+typing.Coroutine66
+<
+6app.integrations.langchain_agent.LangChainOrchestrator68
+J
+Dapp.integrations.langchain_agent.LangChainOrchestrator.execute_chain70
+
+
+list72
+I
+Capp.integrations.langchain_agent.LangChainOrchestrator.reset_memory74
+E
+?app.integrations.langchain_agent.LangChainOrchestrator.__init__76
+	
+str78
+
+float80
+	
+int82
+D
+>app.integrations.langchain_agent.LangChainOrchestrator.execute84
+J
+Dapp.integrations.langchain_agent.LangChainOrchestrator._create_tools86
+L
+Fapp.integrations.langchain_agent.LangChainOrchestrator._initialize_llm88
+O
+Iapp.integrations.langchain_agent.LangChainOrchestrator._initialize_memory90
+O
+Iapp.integrations.langchain_agent.LangChainOrchestrator.get_memory_context92
+
+
+dict94
+J
+Dapp.integrations.langchain_agent.LangChainOrchestrator._create_agent96J
+
+8
+89j°
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21205
+
+23
+23225
+
+25
+25245
+
+27
+27265
+
+29
+29285
+
+31
+31305
+
+33
+33325
+
+35
+35345
+
+37
+37365
+
+39
+39385
+
+41
+41405
+
+43
+43425
+
+45
+45445
+
+47
+47465
+
+49
+49485
+
+51
+51505
+
+53
+53525
+
+55
+55545
+
+57
+57565
+
+59
+59586 210
+
+61
+61606
+
+63
+63626 210
+
+65
+65647 210
+
+67
+67666
+
+69
+69686 210
+
+71
+71707 269
+
+73
+73726
+
+75
+75747 269
+
+77
+77767 269
+
+79
+79786
+
+81
+81806
+
+83
+83826
+
+85
+85847 269
+
+87
+87867 269
+
+89
+89887 269
+
+91
+91907 269
+
+93
+93927 269
+
+95
+95946
+
+97
+97967 269r∏
+
+10131*
+8 (
+
+10151*
+8 (
+
+
+10171*
+8 (-
+
+10191*
+8 (&
+
+10211*
+8$" $(?
+
+10231*
+8$ $(?
+
+10251*
+8%" %(*
+
+10271*
+8%, %(;
+
+10291*
+8% %(;
+
+10311*
+8&" &(:
+
+10331*
+8& &(:
+
+10351*
+8'# '(5
+
+10371*
+8'7 '(J
+
+10391*
+8' '(J
+
+10411*
+8(" ((/
+
+10431*
+8( ((/
+
+10451*
+8)! )(/
+
+10471*
+8)1 )(5
+
+10491*
+8) )(5
+
+10511*
+8*% *(2
+
+10531*
+8* *(2
+
+10551*
+8+ +(,
+
+10571*
+8ç ç(
+
+59612*
+8: :(
+
+63612*
+83 3(
+
+65673*
+8Ê Ê(
+
+71673*
+8∞ ∞(
+
+71734*
+8∞ ∞(
+
+77794*
+8M	 M(
+
+77794*
+8M	 M(
+
+77814*
+8M	 M(
+
+77834*
+8M	 M(
+
+85673*
+8Ü Ü(
+
+85794*
+8Ü Ü(
+
+87733*
+8¢	 ¢(
+
+93953*
+8‡	 ‡(

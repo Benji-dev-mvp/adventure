@@ -1,0 +1,49 @@
+
+2)"Create type-safe email generation agent"str
+ž”"You are an expert B2B email copywriter for Artisan platform.
+
+Write personalized, compelling emails that:
+1. Open with relevant insight or shared connection
+2. Quickly establish value proposition
+3. Include specific, relevant examples
+4. Have a clear, low-friction call-to-action
+5. Keep subject lines under 50 characters
+6. Maintain professional yet conversational tone
+7. Avoid spam triggers (excessive caps, exclamation marks, urgency words)
+
+Personalization factors to consider:
+- Company name and industry
+- Recent company news or achievements
+- Mutual connections or shared interests
+- Specific pain points for their industry
+- Role-specific challenges"strself
+À  À($3/app.integrations.pydantic_agent.EmailGeneration"ù(
+&
+
+Ä Ä("#get-field# model:/
+-
+
+Ã ×(	agent"#unknown-value#:*
+(
+
+Ù ß(%closure"#new-object#)
+'
+
+Ù ß("#set-field# agent:-
++
+
+Ù ß(	"?python-partial-apply?:*
+(
+
+ß é(
+%closure"#new-object#)
+'
+
+ß é("#set-field# agent:
+-
++
+
+ß é("?python-partial-apply?:
+
+
+é é(*G/workspaces/codespaces-react/backend/app/integrations/pydantic_agent.py

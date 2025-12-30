@@ -1,0 +1,45 @@
+
+2app.core.event_sourcing.TemporalQuery.get_state_atK
+?/workspaces/codespaces-react/backend/app/core/event_sourcing.py³ ³("2*Ú
+2
+¶ ¶(;r
+p
+
+· ·(
+%1"__id*V
+
+__unknown_file (:*8'
+%app.core.event_sourcing.TemporalQuery"
+event_store¾»
+
+· ·(\
+%2*"
+
+__unknown_file (
+
+%1*,
+
+__unknown_file (
+
+aggregate_id*.
+
+__unknown_file (
+
+aggregate_type2replay_events:
+up_to
+
+	timestamp"
+
+· ·(\
+
+%2:
+
+´ ´(
+aggregate_id:
+
+´! ´(4
+aggregate_type:
+
+´6 ´(I
+	timestampB)'
+%app.core.event_sourcing.TemporalQueryH

@@ -1,0 +1,43 @@
+
+?app.integrations.memory_models.MemoryNamespace.validate_tenancyR
+F/workspaces/codespaces-react/backend/app/integrations/memory_models.pyû û("2*
+2
+ü …(e
+c
+
+†$ †(4
+%1"__concat*
+
+†& †(*
+org_*
+
+†+ †(1
+
+
+org_id*
+
+†2 †(3
+:}
+
+† †(5
+%2"str.startswith*)
+
+__unknown_file (
+
+	namespace*"
+
+__unknown_file (
+
+%12
+startswith"
+
+† †(5
+
+%2:
+
+û û('
+	namespace:
+
+û) û(4
+org_idB20
+.app.integrations.memory_models.MemoryNamespaceH

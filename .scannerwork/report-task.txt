@@ -1,0 +1,7 @@
+organization=benji-dev-mvp
+projectKey=artisan-ai-bdr-platform
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.78018
+dashboardUrl=https://sonarcloud.io/dashboard?id=artisan-ai-bdr-platform
+ceTaskId=AZtshYtuDOZPsRkQRo2_
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZtshYtuDOZPsRkQRo2_

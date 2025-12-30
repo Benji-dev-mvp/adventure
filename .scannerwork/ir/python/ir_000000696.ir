@@ -1,0 +1,18 @@
+
+Äº"
+    Decorator to protect external API calls with circuit breaker.
+
+    Usage:
+        @with_circuit_breaker("sendgrid")
+        def send_email(to, subject, body):
+            ...
+    "strservice_name^ ^(*"º!
+
+s s("#unknown-value#(
+&
+h s(%closure"#new-object#.
+,
+h s("#set-field# service_name:+
+)
+h s("?python-partial-apply?:
+s s(*</workspaces/codespaces-react/backend/app/core/api_gateway.py

@@ -1,0 +1,106 @@
+
+1.0PythonFrontend"1767052070847*py2.Bæ
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+)
+$backend/app/tasks/analytics_tasks.py9
+
+app.tasks.analytics_tasks11
+
+datetime12
+
+typing14
+
+app.core.celery_app16
+7
+1app.tasks.analytics_tasks.calculate_daily_metrics18
+4
+.app.tasks.analytics_tasks.generate_user_report20
+	
+int22
+5
+/app.tasks.analytics_tasks.cleanup_old_analytics24
+5
+/app.tasks.analytics_tasks.export_analytics_data26
+	
+str28
+
+
+dict30J
+
+8
+89jø
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19187 210
+
+21
+21207 210
+
+23
+23226
+
+25
+25247 210
+
+27
+27267 210
+
+29
+29286
+
+31
+31306rê
+
+10131*
+8 ()
+
+10151*
+8 (
+
+10171*
+8 (+
+
+21234*
+8' '(
+
+21234*
+8' '(
+
+25234*
+8` `(
+
+27234*
+8F F(
+
+27294*
+8F F(
+
+27314*
+8F F(

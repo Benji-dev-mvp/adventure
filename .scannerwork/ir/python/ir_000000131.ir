@@ -1,0 +1,21 @@
+
+üò"
+    Decorator to handle multiple API versions in a single endpoint
+
+    Usage:
+        @versioned_endpoint(
+            v1=handle_v1,
+            v2=handle_v2
+        )
+        async def my_endpoint(request: Request):
+            pass
+    "str$version_handlers/ /()"dict"¾!
+
+M M("#unknown-value#(
+&
+< M(%closure"#new-object#2
+0
+< M("#set-field# version_handlers:+
+)
+< M("?python-partial-apply?:
+M M(*:/workspaces/codespaces-react/backend/app/api/versioning.py

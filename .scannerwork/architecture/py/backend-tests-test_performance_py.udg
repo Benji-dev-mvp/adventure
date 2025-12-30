@@ -1,0 +1,89 @@
+
+1.0PythonFrontend"1767052066228*py2.B¶
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+&
+!backend/tests/test_performance.py9
+
+tests.test_performance11
+
+asyncio12
+
+
+time14
+
+concurrent.futures16
+#
+fastapi.testclient.TestClient18
+
+fastapi.testclient20
+/
+)tests.test_performance.TestAPIPerformance22
+M
+Gtests.test_performance.TestAPIPerformance.test_concurrent_health_checks24
+O
+Itests.test_performance.TestAPIPerformance.test_health_check_response_time26
+G
+Atests.test_performance.TestAPIPerformance.test_auth_endpoint_load28J
+
+8
+89jå
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21205
+
+23
+23226 210
+
+25
+25247 223
+
+27
+27267 223
+
+29
+29287 223r‚
+
+10131*
+8 (
+
+10151*
+8 (
+
+10171*
+8 (2
+
+10191*
+8  (*
+
+10211*
+8 (*

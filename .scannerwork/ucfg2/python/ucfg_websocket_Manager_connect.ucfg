@@ -1,0 +1,99 @@
+
+,app.core.websocket.ConnectionManager.connectD
+:/workspaces/codespaces-react/backend/app/core/websocket.py ("2*›
+2 (-_]
+ ( 
+%7"fastapi.WebSocket.accept*)
+
+__unknown_file (
+
+	websocket2acceptv
+t
+ (1
+%8"__id*\
+
+__unknown_file (@*>&
+$app.core.websocket.ConnectionManager"
+active_connectionsmk
+ (1
+%9*"
+
+__unknown_file (
+
+%8*'
+
+__unknown_file (
+	
+user_id2__contains__<
+:
+ (1
+%10"not*"
+
+__unknown_file (
+
+%9*
+4
+5*2
+3
+websocket.py"
+ (
+implicit return*ê
+4 (7v
+t
+ (
+%1"__id*\
+
+__unknown_file (@*>&
+$app.core.websocket.ConnectionManager"
+active_connectionsvt
+ ((
+%2"__mapGet*"
+
+__unknown_file (
+
+%1*'
+
+__unknown_file (
+	
+user_id2__getitem__fd
+ (7
+%3*"
+
+__unknown_file (
+
+%2*)
+
+__unknown_file (
+
+	websocket2add*
+3*É
+5 (4
+/ (4
+%4"setv
+t
+ (#
+%6"__id*\
+
+__unknown_file (@*>&
+$app.core.websocket.ConnectionManager"
+active_connections£ 
+ (4
+%5"dict.__setitem__*"
+
+__unknown_file (
+
+%6*'
+
+__unknown_file (
+	
+user_id*"
+
+__unknown_file (
+
+%42__setitem__*
+4:
+ (0
+	websocket:
+2 (>	
+user_idB(&
+$app.core.websocket.ConnectionManagerH

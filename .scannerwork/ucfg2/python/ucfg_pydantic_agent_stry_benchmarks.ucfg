@@ -1,0 +1,96 @@
+
+capp.integrations.pydantic_agent.PydanticAIAgent._create_campaign_strategist.get_industry_benchmarksS
+G/workspaces/codespaces-react/backend/app/integrations/pydantic_agent.py ()"2*¢
+2
+ ()
+
+‘ •(
+%1"dictË
+È
+
+’ ’(Z
+%2"__mapSet*"
+
+__unknown_file (
+
+%1**
+
+__unknown_file (
+
+technology*Z
+
+__unknown_file (><
+:Tech industry: Avg email open 22%, reply 8%, conversion 4%Í
+Ê
+
+“ “(\
+%3"__mapSet*"
+
+__unknown_file (
+
+%1*'
+
+__unknown_file (	
+finance*_
+
+__unknown_file (CA
+?Finance industry: Avg email open 19%, reply 6%, conversion 3.2%Ó
+Ð
+
+” ”(b
+%4"__mapSet*"
+
+__unknown_file (
+
+%1**
+
+__unknown_file (
+
+healthcare*b
+
+__unknown_file (FD
+BHealthcare industry: Avg email open 21%, reply 7%, conversion 3.8%F
+D
+
+‘ •(
+
+benchmarks"__id*"
+
+__unknown_file (
+
+%1PN
+
+— —( 
+%5"	str.lower*(
+
+__unknown_file (
+
+
+industry2lowerÐÍ
+
+– ™(
+%6"dict.get**
+
+__unknown_file (
+
+
+benchmarks*"
+
+__unknown_file (
+
+%5*Z
+
+__unknown_file (><
+:General B2B: Avg email open 20%, reply 7%, conversion 3.5%2get"
+
+– ™(
+
+%6:
+
+* (G
+ctx:
+
+I (V
+
+industryB31
+/app.integrations.pydantic_agent.PydanticAIAgentH

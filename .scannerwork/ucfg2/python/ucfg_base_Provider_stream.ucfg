@@ -1,0 +1,14 @@
+
+1app.integrations.providers.base.AIProvider.streamQ
+G/workspaces/codespaces-react/backend/app/integrations/providers/base.pyL L("3*-
+3	
+base.py"
+[ [(
+implicit return:
+M M(
+prompt:
+M M(>
+system_prompt:
+M@ M(H
+kwargsB.,
+*app.integrations.providers.base.AIProviderH

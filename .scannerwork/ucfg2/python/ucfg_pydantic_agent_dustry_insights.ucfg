@@ -1,0 +1,96 @@
+
+]app.integrations.pydantic_agent.PydanticAIAgent._create_email_generator.get_industry_insightsS
+G/workspaces/codespaces-react/backend/app/integrations/pydantic_agent.py‡ ‡('"2*ù
+2
+· ·(0
+
+‚ Ê(
+%1"dictŒ
+À
+
+„ „(]
+%2"__mapSet*"
+
+__unknown_file (
+
+%1**
+
+__unknown_file (
+
+technology*]
+
+__unknown_file (A?
+=Tech companies are prioritizing AI integration and automation÷
+”
+
+‰ ‰(e
+%3"__mapSet*"
+
+__unknown_file (
+
+%1*'
+
+__unknown_file (	
+finance*h
+
+__unknown_file (LJ
+HFinancial services are focusing on compliance and digital transformation◊
+‘
+
+Â Â(f
+%4"__mapSet*"
+
+__unknown_file (
+
+%1**
+
+__unknown_file (
+
+healthcare*f
+
+__unknown_file (JH
+FHealthcare orgs are investing in patient experience and data analyticsD
+B
+
+‚ Ê(
+
+insights"__id*"
+
+__unknown_file (
+
+%1PN
+
+Á  Á(0
+%5"	str.lower*(
+
+__unknown_file (
+
+
+industry2lowerΩ∫
+
+Á Á(^
+%6"dict.get*(
+
+__unknown_file (
+
+
+insights*"
+
+__unknown_file (
+
+%5*I
+
+__unknown_file (-+
+)General B2B trends: efficiency and growth2get"
+
+Á Á(^
+
+%6:
+
+‡( ‡(E
+ctx:
+
+‡G ‡(T
+
+industryB31
+/app.integrations.pydantic_agent.PydanticAIAgentH

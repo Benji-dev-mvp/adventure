@@ -1,0 +1,98 @@
+
+5app.core.response_transform.PIIRedactor.should_redactM
+C/workspaces/codespaces-react/backend/app/core/response_transform.pyW W("2*À
+2X X(8H
+F
+Y Y(
+%6"__id*.
+
+__unknown_file (*
+
+user"
+role]
+[
+Y Y(&
+%7"__id*C
+
+__unknown_file ('*%
+app.models.user.UserRole"
+ADMINä
+á
+Y Y(&
+%8"	__compare*"
+
+__unknown_file (
+==*"
+
+__unknown_file (
+
+%6*"
+
+__unknown_file (
+
+%7*
+6
+7*–
+4_ _(;q
+o
+_% _(;
+%1"__id*W
+
+__unknown_file (;*9)
+'app.core.response_transform.PIIRedactor"
+
+PII_FIELDSPN
+_ _(!
+%2"	str.lower**
+
+__unknown_file (
+
+
+field_name2lowerhf
+_ _(;
+%3*"
+
+__unknown_file (
+
+%1*"
+
+__unknown_file (
+
+%22__contains__"
+_ _(;
+
+%3*$
+5] ]("
+] ](	
+
+False*ë
+6\ \(6e
+c
+\ \(5
+%4"__id*K
+
+__unknown_file (/*-
+app.models.user.Permission"
+LEAD_EXPORTíè
+\ \(6
+%5"#app.models.user.User.has_permission*$
+
+__unknown_file (
+
+user*"
+
+__unknown_file (
+
+%42has_permission*
+4
+5*$
+7Z Z("
+Z Z(	
+
+False:
+W W( 
+user:
+W" W(1
+
+field_nameB+)
+'app.core.response_transform.PIIRedactorH

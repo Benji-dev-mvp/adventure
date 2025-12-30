@@ -1,0 +1,30 @@
+
+"Mock chat response"str
+"tokens_used"str
+	"message"str
+"finish_reason"str
+"stop"str
+Â¸"Thanks for your message! I'm Ava, your AI sales assistant. You asked about: '{message[:50]}...' I'd be happy to help with that. (Note: OpenAI API not configured, using mock response)"str
+"mock"str
+"model"str
+
+	0intself
+¬ ¬(message
+¬ ¬(%"Ë&
+$
+
+® ³(	"#new-object#Bdict#
+!
+¯ ¯(Ð"	#map-set#:"
+ 
+
+° °(
+"	#map-set#:	"
+ 
+
+± ±("	#map-set#:"
+ 
+
+² ²(#"	#map-set#:
+
+® ³(	*C/workspaces/codespaces-react/backend/app/services/openai_service.py

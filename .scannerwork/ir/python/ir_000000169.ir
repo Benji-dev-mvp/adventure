@@ -1,0 +1,24 @@
+
+‘‡"
+    Decorator to automatically audit an API endpoint.
+
+    Usage:
+        @audit_action(AuditAction.CAMPAIGN_CREATED, resource_type="campaign")
+        async def create_campaign(campaign_data: dict, user: User = Depends(get_current_user)):
+            ...
+    "straction9 9(resource_type: :('!extract_resource_id; ;(2"œ!
+
+n n(
+"#unknown-value#(
+&
+F n(%closure"#new-object#5
+3
+F n("!#set-field# extract_resource_id:(
+&
+F n("#set-field# action:/
+-
+F n("#set-field# resource_type:+
+)
+F n(	"?python-partial-apply?:
+n n(
+*6/workspaces/codespaces-react/backend/app/core/audit.py

@@ -1,0 +1,264 @@
+
+1.0PythonFrontend"1767052065222*py2.Bù	
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+(
+#backend/app/tasks/advanced_tasks.py9
+
+app.tasks.advanced_tasks11
+
+logging12
+
+datetime14
+
+typing16
+
+celery.Task18
+
+celery.group20
+
+celery22
+
+sqlmodel.select24
+
+sqlmodel26
+
+app.core.celery_app28
+
+app.core.db30
+
+app.models.schemas32
+1
++app.tasks.advanced_tasks.enrich_leads_batch34
+
+
+list36
+7
+1app.tasks.advanced_tasks.compute_analytics_rollup38
+6
+0app.tasks.advanced_tasks.recalculate_lead_scores40
+3
+-app.tasks.advanced_tasks.trigger_lead_actions42
+4
+.app.tasks.advanced_tasks.generate_daily_digest44
+0
+*app.tasks.advanced_tasks.analyze_send_time46
+
+
+dict48
+	
+int50
+*
+$app.tasks.advanced_tasks.enrich_lead52
+	
+str54
+5
+/app.tasks.advanced_tasks.monitored_task_example56
+6
+0app.tasks.advanced_tasks.schedule_campaign_sends58
+4
+.app.tasks.advanced_tasks.enrich_uploaded_leads60
+2
+,app.tasks.advanced_tasks.send_campaign_email62
+/
+)app.tasks.advanced_tasks.cleanup_old_data64
+,
+&app.tasks.advanced_tasks.MonitoredTask66
+7
+1app.tasks.advanced_tasks.MonitoredTask.on_failure68
+7
+1app.tasks.advanced_tasks.MonitoredTask.on_success70
+5
+/app.tasks.advanced_tasks.MonitoredTask.on_retry72J
+
+8
+89jÏ
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21205
+
+23
+23225
+
+25
+25245
+
+27
+27265
+
+29
+29285
+
+31
+31305
+
+33
+33325
+
+35
+35347 210
+
+37
+37366
+
+39
+39387 210
+
+41
+41407 210
+
+43
+43427 210
+
+45
+45447 210
+
+47
+47467 210
+
+49
+49486
+
+51
+51506
+
+53
+53527 210
+
+55
+55546
+
+57
+57567 210
+
+59
+59587 210
+
+61
+61607 210
+
+63
+63627 210
+
+65
+65647 210
+
+67
+67666 210
+
+69
+69687 267
+
+71
+71707 267
+
+73
+73727 267r–
+
+10131*
+8 (
+
+10151*
+8 ()
+
+10171*
+8 (#
+
+10191*
+8	 	(
+
+10211*
+8	 	(
+
+10231*
+8	 	(
+
+10251*
+8
+ 
+(
+
+10271*
+8
+ 
+(
+
+10291*
+8 (+
+
+10311*
+8 ($
+
+10331*
+8+ +(0
+
+10331*
+8V	 V(,
+
+10331*
+8ˆ	 ˆ(0
+
+10331*
+8Ñ	 Ñ(6
+
+10331*
+8‘	 ‘(,
+
+10331*
+8°	 °(,
+
+35374*
+8A A(
+
+47493*
+8h h(
+
+47514*
+8h h(
+
+53514*
+8 (
+
+53554*
+8 (
+
+59514*
+8} }(
+
+61514*
+8O O(
+
+63514*
+8¨ ¨(
+
+63514*
+8¨ ¨(

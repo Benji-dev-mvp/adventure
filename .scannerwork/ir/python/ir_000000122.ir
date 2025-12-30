@@ -1,0 +1,7 @@
+
+""artisan_{index_version}"str
+7."Get Qdrant collection name for index version"strself
+   (!index_version
+ #  (5"
+
+¢ ¢()*D/workspaces/codespaces-react/backend/app/integrations/rag_manager.py

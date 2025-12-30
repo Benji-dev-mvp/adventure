@@ -1,0 +1,40 @@
+
+60int
+
+0int
+
+1int
+
+2int
+1.0float
+$"Simulate churn prediction"str
+0.5floatfeaturesA A(3"§1
+/
+C C(#days_inactive"#array-read#:"
+ 
+D D(!"#array-read#:"
+ 
+D$ D(/"#array-read#:"
+ 
+D D(/	"	#binop +#2+:=
+;
+D D(4
+
+engagement"#dependent-value#*:	Bfloat1
+/
+G G(+"#dependent-value#*:Bfloat2
+0
+G G(1
+base_score"
+builtinsmin*:1
+/
+H H(,"#dependent-value#*:
+BfloatE
+C
+H H(3engagement_penalty"#dependent-value#*:Bfloat.
+,
+J J(2"#dependent-value#:Bfloat&
+$
+J J(8"
+builtinsmin*:
+J J(8*</workspaces/codespaces-react/backend/app/core/ml_advanced.py

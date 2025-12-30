@@ -1,0 +1,7 @@
+
+0'"Research a lead's company and profile"str
+ja"Researched {company_name}. Key insights: Industry leader, 500+ employees, recent funding round."strcompany_name
+§  §(1linkedin_url
+§3 §(U"
+
+ª ª(u*H/workspaces/codespaces-react/backend/app/integrations/langchain_agent.py

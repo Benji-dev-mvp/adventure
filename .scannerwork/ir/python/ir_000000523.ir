@@ -1,0 +1,24 @@
+
+ïå"
+    Decorator to require specific role(s) for an endpoint.
+
+    Usage:
+        @require_role(UserRole.ADMIN, UserRole.MANAGER)
+        async def admin_only_endpoint(user: User = Depends(get_current_user)):
+            ...
+    "strroles
+ž ž(!"½#
+!
+
+´ ´("#unknown-value#*
+(
+
+¨ ´(%closure"#new-object#)
+'
+
+¨ ´("#set-field# roles:-
++
+
+¨ ´("?python-partial-apply?:
+
+´ ´(*9/workspaces/codespaces-react/backend/app/core/security.py

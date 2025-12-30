@@ -1,0 +1,219 @@
+
++app.core.event_sourcing.DomainEvent.to_dictI
+?/workspaces/codespaces-react/backend/app/core/event_sourcing.pyB B("2*˚
+2C C(
+D N(	
+%1"dictk
+i
+E E(%
+%2"__id*Q
+
+__unknown_file (5*3%
+#app.core.event_sourcing.DomainEvent"
+
+event_idè
+å
+E E(%
+%3"__mapSet*"
+
+__unknown_file (
+
+%1*(
+
+__unknown_file (
+
+event_id*"
+
+__unknown_file (
+
+%2m
+k
+F F()
+%4"__id*S
+
+__unknown_file (7*5%
+#app.core.event_sourcing.DomainEvent"
+
+event_typeG
+E
+F F(/
+%5"__id*-
+
+__unknown_file (*
+
+%4"
+valueë
+é
+F F(/
+%6"__mapSet*"
+
+__unknown_file (
+
+%1**
+
+__unknown_file (
+
+event_type*"
+
+__unknown_file (
+
+%5o
+m
+G G(-
+%7"__id*U
+
+__unknown_file (9*7%
+#app.core.event_sourcing.DomainEvent"
+aggregate_idì
+ê
+G G(-
+%8"__mapSet*"
+
+__unknown_file (
+
+%1*,
+
+__unknown_file (
+aggregate_id*"
+
+__unknown_file (
+
+%7q
+o
+H H(1
+%9"__id*W
+
+__unknown_file (;*9%
+#app.core.event_sourcing.DomainEvent"
+aggregate_typeñ
+ì
+H H(1
+%10"__mapSet*"
+
+__unknown_file (
+
+%1*.
+
+__unknown_file (
+aggregate_type*"
+
+__unknown_file (
+
+%9m
+k
+I I('
+%11"__id*R
+
+__unknown_file (6*4%
+#app.core.event_sourcing.DomainEvent"
+	timestamp`^
+I I(3
+%12"datetime.datetime.isoformat*#
+
+__unknown_file (
+
+%112	isoformatí
+è
+I I(3
+%13"__mapSet*"
+
+__unknown_file (
+
+%1*)
+
+__unknown_file (
+	timestamp*#
+
+__unknown_file (
+
+%12k
+i
+J J(#
+%14"__id*P
+
+__unknown_file (4*2%
+#app.core.event_sourcing.DomainEvent"	
+user_idê
+ç
+J J(#
+%15"__mapSet*"
+
+__unknown_file (
+
+%1*'
+
+__unknown_file (	
+user_id*#
+
+__unknown_file (
+
+%14h
+f
+K K(
+%16"__id*M
+
+__unknown_file (1*/%
+#app.core.event_sourcing.DomainEvent"
+dataç
+ä
+K K(
+%17"__mapSet*"
+
+__unknown_file (
+
+%1*$
+
+__unknown_file (
+data*#
+
+__unknown_file (
+
+%16l
+j
+L L(%
+%18"__id*Q
+
+__unknown_file (5*3%
+#app.core.event_sourcing.DomainEvent"
+
+metadataë
+é
+L L(%
+%19"__mapSet*"
+
+__unknown_file (
+
+%1*(
+
+__unknown_file (
+
+metadata*#
+
+__unknown_file (
+
+%18k
+i
+M M(#
+%20"__id*P
+
+__unknown_file (4*2%
+#app.core.event_sourcing.DomainEvent"	
+versionê
+ç
+M M(#
+%21"__mapSet*"
+
+__unknown_file (
+
+%1*'
+
+__unknown_file (	
+version*#
+
+__unknown_file (
+
+%20"
+D N(	
+
+%1B'%
+#app.core.event_sourcing.DomainEventH

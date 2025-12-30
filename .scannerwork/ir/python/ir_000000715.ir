@@ -1,0 +1,227 @@
+
+2
+"audience"str
+w	"100-500"str
+"pain_point"str
+J"reason"str
+	"company"str
+4+"Fill missing context values with defaults"str
+k"competitor"str
+'"book a meeting"str
+(Q"help improve sales efficiency"str
+5	"benefit"str
+b
+"timeline"str
+Z"1"str
+"tone"str
+S
+"activity"str
+Y"link_clicks"str
+&"goal"str
+("our sales automation platform"str
+A"days_since"str
+D"original_subject"str
+9"initial outreach"str
+/"campaign_type"str
+_"budget"str
+E"previous email"str
+V"email_opens"str
+\	"replies"str
+.K%"shared interest in sales automation"str
+ "engagement"str
+3"B2B decision makers"str
+M"mutual_interests"str
+"Technology"str
+s"pain_points"str
+)
+"duration"str
+,<#"qualify and schedule next meeting"str
+
+"solution"str
+"length"str
+%"improving sales efficiency"str
+>"key_points"str
+
+"industry"str
+e"objection"str
+-"discovery"str
+!"no engagement yet"str
+`
+"standard"str
+c	"30 days"str
+"lead_name"str
+"there"str
+o"decision makers"str
+P"value_prop"str
+n"attendees"str
+/?&"product value, their needs, timeline"str
+W"2"str
+"company_size"str
+]"0"str
+q	"purpose"str
+,"call_type"str
+H"schedule a call"str
+-6$"save time and increase conversions"str
+"professional"str
+f	"unknown"str
+B"3"str
+(i"B2B sales automation platform"str
+v"employee_count"str
+8	"context"str
+!N"B2B sales optimization"str
+h"product_info"str
+G"desired_action"str
+)t "current process inefficiencies"str
+"50-200 employees"str
+	"Decision Maker"str
+*T!"opened 2 emails, clicked 1 link"str
+;"objective"str
+$"email, LinkedIn"str
+*"15"str
+#
+"channels"str
+"lead_title"str
+"their company"str
+"medium"str
+!l"traditional approaches"str
+0"cold outreach"strself
+ë ë(context
+ë ë(4"à0
+.
+
+ì ª(	defaults"#new-object#Bdict"
+ 
+
+î î( "	#map-set#:"
+ 
+
+ï ï(*
+"	#map-set#:	"
+ 
+
+ñ ñ(&"	#map-set#:"
+ 
+
+ó ó($"	#map-set#:"
+ 
+
+ò ò(."	#map-set#:"
+ 
+
+ô ô(6"	#map-set#:"
+ 
+
+ö ö(7"	#map-set#:"
+ 
+
+õ õ(""	#map-set#:"
+ 
+
+ú ú("	#map-set#:"
+ 
+
+ù ù(-""	#map-set#: !"
+ 
+
+û û()%"	#map-set#:#$"
+ 
+
+ü ü($("	#map-set#:&'"
+ 
+
+† †(+"	#map-set#:)*"
+ 
+
+° °($."	#map-set#:,-"
+ 
+
+¢ ¢(,1"	#map-set#:/0"
+ 
+
+£ £(-4"	#map-set#:23"
+ 
+
+§ §(;7"	#map-set#:56"
+ 
+
+• •():"	#map-set#:89"
+ 
+
+¶ ¶(<="	#map-set#:;<"
+ 
+
+ß ß(@@"	#map-set#:>?"
+ 
+
+® ®(C"	#map-set#:AB"
+ 
+
+© ©(0F"	#map-set#:DE"
+ 
+
+™ ™(/I"	#map-set#:GH"
+ 
+
+´ ´(;L"	#map-set#:JK"
+ 
+
+¨ ¨(8O"	#map-set#:MN"
+ 
+
+≠ ≠(9R"	#map-set#:PQ"
+ 
+
+Æ Æ(9U"	#map-set#:ST"
+ 
+
+Ø Ø(X"	#map-set#:VW"
+ 
+
+∞ ∞(["	#map-set#:YZ"
+ 
+
+± ±(^"	#map-set#:\]"
+ 
+
+≤ ≤( a"	#map-set#:_`"
+ 
+
+≥ ≥(!d"	#map-set#:bc"
+ 
+
+¥ ¥("g"	#map-set#:ef"
+ 
+
+µ µ(;j"	#map-set#:hi"
+ 
+
+∂ ∂(2m"	#map-set#:kl"
+ 
+
+∑ ∑(*p"	#map-set#:no"
+ 
+
+∏ ∏("r"	#map-set#:q-"
+ 
+
+π π(;u"	#map-set#:st"
+ 
+
+∫ ∫('x"	#map-set#:vw&
+$
+
+æ æ(&y"#new-object#Bdict'
+%
+
+æ æ(z"#unaryop **#2**:%
+#
+
+æ æ({"#map-set-all#:yz'
+%
+
+æ æ(%|"#unaryop **#2**:%
+#
+
+æ æ(%}"#map-set-all#:y|
+
+æ æ(&y*;/workspaces/codespaces-react/backend/app/core/ai_prompts.py

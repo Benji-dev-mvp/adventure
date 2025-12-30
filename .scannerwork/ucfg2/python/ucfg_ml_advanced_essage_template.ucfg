@@ -1,0 +1,142 @@
+
+9app.core.ml_advanced.NextBestAction._get_message_templateH
+</workspaces/codespaces-react/backend/app/core/ml_advanced.pyÍ Í("2*Ó
+2
+Î Î(*
+
+Ï ×(	
+%1"dictË
+È
+
+Ð Ð(V
+%2"__mapSet*"
+
+__unknown_file (
+
+%1*%
+
+__unknown_file (	
+email*_
+
+__unknown_file (CA
+?Hi {name}, I noticed your company is working on {pain_point}...·
+´
+
+Ñ Ñ(B
+%3"__mapSet*"
+
+__unknown_file (
+
+%1*$
+
+__unknown_file (
+call*L
+
+__unknown_file (0.
+,Schedule 15-min call to discuss {value_prop}¿
+¼
+
+Ò Ò(J
+%4"__mapSet*"
+
+__unknown_file (
+
+%1*(
+
+__unknown_file (
+
+linkedin*P
+
+__unknown_file (42
+0Connect on LinkedIn - shared interest in {topic}­
+ª
+
+Ó Ó(8
+%5"__mapSet*"
+
+__unknown_file (
+
+%1*'
+
+__unknown_file (	
+meeting*?
+
+__unknown_file (#!
+Let's schedule a discovery call¶
+³
+
+Ô Ô(A
+%6"__mapSet*"
+
+__unknown_file (
+
+%1*$
+
+__unknown_file (
+demo*K
+
+__unknown_file (/-
++See {product} in action - personalized demo¬
+©
+
+Õ Õ(7
+%7"__mapSet*"
+
+__unknown_file (
+
+%1*(
+
+__unknown_file (
+
+proposal*=
+
+__unknown_file (!
+Custom proposal for {company}µ
+²
+
+Ö Ö(@
+%8"__mapSet*"
+
+__unknown_file (
+
+%1*)
+
+__unknown_file (
+	follow_up*E
+
+__unknown_file ()'
+%Following up on our last conversationE
+C
+
+Ï ×(	
+	templates"__id*"
+
+__unknown_file (
+
+%1®«
+
+Ø Ø(=
+%9"dict.get*)
+
+__unknown_file (
+
+	templates*&
+
+__unknown_file (
+
+
+action*5
+
+__unknown_file (
+Reach out to prospect2get"
+
+Ø Ø(=
+
+%9:
+
+Í Í()
+action:
+
+Í+ Í(:
+	lead_dataB'%
+#app.core.ml_advanced.NextBestActionH

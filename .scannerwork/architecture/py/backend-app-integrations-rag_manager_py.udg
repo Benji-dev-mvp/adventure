@@ -1,0 +1,477 @@
+
+1.0PythonFrontend"1767052067658*py2.B·
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+,
+'backend/app/integrations/rag_manager.py9
+"
+app.integrations.rag_manager11
+
+logging12
+
+os14
+
+re16
+
+datetime18
+
+typing20
+
+llama_index.core.Document22
+%
+llama_index.core.StorageContext24
+'
+!llama_index.core.VectorStoreIndex26
+
+llama_index.core28
+3
+-llama_index.core.node_parser.SentenceSplitter30
+3
+-llama_index.core.node_parser.SimpleNodeParser32
+"
+llama_index.core.node_parser34
+3
+-llama_index.embeddings.openai.OpenAIEmbedding36
+#
+llama_index.embeddings.openai38
+$
+llama_index.llms.openai.OpenAI40
+
+llama_index.llms.openai42
+8
+2llama_index.vector_stores.qdrant.QdrantVectorStore44
+&
+ llama_index.vector_stores.qdrant46
+#
+qdrant_client.models.Distance48
+'
+!qdrant_client.models.VectorParams50
+
+qdrant_client.models52
+"
+app.integrations.rag_schemas54
+5
+/app.integrations.rag_manager.EnhancedRAGManager56
+H
+Bapp.integrations.rag_manager.EnhancedRAGManager._ensure_collection58
+
+typing.Coroutine60
+	
+str62
+D
+>app.integrations.rag_manager.EnhancedRAGManager._vector_search64
+
+
+dict66
+	
+int68
+D
+>app.integrations.rag_manager.EnhancedRAGManager._merge_results70
+
+
+list72
+
+float74
+P
+Japp.integrations.rag_manager.EnhancedRAGManager._apply_safe_context_filter76
+J
+Dapp.integrations.rag_manager.EnhancedRAGManager._get_collection_name78
+J
+Dapp.integrations.rag_manager.EnhancedRAGManager.switch_index_version80
+C
+=app.integrations.rag_manager.EnhancedRAGManager.hybrid_search82
+/
+)app.integrations.rag_schemas.SearchFilter84
+
+
+bool86
+E
+?app.integrations.rag_manager.EnhancedRAGManager._chunk_document88
+3
+-app.integrations.rag_schemas.ChunkingStrategy90
+K
+Eapp.integrations.rag_manager.EnhancedRAGManager._build_qdrant_filters92
+J
+Dapp.integrations.rag_manager.EnhancedRAGManager._add_chunks_to_index94
+F
+@app.integrations.rag_manager.EnhancedRAGManager.ingest_documents96
+3
+-app.integrations.rag_schemas.IngestionRequest98
+?
+8app.integrations.rag_manager.EnhancedRAGManager.__init__100
+F
+?app.integrations.rag_manager.EnhancedRAGManager._keyword_search102
+3
+,app.integrations.rag_manager.get_rag_manager104J
+
+8
+89j‚
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21205
+
+23
+23225
+
+25
+25245
+
+27
+27265
+
+29
+29285
+
+31
+31305
+
+33
+33325
+
+35
+35345
+
+37
+37365
+
+39
+39385
+
+41
+41405
+
+43
+43425
+
+45
+45445
+
+47
+47465
+
+49
+49485
+
+51
+51505
+
+53
+53525
+
+55
+55545
+
+57
+57566 210
+
+59
+59587 257
+
+61
+61606
+
+63
+63626
+
+65
+65647 257
+
+67
+67666
+
+69
+69686
+
+71
+71707 257
+
+73
+73726
+
+75
+75746
+
+77
+77767 257
+
+79
+79787 257
+
+81
+81807 257
+
+83
+83827 257
+
+85
+85846
+
+87
+87866
+
+89
+89887 257
+
+91
+91906
+
+93
+93927 257
+
+95
+95947 257
+
+97
+97967 257
+
+99
+99986
+
+101
+1011007 257
+
+103
+1031027 257
+
+105
+1051047 210rÝ
+
+10131*
+8 (
+
+10151*
+8 (
+
+
+10171*
+8	 	(
+
+
+10191*
+8
+ 
+(
+
+10211*
+8 (-
+
+10231*
+8 (
+
+10251*
+8 (
+
+10271*
+8 (
+
+10291*
+8 (
+
+10311*
+8* (:
+
+10331*
+8< (L
+
+10351*
+8 (L
+
+10371*
+8+ (:
+
+10391*
+8 (:
+
+10411*
+8% (+
+
+10431*
+8 (+
+
+10451*
+8. (?
+
+10471*
+8 (?
+
+10491*
+8" (*
+
+10511*
+8, (8
+
+10531*
+8 (8
+
+10551*
+8 (
+
+59613*
+8¤ ¤(!
+
+59634*
+8¤ ¤(!
+
+59634*
+8¤ ¤(!
+
+65613*
+8„ „(
+
+65634*
+8„ „(
+
+65634*
+8„ „(
+
+65674*
+8„ „(
+
+65694*
+8„ „(
+
+71733*
+8±	 ±(
+
+71734*
+8±	 ±(
+
+71734*
+8±	 ±(
+
+71754*
+8±	 ±(
+
+77733*
+8Ê	 Ê(#
+
+77734*
+8Ê	 Ê(#
+
+79633*
+8 	  (
+
+79634*
+8 	  (
+
+81613*
+8ú ú(#
+
+81634*
+8ú ú(#
+
+83613*
+8´ ´(
+
+83634*
+8´ ´(
+
+83854*
+8´ ´(
+
+83754*
+8´ ´(
+
+83694*
+8´ ´(
+
+83874*
+8´ ´(
+
+89613*
+8· ·(
+
+89914*
+8· ·(
+
+89694*
+8· ·(
+
+89694*
+8· ·(
+
+93673*
+8ò	 ò(
+
+93854*
+8ò	 ò(
+
+95613*
+8Û Û(#
+
+95734*
+8Û Û(#
+
+95634*
+8Û Û(#
+
+95634*
+8Û Û(#
+
+97613*
+8\ \(
+
+97994*
+8\ \(
+
+101634*
+8.	 .(
+
+101694*
+8.	 .(
+
+101634*
+8.	 .(
+
+101634*
+8.	 .(
+
+101634*
+8.	 .(
+
+103613*
+8¡ ¡(
+
+103634*
+8¡ ¡(
+
+103634*
+8¡ ¡(
+
+103674*
+8¡ ¡(
+
+103694*
+8¡ ¡(
+
+105573*
+8ü ü(

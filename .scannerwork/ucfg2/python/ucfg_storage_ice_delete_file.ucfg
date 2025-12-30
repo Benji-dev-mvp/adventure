@@ -1,0 +1,38 @@
+
+/app.core.storage.FileStorageService.delete_fileB
+8/workspaces/codespaces-react/backend/app/core/storage.pyx x("7*ï
+7{ {(Ol
+j
+{ {(
+%4"__id*R
+
+__unknown_file (6*4%
+#app.core.storage.FileStorageService"
+	s3_clientn
+l
+{0 {(@
+%5"__id*T
+
+__unknown_file (8*6%
+#app.core.storage.FileStorageService"
+bucket_namelj
+{ {(O
+%6*"
+
+__unknown_file (
+
+%42delete_object:
+Bucket
+
+%5:
+Key
+
+
+file_key"
+| |(
+
+True:
+x  x(-
+
+file_keyB'%
+#app.core.storage.FileStorageServiceH

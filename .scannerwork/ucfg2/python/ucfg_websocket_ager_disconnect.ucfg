@@ -1,0 +1,78 @@
+
+/app.core.websocket.ConnectionManager.disconnectD
+:/workspaces/codespaces-react/backend/app/core/websocket.py ("2*ü
+2 (,v
+t
+ (-
+%6"__id*\
+
+__unknown_file (@*>&
+$app.core.websocket.ConnectionManager"
+active_connectionsmk
+ (-
+%7*"
+
+__unknown_file (
+
+%6*'
+
+__unknown_file (
+	
+user_id2__contains__*
+3
+5*2
+3
+websocket.py"
+ (
+implicit return*Š
+4 (4v
+t
+ (+
+%1"__id*\
+
+__unknown_file (@*>&
+$app.core.websocket.ConnectionManager"
+active_connections*
+3*é
+5 (?v
+t
+ (#
+%2"__id*\
+
+__unknown_file (@*>&
+$app.core.websocket.ConnectionManager"
+active_connectionsvt
+ (,
+%3"__mapGet*"
+
+__unknown_file (
+
+%2*'
+
+__unknown_file (
+	
+user_id2__getitem__jh
+ (?
+%4*"
+
+__unknown_file (
+
+%3*)
+
+__unknown_file (
+
+	websocket2discardv
+t
+ (*
+%5"__id*\
+
+__unknown_file (@*>&
+$app.core.websocket.ConnectionManager"
+active_connections*
+3
+4:
+ (-
+	websocket:
+/ (;	
+user_idB(&
+$app.core.websocket.ConnectionManagerH

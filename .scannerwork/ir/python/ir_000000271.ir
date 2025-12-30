@@ -1,0 +1,24 @@
+
+°¦"
+        Recall learnings from similar past campaigns
+
+        Args:
+            user_id: Artisan user ID
+            campaign_type: Type of campaign (outbound, nurture, reengagement)
+            limit: Maximum results
+
+        Returns:
+            List of relevant campaign insights
+        "strself
+À À(user_id
+Á Á(campaign_type
+Â Â(limit
+Ã Ã("e#
+!
+
+Ð ×(	"#unknown-value#,
+*
+
+Ð ×(	results"#unknown-value#
+
+Ø Ø(*D/workspaces/codespaces-react/backend/app/integrations/mem0_memory.py

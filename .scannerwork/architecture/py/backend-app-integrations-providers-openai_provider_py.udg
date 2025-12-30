@@ -1,0 +1,242 @@
+
+1.0PythonFrontend"1767052071821*py2.Bš	
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+:
+5backend/app/integrations/providers/openai_provider.py9
+0
+*app.integrations.providers.openai_provider11
+
+logging12
+
+os14
+
+
+time16
+
+typing18
+
+openai20
+
+pydantic22
+%
+app.integrations.providers.base24
+
+
+json26
+?
+9app.integrations.providers.openai_provider.OpenAIProvider28
+0
+*app.integrations.providers.base.AIProvider30
+R
+Lapp.integrations.providers.openai_provider.OpenAIProvider.supports_streaming32
+
+
+bool34
+F
+@app.integrations.providers.openai_provider.OpenAIProvider.stream36
+
+typing.Coroutine38
+	
+str40
+
+
+dict42
+L
+Fapp.integrations.providers.openai_provider.OpenAIProvider.count_tokens44
+	
+int46
+D
+>app.integrations.providers.openai_provider.OpenAIProvider.name48
+H
+Bapp.integrations.providers.openai_provider.OpenAIProvider.__init__50
+
+float52
+H
+Bapp.integrations.providers.openai_provider.OpenAIProvider.generate54
+S
+Mapp.integrations.providers.openai_provider.OpenAIProvider.generate_structured56
+
+
+type58
+Y
+Sapp.integrations.providers.openai_provider.OpenAIProvider.supports_function_calling60J
+
+8
+89j³
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21205
+
+23
+23225
+
+25
+25245
+
+27
+27265
+
+29
+29286 210
+
+31
+31306
+
+33
+33327 229
+
+35
+35346
+
+37
+37367 229
+
+39
+39386
+
+41
+41406
+
+43
+43426
+
+45
+45447 229
+
+47
+47466
+
+49
+49487 229
+
+51
+51507 229
+
+53
+53526
+
+55
+55547 229
+
+57
+57567 229
+
+59
+59586
+
+61
+61607 229rÎ
+
+10131*
+8 (
+
+10151*
+8 (
+
+
+10171*
+8 (
+
+10191*
+8 (+
+
+10211*
+8
+ 
+(
+
+10231*
+8 (
+
+10251*
+8 (/
+
+10271*
+8q q(
+
+29312*
+8 (
+
+33353*
+8®	 ®(
+
+37393*
+8Š Š(
+
+37414*
+8Š Š(
+
+37434*
+8Š Š(
+
+45473*
+8¥	 ¥(
+
+45414*
+8¥	 ¥(
+
+49413*
+8ª	 ª(
+
+51414*
+8	 (
+
+51534*
+8	 (
+
+51434*
+8	 (
+
+55393*
+8' '(
+
+55414*
+8' '(
+
+55434*
+8' '(
+
+57393*
+8M M("
+
+57414*
+8M M("
+
+57594*
+8M M("
+
+57434*
+8M M("
+
+61353*
+8²	 ²("

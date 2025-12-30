@@ -1,0 +1,298 @@
+
+1.0PythonFrontend"1767052072260*py2.Bž
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+(
+#backend/app/integrations/schemas.py9
+
+app.integrations.schemas11
+
+datetime12
+
+
+enum14
+
+typing16
+
+pydantic.field_validator18
+
+pydantic20
+5
+/app.integrations.schemas.ConversationResponseV122
+
+pydantic.main.BaseModel24
+'
+!app.integrations.schemas.ToolCall26
+9
+3app.integrations.schemas.CampaignStrategyResponseV128
+0
+*app.integrations.schemas.CampaignObjective30
+	
+str32
+
+	enum.Enum34
+2
+,app.integrations.schemas.ConversationMessage36
+/
+)app.integrations.schemas.ConversationRole38
+7
+1app.integrations.schemas.BatchScoreLeadsRequestV140
+-
+'app.integrations.schemas.BatchJobStatus42
+.
+(app.integrations.schemas.AiErrorResponse44
+(
+"app.integrations.schemas.EmailTone46
+1
++app.integrations.schemas.LeadScoreRequestV148
++
+%app.integrations.schemas.SequenceStep50
+,
+&app.integrations.schemas.ScoringFactor52
+/
+)app.integrations.schemas.BudgetResponseV154
+4
+.app.integrations.schemas.ChannelRecommendation56
+)
+#app.integrations.schemas.UsageStats58
+2
+,app.integrations.schemas.LeadScoreResponseV160
+D
+>app.integrations.schemas.LeadScoreResponseV1.validate_priority62
+A
+;app.integrations.schemas.LeadScoreResponseV1.validate_grade64
+8
+2app.integrations.schemas.CampaignStrategyRequestV166
+8
+2app.integrations.schemas.BatchScoreLeadsResponseV168
+5
+/app.integrations.schemas.EmailGenerateRequestV170
+4
+.app.integrations.schemas.ConversationRequestV172
+(
+"app.integrations.schemas.ErrorCode74
+6
+0app.integrations.schemas.EmailGenerateResponseV176
+G
+Aapp.integrations.schemas.EmailGenerateResponseV1.validate_subject78J
+
+8
+89jÄ
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21205
+
+23
+23226 210
+
+25
+25246
+
+27
+27266 210
+
+29
+29286 210
+
+31
+31306 210
+
+33
+33326
+
+35
+35346
+
+37
+37366 210
+
+39
+39386 210
+
+41
+41406 210
+
+43
+43426 210
+
+45
+45446 210
+
+47
+47466 210
+
+49
+49486 210
+
+51
+51506 210
+
+53
+53526 210
+
+55
+55546 210
+
+57
+57566 210
+
+59
+59586 210
+
+61
+61606 210
+
+63
+63627 261
+
+65
+65647 261
+
+67
+67666 210
+
+69
+69686 210
+
+71
+71706 210
+
+73
+73726 210
+
+75
+75746 210
+
+77
+77766 210
+
+79
+79787 277r€
+
+10131*
+8 (
+
+10151*
+8 (
+
+10171*
+8	 	(-
+
+10191*
+8( (7
+
+10211*
+8 (7
+
+23252*
+8‡ ‡(
+
+27252*
+8ÿ ÿ(
+
+29252*
+8Ï Ï(!
+
+31332*
+8¤ ¤(
+
+31352*
+8¤ ¤(
+
+37252*
+8í í(
+
+39332*
+8å å(
+
+39352*
+8å å(
+
+41252*
+8™ ™(
+
+43332*
+8¢ ¢(
+
+43352*
+8¢ ¢(
+
+45252*
+8   (
+
+47332*
+8l l(
+
+47352*
+8l l(
+
+49252*
+80 0(
+
+51252*
+8¸ ¸(
+
+53252*
+8? ?(
+
+55252*
+8Ê Ê(
+
+57252*
+8® ®(
+
+59252*
+8¾ ¾(
+
+61252*
+8I I(
+
+67252*
+8Â Â( 
+
+69252*
+8¬ ¬( 
+
+71252*
+8u u(
+
+73252*
+8õ õ(
+
+75332*
+8 (
+
+75352*
+8 (
+
+77252*
+8… …(

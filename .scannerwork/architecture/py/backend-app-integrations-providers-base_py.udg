@@ -1,0 +1,218 @@
+
+1.0PythonFrontend"1767052071006*py2.Bæ
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+/
+*backend/app/integrations/providers/base.py9
+%
+app.integrations.providers.base11
+	
+abc12
+
+datetime14
+
+typing16
+
+pydantic18
+6
+0app.integrations.providers.base.ProviderResponse20
+
+pydantic.main.BaseModel22
+0
+*app.integrations.providers.base.AIProvider24
+
+abc.ABC26
+=
+7app.integrations.providers.base.AIProvider.count_tokens28
+	
+int30
+	
+str32
+J
+Dapp.integrations.providers.base.AIProvider.supports_function_calling34
+
+
+bool36
+9
+3app.integrations.providers.base.AIProvider.generate38
+
+typing.Coroutine40
+
+
+dict42
+D
+>app.integrations.providers.base.AIProvider.generate_structured44
+
+
+type46
+7
+1app.integrations.providers.base.AIProvider.stream48
+5
+/app.integrations.providers.base.AIProvider.name50
+C
+=app.integrations.providers.base.AIProvider.supports_streaming52
+9
+3app.integrations.providers.base.AIProvider.__init__54
+
+float56J
+
+8
+89j“
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21206 210
+
+23
+23226
+
+25
+25246 210
+
+27
+27266
+
+29
+29287 225
+
+31
+31306
+
+33
+33326
+
+35
+35347 225
+
+37
+37366
+
+39
+39387 225
+
+41
+41406
+
+43
+43426
+
+45
+45447 225
+
+47
+47466
+
+49
+49487 225
+
+51
+51507 225
+
+53
+53527 225
+
+55
+55547 225
+
+57
+57566rð
+
+10131*
+8 ($
+
+10151*
+8 (
+
+10171*
+8	 	(6
+
+10191*
+8 (&
+
+21232*
+8 (
+
+25272*
+8 (
+
+29313*
+8\	 \(
+
+29334*
+8\	 \(
+
+35373*
+8s	 s("
+
+39413*
+8' '(
+
+39334*
+8' '(
+
+39434*
+8' '(
+
+45413*
+87 7("
+
+45334*
+87 7("
+
+45474*
+87 7("
+
+45434*
+87 7("
+
+49413*
+8L L(
+
+49334*
+8L L(
+
+49434*
+8L L(
+
+51333*
+8i	 i(
+
+53373*
+8n	 n(
+
+55334*
+8	 (
+
+55574*
+8	 (
+
+55434*
+8	 (

@@ -1,0 +1,117 @@
+
+Tapp.integrations.pydantic_agent.PydanticAIAgent._create_lead_scorer.get_company_infoS
+G/workspaces/codespaces-react/backend/app/integrations/pydantic_agent.py± ±(""2*‰
+2
+² ²(<I
+G
+
+´ ´(
+%1"__id*-
+
+__unknown_file (*
+
+ctx"
+depsQ
+O
+
+´ ´(,
+%2"__id*5
+
+__unknown_file (*
+
+%1"
+lead_databaseC
+A
+
+´ ´(,	
+lead_db"__id*"
+
+__unknown_file (
+
+%2
+
+µ5 µ(7
+%3"dict•’
+
+µ µ(8
+%4*'
+
+__unknown_file (
+	
+lead_db*,
+
+__unknown_file (
+
+company_name*"
+
+__unknown_file (
+
+%32getH
+F
+
+µ µ(8
+company_data"__id*"
+
+__unknown_file (
+
+%4—”
+
+¶5 ¶(X
+%5*,
+
+__unknown_file (
+
+company_data*$
+
+__unknown_file (
+size*'
+
+__unknown_file (	
+Unknown2getœ™
+¶f ¶(
+%6*,
+
+__unknown_file (
+
+company_data*(
+
+__unknown_file (
+
+industry*'
+
+__unknown_file (	
+Unknown2getÆ
+Ã
+¶ ¶(
+%7"__concat*
+
+¶ ¶(
+	Company: *
+
+¶ ¶(+
+
+company_name*
+
+¶, ¶(4
+
+, Size: *
+
+¶5 ¶(X
+
+%5*
+
+¶Y ¶(e
+, Industry: *
+¶f ¶(
+
+%6"
+¶ ¶(
+
+%7:
+
+±# ±(@
+ctx:
+
+±B ±(S
+company_nameB31
+/app.integrations.pydantic_agent.PydanticAIAgentH

@@ -1,0 +1,17 @@
+
+-$"Decorator to require feature flag."str	flag_name
+¢ ¢(""Á#
+!
+
+² ²("#unknown-value#*
+(
+
+¥ ²(%closure"#new-object#-
++
+
+¥ ²("#set-field# flag_name:-
++
+
+¥ ²("?python-partial-apply?:
+
+² ²(*>/workspaces/codespaces-react/backend/app/core/feature_flags.py

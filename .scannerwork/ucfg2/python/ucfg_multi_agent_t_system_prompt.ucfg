@@ -1,0 +1,154 @@
+
+8app.core.multi_agent.SpecializedAgent._get_system_promptF
+</workspaces/codespaces-react/backend/app/core/multi_agent.pyU U("2*ò
+2V V(-
+W g(	
+%1"dicth
+f
+X X( 
+%2"__id*N
+
+__unknown_file (2*0 
+app.core.multi_agent.AgentRole"
+
+RESEARCHERë
+è
+X Z(6
+%3"__mapSet*"
+
+__unknown_file (
+
+%1*"
+
+__unknown_file (
+
+%2*ƒ
+
+__unknown_file (æã
+àYou are a Research Agent specializing in B2B prospect research.
+Your expertise: Company analysis, technographic research, intent signal detection, competitive intelligence.
+You provide detailed, actionable research insights.d
+b
+[ [(
+%4"__id*J
+
+__unknown_file (.*, 
+app.core.multi_agent.AgentRole"
+WRITERÖ
+Ó
+[ ](5
+%5"__mapSet*"
+
+__unknown_file (
+
+%1*"
+
+__unknown_file (
+
+%4*î
+
+__unknown_file (ÑÎ
+ËYou are a Writing Agent specializing in B2B sales emails.
+Your expertise: Persuasive copywriting, personalization, objection handling, CTA optimization.
+You craft compelling, conversion-focused messages.e
+c
+^ ^(
+%6"__id*K
+
+__unknown_file (/*- 
+app.core.multi_agent.AgentRole"	
+ANALYSTÝ
+Ú
+^ `(8
+%7"__mapSet*"
+
+__unknown_file (
+
+%1*"
+
+__unknown_file (
+
+%6*õ
+
+__unknown_file (ØÕ
+ÒYou are an Analyst Agent specializing in data interpretation.
+Your expertise: Lead scoring, engagement analysis, campaign performance, predictive analytics.
+You provide data-driven insights and recommendations.m
+k
+a a(%
+%8"__id*S
+
+__unknown_file (7*5 
+app.core.multi_agent.AgentRole"
+QUALITY_CHECKER¸
+µ
+a c(0
+%9"__mapSet*"
+
+__unknown_file (
+
+%1*"
+
+__unknown_file (
+
+%8*Ð
+
+__unknown_file (³°
+­You are a Quality Assurance Agent.
+Your expertise: Email review, compliance checking, brand voice consistency, error detection.
+You ensure high-quality, professional output.i
+g
+d d( 
+%10"__id*N
+
+__unknown_file (2*0 
+app.core.multi_agent.AgentRole"
+
+STRATEGISTÜ
+Ù
+d f(.
+%11"__mapSet*"
+
+__unknown_file (
+
+%1*#
+
+__unknown_file (
+
+%10*ò
+
+__unknown_file (ÕÒ
+ÏYou are a Strategy Agent specializing in sales strategy.
+Your expertise: Campaign planning, audience segmentation, timing optimization, multi-channel coordination.
+You design winning go-to-market strategies.A
+?
+W g(		
+prompts"__id*"
+
+__unknown_file (
+
+%1j
+h
+i i($
+%12"__id*O
+
+__unknown_file (3*1'
+%app.core.multi_agent.SpecializedAgent"
+role²¯
+i i(H
+%13"dict.get*'
+
+__unknown_file (
+	
+prompts*#
+
+__unknown_file (
+
+%12*?
+
+__unknown_file (#!
+You are a helpful AI assistant.2get"
+i i(H
+
+%13B)'
+%app.core.multi_agent.SpecializedAgentH

@@ -1,0 +1,30 @@
+
+Uapp.integrations.langchain_agent.LangChainOrchestrator._create_tools.analyze_campaignT
+H/workspaces/codespaces-react/backend/app/integrations/langchain_agent.py¬ ¬(""2*Õ
+2
+­ ­(.­
+ª
+
+¯ ¯(j
+%1"__concat*
+
+¯ ¯(
+	Campaign *
+
+¯ ¯(*
+
+campaign_id*P
+
+¯+ ¯(iB@
+> analysis: Open rate 45%, Reply rate 12%, Conversion rate 3.5%"
+
+¯ ¯(j
+
+%1:
+
+¬# ¬(3
+campaign_id:
+
+¬5 ¬(G	
+metricsB:8
+6app.integrations.langchain_agent.LangChainOrchestratorH

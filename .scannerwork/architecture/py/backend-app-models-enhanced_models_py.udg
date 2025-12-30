@@ -1,0 +1,203 @@
+
+1.0PythonFrontend"1767052071090*py2.Bù
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+*
+%backend/app/models/enhanced_models.py9
+ 
+app.models.enhanced_models11
+
+re12
+
+datetime14
+
+
+enum16
+
+typing18
+
+pydantic20
+
+sqlmodel.TEXT22
+
+sqlmodel.Column24
+
+sqlmodel.Field26
+
+sqlmodel.Index28
+
+sqlmodel.SQLModel30
+
+sqlmodel32
+-
+'app.models.enhanced_models.EnhancedLead34
+<
+6app.models.enhanced_models.EnhancedLead.validate_phone36
+<
+6app.models.enhanced_models.EnhancedLead.validate_email38
+/
+)app.models.enhanced_models.CampaignStatus40
+	
+str42
+
+	enum.Enum44
+)
+#app.models.enhanced_models.Priority46
+)
+#app.models.enhanced_models.AuditLog48
++
+%app.models.enhanced_models.LeadStatus50
+1
++app.models.enhanced_models.EnhancedCampaign52
+'
+!app.models.enhanced_models.APIKey54
+(
+"app.models.enhanced_models.Webhook56
+%
+app.models.enhanced_models.Team58J
+
+8
+89j¨
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21205
+
+23
+23225
+
+25
+25245
+
+27
+27265
+
+29
+29285
+
+31
+31305
+
+33
+33325
+
+35
+35346 210
+
+37
+37367 235
+
+39
+39387 235
+
+41
+41406 210
+
+43
+43426
+
+45
+45446
+
+47
+47466 210
+
+49
+49486 210
+
+51
+51506 210
+
+53
+53526 210
+
+55
+55546 210
+
+57
+57566 210
+
+59
+59586 210r∫
+
+10131*
+8 (
+
+
+10151*
+8 (
+
+10171*
+8 (
+
+10191*
+8 (
+
+10211*
+8
+ 
+()
+
+10231*
+8 (
+
+10251*
+8 ("
+
+10271*
+8$ ()
+
+10291*
+8+ (0
+
+10311*
+82 (:
+
+10331*
+8 (:
+
+41432*
+8 (
+
+41452*
+8 (
+
+47432*
+8& &(
+
+47452*
+8& &(
+
+51432*
+8 (
+
+51452*
+8 (

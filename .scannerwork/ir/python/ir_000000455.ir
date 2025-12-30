@@ -1,0 +1,40 @@
+
+"email"str
+"campaign_created"str
+	truebool
+"email_content"str
+"confidence"str
+"goal"str
+"reasoning"str
+"lead"str
+ri"
+    Create campaign with explainable AI reasoning
+
+    Returns campaign with full reasoning trace
+    "str	lead_dataG G(campaign_goalG G(1openai_api_keyG3 G(F"¼!
+
+N N(I"#unknown-value#)
+'
+N N(Iresult"#unknown-value#$
+"
+P W("#new-object#Bdict 
+
+Q Q( 
+"	#map-set#:	"
+ 
+R R(("#array-read#: 
+
+R R(("	#map-set#:"
+ 
+S S(("#array-read#: 
+
+S S(("	#map-set#:"
+ 
+T T(*"#array-read#: 
+
+T T(*"	#map-set#: 
+
+U U("	#map-set#: 
+
+V V("	#map-set#:
+P W(*D/workspaces/codespaces-react/backend/app/api/advanced_integration.py

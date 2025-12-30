@@ -1,0 +1,30 @@
+
+"Parse AI config JSON"strself
+‡ ‡("},
+*
+
+‰ ‰("#get-field# ai_config:+
+)
+
+‰ ‰("
+__bool__*:BboolH "
+
+‰ ‰( *
+‰ ‰(
+"‘,
+*
+
+Š Š(,"#get-field# ai_config:#
+!
+
+Š Š("#unknown-value#(
+&
+
+Š Š(-"?python-unknown?:
+
+Š Š(-"<&
+$
+
+‹ ‹("#new-object#Bdict
+
+‹ ‹(*;/workspaces/codespaces-react/backend/app/models/playbook.py

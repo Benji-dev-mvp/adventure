@@ -1,0 +1,203 @@
+
+:app.integrations.pydantic_agent.PydanticAIAgent.score_leadS
+G/workspaces/codespaces-react/backend/app/integrations/pydantic_agent.py∂ ∂("2*ê
+2
+∑ ¿(óî
+
+¬
+ ¬(-
+%1*)
+
+__unknown_file (
+
+	lead_data*'
+
+__unknown_file (	
+company*'
+
+__unknown_file (	
+Unknown2getòï
+
+√ √(/
+%2*)
+
+__unknown_file (
+
+	lead_data*(
+
+__unknown_file (
+
+industry*'
+
+__unknown_file (	
+Unknown2getîë
+
+ƒ ƒ('
+%3*)
+
+__unknown_file (
+
+	lead_data*$
+
+__unknown_file (
+size*'
+
+__unknown_file (	
+Unknown2getîë
+
+≈
+ ≈(*
+%4*)
+
+__unknown_file (
+
+	lead_data*$
+
+__unknown_file (
+name*'
+
+__unknown_file (	
+Unknown2getïí
+
+≈. ≈(O
+%5*)
+
+__unknown_file (
+
+	lead_data*%
+
+__unknown_file (	
+title*'
+
+__unknown_file (	
+Unknown2getöó
+
+∆ ∆(3
+%6*)
+
+__unknown_file (
+
+	lead_data**
+
+__unknown_file (
+
+engagement*'
+
+__unknown_file (	
+No data2get˛
+˚
+
+¡ «(
+%7"__concat*,
+
+¡ ¬(	
+Score this lead:
+Company: *
+
+¬
+ ¬(-
+
+%1*
+
+¬. √(
+
+
+Industry: *
+
+√ √(/
+
+%2*
+
+√0 ƒ(	
+
+Size: *
+
+ƒ ƒ('
+
+%3*&
+
+ƒ( ≈(	
+ employees
+Contact: *
+
+≈
+ ≈(*
+
+%4*
+
+≈+ ≈(-
+ (*
+
+≈. ≈(O
+
+%5* 
+
+≈P ∆(
+)
+Engagement: *
+
+∆ ∆(3
+
+%6*
+∆4 «
+
+B
+@
+
+¡ «(
+prompt"__id*"
+
+__unknown_file (
+
+%7|
+z
+
+… …('
+%8"__id*`
+
+__unknown_file (D*B1
+/app.integrations.pydantic_agent.PydanticAIAgent"
+lead_scorerzx
+
+… …(A
+%9*"
+
+__unknown_file (
+
+%8*&
+
+__unknown_file (
+
+
+prompt2run:
+deps
+	
+contextB
+@
+
+… …(A
+result"__id*"
+
+__unknown_file (
+
+%9M
+K
+
+   (
+%10"__id*0
+
+__unknown_file (*
+
+result"
+data"
+
+   (
+
+%10:
+
+∂ ∂(8
+	lead_data:
+
+∂: ∂(O	
+contextB31
+/app.integrations.pydantic_agent.PydanticAIAgentH

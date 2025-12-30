@@ -1,0 +1,236 @@
+
+1.0PythonFrontend"1767052078632*py2.B§
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
++
+&backend/app/services/openai_service.py9
+!
+app.services.openai_service11
+
+logging12
+
+os14
+
+typing16
+
+pydantic18
+
+openai20
+8
+2app.services.openai_service.EmailGenerationRequest22
+
+pydantic.main.BaseModel24
+/
+)app.services.openai_service.OpenAIService26
+C
+=app.services.openai_service.OpenAIService._build_email_prompt28
+	
+str30
+=
+7app.services.openai_service.OpenAIService.is_configured32
+
+
+bool34
+>
+8app.services.openai_service.OpenAIService.generate_email36
+9
+3app.services.openai_service.EmailGenerationResponse38
+8
+2app.services.openai_service.OpenAIService.__init__40
+D
+>app.services.openai_service.OpenAIService.personalize_template42
+
+
+dict44
+E
+?app.services.openai_service.OpenAIService._parse_email_response46
+	
+int48
+:
+4app.services.openai_service.OpenAIService._mock_chat50
+4
+.app.services.openai_service.OpenAIService.chat52
+;
+5app.services.openai_service.OpenAIService._mock_email54J
+
+8
+89jå
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21205
+
+23
+23226 210
+
+25
+25246
+
+27
+27266 210
+
+29
+29287 227
+
+31
+31306
+
+33
+33327 227
+
+35
+35346
+
+37
+37367 227
+
+39
+39386 210
+
+41
+41407 227
+
+43
+43427 227
+
+45
+45446
+
+47
+47467 227
+
+49
+49486
+
+51
+51507 227
+
+53
+53527 227
+
+55
+55547 227r 
+
+10131*
+8 (
+
+10151*
+8 (
+
+
+10171*
+8 (-
+
+10191*
+8
+ 
+(
+
+10211*
+8 (
+
+23252*
+8 (
+
+29313*
+8·	 ·(
+
+29314*
+8·	 ·(
+
+29314*
+8·	 ·(
+
+29314*
+8·	 ·(
+
+33353*
+8∂	 ∂(
+
+37393*
+8<	 <(
+
+37314*
+8<	 <(
+
+37314*
+8<	 <(
+
+37314*
+8<	 <(
+
+43313*
+8≠	 ≠(
+
+43314*
+8≠	 ≠(
+
+43454*
+8≠	 ≠(
+
+47393*
+8˜	 ˜(
+
+47314*
+8˜	 ˜(
+
+47494*
+8˜	 ˜(
+
+47314*
+8˜	 ˜(
+
+51453*
+8¨	 ¨(
+
+51314*
+8¨	 ¨(
+
+53453*
+8u	 u(
+
+53314*
+8u	 u(
+
+55393*
+8ö	 ö(
+
+55314*
+8ö	 ö(
+
+55314*
+8ö	 ö(
+
+55314*
+8ö	 ö(
+
+39252*
+8! !(

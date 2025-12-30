@@ -1,0 +1,151 @@
+
+1.0PythonFrontend"1767052075259*py2.Bæ	
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+#
+backend/tests/test_security.py9
+
+tests.test_security11
+
+datetime12
+
+app.core.security14
+
+app.models.user16
+#
+app.models.schemas.Permission18
+
+app.models.schemas20
+
+os22
+-
+'tests.test_security.TestRBACPermissions24
+F
+@tests.test_security.TestRBACPermissions.test_manager_permissions26
+C
+=tests.test_security.TestRBACPermissions.test_user_permissions28
+F
+@tests.test_security.TestRBACPermissions.test_has_all_permissions30
+L
+Ftests.test_security.TestRBACPermissions.test_admin_has_all_permissions32
+-
+'tests.test_security.TestPasswordHashing34
+C
+=tests.test_security.TestPasswordHashing.test_password_hashing36
+b
+\tests.test_security.TestPasswordHashing.test_password_verification_fails_with_wrong_password38
+U
+Otests.test_security.TestPasswordHashing.test_different_hashes_for_same_password40
+'
+!tests.test_security.TestJWTTokens42
+@
+:tests.test_security.TestJWTTokens.test_decode_access_token44
+G
+Atests.test_security.TestJWTTokens.test_invalid_token_raises_error46
+@
+:tests.test_security.TestJWTTokens.test_create_access_token48
+B
+<tests.test_security.TestJWTTokens.test_token_with_expiration50J
+
+8
+89jò
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21205
+
+23
+23225
+
+25
+25246 210
+
+27
+27267 225
+
+29
+29287 225
+
+31
+31307 225
+
+33
+33327 225
+
+35
+35346 210
+
+37
+37367 235
+
+39
+39387 235
+
+41
+41407 235
+
+43
+43426 210
+
+45
+45447 243
+
+47
+47467 243
+
+49
+49487 243
+
+51
+51507 243r¶
+
+10131*
+8 (
+
+10151*
+8 (
+
+10171*
+8
+ 
+(+
+
+10191*
+8  (*
+
+10211*
+8 (*
+
+10231*
+8 (
+
+10231*
+8+ +(

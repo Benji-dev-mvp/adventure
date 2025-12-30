@@ -1,0 +1,133 @@
+
+$-1int
+
+0int
+<"error_count"str
+8"slow_requests_count"str
+5"max_response_time"str
+
+2int
+"division by zero"bool
+%"Get performance statistics"str
+("p99_response_time"str
+)100int
+
+#1int
+"p95_response_time"str
++0.99float
+"total_requests"str
+"avg_response_time"str
+2"min_response_time"str
+"S3518"bool
+0.95float
+20int
+"median_response_time"str
+"a"boolselfC C("¤.
+,
+E E(!"#get-field# request_times:)
+'
+E E(!"
+__bool__*:BboolH)
+'
+E E(!"#unaryop !#2!:Bbool"
+E E(! *E E(
+"8$
+"
+F F("#new-object#Bdict
+F F("ö.
+,
+H H(0"#get-field# request_times:<
+:
+H H(1sorted_times"
+builtinssorted*:Blist1
+/
+I I(!	count"
+builtinslen*:Bint$
+"
+K Y(	
+"#new-object#Bdict 
+
+L L(#"	#map-set#:
+	%
+#
+M! M(2"
+builtinssum*:*
+(
+M! M(:"
+#binop !=#2!=:	Bbool 
+
+M! M(:"
+#assert#:1
+/
+M! M(:"#dependent-value#*:	Bfloat 
+
+M M(:"	#map-set#:
+'
+%
+N1 N(;"
+#binop //#*2//:	"
+ 
+N$ N(<"#array-read#: 
+
+N N(<"	#map-set#:
+(
+&
+P3 P(="	#binop >#2>:	Bbool&"$
+P3 P(= *P0 P(22P> P(B"™1
+/
+P! P(- "#dependent-value#*:	Bfloat.
+,
+P P(.!"#dependent-value#*: Bint"
+ 
+P P(/""#array-read#:!
+P P(S"6"
+ 
+PC P(S%"#array-read#:$
+P P(S"ˆ*&"% 
+
+O Q('"	#map-set#:
+&(
+&
+S3 S(>*"	#binop >#2>:	)Bbool&"$
+S3 S(>* *S0 S(22S? S(C"™1
+/
+S! S(-,"#dependent-value#*:	+Bfloat.
+,
+S S(.-"#dependent-value#*:,Bint"
+ 
+S S(/."#array-read#:-
+S S(T"6"
+ 
+SD S(T/"#array-read#:$
+S S(T"Ï*0./ 
+
+R T(1"	#map-set#:
+(0"
+ 
+U! U(03"#array-read#: 
+
+U U(04"	#map-set#:
+23"
+ 
+V! V(16"#array-read#:$ 
+
+V V(17"	#map-set#:
+56.
+,
+W' W(99"#get-field# slow_requests:*
+(
+W# W(::"
+builtinslen*:9Bint 
+
+W W(:;"	#map-set#:
+8:/
+-
+X X(2="#get-field# error_requests:*
+(
+X X(3>"
+builtinslen*:=Bint 
+
+X X(3?"	#map-set#:
+<>
+K Y(	
+*</workspaces/codespaces-react/backend/app/core/performance.py

@@ -1,0 +1,28 @@
+
+®¤"Hi there,
+
+I noticed that many {persona}s are struggling with {pain_point}.
+
+We've helped similar companies overcome this challenge and achieve significant improvements in their outreach effectiveness.
+
+Would you be open to a brief 15-minute call to explore how we might help?
+
+Best regards"str
+5,"Generate mock email when API not available"str
+$"Schedule a 15-minute call"str
+
+	0int
+
+"mock"str
+,#"Quick question about {pain_point}"strself
+š š(persona
+š š(&
+pain_point
+š( š(7tone
+š9 š(B"{g
+e
+
+œ ª(	"EmailGenerationResponse:	
+B3app.services.openai_service.EmailGenerationResponse
+
+œ ª(	*C/workspaces/codespaces-react/backend/app/services/openai_service.py

@@ -1,6 +1,6 @@
 /**
  * MultiAgentChat.jsx - Premium Multi-Agent Conversation Interface
- * 
+ *
  * Inspired by modern messaging apps with:
  * - Multiple AI agents specialized for different sales roles
  * - Sidebar with agent list and status
@@ -93,8 +93,16 @@ const INITIAL_AGENTS = [
 ];
 
 const SALES_METHODOLOGIES = [
-  { value: 'meddic', label: 'MEDDIC', description: 'Metrics, Economic Buyer, Decision Criteria...' },
-  { value: 'spin', label: 'SPIN Selling', description: 'Situation, Problem, Implication, Need-payoff' },
+  {
+    value: 'meddic',
+    label: 'MEDDIC',
+    description: 'Metrics, Economic Buyer, Decision Criteria...',
+  },
+  {
+    value: 'spin',
+    label: 'SPIN Selling',
+    description: 'Situation, Problem, Implication, Need-payoff',
+  },
   { value: 'challenger', label: 'Challenger Sale', description: 'Teach, Tailor, Take Control' },
   { value: 'sandler', label: 'Sandler Selling', description: 'Pain, Budget, Decision process' },
   { value: 'gap', label: 'GAP Selling', description: 'Current State, Future State, Impact' },
@@ -123,9 +131,7 @@ const StatusIndicator = ({ status }) => {
     offline: 'bg-slate-500',
   };
 
-  return (
-    <span className={`w-3 h-3 rounded-full ${colors[status]} border-2 border-slate-800`} />
-  );
+  return <span className={`w-3 h-3 rounded-full ${colors[status]} border-2 border-slate-800`} />;
 };
 
 // ============================================================================
@@ -269,10 +275,7 @@ const CreateAgentModal = ({ isOpen, onClose, onCreate }) => {
       >
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-xl font-bold text-white">Create New AI Agent</h3>
-          <button
-            onClick={onClose}
-            className="p-2 hover:bg-slate-700 rounded-lg transition-colors"
-          >
+          <button onClick={onClose} className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
             <X size={20} className="text-slate-400" />
           </button>
         </div>
@@ -308,9 +311,7 @@ const CreateAgentModal = ({ isOpen, onClose, onCreate }) => {
 
           {/* Role */}
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
-              Primary Role
-            </label>
+            <label className="block text-sm font-medium text-slate-300 mb-2">Primary Role</label>
             <select
               value={role}
               onChange={e => setRole(e.target.value)}
@@ -439,11 +440,9 @@ const MultiAgentChat = () => {
 
   const handleAgentSwitch = agent => {
     setActiveAgent(agent);
-    
+
     // Clear unread count
-    setAgents(prev =>
-      prev.map(a => (a.id === agent.id ? { ...a, unreadCount: 0 } : a))
-    );
+    setAgents(prev => prev.map(a => (a.id === agent.id ? { ...a, unreadCount: 0 } : a)));
 
     // Load conversation for this agent (in real app, would fetch from backend)
     setMessages([
@@ -512,7 +511,10 @@ const MultiAgentChat = () => {
 
             {/* Search */}
             <div className="relative">
-              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <Search
+                size={16}
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+              />
               <input
                 type="text"
                 placeholder="Search agents..."
@@ -589,11 +591,7 @@ const MultiAgentChat = () => {
           <div className="flex-1 overflow-y-auto p-6 space-y-1">
             <AnimatePresence>
               {messages.map(msg => (
-                <MessageBubble
-                  key={msg.id}
-                  message={msg}
-                  isUser={msg.role === 'user'}
-                />
+                <MessageBubble key={msg.id} message={msg} isUser={msg.role === 'user'} />
               ))}
               {isTyping && <TypingIndicator agentName={activeAgent.name} />}
               <div ref={messagesEndRef} />

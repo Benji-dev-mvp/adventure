@@ -312,19 +312,30 @@ const SavedPromptsSidebar = ({ savedPrompts, onSelect, onDelete, isOpen }) => {
 // MAIN COMPONENT - AVA CHAT
 // ============================================================================
 const AvaChat = () => {
-  const [messages, setMessages] = useState(getAIMessages());
+  const [messages, setMessages] = useState([
+    {
+      role: 'assistant',
+      content: "👋 Hi! I'm Ava, your AI BDR. I've analyzed your target accounts and found 247 high-intent prospects. Ready to launch a campaign?",
+      timestamp: '2 min ago',
+      suggestions: [
+        { icon: '📊', label: 'Show campaign performance' },
+        { icon: '🎯', label: 'Find more prospects' },
+        { icon: '📧', label: 'Write email for me' },
+        { icon: '🚀', label: 'Create sequence' },
+        { icon: '💬', label: 'Analyze replies' },
+      ],
+    },
+    {
+      role: 'assistant',
+      content: "💡 I recommend a 5-step email sequence targeting VP of Sales at Series B companies. I found 89 prospects who just raised funding. Want me to set it up?",
+      timestamp: '30 sec ago',
+      suggestions: [],
+    },
+  ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [savedPrompts, setSavedPrompts] = useState(getSavedPrompts());
-  const [showSavedPrompts, setShowSavedPrompts] = useState(false);
-  const [showFullscreen, setShowFullscreen] = useState(false);
-  const [liveStats, setLiveStats] = useState({
-    responsesGenerated: 342,
-    avgResponseTime: 2.3,
-    satisfaction: 96,
-  });
   const messagesEndRef = useRef(null);
-  const { toast } = useToast();
+  const { showToast } = useToast();
 
   // Auto-scroll to bottom
   const scrollToBottom = () => {
@@ -335,67 +346,53 @@ const AvaChat = () => {
     scrollToBottom();
   }, [messages, isLoading]);
 
-  // Simulate live stats updates
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setLiveStats(prev => ({
-        responsesGenerated: prev.responsesGenerated + Math.floor(Math.random() * 2),
-        avgResponseTime: Math.max(
-          1.5,
-          Math.min(3.5, prev.avgResponseTime + (Math.random() * 0.4 - 0.2))
-        ),
-        satisfaction: Math.max(94, Math.min(98, prev.satisfaction + (Math.random() * 2 - 1))),
-      }));
-    }, 8000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   const handleSend = useCallback(
     async (text = null) => {
       const promptText = (text || input).trim();
       if (!promptText) return;
 
-      const userMessage = { role: 'user', content: promptText };
+      const now = new Date();
+      const timestamp = now.toLocaleTimeString('en-US', { 
+        hour: 'numeric', 
+        minute: '2-digit',
+        hour12: true 
+      });
+
+      const userMessage = { 
+        role: 'user', 
+        content: promptText,
+        timestamp: 'Just now'
+      };
       setMessages(prev => [...prev, userMessage]);
-      addAIMessage(userMessage);
       setInput('');
       setIsLoading(true);
 
       try {
-        await new Promise(resolve => setTimeout(resolve, 800));
+        await new Promise(resolve => setTimeout(resolve, 1500));
         const response = await askAva(promptText);
 
         setIsLoading(false);
         const assistantMessage = {
           role: 'assistant',
           content: response.content,
+          timestamp: 'Just now',
           suggestions: response.suggestions || [],
         };
 
         setMessages(prev => [...prev, assistantMessage]);
-        addAIMessage(assistantMessage);
       } catch (error) {
         setIsLoading(false);
         console.error('Failed to get response from Ava:', error);
-        toast.error('Failed to get response from Ava');
+        showToast('Failed to get response from Ava', 'error');
       }
     },
-    [input, toast]
+    [input, showToast]
   );
 
-  const handleSavePrompt = () => {
-    if (!input.trim()) {
-      toast.warning('Enter a prompt to save');
-      return;
-    }
-
-    const title = prompt('Save this prompt as:');
-    if (title) {
-      setSavedPrompts(addSavedPrompt(title, input));
-      toast.success('Prompt saved!');
-      setInput('');
-    }
+  const handleSuggestionClick = (suggestion) => {
+    // Handle different suggestion types
+    showToast(`Action: ${suggestion.label}`, 'info');
+    // In real app, trigger specific actions based on suggestion
   };
 
   const handleDeletePrompt = id => {
@@ -412,191 +409,111 @@ const AvaChat = () => {
 
   return (
     <DashboardLayout>
-      <div className={`flex h-full gap-6 ${showSavedPrompts ? 'pr-80' : ''}`}>
-        {/* ===== MAIN CHAT AREA ===== */}
-        <div className="flex-1 flex flex-col h-screen-minus-header bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-          {/* HEADER */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="border-b border-white/10 bg-slate-900/50 backdrop-blur-xl px-6 py-4 flex items-center justify-between"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
-                <Brain size={24} className="text-white" />
+      <div className="flex h-[calc(100vh-120px)] bg-slate-900 rounded-2xl border border-white/10 overflow-hidden">
+        <div className="flex-1 flex flex-col">
+          {/* HEADER - Matching screenshot style */}
+          <div className="px-6 py-4 border-b border-white/10 bg-slate-800/50 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
+                  <Brain size={24} className="text-white" />
+                </div>
+                <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-emerald-500 rounded-full border-2 border-slate-800" />
               </div>
               <div>
-                <h1 className="text-lg font-bold text-white">Chat with Ava</h1>
-                <p className="text-sm text-slate-400">
-                  Your AI Business Development Representative
-                </p>
+                <h3 className="font-semibold text-white">Chat with Ava</h3>
+                <p className="text-sm text-slate-400">Your AI BDR • Online</p>
               </div>
             </div>
 
             <div className="flex items-center gap-2">
-              <motion.div
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-3 h-3 rounded-full bg-emerald-400"
-              />
-              <span className="text-sm text-slate-400">Online</span>
-
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowSavedPrompts(!showSavedPrompts)}
-                className="gap-2"
-              >
-                <Bookmark size={16} />
-              </Button>
-
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowFullscreen(!showFullscreen)}
-                className="gap-2"
-              >
-                {showFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
-              </Button>
+              <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
+                <Phone size={20} className="text-slate-400" />
+              </button>
+              <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
+                <Video size={20} className="text-slate-400" />
+              </button>
+              <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
+                <MoreVertical size={20} className="text-slate-400" />
+              </button>
             </div>
-          </motion.div>
+          </div>
 
-          {/* MESSAGES AREA */}
-          <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4 custom-scrollbar">
+          {/* MESSAGES AREA - Dark purple/navy background like screenshot */}
+          <div className="flex-1 overflow-y-auto p-6 bg-gradient-to-b from-slate-900 to-slate-800">
             <AnimatePresence>
-              {messages.length === 0 ? (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="h-full flex flex-col items-center justify-center space-y-8"
-                >
-                  <div className="text-center space-y-4">
+              {messages.map((msg, idx) => (
+                <div key={idx}>
+                  <MessageBubble message={msg} isUser={msg.role === 'user'} index={idx} />
+                  
+                  {/* AI Recommendations Pills - Only show for last assistant message */}
+                  {msg.role === 'assistant' && msg.suggestions && msg.suggestions.length > 0 && idx === messages.length - 1 && (
                     <motion.div
-                      animate={{ y: [0, -10, 0] }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                      className="inline-block"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="mb-6 ml-0"
                     >
-                      <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center shadow-2xl shadow-cyan-500/30">
-                        <Sparkles size={40} className="text-white" />
+                      <div className="flex items-center gap-2 mb-3">
+                        <Lightbulb size={14} className="text-yellow-400" />
+                        <span className="text-xs font-medium text-slate-400">
+                          AI Recommendations (click to use):
+                        </span>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {msg.suggestions.map((suggestion, i) => (
+                          <motion.button
+                            key={i}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => handleSuggestionClick(suggestion)}
+                            className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 border border-white/10 text-sm text-white transition-all"
+                          >
+                            <span>{suggestion.icon}</span>
+                            <span>{suggestion.label}</span>
+                          </motion.button>
+                        ))}
                       </div>
                     </motion.div>
-                    <div>
-                      <h2 className="text-2xl font-bold text-white mb-2">Welcome to Ava</h2>
-                      <p className="text-slate-400">
-                        Your AI BDR is ready to help with email, campaigns, and strategy
-                      </p>
-                    </div>
-                  </div>
+                  )}
+                </div>
+              ))}
 
-                  {/* TEMPLATE GRID */}
-                  <PromptTemplates onSelect={handleSend} />
-                </motion.div>
-              ) : (
-                <>
-                  {messages.map((msg, idx) => (
-                    <MessageBubble
-                      key={idx}
-                      message={msg}
-                      isUser={msg.role === 'user'}
-                      index={idx}
-                    />
-                  ))}
-
-                  {isLoading && <TypingIndicator />}
-
-                  {!isLoading &&
-                    messages.length > 0 &&
-                    messages[messages.length - 1]?.suggestions && (
-                      <SuggestionChips
-                        suggestions={messages[messages.length - 1].suggestions}
-                        onSelect={handleSend}
-                        isLoading={isLoading}
-                      />
-                    )}
-
-                  <div ref={messagesEndRef} />
-                </>
-              )}
+              {isLoading && <TypingIndicator />}
+              <div ref={messagesEndRef} />
             </AnimatePresence>
           </div>
 
-          {/* INPUT AREA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="border-t border-white/10 bg-slate-900/50 backdrop-blur-xl p-6 space-y-4"
-          >
-            {/* CONTEXT BAR */}
-            <div className="flex items-center gap-4 text-xs text-slate-400">
-              <div className="flex items-center gap-2">
-                <Clock size={14} />
-                <span>Avg response: {liveStats.avgResponseTime.toFixed(1)}s</span>
-              </div>
-              <span className="text-slate-600">•</span>
-              <div className="flex items-center gap-2">
-                <Zap size={14} />
-                <span>Responses: {liveStats.responsesGenerated}</span>
-              </div>
-              <span className="text-slate-600">•</span>
-              <div className="flex items-center gap-2">
-                <Sparkles size={14} />
-                <span>Satisfaction: {liveStats.satisfaction.toFixed(0)}%</span>
-              </div>
-              <span className="text-slate-600">•</span>
-              <span>Session: {messages.length} messages</span>
-            </div>
+          {/* INPUT AREA - Matching screenshot style */}
+          <div className="px-6 py-4 border-t border-white/10 bg-slate-800/50">
+            <div className="flex items-center gap-3">
+              <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
+                <Paperclip size={20} className="text-slate-400" />
+              </button>
 
-            {/* INPUT FIELD */}
-            <div className="relative group">
-              <textarea
+              <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
+                <Smile size={20} className="text-slate-400" />
+              </button>
+
+              <input
+                type="text"
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask Ava anything... (Shift+Enter for new line)"
-                rows={3}
-                className="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 transition-all resize-none"
+                placeholder="Ask Ava anything..."
+                className="flex-1 px-4 py-3 rounded-lg bg-slate-700/50 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
               />
 
-              {/* ACTION BUTTONS */}
-              <div className="absolute right-3 bottom-3 flex items-center gap-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleSavePrompt}
-                  title="Save this prompt"
-                  className="text-slate-400 hover:text-yellow-400"
-                >
-                  <Bookmark size={16} />
-                </Button>
-
-                <div className="w-px h-5 bg-white/10" />
-
-                <Button
-                  onClick={() => handleSend()}
-                  disabled={!input.trim() || isLoading}
-                  className="gap-2 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white disabled:opacity-50"
-                >
-                  <Send size={16} />
-                  Send
-                </Button>
-              </div>
+              <button
+                onClick={() => handleSend()}
+                disabled={!input.trim() || isLoading}
+                className="p-3 bg-purple-500 hover:bg-purple-600 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <Send size={20} className="text-white" />
+              </button>
             </div>
-
-            {/* FOOTER INFO */}
-            <div className="flex items-center justify-between text-xs text-slate-500">
-              <p>💡 Tip: Use templates above for quick-start prompts</p>
-              <p>Powered by OpenAI GPT-4</p>
-            </div>
-          </motion.div>
+          </div>
         </div>
-
-        {/* SAVED PROMPTS SIDEBAR */}
-        <SavedPromptsSidebar
-          savedPrompts={savedPrompts}
-          onSelect={handleSend}
-          onDelete={handleDeletePrompt}
-          isOpen={showSavedPrompts}
-        />
       </div>
     </DashboardLayout>
   );

@@ -5,6 +5,8 @@
  * Eliminates duplication of sparklines, funnels, and summaries.
  */
 
+import { Mail, Linkedin, Phone, MessageSquare } from 'lucide-react';
+
 export const SPARKLINE_TEMPLATES = {
   meetings: (value, change, color = '#06b6d4') => ({
     id: 'meetings',
@@ -74,11 +76,14 @@ export const createFunnel = values =>
     color: FUNNEL_COLORS[idx],
   }));
 
+const CHANNEL_ICONS = [Mail, Linkedin, Phone, MessageSquare];
+
 export const createChannelMix = distribution =>
   ['Email', 'LinkedIn', 'Phone', 'SMS'].map((name, idx) => ({
     name,
     value: distribution[idx],
     color: FUNNEL_COLORS[idx],
+    icon: CHANNEL_ICONS[idx],
   }));
 
 export const PLAN_METRICS = {

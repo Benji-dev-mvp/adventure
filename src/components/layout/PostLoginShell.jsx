@@ -33,6 +33,7 @@ import {
 } from 'lucide-react';
 import CommandPalette from '../CommandPalette';
 import WorkspaceSwitcher from './WorkspaceSwitcher';
+import { SmartNotifications } from '../../features/SmartNotifications';
 
 /**
  * Micro-KPI for context strip
@@ -248,6 +249,7 @@ const PostLoginShell = ({ children }) => {
   const prefersReducedMotion = useReducedMotion();
 
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [notificationsPanelOpen, setNotificationsPanelOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
 
@@ -539,6 +541,24 @@ const PostLoginShell = ({ children }) => {
               ))}
             </nav>
           </aside>
+        </div>
+      )}
+
+      {/* Notifications Panel */}
+      {notificationsPanelOpen && (
+        <div className="fixed right-0 top-14 h-[calc(100vh-3.5rem)] w-96 z-40 bg-slate-950/95 backdrop-blur-xl border-l border-slate-800 overflow-y-auto shadow-2xl">
+          <div className="p-4">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold text-white">Notifications</h2>
+              <button
+                onClick={() => setNotificationsPanelOpen(false)}
+                className="h-8 w-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"
+              >
+                <X size={16} className="text-slate-400" />
+              </button>
+            </div>
+            <SmartNotifications maxVisible={10} pollingInterval={30000} />
+          </div>
         </div>
       )}
 

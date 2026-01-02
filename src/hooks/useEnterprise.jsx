@@ -366,9 +366,29 @@ export function useUsageQuotas() {
   // Refresh usage data
   const refresh = useCallback(async () => {
     setLoading(true);
-    // TODO: API call
-    await new Promise(r => setTimeout(r, 500));
-    setLoading(false);
+    try {
+      const response = await fetch('/api/enterprise/usage/refresh', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+        },
+      });
+
+      if (response.ok) {
+        const updatedUsage = await response.json();
+        // Update usage state with fresh data
+        setUsage(updatedUsage);
+      } else {
+        console.warn('Usage refresh API unavailable, using cached data');
+      }
+    } catch (error) {
+      console.error('Error refreshing usage:', error);
+      // Fallback to simulated delay
+      await new Promise(r => setTimeout(r, 500));
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   return {

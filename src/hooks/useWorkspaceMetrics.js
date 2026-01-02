@@ -32,11 +32,24 @@ export function useWorkspaceMetrics(options = {}) {
     setError(null);
 
     try {
-      // TODO: Replace with actual API call
-      // const response = await fetch(`/api/workspace/metrics?plan=${plan}`);
-      // const data = await response.json();
-
-      const data = await simulateApiCall(getMetricsForPlan(plan), 300);
+      // API call with fallback to simulated data
+      let data;
+      try {
+        const response = await fetch(`/api/workspace/metrics?plan=${plan}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+          },
+        });
+        if (response.ok) {
+          data = await response.json();
+        } else {
+          throw new Error('API unavailable');
+        }
+      } catch (apiError) {
+        // Fallback to simulated data if API is not available
+        console.warn('API unavailable, using simulated metrics:', apiError.message);
+        data = await simulateApiCall(getMetricsForPlan(plan), 300);
+      }
       setMetrics(data);
     } catch (err) {
       setError(err.message || 'Failed to fetch metrics');

@@ -5,7 +5,7 @@ Concise, actionable guidance for AI coding agents to be immediately productive i
 ## ⚡ Quick Start (Copy-Paste)
 
 ```bash
-# Frontend (port 3004)
+# Frontend (port 3004, NOT 5173)
 npm install && npm run dev
 
 # Backend (port 8000, separate terminal)
@@ -13,6 +13,8 @@ cd backend && python3 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload --port 8000 --host 0.0.0.0
 ```
+
+**Note:** Frontend runs on port 3004, not the Vite default (5173). All CORS/proxy configs are set to 3004.
 
 ## 🏗️ Architecture Overview (Big Picture)
 
@@ -149,6 +151,22 @@ In [src/app/providers.tsx](../src/app/providers.tsx):
 
 Do NOT reorder—each depends on previous.
 
+### Zustand Store Access Patterns
+
+```javascript
+// Import from centralized index (src/stores/index.ts)
+import { useCampaignStore, selectCampaigns, Campaign } from '@/stores';
+
+// Option 1: Use store directly
+const campaigns = useCampaignStore(state => state.campaigns);
+
+// Option 2: Use selectors for optimized re-renders
+const campaigns = useCampaignStore(selectCampaigns);
+
+// Available stores: userStore, campaignStore, leadStore, uiStore
+// All use Immer middleware for immutable updates
+```
+
 ### Security Sanitization
 
 ```python
@@ -159,17 +177,18 @@ clean_email = sanitize_text(user_email_input)
 
 ## 📝 Conventions & Patterns
 
-| Pattern          | Location                                                              | Example                                                     |
-| ---------------- | --------------------------------------------------------------------- | ----------------------------------------------------------- |
-| **Storage**      | [src/lib/storage.js](../src/lib/storage.js)                           | `storage.set('artisan_campaign_draft', data)`               |
-| **API Routes**   | [backend/app/api/routes/](../backend/app/api/routes/)                 | Domain-per-file: `campaigns.py`, `leads.py`, `ai.py`        |
-| **Lazy Pages**   | [src/App.jsx](../src/App.jsx)                                         | `const Dashboard = lazy(() => import('./pages/Dashboard'))` |
-| **Path Aliases** | [vite.config.js](../vite.config.js#L8-L16)                            | `@/lib`, `@components`, `@pages`, `@hooks`                  |
-| **Query Keys**   | [src/lib/queryClient.js](../src/lib/queryClient.js)                   | `queryKeys.campaigns.detail(id)` for cache invalidation     |
-| **Models**       | [backend/app/models/schemas.py](../backend/app/models/schemas.py)     | SQLModel + Pydantic (table=True for DB, False for schemas)  |
-| **Logging**      | [backend/app/core/config.py](../backend/app/core/config.py)           | Structured JSON via JsonFormatter; set `LOG_LEVEL` env var  |
-| **Metrics**      | [src/config/metricsFactory.js](../src/config/metricsFactory.js)       | Plan-based metrics + reusable sparkline templates           |
-| **Navigation**   | [src/config/navigationFactory.js](../src/config/navigationFactory.js) | Routes, commands, page chrome (single source of truth)      |
+| Pattern          | Location                                                                              | Example                                                     |
+| ---------------- | ------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **Storage**      | [src/lib/storage.js](../src/lib/storage.js)                                           | `storage.set('artisan_campaign_draft', data)`               |
+| **API Routes**   | [backend/app/api/routes/](../backend/app/api/routes/)                                 | Domain-per-file: `campaigns.py`, `leads.py`, `ai.py`        |
+| **Lazy Pages**   | [src/App.jsx](../src/App.jsx)                                                         | `const Dashboard = lazy(() => import('./pages/Dashboard'))` |
+| **Path Aliases** | [vite.config.js](../vite.config.js#L8-L16)                                            | `@/lib`, `@components`, `@pages`, `@hooks`                  |
+| **Query Keys**   | [src/lib/queryClient.js](../src/lib/queryClient.js)                                   | `queryKeys.campaigns.detail(id)` for cache invalidation     |
+| **Models**       | [backend/app/models/schemas.py](../backend/app/models/schemas.py)                     | SQLModel + Pydantic (table=True for DB, False for schemas)  |
+| **Logging**      | [backend/app/core/config.py](../backend/app/core/config.py)                           | Structured JSON via JsonFormatter; set `LOG_LEVEL` env var  |
+| **Metrics**      | [src/config/metricsFactory.js](../src/config/metricsFactory.js)                       | Plan-based metrics + reusable sparkline templates           |
+| **Navigation**   | [src/config/routeDefinitions.js](../src/config/routeDefinitions.js)                   | Route definitions (single source of truth)                  |
+| **AI Config**    | [backend/app/integrations/ai_config.yaml](../backend/app/integrations/ai_config.yaml) | Model routing per use case (externalized from code)         |
 
 ## 🚫 Avoiding Duplication (Critical!)
 
@@ -192,28 +211,54 @@ const metrics = getMetricsForPlan(plan); // Fully structured metrics
 **Key Factory Modules:**
 
 - [src/config/metricsFactory.js](../src/config/metricsFactory.js) — Unified `PLAN_METRICS` object + template helpers → ~96% duplication eliminated
-- [src/config/navigationFactory.js](../src/config/navigationFactory.js) — Single `PAGE_ROUTES`, `NAVIGATION_ITEMS`, `QUICK_ACTIONS` → powers command palette + page chrome
-- [src/config/pageChrome.ts](../src/config/pageChrome.ts) — Now imports from navigationFactory → reduced duplication
+- [src/config/routeDefinitions.js](../src/config/routeDefinitions.js) — **SINGLE SOURCE OF TRUTH** for all routes (20+ complete definitions)
+- [src/config/navigationFactory.js](../src/config/navigationFactory.js) — Auto-generates `PAGE_ROUTES`, `NAVIGATION_ITEMS`, `QUICK_ACTIONS` from routeDefinitions
+- [src/config/pageChrome.ts](../src/config/pageChrome.ts) — Auto-syncs with navigationFactory → reduced duplication
+- [src/config/solutionsDataFactory.js](../src/config/solutionsDataFactory.js) — Factory functions for solution pages features
+- [src/config/chartDataFactory.js](../src/config/chartDataFactory.js) — Centralized chart configurations, colors, and data generators (eliminates Recharts duplication)
+- [src/components/solutions/SolutionHero.jsx](../src/components/solutions/SolutionHero.jsx) — Shared hero component (eliminates 60+ lines per solution page)
+- [src/components/solutions/BaseFlowOrchestration.jsx](../src/components/solutions/BaseFlowOrchestration.jsx) — Stage-based flow visualization (eliminates 630+ lines)
+
+**Reusable UI Components:**
+
+- [src/components/ui/AnimatedCounter.jsx](../src/components/ui/AnimatedCounter.jsx) — Animated number counter with easing (replaces duplicated counter logic across pages)
+- [src/components/ui/LiveIndicator.jsx](../src/components/ui/LiveIndicator.jsx) — Live status indicator with pulsing animation
+- [src/components/ui/AnimatedProgress.jsx](../src/components/ui/AnimatedProgress.jsx) — Animated progress bar with 8 color variants and gradient support
+
+**Reusable Hooks:**
+
+- [src/hooks/useDataPolling.js](../src/hooks/useDataPolling.js) — Polling hook with cleanup and error handling (eliminates repeated setInterval patterns)
+- [src/hooks/useLocalStorage.js](../src/hooks/useLocalStorage.js) — localStorage hook with SSR support and cross-tab sync
+
+**Composable Features (Zero Duplication):**
+
+- [src/features/RealTimeMetrics/index.jsx](../src/features/RealTimeMetrics/index.jsx) — Reusable real-time metrics display (uses AnimatedCounter, LiveIndicator, useDataPolling)
+- [src/features/PerformanceChart/index.jsx](../src/features/PerformanceChart/index.jsx) — Factory-based chart component (leverages chartDataFactory)
+- [src/features/SmartNotifications/index.jsx](../src/features/SmartNotifications/index.jsx) — AI-powered notification center (integrated in PostLoginShell)
 
 **When Adding New Content:**
 
 1. **New plan-specific metric?** → Add to `PLAN_METRICS[plan]` in metricsFactory
-2. **New navigation route?** → Add to `PAGE_ROUTES` in navigationFactory (auto-generates commands + chrome)
+2. **New navigation route?** → Add to `ROUTE_DEFINITIONS` in routeDefinitions.js (auto-generates commands + chrome)
 3. **New command/action?** → Add to `QUICK_ACTIONS` in navigationFactory (shared across palette)
+4. **New solution page?** → Use SolutionHero component + data-driven approach
 
 ### Enforcement Rules for Copilot (Do/Don’t)
 
-- ✅ Do use factory exports: `getMetricsForPlan`, `PAGE_ROUTES`, `buildCommandsList`.
+- ✅ Do use factory exports: `getMetricsForPlan`, `PAGE_ROUTES`, `buildCommandsList`, `ROUTE_DEFINITIONS`.
 - ✅ Do update only the factory file when adding metrics/routes/actions.
-- ❌ Don’t hardcode repeated structures in pages/hooks/components.
-- ❌ Don’t diverge definitions between files; factories are the single source.
+- ✅ Do reference `ROUTE_DEFINITIONS` as the single source of truth for routes.
+- ❌ Don't hardcode repeated structures in pages/hooks/components.
+- ❌ Don't diverge definitions between files; factories are the single source.
+- ❌ Don't create duplicate route definitions in multiple config files.
 
 ### Navigation Model Guidance
 
 - Sidebar/nav sections live in [src/config/navConfig.js](../src/config/navConfig.js) for plan/admin gating and grouping.
+- Route definitions (authoritative) live in [src/config/routeDefinitions.js](../src/config/routeDefinitions.js).
 - Commands + page chrome live in [src/config/navigationFactory.js](../src/config/navigationFactory.js); this is authoritative for palette/chrome.
 - When adding a new page:
-  - Add route metadata in `PAGE_ROUTES` (factory).
+  - Add route metadata in `ROUTE_DEFINITIONS` in routeDefinitions.js.
   - If it needs to appear in sidebar, add it to `navSections` in `navConfig.js` once.
 - Copilot: prefer reusing `PAGE_ROUTES`/`NAVIGATION_ITEMS` in new code; avoid duplicating text labels/paths.
 

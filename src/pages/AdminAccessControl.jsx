@@ -90,9 +90,35 @@ const AccessControl = () => {
     { id: 'roles', label: 'Role Settings', icon: Settings },
   ];
 
-  const handlePermissionChange = (roleId, scope, capability, enabled) => {
+  const handlePermissionChange = async (roleId, scope, capability, enabled) => {
     console.log('Permission change:', { roleId, scope, capability, enabled });
-    // TODO: API call to update permission
+
+    try {
+      const response = await fetch('/api/admin/access-control/permissions', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+        },
+        body: JSON.stringify({
+          roleId,
+          scope,
+          capability,
+          enabled,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update permission');
+      }
+
+      const result = await response.json();
+      console.log('Permission updated:', result);
+      // Optionally show success toast here
+    } catch (error) {
+      console.error('Error updating permission:', error);
+      // Optionally show error toast here
+    }
   };
 
   return (

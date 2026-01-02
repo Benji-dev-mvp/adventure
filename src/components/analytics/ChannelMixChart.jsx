@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { PieChart } from 'recharts/es6/chart/PieChart.js';
+import { Pie } from 'recharts/es6/polar/Pie.js';
+import { Cell } from 'recharts/es6/component/Cell.js';
+import { ResponsiveContainer } from 'recharts/es6/component/ResponsiveContainer.js';
+import { Tooltip } from 'recharts/es6/component/Tooltip.js';
 import { Mail, Linkedin, Phone, MessageSquare } from 'lucide-react';
 import { useReducedMotion, viewportSettings } from '../../hooks/useMotion';
-import { GlassCard, GlassCardContent, GradientText } from '../futuristic/index';
+import { GlassCard, GlassCardContent } from '../futuristic/GlassCard';
+import { GradientText } from '../futuristic/AnimatedText';
 
 const DEFAULT_CHANNEL_DATA = [
   { name: 'Email', value: 45, color: '#06b6d4', icon: Mail },

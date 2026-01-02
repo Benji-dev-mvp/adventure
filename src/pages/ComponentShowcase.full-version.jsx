@@ -5,7 +5,7 @@ import Input from '@/components/ui/Input';
 import Textarea from '@/components/ui/Textarea';
 import Checkbox from '@/components/ui/Checkbox';
 import { Radio, RadioGroup } from '@/components/ui/Radio';
-import { Switch } from '@/components/ui/switch';
+import { Switch } from '@/components/ui/Switch';
 import Alert from '@/components/ui/Alert';
 import Badge from '@/components/ui/Badge';
 import Avatar from '@/components/ui/Avatar';

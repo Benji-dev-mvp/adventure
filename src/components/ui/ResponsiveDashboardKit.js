@@ -71,7 +71,7 @@ export { Tabs, TabsList, TabsTrigger, TabsContent } from './Tabs';
 export { Select } from './Select';
 export { Checkbox } from './Checkbox';
 export { Radio } from './Radio';
-export { Switch } from './switch';
+export { Switch } from './Switch';
 export { Progress } from './Progress';
 export { Spinner } from './Spinner';
 export { Avatar } from './Avatar';

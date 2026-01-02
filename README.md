@@ -252,6 +252,71 @@ black app           # Format code
 isort app           # Sort imports
 ```
 
+### Import Best Practices
+
+To maintain code quality and avoid runtime errors, especially on case-sensitive systems:
+
+#### File and Folder Casing
+
+- **Always match casing exactly**: Import paths must match the actual file/folder names on disk
+  - ✅ Good: `import { Switch } from '../components/ui/Switch'` (file is `Switch.jsx`)
+  - ❌ Bad: `import { Switch } from '../components/ui/switch'` (casing mismatch)
+
+- **Component files should be PascalCase**: `Button.jsx`, `Card.jsx`, `DashboardLayout.jsx`
+- **Utility/config files can be camelCase**: `utils.js`, `dataService.js`, `queryClient.js`
+
+#### Import Path Patterns
+
+This codebase primarily uses **relative imports** for consistency:
+
+```javascript
+// ✅ Preferred: Relative imports
+import { Button } from '../components/ui/Button';
+import { cn } from '../lib/utils';
+import DashboardLayout from '../components/layout/DashboardLayout';
+
+// ✅ Also acceptable: Alias imports (when consistency is maintained)
+import { Button } from '@/components/ui/Button';
+import { cn } from '@/lib/utils';
+```
+
+**Aliases configured** in `vite.config.js` and `tsconfig.json`:
+- `@/` → `./src/`
+- `@components/` → `./src/components/`
+- `@pages/` → `./src/pages/`
+- `@lib/` → `./src/lib/`
+- `@hooks/` → `./src/hooks/`
+
+#### Clearing Vite Cache
+
+If you encounter import errors or stale module issues during development:
+
+```bash
+# Clear Vite cache
+rm -rf node_modules/.vite
+
+# Clear all caches and reinstall
+rm -rf node_modules/.vite dist
+npm install
+
+# Restart dev server
+npm run dev
+```
+
+#### Named Export Verification
+
+When importing named exports, ensure they exist in the target file:
+
+```javascript
+// Check the source file exports what you're importing
+import { Card, CardHeader, CardTitle } from '../components/ui/Card';
+
+// Source file must export these names:
+export const Card = ...
+export const CardHeader = ...
+export const CardTitle = ...
+```
+
 ### GitHub Copilot Setup
 
 - Ensure the GitHub Copilot and Copilot Chat extensions are installed and you’re signed in.

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import {
   CheckCircle2,
@@ -548,153 +549,267 @@ const PricingPage = () => {
         </div>
       </section>
 
-      {/* ROI Calculator - Enhanced Section */}
+      {/* ROI Calculator - Dynamically Unified Section */}
       <section
         id="roi"
         className="py-24 px-4 relative overflow-hidden"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-cyan-950/30 via-cyan-950/10 to-transparent" />
-        <ParticleBackground variant="minimal" className="absolute inset-0 opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-cyan-950/20 via-purple-950/10 to-transparent" />
+        <ParticleBackground variant="minimal" className="absolute inset-0 opacity-20" />
         
         <div className="max-w-6xl mx-auto relative z-10">
           <RevealText>
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 backdrop-blur-sm mb-6">
                 <Calculator size={16} className="text-cyan-400 animate-pulse" />
-                <span className="text-sm font-semibold text-white">ROI Calculator</span>
+                <span className="text-sm font-semibold text-white">Interactive ROI Calculator</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-4 font-space-grotesk">
-                <GradientText gradient="cyber">See Your Potential Savings</GradientText>
+                <GradientText gradient="cyber">Discover Your ROI</GradientText>
               </h2>
               <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                Calculate exactly how much Artisan can save your team
+                Adjust inputs in real-time to see exactly how much Artisan saves your team
               </p>
             </div>
           </RevealText>
 
-          <GlassCard variant="gradient" glow glowColor="cyan">
-            <GlassCardContent className="p-8">
-              <div className="grid lg:grid-cols-2 gap-8">
-                {/* Inputs */}
-                <div className="space-y-6">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="p-3 rounded-xl bg-cyan-500/20">
+          {/* Main ROI Calculator Card */}
+          <GlassCard variant="gradient" glow glowColor="cyan" className="mb-8">
+            <GlassCardContent className="p-10">
+              <div className="grid lg:grid-cols-2 gap-12">
+                {/* Inputs - Left Column */}
+                <div className="space-y-8">
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="p-3 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30">
                       <Users size={24} className="text-cyan-400" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-white font-space-grotesk">
-                        Your Current Setup
+                        Your Setup
                       </h3>
-                      <p className="text-sm text-gray-400">Enter your team details</p>
+                      <p className="text-sm text-gray-400">Customize your numbers</p>
                     </div>
                   </div>
 
+                  {/* Input Sliders for Better UX */}
                   <div>
-                    <label className="flex items-center gap-2 text-sm font-semibold text-gray-300 mb-3">
-                      <Users size={16} className="text-cyan-400" />
-                      Number of SDRs
-                    </label>
+                    <div className="flex items-center justify-between mb-3">
+                      <label className="flex items-center gap-2 text-sm font-semibold text-gray-300">
+                        <Users size={16} className="text-cyan-400" />
+                        SDRs: <span className="text-cyan-400 ml-1">{roiInputs.sdrs}</span>
+                      </label>
+                    </div>
+                    <input
+                      type="range"
+                      min="1"
+                      max="50"
+                      value={roiInputs.sdrs}
+                      onChange={e => handleInputChange('sdrs', e.target.value)}
+                      className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+                    />
                     <input
                       type="number"
                       min="1"
                       value={roiInputs.sdrs}
                       onChange={e => handleInputChange('sdrs', e.target.value)}
-                      className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white text-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 mt-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="flex items-center gap-2 text-sm font-semibold text-gray-300 mb-3">
-                      <DollarSign size={16} className="text-cyan-400" />
-                      Average SDR Cost ($/year)
-                    </label>
+                    <div className="flex items-center justify-between mb-3">
+                      <label className="flex items-center gap-2 text-sm font-semibold text-gray-300">
+                        <DollarSign size={16} className="text-purple-400" />
+                        Annual SDR Cost
+                      </label>
+                      <span className="text-purple-400 text-sm font-semibold">
+                        ${roiInputs.costPerSdr.toLocaleString()}
+                      </span>
+                    </div>
+                    <input
+                      type="range"
+                      min="30000"
+                      max="150000"
+                      step="5000"
+                      value={roiInputs.costPerSdr}
+                      onChange={e => handleInputChange('costPerSdr', e.target.value)}
+                      className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-purple-500"
+                    />
                     <input
                       type="number"
                       min="0"
                       step="1000"
                       value={roiInputs.costPerSdr}
                       onChange={e => handleInputChange('costPerSdr', e.target.value)}
-                      className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white text-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 mt-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="flex items-center gap-2 text-sm font-semibold text-gray-300 mb-3">
-                      <TrendingUp size={16} className="text-cyan-400" />
-                      Meetings per SDR (monthly)
-                    </label>
+                    <div className="flex items-center justify-between mb-3">
+                      <label className="flex items-center gap-2 text-sm font-semibold text-gray-300">
+                        <TrendingUp size={16} className="text-emerald-400" />
+                        Meetings/SDR/Month
+                      </label>
+                      <span className="text-emerald-400 text-sm font-semibold">
+                        {roiInputs.meetingsPerSdr}
+                      </span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="30"
+                      value={roiInputs.meetingsPerSdr}
+                      onChange={e => handleInputChange('meetingsPerSdr', e.target.value)}
+                      className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+                    />
                     <input
                       type="number"
                       min="0"
                       value={roiInputs.meetingsPerSdr}
                       onChange={e => handleInputChange('meetingsPerSdr', e.target.value)}
-                      className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white text-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 mt-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
                     />
+                  </div>
+
+                  {/* Quick Presets */}
+                  <div className="pt-4 border-t border-white/10">
+                    <p className="text-xs font-semibold text-gray-400 mb-3 uppercase">Quick Presets</p>
+                    <div className="flex flex-wrap gap-2">
+                      <button
+                        onClick={() => {
+                          setRoiInputs({ sdrs: 2, costPerSdr: 60000, meetingsPerSdr: 8 });
+                        }}
+                        className="px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs text-gray-300 font-semibold transition-all"
+                      >
+                        Small Team
+                      </button>
+                      <button
+                        onClick={() => {
+                          setRoiInputs({ sdrs: 5, costPerSdr: 75000, meetingsPerSdr: 10 });
+                        }}
+                        className="px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs text-gray-300 font-semibold transition-all"
+                      >
+                        Mid Team
+                      </button>
+                      <button
+                        onClick={() => {
+                          setRoiInputs({ sdrs: 10, costPerSdr: 85000, meetingsPerSdr: 12 });
+                        }}
+                        className="px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs text-gray-300 font-semibold transition-all"
+                      >
+                        Large Team
+                      </button>
+                    </div>
                   </div>
                 </div>
 
-                {/* Results */}
-                <div className="space-y-5">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20">
-                      <Sparkles size={24} className="text-purple-400" />
+                {/* Results - Right Column */}
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="p-3 rounded-xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30">
+                      <Sparkles size={24} className="text-emerald-400" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-white font-space-grotesk">
-                        With Artisan AI
+                        Annual Impact
                       </h3>
-                      <p className="text-sm text-gray-400">Projected impact</p>
+                      <p className="text-sm text-gray-400">Real-time projection</p>
                     </div>
                   </div>
 
-                  <ROIResultCard
-                    label="Annual Cost Savings"
-                    value={roi.costSavings}
-                    gradient="cyber"
-                    icon={DollarSign}
-                    prefix="$"
-                  />
+                  {/* Primary Results */}
+                  <div className="space-y-4">
+                    <ROIResultCard
+                      label="Annual Savings"
+                      value={roi.costSavings}
+                      gradient="cyber"
+                      icon={DollarSign}
+                      prefix="$"
+                    />
 
-                  <ROIResultCard
-                    label="Additional Meetings/Year"
-                    value={roi.meetingsIncrease}
-                    gradient="aurora"
-                    icon={TrendingUp}
-                    prefix="+"
-                  />
+                    <ROIResultCard
+                      label="Additional Meetings/Year"
+                      value={roi.meetingsIncrease}
+                      gradient="aurora"
+                      icon={TrendingUp}
+                      prefix="+"
+                    />
 
-                  <ROIResultCard
-                    label="Return on Investment"
-                    value={roi.roi}
-                    gradient="cyber"
-                    icon={Calculator}
-                    suffix="%"
-                  />
+                    <ROIResultCard
+                      label="ROI"
+                      value={roi.roi}
+                      gradient="cyber"
+                      icon={Calculator}
+                      suffix="%"
+                    />
+                  </div>
 
-                  <div className="mt-6 p-5 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/30 rounded-xl backdrop-blur-sm">
-                    <div className="flex items-start gap-3">
-                      <Sparkles size={20} className="text-emerald-400 flex-shrink-0 mt-1" />
+                  {/* Main CTA Card - Unified with Pricing */}
+                  <div className="mt-8 p-6 bg-gradient-to-br from-emerald-500/15 to-cyan-500/15 border border-emerald-500/40 rounded-xl backdrop-blur-sm">
+                    <div className="flex items-start gap-3 mb-3">
+                      <CheckCircle2 size={20} className="text-emerald-400 flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="text-sm font-semibold text-emerald-400 mb-1">
-                          Estimated Annual Savings
+                        <p className="text-xs font-semibold text-emerald-300 uppercase tracking-wide mb-1">
+                          Your Savings
                         </p>
-                        <p className="text-2xl font-bold text-white font-space-grotesk">
+                        <p className="text-3xl font-bold text-white font-space-grotesk">
                           ${roi.costSavings.toLocaleString()}
                         </p>
                       </div>
                     </div>
+                    <p className="text-sm text-gray-300 mb-4">
+                      Reduce costs while scaling your revenue operations with AI
+                    </p>
+                    <Link to="/onboarding" className="block">
+                      <GlowButton variant="primary" size="lg" glow className="w-full gap-2">
+                        <Zap size={18} />
+                        Get Started Now
+                      </GlowButton>
+                    </Link>
                   </div>
 
-                  <Link to="/onboarding" className="block">
-                    <GlowButton variant="primary" size="lg" glow className="w-full gap-2">
-                      <Zap size={20} />
-                      Start Saving Today
-                    </GlowButton>
-                  </Link>
+                  {/* Comparison to Pricing Tiers */}
+                  <div className="mt-6 p-4 bg-white/5 border border-white/10 rounded-lg">
+                    <p className="text-xs font-semibold text-gray-400 mb-3">ROI vs Pricing</p>
+                    <div className="space-y-2 text-xs">
+                      <div className="flex items-center justify-between">
+                        <span className="text-gray-400">Professional Plan:</span>
+                        <span className="text-cyan-400 font-semibold">
+                          {billing === 'monthly' ? 'Save $2,577' : 'Save $30,924'}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-gray-400">vs Annual Cost:</span>
+                        <span className="text-emerald-400 font-semibold">
+                          {(roi.costSavings / ((billing === 'monthly' ? 299 * 12 : 299 * 12 * 0.8) || 1)).toFixed(1)}x ROI
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </GlassCardContent>
           </GlassCard>
+
+          {/* CTA for Next Steps */}
+          <div className="text-center">
+            <p className="text-gray-400 mb-6 font-semibold">Ready to transform your revenue ops?</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link to="/onboarding">
+                <GlowButton variant="primary" size="lg" glow className="gap-2">
+                  <Play size={18} />
+                  Start Free Trial
+                </GlowButton>
+              </Link>
+              <a href="#contact-sales">
+                <GlowButtonOutline variant="secondary" size="lg" className="gap-2">
+                  <MessageSquare size={18} />
+                  Schedule Demo
+                </GlowButtonOutline>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1007,51 +1122,118 @@ const PricingPage = () => {
             ))}
           </div>
 
-          {/* Still Have Questions CTA */}
-          <GlassCard variant="gradient" glow glowColor="cyan">
-            <GlassCardContent className="p-8 text-center">
-              <div className="max-w-2xl mx-auto">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 mb-4">
-                  <MessageSquare className="text-cyan-400" size={28} />
+          {/* Still Have Questions CTA - Redesigned */}
+          <GlassCard variant="gradient" glow glowColor="cyan" className="mt-16">
+            <GlassCardContent className="p-12">
+              <div className="max-w-4xl mx-auto">
+                {/* Main CTA Section */}
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 mb-6 mx-auto">
+                    <MessageSquare className="text-cyan-400" size={32} />
+                  </div>
+                  <h3 className="text-3xl font-bold text-white mb-3 font-space-grotesk">
+                    Ready to Transform Your Revenue?
+                  </h3>
+                  <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+                    Get expert guidance, see live demos, or ask our team anything about Artisan AI.
+                  </p>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3 font-space-grotesk">
-                  Still Have Questions?
-                </h3>
-                <p className="text-gray-300 mb-6">
-                  Our team is here to help you find the perfect solution for your needs.
-                </p>
-                <div className="flex flex-wrap justify-center gap-3">
-                  <GlowButton
-                    variant="primary"
-                    size="lg"
+
+                {/* Three Action Cards - Unified Design */}
+                <div className="grid md:grid-cols-3 gap-4 mb-8">
+                  {/* Card 1 - Support */}
+                  <motion.div
+                    whileHover={{ y: -4 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                     onClick={() => navigate('/help')}
-                    className="gap-2"
-                    glow
+                    className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm cursor-pointer"
                   >
-                    <MessageSquare size={18} />
-                    Contact Support
-                  </GlowButton>
-                  <GlowButtonOutline
-                    variant="secondary"
-                    size="lg"
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-transparent to-cyan-500/0 group-hover:from-cyan-500/10 group-hover:to-purple-500/10 transition-all duration-300" />
+                    <div className="relative p-6">
+                      <div className="p-3 rounded-lg bg-cyan-500/20 w-fit mb-4">
+                        <MessageSquare size={24} className="text-cyan-400" />
+                      </div>
+                      <h4 className="text-lg font-bold text-white mb-2 font-space-grotesk">
+                        Contact Support
+                      </h4>
+                      <p className="text-sm text-gray-400 mb-4">
+                        Get answers from our expert team. We typically respond within 2 hours.
+                      </p>
+                      <div className="flex items-center gap-2 text-cyan-400 text-sm font-semibold group-hover:gap-3 transition-all">
+                        <span>Reach Out</span>
+                        <Play size={16} />
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Card 2 - Demo */}
+                  <motion.div
+                    whileHover={{ y: -4 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                     onClick={() => navigate('/ai-tour')}
-                    className="gap-2"
+                    className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm cursor-pointer"
                   >
-                    <Play size={18} />
-                    Watch Demo
-                  </GlowButtonOutline>
-                  <GlowButtonOutline
-                    variant="secondary"
-                    size="lg"
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 via-transparent to-purple-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-300" />
+                    <div className="relative p-6">
+                      <div className="p-3 rounded-lg bg-purple-500/20 w-fit mb-4">
+                        <Play size={24} className="text-purple-400" />
+                      </div>
+                      <h4 className="text-lg font-bold text-white mb-2 font-space-grotesk">
+                        Watch Demo
+                      </h4>
+                      <p className="text-sm text-gray-400 mb-4">
+                        See Artisan in action. Watch a 5-minute walkthrough of key features.
+                      </p>
+                      <div className="flex items-center gap-2 text-purple-400 text-sm font-semibold group-hover:gap-3 transition-all">
+                        <span>View Demo</span>
+                        <Play size={16} />
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Card 3 - Call */}
+                  <motion.div
+                    whileHover={{ y: -4 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                     onClick={() => {
                       const url = 'https://calendly.com/artisan';
                       window.open(url, '_blank');
                     }}
-                    className="gap-2"
+                    className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm cursor-pointer"
                   >
-                    <Calendar size={18} />
-                    Book a Call
-                  </GlowButtonOutline>
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-transparent to-emerald-500/0 group-hover:from-emerald-500/10 group-hover:to-cyan-500/10 transition-all duration-300" />
+                    <div className="relative p-6">
+                      <div className="p-3 rounded-lg bg-emerald-500/20 w-fit mb-4">
+                        <Calendar size={24} className="text-emerald-400" />
+                      </div>
+                      <h4 className="text-lg font-bold text-white mb-2 font-space-grotesk">
+                        Book a Call
+                      </h4>
+                      <p className="text-sm text-gray-400 mb-4">
+                        Schedule 15 mins with our team for a personalized conversation.
+                      </p>
+                      <div className="flex items-center gap-2 text-emerald-400 text-sm font-semibold group-hover:gap-3 transition-all">
+                        <span>Schedule</span>
+                        <Play size={16} />
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Unified Bottom CTA */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8 border-t border-white/10">
+                  <Link to="/onboarding" className="w-full sm:w-auto">
+                    <GlowButton variant="primary" size="lg" glow className="w-full gap-2">
+                      <Zap size={18} />
+                      Start Free Trial
+                    </GlowButton>
+                  </Link>
+                  <button
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    className="w-full sm:w-auto px-6 py-3 text-white font-semibold rounded-lg border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all"
+                  >
+                    Back to Pricing
+                  </button>
                 </div>
               </div>
             </GlassCardContent>

@@ -21,9 +21,9 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../components/Toast';
-import { useSegmentExperience, useSegmentKpis } from '@/hooks/useSegmentExperience';
-import { useTenant } from '@/contexts/TenantContext';
-import { cn } from '@/lib/utils';
+import { useSegmentExperience, useSegmentKpis } from '../hooks/useSegmentExperience';
+import { useTenant } from '../contexts/TenantContext';
+import { cn } from '../lib/utils';
 import {
   AdvancedMetricCard,
   RealTimeActivityStream,

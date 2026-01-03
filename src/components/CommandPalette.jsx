@@ -14,7 +14,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from './ui/command';
+} from './ui/Command';
 import {
   LayoutDashboard,
   Users,

@@ -148,10 +148,6 @@ export {
   CommandSeparator,
 };
 
-Command.propTypes = {
-  className: PropTypes.string,
-};
-
 CommandDialog.propTypes = {
   children: PropTypes.node,
   open: PropTypes.bool,

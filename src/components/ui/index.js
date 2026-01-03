@@ -7,12 +7,12 @@ export { Textarea } from './Textarea';
 export { Select } from './Select';
 export { Checkbox } from './Checkbox';
 export { Radio, RadioGroup } from './Radio';
-export { Switch } from './switch';
+export { Switch } from './Switch';
 export { Button } from './Button';
 
 // Layout Components
 export { Card } from './Card';
-export { Separator } from './separator';
+export { Separator } from './Separator';
 
 // Navigation Components
 export { Tabs } from './Tabs';
@@ -38,11 +38,11 @@ export { EmptyState } from './EmptyState';
 
 // Feedback Components
 export { Alert } from './Alert';
-export { Toast } from './toast'; // Radix primitives - for custom Toast implementations
+export { Toast } from './Toast'; // Radix primitives - for custom Toast implementations
 // NOTE: Toaster from shadcn is deprecated - use ToastProvider from src/components/Toast.jsx
 export { Progress } from './Progress';
 export { Spinner, LoadingOverlay, LoadingDots, LoadingBar } from './Spinner';
-export { Skeleton } from './skeleton';
+export { Skeleton } from './Skeleton';
 
 // Overlay Components
 export { Dialog } from './Dialog';
@@ -56,9 +56,9 @@ export {
   DrawerFooter,
 } from './Drawer';
 export { Tooltip } from './Tooltip';
-export { Popover } from './popover';
-export { DropdownMenu } from './dropdown-menu';
-export { Command } from './command';
+export { Popover } from './Popover';
+export { DropdownMenu } from './DropdownMenu';
+export { Command } from './Command';
 
 // Interactive Components
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './Accordion';
